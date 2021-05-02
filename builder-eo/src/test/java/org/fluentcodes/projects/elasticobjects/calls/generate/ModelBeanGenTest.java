@@ -2,7 +2,6 @@ package org.fluentcodes.projects.elasticobjects.calls.generate;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EO;
-import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateResourceCall;
 import org.fluentcodes.projects.elasticobjects.domain.BaseConfig;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.models.ModelBeanGen;
@@ -24,7 +23,7 @@ public class ModelBeanGenTest {
     }
 
     public static EO readEo() {
-        ModelBeansReadCall call = new ModelBeansReadCall(ModelConfig.class.getSimpleName());
+        ModelBeanMap4SheetCall call = new ModelBeanMap4SheetCall(ModelConfig.class.getSimpleName());
         EO eo = ProviderRootTestScope.createEo();
         call.setSourceFileConfigKey("eo.xlsx");
         String result = call.execute(eo);

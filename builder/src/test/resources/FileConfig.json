@@ -86,5 +86,21 @@
       "rowHead": 0,
       "sheetName": "ModelConfig"
     }
+  },
+  "Create.java": {
+    "module": "builder-eo",
+    "moduleScope": "main",
+    "hostConfigKey": "localhost",
+    "filePath": "=>[/projectDirectory]./=>[module]./src/=>[moduleScope]./java/==>[StringReplaceCall->packagePath, \\., /].",
+    "fileName": "/=>[modelKey].=>[/fileEnding]..java",
+    "description": "Target file when generating java class files.",
+    "expose": "WEB",
+    "cached": "false",
+    "rolePermissions": {
+      "write": "admin"
+    },
+    "properties": {
+      "template": "Create.tpl.java"
+    }
   }
 }

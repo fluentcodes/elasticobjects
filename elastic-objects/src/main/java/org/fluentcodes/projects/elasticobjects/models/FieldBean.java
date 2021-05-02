@@ -28,13 +28,14 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface  {
 /*=>{}.*/
     private boolean merged = false;
 
-    private ModelBean modelBean;
+    private ModelConfigInterface parentModel;
 
     public FieldBean() {
         super();
     }
     public FieldBean(String key) {
         super(key);
+        //this.fieldKey = key;
     }
 
     public FieldBean(final Map values) {
@@ -156,17 +157,25 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface  {
     void setMerged(boolean merged) {
         this.merged = merged;
     }
+
     @Override
     public String toString() {
-        return "(" + modelKeys + ")" + getNaturalId();
+        StringBuilder builder = new StringBuilder();
+        if (!hasKey()) return "";
+        builder.append(getKey());
+        if (this.hasParentModelKey()) builder.insert(0, getParentModel().getModelKey() + ".");
+        return hasModelKeys()?
+                "(" + modelKeys + ")" + builder.toString():
+                builder.toString();
     }
 
     @Override
-    public ModelBean getModelBean() {
-        return modelBean;
+    public ModelConfigInterface getParentModel() {
+        return parentModel;
     }
+
     @Override
-    public void setModelBean(ModelBean modelBean) {
-        this.modelBean = modelBean;
+    public void setParentModel(ModelConfigInterface modelBean) {
+        this.parentModel = modelBean;
     }
 }

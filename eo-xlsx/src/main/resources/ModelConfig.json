@@ -6,7 +6,7 @@
     "superKey": "FileConfig",
     "expose": "NONE",
     "description": "The cache class for excel access. Contains the file cache.",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.xlsx",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
     "modelKey": "XlsxConfig",
     "properties": {
       "create": false,
@@ -27,7 +27,7 @@
     "interfaces": "FileConfigInterface",
     "expose": "NONE",
     "description": "The cache class for excel access. Contains the file cache.",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.xlsx",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
     "modelKey": "XlsxConfigInterface",
     "properties": {
       "create": false,

@@ -51,6 +51,14 @@ public interface ModelConfigInterface extends ConfigConfigInterface {
     default boolean hasModelKey() {
         return getModelKey()!=null && !getModelKey().isEmpty();
     }
+    default String getKey() {
+        if (hasModelKey()) return getModelKey();
+        if (hasNaturalId()) return getNaturalId();
+        return "";
+    }
+    default boolean hasKey() {
+        return !getModelKey().isEmpty();
+    }
 
     String getPackagePath();
     default boolean hasPackagePath() {

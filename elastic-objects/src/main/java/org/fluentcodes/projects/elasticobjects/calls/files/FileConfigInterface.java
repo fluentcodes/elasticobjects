@@ -17,6 +17,7 @@ public interface FileConfigInterface extends PermissionConfigInterface,ConfigCon
     String FILE_NAME = "fileName";
     String FILE_PATH = "filePath";
     String CACHED = "cached";
+    String TEMPLATE = "template";
 /*=>{}.*/
 
 /*=>{javaAccessors}|*/
@@ -41,7 +42,14 @@ public interface FileConfigInterface extends PermissionConfigInterface,ConfigCon
       return getHostConfigKey() != null && !getHostConfigKey().isEmpty();
    }
 /*=>{}.*/
-
+    default String getTemplate(){
+    return (String) getProperties().get(TEMPLATE);
+}
+    default boolean hasTemplate() {
+        return getProperties().containsKey(TEMPLATE) &&
+                getProperties().get(TEMPLATE) != null &&
+                !((String)getProperties().get(TEMPLATE)).isEmpty();
+    }
     default boolean isTargetTemplate() {
         return true;
     }

@@ -7,15 +7,15 @@ import org.junit.Test;
  * @author Werner Diwischek
  * @since 9.10.2020.
  */
-public class GenerateModelTemplateCallTest {
+public class ModelTemplateCallTest {
 
     @Test
     public void createByModelConfig()  {
-        ModelConfigChecks.create(GenerateModelTemplateCall.class);
+        ModelConfigChecks.create(ModelTemplateCall.class);
     }
 
     @Test
     public void compareModelConfig()  {
-        ModelConfigChecks.compare(GenerateModelTemplateCall.class);
+        ModelConfigChecks.compare(ModelTemplateCall.class);
     }
 }

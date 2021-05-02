@@ -8,7 +8,7 @@ import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.utils.ScalarConverter;
 
-public interface GenerateProperties extends Call {
+public interface GenerateAbstractInterface extends Call {
     /*=>{}.*/
     /*=>{javaStaticNames}|*/
     String FILE_ENDING = "fileEnding";
@@ -43,7 +43,7 @@ public interface GenerateProperties extends Call {
     }
 
     String getSourceFileConfigKey();
-    GenerateProperties setSourceFileConfigKey(String sourceFileConfig);
+    GenerateAbstractInterface setSourceFileConfigKey(String sourceFileConfig);
     default boolean hasSourceFileConfigKey() {
         return getSourceFileConfigKey() != null && !getSourceFileConfigKey().isEmpty();
     }
@@ -79,17 +79,17 @@ public interface GenerateProperties extends Call {
     }
 
     String getTargetFileConfigKey();
-    GenerateProperties setTargetFileConfigKey(String targetFileConfig);
+    GenerateAbstractInterface setTargetFileConfigKey(String targetFileConfig);
     default boolean hasTargetFileConfigKey() {
         return getTargetFileConfigKey() != null && !getTargetFileConfigKey().isEmpty();
     }
 
     String getModule();
-    GenerateProperties setModule(String moduleScope);
+    GenerateAbstractInterface setModule(String moduleScope);
     default boolean hasModule () {
         return getModule()!= null && !getModule().isEmpty();
     }
-    default GenerateProperties mergeModule(Object module) {
+    default GenerateAbstractInterface mergeModule(Object module) {
         if (module == null) {
             return this;
         }
@@ -106,11 +106,11 @@ public interface GenerateProperties extends Call {
     }
 
     String getModuleScope();
-    GenerateProperties setModuleScope(String moduleScope);
+    GenerateAbstractInterface setModuleScope(String moduleScope);
     default boolean hasModuleScope () {
         return getModuleScope()!= null && !getModuleScope().isEmpty();
     }
-    default GenerateProperties mergeModuleScope(Object value) {
+    default GenerateAbstractInterface mergeModuleScope(Object value) {
         if (value == null) {
             return this;
         }
@@ -127,11 +127,11 @@ public interface GenerateProperties extends Call {
     }
 
     String getFileEnding();
-    GenerateProperties setFileEnding(String moduleScope);
+    GenerateAbstractInterface setFileEnding(String moduleScope);
     default boolean hasFileEnding () {
         return getFileEnding()!= null && !getFileEnding().isEmpty();
     }
-    default GenerateProperties mergeFileEnding(Object value) {
+    default GenerateAbstractInterface mergeFileEnding(Object value) {
         if (value == null) {
             return this;
         }
@@ -149,11 +149,11 @@ public interface GenerateProperties extends Call {
     }
 
     String getProjectDirectory();
-    GenerateProperties setProjectDirectory(String projectDirectory);
+    GenerateAbstractInterface setProjectDirectory(String projectDirectory);
     default boolean hasProjectDirectory() {
         return getProjectDirectory()!=null && !getProjectDirectory().isEmpty();
     }
-    default GenerateProperties mergeProjectDirectory(Object value) {
+    default GenerateAbstractInterface mergeProjectDirectory(Object value) {
         if (value == null) {
             return this;
         }

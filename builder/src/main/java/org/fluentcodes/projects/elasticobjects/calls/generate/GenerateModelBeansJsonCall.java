@@ -11,7 +11,7 @@ import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.calls.generate.GenerateModelAbstract.MODEL_BEANS_JSON;
+import static org.fluentcodes.projects.elasticobjects.calls.generate.ModelAbstract.MODEL_BEANS_JSON;
 
 /*=>{javaHeader}|*/
 
@@ -22,7 +22,7 @@ import static org.fluentcodes.projects.elasticobjects.calls.generate.GenerateMod
  * @creationDate 
  * @modificationDate Wed Nov 11 07:39:50 CET 2020
  */
-public class GenerateModelBeansJsonCall extends GenerateAbstract implements GenerateProperties{
+public class GenerateModelBeansJsonCall extends GenerateAbstract implements GenerateAbstractInterface {
     /*=>{javaStaticNames}|*/
 /*=>{}.*/
 

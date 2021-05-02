@@ -6,6 +6,9 @@ import java.util.Map;
 
 /*=>{javaHeader}|*/
 import org.fluentcodes.projects.elasticobjects.calls.PermissionBean;
+
+import static org.fluentcodes.projects.elasticobjects.calls.HostCall.HOST_CONFIG_KEY;
+
 /**
  * 
  * The bean counterpart for {@link FileConfig}. 
@@ -45,9 +48,9 @@ public class FileBean extends PermissionBean implements FileBeanInterface  {
     public void merge (final Map configMap) {
         super.merge(configMap);
         mergeFileName(configMap.get(FILE_NAME));
-        mergeFileName(configMap.get(FILE_PATH));
+        mergeFilePath(configMap.get(FILE_PATH));
         mergeCached(configMap.get(CACHED));
-        mergeHostConfigKey(configMap.get(FILE_NAME));
+        mergeHostConfigKey(configMap.get(HOST_CONFIG_KEY));
         defaultConfigModelKey();
     }
 

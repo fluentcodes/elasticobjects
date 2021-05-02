@@ -37,7 +37,7 @@ public class ConfigBeanMap<T extends ConfigConfigInterface> implements ConfigCon
         this(scope, findBean(configClass), configClass);
     }
 
-    private static Class<? extends ConfigBean> findBean(final Class<? extends ConfigConfig> configClass) {
+    static Class<? extends ConfigBean> findBean(final Class<? extends ConfigConfig> configClass) {
         try {
             return (Class<? extends ConfigBean>)Class.forName(configClass.getName().replaceAll("Config$","Bean"));
         } catch (ClassNotFoundException e) {
@@ -66,7 +66,7 @@ public class ConfigBeanMap<T extends ConfigConfigInterface> implements ConfigCon
      * Default init map.
      * @return the expanded final configurations.
      */
-    protected void initMapByJson() {
+    void initMapByJson() {
         EO eoRoot = EoRoot.ofClass(new ConfigMaps(), readConfigFiles());
         for (String key: eoRoot.keys()) {
             configMap.put(key, createBean(key, (Map) eoRoot.get(key)));

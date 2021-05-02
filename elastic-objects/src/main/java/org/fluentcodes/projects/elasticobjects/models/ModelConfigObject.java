@@ -29,7 +29,7 @@ public class ModelConfigObject extends ModelConfig {
 
     @Override
     public ModelConfig getFieldModel(final String fieldName)  {
-        return ((FieldConfig)getField(fieldName)).getModelConfig();
+        return getFieldModels(fieldName).getModel();
     }
 
     public Models getFieldModels(final String fieldName)  {

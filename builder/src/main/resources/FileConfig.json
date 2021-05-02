@@ -22,12 +22,12 @@
     "expose": "WEB",
     "cached": "false"
   },
-  "JavaCreate.tpl": {
+  "Create.tpl.java": {
     "module": "builder",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
     "filePath": "templates/java",
-    "fileName": "JavaCreate.tpl",
+    "fileName": "Create.tpl.java",
     "description": "Java template for beans. ",
     "expose": "WEB",
     "cached": "true",

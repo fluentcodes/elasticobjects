@@ -2,6 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.generate;
 
 import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.calls.templates.ParserSqareBracket;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -21,7 +22,7 @@ import java.util.Set;
  * @creationDate 
  * @modificationDate Wed Nov 11 07:35:57 CET 2020
  */
-public class GenerateModelTemplateMapCall extends GenerateModelAbstract {
+public class ModelTemplateTargetMapCall extends ModelAbstract {
 /*=>{}.*/
     private final static String JAVA_GEN_MODEL = "/modelKey";
     public final static String FIELD_MAP = "fieldMap";
@@ -31,7 +32,7 @@ public class GenerateModelTemplateMapCall extends GenerateModelAbstract {
 /*=>{javaInstanceVars}|*/
 /*=>{}.*/
 
-    public GenerateModelTemplateMapCall() {
+    public ModelTemplateTargetMapCall() {
         super();
     }
 
@@ -39,27 +40,28 @@ public class GenerateModelTemplateMapCall extends GenerateModelAbstract {
         if (modelBean.getNaturalId()==null) {
             throw new EoException("Natural id for '" + modelBean.getNaturalId() + "' is null!");
         }
-        if (hasNaturalId() && !modelBean.getNaturalId().equals(getNaturalId())) {
+        if (hasNaturalId() && !modelBean.getNaturalId().matches(getNaturalId())) {
             return false;
         }
         if (!modelBean.hasPackagePath()) {
             throw new EoException("PackagePath for '" + modelBean.getNaturalId() + "' is null!");
         }
-        /*if (!modelBean.getPackagePath().startsWith(getPackagePath())) {
+        if (!modelBean.getPackagePath().startsWith(getPackagePath())) {
             return false;
-        }*/
+        }
         return super.filter(modelBean);
     }
 
-    private Map<String, String> initFileConfigKeyMap(final EO eo) {
+    private Map<String, FileConfig> initTemplateTargetMap(final EO eo) {
         ConfigMaps cache = eo.getConfigsCache();
         Set<String> fileConfigKeys = cache.getConfigKeys(FileConfig.class);
-        Map<String, String> fileConfigKeyMap = new LinkedHashMap<>();
+        Map<String, FileConfig> fileConfigKeyMap = new LinkedHashMap<>();
         for (String key: fileConfigKeys) {
-            if (!key.contains(".tpl.")) {
+            FileConfig fileConfig = cache.findFile(key);
+            if (!fileConfig.hasTemplate()) {
                 continue;
             }
-            fileConfigKeyMap.put(key.replaceAll("\\.tpl\\.", "."), key);
+            fileConfigKeyMap.put(key, fileConfig);
         }
         return fileConfigKeyMap;
     }
@@ -68,7 +70,10 @@ public class GenerateModelTemplateMapCall extends GenerateModelAbstract {
     public String execute(EO eo) {
         long start = System.currentTimeMillis();
         init(eo);
-        Map<String, String> fileConfigKeyMap = initFileConfigKeyMap(eo);
+        Map<String, FileConfig> templateTargetMap = initTemplateTargetMap(eo);
+        if (templateTargetMap.isEmpty()) {
+            throw new EoInternalException("no file configuration with template property found");
+        }
         defaultValues();
         StringBuilder feedback = new StringBuilder();
         this.setNaturalId(ParserSqareBracket.replacePathValues(getNaturalId(), eo));
@@ -83,12 +88,14 @@ public class GenerateModelTemplateMapCall extends GenerateModelAbstract {
                 continue;
             }
             eo.set(modelBean.getModelKey(), "/modelKey");
-            for (String fileConfigKey: fileConfigKeyMap.keySet()) {
+            for (String fileConfigKey: templateTargetMap.keySet()) {
                 if (hasTargetFileConfigKey() && !fileConfigKey.matches(getTargetFileConfigKey())) {
                     continue;
                 }
                 feedback.append(
-                        super.create(eoModel, fileConfigKeyMap.get(fileConfigKey), fileConfigKey));
+                        super.create(eoModel, templateTargetMap.get(fileConfigKey))
+                );
+                feedback.append("\n");
             }
             counter++;
         }

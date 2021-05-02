@@ -19,7 +19,7 @@ import java.util.Date;
  * @creationDate 
  * @modificationDate Wed Nov 11 07:29:32 CET 2020
  */
-public abstract class GenerateAbstract extends CallImpl implements GenerateProperties {
+public abstract class GenerateAbstract extends CallImpl implements GenerateAbstractInterface {
     public static final String MODULE = "module";
     public static final String MODULE_SCOPE = "moduleScope";
     public static final String PROJECT_DIRECTORY = "projectDirectory";
@@ -70,12 +70,6 @@ public abstract class GenerateAbstract extends CallImpl implements GeneratePrope
         eo.set(fileEnding, Path.DELIMITER, FILE_ENDING);
         return true;
     }
-
-    protected String create(final EO eoModel, final String sourceFileConfigKey, final String targetFileConfigKey) {
-        TemplateResourceStoreCall templateCall = new TemplateResourceStoreCall(sourceFileConfigKey, targetFileConfigKey);
-        return templateCall.execute(eoModel);
-    }
-
 
 /*=>{javaAccessors}|*/
 

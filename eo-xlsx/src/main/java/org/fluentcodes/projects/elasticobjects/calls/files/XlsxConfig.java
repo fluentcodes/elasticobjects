@@ -1,4 +1,4 @@
-package org.fluentcodes.projects.elasticobjects.calls.xlsx;
+package org.fluentcodes.projects.elasticobjects.calls.files;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -9,8 +9,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.fluentcodes.projects.elasticobjects.EO;
-import org.fluentcodes.projects.elasticobjects.calls.files.FileBean;
-import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -80,7 +78,7 @@ public class XlsxConfig extends FileConfig implements XlsxConfigInterface {
         }
     }
 
-    protected List getRowAsList(Row row) {
+    public List getRowAsList(Row row) {
         if (row == null) {
             return null;
         }

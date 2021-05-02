@@ -4,6 +4,7 @@ import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.Models;
+import org.fluentcodes.projects.elasticobjects.models.Scope;
 
 import java.util.List;
 import java.util.Map;
@@ -129,6 +130,10 @@ public interface EO extends EoLogInterface{
 
     default ConfigMaps getConfigsCache() {
         return getRoot().getConfigsCache();
+    }
+
+    default Scope getScope() {
+        return getConfigsCache().getScope();
     }
 
     default boolean isSerializationTypeStandard() {

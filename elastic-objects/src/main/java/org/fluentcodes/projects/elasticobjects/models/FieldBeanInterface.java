@@ -189,17 +189,6 @@ public interface FieldBeanInterface extends FieldConfigInterface, ConfigBeanInte
    }
 
 /*=>{}.*/
-    void setModelBean(ModelBean modelBean);
-    ModelBean getModelBean();
-    default boolean hasModelBean() {
-        return getModelBean()!=null;
-    }
-
-    default void setSuper() {
-        getProperties().put(SUPER, true);
-    }
-
-
     default void defaultFieldKey() {
         if (hasFieldKey()) return;
         if (!hasNaturalId()) throw new EoException("Field with neither fieldKey nor naturalId is set");
@@ -282,6 +271,7 @@ public interface FieldBeanInterface extends FieldConfigInterface, ConfigBeanInte
         getProperties().put(JAVASCRIPT_TYPE, JavascriptFieldTypeCall.createType(getModelKeys()));
     }
 
+    void setParentModel(ModelConfigInterface modelBean);
 
 
 }

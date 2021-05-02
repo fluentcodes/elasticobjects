@@ -1,7 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.utils.ScalarConverter;
-
 /*=>{javaHeader}|*/
 /**
  * 
@@ -52,6 +50,14 @@ public interface FieldConfigInterface extends ConfigConfigInterface  {
    }
 
    String getFieldKey();
+   default String getKey() {
+      if (hasNaturalId()) return getNaturalId();
+      if (hasFieldKey()) return getFieldKey();
+      return "";
+   }
+   default boolean hasKey() {
+      return !getKey().isEmpty();
+   }
 
    default boolean hasFieldKey() {
       return getFieldKey() != null && !getFieldKey().isEmpty();
@@ -215,11 +221,29 @@ public interface FieldConfigInterface extends ConfigConfigInterface  {
         return getDefaultValue()!=null;
     }
 
-
     default boolean hasSize() {
         return hasMax()||hasMin();
     }
 
+
+   ModelConfigInterface getParentModel();
+   default boolean hasParentModel() {
+      return getParentModel()!=null;
+   }
+   default boolean hasParentModelKey() {
+      return hasParentModel() && getParentModel().hasModelKey();
+   }
+
+    default String getModelKey() {
+       if (!hasParentModelKey()) return "";
+       if (this.hasParentModelKey()) return getParentModel().getModelKey();
+       if (hasParentModelNaturalId()) return getParentModel().getNaturalId();
+       return "";
+    }
+
+   default boolean hasParentModelNaturalId() {
+      return hasParentModel() && getParentModel().hasNaturalId() ;
+   }
 }
 
 

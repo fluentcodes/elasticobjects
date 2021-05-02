@@ -3,6 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.xlsx;
 import org.fluentcodes.projects.elasticobjects.ConfigChecks;
 import org.fluentcodes.projects.elasticobjects.ModelConfigChecks;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
+import org.fluentcodes.projects.elasticobjects.calls.files.XlsxConfig;
 import org.junit.Ignore;
 import org.junit.Test;
 

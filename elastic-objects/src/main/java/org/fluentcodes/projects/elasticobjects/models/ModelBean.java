@@ -40,6 +40,7 @@ public class ModelBean extends ConfigBean implements Model, PermissionBeanInterf
     public ModelBean(final String key) {
         super();
         setNaturalId(key);
+        setModelKey(key);
         fieldBeans = new TreeMap<>();
         modelSet = new TreeSet<>();
     }
@@ -248,7 +249,7 @@ public class ModelBean extends ConfigBean implements Model, PermissionBeanInterf
         this.fieldBeans = fieldBeans;
     }
 
-    public void mergeFieldBeanMap(FieldBeanMap fieldBeanMap) {
+    public void mergeFieldBeanMap(FieldBeanMapInterface fieldBeanMap) {
         for (FieldBeanInterface fieldBean: fieldBeans.values()) {
             if (!fieldBean.hasNaturalId()) {
                 throw new EoInternalException("Could not get field definition for '" + fieldBean.getNaturalId() + "'.");
@@ -258,10 +259,10 @@ public class ModelBean extends ConfigBean implements Model, PermissionBeanInterf
                     throw new EoInternalException("Could not get field definition for '" + fieldBean.getNaturalId() + "'.");
                 }
                 FieldBean fieldBeanFromMap = fieldBeanMap.find(fieldBean.getNaturalId());
-                if (isFinal()) fieldBeanFromMap.setFinal(true);
+                //if (isFinal()) fieldBeanFromMap.setFinal(true);
                 ((FieldBean) fieldBean).merge(fieldBeanFromMap);
             }
-            fieldBean.setModelBean(this);
+            fieldBean.setParentModel(this);
         }
     }
 
@@ -276,7 +277,7 @@ public class ModelBean extends ConfigBean implements Model, PermissionBeanInterf
             FieldBean fieldBeanFromMap = new FieldBean(fieldMap.get(fieldBean.getNaturalId()));
             if (isFinal()) fieldBeanFromMap.setFinal(true);
             ((FieldBean) fieldBean).merge(fieldBeanFromMap);
-            fieldBean.setModelBean(this);
+            fieldBean.setParentModel(this);
         }
     }
 
@@ -304,7 +305,7 @@ public class ModelBean extends ConfigBean implements Model, PermissionBeanInterf
             }
         }
         for (FieldBeanInterface fieldBean: fieldBeans.values()) {
-            fieldBean.setModelBean(this);
+            fieldBean.setParentModel(this);
             if (!fieldBean.hasModelKeys()) {
                 throw new EoInternalException("No modelKeys for '" + fieldBean.getNaturalId() + "'");
             }
@@ -368,7 +369,7 @@ public class ModelBean extends ConfigBean implements Model, PermissionBeanInterf
 
     @Override
     public String toString() {
-        return getNaturalId() + "(" + getShapeType() + ")";
+        return "(" + getShapeType() + ")" + getKey() ;
     }
 
     public String getClassName()  {

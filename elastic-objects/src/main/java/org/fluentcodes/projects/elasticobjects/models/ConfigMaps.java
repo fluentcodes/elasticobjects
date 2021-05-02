@@ -39,6 +39,10 @@ public class ConfigMaps {
         configMaps.put(FileConfig.class, new FileConfigMap(scope));
     }
 
+    public Scope getScope() {
+        return scope;
+    }
+
     public Set<Class> getKeys() {
         return configMaps.keySet();
     }
@@ -51,6 +55,10 @@ public class ConfigMaps {
         if (configKey == null || configKey.isEmpty()) throw new EoException("Config key is empty for finder '" + configClass.getSimpleName() + "'!");
         ConfigConfigInterface config = getConfigMap(configClass).find(configKey);
         return config;
+    }
+    public boolean hasKey(final Class configClass, final String configKey)  {
+        if (configKey == null || configKey.isEmpty()) throw new EoException("Config key is empty for finder '" + configClass.getSimpleName() + "'!");
+        return  getConfigMap(configClass).hasKey(configKey);
     }
 
     public boolean isEmpty(final Class configClass) {
@@ -103,6 +111,11 @@ public class ConfigMaps {
     public FileConfig findFile(final String key)  {
         return (FileConfig) find(FileConfig.class, key);
     }
+
+    public boolean hasFile(final String key)  {
+        return hasKey(FileConfig.class, key);
+    }
+
     public HostConfig findHost(final String key)  {
         return (HostConfig) find(HostConfig.class, key);
     }

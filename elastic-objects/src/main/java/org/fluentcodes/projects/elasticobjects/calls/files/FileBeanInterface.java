@@ -3,15 +3,14 @@ package org.fluentcodes.projects.elasticobjects.calls.files;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionBeanInterface;
 import org.fluentcodes.projects.elasticobjects.utils.ScalarConverter;
 /*=>{javaHeader}|*/
-
 /**
  * 
  * Access methods for field properties map.  
  * @author Werner Diwischek
  * @creationDate Wed Dec 16 00:00:00 CET 2020
- * @modificationDate Thu Jan 14 14:52:38 CET 2021
+ * @modificationDate Fri Jan 29 12:22:35 CET 2021
  */
-public interface FileBeanInterface extends FileConfigInterface, PermissionBeanInterface {
+public interface FileBeanInterface extends FileConfigInterface,PermissionBeanInterface  {
 /*=>{}.*/
 /*=>{javaAccessors}|*/
    FileBeanInterface setCached(final Boolean cached);

@@ -14,10 +14,10 @@ import org.junit.Test;
  * @author Werner Diwischek
  * @since 9.10.2020.
  */
-public class GenerateModelTemplateCallStart {
+public class ModelTemplateCallStart {
 
     public static void createAll(final String naturalId) {
-        GenerateModelTemplateMapCall call = new GenerateModelTemplateMapCall();
+        ModelTemplateTargetMapCall call = new ModelTemplateTargetMapCall();
         call.setSourceFileConfigKey("eo.xlsx");
         call.setTargetFileConfigKey("classes.java");
         call.setProjectDirectory("..");

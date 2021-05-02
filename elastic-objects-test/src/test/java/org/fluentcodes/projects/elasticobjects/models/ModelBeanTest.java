@@ -10,6 +10,32 @@ import static org.fluentcodes.projects.elasticobjects.models.ModelConfigInterfac
 
 public class ModelBeanTest {
     @Test
+    public void empty__toString__BEAN() {
+        ModelBean model = new ModelBean();
+        Assertions.assertThat(model.toString()).isEqualTo("(BEAN)");
+    }
+
+    @Test
+    public void Model__toString__BEAN_Model() {
+        ModelBean model = new ModelBean("Model");
+        Assertions.assertThat(model.toString()).isEqualTo("(BEAN)Model");
+    }
+
+    @Test
+    public void modelKey_Model__toString__BEAN_Model() {
+        ModelBean model = new ModelBean();
+        model.setModelKey("Model");
+        Assertions.assertThat(model.toString()).isEqualTo("(BEAN)Model");
+    }
+
+    @Test
+    public void naturalId_Model__toString__BEAN_Model() {
+        ModelBean model = new ModelBean();
+        model.setNaturalId("Model");
+        Assertions.assertThat(model.toString()).isEqualTo("(BEAN)Model");
+    }
+
+    @Test
     public void set_ShapeTypes_LIST__getShapeType__LIST() {
         ModelBean modelBean = new ModelBean();
         modelBean.setShapeType(ShapeTypes.LIST);

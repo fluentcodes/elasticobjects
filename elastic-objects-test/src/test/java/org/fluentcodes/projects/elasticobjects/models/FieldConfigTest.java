@@ -1,6 +1,8 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
+import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.ModelConfigChecks;
+import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderRootTestScope;
 import org.junit.Assert;
 import org.junit.Test;
@@ -40,4 +42,5 @@ public class FieldConfigTest {
         Assert.assertEquals(FieldBeanInterface.class.getSimpleName(), fieldBeanInterfaceModel.getModelKey());
         Assert.assertEquals(FieldBeanInterface.class, fieldBeanInterfaceModel.getModelClass());
     }
+
 }

@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCall;
+import org.fluentcodes.projects.elasticobjects.calls.files.XlsxConfig;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListInterface;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;

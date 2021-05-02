@@ -77,7 +77,7 @@ public interface FieldBeanInterface4Java extends FieldBeanInterface {
         }
         StringBuilder builder = new StringBuilder(getJavaOverrideAnnotation() );
         builder.append(
-                "   public " + getModelBean().getModelKey() + " set" + getUpperFirstCharFieldKey() + "(final " + getJavaFieldType() + " " + getFieldKey() + ") {\n" +
+                "   public " + getParentModel().getModelKey() + " set" + getUpperFirstCharFieldKey() + "(final " + getJavaFieldType() + " " + getFieldKey() + ") {\n" +
                 "      this." + getFieldKey() + " = " + getFieldKey() + ";\n" +
                 "      return this;\n " +
                 "   }\n\n"
@@ -94,14 +94,14 @@ public interface FieldBeanInterface4Java extends FieldBeanInterface {
         }
         StringBuilder builder = new StringBuilder();
         if (isProperty()) {
-            return "   default " + getModelBean().getModelKey() + " set" + getUpperFirstCharFieldKey() + "(" + getJavaFieldType() + " value) {\n" +
+            return "   default " + getParentModel().getModelKey() + " set" + getUpperFirstCharFieldKey() + "(" + getJavaFieldType() + " value) {\n" +
                     "      getProperties().put(" + getUpperFieldKey() + ", value);\n" +
                     "      return this;\n" +
                     "   }\n" + getJavaMerge();
         }
         else {
             builder.append(
-                    "   " + getModelBean().getModelKey() + " set" + getUpperFirstCharFieldKey() + "(final " + getJavaFieldType() + " " + getFieldKey() + ");\n"
+                    "   " + getParentModel().getModelKey() + " set" + getUpperFirstCharFieldKey() + "(final " + getJavaFieldType() + " " + getFieldKey() + ");\n"
             );
             builder.append(getJavaMerge());
         }
@@ -199,7 +199,7 @@ public interface FieldBeanInterface4Java extends FieldBeanInterface {
         StringBuilder builder = new StringBuilder("   /* ");
         builder.append(ModelBeanGen.replaceLinks(getDescription()));
         builder.append(" */\n");
-        if (getModelBean().isDbAnnotated()) {
+        if (getParentModel().isDbAnnotated()) {
             builder.append(createAnnotationNotNull());
             builder.append(createAnnotationSize());
             builder.append(createAnnotationDb());
@@ -239,14 +239,14 @@ public interface FieldBeanInterface4Java extends FieldBeanInterface {
     }
 
     default String createAnnotationNotNull() {
-        if (!hasModelBean()) return "";
-        if (!getModelBean().isDbAnnotated())  return "";
+        if (!hasParentModel()) return "";
+        if (!getParentModel().isDbAnnotated())  return "";
         return "   @NotNull\n";
     }
 
     default String createAnnotationSize() {
-        if (!hasModelBean()) return "";
-        if (!getModelBean().isDbAnnotated()) return "";
+        if (!hasParentModel()) return "";
+        if (!getParentModel().isDbAnnotated()) return "";
         if (!hasSize()) return "";
 
         StringBuilder builder = new StringBuilder("@Size(");
@@ -264,8 +264,8 @@ public interface FieldBeanInterface4Java extends FieldBeanInterface {
     }
 
     default String createAnnotationDb() {
-        if (!hasModelBean()) return "";
-        if (!getModelBean().isDbAnnotated()) return "";
+        if (!hasParentModel()) return "";
+        if (!getParentModel().isDbAnnotated()) return "";
         if (isTransient()) {
             return "@Transient";
         }

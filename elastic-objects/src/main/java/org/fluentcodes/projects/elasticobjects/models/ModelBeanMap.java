@@ -27,9 +27,11 @@ public class ModelBeanMap extends ConfigBeanMap<ModelBean>  {
     public ModelBeanMap(final Scope scope)  {
         super(scope, ModelConfig.class);
         init();
-
+        if (scope == Scope.DEV) {
+            return;
+        }
         FieldBeanMap fieldBeanMap = new FieldBeanMap(getScope());
-        addJsonClassNames();
+        addModelsJson();
         for (ModelBean modelBean: getBeanMap().values()) {
             modelBean.mergeFieldBeanMap(fieldBeanMap);
         }
@@ -57,7 +59,7 @@ public class ModelBeanMap extends ConfigBeanMap<ModelBean>  {
         addModelBeanScalar(JSONSerializationType.class);
     }
 
-    protected final void addJsonClassNames()  {
+    protected final void addModelsJson()  {
         String modelListString = readConfigFiles(MODELS_JSON);
         if (modelListString == null || modelListString.isEmpty()) {
             return;

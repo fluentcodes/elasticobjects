@@ -5,6 +5,7 @@ import org.fluentcodes.projects.elasticobjects.domain.BaseBeanInterface;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
+import org.fluentcodes.projects.elasticobjects.models.FieldConfigInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.Models;
 import org.fluentcodes.projects.elasticobjects.utils.ScalarComparator;
@@ -391,11 +392,21 @@ public class EoChild implements EO {
         }
         Set<String> fieldNameSet = valueModel.keys(value);
         for (String fieldName : fieldNameSet) {
+            if (valueModel.isObject()) {
+                FieldConfigInterface fieldBean = valueModel.getField(fieldName);
+                if (fieldBean == null) {
+                    continue;
+                }
+                if (fieldBean.isFinal()) {
+                    continue;
+                }
+            }
             PathElement pathElement = new PathElement(fieldName);
             if (valueModel.isJsonIgnore(fieldName)) continue;
             if (valueModel.isProperty(fieldName)) continue;
             if (!valueModel.exists(fieldName, value)) continue;
             Object childValue = valueModel.get(fieldName, value);
+
             if (childValue == null && hasEo(pathElement)) {
                 continue;
             }

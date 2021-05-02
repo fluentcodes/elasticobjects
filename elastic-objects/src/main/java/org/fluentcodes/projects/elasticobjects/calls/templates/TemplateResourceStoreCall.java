@@ -46,17 +46,14 @@ public class TemplateResourceStoreCall extends FileReadWriteCall  {
     }
 
     private String readSourceOrTarget(final EO eo) {
-        FileConfig targetFileConfig = eo.getConfigsCache().findFile(getTargetFileConfigKey());
-        if (!targetFileConfig.isTargetTemplate()) {
-            return readSource(eo);
+        if (!hasSourceFileConfigKey()) {
+            return readTarget(eo);
         }
-        else {
-            try {
-                return readTarget(eo);
-            }
-            catch (Exception e) {
-                return readSource(eo);
-            }
+        try {
+            return readTarget(eo);
+        }
+        catch (Exception e) {
+            return readSource(eo);
         }
     }
 

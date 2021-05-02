@@ -30,20 +30,21 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface  {
     private boolean resolved;
     private final Boolean toSerialize;
     private List<String> modelList;
-    private final ModelConfig modelConfig;
+    private final ModelConfigInterface parentModel;
     private Models models;
     private Method getter;
     private Method setter;
 
-    public FieldConfig(final ModelConfig modelConfig, final FieldBeanInterface bean) {
+    public FieldConfig(final ModelConfig parentModel, final FieldBeanInterface bean) {
         super(bean);
-        this.modelConfig = modelConfig;
+        this.parentModel = parentModel;
         this.toSerialize = false;
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
         this.modelList = ((FieldBean)bean).getModelList();
         this.length = bean.getLength();
     }
+
 
     protected void resolve(ModelConfig model, Map<String, ConfigConfigInterface> modelConfigMap) {
         if (resolved) {
@@ -87,7 +88,7 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface  {
         try {
             return model.getModelClass().getMethod(StringUpperFirstCharCall.getter(fieldKey), null);
         } catch (NoSuchMethodException e) {
-            throw new EoException("\nCould not find getter method for '" + fieldKey + "' and model '" + modelConfig.getNaturalId() + "' with input type '" + models.getModelClass().getSimpleName() + "': " + e.getMessage());
+            throw new EoException("\nCould not find getter method for '" + fieldKey + "' and model '" + parentModel.getNaturalId() + "' with input type '" + models.getModelClass().getSimpleName() + "': " + e.getMessage());
         }
     }
 
@@ -95,7 +96,7 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface  {
         try {
             return model.getModelClass().getMethod(StringUpperFirstCharCall.setter(fieldKey), models.getModelClass());
         } catch (NoSuchMethodException e) {
-            throw new EoException("\nCould not find setter method for '" + fieldKey + "' and model '" + modelConfig.getNaturalId() + "' with input type '" + models.getModelClass().getSimpleName() + "': " + e.getMessage());
+            throw new EoException("\nCould not find setter method for '" + fieldKey + "' and model '" + parentModel.getNaturalId() + "' with input type '" + models.getModelClass().getSimpleName() + "': " + e.getMessage());
         }
     }
 
@@ -160,15 +161,15 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface  {
     }
 
     public Class getModelClass()  {
-        return getModelConfig().getModelClass();
+        return ((ModelConfig)getParentModel()).getModelClass();
     }
 
     public String getModel()  {
         return getModels().getModel().getModelKey();
     }
 
-    public ModelConfig getModelConfig()  {
-        return getModels().getModel();
+    public ModelConfigInterface getParentModel()  {
+        return parentModel;
     }
 
     public ModelConfig getChildModel()  {
@@ -177,6 +178,12 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface  {
 
     @Override
     public String toString() {
-        return modelConfig.getNaturalId() + "." + getNaturalId() + "";
+        StringBuilder builder = new StringBuilder();
+        if (!hasKey()) return "";
+        builder.append(getKey());
+        if (this.hasParentModelKey()) builder.insert(0, getParentModel().getModelKey() + ".");
+        return hasModelKeys()?
+                "(" + modelKeys + ")" + builder.toString():
+                builder.toString();
     }
 }

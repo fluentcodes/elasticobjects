@@ -8,6 +8,7 @@ import java.util.Set;
  */
 public interface ConfigConfigMapInterface<T extends ConfigConfigInterface> {
     T find(final String key) ;
+    boolean hasKey(final String key);
     Set<String> getKeys();
     default Set<String> getKeys(Expose expose) {
         if (expose == null || expose == Expose.NONE || isEmpty()) {

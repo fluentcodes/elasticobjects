@@ -1,4 +1,4 @@
-package org.fluentcodes.projects.elasticobjects.calls.xlsx;
+package org.fluentcodes.projects.elasticobjects.calls.files;
 
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;
 import org.fluentcodes.projects.elasticobjects.models.ConfigConfigInterface;

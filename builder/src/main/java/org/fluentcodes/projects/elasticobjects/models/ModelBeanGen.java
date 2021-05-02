@@ -8,9 +8,13 @@ public class ModelBeanGen extends ModelBean implements ModelBeanInterface4Java {
     public ModelBeanGen() {
         super();
     }
-    public ModelBeanGen(String key) {
+    public ModelBeanGen(final String key) {
         this();
         setNaturalId(key);
+    }
+
+    public ModelBeanGen(final String key, final Map map) {
+        super(key, map);
     }
 
     public ModelBeanGen(final ModelConfig config) {

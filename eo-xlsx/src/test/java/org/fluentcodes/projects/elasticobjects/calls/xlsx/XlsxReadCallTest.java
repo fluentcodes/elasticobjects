@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.ModelConfigChecks;
 import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
+import org.fluentcodes.projects.elasticobjects.calls.files.XlsxConfig;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderRootTestScope;
 import org.junit.Test;
 

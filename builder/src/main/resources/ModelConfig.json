@@ -77,22 +77,32 @@
   "GenerateAbstract": {
     "module": "builder",
     "moduleScope": "main",
-    "fieldKeys": [
-      "module",
-      "moduleScope",
-      "fileEnding",
-      "targetFileConfigKey",
-      "projectDirectory",
-      "sourceFileConfigKey"
-    ],
+    "fieldKeys": "module, moduleScope, fileEnding, targetFileConfigKey, projectDirectory, sourceFileConfigKey",
     "superKey": "CallImpl",
+    "interfaces": "GenerateAbstractInterface",
     "expose": "NONE",
     "description": "Instance abstract base class for generating code with targetFileConfigKey and filter module, moduleScope values. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.generate",
     "modelKey": "GenerateAbstract",
     "properties": {
+      "create": true,
+      "abstract": true,
+      "override": true
+    },
+    "author": "Werner Diwischek"
+  },
+  "GenerateAbstractInterface": {
+    "module": "builder",
+    "moduleScope": "main",
+    "fieldKeys": "module, moduleScope, fileEnding, targetFileConfigKey, projectDirectory, sourceFileConfigKey",
+    "superKey": "Call",
+    "expose": "NONE",
+    "description": "Offer the setByParameter default method with  module, moduleScope and fileEnding values. ",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.generate",
+    "modelKey": "GenerateAbstractInterface",
+    "properties": {
       "create": false,
-      "abstract": true
+      "shapeType": "INTERFACE"
     },
     "author": "Werner Diwischek"
   },
@@ -112,15 +122,15 @@
     },
     "author": "Werner Diwischek"
   },
-  "GenerateModelAbstract": {
+  "ModelAbstract": {
     "module": "builder",
     "moduleScope": "main",
-    "interfaces": "GenerateModelProperties",
+    "interfaces": "ModelAbstractInterface",
     "superKey": "GenerateAbstract",
     "expose": "NONE",
     "description": "Abstract super class for generating code based on ModelBeans.json.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.generate",
-    "modelKey": "GenerateModelAbstract",
+    "modelKey": "ModelAbstract",
     "properties": {
       "create": false,
       "abstract": true
@@ -140,66 +150,46 @@
     },
     "author": "Werner Diwischek"
   },
-  "GenerateModelProperties": {
+  "ModelAbstractInterface": {
     "module": "builder",
     "moduleScope": "main",
     "fieldKeys": [
       "packagePath"
     ],
-    "superKey": "GenerateProperties",
+    "interfaces": "GenerateAbstractInterface",
     "expose": "NONE",
     "description": "Interface for generating template based code from ModelBeans.json.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.generate",
-    "modelKey": "GenerateModelProperties",
+    "modelKey": "ModelAbstractInterface",
     "properties": {
       "create": false,
       "shapeType": "INTERFACE"
     },
     "author": "Werner Diwischek"
   },
-  "GenerateModelTemplateCall": {
+  "ModelTemplateCall": {
     "module": "builder",
     "moduleScope": "main",
-    "superKey": "GenerateModelAbstract",
+    "superKey": "ModelAbstract",
     "expose": "NONE",
     "description": "Call for generation code based on a template from sourceFileConfigKey and ModelBeans.json data. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.generate",
-    "modelKey": "GenerateModelTemplateCall",
+    "modelKey": "ModelTemplateCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "GenerateModelTemplateMapCall": {
+  "ModelTemplateTargetMapCall": {
     "module": "builder",
     "moduleScope": "main",
-    "superKey": "GenerateModelAbstract",
+    "superKey": "ModelAbstract",
     "expose": "NONE",
     "description": "Call for generation code based on a template from sourceFileConfigKey and ModelBeans.json data. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.generate",
-    "modelKey": "GenerateModelTemplateMapCall",
+    "modelKey": "ModelTemplateTargetMapCall",
     "properties": {
       "create": true
-    },
-    "author": "Werner Diwischek"
-  },
-  "GenerateProperties": {
-    "module": "builder",
-    "moduleScope": "main",
-    "fieldKeys": [
-      "module",
-      "moduleScope",
-      "fileEnding",
-      "targetFileConfigKey"
-    ],
-    "superKey": "Call",
-    "expose": "NONE",
-    "description": "Offer the setByParameter default method with  module, moduleScope and fileEnding values. ",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.generate",
-    "modelKey": "GenerateProperties",
-    "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
     },
     "author": "Werner Diwischek"
   },

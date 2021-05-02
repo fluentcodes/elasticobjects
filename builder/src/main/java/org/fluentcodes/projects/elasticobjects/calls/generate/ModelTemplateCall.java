@@ -1,8 +1,10 @@
 package org.fluentcodes.projects.elasticobjects.calls.generate;
 
 import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.templates.ParserSqareBracket;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 
 /*=>{javaHeader}|*/
@@ -14,7 +16,7 @@ import org.fluentcodes.projects.elasticobjects.models.ModelBean;
  * @creationDate 
  * @modificationDate Wed Nov 11 07:35:57 CET 2020
  */
-public class GenerateModelTemplateCall extends GenerateModelAbstract {
+public class ModelTemplateCall extends ModelAbstract {
 /*=>{}.*/
     private final static String JAVA_GEN_MODEL = "/modelKey";
     public final static String FIELD_MAP = "fieldMap";
@@ -25,7 +27,7 @@ public class GenerateModelTemplateCall extends GenerateModelAbstract {
 /*=>{javaInstanceVars}|*/
 /*=>{}.*/
 
-    public GenerateModelTemplateCall() {
+    public ModelTemplateCall() {
         super();
     }
 
@@ -41,6 +43,10 @@ public class GenerateModelTemplateCall extends GenerateModelAbstract {
 
     @Override
     public Object execute(EO eo) {
+        FileConfig targetFileConfig = eo.getConfigsCache().findFile(getTargetFileConfigKey());
+        if (!targetFileConfig.hasTemplate()) {
+            throw new EoInternalException("No template defined for target file config key '" + getTargetFileConfigKey() + "'");
+        }
         super.init(eo);
         StringBuilder feedback = new StringBuilder();
         this.setNaturalId(ParserSqareBracket.replacePathValues(getNaturalId(), eo));
@@ -56,7 +62,7 @@ public class GenerateModelTemplateCall extends GenerateModelAbstract {
             }
             final String modelKey = modelBean.getModelKey();
             eo.set(modelKey, JAVA_GEN_MODEL);
-            create(eoModel, getSourceFileConfigKey(), getTargetFileConfigKey());
+            create(eoModel, targetFileConfig);
             counter++;
         }
         if (counter==1) {

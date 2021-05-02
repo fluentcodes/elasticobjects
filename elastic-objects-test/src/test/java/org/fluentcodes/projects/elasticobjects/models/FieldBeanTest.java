@@ -2,7 +2,6 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EO;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderRootDevScope;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderRootTestScope;
 import org.junit.Test;
 
@@ -15,6 +14,48 @@ import static org.fluentcodes.projects.elasticobjects.models.FieldConfigInterfac
 import static org.fluentcodes.projects.elasticobjects.models.FieldConfigInterface.OVERRIDE;
 
 public class FieldBeanTest {
+    @Test
+    public void empty__toString__empty() {
+        FieldBean fieldBean = new FieldBean();
+        Assertions.assertThat(fieldBean.toString()).isEqualTo("");
+    }
+
+    @Test
+    public void naturalId_test__toString__test() {
+        FieldBean fieldBean = new FieldBean("test");
+        Assertions.assertThat(fieldBean.toString()).isEqualTo("test");
+    }
+
+    @Test
+    public void naturalId_field_modelKeys_String__toString__String_field() {
+        FieldBean fieldBean = new FieldBean("field");
+        fieldBean.setModelKeys("String");
+        Assertions.assertThat(fieldBean.toString()).isEqualTo("(String)field");
+    }
+
+    @Test
+    public void naturalId_field_modelKeys_String_modelBean_Model__toString__String_Model_field() {
+        FieldBean fieldBean = new FieldBean("field");
+        fieldBean.setParentModel(new ModelBean("Model"));
+        fieldBean.setModelKeys("String");
+        Assertions.assertThat(fieldBean.toString()).isEqualTo("(String)Model.field");
+    }
+
+    @Test
+    public void naturalId_field_modelBean_Model__toString__Model_field() {
+        FieldBean fieldBean = new FieldBean("field");
+        fieldBean.setParentModel(new ModelBean("Model"));
+        Assertions.assertThat(fieldBean.toString()).isEqualTo("Model.field");
+    }
+
+    @Test
+    public void fieldKey_field_modelBean_Model__toString__Model_field() {
+        FieldBean fieldBean = new FieldBean();
+        fieldBean.setFieldKey("field");
+        Assertions.assertThat(fieldBean.toString()).isEqualTo("field");
+    }
+
+
     @Test
     public void set_notNull_true__get__true() {
         EO eo = ProviderRootTestScope.createEo();

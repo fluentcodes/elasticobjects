@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.generate;
 
-public interface GenerateModelProperties extends GenerateProperties {
+public interface ModelAbstractInterface extends GenerateAbstractInterface {
     /*=>{}.*/
     /*=>{javaStaticNames}|*/
     default void defaultOverwrite() {

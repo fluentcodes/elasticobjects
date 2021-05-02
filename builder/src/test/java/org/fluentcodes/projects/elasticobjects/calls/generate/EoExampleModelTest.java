@@ -20,7 +20,7 @@ public class EoExampleModelTest {
     //public static ModelBeanGen aSubTestBean = findModelBean("ASubTestObject");
 
     public static EO readEoTest() {
-        ModelBeansReadCall call = new ModelBeansReadCall(ModelConfig.class.getSimpleName());
+        ModelBeanMap4SheetCall call = new ModelBeanMap4SheetCall(ModelConfig.class.getSimpleName());
         EO eo = ProviderRootTestScope.createEo();
         call.setSourceFileConfigKey("eoTest.xlsx");
         String result = call.execute(eo);

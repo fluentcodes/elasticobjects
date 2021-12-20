@@ -29,7 +29,19 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     private final String packagePath;
     private final String superKey;
     private final String interfaces;
+
+    private final Boolean dbAnnotated;
+    private final Boolean create;
     private final ShapeTypes shapeType;
+    private final String defaultImplementation;
+    private final Boolean abstractValue;
+    private final Boolean finalValue;
+    private final Boolean override;
+    private final Boolean property;
+    private final String bean;
+    private final String table;
+    private final String idKey;
+    private final String naturalKeys;
 
     private Class modelClass;
     private ModelConfig superModel;
@@ -45,26 +57,35 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
             Object shapeTypeValue = getProperties().get(SHAPE_TYPE);
             if (shapeTypeValue == null) {
                 this.shapeType = ShapeTypes.BEAN;
-            }
-            else if (shapeTypeValue instanceof ShapeTypes) {
+            } else if (shapeTypeValue instanceof ShapeTypes) {
                 this.shapeType = (ShapeTypes) shapeTypeValue;
-            }
-            else if (shapeTypeValue instanceof String) {
-                this.shapeType = ShapeTypes.valueOf((String)shapeTypeValue);
-            }
-            else {
+            } else if (shapeTypeValue instanceof String) {
+                this.shapeType = ShapeTypes.valueOf((String) shapeTypeValue);
+            } else {
                 throw new EoException("Problem with shapeType");
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new EoException(e);
         }
-        modelKey = bean.getModelKey();
-        packagePath = bean.getPackagePath();
-        superKey = bean.getSuperKey();
-        interfaces = bean.getInterfaces();
+        this.modelKey = bean.getModelKey();
+        this.packagePath = bean.getPackagePath();
+        this.superKey = bean.getSuperKey();
+        this.interfaces = bean.getInterfaces();
+        this.defaultImplementation = bean.getDefaultImplementation();
+        this.abstractValue = bean.getAbstract();
+        this.finalValue = bean.getFinal();
+        this.override = bean.getOverride();
+        this.dbAnnotated = bean.getDbAnnotated();
+        this.create = bean.getCreate();
+        this.property = bean.getProperty();
+        this.bean = bean.getBean();
+        this.table = bean.getTable();
+        this.idKey = bean.getIdKey();
+        this.naturalKeys = bean.getNaturalKeys();
+
         this.fieldConfigMap = new TreeMap<>();
         this.interfacesMap = new LinkedHashMap<>();
+
         if (bean.hasFieldBeans()) {
             for (FieldBean fieldBean : bean.getFieldBeans().values()) {
                 fieldConfigMap.put(fieldBean.getFieldKey(), new FieldConfig(this, fieldBean));
@@ -76,6 +97,61 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     @Override
     public ShapeTypes getShapeType() {
         return this.shapeType;
+    }
+
+    @Override
+    public String getDefaultImplementation() {
+        return defaultImplementation;
+    }
+
+    @Override
+    public Boolean getAbstract() {
+        return abstractValue;
+    }
+
+    @Override
+    public Boolean getFinal() {
+        return finalValue;
+    }
+
+    @Override
+    public Boolean getOverride() {
+        return override;
+    }
+
+    @Override
+    public Boolean getDbAnnotated() {
+        return this.dbAnnotated;
+    }
+
+    @Override
+    public Boolean getCreate() {
+        return this.create;
+    }
+
+    @Override
+    public Boolean getProperty() {
+        return this.property;
+    }
+
+    @Override
+    public String getBean() {
+        return bean;
+    }
+
+    @Override
+    public String getTable() {
+        return table;
+    }
+
+    @Override
+    public String getIdKey() {
+        return idKey;
+    }
+
+    @Override
+    public String getNaturalKeys() {
+        return naturalKeys;
     }
 
     public Models getFieldModels(final String fieldKey) {
@@ -222,45 +298,6 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         }
         setFieldConfigMap(modelConfigMap);
         resolved = true;
-    }
-
-
-    protected void resolveSuper() {
-        if (resolvedFields) {
-            return;
-        }
-        try {
-            if (this.hasSuperKey()) {
-                if (getSuperKey().equals(modelKey)) {
-                    throw new EoInternalException("Recursive super '" + getSuperKey() + "'!");
-                }
-                superModel.resolveSuper();
-                for (String key : superModel.getFieldKeys()) {
-                    if (fieldConfigMap.containsKey(key)) {
-                        continue;
-                    }
-                    fieldConfigMap.put(key, (FieldConfig) superModel.getField(key));
-                }
-            }
-            for (ModelConfig interfaceModel : interfacesMap.values()) {
-                if (interfaceModel == null) {
-                    continue;
-                }
-                if (interfaceModel.getModelKey().equals(modelKey)) {
-                    throw new EoInternalException("Recursive super '" + interfaceModel.getModelKey() + "'!");
-                }
-                interfaceModel.resolveSuper();
-                for (String key : interfaceModel.getFieldKeys()) {
-                    if (fieldConfigMap.containsKey(key)) {
-                        continue;
-                    }
-                    fieldConfigMap.put(key, (FieldConfig) interfaceModel.getField(key));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        resolvedFields = true;
     }
 
     public boolean equals(ModelConfig modelCache) {

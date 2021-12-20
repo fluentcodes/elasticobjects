@@ -1,14 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
-
 import java.util.Map;
 import java.util.Set;
-
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_FINAL;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_OVERRIDE;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_PROPERTY;
 
 public interface ModelInterface extends ConfigInterface {
     String DEFAULT_IMPLEMENTATION = "defaultImplementation";
@@ -23,51 +16,50 @@ public interface ModelInterface extends ConfigInterface {
     String DB_ANNOTATED = "dbAnnotated";
     String ABSTRACT = "abstract";
 
-    Map<String, FieldConfig> getFieldMap() ;
+    Map<String, FieldConfig> getFieldMap();
+
+    String getTable();
 
     default boolean hasTable() {
-        return getTable()!=null && !getTable().isEmpty();
+        return getTable() != null && !getTable().isEmpty();
     }
 
-    default String getTable() {
-        return hasProperties() ? (String) getProperties().get(TABLE) : null;
-    }
+    String getIdKey();
 
     default boolean hasIdKey() {
-        return getIdKey()!=null && !getIdKey().isEmpty();
+        return getIdKey() != null && !getIdKey().isEmpty();
     }
 
-    default String getIdKey() {
-        return hasProperties() ? (String) getProperties().get(ID_KEY) : null;
-    }
+    String getNaturalKeys();
 
     default boolean hasNaturalKeys() {
-        return getNaturalKeys()!=null && !getNaturalKeys().isEmpty();
-    }
-
-    default String getNaturalKeys() {
-        return hasProperties() ? (String) getProperties().get(NATURAL_KEYS) : null;
+        return getNaturalKeys() != null && !getNaturalKeys().isEmpty();
     }
 
     String getModelKey();
+
     default boolean hasModelKey() {
-        return getModelKey()!=null && !getModelKey().isEmpty();
+        return getModelKey() != null && !getModelKey().isEmpty();
     }
+
     default String getKey() {
         if (hasModelKey()) return getModelKey();
         if (hasNaturalId()) return getNaturalId();
         return "";
     }
+
     default boolean hasKey() {
         return !getModelKey().isEmpty();
     }
 
     String getPackagePath();
+
     default boolean hasPackagePath() {
-        return getPackagePath()!=null && !getPackagePath().isEmpty();
+        return getPackagePath() != null && !getPackagePath().isEmpty();
     }
 
     Set<String> getFieldKeys();
+
     default boolean hasFields() {
         return getFieldKeys().isEmpty();
     }
@@ -82,107 +74,92 @@ public interface ModelInterface extends ConfigInterface {
     }
 
     String getSuperKey();
+
     default boolean hasSuperKey() {
-        return getSuperKey()!=null && !getSuperKey().isEmpty();
+        return getSuperKey() != null && !getSuperKey().isEmpty();
     }
 
     String getInterfaces();
+
     default boolean hasInterfaces() {
-        return getInterfaces()!=null && !getInterfaces().isEmpty();
+        return getInterfaces() != null && !getInterfaces().isEmpty();
     }
+
+    Boolean getCreate();
 
     default boolean hasCreate() {
-        return getProperties().containsKey(CREATE) && getProperties().get(CREATE) != null;
+        return getCreate() != null;
     }
 
-    default Boolean getCreate() {
-        return (Boolean) getProperties().get(CREATE);
+    default boolean isCreate() {
+        return hasCreate() && getCreate();
     }
 
-    default boolean hasProperty () {
-        return getProperties().containsKey(F_PROPERTY) && getProperties().get(F_PROPERTY)!=null;
+    Boolean getProperty();
+
+    default boolean hasProperty() {
+        return getProperty() != null;
     }
+
     default boolean isProperty() {
         return hasProperty() && getProperty();
     }
-    default Boolean getProperty() {
-        return (Boolean) getProperties().get(F_PROPERTY);
-    }
 
     default boolean hasShapeType() {
-        return getProperties().containsKey(SHAPE_TYPE) && getProperties().get(SHAPE_TYPE) != null;
+        return getShapeType() != null;
     }
 
-    default ShapeTypes getShapeType() {
-        if (!getProperties().containsKey(SHAPE_TYPE)) {
-            return ShapeTypes.BEAN;
-        }
-        try {
-            if (getProperties().get(SHAPE_TYPE) instanceof String) {
-                return ShapeTypes.valueOf((String) getProperties().get(SHAPE_TYPE));
-            }
-        }
-        catch (IllegalArgumentException e) {
-            throw new EoInternalException(e);
-        }
-        if (getProperties().get(SHAPE_TYPE) instanceof ShapeTypes) {
-            return (ShapeTypes)getProperties().get(SHAPE_TYPE);
-        }
-        throw new EoException("Could not map " + getProperties().get(SHAPE_TYPE) + " " + getProperties().get(SHAPE_TYPE).getClass());
-    }
+    ShapeTypes getShapeType();
+
+    String getDefaultImplementation();
 
     default boolean hasDefaultImplementation() {
-        return getProperties().containsKey(DEFAULT_IMPLEMENTATION);
+        return getDefaultImplementation() != null && !getDefaultImplementation().isEmpty();
     }
 
-    default String getDefaultImplementation() {
-        return (String) getProperties().get(DEFAULT_IMPLEMENTATION);
-    }
+    Boolean getAbstract();
 
-    default Boolean getAbstract() {
-        return (Boolean)getProperties().get(ABSTRACT);
-    }
     default boolean hasAbstract() {
-        return getProperties().containsKey(ABSTRACT) && getProperties().get(ABSTRACT) !=null;
+        return getFinal() != null;
     }
+
     default Boolean isAbstract() {
         return hasAbstract() && getAbstract();
     }
 
-    default Boolean getFinal() {
-        return (Boolean)getProperties().get(F_FINAL);
-    }
+    Boolean getFinal();
+
     default boolean hasFinal() {
-        return getProperties().containsKey(F_FINAL) && getProperties().get(F_FINAL) !=null;
+        return getFinal() != null;
     }
+
     default boolean isFinal() {
         return hasFinal() && getFinal();
     }
 
-    default Boolean getOverride() {
-        return (Boolean)getProperties().get(F_OVERRIDE);
-    }
+    Boolean getOverride();
+
     default boolean hasOverride() {
-        return getProperties().containsKey(F_OVERRIDE) && getProperties().get(F_OVERRIDE) !=null;
+        return getOverride() != null;
     }
+
     default boolean isOverride() {
         return hasOverride() && getOverride();
     }
 
 
-    default String getBean() {
-        return (String)getProperties().get(BEAN);
-    }
+    String getBean();
+
     default boolean hasBean() {
-        return getProperties().containsKey(BEAN) && getProperties().get(BEAN) !=null  && !((String)getProperties().get(BEAN)).isEmpty();
+        return getBean() != null && !getBean().isEmpty();
     }
 
-    default Boolean getDbAnnotated() {
-        return (Boolean)getProperties().get(DB_ANNOTATED);
-    }
+    Boolean getDbAnnotated();
+
     default boolean hasDbAnnotated() {
-        return getProperties().containsKey(DB_ANNOTATED);
+        return getDbAnnotated() != null;
     }
+
     default Boolean isDbAnnotated() {
         return (hasDbAnnotated() && getDbAnnotated()) || false;
     }
@@ -223,18 +200,16 @@ public interface ModelInterface extends ConfigInterface {
         return true;
     }
 
-    default boolean isCreate() {
-        return hasCreate() && getCreate();
-    }
     default boolean isNull() {
         return false;
     }
+
     default boolean isEnum() {
         return false;
     }
 
     default boolean isJsonIgnore(final String key) {
-        return hasField(key) && getField(key).isJsonIgnore()    ;
+        return hasField(key) && getField(key).isJsonIgnore();
     }
 
     default boolean isProperty(final String key) {

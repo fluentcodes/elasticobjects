@@ -143,6 +143,157 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
     }
 
     @Override
+    public Integer getMax(){
+        return (Integer) getProperties().get(F_MAX);
+    }
+
+    @Override
+    public boolean hasMax() {
+        return getProperties().containsKey(F_MAX) && getProperties().get(F_MAX) != null;
+    }
+
+    @Override
+    public Integer getMin(){
+        return (Integer) getProperties().get(F_MIN);
+    }
+
+    @Override
+    public boolean hasMin() {
+        return getProperties().containsKey(F_MIN) && getProperties().get(F_MIN) != null;
+    }
+
+    @Override
+    public Boolean getOverride(){
+        return (Boolean) getProperties().get(F_OVERRIDE);
+    }
+
+    @Override
+    public boolean hasOverride() {
+        return getProperties().containsKey(F_OVERRIDE) && getProperties().get(F_OVERRIDE) != null;
+    }
+
+    @Override
+    public Boolean getProperty(){
+        return (Boolean) getProperties().get(F_PROPERTY);
+    }
+
+    @Override
+    public boolean hasProperty() {
+        return getProperties().containsKey(F_PROPERTY) && getProperties().get(F_PROPERTY) != null;
+    }
+
+    @Override
+    public Boolean getStaticName() {
+        return (Boolean) getProperties().get(F_STATIC_NAME);
+    }
+
+    @Override
+    public boolean hasStaticName() {
+        return getProperties().containsKey(F_STATIC_NAME) && getProperties().get(F_STATIC_NAME) != null;
+    }
+
+    @Override
+    public Boolean getTransient() {
+        return (Boolean) getProperties().get(F_TRANSIENT);
+    }
+
+    @Override
+    public boolean hasTransient() {
+        return getProperties().containsKey(F_TRANSIENT) && getProperties().get(F_TRANSIENT) != null;
+    }
+
+    @Override
+    public Boolean getUnique() {
+        return (Boolean) getProperties().get(F_UNIQUE);
+    }
+
+    @Override
+    public boolean hasUnique() {
+        return getProperties().containsKey(F_UNIQUE) && getProperties().get(F_UNIQUE) != null;
+    }
+
+    @Override
+    public Boolean getSuper() {
+        return (Boolean) getProperties().get(F_SUPER);
+    }
+
+    @Override
+    public boolean hasSuper() {
+        return getProperties().containsKey(F_SUPER) && getProperties().get(F_SUPER) != null;
+    }
+
+    @Override
+    public Boolean getDefault() {
+        return (Boolean) getProperties().get(F_DEFAULT);
+    }
+
+    @Override
+    public boolean hasDefault() {
+        return getProperties().containsKey(F_DEFAULT) && getProperties().get(F_DEFAULT) != null;
+    }
+
+    @Override
+    public String getFieldName() {
+        return (String) getProperties().get(F_FIELD_NAME);
+    }
+
+    @Override
+    public boolean hasFieldName() {
+        return getProperties().containsKey(F_FIELD_NAME) && getProperties().get(F_FIELD_NAME) != null;
+    }
+
+    @Override
+    public Boolean getFinal() {
+        return (Boolean) getProperties().get(F_FINAL);
+    }
+
+    @Override
+    public boolean hasFinal() {
+        return getProperties().containsKey(F_FINAL) && getProperties().get(F_FINAL) != null;
+    }
+
+    @Override
+    public Boolean getGenerated() {
+        return (Boolean) getProperties().get(F_GENERATED);
+    }
+
+    @Override
+    public boolean hasGenerated() {
+        return getProperties().containsKey(F_GENERATED) && getProperties().get(F_GENERATED) != null;
+    }
+
+    @Override
+    public String getJavascriptType() {
+        return (String) getProperties().get(F_JAVASCRIPT_TYPE);
+    }
+
+    @Override
+    public boolean hasJavascriptType() {
+        return getProperties().containsKey(F_JAVASCRIPT_TYPE) && getProperties().get(F_JAVASCRIPT_TYPE) != null;
+    }
+
+
+    @Override
+    public Boolean getJsonIgnore() {
+        return (Boolean) getProperties().get(F_JSON_IGNORE);
+    }
+
+    @Override
+    public boolean hasJsonIgnore() {
+        return getProperties().containsKey(F_JSON_IGNORE) && getProperties().get(F_JSON_IGNORE) != null;
+    }
+
+    @Override
+    public Boolean getNotNull() {
+        return (Boolean) getProperties().get(F_NOT_NULL);
+    }
+
+    @Override
+    public boolean hasNotNull() {
+        return getProperties().containsKey(F_NOT_NULL) && getProperties().get(F_NOT_NULL) != null;
+    }
+
+    @Override
     public String getModelKeys() {
         return this.modelKeys;
     }

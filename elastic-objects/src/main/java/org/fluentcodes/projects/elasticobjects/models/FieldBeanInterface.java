@@ -1,244 +1,235 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 /*.{javaHeader}|*/
+
 /**
- * 
- * Access methods for field properties map and get method definitions for final fields.  
+ * Access methods for field properties map and get method definitions for final fields.
+ *
  * @author Werner Diwischek
  * @creationDate Sat Sep 19 00:00:00 CEST 2020
  * @modificationDate Thu Jan 14 06:06:25 CET 2021
  */
 public interface FieldBeanInterface extends ConfigInterface {
-/*.{}.*/
+    /*.{}.*/
 
-/*.{javaStaticNames}|*/
-   String F_DEFAULT = "default";
-   String F_FIELD_KEY = "fieldKey";
-   String F_FIELD_NAME = "fieldName";
-   String F_FINAL = "final";
-   String F_GENERATED = "generated";
-   String F_JAVASCRIPT_TYPE = "javascriptType";
-   String F_JSON_IGNORE = "jsonIgnore";
-   String F_LENGTH = "length";
-   String F_MAX = "max";
-   String F_MIN = "min";
-   String F_MODEL_KEYS = "modelKeys";
-   String F_NOT_NULL = "notNull";
-   String F_OVERRIDE = "override";
-   String F_PROPERTY = "property";
-   String F_STATIC_NAME = "staticName";
-   String F_SUPER = "super";
-   String F_TRANSIENT = "transient";
-   String F_UNIQUE = "unique";
-/*.{}.*/
+    /*.{javaStaticNames}|*/
+    String F_DEFAULT = "default";
+    String F_FIELD_KEY = "fieldKey";
+    String F_FIELD_NAME = "fieldName";
+    String F_FINAL = "final";
+    String F_GENERATED = "generated";
+    String F_JAVASCRIPT_TYPE = "javascriptType";
+    String F_JSON_IGNORE = "jsonIgnore";
+    String F_LENGTH = "length";
+    String F_MAX = "max";
+    String F_MIN = "min";
+    String F_MODEL_KEYS = "modelKeys";
+    String F_NOT_NULL = "notNull";
+    String F_OVERRIDE = "override";
+    String F_PROPERTY = "property";
+    String F_STATIC_NAME = "staticName";
+    String F_SUPER = "super";
+    String F_TRANSIENT = "transient";
+    String F_UNIQUE = "unique";
+    /*.{}.*/
 
     /*.{javaAccessors}|*/
-   default Boolean getDefault(){
-      return (Boolean) getProperties().get(F_DEFAULT);
-   }
-   default boolean hasDefault() {
-      return getProperties().containsKey(F_DEFAULT) && getProperties().get(F_DEFAULT) != null;
-   }
+    Boolean getDefault();
 
-   default boolean isDefault() {
-      return hasDefault() && getDefault();
-   }
+    default boolean hasDefault() {
+        return getDefault() != null;
+    }
 
-   String getFieldKey();
-   default String getKey() {
-      if (hasNaturalId()) return getNaturalId();
-      if (hasFieldKey()) return getFieldKey();
-      return "";
-   }
-   default boolean hasKey() {
-      return !getKey().isEmpty();
-   }
+    default boolean isDefault() {
+        return hasDefault() && getDefault();
+    }
 
-   default boolean hasFieldKey() {
-      return getFieldKey() != null && !getFieldKey().isEmpty();
-   }
+    String getFieldKey();
 
-   default String getFieldName(){
-      return (String) getProperties().get(F_FIELD_NAME);
-   }
-   default boolean hasFieldName() {
-      return getProperties().containsKey(F_FIELD_NAME) && getProperties().get(F_FIELD_NAME) != null;
-   }
+    default String getKey() {
+        if (hasNaturalId()) return getNaturalId();
+        if (hasFieldKey()) return getFieldKey();
+        return "";
+    }
 
-   default Boolean getFinal(){
-      return (Boolean) getProperties().get(F_FINAL);
-   }
-   default boolean hasFinal() {
-      return getProperties().containsKey(F_FINAL) && getProperties().get(F_FINAL) != null;
-   }
+    default boolean hasKey() {
+        return !getKey().isEmpty();
+    }
 
-   default boolean isFinal() {
-      return hasFinal() && getFinal();
-   }
+    default boolean hasFieldKey() {
+        return getFieldKey() != null && !getFieldKey().isEmpty();
+    }
 
-   default Boolean getGenerated(){
-      return (Boolean) getProperties().get(F_GENERATED);
-   }
-   default boolean hasGenerated() {
-      return getProperties().containsKey(F_GENERATED) && getProperties().get(F_GENERATED) != null;
-   }
+    String getFieldName();
 
-   default boolean isGenerated() {
-      return hasGenerated() && getGenerated();
-   }
+    default boolean hasFieldName() {
+        return getFieldName() != null && !getFieldName().isEmpty();
+    }
 
-   default String getJavascriptType(){
-      return (String) getProperties().get(F_JAVASCRIPT_TYPE);
-   }
-   default boolean hasJavascriptType() {
-      return getProperties().containsKey(F_JAVASCRIPT_TYPE) && getProperties().get(F_JAVASCRIPT_TYPE) != null;
-   }
+    Boolean getFinal();
 
-   default Boolean getJsonIgnore(){
-      return (Boolean) getProperties().get(F_JSON_IGNORE);
-   }
-   default boolean hasJsonIgnore() {
-      return getProperties().containsKey(F_JSON_IGNORE) && getProperties().get(F_JSON_IGNORE) != null;
-   }
+    default boolean hasFinal() {
+        return getFinal() != null;
+    }
 
-   default boolean isJsonIgnore() {
-      return hasJsonIgnore() && getJsonIgnore();
-   }
+    default boolean isFinal() {
+        return hasFinal() && getFinal();
+    }
 
-   Integer getLength();
+    Boolean getGenerated();
 
-   default boolean hasLength() {
-      return getLength() != null;
-   }
+    default boolean hasGenerated() {
+        return getGenerated() != null;
+    }
 
-   default Integer getMax(){
-      return (Integer) getProperties().get(F_MAX);
-   }
-   default boolean hasMax() {
-      return getProperties().containsKey(F_MAX) && getProperties().get(F_MAX) != null;
-   }
+    default boolean isGenerated() {
+        return hasGenerated() && getGenerated();
+    }
 
-   default Integer getMin(){
-      return (Integer) getProperties().get(F_MIN);
-   }
-   default boolean hasMin() {
-      return getProperties().containsKey(F_MIN) && getProperties().get(F_MIN) != null;
-   }
+    String getJavascriptType();
 
-   String getModelKeys();
+    default boolean hasJavascriptType() {
+        return getJavascriptType() != null;
+    }
 
-   default boolean hasModelKeys() {
-      return getModelKeys() != null && !getModelKeys().isEmpty();
-   }
+    Boolean getJsonIgnore();
 
-   default Boolean getNotNull(){
-      return (Boolean) getProperties().get(F_NOT_NULL);
-   }
-   default boolean hasNotNull() {
-      return getProperties().containsKey(F_NOT_NULL) && getProperties().get(F_NOT_NULL) != null;
-   }
+    default boolean hasJsonIgnore() {
+        return getJsonIgnore() != null;
+    }
 
-   default boolean isNotNull() {
-      return hasNotNull() && getNotNull();
-   }
+    default boolean isJsonIgnore() {
+        return hasJsonIgnore() && getJsonIgnore();
+    }
 
-   default Boolean getOverride(){
-      return (Boolean) getProperties().get(F_OVERRIDE);
-   }
-   default boolean hasOverride() {
-      return getProperties().containsKey(F_OVERRIDE) && getProperties().get(F_OVERRIDE) != null;
-   }
+    Integer getLength();
 
-   default boolean isOverride() {
-      return hasOverride() && getOverride();
-   }
+    default boolean hasLength() {
+        return getLength() != null;
+    }
 
-   default Boolean getProperty(){
-      return (Boolean) getProperties().get(F_PROPERTY);
-   }
-   default boolean hasProperty() {
-      return getProperties().containsKey(F_PROPERTY) && getProperties().get(F_PROPERTY) != null;
-   }
+    Integer getMax();
 
-   default boolean isProperty() {
-      return hasProperty() && getProperty();
-   }
+    default boolean hasMax() {
+        return getMax() != null;
+    }
 
-   default Boolean getStaticName(){
-      return (Boolean) getProperties().get(F_STATIC_NAME);
-   }
-   default boolean hasStaticName() {
-      return getProperties().containsKey(F_STATIC_NAME) && getProperties().get(F_STATIC_NAME) != null;
-   }
+    Integer getMin();
 
-   default boolean isStaticName() {
-      return hasStaticName() && getStaticName();
-   }
+    default boolean hasMin() {
+        return getMin() != null;
+    }
 
-   default Boolean getSuper(){
-      return (Boolean) getProperties().get(F_SUPER);
-   }
-   default boolean hasSuper() {
-      return getProperties().containsKey(F_SUPER) && getProperties().get(F_SUPER) != null;
-   }
+    String getModelKeys();
 
-   default boolean isSuper() {
-      return hasSuper() && getSuper();
-   }
+    default boolean hasModelKeys() {
+        return getModelKeys() != null && !getModelKeys().isEmpty();
+    }
 
-   default Boolean getTransient(){
-      return (Boolean) getProperties().get(F_TRANSIENT);
-   }
-   default boolean hasTransient() {
-      return getProperties().containsKey(F_TRANSIENT) && getProperties().get(F_TRANSIENT) != null;
-   }
+    Boolean getNotNull();
 
-   default boolean isTransient() {
-      return hasTransient() && getTransient();
-   }
+    default boolean hasNotNull() {
+        return getNotNull() != null;
+    }
 
-   default Boolean getUnique(){
-      return (Boolean) getProperties().get(F_UNIQUE);
-   }
-   default boolean hasUnique() {
-      return getProperties().containsKey(F_UNIQUE) && getProperties().get(F_UNIQUE) != null;
-   }
+    default boolean isNotNull() {
+        return hasNotNull() && getNotNull();
+    }
 
-   default boolean isUnique() {
-      return hasUnique() && getUnique();
-   }
+    Boolean getOverride();
 
-/*.{}.*/
+    default boolean hasOverride() {
+        return getOverride() != null;
+    }
+
+    default boolean isOverride() {
+        return hasOverride() && getOverride();
+    }
+
+    Boolean getProperty();
+
+    default boolean hasProperty() {
+        return getProperty() != null;
+    }
+
+    default boolean isProperty() {
+        return hasProperty() && getProperty();
+    }
+
+    Boolean getStaticName();
+
+    default boolean hasStaticName() {
+        return getStaticName() != null;
+    }
+
+    default boolean isStaticName() {
+        return hasStaticName() && getStaticName();
+    }
+
+    Boolean getSuper();
+
+    default boolean hasSuper() {
+        return getSuper() != null;
+    }
+
+    default boolean isSuper() {
+        return hasSuper() && getSuper();
+    }
+
+    Boolean getTransient();
+
+    default boolean hasTransient() {
+        return getTransient() != null;
+    }
+
+    default boolean isTransient() {
+        return hasTransient() && getTransient();
+    }
+
+    Boolean getUnique();
+
+    default boolean hasUnique() {
+        return getUnique() != null;
+    }
+
+    default boolean isUnique() {
+        return hasUnique() && getUnique();
+    }
+
+    /*.{}.*/
     default Object getDefaultValue() {
         return null;
     }
+
     default boolean hasDefaultValue() {
-        return getDefaultValue()!=null;
+        return getDefaultValue() != null;
     }
 
     default boolean hasSize() {
-        return hasMax()||hasMin();
+        return hasMax() || hasMin();
     }
 
 
-   ModelInterface getParentModel();
-   default boolean hasParentModel() {
-      return getParentModel()!=null;
-   }
-   default boolean hasParentModelKey() {
-      return hasParentModel() && getParentModel().hasModelKey();
-   }
+    ModelInterface getParentModel();
+
+    default boolean hasParentModel() {
+        return getParentModel() != null;
+    }
+
+    default boolean hasParentModelKey() {
+        return hasParentModel() && getParentModel().hasModelKey();
+    }
 
     default String getModelKey() {
-       if (!hasParentModelKey()) return "";
-       if (this.hasParentModelKey()) return getParentModel().getModelKey();
-       if (hasParentModelNaturalId()) return getParentModel().getNaturalId();
-       return "";
+        if (!hasParentModelKey()) return "";
+        if (this.hasParentModelKey()) return getParentModel().getModelKey();
+        if (hasParentModelNaturalId()) return getParentModel().getNaturalId();
+        return "";
     }
 
-   default boolean hasParentModelNaturalId() {
-      return hasParentModel() && getParentModel().hasNaturalId() ;
-   }
+    default boolean hasParentModelNaturalId() {
+        return hasParentModel() && getParentModel().hasNaturalId();
+    }
 }
 
 

@@ -35,6 +35,22 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
     private Models models;
     private Method getter;
     private Method setter;
+    private final Integer max;
+    private final Integer min;
+    private final Boolean override;
+    private final Boolean property;
+    private final Boolean staticName;
+    private final Boolean transientValue;
+    private final Boolean unique;
+    private final Boolean superValue;
+    private final Boolean defaultValue;
+    private final String fieldName;
+    private final Boolean finalValue;
+    private final Boolean generated;
+    private final String javascriptType;
+    private final Boolean jsonIgnore;
+    private final Boolean notNull;
+
 
     public FieldConfig(final ModelConfig parentModel, final FieldBean bean) {
         super(bean, parentModel.getConfigMaps());
@@ -44,6 +60,21 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
         this.modelKeys = bean.getModelKeys();
         this.modelList = Arrays.asList(modelKeys.split(","));
         this.length = bean.getLength();
+        this.max = bean.getMax();
+        this.min = bean.getMin();
+        this.override = bean.getOverride();
+        this.property = bean.getProperty();
+        this.staticName = bean.getStaticName();
+        this.transientValue = bean.getTransient();
+        this.unique = bean.getUnique();
+        this.superValue = bean.getSuper();
+        this.defaultValue = bean.getDefault();
+        this.fieldName = bean.getFieldName();
+        this.finalValue = bean.getFinal();
+        this.generated = bean.getGenerated();
+        this.javascriptType = bean.getJavascriptType();
+        this.jsonIgnore = bean.getJsonIgnore();
+        this.notNull = bean.getNotNull();
     }
 
     public FieldConfig(final ConfigBean bean, final ConfigMaps configMaps) {
@@ -57,6 +88,21 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
         this.modelKeys = bean.getModelKeys();
         this.modelList = Arrays.asList(modelKeys.split(","));
         this.length = bean.getLength();
+        this.max = bean.getMax();
+        this.min = bean.getMin();
+        this.override = bean.getOverride();
+        this.property = bean.getProperty();
+        this.staticName = bean.getStaticName();
+        this.transientValue = bean.getTransient();
+        this.unique = bean.getUnique();
+        this.superValue = bean.getSuper();
+        this.defaultValue = bean.getDefault();
+        this.fieldName = bean.getFieldName();
+        this.finalValue = bean.getFinal();
+        this.generated = bean.getGenerated();
+        this.javascriptType = bean.getJavascriptType();
+        this.jsonIgnore = bean.getJsonIgnore();
+        this.notNull = bean.getNotNull();
         parentModel = null;
     }
 
@@ -162,6 +208,81 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
    public Integer getLength() {
       return this.length;
    }
+
+   @Override
+   public Integer getMax() {
+       return max;
+   }
+
+    @Override
+    public Integer getMin() {
+        return min;
+    }
+
+    @Override
+    public Boolean getOverride() {
+        return override;
+    }
+
+    @Override
+    public Boolean getProperty() {
+        return property;
+    }
+
+    @Override
+    public Boolean getStaticName() {
+        return staticName;
+    }
+
+    @Override
+    public Boolean getTransient() {
+        return transientValue;
+    }
+
+    @Override
+    public Boolean getUnique() {
+        return unique;
+    }
+
+    @Override
+    public Boolean getSuper() {
+        return superValue;
+    }
+
+    @Override
+    public Boolean getDefault() {
+        return defaultValue;
+    }
+
+    @Override
+    public String getFieldName() {
+        return fieldName;
+    }
+
+    @Override
+    public Boolean getFinal() {
+        return finalValue;
+    }
+
+    @Override
+    public Boolean getGenerated() {
+        return generated;
+    }
+
+    @Override
+    public String getJavascriptType() {
+       return this.javascriptType;
+    }
+
+    @Override
+    public Boolean getJsonIgnore() {
+        return jsonIgnore;
+    }
+
+    @Override
+    public Boolean getNotNull() {
+        return notNull;
+    }
 
    @Override
    public String getModelKeys() {

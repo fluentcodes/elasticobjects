@@ -15,6 +15,7 @@ import java.util.TreeSet;
 
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_FIELD_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_FINAL;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_OVERRIDE;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_PROPERTY;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.INTERFACES;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.MODEL_KEY;
@@ -248,8 +249,131 @@ public class ModelBean extends ConfigBean implements ModelInterface, PermissionI
         throw new EoException("TODO");
     }
 
-    public void setFieldBeans(Map<String, FieldBean> fieldBeans) {
-        this.fieldBeans = fieldBeans;
+    @Override
+    public  boolean hasDefaultImplementation() {
+        return getProperties().containsKey(DEFAULT_IMPLEMENTATION);
+    }
+
+    @Override
+    public  String getDefaultImplementation() {
+        return (String) getProperties().get(DEFAULT_IMPLEMENTATION);
+    }
+
+    @Override
+    public  Boolean getAbstract() {
+        return (Boolean) getProperties().get(ABSTRACT);
+    }
+
+    @Override
+    public  boolean hasAbstract() {
+        return getProperties().containsKey(ABSTRACT) && getProperties().get(ABSTRACT) != null;
+    }
+
+    @Override
+    public  Boolean getFinal() {
+        return (Boolean) getProperties().get(F_FINAL);
+    }
+
+    @Override
+    public  boolean hasFinal() {
+        return getProperties().containsKey(F_FINAL) && getProperties().get(F_FINAL) != null;
+    }
+
+    @Override
+    public  Boolean getOverride() {
+        return (Boolean) getProperties().get(F_OVERRIDE);
+    }
+
+    @Override
+    public  boolean hasOverride() {
+        return getProperties().containsKey(F_OVERRIDE) && getProperties().get(F_OVERRIDE) != null;
+    }
+
+    public void setShapeType(ShapeTypes shapeType) {
+        getProperties().put(SHAPE_TYPE, shapeType);
+    }
+
+    private void defaultShapeType() {
+        if (!hasShapeType()) return;
+    }
+
+    @Override
+    public boolean hasShapeType() {
+        return getProperties().containsKey(SHAPE_TYPE) && getProperties().get(SHAPE_TYPE) != null;
+    }
+
+    @Override
+    public Boolean getDbAnnotated() {
+        return (Boolean) getProperties().get(DB_ANNOTATED);
+    }
+
+    @Override
+    public boolean hasDbAnnotated() {
+        return getProperties().containsKey(DB_ANNOTATED);
+    }
+
+    @Override
+    public boolean hasCreate() {
+        return getProperties().containsKey(CREATE) && getProperties().get(CREATE) != null;
+    }
+
+    @Override
+    public Boolean getCreate() {
+        return (Boolean) getProperties().get(CREATE);
+    }
+
+    @Override
+    public Boolean getProperty() {
+        return (Boolean) getProperties().get(F_PROPERTY);
+    }
+
+    @Override
+    public boolean hasProperty() {
+        return getProperties().containsKey(F_PROPERTY) && getProperties().get(F_PROPERTY) != null;
+    }
+
+    @Override
+    public String getBean() {
+        return (String) getProperties().get(BEAN);
+    }
+
+    @Override
+    public boolean hasBean() {
+        return getProperties().containsKey(BEAN) && getProperties().get(BEAN) != null && !((String) getProperties().get(BEAN)).isEmpty();
+    }
+
+    @Override
+    public  String getIdKey() {
+        return hasProperties() ? (String) getProperties().get(ID_KEY) : null;
+    }
+
+    @Override
+    public String getNaturalKeys() {
+        return hasProperties() ? (String) getProperties().get(NATURAL_KEYS) : null;
+    }
+
+    @Override
+    public String getTable() {
+        return hasProperties() ? (String) getProperties().get(TABLE) : null;
+    }
+
+    @Override
+    public ShapeTypes getShapeType() {
+        if (!getProperties().containsKey(SHAPE_TYPE)) {
+            return ShapeTypes.BEAN;
+        }
+        try {
+            if (getProperties().get(SHAPE_TYPE) instanceof String) {
+                return ShapeTypes.valueOf((String) getProperties().get(SHAPE_TYPE));
+            }
+        }
+        catch (IllegalArgumentException e) {
+            throw new EoInternalException(e);
+        }
+        if (getProperties().get(SHAPE_TYPE) instanceof ShapeTypes) {
+            return (ShapeTypes)getProperties().get(SHAPE_TYPE);
+        }
+        throw new EoException("Could not map " + getProperties().get(SHAPE_TYPE) + " " + getProperties().get(SHAPE_TYPE).getClass());
     }
 
     public void mergeFieldBeanMap(Map<String, FieldBean> fieldBeanMap) {
@@ -426,14 +550,6 @@ public class ModelBean extends ConfigBean implements ModelInterface, PermissionI
     public ModelBean setAbstract(Boolean dbAnnotated) {
         getProperties().put(ABSTRACT, dbAnnotated);
         return this;
-    }
-
-    public void setShapeType(ShapeTypes shapeType) {
-        getProperties().put(SHAPE_TYPE, shapeType);
-    }
-
-    private void defaultShapeType() {
-        if (!hasShapeType()) return;
     }
 
     public void setJavascriptType(String value) {

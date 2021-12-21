@@ -16,16 +16,59 @@ public class HostConfig extends PermissionConfig implements HostInterface {
   /*.{}.*/
   public static final String LOCALHOST = "localhost";
 
+
   /*.{javaAccessors}|*/
   /*.{}.*/
   private String urlCache;
+  private final String hostName;
+  private final String password;
+  private final Integer port;
+  private final String protocol;
+  private final String url;
+  private final String user;
 
   public HostConfig(ConfigBean bean, final ConfigMaps configMaps) {
     this((HostBean) bean, configMaps);
   }
 
-  public HostConfig(final HostBean host, final ConfigMaps configMaps) {
-    super(host, configMaps);
+  @Override
+  public String getPassword() {
+    return password;
+  }
+
+  public HostConfig(final HostBean hostBean, final ConfigMaps configMaps) {
+    super(hostBean, configMaps);
+    this.hostName = hostBean.getHostName();
+    this.password = hostBean.getPassword();
+    this.port = hostBean.getPort();
+    this.protocol = hostBean.getProtocol();
+    this.url = hostBean.getUrl();
+    this.user = hostBean.getUser();
+  }
+
+  @Override
+  public String getHostName() {
+    return hostName;
+  }
+
+  @Override
+  public Integer getPort() {
+    return port;
+  }
+
+  @Override
+  public String getProtocol() {
+    return protocol;
+  }
+
+  @Override
+  public String getUrl() {
+    return url;
+  }
+
+  @Override
+  public String getUser() {
+    return user;
   }
 
   protected boolean hasUrlCache() {

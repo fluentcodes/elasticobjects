@@ -128,4 +128,16 @@ public class FileBean extends PermissionBean implements FileInterface {
         if (hasHostConfigKey()) return;
         setHostConfigKey(new ShapeTypeSerializerString().asObject(value));
     }
+
+    @Override
+    public String getTemplate() {
+        return (String) getProperties().get(F_TEMPLATE);
+    }
+
+    @Override
+    public boolean hasTemplate() {
+        return getProperties().containsKey(F_TEMPLATE) &&
+                getProperties().get(F_TEMPLATE) != null &&
+                !((String) getProperties().get(F_TEMPLATE)).isEmpty();
+    }
 }

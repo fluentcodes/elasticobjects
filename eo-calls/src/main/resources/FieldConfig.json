@@ -88,7 +88,8 @@
     "fieldKey": "fieldDelimiter",
     "length": 4,
     "properties": {
-      "property": true
+      "property": true,
+      "final": true
     }
   },
   "fieldKeys": {
@@ -168,8 +169,8 @@
   "listParams": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "ListParams",
-    "description": "Parameters of type @ListParams for list type read call operations like @CsvSimpleReadCall.",
+    "modelKeys": "ListParamsBean",
+    "description": "Parameters of type @ListParamsBean for list type read call operations like @CsvSimpleReadCall.",
     "expose": "NONE",
     "fieldKey": "listParams",
     "length": 80
@@ -253,7 +254,8 @@
     "fieldKey": "rowDelimiter",
     "length": 4,
     "properties": {
-      "property": true
+      "property": true,
+      "final": true
     }
   },
   "rowEnd": {

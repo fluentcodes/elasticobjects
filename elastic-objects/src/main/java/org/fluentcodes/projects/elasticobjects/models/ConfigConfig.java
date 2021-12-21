@@ -30,6 +30,7 @@ public class ConfigConfig extends BaseConfig implements ConfigInterface {
   private final String moduleScope;
   /* A scope for the cache value. */
   private final List<Scope> scope;
+
   /*.{}.*/
 
   public ConfigConfig(ConfigBean configBean, final ConfigMaps configMaps) {

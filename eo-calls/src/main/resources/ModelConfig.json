@@ -271,10 +271,12 @@
     "moduleScope": "main",
     "fieldKeys": {
       "fieldDelimiter": {
-        "default": true
+        "default": true,
+        "final": true
       },
       "rowDelimiter": {
-        "default": true
+        "default": true,
+        "final": true
       }
     },
     "expose": "NONE",
@@ -295,7 +297,7 @@
         "override": false
       }
     },
-    "interfaces": "ListInterface",
+    "interfaces": "ListParamsBeanInterface",
     "superKey": "FileReadCall",
     "expose": "WEB",
     "description": "Defines a primitive csv file read operation. ",
@@ -309,7 +311,7 @@
   "CsvSimpleWriteCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "interfaces": "ListInterface",
+    "interfaces": "ListParamsBeanInterface",
     "superKey": "FileWriteCall",
     "expose": "WEB",
     "description": "Defines a primitive csv file write operation. ",
@@ -653,7 +655,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "ListInterface": {
+  "ListParamsBeanInterface": {
     "module": "eo-calls",
     "moduleScope": "main",
     "fieldKeys": {
@@ -686,14 +688,14 @@
     "expose": "NONE",
     "description": "Defines default access values for ListParams",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
-    "modelKey": "ListInterface",
+    "modelKey": "ListParamsBeanInterface",
     "properties": {
       "create": false,
       "shapeType": "INTERFACE"
     },
     "author": "Werner Diwischek"
   },
-  "ListParams": {
+  "ListParamsBean": {
     "module": "eo-calls",
     "moduleScope": "main",
     "fieldKeys": {
@@ -723,7 +725,7 @@
     "expose": "NONE",
     "description": "Defines the parameter like rowStart, rowEnd and length.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
-    "modelKey": "ListParams",
+    "modelKey": "ListParamsBean",
     "properties": {
       "create": true
     },
@@ -734,22 +736,28 @@
     "moduleScope": "main",
     "fieldKeys": {
       "colKeys": {
-        "default": true
+        "default": true,
+        "final": true
       },
       "filter": {
-        "default": true
+        "default": true,
+        "final": true
       },
       "length": {
-        "default": true
+        "default": true,
+        "final": true
       },
       "rowEnd": {
-        "default": true
+        "default": true,
+        "final": true
       },
       "rowHead": {
-        "default": true
+        "default": true,
+        "final": true
       },
       "rowStart": {
-        "default": true
+        "default": true,
+        "final": true
       }
     },
     "expose": "NONE",

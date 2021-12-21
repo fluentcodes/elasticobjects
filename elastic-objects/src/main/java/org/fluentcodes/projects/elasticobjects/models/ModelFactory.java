@@ -1,6 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
 import java.util.Map;
 import java.util.Optional;
@@ -64,7 +65,7 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterfa
                                     getConfigMaps()));
                 }
 
-            } catch (EoException e) {
+            } catch (EoException| EoInternalException e) {
                 throw e;
             } catch (Exception e) {
                 throw new EoException(e);
@@ -73,7 +74,10 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterfa
         for (Map.Entry<String, ModelInterface> entry : configMap.entrySet()) {
             try {
                 ((ModelConfig) entry.getValue()).resolve(configMap);
-            } catch (Exception e) {
+            } catch (EoException e) {
+                throw e;
+            }
+            catch (Exception e) {
                 throw new EoException(e);
             }
         }

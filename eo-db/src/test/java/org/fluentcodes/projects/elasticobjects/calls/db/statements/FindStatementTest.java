@@ -6,7 +6,7 @@ import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.DbConfig;
 import org.fluentcodes.projects.elasticobjects.calls.HostConfig;
 import org.fluentcodes.projects.elasticobjects.calls.db.DbSqlExecuteCall;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +37,7 @@ public class FindStatementTest {
         EoRoot eo = ProviderConfigMaps.createEo();
         FindStatement findStatement = new FindStatement("Select * from AnObject", eo);
         DbConfig dbConfig = (DbConfig) eo.getConfigMaps().find(HostConfig.class, DbConfig.H2_BASIC);
-        List values = findStatement.read(dbConfig.getConnection(), eo.getConfigMaps(), new ListParams().setRowHead(0).setRowStart(0).setRowEnd(10));
+        List values = findStatement.read(dbConfig.getConnection(), eo.getConfigMaps(), new ListParamsBean().setRowHead(0).setRowStart(0).setRowEnd(10));
         Assertions.assertThat(values).isNotEmpty();
         Assertions.assertThat(values.size()).isEqualTo(3);
     }

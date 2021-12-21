@@ -25,12 +25,12 @@ import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_NAT
  * </ul>
  * Created by werner.diwischek on 03.12.16.
  */
-public class ListParams {
+public class ListParamsBean {
     public static final String ROW_HEAD = "rowHead";
     public static final String ROW_START = "rowStart";
     public static final String LENGTH = "length";
     public static final String ROW_END = "rowEnd";
-    public static final String FILTER_RAW = "filterRaw";
+    public static final String F_FILTER = "filterRaw";
     public static final String COL_KEYS = "colKeys";
 
     private Integer rowStart;
@@ -42,9 +42,9 @@ public class ListParams {
     private List<String> colKeys;
     private Map<String, Integer> colKeysMap;
 
-    public ListParams() {
+    public ListParamsBean() {
     }
-    public ListParams(boolean dbFlag) {
+    public ListParamsBean(boolean dbFlag) {
         if (dbFlag) {
             rowHead = 0;
             rowStart = 0;
@@ -52,16 +52,12 @@ public class ListParams {
         }
     }
 
-    public void merge(Map<String, Object> properties) {
-        if (properties == null) {
-            prepare();
-            return;
-        }
-        this.mergeRowHead(properties.get(ROW_HEAD));
-        this.mergeRowStart(properties.get(ROW_START));
-        this.mergeLength(properties.get(LENGTH));
-        this.mergeRowEnd(properties.get(ROW_END));
-        this.mergeFilter(properties.get(FILTER_RAW));
+    public void merge(ListParamsConfig listParams) {
+        this.mergeRowHead(listParams.getRowHead());
+        this.mergeRowStart(listParams.getRowStart());
+        this.mergeLength(listParams.getLength());
+        this.mergeRowEnd(listParams.getRowEnd());
+        this.mergeFilter(listParams.getFilter());
         prepare();
     }
 
@@ -127,7 +123,7 @@ public class ListParams {
         return filter;
     }
 
-    private ListParams mergeFilter(Object filter) {
+    private ListParamsBean mergeFilter(Object filter) {
         if (filter == null) {
             return this;
         }
@@ -142,7 +138,7 @@ public class ListParams {
         return this;
     }
 
-    protected ListParams checkRowStart() {
+    protected ListParamsBean checkRowStart() {
         if (rowStart == null) {
             rowStart = rowHead + 1;
             return this;
@@ -158,12 +154,12 @@ public class ListParams {
         return rowHead;
     }
 
-    public ListParams setRowHead(Integer rowHead) {
+    public ListParamsBean setRowHead(Integer rowHead) {
         this.rowHead = rowHead;
         return this;
     }
 
-    private ListParams mergeRowHead(Object rowHead) {
+    private ListParamsBean mergeRowHead(Object rowHead) {
         if (rowHead == null) {
             return this;
         }
@@ -211,12 +207,12 @@ public class ListParams {
         return rowStart;
     }
 
-    public ListParams setRowStart(Integer entry) {
+    public ListParamsBean setRowStart(Integer entry) {
         this.rowStart = entry;
         return this;
     }
 
-    private ListParams mergeRowStart(Object entry) {
+    private ListParamsBean mergeRowStart(Object entry) {
         if (entry == null) {
             return this;
         }
@@ -245,12 +241,12 @@ public class ListParams {
     public Integer getRowEnd() {
         return rowEnd;
     }
-    public ListParams setRowEnd(Integer entry) {
+    public ListParamsBean setRowEnd(Integer entry) {
         this.rowEnd = entry;
         return this;
     }
 
-    private ListParams mergeRowEnd(Object entry) {
+    private ListParamsBean mergeRowEnd(Object entry) {
         if (entry == null) {
             return this;
         }
@@ -285,12 +281,12 @@ public class ListParams {
         return length;
     }
 
-    public ListParams setLength(Integer entry) {
+    public ListParamsBean setLength(Integer entry) {
         this.length = entry;
         return this;
     }
 
-    private ListParams mergeLength(Object entry) {
+    private ListParamsBean mergeLength(Object entry) {
         if (entry == null) {
             return this;
         }
@@ -330,16 +326,16 @@ public class ListParams {
         return colKeys;
     }
 
-    public ListParams setColKeys(List<String> colKeys) {
+    public ListParamsBean setColKeys(List<String> colKeys) {
         this.colKeys = colKeys;
         return this;
     }
-    public ListParams setColKeys(ArrayList<String> colKeys) {
+    public ListParamsBean setColKeys(ArrayList<String> colKeys) {
         this.colKeys = colKeys;
         return this;
     }
 
-    private ListParams mergeColKeys(Object colKeys) {
+    private ListParamsBean mergeColKeys(Object colKeys) {
         if (colKeys == null) {
             return this;
         }

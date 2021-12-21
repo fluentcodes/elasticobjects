@@ -41,14 +41,35 @@ public class HostBean extends PermissionBean implements HostInterface, Permissio
     }
     
     /*.{javaAccessors}|*/
+    @Override
+    public String getHostName(){
+        return (String) getProperties().get(HOST_NAME);
+    }
+
+    @Override
+    public boolean hasHostName() {
+        return getProperties().containsKey(HOST_NAME) && getProperties().get(HOST_NAME) != null;
+    }
+
     public HostBean setHostName(String value) {
         getProperties().put(HOST_NAME, value);
         return this;
     }
+
     private void mergeHostName(final Object value) {
         if (value == null) return;
         if (hasHostName()) return;
         setHostName(new ShapeTypeSerializerString().asObject(value));
+    }
+
+    @Override
+    public String getPassword() {
+        return (String) getProperties().get(PASSWORD);
+    }
+
+    @Override
+    public boolean hasPassword() {
+        return getProperties().containsKey(PASSWORD) && getProperties().get(PASSWORD) != null;
     }
 
     public HostBean setPassword(String value) {
@@ -61,6 +82,16 @@ public class HostBean extends PermissionBean implements HostInterface, Permissio
         setPassword(new ShapeTypeSerializerString().asObject(value));
     }
 
+    @Override
+    public Integer getPort() {
+        return (Integer) getProperties().get(PORT);
+    }
+
+    @Override
+    public boolean hasPort() {
+        return getProperties().containsKey(PORT) && getProperties().get(PORT) != null;
+    }
+
     public HostBean setPort(Integer value) {
         getProperties().put(PORT, value);
         return this;
@@ -69,6 +100,16 @@ public class HostBean extends PermissionBean implements HostInterface, Permissio
         if (value == null) return;
         if (hasPort()) return;
         setPort(new ShapeTypeSerializerInteger().asObject(value));
+    }
+
+    @Override
+    public String getProtocol() {
+        return (String) getProperties().get(PROTOCOL);
+    }
+
+    @Override
+    public boolean hasProtocol() {
+        return getProperties().containsKey(PROTOCOL) && getProperties().get(PROTOCOL) != null;
     }
 
     public HostBean setProtocol(String value) {
@@ -81,6 +122,17 @@ public class HostBean extends PermissionBean implements HostInterface, Permissio
         setProtocol(new ShapeTypeSerializerString().asObject(value));
     }
 
+    @Override
+    public String getUrl() {
+        return (String) getProperties().get(URL);
+    }
+
+    @Override
+    public boolean hasUrl() {
+        return getProperties().containsKey(URL) && getProperties().get(URL) != null;
+    }
+
+
     public HostBean setUrl(String value) {
         getProperties().put(URL, value);
         return this;
@@ -89,6 +141,16 @@ public class HostBean extends PermissionBean implements HostInterface, Permissio
         if (value == null) return;
         if (hasUrl()) return;
         setUrl(new ShapeTypeSerializerString().asObject(value));
+    }
+
+    @Override
+    public String getUser() {
+        return (String) getProperties().get(USER);
+    }
+
+    @Override
+    public boolean hasUser() {
+        return getProperties().containsKey(USER) && getProperties().get(USER) != null;
     }
 
     public HostBean setUser(String value) {

@@ -18,25 +18,24 @@ import java.util.List;
  * @creationDate
  * @modificationDate Tue Dec 08 11:16:47 CET 2020
  */
-public class CsvSimpleReadCall extends FileReadCall implements ListInterface {
+public class CsvSimpleReadCall extends FileReadCall implements ListParamsBeanInterface {
     /*.{}.*/
 
     /*.{javaStaticNames}|*/
-    public static final String LIST_PARAMS = "listParams";
     /*.{}.*/
 
     /*.{javaInstanceVars}|*/
-    private ListParams listParams;
+    private ListParamsBean listParams;
 
     /*.{}.*/
     public CsvSimpleReadCall() {
         super();
-        listParams = new ListParams();
+        listParams = new ListParamsBean();
     }
 
     public CsvSimpleReadCall(final String configKey) {
         super(configKey);
-        listParams = new ListParams();
+        listParams = new ListParamsBean();
     }
 
     @Override
@@ -46,7 +45,7 @@ public class CsvSimpleReadCall extends FileReadCall implements ListInterface {
 
     public List readRaw(final IEOScalar eo) {
         CsvConfig config = (CsvConfig) init(PermissionType.READ, eo);
-        getListParams().merge(config.getProperties());
+        getListParams().merge(config.getListParams());
         String content = super.read(eo);
         if (content == null || content.isEmpty()) {
             return new ArrayList<>();
@@ -86,16 +85,16 @@ public class CsvSimpleReadCall extends FileReadCall implements ListInterface {
     /*.{javaAccessors}|*/
 
     /**
-     * Parameters of type {@link ListParams} for list type read call operations like {@link CsvSimpleReadCall}.
+     * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
      */
     @Override
-    public CsvSimpleReadCall setListParams(ListParams listParams) {
+    public CsvSimpleReadCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
     }
 
     @Override
-    public ListParams getListParams() {
+    public ListParamsBean getListParams() {
         return this.listParams;
     }
 

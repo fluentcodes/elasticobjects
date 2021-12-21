@@ -17,7 +17,7 @@ import java.util.List;
  * @creationDate
  * @modificationDate Tue Dec 08 11:26:51 CET 2020
  */
-public class CsvSimpleWriteCall extends FileWriteCall implements ListInterface {
+public class CsvSimpleWriteCall extends FileWriteCall implements ListParamsBeanInterface {
     /*.{}.*/
 
     /*.{javaStaticNames}|*/
@@ -25,12 +25,12 @@ public class CsvSimpleWriteCall extends FileWriteCall implements ListInterface {
     /*.{}.*/
 
     /*.{javaInstanceVars}|*/
-    private ListParams listParams;
+    private ListParamsBean listParams;
     /*.{}.*/
 
     public CsvSimpleWriteCall() {
         super();
-        listParams = new ListParams();
+        listParams = new ListParamsBean();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class CsvSimpleWriteCall extends FileWriteCall implements ListInterface {
     @Override
     public String write(IEOScalar eo) {
         CsvConfig config = (CsvConfig) init(PermissionType.READ, eo);
-        getListParams().merge(config.getProperties());
+        getListParams().merge(config.getListParams());
         List rows = (List) eo.get();
         if (rows == null || rows.isEmpty()) {
             throw new EoException("Strange - no list values - nothing to write! Will return without doing anything.");
@@ -79,16 +79,16 @@ public class CsvSimpleWriteCall extends FileWriteCall implements ListInterface {
     /*.{javaAccessors}|*/
 
     /**
-     * Parameters of type {@link ListParams} for list type read call operations like {@link CsvSimpleReadCall}.
+     * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
      */
     @Override
-    public CsvSimpleWriteCall setListParams(ListParams listParams) {
+    public CsvSimpleWriteCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
     }
 
     @Override
-    public ListParams getListParams() {
+    public ListParamsBean getListParams() {
         return this.listParams;
     }
 

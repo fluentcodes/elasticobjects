@@ -36,6 +36,8 @@ public class FileConfig extends PermissionConfig implements FileConfigMethods, F
     private final String filePath;
     /* A key for host objects. */
     private final String hostConfigKey;
+
+    private final String template;
     /*.{}.*/
     private String cachedContent;
 
@@ -49,10 +51,17 @@ public class FileConfig extends PermissionConfig implements FileConfigMethods, F
         this.filePath = bean.getFilePath();
         this.cached = bean.getCached();
         this.hostConfigKey = bean.hasHostConfigKey() ? bean.getHostConfigKey() : LOCALHOST;
+        this.template = bean.getTemplate();
     }
 
 
     /*.{javaAccessors}|*/
+
+    @Override
+    public String getTemplate() {
+        return template;
+    }
+
     @Override
     public Boolean getCached() {
         return this.cached;
@@ -98,8 +107,9 @@ public class FileConfig extends PermissionConfig implements FileConfigMethods, F
     }
 
     protected HostConfig resolveHostConfig(final IEOScalar eo, final String hostConfigKey) {
-        if (hostConfigKey != null && !hostConfigKey.isEmpty()) return (HostConfig)eo.getConfigMaps().find(HostConfig.class, hostConfigKey);
-        return (HostConfig)eo.getConfigMaps().find(HostConfig.class, this.getHostConfigKey());
+        if (hostConfigKey != null && !hostConfigKey.isEmpty())
+            return (HostConfig) eo.getConfigMaps().find(HostConfig.class, hostConfigKey);
+        return (HostConfig) eo.getConfigMaps().find(HostConfig.class, this.getHostConfigKey());
     }
 
     public URL findUrl(final IEOScalar eo, final String hostConfigKey) {

@@ -11,7 +11,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.fluentcodes.projects.elasticobjects.IEOObject;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
@@ -52,7 +52,7 @@ public class XlsxConfig extends FileConfig implements XlsxInterface {
         return getSheetName() == null || getSheetName().isEmpty();
     }
 
-    public List readRaw(ListParams params) {
+    public List readRaw(ListParamsBean params) {
         throw new EoException("Deprecated");
     }
 

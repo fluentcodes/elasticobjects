@@ -6,8 +6,8 @@ import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCall;
 import org.fluentcodes.projects.elasticobjects.calls.files.XlsxConfig;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListInterface;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBeanInterface;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
@@ -24,7 +24,7 @@ import java.util.List;
  * @creationDate
  * @modificationDate Wed Nov 11 08:02:52 CET 2020
  */
-public class XlsxReadCall extends FileReadCall implements ListInterface {
+public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterface {
     /*.{}.*/
 
     /*.{javaStaticNames}|*/
@@ -32,17 +32,17 @@ public class XlsxReadCall extends FileReadCall implements ListInterface {
     /*.{}.*/
 
     /*.{javaInstanceVars}|*/
-    private ListParams listParams;
+    private ListParamsBean listParams;
 
     /*.{}.*/
     public XlsxReadCall() {
         super();
-        listParams = new ListParams();
+        listParams = new ListParamsBean();
     }
 
     public XlsxReadCall(final String configKey) {
         super(configKey);
-        listParams = new ListParams();
+        listParams = new ListParamsBean();
     }
 
     @Override
@@ -91,16 +91,16 @@ public class XlsxReadCall extends FileReadCall implements ListInterface {
     /*.{javaAccessors}|*/
 
     /**
-     * Parameters of type {@link ListParams} for list type read call operations like {@link CsvSimpleReadCall}.
+     * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
      */
     @Override
-    public XlsxReadCall setListParams(ListParams listParams) {
+    public XlsxReadCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
     }
 
     @Override
-    public ListParams getListParams() {
+    public ListParamsBean getListParams() {
         return this.listParams;
     }
 

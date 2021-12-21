@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
 import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public interface XlsxInterface extends ConfigInterface {
     String SHEET_NAME = "sheetName";
 
-    List<Object> readRaw(ListParams params);
+    List<Object> readRaw(ListParamsBean params);
 
     default boolean hasSheetName() {
         return getSheetName()!=null && !getSheetName().isEmpty();

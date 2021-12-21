@@ -20,19 +20,16 @@ import java.util.Map;
 /**
  * Created by Werner on 13.9.2020.
  */
-public interface ListInterface {
+public interface ListParamsBeanInterface extends ListParamsInterface {
     String LIST_PARAMS = "listParams";
 
-    ListParams getListParams();
+    ListParamsBean getListParams();
 
-    ListInterface setListParams(ListParams listParams);
+    ListParamsBeanInterface setListParams(ListParamsBean listParams);
 
     String getTargetPath();
 
     default Integer getRowHead() {
-        if (!hasListParams()) {
-            return -1;
-        }
         return getListParams().getRowHead();
     }
 
@@ -40,20 +37,8 @@ public interface ListInterface {
         getListParams().setRowHead(rowHead);
     }
 
-    default boolean hasRowHead() {
-        return getRowHead() != null && getRowHead() > -1;
-    }
-
-    default boolean isRowHead(Integer rowCounter) {
-        return getListParams().hasRowHead(rowCounter);
-    }
-
     default boolean hasListParams() {
         return getListParams() != null;
-    }
-
-    default boolean hasRowStart() {
-        return getRowStart() != null && getRowStart() > -1;
     }
 
     default void setRowStart(Integer rowStart) {
@@ -61,48 +46,15 @@ public interface ListInterface {
     }
 
     default Integer getRowStart() {
-        if (!hasListParams()) {
-            return -1;
-        }
         return getListParams().getRowStart();
     }
 
-    default boolean isRowStart(Integer rowCounter) {
-        return getListParams().isRowStart(rowCounter);
-    }
-
-    default boolean hasRowEnd() {
-        return getRowEnd() != null && getRowEnd() > -1;
-    }
-
     default Integer getRowEnd() {
-        if (!hasListParams()) {
-            return -1;
-        }
         return getListParams().getRowEnd();
     }
 
     default void setRowEnd(Integer rowEnd) {
         getListParams().setRowEnd(rowEnd);
-    }
-
-    default boolean isRowEnd(Integer rowCounter) {
-        return getListParams().isRowEnd(rowCounter);
-    }
-
-    default boolean hasLength() {
-        return getLength() != null && getLength() > -1;
-    }
-
-    default Integer getLength() {
-        if (!hasListParams()) {
-            return -1;
-        }
-        return getListParams().getLength();
-    }
-
-    default boolean hasColKeys() {
-        return getListParams().hasColKeys();
     }
 
     default List<String> getColKeys() {
@@ -113,12 +65,12 @@ public interface ListInterface {
         getListParams().setColKeys(colKeys);
     }
 
-    default void setLength(Integer rowEnd) {
-        getListParams().setRowStart(rowEnd);
+    default Integer getLength() {
+        return getListParams().getLength();
     }
 
-    default boolean hasFilterRaw() {
-        return getListParams().hasFilter();
+    default void setLength(Integer rowEnd) {
+        getListParams().setRowStart(rowEnd);
     }
 
     default void setFilter(String filter) {
@@ -127,10 +79,6 @@ public interface ListInterface {
 
     default String getFilter() {
         return getListParams().getFilter();
-    }
-
-    default Map<String, Object> createMapFromRow(List row) {
-        return getListParams().createMapFromRow(row);
     }
 
     default String mapEo(final IEOScalar eo, final List filteredResult) {
@@ -165,7 +113,7 @@ public interface ListInterface {
         List<String> keys = null;
         try {
             if (eo instanceof IEOObject) {
-                keys = new ArrayList<>(((IEOObject)eo).keysEo());
+                keys = new ArrayList<>(((IEOObject) eo).keysEo());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -186,7 +134,7 @@ public interface ListInterface {
 
         List<String> colKeys = null;
         try {
-            colKeys = new ArrayList<>(((IEOObject)firstChild).keysEo());
+            colKeys = new ArrayList<>(((IEOObject) firstChild).keysEo());
         } catch (Exception e) {
             e.printStackTrace();
             return toWrite;

@@ -25,7 +25,6 @@ public class DbSqlReadCall extends DbSqlCall implements ListParamsBeanInterface,
     /*.{}.*/
 
     /*.{javaStaticNames}|*/
-    public static String LIST_PARAMS = "listParams";
     /*.{}.*/
 
     /*.{javaInstanceVars}|*/

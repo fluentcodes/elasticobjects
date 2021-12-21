@@ -50,34 +50,4 @@ public class CsvConfig extends FileConfig implements CsvConfigInterface, ListPar
     public ListParamsConfig getListParams() {
         return listParams;
     }
-
-    @Override
-    public String getFilter() {
-        return getListParams().getFilter();
-    }
-
-    @Override
-    public Integer getRowHead() {
-        return getListParams().getRowHead();
-    }
-
-    @Override
-    public Integer getRowStart() {
-        return getListParams().getRowStart();
-    }
-
-    @Override
-    public Integer getRowEnd() {
-        return getListParams().getRowEnd();
-    }
-
-    @Override
-    public Integer getLength() {
-        return getListParams().getLength();
-    }
-
-    @Override
-    public List<String> getColKeys() {
-        return getListParams().getColKeys();
-    }
 }

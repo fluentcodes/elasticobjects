@@ -114,7 +114,7 @@
   "DbModelReadCall": {
     "module": "eo-db",
     "moduleScope": "main",
-    "interfaces": "ListInterface,ConfigReadCommand",
+    "interfaces": "ListParamsBeanInterface,ConfigReadCommand",
     "superKey": "DbModelCall",
     "expose": "WEB",
     "description": "Read an entry in database by creating a select sql from entry in sourcePath. \nThe object in sourcePath must be an instance of @ModelConfigDbObject.",
@@ -234,7 +234,7 @@
   "DbSqlReadCall": {
     "module": "eo-db",
     "moduleScope": "main",
-    "interfaces": "ListInterface,ConfigReadCommand",
+    "interfaces": "ListParamsBeanInterface,ConfigReadCommand",
     "superKey": "DbSqlCall",
     "expose": "WEB",
     "description": "Map results of a sql select to the targetPath.",

@@ -254,7 +254,7 @@
   "CsvConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "interfaces": "CsvConfigInterface,ListProperties",
+    "interfaces": "CsvConfigInterface,ListParamsConfigInterface",
     "superKey": "FileConfig",
     "expose": "NONE",
     "description": "Configuration for csv files with fieldDelimiter and rowDelimiter fields. ",
@@ -731,39 +731,46 @@
     },
     "author": "Werner Diwischek"
   },
-  "ListProperties": {
+  "ListParamsConfigInterface": {
     "module": "eo-calls",
     "moduleScope": "main",
     "fieldKeys": {
       "colKeys": {
         "default": true,
+        "transient": true,
         "final": true
       },
       "filter": {
         "default": true,
+        "transient": true,
         "final": true
       },
       "length": {
         "default": true,
+        "transient": true,
         "final": true
       },
       "rowEnd": {
         "default": true,
+        "transient": true,
         "final": true
       },
       "rowHead": {
         "default": true,
+        "transient": true,
         "final": true
       },
       "rowStart": {
         "default": true,
+        "transient": true,
+        "property": false,
         "final": true
       }
     },
     "expose": "NONE",
-    "description": "Defines access to list properties in configurations.",
+    "description": "Defines default access values for ListParams",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
-    "modelKey": "ListProperties",
+    "modelKey": "ListParamsBeanInterface",
     "properties": {
       "create": false,
       "shapeType": "INTERFACE"

@@ -38,7 +38,7 @@
   "XlsxReadCall": {
     "module": "eo-xlsx",
     "moduleScope": "main",
-    "interfaces": "ListInterface",
+    "interfaces": "ListParamsConfigInterface",
     "superKey": "FileReadCall",
     "expose": "WEB",
     "description": "Read an Excel sheet specified by fileConfigKey referencing to a @XlsxConfig configuration.",

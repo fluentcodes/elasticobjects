@@ -52,7 +52,7 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
 
     public List<Object> readRaw(final IEOScalar eo) {
         XlsxConfig config = (XlsxConfig) init(PermissionType.READ, eo);
-        getListParams().merge(config.getProperties());
+        getListParams().merge(config.getListParams());
         List result = new ArrayList<>();
         Sheet sheet = config.getSheet(eo);
         if (sheet == null) {

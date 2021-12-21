@@ -12,6 +12,8 @@ import org.fluentcodes.projects.elasticobjects.IEOObject;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsConfig;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsConfigInterface;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
@@ -30,13 +32,23 @@ import java.util.List;
 /**
  * Created by Werner on 30.10.2016.
  */
-public class XlsxConfig extends FileConfig implements XlsxInterface {
+public class XlsxConfig extends FileConfig implements XlsxInterface, ListParamsConfigInterface {
+    private final ListParamsConfig listParams;
+    private final String sheetName;
+
     public XlsxConfig(final ConfigBean configBean, final ConfigMaps configMaps) {
         this((FileBean) configBean, configMaps);
     }
 
     public XlsxConfig(final FileBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
+        this.listParams = new ListParamsConfig(bean.getProperties());
+        this.sheetName = new ShapeTypeSerializerString().asObject(bean.getProperties().get(SHEET_NAME));
+    }
+
+    @Override
+    public String getSheetName() {
+        return sheetName;
     }
 
     public Sheet getSheet(final IEOScalar eo) {
@@ -54,6 +66,11 @@ public class XlsxConfig extends FileConfig implements XlsxInterface {
 
     public List readRaw(ListParamsBean params) {
         throw new EoException("Deprecated");
+    }
+
+    @Override
+    public ListParamsConfig getListParams() {
+        return listParams;
     }
 
     public Object read(CsvSimpleReadCall readCall) {

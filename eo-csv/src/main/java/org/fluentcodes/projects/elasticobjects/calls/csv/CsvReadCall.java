@@ -42,7 +42,7 @@ public class CsvReadCall extends CsvSimpleReadCall {
     @Override
     public List readRaw(final IEOScalar eo) {
         CsvConfig csvFileConfig = (CsvConfig) init(PermissionType.READ, eo);
-        getListParams().merge(csvFileConfig.getProperties());
+        getListParams().merge(csvFileConfig.getListParams());
         URL url = csvFileConfig.findUrl(eo, getHostConfigKey());
         //System.out.println("CSV " + url.toString());
         CSVReader reader = null;

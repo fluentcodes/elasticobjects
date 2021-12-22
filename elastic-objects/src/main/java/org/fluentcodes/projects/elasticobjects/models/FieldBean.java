@@ -22,8 +22,6 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
     /*.{javaInstanceVars}|*/
     /* fieldKey */
     private String fieldKey;
-    /* Length of a field. */
-    private Integer length;
     /* A string representation for a list of modelsConfig. */
     private String modelKeys;
     /*.{}.*/
@@ -78,16 +76,25 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
     @Override
     public void merge(final Map configMap) {
         super.merge(configMap);
-        setNaturalId((String) configMap.get(F_NATURAL_ID));
-        setFieldKey((String) configMap.get(F_FIELD_KEY));
-        mergeFinal(configMap.get(F_FINAL));
-        mergeOverride(configMap.get(F_OVERRIDE));
-        mergeJsonIgnore(configMap.get(F_JSON_IGNORE));
-        mergeTransient(configMap.get(F_TRANSIENT));
         mergeDefault(configMap.get(F_DEFAULT));
-
-        setLength(new ShapeTypeSerializerInteger().asObject(configMap.get(F_LENGTH)));
+        setFieldKey((String) configMap.get(F_FIELD_KEY));
+        mergeFieldName(configMap.get(F_FIELD_NAME));
+        mergeFinal(configMap.get(F_FINAL));
+        mergeGenerated(configMap.get(F_GENERATED));
+        mergeJavascriptType(configMap.get(F_JAVASCRIPT_TYPE));
+        mergeJsonIgnore(configMap.get(F_JSON_IGNORE));
+        mergeLength(configMap.get(F_LENGTH));
+        mergeMin(configMap.get(F_MIN));
+        mergeMax(configMap.get(F_MAX));
         setModelKeys((String) configMap.get(F_MODEL_KEYS));
+        mergeNotNull(configMap.get(F_NOT_NULL));
+        mergeOverride(configMap.get(F_OVERRIDE));
+        mergeProperty(configMap.get(F_PROPERTY));
+        mergeStaticName(configMap.get(F_STATIC_NAME));
+        mergeSuper(configMap.get(F_SUPER));
+        mergeTransient(configMap.get(F_TRANSIENT));
+        mergeUnique(configMap.get(F_UNIQUE));
+
     }
 
     public void merge(final FieldBean fieldBean) {
@@ -134,11 +141,11 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Integer getLength() {
-        return this.length;
+        return (Integer) getProperties().get(F_LENGTH);
     }
 
     public FieldBean setLength(final Integer length) {
-        this.length = length;
+        getProperties().put(F_LENGTH, length);
         return this;
     }
 
@@ -164,7 +171,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getOverride(){
-        return (Boolean) getProperties().get(F_OVERRIDE);
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_OVERRIDE));
     }
 
     @Override
@@ -174,7 +181,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getProperty(){
-        return (Boolean) getProperties().get(F_PROPERTY);
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_PROPERTY));
     }
 
     @Override
@@ -184,7 +191,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getStaticName() {
-        return (Boolean) getProperties().get(F_STATIC_NAME);
+        return new ShapeTypeSerializerBoolean().asObject( getProperties().get(F_STATIC_NAME));
     }
 
     @Override
@@ -194,7 +201,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getTransient() {
-        return (Boolean) getProperties().get(F_TRANSIENT);
+        return new ShapeTypeSerializerBoolean().asObject( getProperties().get(F_TRANSIENT));
     }
 
     @Override
@@ -204,7 +211,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getUnique() {
-        return (Boolean) getProperties().get(F_UNIQUE);
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_UNIQUE));
     }
 
     @Override
@@ -214,7 +221,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getSuper() {
-        return (Boolean) getProperties().get(F_SUPER);
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_SUPER));
     }
 
     @Override
@@ -224,7 +231,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getDefault() {
-        return (Boolean) getProperties().get(F_DEFAULT);
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_DEFAULT));
     }
 
     @Override
@@ -234,7 +241,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public String getFieldName() {
-        return (String) getProperties().get(F_FIELD_NAME);
+        return new ShapeTypeSerializerString().asObject(getProperties().get(F_FIELD_NAME));
     }
 
     @Override
@@ -244,7 +251,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getFinal() {
-        return (Boolean) getProperties().get(F_FINAL);
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_FINAL));
     }
 
     @Override
@@ -254,7 +261,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getGenerated() {
-        return (Boolean) getProperties().get(F_GENERATED);
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_GENERATED));
     }
 
     @Override
@@ -264,7 +271,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public String getJavascriptType() {
-        return (String) getProperties().get(F_JAVASCRIPT_TYPE);
+        return new ShapeTypeSerializerString().asObject(getProperties().get(F_JAVASCRIPT_TYPE));
     }
 
     @Override
@@ -275,7 +282,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getJsonIgnore() {
-        return (Boolean) getProperties().get(F_JSON_IGNORE);
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_JSON_IGNORE));
     }
 
     @Override
@@ -285,7 +292,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     @Override
     public Boolean getNotNull() {
-        return (Boolean) getProperties().get(F_NOT_NULL);
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_NOT_NULL));
     }
 
     @Override
@@ -443,7 +450,10 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
     }
 
     private void defaultSuper() {
-        getProperties().put(F_SUPER, false);
+        if (hasSuper()) {
+            return;
+        }
+        setSuper(false);
     }
 
     private void defaultConfigModelKey() {
@@ -455,15 +465,24 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
 
     private void defaultStaticName() {
+        if (hasStaticName()) {
+            return;
+        }
         getProperties().put(F_SUPER, true);
     }
 
     private void defaultGenerated() {
+        if (hasGenerated()) {
+            return;
+        }
         setGenerated(false);
     }
 
 
     private void defaultUnique() {
+        if (hasUnique()) {
+            return;
+        }
         setUnique(false);
     }
 
@@ -474,15 +493,24 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
     }
 
     private void defaultNotNull() {
+        if (hasNotNull()) {
+            return;
+        }
         setNotNull(false);
     }
 
 
     private void defaultTransient() {
+        if (hasTransient()) {
+            return;
+        }
         setTransient(false);
     }
 
     private void defaultDefault() {
+        if (hasDefault()) {
+            return;
+        }
         setDefault(false);
     }
 
@@ -515,12 +543,10 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
         return this;
     }
 
-
     public FieldBean setGenerated(Boolean value) {
         getProperties().put(F_GENERATED, value);
         return this;
     }
-
 
     public FieldBean setJavascriptType(String value) {
         getProperties().put(F_JAVASCRIPT_TYPE, value);

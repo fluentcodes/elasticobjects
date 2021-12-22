@@ -35,14 +35,6 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
     private Models models;
     private Method getter;
     private Method setter;
-    private final Integer max;
-    private final Integer min;
-    private final Boolean override;
-    private final Boolean property;
-    private final Boolean staticName;
-    private final Boolean transientValue;
-    private final Boolean unique;
-    private final Boolean superValue;
     private final Boolean defaultValue;
     private final String fieldName;
     private final Boolean finalValue;
@@ -50,7 +42,14 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
     private final String javascriptType;
     private final Boolean jsonIgnore;
     private final Boolean notNull;
-
+    private final Integer max;
+    private final Integer min;
+    private final Boolean override;
+    private final Boolean property;
+    private final Boolean staticName;
+    private final Boolean superValue;
+    private final Boolean transientValue;
+    private final Boolean unique;
 
     public FieldConfig(final ModelConfig parentModel, final FieldBean bean) {
         super(bean, parentModel.getConfigMaps());

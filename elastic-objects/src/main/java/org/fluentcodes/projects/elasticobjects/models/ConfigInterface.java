@@ -17,11 +17,11 @@ public interface ConfigInterface extends BaseInterface {
   /*.{}.*/
 
   /*.{javaStaticNames}|*/
+  String F_CONFIG_MODEL_KEY = "configModelKey";
   String F_EXPOSE = "expose";
   String F_MODULE = "module";
   String F_MODULE_SCOPE = "moduleScope";
   String F_SCOPE = "scope";
-  String F_PROPERTIES = "properties";
   /*.{}.*/
 
   default boolean hasScope(final Scope scope) {
@@ -30,16 +30,6 @@ public interface ConfigInterface extends BaseInterface {
             getScope().isEmpty() ||
             getScope().contains(scope);
   }
-
-  /*.{javaAccessors}|*/
-  default boolean hasProperties() {
-    return getProperties() != null && !getProperties().isEmpty();
-  }
-
-  /**
-   * Properties for configurations.
-   */
-  Map<String, Object> getProperties();
 
   /**
    * expose

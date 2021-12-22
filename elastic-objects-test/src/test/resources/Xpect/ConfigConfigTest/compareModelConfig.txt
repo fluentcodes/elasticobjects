@@ -1,0 +1,102 @@
+{
+  "author": "Werner Diwischek",
+  "creationDate": 1608073216000,
+  "description": "Basic cache as super object for other cached items. ",
+  "expose": "NONE",
+  "fieldConfigMap": {
+    "author": {
+      "description": "The author of the class.",
+      "fieldKey": "author",
+      "length": 256,
+      "modelKeys": "String",
+      "modelList": [
+        "String"
+      ],
+      "naturalId": "author"
+    },
+    "creationDate": {
+      "description": "Used to define the creation of an item.",
+      "fieldKey": "creationDate",
+      "modelKeys": "Date",
+      "modelList": [
+        "Date"
+      ],
+      "naturalId": "creationDate"
+    },
+    "description": {
+      "description": "A description of the model used by every model extending BaseClassImpl. ",
+      "fieldKey": "description",
+      "length": 512,
+      "modelKeys": "String",
+      "modelList": [
+        "String"
+      ],
+      "naturalId": "description"
+    },
+    "expose": {
+      "description": "expose",
+      "fieldKey": "expose",
+      "modelKeys": "Expose",
+      "modelList": [
+        "Expose"
+      ],
+      "naturalId": "expose"
+    },
+    "id": {
+      "description": "The numeric id of an instance of a class.",
+      "fieldKey": "id",
+      "modelKeys": "Long",
+      "modelList": [
+        "Long"
+      ],
+      "naturalId": "id"
+    },
+    "module": {
+      "description": "Defines a target module where generating occurs. ",
+      "fieldKey": "module",
+      "length": 80,
+      "modelKeys": "String",
+      "modelList": [
+        "String"
+      ],
+      "naturalId": "module"
+    },
+    "moduleScope": {
+      "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
+      "fieldKey": "moduleScope",
+      "length": 10,
+      "modelKeys": "String",
+      "modelList": [
+        "String"
+      ],
+      "naturalId": "moduleScope"
+    },
+    "naturalId": {
+      "description": "The natural key in @Base",
+      "fieldKey": "naturalId",
+      "length": 80,
+      "modelKeys": "String",
+      "modelList": [
+        "String"
+      ],
+      "naturalId": "naturalId"
+    },
+    "scope": {
+      "description": "A scope for the cache value.",
+      "fieldKey": "scope",
+      "modelKeys": "List,Scope",
+      "modelList": [
+        "List",
+        "Scope"
+      ],
+      "naturalId": "scope"
+    }
+  },
+  "interfaces": "ConfigInterface",
+  "modelKey": "ConfigConfig",
+  "module": "elastic-objects",
+  "moduleScope": "main",
+  "naturalId": "ConfigConfig",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+  "superKey": "BaseConfig"
+}

@@ -138,7 +138,7 @@
   "ConfigInterface": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "expose, module, moduleScope, scope, properties",
+    "fieldKeys": "expose, module, moduleScope, scope",
     "interfaces": "BaseInterface",
     "expose": "NONE",
     "description": "Basic config interface as super interface for other cached items. ",
@@ -196,10 +196,88 @@
     "author": "Werner Diwischek",
     "creationDate": 1607468400000
   },
+
   "FieldConfig": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "fieldKey, modelKeys, length, modelList",
+    "fieldKeys": {
+      "fieldKey": {
+        "final": true,
+        "property": false
+      },
+      "modelKeys": {
+        "final": true,
+        "property": false
+      },
+      "length": {
+        "final": true,
+        "property": false
+      },
+      "modelList": {
+        "final": true,
+        "property": false
+      },
+      "default": {
+        "final": true,
+        "property": false
+      },
+      "fieldName": {
+        "final": true,
+        "property": false
+      },
+      "final": {
+        "final": true,
+        "property": false
+      },
+      "generated": {
+        "final": true,
+        "property": false
+      },
+      "javascriptType": {
+        "final": true,
+        "property": false
+      },
+      "jsonIgnore": {
+        "final": true,
+        "property": false
+      },
+      "notNull": {
+        "final": true,
+        "property": false
+      },
+     "max": {
+       "final": true,
+       "property": false
+     },
+      "min": {
+        "final": true,
+        "property": false
+      },
+      "override": {
+        "final": true,
+        "property": false
+      },
+      "property": {
+        "final": true,
+        "property": false
+      },
+      "staticName": {
+        "final": true,
+        "property": false
+      },
+      "super": {
+        "final": true,
+        "property": false
+      },
+      "transient": {
+        "final": true,
+        "property": false
+      },
+      "unique":{
+        "final": true,
+        "property": false
+      }
+    },
     "interfaces": "FieldConfigInterface",
     "superKey": "ConfigConfig",
     "expose": "NONE",
@@ -361,26 +439,6 @@
   "ModelInterface": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": {
-      "abstract": {
-        "override": false,
-        "final": true,
-        "transient": true,
-        "default": true
-      },
-      "dbAnnotated": {
-        "override": false,
-        "final": true,
-        "transient": true,
-        "default": true
-      },
-      "interfaces": {
-        "override": false
-      },
-      "modelKey": {
-        "override": false
-      }
-    },
     "interfaces": "ConfigInterface",
     "expose": "NONE",
     "description": "Elementary model properties.",

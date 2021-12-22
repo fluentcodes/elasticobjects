@@ -131,7 +131,6 @@
     "expose": "NONE",
     "fieldKey": "final",
     "properties": {
-      "property": true
     }
   },
   "generated": {

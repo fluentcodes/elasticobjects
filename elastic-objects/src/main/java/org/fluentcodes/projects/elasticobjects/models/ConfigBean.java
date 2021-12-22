@@ -21,6 +21,7 @@ import java.util.Map;
  * @modificationDate Sun Jan 10 10:57:55 CET 2021
  */
 public class ConfigBean extends BaseBean implements ConfigInterface {
+    public static final String F_PROPERTIES = "properties";
     /*.{}.*/
     private static final String CONFIG_MODEL_KEY = "configModelKey";
     public static final String SCOPE_FROM_STRING_EXCEPTION = "Could not set scope from string with value '";
@@ -70,9 +71,6 @@ public class ConfigBean extends BaseBean implements ConfigInterface {
         setModuleScope(config.getModuleScope());
         setExpose(config.getExpose());
         properties = new HashMap<>();
-        for (Object key : config.getProperties().keySet()) {
-            properties.put((String)key, config.getProperties().get(key));
-        }
     }
 
     @Override
@@ -92,7 +90,6 @@ public class ConfigBean extends BaseBean implements ConfigInterface {
             if (props instanceof Map) {
                 this.properties.putAll((Map) props);
             }
-
         }
     }
 
@@ -102,6 +99,10 @@ public class ConfigBean extends BaseBean implements ConfigInterface {
 
     public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
+    }
+
+    public boolean hasProperties() {
+        return this.properties !=null && !this.properties.isEmpty();
     }
 
     /*.{javaAccessors}|*/

@@ -23,7 +23,6 @@ import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.SUPER_KEY;
 
 public class ModelBean extends ConfigBean implements ModelInterface, PermissionInterface, Comparable<ModelBean> {
-    public static final String FIELD_BEANS = "fieldBeans";
     public static final String FIELD_KEYS = "fieldKeys";
     private boolean resolved;
     private String modelKey;
@@ -75,7 +74,7 @@ public class ModelBean extends ConfigBean implements ModelInterface, PermissionI
         super(naturalId, values);
     }
 
-    public ModelBean(final Map values) {
+    public ModelBean(final Map<String, Object> values) {
         super(values);
     }
 

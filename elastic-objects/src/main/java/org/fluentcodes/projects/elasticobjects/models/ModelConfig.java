@@ -54,16 +54,7 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     public ModelConfig(final ModelBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
         try {
-            Object shapeTypeValue = getProperties().get(SHAPE_TYPE);
-            if (shapeTypeValue == null) {
-                this.shapeType = ShapeTypes.BEAN;
-            } else if (shapeTypeValue instanceof ShapeTypes) {
-                this.shapeType = (ShapeTypes) shapeTypeValue;
-            } else if (shapeTypeValue instanceof String) {
-                this.shapeType = ShapeTypes.valueOf((String) shapeTypeValue);
-            } else {
-                throw new EoException("Problem with shapeType");
-            }
+            this.shapeType = bean.getShapeType() == null? ShapeTypes.BEAN : bean.getShapeType();
         } catch (Exception e) {
             throw new EoException(e);
         }

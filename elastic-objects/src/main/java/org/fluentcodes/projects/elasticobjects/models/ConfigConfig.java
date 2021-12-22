@@ -20,7 +20,6 @@ import java.util.Map;
 public class ConfigConfig extends BaseConfig implements ConfigInterface {
   /*.{}.*/
   private final ConfigMaps configMaps;
-  private final Map<String, Object> properties;
   /*.{javaInstanceVars}|*/
   /* expose */
   private final Expose expose;
@@ -43,16 +42,10 @@ public class ConfigConfig extends BaseConfig implements ConfigInterface {
     if (configBean.getProperties() == null) {
       throw new EoInternalException("Null properties not allowed creating configs.");
     }
-    this.properties = new UnmodifiableMap<>(configBean.getProperties());
   }
 
   public ConfigMaps getConfigMaps() {
     return configMaps;
-  }
-
-  @Override
-  public Map<String, Object> getProperties() {
-    return properties;
   }
 
   /*.{javaAccessors}|*/

@@ -5,86 +5,124 @@
   "expose": "NONE",
   "fieldConfigMap": {
     "author": {
+      "default": false,
       "description": "The author of the class.",
+      "expose": "WEB",
       "fieldKey": "author",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 256,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "author",
-      "properties": {
-        "generated": false,
-        "final": false,
-        "override": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "creationDate": {
+      "default": false,
       "description": "Used to define the creation of an item.",
+      "expose": "WEB",
       "fieldKey": "creationDate",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Date",
-      "modelList": [
-        "Date"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "creationDate",
-      "properties": {
-        "generated": false,
-        "final": false,
-        "override": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "description": {
+      "default": false,
       "description": "A description of the model used by every model extending BaseClassImpl. ",
+      "expose": "WEB",
       "fieldKey": "description",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 512,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "description",
-      "properties": {
-        "generated": false,
-        "final": false,
-        "override": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "id": {
+      "default": false,
       "description": "The numeric id of an instance of a class.",
+      "expose": "WEB",
       "fieldKey": "id",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Long",
-      "modelList": [
-        "Long"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "id",
-      "properties": {
-        "generated": false,
-        "final": false,
-        "override": true
-      }
+      "notNull": true,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": true
     },
     "naturalId": {
+      "default": false,
       "description": "The natural key in @Base",
+      "expose": "NONE",
       "fieldKey": "naturalId",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "naturalId",
-      "properties": {
-        "generated": false,
-        "final": false,
-        "override": true
-      }
+      "notNull": true,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": true
     }
   },
   "modelKey": "BaseBean",
   "module": "elastic-objects",
   "moduleScope": "main",
   "naturalId": "BaseBean",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.domain",
-  "properties": {
-    "create": true,
-    "override": true
-  }
+  "packagePath": "org.fluentcodes.projects.elasticobjects.domain"
 }

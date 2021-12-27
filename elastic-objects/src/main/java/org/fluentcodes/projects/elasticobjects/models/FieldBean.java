@@ -1,7 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,12 +33,74 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     public FieldBean(String key) {
         super(key);
+        setFieldKey(key.replaceAll(".*\\.", ""));
+        defaultNaturalId();
     }
 
-    public FieldBean(final Map values) {
-        super();
-        merge(values);
-        defaultValues();
+    public FieldBean(final Map valueMap) {
+        super(valueMap);
+        Map<String, Object> properties = valueMap.containsKey(F_PROPERTIES) && valueMap.get(F_PROPERTIES)!=null ?
+                (Map<String, Object>)valueMap.get(F_PROPERTIES):
+                valueMap;
+        setDefault(
+                toBoolean(properties.get(F_DEFAULT)));
+        setFieldKey(
+                toString(valueMap.get(F_FIELD_KEY)));
+        setFieldName(
+                toString(properties.get(F_FIELD_NAME)));
+        setFinal(
+                toBoolean(properties.get(F_FINAL)));
+        setGenerated(
+                toBoolean(properties.get(F_GENERATED)));
+        setJavascriptType(
+                toString(properties.get(F_JAVASCRIPT_TYPE)));
+        setJsonIgnore(
+                toBoolean(properties.get(F_JSON_IGNORE)));
+        setLength(
+                toInteger(properties.get(F_LENGTH)));
+        setMax(
+                toInteger(properties.get(F_MAX)));
+        setMin(
+                toInteger(properties.get(F_MIN)));
+        setModelKeys(
+                toString(valueMap.get(F_MODEL_KEYS)));
+        setNotNull(
+                toBoolean(properties.get(F_NOT_NULL)));
+        setOverride(
+                toBoolean(properties.get(F_OVERRIDE)));
+        setProperty(
+                toBoolean(properties.get(F_PROPERTY)));
+        setStaticName(
+                toBoolean(properties.get(F_STATIC_NAME)));
+        setSuper(
+                toBoolean(properties.get(F_SUPER)));
+        setTransient(
+                toBoolean(properties.get(F_TRANSIENT)));
+        setUnique(
+                toBoolean(properties.get(F_UNIQUE)));
+        defaultNaturalId();
+    }
+
+    public FieldBean(final FieldConfig config) {
+        super(config);
+        setDefault(config.getDefault());
+        setFieldKey(config.getFieldKey());
+        setFieldName(config.getFieldName());
+        setFinal(config.getFinal());
+        setGenerated(config.getGenerated());
+        setJavascriptType(config.getJavascriptType());
+        setJsonIgnore(config.getJsonIgnore());
+        setLength(config.getLength());
+        setMax(config.getMax());
+        setMin(config.getMin());
+        setModelKeys(config.getModelKeys());
+        setNotNull(config.getNotNull());
+        setOverride(config.getOverride());
+        setProperty(config.getProperty());
+        setStaticName(config.getStaticName());
+        setSuper(config.getSuper());
+        setTransient(config.getTransient());
+        setUnique(config.getUnique());
     }
 
     public FieldBean(final String key, final Map values) {
@@ -56,13 +116,6 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
         setModelKeys(typeClass.getSimpleName());
     }
 
-    public FieldBean(final FieldConfig config) {
-        super(config);
-        setFieldKey(config.getFieldKey());
-        setLength(config.getLength());
-        setModelKeys(config.getModelKeys());
-    }
-
     protected FieldBean(final FieldBean fieldBean) {
         super();
         this.merge((FieldBean) fieldBean);
@@ -73,52 +126,47 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
         return this;
     }
 
-    @Override
-    public void merge(final Map configMap) {
-        super.merge(configMap);
-        mergeDefault(configMap.get(F_DEFAULT));
-        setFieldKey((String) configMap.get(F_FIELD_KEY));
-        mergeFieldName(configMap.get(F_FIELD_NAME));
-        mergeFinal(configMap.get(F_FINAL));
-        mergeGenerated(configMap.get(F_GENERATED));
-        mergeJavascriptType(configMap.get(F_JAVASCRIPT_TYPE));
-        mergeJsonIgnore(configMap.get(F_JSON_IGNORE));
-        mergeLength(configMap.get(F_LENGTH));
-        mergeMin(configMap.get(F_MIN));
-        mergeMax(configMap.get(F_MAX));
-        setModelKeys((String) configMap.get(F_MODEL_KEYS));
-        mergeNotNull(configMap.get(F_NOT_NULL));
-        mergeOverride(configMap.get(F_OVERRIDE));
-        mergeProperty(configMap.get(F_PROPERTY));
-        mergeStaticName(configMap.get(F_STATIC_NAME));
-        mergeSuper(configMap.get(F_SUPER));
-        mergeTransient(configMap.get(F_TRANSIENT));
-        mergeUnique(configMap.get(F_UNIQUE));
-
-    }
-
-    public void merge(final FieldBean fieldBean) {
+    void merge(final FieldBean fieldBean) {
         super.merge(fieldBean);
+        mergeConfigModelKey(fieldBean.getModelKey());
+        mergeDefault(fieldBean.getDefault());
         mergeFieldKey(fieldBean.getFieldKey());
-        mergeModelKeys(fieldBean.getModelKeys());
-        mergeLength(fieldBean.getLength());
-        mergeFinal(fieldBean.getFinal());
-        mergeProperty(fieldBean.getProperty());
         mergeFieldName(fieldBean.getFieldName());
+        mergeFinal(fieldBean.getFinal());
         mergeGenerated(fieldBean.getGenerated());
+        mergeJavascriptType(fieldBean.getJavascriptType());
+        mergeJsonIgnore(fieldBean.getJsonIgnore());
+        mergeLength(fieldBean.getLength());
+        mergeMax(fieldBean.getMax());
+        mergeMin(fieldBean.getMin());
+        mergeModelKeys(fieldBean.getModelKeys());
+        mergeNotNull(fieldBean.getNotNull());
+        mergeOverride(fieldBean.getOverride());
+        mergeProperty(fieldBean.getProperty());
+        mergeStaticName(fieldBean.getStaticName());
+        mergeSuper(fieldBean.getSuper());
+        mergeTransient(fieldBean.getTransient());
+        mergeUnique(fieldBean.getUnique());
+        setDefault();
         this.merged = true;
     }
 
-    private void defaultValues() {
-        // default values for templates
-        defaultOverride();
-        defaultNotNull();
-        defaultGenerated();
-        defaultFinal();
-        defaultTransient();
-        defaultUnique();
-        defaultSuper();
+    public void setDefault() {
         defaultConfigModelKey();
+    }
+
+    private void defaultConfigModelKey() {
+        if (hasConfigModelKey()) {
+            return;
+        }
+        setConfigModelKey(FieldConfig.class.getSimpleName());
+    }
+
+    private void defaultNaturalId() {
+        if (hasNaturalId()) {
+            return;
+        }
+        setNaturalId(getFieldKey());
     }
 
     public List<String> getModelList() {
@@ -129,6 +177,12 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
     }
 
     /*.{javaAccessors}|*/
+
+    private void mergeDefault(final Object value) {
+        if (hasDefault()) return;
+        setDefault(new ShapeTypeSerializerBoolean().asObject(value, false));
+    }
+
     @Override
     public String getFieldKey() {
         return this.fieldKey;
@@ -139,165 +193,56 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
         return this;
     }
 
-    @Override
-    public Integer getLength() {
-        return (Integer) getProperties().get(F_LENGTH);
+    private void mergeFieldKey(final Object value) {
+        if (value == null) return;
+        if (hasFieldKey()) return;
+        setFieldKey(new ShapeTypeSerializerString().asObject(value));
     }
 
-    public FieldBean setLength(final Integer length) {
-        getProperties().put(F_LENGTH, length);
-        return this;
+    private void mergeFieldName(final Object value) {
+        if (value == null) return;
+        if (hasFieldName()) return;
+        setFieldName(new ShapeTypeSerializerString().asObject(value));
     }
 
-    @Override
-    public Integer getMax(){
-        return (Integer) getProperties().get(F_MAX);
+    private void mergeFinal(final Object value) {
+        if (hasFinal()) return;
+        setFinal(new ShapeTypeSerializerBoolean().asObject(value, false));
     }
 
-    @Override
-    public boolean hasMax() {
-        return getProperties().containsKey(F_MAX) && getProperties().get(F_MAX) != null;
+    private void mergeGenerated(final Object value) {
+        if (hasGenerated()) return;
+        setGenerated(new ShapeTypeSerializerBoolean().asObject(value, false));
     }
 
-    @Override
-    public Integer getMin(){
-        return (Integer) getProperties().get(F_MIN);
+    private void mergeJavascriptType(final Object value) {
+        if (hasJavascriptType()) return;
+        setJavascriptType(new ShapeTypeSerializerString().asObject(value));
     }
 
-    @Override
-    public boolean hasMin() {
-        return getProperties().containsKey(F_MIN) && getProperties().get(F_MIN) != null;
+    private void mergeJsonIgnore(final Object value) {
+        if (hasJsonIgnore()) return;
+        setJsonIgnore(new ShapeTypeSerializerBoolean().asObject(value, false));
     }
 
-    @Override
-    public Boolean getOverride(){
-        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_OVERRIDE));
+    private void mergeLength(final Object value) {
+        if (hasLength()) return;
+        setLength(new ShapeTypeSerializerInteger().asObject(value, -1));
     }
 
-    @Override
-    public boolean hasOverride() {
-        return getProperties().containsKey(F_OVERRIDE) && getProperties().get(F_OVERRIDE) != null;
+    private void mergeMax(final Object value) {
+        if (hasMax()) return;
+        setMax(new ShapeTypeSerializerInteger().asObject(value, -1));
     }
 
-    @Override
-    public Boolean getProperty(){
-        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_PROPERTY));
+    private void mergeMin(final Object value) {
+        if (hasMin()) return;
+        setMin(new ShapeTypeSerializerInteger().asObject(value, -1 ));
     }
 
-    @Override
-    public boolean hasProperty() {
-        return getProperties().containsKey(F_PROPERTY) && getProperties().get(F_PROPERTY) != null;
-    }
-
-    @Override
-    public Boolean getStaticName() {
-        return new ShapeTypeSerializerBoolean().asObject( getProperties().get(F_STATIC_NAME));
-    }
-
-    @Override
-    public boolean hasStaticName() {
-        return getProperties().containsKey(F_STATIC_NAME) && getProperties().get(F_STATIC_NAME) != null;
-    }
-
-    @Override
-    public Boolean getTransient() {
-        return new ShapeTypeSerializerBoolean().asObject( getProperties().get(F_TRANSIENT));
-    }
-
-    @Override
-    public boolean hasTransient() {
-        return getProperties().containsKey(F_TRANSIENT) && getProperties().get(F_TRANSIENT) != null;
-    }
-
-    @Override
-    public Boolean getUnique() {
-        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_UNIQUE));
-    }
-
-    @Override
-    public boolean hasUnique() {
-        return getProperties().containsKey(F_UNIQUE) && getProperties().get(F_UNIQUE) != null;
-    }
-
-    @Override
-    public Boolean getSuper() {
-        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_SUPER));
-    }
-
-    @Override
-    public boolean hasSuper() {
-        return getProperties().containsKey(F_SUPER) && getProperties().get(F_SUPER) != null;
-    }
-
-    @Override
-    public Boolean getDefault() {
-        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_DEFAULT));
-    }
-
-    @Override
-    public boolean hasDefault() {
-        return getProperties().containsKey(F_DEFAULT) && getProperties().get(F_DEFAULT) != null;
-    }
-
-    @Override
-    public String getFieldName() {
-        return new ShapeTypeSerializerString().asObject(getProperties().get(F_FIELD_NAME));
-    }
-
-    @Override
-    public boolean hasFieldName() {
-        return getProperties().containsKey(F_FIELD_NAME) && getProperties().get(F_FIELD_NAME) != null;
-    }
-
-    @Override
-    public Boolean getFinal() {
-        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_FINAL));
-    }
-
-    @Override
-    public boolean hasFinal() {
-        return getProperties().containsKey(F_FINAL) && getProperties().get(F_FINAL) != null;
-    }
-
-    @Override
-    public Boolean getGenerated() {
-        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_GENERATED));
-    }
-
-    @Override
-    public boolean hasGenerated() {
-        return getProperties().containsKey(F_GENERATED) && getProperties().get(F_GENERATED) != null;
-    }
-
-    @Override
-    public String getJavascriptType() {
-        return new ShapeTypeSerializerString().asObject(getProperties().get(F_JAVASCRIPT_TYPE));
-    }
-
-    @Override
-    public boolean hasJavascriptType() {
-        return getProperties().containsKey(F_JAVASCRIPT_TYPE) && getProperties().get(F_JAVASCRIPT_TYPE) != null;
-    }
-
-
-    @Override
-    public Boolean getJsonIgnore() {
-        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_JSON_IGNORE));
-    }
-
-    @Override
-    public boolean hasJsonIgnore() {
-        return getProperties().containsKey(F_JSON_IGNORE) && getProperties().get(F_JSON_IGNORE) != null;
-    }
-
-    @Override
-    public Boolean getNotNull() {
-        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_NOT_NULL));
-    }
-
-    @Override
-    public boolean hasNotNull() {
-        return getProperties().containsKey(F_NOT_NULL) && getProperties().get(F_NOT_NULL) != null;
+    private void mergeNotNull(final Object value) {
+        if (hasNotNull()) return;
+        setNotNull(new ShapeTypeSerializerBoolean().asObject(value, false));
     }
 
     @Override
@@ -305,11 +250,47 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
         return this.modelKeys;
     }
 
-
     public FieldBean setModelKeys(final String modelKeys) {
         this.modelKeys = modelKeys;
         return this;
     }
+
+    private void mergeModelKeys(final Object value) {
+        if (value == null) return;
+        if (hasModelKeys()) return;
+        setModelKeys(new ShapeTypeSerializerString().asObject(value));
+    }
+
+    private void mergeOverride(final Object value) {
+        if (hasOverride()) return;
+        setOverride(new ShapeTypeSerializerBoolean().asObject(value, false));
+    }
+
+    private void mergeProperty(final Object value) {
+        if (hasProperty()) return;
+        setProperty(new ShapeTypeSerializerBoolean().asObject(value, false));
+    }
+
+    private void mergeStaticName(final Object value) {
+        if (hasStaticName()) return;
+        setStaticName(new ShapeTypeSerializerBoolean().asObject(value, false));
+    }
+
+    private void mergeSuper(final Object value) {
+        if (hasSuper()) return;
+        setSuper(new ShapeTypeSerializerBoolean().asObject(value, false));
+    }
+
+    private void mergeTransient(final Object value) {
+        if (hasTransient()) return;
+        setTransient(new ShapeTypeSerializerBoolean().asObject(value, false));
+    }
+
+    private void mergeUnique(final Object value) {
+        if (hasUnique()) return;
+        setUnique(new ShapeTypeSerializerBoolean().asObject(value, false));
+    }
+
 
     /*.{}.*/
     public boolean isMerged() {
@@ -339,294 +320,4 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
     public void setParentModel(ModelInterface modelBean) {
         this.parentModel = modelBean;
     }
-
-    private void mergeGenerated(final Object value) {
-        if (value == null) return;
-        if (hasGenerated()) return;
-        setGenerated(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeJavascriptType(final Object value) {
-        if (value == null) return;
-        if (hasJavascriptType()) return;
-        setJavascriptType(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    private void mergeJsonIgnore(final Object value) {
-        if (value == null) return;
-        if (hasJsonIgnore()) return;
-        setJsonIgnore(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeMax(final Object value) {
-        if (value == null) return;
-        if (hasMax()) return;
-        setMax(new ShapeTypeSerializerInteger().asObject(value));
-    }
-
-    private void mergeMin(final Object value) {
-        if (value == null) return;
-        if (hasMin()) return;
-        setMin(new ShapeTypeSerializerInteger().asObject(value));
-    }
-
-    private void mergeNotNull(final Object value) {
-        if (value == null) return;
-        if (hasNotNull()) return;
-        setNotNull(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeProperty(final Object value) {
-        if (value == null) return;
-        if (hasProperty()) return;
-        setProperty(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeStaticName(final Object value) {
-        if (value == null) return;
-        if (hasStaticName()) return;
-        setStaticName(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeSuper(final Object value) {
-        if (value == null) return;
-        if (hasSuper()) return;
-        setSuper(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeTransient(final Object value) {
-        if (value == null) return;
-        if (hasTransient()) return;
-        setTransient(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeUnique(final Object value) {
-        if (value == null) return;
-        if (hasUnique()) return;
-        setUnique(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeOverride(final Object value) {
-        if (value == null) return;
-        if (hasOverride()) return;
-        setOverride(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeModelKeys(final Object value) {
-        if (value == null) return;
-        if (hasModelKeys()) return;
-        setModelKeys(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    private void mergeLength(final Object value) {
-        if (value == null) return;
-        if (hasLength()) return;
-        setLength(new ShapeTypeSerializerInteger().asObject(value));
-    }
-
-    private void mergeFinal(final Object value) {
-        if (value == null) return;
-        if (hasFinal()) return;
-        setFinal(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeFieldName(final Object value) {
-        if (value == null) return;
-        if (hasFieldName()) return;
-        setFieldName(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    private void mergeFieldKey(final Object value) {
-        if (value == null) return;
-        if (hasFieldKey()) return;
-        setFieldKey(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    private void defaultOverride() {
-        if (hasOverride()) {
-            return;
-        }
-        getProperties().put(F_OVERRIDE, false);
-    }
-
-    private void defaultSuper() {
-        if (hasSuper()) {
-            return;
-        }
-        setSuper(false);
-    }
-
-    private void defaultConfigModelKey() {
-        if (hasConfigModelKey()) {
-            return;
-        }
-        setConfigModelKey(FieldConfig.class.getSimpleName());
-    }
-
-
-    private void defaultStaticName() {
-        if (hasStaticName()) {
-            return;
-        }
-        getProperties().put(F_SUPER, true);
-    }
-
-    private void defaultGenerated() {
-        if (hasGenerated()) {
-            return;
-        }
-        setGenerated(false);
-    }
-
-
-    private void defaultUnique() {
-        if (hasUnique()) {
-            return;
-        }
-        setUnique(false);
-    }
-
-    private void defaultFieldKey() {
-        if (hasFieldKey()) return;
-        if (!hasNaturalId()) throw new EoException("Field with neither fieldKey nor naturalId is set");
-        setFieldKey(getNaturalId());
-    }
-
-    private void defaultNotNull() {
-        if (hasNotNull()) {
-            return;
-        }
-        setNotNull(false);
-    }
-
-
-    private void defaultTransient() {
-        if (hasTransient()) {
-            return;
-        }
-        setTransient(false);
-    }
-
-    private void defaultDefault() {
-        if (hasDefault()) {
-            return;
-        }
-        setDefault(false);
-    }
-
-    private void defaultFinal() {
-        if (hasFinal()) {
-            return;
-        }
-        getProperties().put(F_FINAL, false);
-    }
-
-    public FieldBean setDefault(Boolean value) {
-        getProperties().put(F_DEFAULT, value);
-        return this;
-    }
-
-    private void mergeDefault(final Object value) {
-        if (value == null) return;
-        if (hasDefault()) return;
-        setDefault(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    public FieldBean setFieldName(String value) {
-        getProperties().put(F_FIELD_NAME, value);
-        return this;
-    }
-
-
-    public FieldBean setFinal(Boolean value) {
-        getProperties().put(F_FINAL, value);
-        return this;
-    }
-
-    public FieldBean setGenerated(Boolean value) {
-        getProperties().put(F_GENERATED, value);
-        return this;
-    }
-
-    public FieldBean setJavascriptType(String value) {
-        getProperties().put(F_JAVASCRIPT_TYPE, value);
-        return this;
-    }
-
-    public FieldBean setJsonIgnore(Boolean value) {
-        getProperties().put(F_JSON_IGNORE, value);
-        return this;
-    }
-
-    public FieldBean setMax(Integer value) {
-        getProperties().put(F_MAX, value);
-        return this;
-    }
-
-
-    public FieldBean setMin(Integer value) {
-        getProperties().put(F_MIN, value);
-        return this;
-    }
-
-
-    public FieldBean setNotNull(Boolean value) {
-        getProperties().put(F_NOT_NULL, value);
-        return this;
-    }
-
-
-    public FieldBean setOverride(Boolean value) {
-        getProperties().put(F_OVERRIDE, value);
-        return this;
-    }
-
-    public FieldBean setProperty(Boolean value) {
-        getProperties().put(F_PROPERTY, value);
-        return this;
-    }
-
-
-    public FieldBean setStaticName(Boolean value) {
-        getProperties().put(F_STATIC_NAME, value);
-        return this;
-    }
-
-
-    public FieldBean setSuper(Boolean value) {
-        getProperties().put(F_SUPER, value);
-        return this;
-    }
-
-
-    public FieldBean setTransient(Boolean value) {
-        getProperties().put(F_TRANSIENT, value);
-        return this;
-    }
-
-
-    public FieldBean setUnique(Boolean value) {
-        getProperties().put(F_UNIQUE, value);
-        return this;
-    }
-
-
-    private Object getFieldValue(final String key) {
-        return getProperties().get(key);
-    }
-
-    /* no null */
-
-    public void setOverride(String value) {
-        getProperties().put(F_OVERRIDE, "true".equals(value));
-    }
-
-
-    public void setMax() {
-        if (hasMax()) {
-            return;
-        }
-        getProperties().put(F_MAX, -1);
-    }
-
 }

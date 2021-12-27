@@ -1,13 +1,11 @@
 {
   "description": "A connection to elastic objects",
   "expose": "NONE",
+  "hostName": "elasticobjects",
   "module": "eo-calls",
   "moduleScope": "test",
   "naturalId": "elasticobjects",
-  "properties": {
-    "classPath": "src.main.resources",
-    "hostName": "elasticobjects",
-    "port": 80,
-    "protocol": "http"
-  }
+  "permissions": {
+  },
+  "protocol": "http"
 }

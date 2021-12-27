@@ -7,9 +7,9 @@
     "packagePath": "java.util",
     "modelKey": "Arrays",
     "properties": {
-      "create": false,
-      "shapeType": "LIST"
+      "create": false
     },
+    "shapeType": "LIST",
     "author": "java"
   },
   "BaseBean": {
@@ -30,7 +30,23 @@
   "BaseConfig": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "id, description, naturalId, creationDate, author",
+    "fieldKeys": {
+      "id": {
+        "final": true
+      },
+      "description": {
+        "final": true
+      },
+      "naturalId": {
+        "final": true
+      },
+      "creationDate": {
+        "final": true
+      },
+      "author": {
+        "final": true
+      }
+    },
     "interfaces": "BaseInterface",
     "expose": "NONE",
     "description": "Basic final configuration as super object for all configuration with id, naturalId and description. ",
@@ -54,9 +70,9 @@
     "modelKey": "BaseInterface",
     "properties": {
       "create": false,
-      "shapeType": "INTERFACE",
       "final": true
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1608505200000
   },
@@ -81,9 +97,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "Call",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
   },
@@ -95,9 +111,9 @@
     "packagePath": "java.lang",
     "modelKey": "Class",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR"
+      "create": false
     },
+    "shapeType": "SCALAR",
     "author": "java"
   },
   "ConfigBean": {
@@ -120,7 +136,20 @@
   "ConfigConfig": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "expose, module, moduleScope, scope",
+    "fieldKeys": {
+      "expose": {
+        "final": true
+      },
+      "module": {
+        "final": true
+      },
+      "moduleScope": {
+        "final": true
+      },
+      "scope": {
+        "final": true
+      }
+    },
     "interfaces": "ConfigInterface",
     "superKey": "BaseConfig",
     "expose": "NONE",
@@ -146,9 +175,9 @@
     "modelKey": "ConfigInterface",
     "properties": {
       "create": false,
-      "shapeType": "INTERFACE",
       "final": true
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1608073200000
   },
@@ -160,9 +189,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "ExecutorCall",
     "properties": {
-      "create": false,
-      "shapeType": "OBJECT"
+      "create": false
     },
+    "shapeType": "OBJECT",
     "author": "Werner Diwischek"
   },
   "Expose": {
@@ -174,15 +203,15 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "Expose",
     "properties": {
-      "create": false,
-      "shapeType": "ENUM"
+      "create": false
     },
+    "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
   "FieldBean": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "fieldKey, modelKeys, length, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
+    "fieldKeys": "fieldKey, modelKeys, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
     "interfaces": "FieldBeanInterface",
     "superKey": "ConfigBean",
     "expose": "NONE",
@@ -196,7 +225,6 @@
     "author": "Werner Diwischek",
     "creationDate": 1607468400000
   },
-
   "FieldConfig": {
     "module": "elastic-objects",
     "moduleScope": "main",
@@ -210,10 +238,6 @@
         "property": false
       },
       "length": {
-        "final": true,
-        "property": false
-      },
-      "modelList": {
         "final": true,
         "property": false
       },
@@ -278,7 +302,7 @@
         "property": false
       }
     },
-    "interfaces": "FieldConfigInterface",
+    "interfaces": "FieldInterface",
     "superKey": "ConfigConfig",
     "expose": "NONE",
     "description": "Immutabel EO field configuration will be initalized by @FieldBean object.",
@@ -296,16 +320,33 @@
     "module": "elastic-objects",
     "moduleScope": "main",
     "fieldKeys": "",
-    "interfaces": "FieldBeanInterface",
+    "interfaces": "FieldInterface",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldConfigInterface",
     "properties": {
       "create": false,
-      "shapeType": "INTERFACE",
       "final": true
     },
+    "shapeType": "INTERFACE",
+    "author": "Werner Diwischek",
+    "creationDate": 1600466400000
+  },
+  "FieldInterface": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "fieldKeys": "",
+    "interfaces": "ConfigInterface",
+    "expose": "NONE",
+    "description": "Access methods for field properties map and get method definitions for final fields. ",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+    "modelKey": "FieldConfigInterface",
+    "properties": {
+      "create": false,
+      "final": true
+    },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1600466400000
   },
@@ -313,16 +354,16 @@
     "module": "elastic-objects",
     "moduleScope": "main",
     "fieldKeys": "fieldKey, modelKeys, length, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
-    "interfaces": "ConfigInterface",
+    "interfaces": "FieldInterface",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldBeanInterface",
     "properties": {
       "create": false,
-      "shapeType": "INTERFACE",
       "final": true
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1600466400000
   },
@@ -334,9 +375,9 @@
     "packagePath": "java.util",
     "modelKey": "HashMap",
     "properties": {
-      "create": true,
-      "shapeType": "MAP"
+      "create": true
     },
+    "shapeType": "MAP",
     "author": "java"
   },
   "KeepCalls": {
@@ -348,9 +389,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.templates",
     "modelKey": "KeepCalls",
     "properties": {
-      "create": false,
-      "shapeType": "ENUM"
+      "create": false
     },
+    "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
   "ModelBean": {
@@ -366,6 +407,8 @@
         "jsonSerialized": false,
         "transient": true,
         "default": true
+      },
+      "fieldBeans": {
       },
       "javascriptType": {
         "override": false
@@ -445,9 +488,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelInterface",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "ModelConfigMethods": {
@@ -459,9 +502,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfigMethods",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "ModelConfigList": {
@@ -555,9 +598,9 @@
     "packagePath": "java.lang",
     "modelKey": "Object",
     "properties": {
-      "create": false,
-      "shapeType": "NONE"
+      "create": false
     },
+    "shapeType": "NONE",
     "author": "java"
   },
   "Path": {
@@ -568,9 +611,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects",
     "modelKey": "Path",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR_SERIALIZED"
+      "create": false
     },
+    "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
   "PathPattern": {
@@ -584,10 +627,24 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects",
     "modelKey": "PathPattern",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR_SERIALIZED"
+      "create": false
     },
+    "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
+  },
+  "PermissionInterface": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "expose": "NONE",
+    "description": "Interface with permissions methods ",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "modelKey": "PermissionInterface",
+    "shapeType": "INTERFACE",
+    "properties": {
+      "create": false,
+      "final": true
+    },
+    "creationDate": 1608073200000
   },
   "Scope": {
     "configModelKey": "ModelConfigScalar",
@@ -598,9 +655,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "Scope",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR"
+      "create": false
     },
+    "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
   "ShapeTypes": {
@@ -612,9 +669,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ShapeTypes",
     "properties": {
-      "create": false,
-      "shapeType": "ENUM"
+      "create": false
     },
+    "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
   "Short": {
@@ -625,9 +682,9 @@
     "packagePath": "java.lang",
     "modelKey": "Short",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR"
+      "create": false
     },
+    "shapeType": "SCALAR",
     "author": "java"
   },
   "StringBuffer": {
@@ -638,9 +695,9 @@
     "packagePath": "java.lang",
     "modelKey": "StringBuffer",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR"
+      "create": false
     },
+    "shapeType": "SCALAR",
     "author": "java"
   },
   "StringBuilder": {
@@ -651,9 +708,9 @@
     "packagePath": "java.lang",
     "modelKey": "StringBuilder",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR"
+      "create": false
     },
+    "shapeType": "SCALAR",
     "author": "java"
   },
   "TreeMap": {
@@ -664,9 +721,9 @@
     "packagePath": "java.util",
     "modelKey": "TreeMap",
     "properties": {
-      "create": true,
-      "shapeType": "MAP"
+      "create": true
     },
+    "shapeType": "MAP",
     "author": "java"
   }
 }

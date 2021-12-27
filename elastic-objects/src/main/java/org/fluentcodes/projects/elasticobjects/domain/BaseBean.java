@@ -2,7 +2,10 @@ package org.fluentcodes.projects.elasticobjects.domain;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerBoolean;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerDate;
+import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerInteger;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerLong;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerString;
 
@@ -25,6 +28,21 @@ import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_NAT
  */
 public class BaseBean {
     public static final Logger LOG = LogManager.getLogger(BaseBean.class);
+    public static Boolean toBoolean(final Object value) {
+        return new ShapeTypeSerializerBoolean().asObject(value);
+    }
+    public static Integer toInteger(final Object value) {
+        return new ShapeTypeSerializerInteger().asObject(value);
+    }
+    public static String toString(final Object value) {
+        return new ShapeTypeSerializerString().asObject(value);
+    }
+    public static Long toLong(final Object value) {
+        return new ShapeTypeSerializerLong().asObject(value);
+    }
+    public static Date toDate(final Object value) {
+        return new ShapeTypeSerializerDate().asObject(value);
+    }
 /*.{}.*/
     /*.{javaInstanceVars}|*/
    /* The author of the class. */
@@ -49,8 +67,24 @@ public class BaseBean {
         this.naturalId = naturalId;
     }
 
+    public BaseBean(final Map<String, Object> configMap) {
+        if (configMap == null) {
+            throw new EoException("Problem with null configMap.");
+        }
+        setId(
+                toLong(configMap.get(F_ID)));
+        setNaturalId(
+                toString(configMap.get(F_NATURAL_ID)));
+        setDescription(
+                toString(configMap.get(F_DESCRIPTION)));
+        setCreationDate(
+                toDate(configMap.get(F_CREATION_DATE)));
+        setAuthor(
+                toString(configMap.get(F_AUTHOR)));
+    }
+
     public BaseBean(final BaseConfig  config) {
-        this.naturalId = config.getNaturalId();
+        setNaturalId(config.getNaturalId());
         this.author = config.getAuthor();
         this.creationDate = config.getCreationDate();
         this.description = config.getDescription();
@@ -65,21 +99,6 @@ public class BaseBean {
         mergeAuthor(bean.getAuthor());
     }
 
-    public void merge(final Map configMap) {
-        if (configMap == null || configMap.isEmpty()) {
-            return;
-        }
-        try {
-            mergeId(configMap.get(F_ID));
-            mergeNaturalId(configMap.get(F_NATURAL_ID));
-            mergeDescription(configMap.get(F_DESCRIPTION));
-            mergeCreationDate(configMap.get(F_CREATION_DATE));
-            mergeAuthor(configMap.get(F_AUTHOR));
-        }
-        catch (Exception e) {
-           LOG.error(e.getMessage());
-        }
-    }
     /*.{javaAccessors}|*/
    public String getAuthor() {
       return this.author;

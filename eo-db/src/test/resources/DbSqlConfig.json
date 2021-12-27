@@ -12,8 +12,6 @@
     "sqlList": [
       "drop table AnObject if exists"
     ],
-    "rolePermissions": {
       "execute": "admin"
-    }
   }
 }

@@ -44,8 +44,7 @@ public class ModelFactoryFromConfigurations extends ModelFactory {
         for  (Map.Entry<String, ModelBean> entry: beanMap.entrySet()) {
             ModelBean modelBean = entry.getValue();
             modelBean.mergeFieldBeanMap(fieldBeanMap);
+            modelBean.setDefault();
         }
     }
-
-
 }

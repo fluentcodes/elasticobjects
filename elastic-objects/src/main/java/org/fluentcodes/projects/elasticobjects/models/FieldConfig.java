@@ -35,6 +35,7 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
     private Models models;
     private Method getter;
     private Method setter;
+
     private final Boolean defaultValue;
     private final String fieldName;
     private final Boolean finalValue;
@@ -54,6 +55,7 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
     public FieldConfig(final ModelConfig parentModel, final FieldBean bean) {
         super(bean, parentModel.getConfigMaps());
         this.parentModel = parentModel;
+        this.defaultValue = bean.getDefault();
         this.toSerialize = false;
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
@@ -67,7 +69,6 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
         this.transientValue = bean.getTransient();
         this.unique = bean.getUnique();
         this.superValue = bean.getSuper();
-        this.defaultValue = bean.getDefault();
         this.fieldName = bean.getFieldName();
         this.finalValue = bean.getFinal();
         this.generated = bean.getGenerated();
@@ -85,7 +86,11 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
         this.toSerialize = false;
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
-        this.modelList = Arrays.asList(modelKeys.split(","));
+        if (hasModelKeys()) {
+            this.modelList = Arrays.asList(modelKeys.split(","));
+        } else {
+            this.modelList = new ArrayList<>();
+        }
         this.length = bean.getLength();
         this.max = bean.getMax();
         this.min = bean.getMin();
@@ -104,7 +109,6 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
         this.notNull = bean.getNotNull();
         parentModel = null;
     }
-
 
     protected void resolve(ModelConfig model, Map<String, ModelInterface> modelConfigMap) {
         if (resolved) {
@@ -130,7 +134,7 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
 
         if (model.getShapeType() == ShapeTypes.INTERFACE &&
                 !isDefault() &&
-                !hasProperty()) {
+                !isProperty()) {
                 return;
         }
 

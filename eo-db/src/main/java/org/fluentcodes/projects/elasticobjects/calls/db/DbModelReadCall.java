@@ -7,7 +7,6 @@ import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBeanInterface;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
-import org.fluentcodes.projects.elasticobjects.models.ModelConfigDbObject;
 
 import java.util.List;
 

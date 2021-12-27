@@ -42,28 +42,25 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterfa
                                     getConfigMaps()));
                     continue;
                 }
+                ModelConfig modelConfig = null;
                 if (shapeType == ShapeTypes.SCALAR) {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(ModelConfigScalar.class.getSimpleName()),
-                                    getConfigMaps()));
+                    modelConfig = (ModelConfig) bean.createConfig(bean.deriveConfigClass(ModelConfigScalar.class.getSimpleName()),
+                                    getConfigMaps());
                 } else if (shapeType == ShapeTypes.SCALAR) {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(ModelConfigScalar.class.getSimpleName()),
-                                    getConfigMaps()));
+                    modelConfig = (ModelConfig) bean.createConfig(bean.deriveConfigClass(ModelConfigScalar.class.getSimpleName()),
+                                    getConfigMaps());
                 } else if (shapeType == ShapeTypes.MAP) {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(ModelConfigMap.class.getSimpleName()),
-                                    getConfigMaps()));
+                    modelConfig = (ModelConfig) bean.createConfig(bean.deriveConfigClass(ModelConfigMap.class.getSimpleName()),
+                                    getConfigMaps());
                 } else if (shapeType == ShapeTypes.LIST) {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(ModelConfigList.class.getSimpleName()),
-                                    getConfigMaps()));
+                    modelConfig = (ModelConfig) bean.createConfig(bean.deriveConfigClass(ModelConfigList.class.getSimpleName()),
+                                    getConfigMaps());
                 } else {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(
+                    modelConfig = (ModelConfig) bean.createConfig(
                                     bean.deriveConfigClass(ModelConfigObject.class.getSimpleName()),
-                                    getConfigMaps()));
+                                    getConfigMaps());
                 }
+                configMap.put(key, modelConfig);
 
             } catch (EoException| EoInternalException e) {
                 throw e;

@@ -41,7 +41,7 @@ public class CsvSimpleWriteCall extends FileWriteCall implements ListParamsBeanI
     @Override
     public String write(IEOScalar eo) {
         CsvConfig config = (CsvConfig) init(PermissionType.READ, eo);
-        getListParams().merge(config.getListParams());
+        getListParams().merge(config.getListParamsConfig());
         List rows = (List) eo.get();
         if (rows == null || rows.isEmpty()) {
             throw new EoException("Strange - no list values - nothing to write! Will return without doing anything.");
@@ -81,7 +81,6 @@ public class CsvSimpleWriteCall extends FileWriteCall implements ListParamsBeanI
     /**
      * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
      */
-    @Override
     public CsvSimpleWriteCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
@@ -92,7 +91,6 @@ public class CsvSimpleWriteCall extends FileWriteCall implements ListParamsBeanI
         return this.listParams;
     }
 
-    @Override
     public boolean hasListParams() {
         return listParams != null;
     }

@@ -4,10 +4,9 @@
   "module": "eo-calls",
   "moduleScope": "test",
   "naturalId": "dummyftpurl",
-  "properties": {
-    "classPath": "src.main.resources",
-    "user": "dummy",
-    "password": "test1234",
-    "url": "ftp://dummyftp:21"
-  }
+  "password": "test1234",
+  "permissions": {
+  },
+  "url": "ftp://dummyftp:21",
+  "user": "dummy"
 }

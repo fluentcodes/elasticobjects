@@ -9,10 +9,8 @@
     "description": "A sample xlsx file with 2*2 values and a head as a source.",
     "expose": "NONE",
     "cached": "false",
-    "rolePermissions": {
       "read": "guest",
-      "write": "admin"
-    },
+      "write": "admin",
     "properties": {
       "rowHead": 0,
       "sheetName": "test"
@@ -28,10 +26,8 @@
     "description": "A sample target xlsx file with tmp placeholder.",
     "expose": "NONE",
     "cached": "false",
-    "rolePermissions": {
       "read": "guest",
-      "write": "admin"
-    },
+      "write": "admin",
     "properties": {
       "rowHead": 0
     }

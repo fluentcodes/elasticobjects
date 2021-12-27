@@ -1,5 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.domain;
 
+import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerBoolean;
+
 import java.util.Date;
 
 /*.{javaHeader}|*/
@@ -56,4 +58,6 @@ public interface BaseInterface {
    default Date getModificationDate() {
       return new Date();
    }
+
+
 }

@@ -1,9 +1,30 @@
 {
   "_rootmodel": "ModelBean",
   "configModelKey": "ModelConfigObject",
+  "fieldBeans": {
+    "(FieldBean)id": {
+      "configModelKey": "FieldConfig",
+      "fieldKey": "id",
+      "modelKeys": "Long",
+      "naturalId": "SuperExampleClass.id",
+      "properties": {
+        "fieldName": "id"
+      }
+    },
+    "(FieldBean)subClass": {
+      "configModelKey": "FieldConfig",
+      "fieldKey": "subClass",
+      "modelKeys": "FieldExampleClass",
+      "naturalId": "SuperExampleClass.subClass",
+      "properties": {
+        "fieldName": "subClass"
+      }
+    }
+  },
   "modelKey": "SuperExampleClass",
   "naturalId": "SuperExampleClass",
   "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
   "properties": {
+    "create": true
   }
 }

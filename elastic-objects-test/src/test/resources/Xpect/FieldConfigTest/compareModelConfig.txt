@@ -5,457 +5,632 @@
   "expose": "NONE",
   "fieldConfigMap": {
     "author": {
+      "default": false,
       "description": "The author of the class.",
+      "expose": "WEB",
       "fieldKey": "author",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 256,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "author",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "creationDate": {
+      "default": false,
       "description": "Used to define the creation of an item.",
+      "expose": "WEB",
       "fieldKey": "creationDate",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Date",
-      "modelList": [
-        "Date"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "creationDate",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "default": {
+      "default": false,
       "description": "Set when an default implementation is defined within an interface. ",
+      "expose": "NONE",
       "fieldKey": "default",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "default",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "description": {
+      "default": false,
       "description": "A description of the model used by every model extending BaseClassImpl. ",
+      "expose": "WEB",
       "fieldKey": "description",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 512,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "description",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "expose": {
+      "default": false,
       "description": "expose",
+      "expose": "WEB",
       "fieldKey": "expose",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Expose",
-      "modelList": [
-        "Expose"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "expose",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "fieldKey": {
+      "default": false,
       "description": "fieldKey",
+      "expose": "NONE",
       "fieldKey": "fieldKey",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "fieldKey",
-      "properties": {
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "fieldName": {
+      "default": false,
       "description": "A name for different purposes depending on the model.",
+      "expose": "NONE",
       "fieldKey": "fieldName",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "fieldName",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "final": {
+      "default": false,
       "description": "If true only a setter for the private variable is generated. When setting a value in an EO context an exception is thrown. ",
+      "expose": "NONE",
       "fieldKey": "final",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "final",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "generated": {
+      "default": false,
       "description": "Indicates a generated value?! A generated flag for @FieldBean",
+      "expose": "NONE",
       "fieldKey": "generated",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "generated",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "id": {
+      "default": false,
       "description": "The numeric id of an instance of a class.",
+      "expose": "WEB",
       "fieldKey": "id",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Long",
-      "modelList": [
-        "Long"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "id",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": true,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": true
     },
     "javascriptType": {
+      "default": false,
       "description": "The type of javascript is derived from the java type.",
+      "expose": "NONE",
       "fieldKey": "javascriptType",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 10,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "javascriptType",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": true,
+      "unique": false
     },
     "jsonIgnore": {
+      "default": false,
       "description": "jsonIgnore",
+      "expose": "NONE",
       "fieldKey": "jsonIgnore",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "jsonIgnore",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "length": {
+      "default": false,
       "description": "Length of a field.",
+      "expose": "WEB",
       "fieldKey": "length",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "length",
-      "properties": {
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "max": {
+      "default": false,
       "description": "A maximal length for field string types",
+      "expose": "NONE",
       "fieldKey": "max",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "max",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "min": {
+      "default": false,
       "description": "A minimal length for field string types",
+      "expose": "NONE",
       "fieldKey": "min",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "min",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "modelKeys": {
+      "default": false,
       "description": "A string representation for a list of modelsConfig.",
+      "expose": "NONE",
       "fieldKey": "modelKeys",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 256,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "modelKeys",
-      "properties": {
-        "generated": false,
-        "final": true,
-        "override": true
-      }
-    },
-    "modelList": {
-      "description": "A list of naturalIds of models for FieldConfig.",
-      "fieldKey": "modelList",
-      "modelKeys": "ArrayList,String",
-      "modelList": [
-        "ArrayList",
-        "String"
-      ],
-      "naturalId": "modelList",
-      "properties": {
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "module": {
+      "default": false,
       "description": "Defines a target module where generating occurs. ",
+      "expose": "WEB",
       "fieldKey": "module",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "module",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "moduleScope": {
+      "default": false,
       "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
+      "expose": "WEB",
       "fieldKey": "moduleScope",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 10,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "moduleScope",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "naturalId": {
+      "default": false,
       "description": "The natural key in @Base",
+      "expose": "NONE",
       "fieldKey": "naturalId",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "naturalId",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": true,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": true
     },
     "notNull": {
+      "default": false,
       "description": "notNull",
+      "expose": "NONE",
       "fieldKey": "notNull",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "notNull",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "override": {
+      "default": false,
       "description": "Indicates that a super or interface defines the method already but is overwritten. When java is generated an override annotation is set. ",
+      "expose": "NONE",
       "fieldKey": "override",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "override",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
-    },
-    "properties": {
-      "description": "Properties for configurations.",
-      "fieldKey": "properties",
-      "modelKeys": "Map",
-      "modelList": [
-        "Map"
-      ],
-      "naturalId": "properties",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "property": {
+      "default": false,
       "description": "Indicates that a field is a config property map value which can be implemented as a default interface method. ",
+      "expose": "NONE",
       "fieldKey": "property",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "property",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "scope": {
+      "default": false,
       "description": "A scope for the cache value.",
+      "expose": "WEB",
       "fieldKey": "scope",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "List,Scope",
-      "modelList": [
-        "List",
-        "Scope"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "scope",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "override": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "staticName": {
+      "default": false,
       "description": "staticName",
+      "expose": "NONE",
       "fieldKey": "staticName",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "staticName",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "super": {
+      "default": false,
       "description": "Marker to show, that the field is implemented in a super class. ",
+      "expose": "NONE",
       "fieldKey": "super",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "super",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "transient": {
+      "default": true,
       "description": "Will ignore field when a persistiong occure. Create a transient annotation when java is generated. ",
+      "expose": "NONE",
       "fieldKey": "transient",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "transient",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "unique": {
+      "default": false,
       "description": "unique",
+      "expose": "NONE",
       "fieldKey": "unique",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "unique",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     }
   },
-  "interfaces": "FieldConfigInterface",
+  "interfaces": "FieldInterface",
   "modelKey": "FieldConfig",
   "module": "elastic-objects",
   "moduleScope": "main",
   "naturalId": "FieldConfig",
   "packagePath": "org.fluentcodes.projects.elasticobjects.models",
-  "properties": {
-    "final": true,
-    "create": false,
-    "override": true
-  },
   "superKey": "ConfigConfig"
 }

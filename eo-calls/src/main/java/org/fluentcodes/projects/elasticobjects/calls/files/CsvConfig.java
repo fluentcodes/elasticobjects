@@ -1,20 +1,22 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsConfig;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsConfigInterface;
 import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerString;
 
-import java.util.List;
-
 /**
  * Created by Werner on 09.10.2016.
  */
-public class CsvConfig extends FileConfig implements CsvConfigInterface, ListParamsConfigInterface {
+public class CsvConfig extends FileConfig {
+    protected static final String F_FIELD_DELIMITER = "fieldDelimiter";
+    protected static final String F_ROW_DELIMITER = "rowDelimiter";
+    protected static final String F_DEFAULT_FIELD_DELIMITER = ";";
+    protected static final String F_DEFAULT_ROW_DELIMITER = "\n";
+
     private final String fieldDelimiter;
     private final String rowDelimiter;
-    private final ListParamsConfig listParams;
+    private final ListParamsConfig listParamsConfig;
 
     public CsvConfig(ConfigBean configBean, final ConfigMaps configMaps) {
         this((FileBean) configBean, configMaps);
@@ -33,21 +35,27 @@ public class CsvConfig extends FileConfig implements CsvConfigInterface, ListPar
                 F_DEFAULT_ROW_DELIMITER :
                 myRowDelimiter;
 
-        this.listParams = new ListParamsConfig(bean.getProperties());
+        this.listParamsConfig = new ListParamsConfig(bean.getProperties());
     }
 
-    @Override
     public String getRowDelimiter() {
         return rowDelimiter;
     }
 
-    @Override
     public String getFieldDelimiter() {
         return fieldDelimiter;
     }
 
-    @Override
-    public ListParamsConfig getListParams() {
-        return listParams;
+    public ListParamsConfig getListParamsConfig() {
+        return listParamsConfig;
     }
+
+    public boolean hasFieldDelimiter() {
+        return getFieldDelimiter() != null && !getFieldDelimiter().isEmpty();
+    }
+
+    public boolean hasRowDelimiter() {
+        return getRowDelimiter() != null && !getRowDelimiter().isEmpty();
+    }
+
 }

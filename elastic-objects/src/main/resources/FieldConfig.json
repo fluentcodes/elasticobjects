@@ -38,6 +38,7 @@
     "fieldKey": "configModelKey",
     "length": 80
   },
+
   "creationDate": {
     "module": "elastic-objects",
     "moduleScope": "main",
@@ -98,9 +99,17 @@
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Map,FieldConfig",
-    "description": "A fieldBean map with @FieldConfig",
+    "description": "A fieldConfig map with @FieldConfig",
     "expose": "NONE",
     "fieldKey": "fieldConfigMap"
+  },
+  "fieldBeans": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "Map,FieldBean",
+    "description": "A fieldBean map with @FieldConfig",
+    "expose": "NONE",
+    "fieldKey": "fieldBeans"
   },
   "fieldKey": {
     "module": "elastic-objects",
@@ -118,8 +127,8 @@
     "description": "A name for different purposes depending on the model.",
     "expose": "NONE",
     "fieldKey": "fieldName",
-    "length": 80,
     "properties": {
+      "length": 80,
       "property": true
     }
   },
@@ -172,8 +181,9 @@
     "description": "The type of javascript is derived from the java type.",
     "expose": "NONE",
     "fieldKey": "javascriptType",
-    "length": 10,
+
     "properties": {
+      "length": 10,
       "transient": true,
       "final": true
     }
@@ -203,7 +213,10 @@
     "modelKeys": "Integer",
     "description": "Length of a field.",
     "expose": "WEB",
-    "fieldKey": "length"
+    "fieldKey": "length",
+    "properties": {
+      "property": true
+    }
   },
   "logLevel": {
     "module": "elastic-objects",
@@ -253,14 +266,6 @@
     "fieldKey": "modelKeys",
     "length": 256
   },
-  "modelList": {
-    "module": "elastic-objects",
-    "moduleScope": "main",
-    "modelKeys": "ArrayList,String",
-    "description": "A list of naturalIds of models for FieldConfig.",
-    "expose": "NONE",
-    "fieldKey": "modelList"
-  },
   "models": {
     "module": "elastic-objects",
     "moduleScope": "main",
@@ -304,8 +309,8 @@
     "description": "The natural key in @Base",
     "expose": "NONE",
     "fieldKey": "naturalId",
-    "length": 80,
     "properties": {
+      "length": 80,
       "unique": true,
       "notNull": true
     }
@@ -412,10 +417,7 @@
     "modelKeys": "ShapeTypes",
     "description": "shapeType",
     "expose": "NONE",
-    "fieldKey": "shapeType",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "shapeType"
   },
   "sourcePath": {
     "module": "elastic-objects",

@@ -2,6 +2,7 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.utils.UnmodifiableMap;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.io.IOClasspathEOFlatMap;
@@ -63,7 +64,11 @@ public abstract class ConfigFactory<T extends ConfigBean, U extends ConfigInterf
                 U config = (U) entry.getValue().createConfig(configMaps);
                 configMap.put(entry.getKey(), config);
             }
-        } catch (Exception e) {
+        }
+        catch (EoInternalException| EoException e) {
+            throw e;
+        }
+        catch (Exception e) {
             throw new EoInternalException(e);
         }
         return configMap;

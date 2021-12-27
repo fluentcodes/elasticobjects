@@ -4,125 +4,147 @@
   "expose": "NONE",
   "fieldConfigMap": {
     "colKeys": {
+      "default": false,
       "description": "The key list for mapping values in a value list. ",
+      "expose": "NONE",
       "fieldKey": "colKeys",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "List,String",
-      "modelList": [
-        "List",
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "colKeys",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "override": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "filter": {
+      "default": false,
       "description": "Filter for List entries.",
+      "expose": "WEB",
       "fieldKey": "filter",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 512,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "filter",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "override": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "length": {
+      "default": false,
       "description": "Length of a field.",
+      "expose": "WEB",
       "fieldKey": "length",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "length",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "override": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": true,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "rowEnd": {
+      "default": false,
       "description": "rowEnd",
+      "expose": "WEB",
       "fieldKey": "rowEnd",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "rowEnd",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "property": false,
-        "override": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": true,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "rowHead": {
+      "default": false,
       "description": "rowHead",
+      "expose": "WEB",
       "fieldKey": "rowHead",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "rowHead",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "property": false,
-        "override": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": true,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "rowStart": {
+      "default": false,
       "description": "rowStart",
+      "expose": "WEB",
       "fieldKey": "rowStart",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "rowStart",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "property": false,
-        "override": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": true,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     }
   },
-  "modelKey": "ListParams",
+  "modelKey": "ListParamsBean",
   "module": "eo-calls",
   "moduleScope": "main",
-  "naturalId": "ListParams",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
-  "properties": {
-    "create": true
-  }
+  "naturalId": "ListParamsBean",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists"
 }

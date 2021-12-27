@@ -1,6 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
-import org.fluentcodes.projects.elasticobjects.calls.PermissionInterface;
 import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
 /*.{javaAccessors}|*/
 
@@ -11,7 +10,7 @@ import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
  * @creationDate Wed Sep 09 00:00:00 CEST 2020
  * @modificationDate Thu Jan 14 14:24:01 CET 2021
  */
-public interface FileInterface extends PermissionInterface, ConfigInterface {
+public interface FileInterface extends ConfigInterface {
     /*.{}.*/
 
     /*.{javaStaticNames}|*/

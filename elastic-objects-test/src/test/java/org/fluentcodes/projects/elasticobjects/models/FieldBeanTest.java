@@ -1,12 +1,12 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.assertj.core.api.Assertions;
+import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.xpect.XpectEoJunit4;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +16,7 @@ import java.util.Map;
 
 import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_AUTHOR;
 import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_CREATION_DATE;
+import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_DESCRIPTION;
 import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_ID;
 import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_NATURAL_ID;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_CONFIG_MODEL_KEY;
@@ -23,15 +24,14 @@ import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_E
 import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_MODULE;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_MODULE_SCOPE;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_SCOPE;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_FIELD_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_FIELD_NAME;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_GENERATED;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_LENGTH;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_MODEL_KEYS;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_NOT_NULL;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_OVERRIDE;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_PROPERTY;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.F_UNIQUE;
+import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_NAME;
+import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FINAL;
+import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_GENERATED;
+import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_MODEL_KEYS;
+import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_NOT_NULL;
+import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_OVERRIDE;
+import static org.fluentcodes.projects.elasticobjects.models.ModelInterface.F_ABSTRACT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -173,11 +173,15 @@ public class FieldBeanTest {
         Map<String, Object> modelConfigMap =  (Map<String, Object>)beanMap.get(FieldBean.class.getSimpleName());
         ModelBean bean = new ModelBean(modelConfigMap);
         assertNotNull(bean);
+        assertEquals(FieldBean.class.getSimpleName(), bean.getModelKey());
+        assertEquals(FieldBean.class.getSimpleName(), bean.getNaturalId());
+        assertEquals(F_FIELD_KEY, bean.getFieldBean(F_FIELD_KEY).getFieldKey());
+        assertEquals(F_FIELD_KEY, bean.getFieldBean(F_FIELD_KEY).getNaturalId());
     }
 
     @Test
     public void testExample(){
-        assertField(F_FIELD_NAME, "\"NAME\"", "NAME");
+        assertField(F_FINAL, null, null);
     }
 
     @Test
@@ -247,6 +251,60 @@ public class FieldBeanTest {
     public void testNaturalId(){
         FieldBean fieldBean = createFieldBean(F_NATURAL_ID, "\"natural\"");
         assertEquals("natural", fieldBean.getNaturalId());
+    }
+
+    @Test
+    public void createAbstract() {
+        final String serialized = "{\n" +
+                "  \"abstract\": {\n" +
+                "    \"module\": \"elastic-objects\",\n" +
+                "    \"moduleScope\": \"main\",\n" +
+                "    \"modelKeys\": \"Boolean\",\n" +
+                "    \"description\": \"If true the generated model will be initially set as abstract class.\",\n" +
+                "    \"expose\": \"NONE\",\n" +
+                "    \"fieldKey\": \"abstract\",\n" +
+                "    \"properties\": {\n" +
+                "      \"property\": true,\n" +
+                "      \"default\": true\n" +
+                "    }\n" +
+                "  }" +
+                "}";
+        EoRoot root = ProviderConfigMapsDev.createEo(serialized);
+        Map<String, Object> beanMap = (Map<String, Object>)root.get();
+        Map<String, Object> fieldConfigMap =  (Map<String, Object>)beanMap.get(F_ABSTRACT);
+        FieldBean bean = new FieldBean(fieldConfigMap);
+        assertNotNull(bean);
+        assertEquals(F_ABSTRACT, bean.getFieldKey());
+        assertEquals(F_ABSTRACT, bean.getNaturalId());
+        bean.merge(bean);
+        FieldConfig fieldConfig = (FieldConfig)bean.createConfig(ProviderConfigMapsDev.CONFIG_MAPS_DEV);
+        assertEquals(F_ABSTRACT, fieldConfig.getFieldKey());
+        assertEquals(F_ABSTRACT, fieldConfig.getNaturalId());
+    }
+
+    @Test
+    public void createDescription() {
+        final String serialized = "{  \"description\": {\n" +
+                "    \"module\": \"elastic-objects\",\n" +
+                "    \"moduleScope\": \"main\",\n" +
+                "    \"modelKeys\": \"String\",\n" +
+                "    \"description\": \"A description of the model used by every model extending BaseClassImpl. \",\n" +
+                "    \"expose\": \"WEB\",\n" +
+                "    \"fieldKey\": \"description\",\n" +
+                "    \"length\": 512\n" +
+                "  }}";
+        EoRoot root = ProviderConfigMapsDev.createEo(serialized);
+        Map<String, Object> beanMap = (Map<String, Object>)root.get();
+        Map<String, Object> fieldConfigMap =  (Map<String, Object>)beanMap.get(F_DESCRIPTION);
+        FieldBean bean = new FieldBean(fieldConfigMap);
+        assertNotNull(bean);
+        assertEquals(F_DESCRIPTION, bean.getFieldKey());
+        assertEquals(F_DESCRIPTION, bean.getNaturalId());
+        bean.merge(bean);
+        FieldConfig fieldConfig = (FieldConfig)bean.createConfig(ProviderConfigMapsDev.CONFIG_MAPS_DEV);
+        assertEquals(F_DESCRIPTION, fieldConfig.getFieldKey());
+        assertEquals(F_DESCRIPTION, fieldConfig.getNaturalId());
+        XpectEoJunit4.assertStatic(bean);
     }
 
 

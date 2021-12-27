@@ -1,235 +1,168 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-/*.{javaHeader}|*/
+import java.util.Map;
 
-/**
- * Access methods for field properties map and get method definitions for final fields.
- *
- * @author Werner Diwischek
- * @creationDate Sat Sep 19 00:00:00 CEST 2020
- * @modificationDate Thu Jan 14 06:06:25 CET 2021
- */
-public interface FieldBeanInterface extends ConfigInterface {
-    /*.{}.*/
+public interface FieldBeanInterface extends FieldInterface {
+    Map<String, Object> getProperties();
 
-    /*.{javaStaticNames}|*/
-    String F_DEFAULT = "default";
-    String F_FIELD_KEY = "fieldKey";
-    String F_FIELD_NAME = "fieldName";
-    String F_FINAL = "final";
-    String F_GENERATED = "generated";
-    String F_JAVASCRIPT_TYPE = "javascriptType";
-    String F_JSON_IGNORE = "jsonIgnore";
-    String F_LENGTH = "length";
-    String F_MAX = "max";
-    String F_MIN = "min";
-    String F_MODEL_KEYS = "modelKeys";
-    String F_NOT_NULL = "notNull";
-    String F_OVERRIDE = "override";
-    String F_PROPERTY = "property";
-    String F_STATIC_NAME = "staticName";
-    String F_SUPER = "super";
-    String F_TRANSIENT = "transient";
-    String F_UNIQUE = "unique";
-    /*.{}.*/
-
-    /*.{javaAccessors}|*/
-    Boolean getDefault();
-
-    default boolean hasDefault() {
-        return getDefault() != null;
+    @Override
+    default Boolean getDefault() {
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_DEFAULT));
     }
 
-    default boolean isDefault() {
-        return hasDefault() && getDefault();
+    default FieldBeanInterface setDefault(Boolean value) {
+        getProperties().put(F_DEFAULT, value);
+        return this;
     }
 
-    String getFieldKey();
-
-    default String getKey() {
-        if (hasNaturalId()) return getNaturalId();
-        if (hasFieldKey()) return getFieldKey();
-        return "";
+    @Override
+    default String getFieldName() {
+        return new ShapeTypeSerializerString().asObject(getProperties().get(F_FIELD_NAME));
     }
 
-    default boolean hasKey() {
-        return !getKey().isEmpty();
+    default FieldBeanInterface setFieldName(String value) {
+        getProperties().put(F_FIELD_NAME, value);
+        return this;
     }
 
-    default boolean hasFieldKey() {
-        return getFieldKey() != null && !getFieldKey().isEmpty();
+    @Override
+    default Boolean getFinal() {
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_FINAL));
     }
 
-    String getFieldName();
-
-    default boolean hasFieldName() {
-        return getFieldName() != null && !getFieldName().isEmpty();
+    default FieldBeanInterface setFinal(Boolean value) {
+        getProperties().put(F_FINAL, value);
+        return this;
     }
 
-    Boolean getFinal();
-
-    default boolean hasFinal() {
-        return getFinal() != null;
+    @Override
+    default Boolean getGenerated() {
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_GENERATED));
     }
 
-    default boolean isFinal() {
-        return hasFinal() && getFinal();
+    default FieldBeanInterface setGenerated(Boolean value) {
+        getProperties().put(F_GENERATED, value);
+        return this;
     }
 
-    Boolean getGenerated();
-
-    default boolean hasGenerated() {
-        return getGenerated() != null;
+    @Override
+    default String getJavascriptType() {
+        return new ShapeTypeSerializerString().asObject(getProperties().get(F_JAVASCRIPT_TYPE));
     }
 
-    default boolean isGenerated() {
-        return hasGenerated() && getGenerated();
+    default FieldBeanInterface setJavascriptType(String value) {
+        getProperties().put(F_JAVASCRIPT_TYPE, value);
+        return this;
     }
 
-    String getJavascriptType();
-
-    default boolean hasJavascriptType() {
-        return getJavascriptType() != null;
+    @Override
+    default Boolean getJsonIgnore() {
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_JSON_IGNORE));
     }
 
-    Boolean getJsonIgnore();
-
-    default boolean hasJsonIgnore() {
-        return getJsonIgnore() != null;
+    default FieldBeanInterface setJsonIgnore(Boolean value) {
+        getProperties().put(F_JSON_IGNORE, value);
+        return this;
     }
 
-    default boolean isJsonIgnore() {
-        return hasJsonIgnore() && getJsonIgnore();
+    @Override
+    default Integer getLength() {
+        return (Integer) getProperties().get(F_LENGTH);
     }
 
-    Integer getLength();
-
-    default boolean hasLength() {
-        return getLength() != null;
+    default FieldBeanInterface setLength(final Integer length) {
+        getProperties().put(F_LENGTH, length);
+        return this;
     }
 
-    Integer getMax();
-
-    default boolean hasMax() {
-        return getMax() != null;
+    @Override
+    default Integer getMax(){
+        return (Integer) getProperties().get(F_MAX);
     }
 
-    Integer getMin();
-
-    default boolean hasMin() {
-        return getMin() != null;
+    default FieldBeanInterface setMax(Integer value) {
+        getProperties().put(F_MAX, value);
+        return this;
     }
 
-    String getModelKeys();
-
-    default boolean hasModelKeys() {
-        return getModelKeys() != null && !getModelKeys().isEmpty();
+    @Override
+    default Integer getMin(){
+        return (Integer) getProperties().get(F_MIN);
     }
 
-    Boolean getNotNull();
-
-    default boolean hasNotNull() {
-        return getNotNull() != null;
+    default FieldBeanInterface setMin(Integer value) {
+        getProperties().put(F_MIN, value);
+        return this;
     }
 
-    default boolean isNotNull() {
-        return hasNotNull() && getNotNull();
+    @Override
+    default Boolean getNotNull() {
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_NOT_NULL));
     }
 
-    Boolean getOverride();
-
-    default boolean hasOverride() {
-        return getOverride() != null;
+    default FieldBeanInterface setNotNull(Boolean value) {
+        getProperties().put(F_NOT_NULL, value);
+        return this;
     }
 
-    default boolean isOverride() {
-        return hasOverride() && getOverride();
+    @Override
+    default Boolean getOverride(){
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_OVERRIDE));
     }
 
-    Boolean getProperty();
-
-    default boolean hasProperty() {
-        return getProperty() != null;
+    default FieldBeanInterface setOverride(Boolean value) {
+        getProperties().put(F_OVERRIDE, value);
+        return this;
     }
 
-    default boolean isProperty() {
-        return hasProperty() && getProperty();
+    @Override
+    default Boolean getProperty(){
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_PROPERTY));
     }
 
-    Boolean getStaticName();
-
-    default boolean hasStaticName() {
-        return getStaticName() != null;
+    default FieldBeanInterface setProperty(Boolean value) {
+        getProperties().put(F_PROPERTY, value);
+        return this;
     }
 
-    default boolean isStaticName() {
-        return hasStaticName() && getStaticName();
+    @Override
+    default Boolean getStaticName() {
+        return new ShapeTypeSerializerBoolean().asObject( getProperties().get(F_STATIC_NAME));
     }
 
-    Boolean getSuper();
-
-    default boolean hasSuper() {
-        return getSuper() != null;
+    default FieldBeanInterface setStaticName(Boolean value) {
+        getProperties().put(F_STATIC_NAME, value);
+        return this;
     }
 
-    default boolean isSuper() {
-        return hasSuper() && getSuper();
+    @Override
+    default Boolean getSuper() {
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_SUPER));
     }
 
-    Boolean getTransient();
-
-    default boolean hasTransient() {
-        return getTransient() != null;
+    default FieldBeanInterface setSuper(Boolean value) {
+        getProperties().put(F_SUPER, value);
+        return this;
     }
 
-    default boolean isTransient() {
-        return hasTransient() && getTransient();
+    @Override
+    default Boolean getTransient() {
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_TRANSIENT));
     }
 
-    Boolean getUnique();
-
-    default boolean hasUnique() {
-        return getUnique() != null;
+    default FieldBeanInterface setTransient(Boolean value) {
+        getProperties().put(F_TRANSIENT, value);
+        return this;
     }
 
-    default boolean isUnique() {
-        return hasUnique() && getUnique();
+    @Override
+    default Boolean getUnique() {
+        return new ShapeTypeSerializerBoolean().asObject(getProperties().get(F_UNIQUE));
     }
 
-    /*.{}.*/
-    default Object getDefaultValue() {
-        return null;
+    default FieldBeanInterface setUnique(Boolean value) {
+        getProperties().put(F_UNIQUE, value);
+        return this;
     }
 
-    default boolean hasDefaultValue() {
-        return getDefaultValue() != null;
-    }
-
-    default boolean hasSize() {
-        return hasMax() || hasMin();
-    }
-
-
-    ModelInterface getParentModel();
-
-    default boolean hasParentModel() {
-        return getParentModel() != null;
-    }
-
-    default boolean hasParentModelKey() {
-        return hasParentModel() && getParentModel().hasModelKey();
-    }
-
-    default String getModelKey() {
-        if (!hasParentModelKey()) return "";
-        if (this.hasParentModelKey()) return getParentModel().getModelKey();
-        if (hasParentModelNaturalId()) return getParentModel().getNaturalId();
-        return "";
-    }
-
-    default boolean hasParentModelNaturalId() {
-        return hasParentModel() && getParentModel().hasNaturalId();
-    }
 }
-
-

@@ -22,12 +22,6 @@ public class DbSqlBean extends PermissionBean implements DbSqlInterface {
         super(naturalId, map);
     }
 
-    public void merge(final Map configMap) {
-        super.merge(configMap);
-        mergeSqlList(configMap.get(SQL_LIST));
-    }
-
-
     private void defaultConfigModelKey() {
         if (hasConfigModelKey()) {
             return;

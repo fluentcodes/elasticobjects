@@ -7,7 +7,7 @@ public class ShapeTypeSerializerFloat extends ShapeTypeSerializerNumber<Float> {
     @Override
     public Float asObject(String object) {
         if (object == null) {
-            throw new EoInternalException("Null object " + object.getClass());
+            return null;
         }
         try {
             return Float.parseFloat(object);

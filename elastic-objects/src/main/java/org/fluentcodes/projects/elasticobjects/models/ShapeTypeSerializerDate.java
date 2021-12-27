@@ -38,7 +38,7 @@ public class ShapeTypeSerializerDate implements ShapeTypeSerializerInterface<Dat
     @Override
     public Date asObject(Object object) {
         if (object == null) {
-            throw new EoException("Null input ");
+            return null;
         }
         if (object instanceof Date) {
             return (Date) object;

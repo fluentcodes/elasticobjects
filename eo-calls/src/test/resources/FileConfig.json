@@ -88,10 +88,8 @@
     "description": "Local 'source.txt' definition.",
     "expose": "NONE",
     "cached": "false",
-    "rolePermissions": {
-      "read": "guest",
-      "write": "admin"
-    }
+    "read": ["guest"],
+    "write": ["admin"]
   },
   "FileTestCached.txt": {
     "module": "eo-calls",
@@ -112,10 +110,8 @@
     "description": "A sample json file with 2*2 values and a head as a source.",
     "expose": "NONE",
     "cached": "false",
-    "rolePermissions": {
-      "read": "guest",
-      "write": "admin"
-    }
+    "read": ["guest"],
+    "write": ["admin"]
   },
   "target.csv": {
     "configModelKey": "CsvConfig",
@@ -127,10 +123,8 @@
     "description": "A sample target csv file with tmp placeholder.",
     "expose": "NONE",
     "cached": "false",
-    "rolePermissions": {
-      "read": "guest",
-      "write": "admin"
-    },
+    "read": ["guest"],
+    "write": ["admin"],
     "properties": {
       "rowHead": 0
     }
@@ -165,9 +159,7 @@
     "description": "Test directory for DirectoryListReadCall",
     "expose": "NONE",
     "cached": "false",
-    "rolePermissions": {
-      "execute": "guest"
-    }
+    "execute": ["guest"]
   },
   "AnObject.csv": {
     "configModelKey": "CsvConfig",
@@ -179,9 +171,7 @@
     "description": "A sample character separated file with 3x3 entries and a header which could be mapped to AnObject.",
     "expose": "WEB",
     "cached": "false",
-    "rolePermissions": {
-      "read": "guest"
-    },
+    "read": ["guest"],
     "properties": {
       "rowHead": 0,
       "rowStart": 1,
@@ -197,9 +187,7 @@
     "description": "Simple data for the AnObject.",
     "expose": "WEB",
     "cached": "false",
-    "rolePermissions": {
-      "read": "guest"
-    }
+      "read": ["guest"]
   },
   "ListSimple.csv": {
     "configModelKey": "CsvConfig",
@@ -211,10 +199,8 @@
     "description": "A sample csv file with 2*2 values and a head as a source.",
     "expose": "NONE",
     "cached": "false",
-    "rolePermissions": {
-      "read": "guest",
-      "write": "admin"
-    },
+    "read": ["guest"],
+    "write": ["admin"],
     "properties": {
       "rowHead": 0,
       "rowStart": 1,

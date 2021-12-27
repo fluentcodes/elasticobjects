@@ -5,105 +5,124 @@
   "expose": "WEB",
   "fieldConfigMap": {
     "id": {
+      "default": false,
       "description": "The numeric id of an instance of a class.",
+      "expose": "WEB",
       "fieldKey": "id",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Long",
-      "modelList": [
-        "Long"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "id",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "override": false
-      }
+      "notNull": true,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": true
     },
     "myASubObject": {
+      "default": false,
       "description": "myASubObject",
+      "expose": "WEB",
       "fieldKey": "myASubObject",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "ASubObject",
-      "modelList": [
-        "ASubObject"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myASubObject",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "override": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "myString": {
+      "default": false,
       "description": "Just a small test string used in test models. ",
+      "expose": "WEB",
       "fieldKey": "myString",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 20,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myString",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "override": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "name": {
+      "default": false,
       "description": "The name field of a class. ",
+      "expose": "WEB",
       "fieldKey": "name",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "name",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "override": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "naturalId": {
+      "default": false,
       "description": "The natural key in @Base",
+      "expose": "NONE",
       "fieldKey": "naturalId",
+      "final": false,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "naturalId",
-      "properties": {
-        "super": false,
-        "notNull": false,
-        "generated": false,
-        "transient": false,
-        "unique": false,
-        "final": false,
-        "override": false
-      }
+      "notNull": true,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": true
     }
   },
   "modelKey": "ASubObject",
   "module": "elastic-objects-test",
   "moduleScope": "main",
   "naturalId": "ASubObject",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
-  "properties": {
-    "create": true
-  }
+  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test"
 }

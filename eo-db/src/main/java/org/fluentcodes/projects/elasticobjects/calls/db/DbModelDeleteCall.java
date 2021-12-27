@@ -6,7 +6,6 @@ import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigWriteCommand
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.DeleteStatement;
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.models.ModelConfigDbObject;
 
 import java.util.List;
 

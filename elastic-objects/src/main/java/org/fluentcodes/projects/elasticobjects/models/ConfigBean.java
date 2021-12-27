@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /*.{javaHeader}|*/
 
@@ -41,56 +42,61 @@ public class ConfigBean extends BaseBean implements ConfigInterface {
 
     public ConfigBean() {
         super();
-        properties = new HashMap<>();
+        properties = new TreeMap<>();
     }
 
     public ConfigBean(final String key) {
         super(key);
-        properties = new HashMap<>();
+        properties = new TreeMap<>();
     }
 
-    public ConfigBean(final Map<String, Object> values) {
-        super();
-        if (values == null) {
-            throw new EoInternalException("Null value for initial map. Could not create configuration bean");
+    public ConfigBean(final Map<String, Object> configMap) {
+        super(configMap);
+        this.properties = new TreeMap<>();
+        setConfigModelKey(
+                toString(configMap.get(CONFIG_MODEL_KEY)));
+        setModule(
+                toString(configMap.get(F_MODULE)));
+        setModuleScope(
+                toString(configMap.get(F_MODULE_SCOPE)));
+        setExpose(
+                new ShapeTypeSerializerEnum<Expose>().asObject(Expose.class, configMap.get(F_EXPOSE)));
+        setScope(
+                toScopes(configMap.get(F_SCOPE)));
+    }
+
+    private static List<Scope> toScopes(final Object scopes) {
+        List<Scope> scopeList = new ArrayList<>();
+        if (scopes == null) {
+            return scopeList;
         }
-        properties = new HashMap<>();
-        merge(values);
-    }
-
-    public ConfigBean(final String naturalId, final Map<String, Object> values) {
-        super();
-        properties = new HashMap<>();
-        merge(values);
-        if (!hasNaturalId()) setNaturalId(naturalId);
+        if (scopes instanceof List) {
+            return (List<Scope>) scopes;
+        }
+        String[] scopeArray = ((String)scopes).split(",");
+        for (String scope: scopeArray) {
+            scopeList.add(new ShapeTypeSerializerEnum<Scope>().asObject(Scope.class, scope));
+        }
+        return scopeList;
     }
 
     public ConfigBean(final ConfigConfig config) {
         super(config);
+        setConfigModelKey(config.getClass().getSimpleName());
+        setExpose(config.getExpose());
         setModule(config.getModule());
         setModuleScope(config.getModuleScope());
         setExpose(config.getExpose());
         properties = new HashMap<>();
     }
 
-    @Override
-    public void merge(final Map configMap) {
-        super.merge(configMap);
-        if (configMap == null || configMap.isEmpty()) {
-            return;
-        }
-        mergeConfigModelKey(configMap.get(CONFIG_MODEL_KEY));
-        mergeModule(configMap.get(F_MODULE));
-        mergeModuleScope(configMap.get(F_MODULE_SCOPE));
-        mergeExpose(configMap.get(F_EXPOSE));
-        mergeScope(configMap.get(F_SCOPE));
-        this.properties = new HashMap<>();
-        if (configMap.containsKey(F_PROPERTIES)) {
-            Object props = configMap.get(F_PROPERTIES);
-            if (props instanceof Map) {
-                this.properties.putAll((Map) props);
-            }
-        }
+    public void merge(ConfigBean bean) {
+        super.merge(bean);
+        mergeConfigModelKey(bean.getConfigModelKey());
+        mergeExpose(bean.getExpose());
+        mergeModule(bean.getModule());
+        mergeModuleScope(bean.getModuleScope());
+        mergeScope(bean.getScope());
     }
 
     public Map<String, Object> getProperties() {
@@ -192,7 +198,11 @@ public class ConfigBean extends BaseBean implements ConfigInterface {
             Constructor configurationConstructor = configClass.getConstructor(ConfigBean.class, ConfigMaps.class);
             try {
                 return (ConfigInterface) configurationConstructor.newInstance(this, configMaps);
-            } catch (Exception e) {
+            }
+            catch (EoException|EoInternalException e) {
+                throw e;
+            }
+            catch (Exception e) {
                 throw new EoInternalException("Problem with create new instance for config constructor with bean class for '" + getNaturalId() + "'/'" + configClass.getSimpleName() + "' in ModelConfig", e);
             }
         } catch (NoSuchMethodException e) {

@@ -13,9 +13,7 @@
       "protocol": "jdbc",
       "hostName": "h2"
     },
-    "rolePermissions": {
       "read": "guest"
-    }
   },
   "h2:mem:basic": {
     "configModelKey": "DbConfig",
@@ -31,8 +29,6 @@
       "protocol": "jdbc",
       "hostName": "h2"
     },
-    "rolePermissions": {
       "read": "guest"
-    }
   }
 }

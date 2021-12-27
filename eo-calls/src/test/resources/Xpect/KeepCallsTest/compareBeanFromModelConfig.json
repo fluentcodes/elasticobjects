@@ -10,5 +10,11 @@
   "naturalId": "KeepCalls",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls.templates",
   "properties": {
+    "dbAnnotated": false,
+    "final": false,
+    "property": false,
+    "create": false,
+    "abstract": false,
+    "override": false
   }
 }

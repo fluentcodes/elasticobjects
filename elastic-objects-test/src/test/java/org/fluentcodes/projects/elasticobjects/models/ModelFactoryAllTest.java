@@ -33,7 +33,7 @@ public class ModelFactoryAllTest {
     public void TEST_modelConfigMapResolved__find_ModelBean__notNull() {
         ModelInterface config = CONFIG_MAP
                 .get(ModelBean.class.getSimpleName());
-        FieldBeanInterface packagePathBean = config.getField(PACKAGE_PATH);
+        FieldInterface packagePathBean = config.getField(PACKAGE_PATH);
         Assertions.assertThat(packagePathBean).isNotNull();
     }
 

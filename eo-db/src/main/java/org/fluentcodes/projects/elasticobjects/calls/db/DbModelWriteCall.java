@@ -7,7 +7,6 @@ import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.InsertStatement;
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.UpdateStatement;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.models.ModelConfigDbObject;
 
 import java.util.List;
 

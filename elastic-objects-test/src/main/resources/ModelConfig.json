@@ -1,6 +1,6 @@
 {
   "AnObject": {
-    "configModelKey": "ModelConfigDbObject",
+    "configModelKey": "ModelConfigObject",
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "fieldKeys": [
@@ -28,13 +28,10 @@
     "properties": {
       "create": true
     },
-    "author": "Werner Diwischek",
-    "rolePermissions": {
-      "read": "guest"
-    }
+    "author": "Werner Diwischek"
   },
   "ASubObject": {
-    "configModelKey": "ModelConfigDbObject",
+    "configModelKey": "ModelConfigObject",
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "fieldKeys": {
@@ -63,9 +60,6 @@
       "create": true
     },
     "author": "Werner Diwischek",
-    "rolePermissions": {
-      "read": "guest"
-    },
     "creationDate": 1605826800000
   }
 }

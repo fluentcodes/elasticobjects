@@ -4,355 +4,401 @@
   "expose": "NONE",
   "fieldConfigMap": {
     "author": {
+      "default": false,
       "description": "The author of the class.",
+      "expose": "WEB",
       "fieldKey": "author",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 256,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "author",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "cached": {
+      "default": false,
       "description": "If true will cache the readed file within the cache object. ",
+      "expose": "NONE",
       "fieldKey": "cached",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "cached",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
-    },
-    "colKeys": {
-      "description": "The key list for mapping values in a value list. ",
-      "fieldKey": "colKeys",
-      "modelKeys": "List,String",
-      "modelList": [
-        "List",
-        "String"
-      ],
-      "naturalId": "colKeys",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": false
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "creationDate": {
+      "default": false,
       "description": "Used to define the creation of an item.",
+      "expose": "WEB",
       "fieldKey": "creationDate",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Date",
-      "modelList": [
-        "Date"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "creationDate",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "description": {
+      "default": false,
       "description": "A description of the model used by every model extending BaseClassImpl. ",
+      "expose": "WEB",
       "fieldKey": "description",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 512,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "description",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "expose": {
+      "default": false,
       "description": "expose",
+      "expose": "WEB",
       "fieldKey": "expose",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Expose",
-      "modelList": [
-        "Expose"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "expose",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "fieldDelimiter": {
+      "default": true,
       "description": "A delimiter for fields used for csv files. ",
+      "expose": "NONE",
       "fieldKey": "fieldDelimiter",
-      "length": 4,
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "fieldDelimiter",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": false,
-        "property": true
-      }
+      "notNull": false,
+      "override": false,
+      "property": true,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "fileName": {
+      "default": false,
       "description": "A fileName used in different calls and configs like @FileConfig or @DirectoryConfig. ",
+      "expose": "NONE",
       "fieldKey": "fileName",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "fileName",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "filePath": {
+      "default": false,
       "description": "A filePath used in different calls and configs like @FileConfig or @DirectoryConfig. ",
+      "expose": "NONE",
       "fieldKey": "filePath",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 512,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "filePath",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
-    },
-    "filter": {
-      "description": "Filter for List entries.",
-      "fieldKey": "filter",
-      "length": 512,
-      "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
-      "naturalId": "filter",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": false
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "hostConfigKey": {
+      "default": false,
       "description": "A key for host objects.",
+      "expose": "NONE",
       "fieldKey": "hostConfigKey",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "hostConfigKey",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "id": {
+      "default": false,
       "description": "The numeric id of an instance of a class.",
+      "expose": "WEB",
       "fieldKey": "id",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "Long",
-      "modelList": [
-        "Long"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "id",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": true,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": true
     },
-    "length": {
-      "description": "Length of a field.",
-      "fieldKey": "length",
-      "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
-      "naturalId": "length",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": false
-      }
+    "listParamsConfig": {
+      "default": false,
+      "description": "Parameters of type @ListParamsBean for list type read call operations like @CsvSimpleReadCall.",
+      "expose": "NONE",
+      "fieldKey": "listParamsConfig",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": 80,
+      "max": -1,
+      "min": -1,
+      "modelKeys": "ListParamsConfig",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "listParamsConfig",
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "module": {
+      "default": false,
       "description": "Defines a target module where generating occurs. ",
+      "expose": "WEB",
       "fieldKey": "module",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "module",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "moduleScope": {
+      "default": false,
       "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
+      "expose": "WEB",
       "fieldKey": "moduleScope",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 10,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "moduleScope",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "naturalId": {
+      "default": false,
       "description": "The natural key in @Base",
+      "expose": "NONE",
       "fieldKey": "naturalId",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
       "length": 80,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "naturalId",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": true,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": true
     },
-    "properties": {
-      "description": "Properties for configurations.",
-      "fieldKey": "properties",
-      "modelKeys": "Map",
-      "modelList": [
-        "Map"
-      ],
-      "naturalId": "properties",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
-    },
-    "rolePermissions": {
-      "description": "Lists for the different roles e.g. guest for write. Central point add permissions to a configuration. Dependent of the permission type of a call a certain list wll be selected. When ist write with role guest then no exception is thrown. ",
-      "fieldKey": "rolePermissions",
-      "modelKeys": "PermissionRole",
-      "modelList": [
-        "PermissionRole"
-      ],
-      "naturalId": "rolePermissions",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+    "permissions": {
+      "default": false,
+      "description": "Role permission wraüüer.",
+      "expose": "WEB",
+      "fieldKey": "permissions",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
+      "modelKeys": "Permissions",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "permissions",
+      "notNull": false,
+      "override": false,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     },
     "rowDelimiter": {
+      "default": true,
       "description": "A delimiter for rows used for csv files.",
+      "expose": "NONE",
       "fieldKey": "rowDelimiter",
-      "length": 4,
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "rowDelimiter",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": false,
-        "property": true
-      }
-    },
-    "rowEnd": {
-      "description": "rowEnd",
-      "fieldKey": "rowEnd",
-      "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
-      "naturalId": "rowEnd",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": false,
-        "property": false
-      }
-    },
-    "rowHead": {
-      "description": "rowHead",
-      "fieldKey": "rowHead",
-      "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
-      "naturalId": "rowHead",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": false,
-        "property": false
-      }
-    },
-    "rowStart": {
-      "description": "rowStart",
-      "fieldKey": "rowStart",
-      "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
-      "naturalId": "rowStart",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": false,
-        "property": false
-      }
+      "notNull": false,
+      "override": false,
+      "property": true,
+      "staticName": false,
+      "super": false,
+      "transient": false,
+      "unique": false
     },
     "scope": {
+      "default": false,
       "description": "A scope for the cache value.",
+      "expose": "WEB",
       "fieldKey": "scope",
+      "final": true,
+      "generated": false,
+      "jsonIgnore": false,
+      "length": -1,
+      "max": -1,
+      "min": -1,
       "modelKeys": "List,Scope",
-      "modelList": [
-        "List",
-        "Scope"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "scope",
-      "properties": {
-        "super": true,
-        "generated": false,
-        "final": true
-      }
+      "notNull": false,
+      "override": true,
+      "property": false,
+      "staticName": false,
+      "super": true,
+      "transient": false,
+      "unique": false
     }
   },
-  "interfaces": "CsvConfigInterface,ListProperties",
   "modelKey": "CsvConfig",
   "module": "eo-calls",
   "moduleScope": "main",
   "naturalId": "CsvConfig",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
-  "properties": {
-    "final": true,
-    "create": false
-  },
   "superKey": "FileConfig"
 }

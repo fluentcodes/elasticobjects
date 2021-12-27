@@ -8,8 +8,7 @@
     "properties": {
     },
     "dbKey": "h2:mem:basic",
-    "rolePermissions": {
-    },
+
     "module": "elastic-objects-test",
     "subModule": "main",
     "description": "Basic H2 in memory database for the test resources. ",
@@ -23,8 +22,6 @@
     "properties": {
     },
     "dbKey": "h2:file:basic",
-    "rolePermissions": {
-    },
     "module": "elastic-objects-test",
     "subModule": "main",
     "description": "Basic H2 Test ",

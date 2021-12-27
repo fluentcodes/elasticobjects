@@ -1,9 +1,0 @@
-{
-  "description": "expose",
-  "fieldKey": "expose",
-  "modelKeys": "Expose",
-  "modelList": [
-    "Expose"
-  ],
-  "naturalId": "expose"
-}

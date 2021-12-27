@@ -6,7 +6,7 @@ import java.util.Set;
 public interface ModelInterface extends ConfigInterface {
     String DEFAULT_IMPLEMENTATION = "defaultImplementation";
     String SHAPE_TYPE = "shapeType";
-    String CREATE = "create";
+    String F_CREATE = "create";
     String CLASS_PATH = "classPath";
     String ID_KEY = "idKey";
     String NATURAL_KEYS = "naturalKeys";
@@ -14,7 +14,7 @@ public interface ModelInterface extends ConfigInterface {
     String BEAN = "bean";
     String JAVASCRIPT_TYPE = "javascriptType";
     String DB_ANNOTATED = "dbAnnotated";
-    String ABSTRACT = "abstract";
+    String F_ABSTRACT = "abstract";
 
     Map<String, FieldConfig> getFieldMap();
 
@@ -65,7 +65,7 @@ public interface ModelInterface extends ConfigInterface {
     }
 
 
-    default FieldBeanInterface getField(final String key) {
+    default FieldInterface getField(final String key) {
         return getFieldMap().get(key);
     }
 

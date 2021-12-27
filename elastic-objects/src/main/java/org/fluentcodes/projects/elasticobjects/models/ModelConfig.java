@@ -25,23 +25,23 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     private static final Logger LOG = LogManager.getLogger(ModelConfig.class);
     private boolean resolved = false;
     private boolean resolvedFields = false;
-    private final String modelKey;
-    private final String packagePath;
-    private final String superKey;
-    private final String interfaces;
 
-    private final Boolean dbAnnotated;
-    private final Boolean create;
-    private final ShapeTypes shapeType;
-    private final String defaultImplementation;
     private final Boolean abstractValue;
-    private final Boolean finalValue;
-    private final Boolean override;
-    private final Boolean property;
     private final String bean;
-    private final String table;
+    private final Boolean create;
+    private final Boolean dbAnnotated;
+    private final String defaultImplementation;
+    private final Boolean finalValue;
     private final String idKey;
+    private final String interfaces;
+    private final String modelKey;
     private final String naturalKeys;
+    private final Boolean override;
+    private final String packagePath;
+    private final Boolean property;
+    private final ShapeTypes shapeType;
+    private final String superKey;
+    private final String table;
 
     private Class modelClass;
     private ModelConfig superModel;
@@ -193,16 +193,18 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
 
     public void setModelClass() {
         if (getModelKey() == null) {
-            throw new EoException("No modelkey defined. No model class could be derived!");
+            return;
+            //throw new EoException("No modelkey defined. No model class could be derived!");
         }
         String packagePath = getPackagePath();
         if (packagePath == null) {
-            throw new EoException("No packagePath for " + modelKey + "defined.");
+            return;
+            //throw new EoException("No packagePath for " + modelKey + "defined.");
         }
         try {
             this.modelClass = (Class.forName(packagePath + "." + modelKey));
         } catch (Exception e) {
-            throw new EoException("Class not resolved with packagePath " + packagePath + " and modelKey " + modelKey, e);
+            throw new EoException("Class not resolved with packagePath " + packagePath + " and modelKey " + modelKey);
         }
     }
 
@@ -311,22 +313,7 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     }
 
     public ModelBean createBean() {
-        ModelBean bean = new ModelBean();
-        populateBean(bean);
-        return bean;
-    }
-
-    public void populateBean(ModelBean bean) {
-        super.populateBean(bean);
-        bean.setModelKey(getModelKey());
-        bean.setPackagePath(getPackagePath());
-        bean.setInterfaces(getInterfaces());
-        bean.setSuperKey(getSuperKey());
-
-        bean.setAbstract(getAbstract());
-        bean.setDbAnnotated(getDbAnnotated());
-        bean.setProperty(getProperty());
-        //bean.setRolePermissions(getR)
+        return new ModelBean(this);
     }
 
     String asString(Object object) {

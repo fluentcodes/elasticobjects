@@ -61,23 +61,29 @@
     "fieldKey": "content",
     "length": 10000
   },
+  "Permissions.create": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to create.",
+    "expose": "WEB",
+    "fieldKey": "create"
+  },
   "delete": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "String representation of RolePermission delete permissions",
-    "expose": "NONE",
-    "fieldKey": "delete",
-    "length": 256
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to delete.",
+    "expose": "WEB",
+    "fieldKey": "delete"
   },
   "execute": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "String representation of RolePermission execute permissions",
-    "expose": "NONE",
-    "fieldKey": "execute",
-    "length": 256
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to execute.",
+    "expose": "WEB",
+    "fieldKey": "execute"
   },
   "fieldDelimiter": {
     "module": "eo-calls",
@@ -175,6 +181,23 @@
     "fieldKey": "listParams",
     "length": 80
   },
+  "listParamsConfig": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "ListParamsConfig",
+    "description": "Parameters of type @ListParamsBean for list type read call operations like @CsvSimpleReadCall.",
+    "expose": "NONE",
+    "fieldKey": "listParamsConfig",
+    "length": 80
+  },
+  "nothing": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to nothing.",
+    "expose": "WEB",
+    "fieldKey": "nothing"
+  },
   "password": {
     "module": "eo-calls",
     "moduleScope": "main",
@@ -187,14 +210,13 @@
       "property": true
     }
   },
-  "Permissions.create": {
+  "permissions": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "String representation of RolePermission create permissions",
-    "expose": "NONE",
-    "fieldKey": "create",
-    "length": 256
+    "modelKeys": "Permissions",
+    "description": "Role permission wraüüer.",
+    "expose": "WEB",
+    "fieldKey": "permissions"
   },
   "port": {
     "module": "eo-calls",
@@ -222,11 +244,10 @@
   "read": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "String representation of RolePermission read permissions",
-    "expose": "NONE",
-    "fieldKey": "read",
-    "length": 256
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to read.",
+    "expose": "WEB",
+    "fieldKey": "read"
   },
   "replaceBy": {
     "module": "eo-calls",
@@ -236,14 +257,6 @@
     "expose": "WEB",
     "fieldKey": "replaceBy",
     "length": 5
-  },
-  "rolePermissions": {
-    "module": "eo-calls",
-    "moduleScope": "main",
-    "modelKeys": "PermissionRole",
-    "description": "Lists for the different roles e.g. guest for write. Central point add permissions to a configuration. Dependent of the permission type of a call a certain list wll be selected. When ist write with role guest then no exception is thrown. ",
-    "expose": "NONE",
-    "fieldKey": "rolePermissions"
   },
   "rowDelimiter": {
     "module": "eo-calls",
@@ -370,10 +383,9 @@
   "write": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "String representation of RolePermission write permissions",
-    "expose": "NONE",
-    "fieldKey": "write",
-    "length": 256
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to write.",
+    "expose": "WEB",
+    "fieldKey": "write"
   }
 }

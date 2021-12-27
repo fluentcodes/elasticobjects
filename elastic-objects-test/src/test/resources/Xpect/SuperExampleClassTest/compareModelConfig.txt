@@ -2,32 +2,18 @@
   "fieldConfigMap": {
     "id": {
       "fieldKey": "id",
+      "fieldName": "id",
       "modelKeys": "Long",
-      "modelList": [
-        "Long"
-      ],
-      "naturalId": "SuperExampleClass.id",
-      "properties": {
-        "fieldName": "id"
-      }
+      "naturalId": "SuperExampleClass.id"
     },
     "subClass": {
       "fieldKey": "subClass",
+      "fieldName": "subClass",
       "modelKeys": "FieldExampleClass",
-      "modelList": [
-        "FieldExampleClass"
-      ],
-      "naturalId": "SuperExampleClass.subClass",
-      "properties": {
-        "fieldName": "subClass"
-      }
+      "naturalId": "SuperExampleClass.subClass"
     }
   },
   "modelKey": "SuperExampleClass",
   "naturalId": "SuperExampleClass",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
-  "properties": {
-    "shapeType": "OBJECT",
-    "create": true
-  }
+  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test"
 }

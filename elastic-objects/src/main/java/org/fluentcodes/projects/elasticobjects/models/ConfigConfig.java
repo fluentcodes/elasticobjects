@@ -39,9 +39,6 @@ public class ConfigConfig extends BaseConfig implements ConfigInterface {
     this.scope = configBean.getScope();
     this.expose = configBean.getExpose();
     this.configMaps = configMaps;
-    if (configBean.getProperties() == null) {
-      throw new EoInternalException("Null properties not allowed creating configs.");
-    }
   }
 
   public ConfigMaps getConfigMaps() {
@@ -92,4 +89,5 @@ public class ConfigConfig extends BaseConfig implements ConfigInterface {
     cloneMap.map(this);
     return new EOToJSON().toJson(cloneMap);
   }
+
 }

@@ -69,7 +69,7 @@ public class XlsxConfig extends FileConfig implements XlsxInterface, ListParamsC
     }
 
     @Override
-    public ListParamsConfig getListParams() {
+    public ListParamsConfig getListParamsConfig() {
         return listParams;
     }
 

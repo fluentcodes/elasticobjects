@@ -7,9 +7,7 @@
     "properties": {
       "hostName": "localhost"
     },
-    "rolePermissions": {
-      "read": "guest"
-    }
+    "read": ["guest"]
   },
   "localhost": {
     "module": "eo-calls",
@@ -19,8 +17,6 @@
     "properties": {
       "hostName": "localhost"
     },
-    "rolePermissions": {
-      "read": "guest"
-    }
+    "read": ["guest"]
   }
 }

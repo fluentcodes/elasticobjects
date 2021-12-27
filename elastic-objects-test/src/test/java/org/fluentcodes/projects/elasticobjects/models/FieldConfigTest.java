@@ -5,16 +5,36 @@ import org.fluentcodes.projects.elasticobjects.testitemprovider.IConfigurationTe
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_AUTHOR;
+import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_CREATION_DATE;
+import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_ID;
+import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_NATURAL_ID;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_EXPOSE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_MODULE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_MODULE_SCOPE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_SCOPE;
+import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.*;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanTest.createFieldBean;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps.CONFIG_MAPS;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Werner on 17.11.2021.
  */
 public class FieldConfigTest implements IConfigurationTests {
+
+    public static FieldConfig createFieldConfig(final String fieldName, final Object value){
+        FieldBean bean = createFieldBean(fieldName, value);
+        return new FieldConfig(bean, ProviderConfigMapsDev.CONFIG_MAPS_DEV);
+    }
 
     @Override
     public Class<?> getModelConfigClass() {
@@ -148,4 +168,165 @@ public class FieldConfigTest implements IConfigurationTests {
         ModelBean bean = new ModelBean(modelConfigMap);
         assertNotNull(bean);
     }
+
+    @Test
+    public void testDefault(){
+        FieldConfig fieldConfig = createFieldConfig(F_DEFAULT, true);
+        assertTrue( fieldConfig.getDefault());
+    }
+
+    @Test
+    public void testFieldName(){
+        FieldConfig fieldConfig = createFieldConfig(F_FIELD_NAME, "\"fieldName\"");
+        assertEquals("fieldName", fieldConfig.getFieldName());
+    }
+
+    @Test
+    public void testFinal(){
+        FieldConfig fieldConfig = createFieldConfig(F_FINAL, true);
+        assertTrue(fieldConfig.getFinal());
+    }
+
+    @Test
+    public void testGenerated(){
+        FieldConfig fieldConfig = createFieldConfig(F_GENERATED, true);
+        assertTrue(fieldConfig.getGenerated());
+    }
+
+    @Test
+    public void testJavascriptType(){
+        FieldConfig fieldConfig = createFieldConfig(F_JAVASCRIPT_TYPE, "\"string\"");
+        assertEquals("string", fieldConfig.getJavascriptType());
+    }
+
+    @Test
+    public void testJsonIgnore(){
+        FieldConfig fieldConfig = createFieldConfig(F_JSON_IGNORE, true);
+        assertTrue(fieldConfig.getJsonIgnore());
+    }
+
+    @Test
+    public void testLength(){
+        FieldConfig fieldConfig = createFieldConfig(F_LENGTH, 1);
+        assertEquals(new Integer(1), fieldConfig.getLength());
+    }
+
+    @Test
+    public void testMax(){
+        FieldConfig fieldConfig = createFieldConfig(F_MAX, 1);
+        assertEquals(new Integer(1), fieldConfig.getMax());
+    }
+
+    @Test
+    public void testMin(){
+        FieldConfig fieldConfig = createFieldConfig(F_MIN, 1);
+        assertEquals(new Integer(1), fieldConfig.getMin());
+    }
+
+    @Test
+    public void testNotNull(){
+        FieldConfig fieldConfig = createFieldConfig(F_NOT_NULL, true);
+        assertTrue(fieldConfig.getNotNull());
+    }
+
+    @Test
+    public void testOverride(){
+        FieldConfig fieldConfig = createFieldConfig(F_OVERRIDE, true);
+        assertTrue(fieldConfig.getOverride());
+    }
+
+    @Test
+    public void testProperty(){
+        FieldConfig fieldConfig = createFieldConfig(F_PROPERTY, true);
+        assertTrue(fieldConfig.getProperty());
+    }
+
+    @Test
+    public void testStaticName(){
+        FieldConfig fieldConfig = createFieldConfig(F_STATIC_NAME, true);
+        assertTrue(fieldConfig.getStaticName());
+    }
+
+
+    @Test
+    public void testSuper(){
+        FieldConfig fieldConfig = createFieldConfig(F_SUPER, true);
+        assertTrue(fieldConfig.getSuper());
+    }
+
+    @Test
+    public void testTransient(){
+        FieldConfig fieldConfig = createFieldConfig(F_TRANSIENT, true);
+        assertTrue(fieldConfig.getTransient());
+    }
+
+    @Test
+    public void testUnique(){
+        FieldConfig fieldConfig = createFieldConfig(F_UNIQUE, true);
+        assertTrue(fieldConfig.getUnique());
+    }
+
+    @Test
+    public void testFieldKey(){
+        FieldConfig fieldConfig = createFieldConfig(F_FIELD_KEY, "\"NAME\"");
+        assertEquals("NAME", fieldConfig.getFieldKey());
+    }
+
+    @Test
+    public void testModelKeys(){
+        FieldConfig fieldConfig = createFieldConfig(F_MODEL_KEYS, "\"Map,String\"");
+        assertEquals("Map,String", fieldConfig.getModelKeys());
+    }
+
+    @Test
+    public void testExpose(){
+        FieldConfig fieldConfig = createFieldConfig(F_EXPOSE, "\"WEB\"");
+        assertEquals(Expose.WEB, fieldConfig.getExpose());
+    }
+
+    @Test
+    public void testModuleScope(){
+        FieldConfig fieldConfig = createFieldConfig(F_MODULE_SCOPE, "\"MODULE\"");
+        assertEquals("MODULE", fieldConfig.getModuleScope());
+    }
+
+    @Test
+    public void testModule(){
+        FieldConfig fieldConfig = createFieldConfig(F_MODULE, "\"MODULE\"");
+        assertEquals("MODULE", fieldConfig.getModule());
+    }
+
+    @Test
+    public void testScope(){
+        List result = new ArrayList();
+        result.add(Scope.DEV);
+        result.add(Scope.PROD);
+        FieldConfig fieldConfig = createFieldConfig(F_SCOPE, "\"DEV,PROD\"");
+        assertEquals(result, fieldConfig.getScope());
+    }
+
+    @Test
+    public void testAuthor(){
+        FieldConfig fieldConfig = createFieldConfig(F_AUTHOR, "\"Author\"");
+        assertEquals("Author", fieldConfig.getAuthor());
+    }
+
+    @Test
+    public void testCreationDate(){
+        FieldConfig fieldConfig = createFieldConfig(F_CREATION_DATE, 1);
+        assertEquals(new Date(1L), fieldConfig.getCreationDate());
+    }
+
+    @Test
+    public void testId(){
+        FieldConfig fieldConfig = createFieldConfig(F_ID, 1);
+        assertEquals(new Long(1L), fieldConfig.getId());
+    }
+
+    @Test
+    public void testNaturalId(){
+        FieldConfig fieldConfig = createFieldConfig(F_NATURAL_ID, "\"natural\"");
+        assertEquals("natural", fieldConfig.getNaturalId());
+    }
+
 }

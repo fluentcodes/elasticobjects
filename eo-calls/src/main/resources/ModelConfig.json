@@ -7,9 +7,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
     "modelKey": "And",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR_SERIALIZED"
+      "create": false
     },
+    "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
   "CallContent": {
@@ -23,9 +23,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "CallContent",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1604876400000
   },
@@ -87,9 +87,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
     "modelKey": "Condition",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "ConfigAsFlatListCall": {
@@ -136,9 +136,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
     "modelKey": "ConfigDirectoryReadCommand",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "ConfigKeysCall": {
@@ -190,9 +190,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
     "modelKey": "ConfigReadCommand",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "ConfigReadWriteCommand": {
@@ -204,9 +204,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
     "modelKey": "ConfigReadWriteCommand",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "ConfigsCommand": {
@@ -218,9 +218,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
     "modelKey": "ConfigsCommand",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "ConfigTypesCall": {
@@ -246,27 +246,12 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
     "modelKey": "ConfigWriteCommand",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "CsvConfig": {
-    "module": "eo-calls",
-    "moduleScope": "main",
-    "interfaces": "CsvConfigInterface,ListParamsConfigInterface",
-    "superKey": "FileConfig",
-    "expose": "NONE",
-    "description": "Configuration for csv files with fieldDelimiter and rowDelimiter fields. ",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
-    "modelKey": "CsvConfig",
-    "properties": {
-      "create": false,
-      "final": true
-    },
-    "author": "Werner Diwischek"
-  },
-  "CsvConfigInterface": {
     "module": "eo-calls",
     "moduleScope": "main",
     "fieldKeys": {
@@ -277,15 +262,19 @@
       "rowDelimiter": {
         "default": true,
         "final": true
+      },
+      "listParamsConfig": {
+        "final": true
       }
     },
+    "superKey": "FileConfig",
     "expose": "NONE",
-    "description": "Defines acces to csv properties with fieldDelimiter and rowDelimiter fields in CsvConfig.",
+    "description": "Configuration for csv files with fieldDelimiter and rowDelimiter fields. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
-    "modelKey": "CsvConfigInterface",
+    "modelKey": "CsvConfig",
     "properties": {
       "create": false,
-      "shapeType": "INTERFACE"
+      "final": true
     },
     "author": "Werner Diwischek"
   },
@@ -412,9 +401,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
     "modelKey": "Eq",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR_SERIALIZED"
+      "create": false
     },
+    "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
   "FileBean": {
@@ -455,7 +444,20 @@
   "FileConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "cached, fileName, filePath, hostConfigKey",
+    "fieldKeys": {
+      "cached": {
+        "final": true
+      },
+      "fileName": {
+        "final": true
+      },
+      "filePath": {
+        "final": true
+      },
+      "hostConfigKey": {
+        "final": true
+      }
+    },
     "interfaces": "FileInterface,FileConfigMethods",
     "superKey": "PermissionConfig",
     "expose": "NONE",
@@ -481,9 +483,9 @@
     "modelKey": "FileInterface",
     "properties": {
       "create": false,
-      "shapeType": "INTERFACE",
       "final": true
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1599602400000
   },
@@ -496,9 +498,9 @@
     "modelKey": "FileConfigMethods",
     "properties": {
       "create": false,
-      "shapeType": "INTERFACE",
       "final": true
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1608073200000
   },
@@ -594,7 +596,14 @@
   "HostConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "port, protocol, password, hostName, user, url",
+    "fieldKeys": {
+      "port": {"final": true},
+      "protocol": {"final": true, "property": false},
+      "password": {"final": true, "property": false},
+      "hostName": {"final": true, "property": false},
+      "user": {"final": true, "property": false},
+      "url": {"final": true, "property": false}
+    },
     "interfaces": "HostInterface",
     "superKey": "PermissionConfig",
     "expose": "NONE",
@@ -610,7 +619,6 @@
   "HostInterface": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "port, protocol, password, hostName, user, url",
     "interfaces": "ConfigInterface",
     "expose": "NONE",
     "description": "Methods to get the properties schema from properties map.",
@@ -618,9 +626,9 @@
     "modelKey": "HostInterface",
     "properties": {
       "create": false,
-      "shapeType": "INTERFACE",
       "final": true
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1600466400000
   },
@@ -650,49 +658,22 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
     "modelKey": "Like",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR_SERIALIZED"
+      "create": false
     },
+    "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
   "ListParamsBeanInterface": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
-      "colKeys": {
-        "default": true,
-        "transient": true
-      },
-      "filter": {
-        "default": true,
-        "transient": true
-      },
-      "length": {
-        "default": true,
-        "transient": true
-      },
-      "rowEnd": {
-        "default": true,
-        "transient": true
-      },
-      "rowHead": {
-        "default": true,
-        "transient": true
-      },
-      "rowStart": {
-        "default": true,
-        "transient": true,
-        "property": false
-      }
-    },
     "expose": "NONE",
     "description": "Defines default access values for ListParams",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
     "modelKey": "ListParamsBeanInterface",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "ListParamsBean": {
@@ -731,7 +712,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "ListParamsConfigInterface": {
+  "ListParamsConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
     "fieldKeys": {
@@ -770,32 +751,11 @@
     "expose": "NONE",
     "description": "Defines default access values for ListParams",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
-    "modelKey": "ListParamsBeanInterface",
+    "modelKey": "ListParamsConfig",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
-    "author": "Werner Diwischek"
-  },
-  "ModelConfigDbObject": {
-    "module": "eo-calls",
-    "moduleScope": "main",
-    "fieldKeys": {
-      "rolePermissions": {
-        "overwrite": true,
-        "final": true
-      }
-    },
-    "interfaces": "PermissionInterface",
-    "superKey": "ModelConfigObject",
-    "expose": "NONE",
-    "description": "Class definitions for an object with getters and setters.",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.models",
-    "modelKey": "ModelConfigDbObject",
-    "properties": {
-      "create": false,
-      "final": true
-    },
+    "shapeType": "CONFIG",
     "author": "Werner Diwischek"
   },
   "Or": {
@@ -806,37 +766,36 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
     "modelKey": "Or",
     "properties": {
-      "create": false,
-      "shapeType": "SCALAR_SERIALIZED"
+      "create": false
     },
+    "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
   "PermissionBean": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "rolePermissions",
-    "interfaces": "PermissionInterface",
+    "fieldKeys": "Permissions.create, delete, execute, nothing, read, write",
     "superKey": "ConfigBean",
-    "expose": "WEB",
-    "description": "A bean container class for PermissionRole.",
+    "expose": "NONE",
+    "description": "Container Bean for setting permission config.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "PermissionBean",
     "properties": {
-      "create": true,
-      "final": false,
-      "override": true
+      "create": false,
+      "final": true,
+      "override": true,
+      "abstract": true
     },
-    "author": "Werner Diwischek",
+    "shapeType": "BEAN",
     "creationDate": 1608073200000
   },
   "PermissionConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "rolePermissions",
-    "interfaces": "PermissionInterface",
+    "fieldKeys": {"permissions": {"final": true}},
     "superKey": "ConfigConfig",
     "expose": "NONE",
-    "description": "Abstract implementation for resources with permissions methods ",
+    "description": "Implementation for resources with permission method ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "PermissionConfig",
     "properties": {
@@ -845,41 +804,32 @@
       "override": true,
       "abstract": true
     },
+    "shapeType": "CONFIG",
     "creationDate": 1608073200000
   },
-  "PermissionInterface": {
+  "Permissions": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "rolePermissions",
+    "fieldKeys": {
+      "Permissions.create": {"final": true},
+      "delete": {"final": true},
+      "execute": {"final": true},
+      "nothing": {"final": true},
+      "read": {"final": true},
+      "write": {"final": true}
+    },
     "expose": "NONE",
-    "description": "Interface with permissions methods ",
+    "description": "Config wrapper for permissions. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
-    "modelKey": "PermissionInterface",
+    "modelKey": "Permissions",
     "properties": {
       "create": false,
-      "shapeType": "INTERFACE",
-      "final": true
+      "final": true,
+      "override": true,
+      "abstract": true
     },
+    "shapeType": "CONFIG",
     "creationDate": 1608073200000
-  },
-  "PermissionRole": {
-    "module": "eo-calls",
-    "moduleScope": "main",
-    "fieldKeys": [
-      "read",
-      "write",
-      "Permissions.create",
-      "delete",
-      "execute"
-    ],
-    "expose": "NONE",
-    "description": "Defines the roles ",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
-    "modelKey": "PermissionRole",
-    "properties": {
-      "create": true
-    },
-    "author": "Werner Diwischek"
   },
   "SimpleCommand": {
     "module": "eo-calls",
@@ -890,9 +840,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
     "modelKey": "SimpleCommand",
     "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
+      "create": false
     },
+    "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
   "SinusValueCall": {
@@ -918,9 +868,9 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.configs",
     "modelKey": "SortOrder",
     "properties": {
-      "create": false,
-      "shapeType": "ENUM"
+      "create": false
     },
+    "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
   "StringLowerCall": {

@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface.*;
+import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -55,10 +55,10 @@ public class FieldBeanPropertiesParametrizedTest {
                 { F_FIELD_NAME, null, null },
                 { F_FINAL, true, true },
                 { F_FINAL, false, false },
-                { F_FINAL, null, false },
+                { F_FINAL, null, null },
                 { F_GENERATED, true, true },
                 { F_GENERATED, false, false },
-                { F_GENERATED, null, false },
+                { F_GENERATED, null, null },
                 { F_JAVASCRIPT_TYPE, "\"string\"", "string" },
                 { F_JAVASCRIPT_TYPE, null, null },
                 { F_JSON_IGNORE, true, true },
@@ -72,10 +72,10 @@ public class FieldBeanPropertiesParametrizedTest {
                 { F_MIN, null, null },
                 { F_NOT_NULL, true, true },
                 { F_NOT_NULL, false, false },
-                { F_NOT_NULL, null, false },
+                { F_NOT_NULL, null, null },
                 { F_OVERRIDE, true, true },
                 { F_OVERRIDE, false, false },
-                { F_OVERRIDE, null, false },
+                { F_OVERRIDE, null, null },
                 { F_PROPERTY, true, true },
                 { F_PROPERTY, false, false },
                 { F_PROPERTY, null, null },
@@ -84,13 +84,13 @@ public class FieldBeanPropertiesParametrizedTest {
                 { F_STATIC_NAME, null, null },
                 { F_SUPER, true, true },
                 { F_SUPER, false, false },
-                { F_SUPER, null, false },
+                { F_SUPER, null, null },
                 { F_TRANSIENT, true, true },
                 { F_TRANSIENT, false, false },
-                { F_TRANSIENT, null, false },
+                { F_TRANSIENT, null, null },
                 { F_UNIQUE, true , true},
                 { F_UNIQUE, false, false },
-                { F_UNIQUE, null, false }
+                { F_UNIQUE, null, null }
         });
     }
     @Test

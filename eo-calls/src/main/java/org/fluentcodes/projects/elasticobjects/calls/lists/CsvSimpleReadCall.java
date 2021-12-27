@@ -45,7 +45,7 @@ public class CsvSimpleReadCall extends FileReadCall implements ListParamsBeanInt
 
     public List readRaw(final IEOScalar eo) {
         CsvConfig config = (CsvConfig) init(PermissionType.READ, eo);
-        getListParams().merge(config.getListParams());
+        getListParams().merge(config.getListParamsConfig());
         String content = super.read(eo);
         if (content == null || content.isEmpty()) {
             return new ArrayList<>();
@@ -87,7 +87,6 @@ public class CsvSimpleReadCall extends FileReadCall implements ListParamsBeanInt
     /**
      * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
      */
-    @Override
     public CsvSimpleReadCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
@@ -98,7 +97,6 @@ public class CsvSimpleReadCall extends FileReadCall implements ListParamsBeanInt
         return this.listParams;
     }
 
-    @Override
     public boolean hasListParams() {
         return listParams != null;
     }

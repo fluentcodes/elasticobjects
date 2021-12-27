@@ -5,10 +5,15 @@
   "description": "Interface with permissions methods ",
   "(Expose)expose": "NONE",
   "modelKey": "PermissionInterface",
-  "module": "eo-calls",
+  "module": "elastic-objects",
   "moduleScope": "main",
   "naturalId": "PermissionInterface",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
   "properties": {
+    "dbAnnotated": false,
+    "final": true,
+    "property": false,
+    "create": false,
+    "override": false
   }
 }

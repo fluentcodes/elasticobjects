@@ -89,7 +89,7 @@ public class CsvSimpleReadCallTest implements IModelConfigCreateTests {
     @Test
     public void eo_ListSimpleCsv_rowStart_2__execute__setOnlyLastRow() {
         final CsvSimpleReadCall call = new CsvSimpleReadCall(LIST_SIMPLE_CSV);
-        call.setRowStart(2);
+        call.getListParams().setRowStart(2);
         call.setTargetPath(".");
         EoRoot eo = ProviderConfigMaps.createEoWithClasses(List.class);
         eo.addCall(call);
@@ -106,7 +106,7 @@ public class CsvSimpleReadCallTest implements IModelConfigCreateTests {
     @Test
     public void eo_ListSimpleCsv_rowEnd_2__execute__setOnlyFirstRow() {
         final CsvSimpleReadCall call = new CsvSimpleReadCall(LIST_SIMPLE_CSV);
-        call.setRowEnd(2);
+        call.getListParams().setRowEnd(2);
         call.setTargetPath(".");
         EoRoot eo = ProviderConfigMaps.createEoWithClasses(List.class);
         eo.addCall(call);
@@ -122,7 +122,7 @@ public class CsvSimpleReadCallTest implements IModelConfigCreateTests {
     @Test
     public void eo_ListSourceCsv_rowHead_off__execute__setListValues() {
         final CsvSimpleReadCall call = new CsvSimpleReadCall(LIST_SIMPLE_CSV);
-        call.setRowHead(-1);
+        call.getListParams().setRowHead(-1);
         call.setTargetPath(".");
         EoRoot eo = ProviderConfigMaps.createEoWithClasses(List.class);
         eo.addCall(call);

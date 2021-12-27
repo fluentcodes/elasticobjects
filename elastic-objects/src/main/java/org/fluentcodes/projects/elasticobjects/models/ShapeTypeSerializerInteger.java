@@ -17,6 +17,13 @@ public class ShapeTypeSerializerInteger extends ShapeTypeSerializerNumber<Intege
         }
     }
 
+    public Integer asObject(Object object, Integer defaultValue) {
+        if (object == null) {
+            return defaultValue;
+        }
+        return asObject(object);
+    }
+
     @Override
     public Integer asObject(Object object) {
         if (object == null) {

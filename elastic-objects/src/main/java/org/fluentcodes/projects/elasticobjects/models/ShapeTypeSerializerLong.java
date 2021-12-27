@@ -8,7 +8,7 @@ public class ShapeTypeSerializerLong extends ShapeTypeSerializerNumber<Long> {
     @Override
     public Long asObject(String object) {
         if (object == null) {
-            throw new EoInternalException("Null object " + object.getClass());
+            return null;
         }
         try {
             return Long.parseLong(object);

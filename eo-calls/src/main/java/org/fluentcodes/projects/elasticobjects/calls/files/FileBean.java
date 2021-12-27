@@ -6,8 +6,6 @@ import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerString;
 
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.calls.HostCall.HOST_CONFIG_KEY;
-
 /*.{javaHeader}|*/
 
 /**
@@ -37,22 +35,8 @@ public class FileBean extends PermissionBean implements FileInterface {
         defaultConfigModelKey();
     }
 
-    public FileBean(final String naturalId, final Map map) {
-        super(naturalId, map);
-    }
-
     public FileBean(final Map map) {
         super();
-        merge(map);
-    }
-
-    public void merge(final Map configMap) {
-        super.merge(configMap);
-        mergeFileName(configMap.get(F_FILE_NAME));
-        mergeFilePath(configMap.get(F_FILE_PATH));
-        mergeCached(configMap.get(F_CACHED));
-        mergeHostConfigKey(configMap.get(HOST_CONFIG_KEY));
-        defaultConfigModelKey();
     }
 
     private void defaultConfigModelKey() {

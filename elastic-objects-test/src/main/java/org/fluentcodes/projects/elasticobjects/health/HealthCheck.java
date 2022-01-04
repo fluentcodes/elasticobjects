@@ -21,6 +21,9 @@ public class HealthCheck {
         Set<String> fieldKeys = new TreeSet<>();
         for (String modelKey : modelKeys) {
             ModelConfig modelConfig = configMaps.findModel(modelKey);
+            if (!modelConfig.isObject()) {
+                continue;
+            }
             for (String fieldKey : modelConfig.getFieldKeys()) {
                 fieldKeys.add(modelConfig.getField(fieldKey).getNaturalId());
             }

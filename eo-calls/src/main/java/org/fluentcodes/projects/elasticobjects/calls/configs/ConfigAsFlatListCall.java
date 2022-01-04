@@ -5,8 +5,7 @@ import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.SimpleCommand;
-import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleWriteCall;
-import org.fluentcodes.projects.elasticobjects.domain.BaseInterface;
+import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -97,7 +96,7 @@ public class ConfigAsFlatListCall extends CallImpl implements SimpleCommand {
         Map<String, Integer> keyPosition = new LinkedHashMap<>();
         boolean externalKey = true;
         if (keys == null || keys.isEmpty()) {
-            keyPosition.put(BaseInterface.F_NATURAL_ID, 0);
+            keyPosition.put(ConfigBean.F_NATURAL_ID, 0);
             externalKey = false;
         } else {
             for (int i = 0; i < keys.size(); i++) {

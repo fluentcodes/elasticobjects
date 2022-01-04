@@ -1,7 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.domain.test;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.models.FieldBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
@@ -9,8 +8,7 @@ import org.junit.Test;
 
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_ID;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_ID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

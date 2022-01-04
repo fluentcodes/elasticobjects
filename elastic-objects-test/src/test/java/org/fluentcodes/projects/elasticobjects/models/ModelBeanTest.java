@@ -14,15 +14,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_AUTHOR;
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_CREATION_DATE;
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_ID;
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_NATURAL_ID;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_CONFIG_MODEL_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_EXPOSE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_MODULE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_MODULE_SCOPE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_SCOPE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_AUTHOR;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_CREATION_DATE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_ID;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_CONFIG_MODEL_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_EXPOSE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE_SCOPE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_NAME;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FINAL;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.MODEL_KEY;
@@ -75,7 +75,7 @@ public class ModelBeanTest implements IModelConfigCreateTests {
     @Test
     public void empty__toString__BEAN() {
         ModelBean model = new ModelBean();
-        Assertions.assertThat(model.toString()).isEqualTo("(null)");
+        Assertions.assertThat(model.toString()).isEqualTo("(null)null");
     }
 
     @Test
@@ -88,7 +88,7 @@ public class ModelBeanTest implements IModelConfigCreateTests {
     public void modelKey_Model__toString__BEAN_Model() {
         ModelBean model = new ModelBean();
         model.setModelKey("Model");
-        Assertions.assertThat(model.toString()).isEqualTo("(null)Model");
+        Assertions.assertThat(model.toString()).isEqualTo("(null)null");
     }
 
     @Test

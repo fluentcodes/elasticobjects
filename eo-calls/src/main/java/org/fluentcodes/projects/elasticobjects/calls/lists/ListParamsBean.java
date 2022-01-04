@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_NATURAL_ID;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
 
 /**
  * A bean class for containing the following values:

@@ -15,14 +15,10 @@ import java.util.Map;
  * @modificationDate Thu Jan 14 04:43:19 CET 2021
  */
 public class FieldBean extends ConfigBean implements FieldBeanInterface {
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
     /* fieldKey */
     private String fieldKey;
     /* A string representation for a list of modelsConfig. */
     private String modelKeys;
-    /*.{}.*/
     private boolean merged = false;
 
     private ModelInterface parentModel;
@@ -118,17 +114,12 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
 
     protected FieldBean(final FieldBean fieldBean) {
         super();
-        this.merge((FieldBean) fieldBean);
+        this.merge(fieldBean);
         setSuper(true);
-    }
-
-    public FieldBean get() {
-        return this;
     }
 
     void merge(final FieldBean fieldBean) {
         super.merge(fieldBean);
-        mergeConfigModelKey(fieldBean.getModelKey());
         mergeDefault(fieldBean.getDefault());
         mergeFieldKey(fieldBean.getFieldKey());
         mergeFieldName(fieldBean.getFieldName());
@@ -150,6 +141,7 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
         setDefault();
         this.merged = true;
     }
+
 
     public void setDefault() {
         defaultConfigModelKey();
@@ -304,8 +296,8 @@ public class FieldBean extends ConfigBean implements FieldBeanInterface {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        if (!hasKey()) return "";
-        builder.append(getKey());
+        if (!hasFieldKey()) return "";
+        builder.append(getFieldKey());
         if (this.hasParentModelKey()) builder.insert(0, getParentModel().getModelKey() + ".");
         return hasModelKeys() ?
                 "(" + modelKeys + ")" + builder.toString() :

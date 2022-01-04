@@ -6,7 +6,6 @@ import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.models.FieldConfig;
 import org.fluentcodes.projects.elasticobjects.models.FieldInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
-import org.fluentcodes.projects.elasticobjects.models.ModelConfigMethods;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypes;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
 import org.junit.Assert;
@@ -34,10 +33,10 @@ public class EoAnObjectSetTest {
 
     @Test
     public void fromEoConfigsCache()  {
-        ModelConfigMethods cache = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class);
-        Assert.assertNotNull(cache.getField(AnObject.MY_STRING));
-        Assert.assertEquals(AnObject.MY_STRING, cache.getField(AnObject.MY_STRING).getFieldKey());
-        ModelConfig aSubObject = cache.getFieldModel(AnObject.MY_ASUB_OBJECT);
+        ModelConfig config = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class);
+        Assert.assertNotNull(config.getField(AnObject.MY_STRING));
+        Assert.assertEquals(AnObject.MY_STRING, config.getField(AnObject.MY_STRING).getFieldKey());
+        ModelConfig aSubObject = config.getFieldModelConfig(AnObject.MY_ASUB_OBJECT);
         Assert.assertEquals(ASubObject.class.getSimpleName(), aSubObject.getModelKey());
         Assert.assertEquals(AnObject.MY_STRING, aSubObject.getField(AnObject.MY_STRING).getFieldKey());
     }
@@ -85,15 +84,14 @@ public class EoAnObjectSetTest {
 
     @Test
     public void givenModelFromString_notNull()  {
-        ModelConfigMethods model = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class.getSimpleName());
+        ModelConfig model = ProviderConfigMaps.findModel(AnObject.class);
         Assertions.assertThat(model).isNotNull();
     }
 
     @Test
     public void givenModelFromClass_createAndSetModelFieldsWith_noError()  {
-        ModelConfig model = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class);
+        ModelConfig model = ProviderConfigMaps.findModel(AnObject.class);
         Assert.assertEquals(ShapeTypes.BEAN, model.getShapeType());
-        Assert.assertTrue(model.hasModel());
         Assert.assertFalse(model.isMap());
         Assert.assertFalse(model.isList());
         Assert.assertFalse(model.isScalar());
@@ -118,7 +116,7 @@ public class EoAnObjectSetTest {
 
     @Test
     public void assertAnObjectFieldTest()  {
-        ModelConfigMethods model = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class);
+        ModelConfig model = ProviderConfigMaps.findModel(AnObject.class);
 
         FieldInterface field = model.getField(AnObject.MY_STRING);
         Assert.assertEquals(String.class, ((FieldConfig)field).getModelClass());

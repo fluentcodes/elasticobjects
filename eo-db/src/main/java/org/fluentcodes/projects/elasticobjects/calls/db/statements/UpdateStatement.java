@@ -8,8 +8,8 @@ import org.fluentcodes.projects.elasticobjects.models.ModelInterface;
 
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_ID;
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_NATURAL_ID;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_ID;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
 
 public class UpdateStatement extends PreparedStatementValues {
 

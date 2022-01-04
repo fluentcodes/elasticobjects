@@ -1,5 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
@@ -19,6 +21,7 @@ import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.SUPER_KEY;
 
 public class ModelBean extends ConfigBean implements ModelInterface, Comparable<ModelBean> {
+    private static final Logger LOG = LogManager.getLogger(ModelBean.class);
     public static final String FIELD_KEYS = "fieldKeys";
     private boolean resolved;
     private String modelKey;
@@ -236,10 +239,6 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         setNaturalId(getModelKey());
     }
 
-    public void merge(final ModelBean modelBean) {
-        super.merge(modelBean);
-    }
-
     @Override
     public String getModelKey() {
         return modelKey;
@@ -296,17 +295,12 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
     }
 
     @Override
-    public Map<String, FieldConfig> getFieldMap() {
-        throw new EoException("TODO");
-    }
-
-    @Override
     public Boolean getAbstract() {
         return (Boolean) getProperties().get(F_ABSTRACT);
     }
 
-    public ModelBean setAbstract(Boolean dbAnnotated) {
-        getProperties().put(F_ABSTRACT, dbAnnotated);
+    public ModelBean setAbstract(Boolean abstractValue) {
+        getProperties().put(F_ABSTRACT, abstractValue);
         return this;
     }
 
@@ -576,7 +570,7 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
 
     @Override
     public String toString() {
-        return "(" + getShapeType() + ")" + getKey();
+        return "(" + getShapeType() + ")" + getNaturalId();
     }
 
     public String getClassName() {

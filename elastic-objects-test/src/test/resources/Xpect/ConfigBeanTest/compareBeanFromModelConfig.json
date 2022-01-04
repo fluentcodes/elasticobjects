@@ -21,7 +21,7 @@
         "notNull": false,
         "length": 256,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -29,7 +29,7 @@
         "unique": false,
         "final": false,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -75,7 +75,7 @@
         "notNull": false,
         "length": -1,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -83,7 +83,7 @@
         "unique": false,
         "final": false,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -102,7 +102,7 @@
         "notNull": false,
         "length": 512,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -110,7 +110,7 @@
         "unique": false,
         "final": false,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -137,7 +137,7 @@
         "unique": false,
         "final": false,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -156,7 +156,7 @@
         "notNull": true,
         "length": -1,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -164,7 +164,7 @@
         "unique": true,
         "final": false,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -191,7 +191,7 @@
         "unique": false,
         "final": false,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -218,7 +218,7 @@
         "unique": false,
         "final": false,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -237,7 +237,7 @@
         "notNull": true,
         "length": 80,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -245,7 +245,7 @@
         "unique": true,
         "final": false,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -299,12 +299,11 @@
         "unique": false,
         "final": false,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     }
   },
-  "interfaces": "ConfigInterface",
   "modelKey": "ConfigBean",
   "module": "elastic-objects",
   "moduleScope": "main",
@@ -317,6 +316,5 @@
     "create": true,
     "abstract": false,
     "override": true
-  },
-  "superKey": "BaseBean"
+  }
 }

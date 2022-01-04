@@ -1,9 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import java.util.Map;
-import java.util.Set;
-
-public interface ModelInterface extends ConfigInterface {
+public interface ModelInterface {
     String DEFAULT_IMPLEMENTATION = "defaultImplementation";
     String SHAPE_TYPE = "shapeType";
     String F_CREATE = "create";
@@ -15,8 +12,6 @@ public interface ModelInterface extends ConfigInterface {
     String JAVASCRIPT_TYPE = "javascriptType";
     String DB_ANNOTATED = "dbAnnotated";
     String F_ABSTRACT = "abstract";
-
-    Map<String, FieldConfig> getFieldMap();
 
     String getTable();
 
@@ -44,7 +39,6 @@ public interface ModelInterface extends ConfigInterface {
 
     default String getKey() {
         if (hasModelKey()) return getModelKey();
-        if (hasNaturalId()) return getNaturalId();
         return "";
     }
 
@@ -56,21 +50,6 @@ public interface ModelInterface extends ConfigInterface {
 
     default boolean hasPackagePath() {
         return getPackagePath() != null && !getPackagePath().isEmpty();
-    }
-
-    Set<String> getFieldKeys();
-
-    default boolean hasFields() {
-        return getFieldKeys().isEmpty();
-    }
-
-
-    default FieldInterface getField(final String key) {
-        return getFieldMap().get(key);
-    }
-
-    default boolean hasField(final String key) {
-        return getFieldMap().containsKey(key);
     }
 
     String getSuperKey();
@@ -117,6 +96,16 @@ public interface ModelInterface extends ConfigInterface {
         return getDefaultImplementation() != null && !getDefaultImplementation().isEmpty();
     }
 
+    Boolean getDbAnnotated();
+
+    default boolean hasDbAnnotated() {
+        return getDbAnnotated() != null;
+    }
+
+    default Boolean isDbAnnotated() {
+        return hasDbAnnotated() && getDbAnnotated();
+    }
+
     Boolean getAbstract();
 
     default boolean hasAbstract() {
@@ -154,65 +143,4 @@ public interface ModelInterface extends ConfigInterface {
         return getBean() != null && !getBean().isEmpty();
     }
 
-    Boolean getDbAnnotated();
-
-    default boolean hasDbAnnotated() {
-        return getDbAnnotated() != null;
-    }
-
-    default Boolean isDbAnnotated() {
-        return (hasDbAnnotated() && getDbAnnotated()) || false;
-    }
-
-    default boolean isList() {
-        return (this instanceof ModelConfigList);
-    }
-
-    default boolean isMap() {
-        return (this instanceof ModelConfigMap);
-    }
-
-    default boolean isScalar() {
-        return (this instanceof ModelConfigScalar);
-    }
-
-    default boolean isObject() {
-        return (this instanceof ModelConfigObject);
-    }
-
-    default boolean isCall() {
-        return getModelKey().endsWith("Call");
-    }
-
-    default boolean isInterface() {
-        return getShapeType() == ShapeTypes.INTERFACE;
-    }
-
-    default boolean isContainer() {
-        return !isScalar();
-    }
-
-    default boolean isNumber() {
-        return false;
-    }
-
-    default boolean hasModel() {
-        return true;
-    }
-
-    default boolean isNull() {
-        return false;
-    }
-
-    default boolean isEnum() {
-        return false;
-    }
-
-    default boolean isJsonIgnore(final String key) {
-        return hasField(key) && getField(key).isJsonIgnore();
-    }
-
-    default boolean isProperty(final String key) {
-        return hasField(key) && getField(key).isProperty();
-    }
 }

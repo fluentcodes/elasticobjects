@@ -42,16 +42,6 @@ public interface FieldInterface extends ConfigInterface {
 
     String getFieldKey();
 
-    default String getKey() {
-        if (hasNaturalId()) return getNaturalId();
-        if (hasFieldKey()) return getFieldKey();
-        return "";
-    }
-
-    default boolean hasKey() {
-        return !getKey().isEmpty();
-    }
-
     default boolean hasFieldKey() {
         return getFieldKey() != null && !getFieldKey().isEmpty();
     }
@@ -216,13 +206,9 @@ public interface FieldInterface extends ConfigInterface {
     default String getModelKey() {
         if (!hasParentModelKey()) return "";
         if (this.hasParentModelKey()) return getParentModel().getModelKey();
-        if (hasParentModelNaturalId()) return getParentModel().getNaturalId();
         return "";
     }
 
-    default boolean hasParentModelNaturalId() {
-        return hasParentModel() && getParentModel().hasNaturalId();
-    }
 }
 
 

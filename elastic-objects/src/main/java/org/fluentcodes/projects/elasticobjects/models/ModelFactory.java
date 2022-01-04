@@ -11,7 +11,7 @@ import java.util.TreeMap;
  * Created by Werner on 21.1.2021.
  */
 
-public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterface> {
+public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelConfig> {
 
     protected ModelFactory(final ConfigMaps configMaps) {
         super(configMaps, ModelBean.class, ModelConfig.class);
@@ -23,8 +23,8 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterfa
      * @return the config map
      */
     @Override
-    public Map<String, ModelInterface> createConfigMap() {
-        Map<String, ModelInterface> configMap = new TreeMap<>();
+    public Map<String, ModelConfig> createConfigMap() {
+        Map<String, ModelConfig> configMap = new TreeMap<>();
         Map<String, ModelBean> beanMap = createBeanMap();
         for (Map.Entry<String, ModelBean> entry : beanMap.entrySet()) {
             try {
@@ -38,7 +38,7 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterfa
                 ShapeTypes shapeType = bean.getShapeType();
                 if (bean.hasConfigModelKey()) {
                     configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(),
+                            (ModelConfig)bean.createConfig(bean.deriveConfigClass(),
                                     getConfigMaps()));
                     continue;
                 }
@@ -68,7 +68,7 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterfa
                 throw new EoException(e);
             }
         }
-        for (Map.Entry<String, ModelInterface> entry : configMap.entrySet()) {
+        for (Map.Entry<String, ModelConfig> entry : configMap.entrySet()) {
             try {
                 ((ModelConfig) entry.getValue()).resolve(configMap);
             } catch (EoException e) {

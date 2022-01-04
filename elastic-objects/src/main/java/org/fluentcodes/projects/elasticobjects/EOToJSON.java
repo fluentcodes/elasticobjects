@@ -94,13 +94,13 @@ public class EOToJSON {
         if (eoParent.isEmpty() && serializationType != JSONSerializationType.EO) {
             return;
         }
-        Set<String> fieldNames = ((EoChild) eoParent).keysEo();
-        if (fieldNames.isEmpty()) {
+        Set<String> fieldKeySet = ((EoChild) eoParent).keysEo();
+        if (fieldKeySet.isEmpty()) {
             return;
         }
         boolean first = true;
 
-        for (String fieldName : fieldNames) {
+        for (String fieldName : fieldKeySet) {
             if (PathElement.isParentNotSet(fieldName) && serializationType == JSONSerializationType.STANDARD) {
                 continue;
             }

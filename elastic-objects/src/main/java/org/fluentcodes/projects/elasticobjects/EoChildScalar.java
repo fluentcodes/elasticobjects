@@ -40,6 +40,7 @@ public class EoChildScalar implements IEOScalar {
         this.fieldModels = models;
     }
 
+    @Override
     public void set(final Object value) {
         if (value == null) {
             throw new EoException("Will not set null");

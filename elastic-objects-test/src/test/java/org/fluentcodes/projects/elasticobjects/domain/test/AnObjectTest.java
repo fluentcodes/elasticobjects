@@ -2,7 +2,6 @@ package org.fluentcodes.projects.elasticobjects.domain.test;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.models.ConfigConfig;
 import org.fluentcodes.projects.elasticobjects.models.FieldInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
@@ -18,7 +17,6 @@ import java.util.Map;
 import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.MY_AN_OBJECT;
 import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.MY_STRING;
 import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.NATURAL_ID;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_SCOPE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

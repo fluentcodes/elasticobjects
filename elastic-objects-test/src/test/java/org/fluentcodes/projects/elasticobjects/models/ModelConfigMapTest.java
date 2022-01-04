@@ -26,7 +26,6 @@ public class ModelConfigMapTest {
     public void assertMap() {
         ModelConfig model = ProviderConfigMaps.CONFIG_MAPS.findModel(Map.class.getSimpleName());
         Assert.assertEquals(ShapeTypes.MAP, model.getShapeType());
-        Assert.assertTrue(model.hasModel());
         Assert.assertTrue(model.isMap());
         Assert.assertFalse(model.isList());
         Assert.assertFalse(model.isScalar());

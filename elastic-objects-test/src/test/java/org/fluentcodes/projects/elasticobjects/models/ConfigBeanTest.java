@@ -4,6 +4,7 @@ import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCrea
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

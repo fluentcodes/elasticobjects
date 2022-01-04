@@ -3,10 +3,8 @@ package org.fluentcodes.projects.elasticobjects.models;
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
-import org.fluentcodes.projects.elasticobjects.utils.UnmodifiableMap;
-import org.fluentcodes.projects.elasticobjects.domain.BaseConfig;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +15,7 @@ import java.util.Map;
  * @creationDate null
  * @modificationDate Sun Jan 10 11:32:02 CET 2021
  */
-public class ConfigConfig extends BaseConfig implements ConfigInterface {
+public class Config {
   /*.{}.*/
   private final ConfigMaps configMaps;
   /*.{javaInstanceVars}|*/
@@ -30,15 +28,30 @@ public class ConfigConfig extends BaseConfig implements ConfigInterface {
   /* A scope for the cache value. */
   private final List<Scope> scope;
 
+  /* The author of the class. */
+  private final String author;
+  /* Used to define the creation of an item. */
+  private final Date creationDate;
+  /* A description of the model used by every model extending BaseClassImpl.  */
+  private final String description;
+  /* The numeric id of an instance of a class. */
+  private final Long id;
+  /* The natural key in @Base */
+  private final String naturalId;
+
   /*.{}.*/
 
-  public ConfigConfig(ConfigBean configBean, final ConfigMaps configMaps) {
-    super(configBean);
-    this.module = configBean.getModule();
-    this.moduleScope = configBean.getModuleScope();
-    this.scope = configBean.getScope();
-    this.expose = configBean.getExpose();
+  public Config(ConfigBean bean, final ConfigMaps configMaps) {
+    this.module = bean.getModule();
+    this.moduleScope = bean.getModuleScope();
+    this.scope = bean.getScope();
+    this.expose = bean.getExpose();
     this.configMaps = configMaps;
+    this.author = bean.getAuthor();
+    this.creationDate = bean.getCreationDate();
+    this.description = bean.getDescription();
+    this.id = bean.getId();
+    this.naturalId = bean.getNaturalId();
   }
 
   public ConfigMaps getConfigMaps() {
@@ -46,41 +59,44 @@ public class ConfigConfig extends BaseConfig implements ConfigInterface {
   }
 
   /*.{javaAccessors}|*/
-  @Override
   public Expose getExpose() {
     return this.expose;
   }
 
-  @Override
   public String getModule() {
     return this.module;
   }
 
-  @Override
   public String getModuleScope() {
     return this.moduleScope;
   }
 
-  @Override
   public List<Scope> getScope() {
     return this.scope;
   }
 
-  /*.{}.*/
-
-  /**
-   * Set the values from config to {@link ConfigBean}
-   *
-   * @param bean basebean
-   */
-  public void populateBean(ConfigBean bean) {
-    super.populateBean(bean);
-    bean.setConfigModelKey(this.getClass().getSimpleName());
-    bean.setExpose(getExpose());
-    bean.setModule(getModule());
-    bean.setModuleScope(getModuleScope());
-    bean.setScope(getScope());
+  public String getAuthor() {
+    return this.author;
   }
+
+  public Date getCreationDate() {
+    return this.creationDate;
+  }
+
+  public String getDescription() {
+    return this.description;
+  }
+
+  public Long getId() {
+    return this.id;
+  }
+
+  public String getNaturalId() {
+    return this.naturalId;
+  }
+
+
+  /*.{}.*/
 
   @Override
   public String toString() {

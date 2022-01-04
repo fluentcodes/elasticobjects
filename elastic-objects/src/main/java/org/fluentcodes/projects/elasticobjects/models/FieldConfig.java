@@ -17,7 +17,7 @@ import java.util.Map;
  * @creationDate Wed Oct 17 00:00:00 CEST 2018
  * @modificationDate Thu Jan 14 04:26:27 CET 2021
  */
-public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
+public class FieldConfig extends Config implements FieldInterface {
     public static final String AND_MODEL = "' and model '";
     /*.{}.*/
 /*.{javaInstanceVars}|*/
@@ -31,7 +31,7 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
     private boolean resolved;
     private final boolean toSerialize;
     private List<String> modelList;
-    private final ModelInterface parentModel;
+    private final ModelConfig parentModel;
     private Models models;
     private Method getter;
     private Method setter;
@@ -110,7 +110,7 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
         parentModel = null;
     }
 
-    protected void resolve(ModelConfig model, Map<String, ModelInterface> modelConfigMap) {
+    protected void resolve(ModelConfig model, Map<String, ModelConfig> modelConfigMap) {
         if (resolved) {
             return;
         }
@@ -151,7 +151,7 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
         try {
             return model.getModelClass().getMethod("get" + ModelConfigObject.upper(fieldKey), null);
         } catch (NoSuchMethodException e) {
-            throw new EoException("\nCould not find getter method for '" + fieldKey + AND_MODEL + parentModel.getNaturalId() + "' with input type '" + models.getModelClass().getSimpleName() + "': " + e.getMessage());
+            throw new EoException("\nCould not find getter method for '" + fieldKey + AND_MODEL + parentModel.getModelKey() + "' with input type '" + models.getModelClass().getSimpleName() + "': " + e.getMessage());
         }
     }
 
@@ -316,27 +316,5 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
             return super.toString();
         }
         return fieldKey + "(" + modelKeys +")";
-    }
-
-    public void populateBean(final FieldBean bean) {
-        super.populateBean(bean);
-        bean.setFieldKey(fieldKey);
-        bean.setOverride(getOverride());
-        bean.setFinal(getFinal());
-        bean.setModelKeys(modelKeys);
-        bean.setLength(getLength());
-        bean.setGenerated(getGenerated());
-        bean.setNotNull(getNotNull());
-        bean.setSuper(getSuper());
-        bean.setDefault(getDefault());
-        bean.setTransient(getTransient());
-        bean.setUnique(getUnique());
-        bean.setFieldName(getFieldName());
-        bean.setJavascriptType(getJavascriptType());
-        bean.setJsonIgnore(bean.getJsonIgnore());
-        bean.setMax(getMax());
-        bean.setMin(getMin());
-        bean.setStaticName(getStaticName());
-        bean.setProperty(getProperty());
     }
 }

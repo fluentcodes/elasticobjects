@@ -36,18 +36,13 @@ public class ConfigDivTest {
         Assert.assertTrue(mapModel.isMap());
     }
 
-    @Test
-    public void scalarModel__setKeyValue__exception()  {
+    @Test(expected = EoException.class)
+    public void scalarModel__setKeyValue__EoException()  {
         ModelConfig scalarModel = ProviderConfigMaps.CONFIG_MAPS.findModel(String.class.getSimpleName());
         Assert.assertEquals(String.class.getSimpleName(), scalarModel.getModelKey());
         Assert.assertTrue(scalarModel.isScalar());
 
-        String scalar = (String) scalarModel.create();
-        Assert.assertNull(scalar);
-        Assertions.assertThatThrownBy(()->{scalarModel.set(S_TEST_STRING, scalar, S_STRING);})
-                .isInstanceOf(EoException.class);
-        Assertions.assertThatThrownBy(()->{scalarModel.get(S_TEST_STRING, scalar);})
-                .isInstanceOf(EoException.class);
+        scalarModel.create();
     }
 
 }

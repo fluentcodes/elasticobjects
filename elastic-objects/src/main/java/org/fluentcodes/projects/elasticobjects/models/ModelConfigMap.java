@@ -4,13 +4,14 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 /**
  * Created by Werner on 09.10.2016.
  */
-public class ModelConfigMap extends ModelConfig implements ModelConfigMethods {
+public class ModelConfigMap extends ModelConfig {
     public static final String CONFIG_MODEL_KEY = "ModelConfigMap";
 
     public ModelConfigMap(ConfigBean bean, final ConfigMaps configMaps) {
@@ -20,12 +21,6 @@ public class ModelConfigMap extends ModelConfig implements ModelConfigMethods {
     public ModelConfigMap(ModelBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
     }
-
-    @Override
-    public ModelConfig getFieldModel(final String fieldName)  {
-        return null; //TODO
-    }
-
 
     @Override
     public FieldConfig getField(final String fieldName) {
@@ -84,6 +79,10 @@ public class ModelConfigMap extends ModelConfig implements ModelConfigMethods {
         return ((Map) object).containsKey(fieldName);
     }
 
+    @Override
+    public boolean isEmpty(final Object object)  {
+        return object == null || ((Map) object).isEmpty();
+    }
 
     public void remove(final String fieldName, final Object object)  {
         get(fieldName, object);

@@ -1,7 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.domain.BaseInterface;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigNoCreateTests;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
@@ -10,9 +9,8 @@ import org.junit.Test;
 
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_AUTHOR;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_EXPOSE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_SCOPE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_EXPOSE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -22,10 +20,10 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Werner on 13.4.2017.
  */
-public class ConfigConfigTest implements IModelConfigNoCreateTests {
+public class ConfigTest implements IModelConfigNoCreateTests {
     @Override
     public Class<?> getModelConfigClass() {
-        return ConfigConfig.class;
+        return Config.class;
     }
 
     @Override
@@ -48,7 +46,7 @@ public class ConfigConfigTest implements IModelConfigNoCreateTests {
 
     @Test
     public void checkConfigConfig_FieldExpose_FinalTrue() {
-        ModelConfig config = ProviderConfigMaps.findModel(ConfigConfig.class);
+        ModelConfig config = ProviderConfigMaps.findModel(Config.class);
         FieldConfig fieldConfig = config.getField(F_EXPOSE);
         assertTrue(fieldConfig.getFinal());
         Boolean property = fieldConfig.getProperty();
@@ -58,10 +56,25 @@ public class ConfigConfigTest implements IModelConfigNoCreateTests {
 
     @Test
     public void createByElement() {
-        final String serialized = "{ \"ConfigConfig\": {\n" +
+        final String serialized = "{  \"Config\": {\n" +
                 "    \"module\": \"elastic-objects\",\n" +
                 "    \"moduleScope\": \"main\",\n" +
                 "    \"fieldKeys\": {\n" +
+                "      \"id\": {\n" +
+                "        \"final\": true\n" +
+                "      },\n" +
+                "      \"description\": {\n" +
+                "        \"final\": true\n" +
+                "      },\n" +
+                "      \"naturalId\": {\n" +
+                "        \"final\": true\n" +
+                "      },\n" +
+                "      \"creationDate\": {\n" +
+                "        \"final\": true\n" +
+                "      },\n" +
+                "      \"author\": {\n" +
+                "        \"final\": true\n" +
+                "      },\n" +
                 "      \"expose\": {\n" +
                 "        \"final\": true\n" +
                 "      },\n" +
@@ -75,12 +88,10 @@ public class ConfigConfigTest implements IModelConfigNoCreateTests {
                 "        \"final\": true\n" +
                 "      }\n" +
                 "    },\n" +
-                "    \"interfaces\": \"ConfigInterface\",\n" +
-                "    \"superKey\": \"BaseConfig\",\n" +
                 "    \"expose\": \"NONE\",\n" +
                 "    \"description\": \"Basic cache as super object for other cached items. \",\n" +
                 "    \"packagePath\": \"org.fluentcodes.projects.elasticobjects.models\",\n" +
-                "    \"modelKey\": \"ConfigConfig\",\n" +
+                "    \"modelKey\": \"Config\",\n" +
                 "    \"properties\": {\n" +
                 "      \"create\": false,\n" +
                 "      \"final\": true,\n" +
@@ -91,11 +102,11 @@ public class ConfigConfigTest implements IModelConfigNoCreateTests {
                 "  }}";
         EoRoot root = ProviderConfigMapsDev.createEo(serialized);
         Map<String, Object> beanMap = (Map<String, Object>)root.get();
-        Map<String, Object> modelConfigMap =  (Map<String, Object>)beanMap.get(ConfigConfig.class.getSimpleName());
+        Map<String, Object> modelConfigMap =  (Map<String, Object>)beanMap.get(Config.class.getSimpleName());
         ModelBean bean = new ModelBean(modelConfigMap);
         assertNotNull(bean);
-        assertEquals(ConfigConfig.class.getSimpleName(), bean.getModelKey());
-        assertEquals(ConfigConfig.class.getSimpleName(), bean.getNaturalId());
+        assertEquals(Config.class.getSimpleName(), bean.getModelKey());
+        assertEquals(Config.class.getSimpleName(), bean.getNaturalId());
         assertEquals(F_SCOPE, bean.getFieldBean(F_SCOPE).getFieldKey());
         assertEquals(F_SCOPE, bean.getFieldBean(F_SCOPE).getNaturalId());
 

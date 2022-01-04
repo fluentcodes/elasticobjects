@@ -24,7 +24,9 @@ public interface IModelConfigTests {
     }
 
     default void assertBeanFromModelConfigEqualsPersisted() {
-        XpectEoJunit4.assertStaticEO(ProviderConfigMaps.createEo(getModelConfig().createBean()));
+        XpectEoJunit4.assertStaticEO(
+                ProviderConfigMaps.createEo(getModelConfig().createBean())
+        );
     }
 
 }

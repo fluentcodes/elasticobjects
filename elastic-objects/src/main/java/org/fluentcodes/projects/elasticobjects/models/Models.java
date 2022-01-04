@@ -296,10 +296,6 @@ public class Models {
         return getModel().isCall();
     }
 
-    public boolean isNull() {
-        return getModel().isNull();
-    }
-
     public Class<?> getModelClass() {
         return getModel().getModelClass();
     }

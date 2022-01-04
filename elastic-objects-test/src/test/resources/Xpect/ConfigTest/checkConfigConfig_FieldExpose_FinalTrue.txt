@@ -14,7 +14,7 @@
   "moduleScope": "main",
   "naturalId": "expose",
   "notNull": false,
-  "override": true,
+  "override": false,
   "property": false,
   "staticName": false,
   "super": false,

@@ -29,7 +29,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -56,7 +56,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -110,7 +110,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -137,7 +137,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -272,7 +272,7 @@
         "unique": true,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -461,7 +461,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -488,7 +488,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -515,7 +515,7 @@
         "unique": true,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -623,7 +623,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -749,5 +749,5 @@
     "create": false,
     "override": true
   },
-  "superKey": "ConfigConfig"
+  "superKey": "Config"
 }

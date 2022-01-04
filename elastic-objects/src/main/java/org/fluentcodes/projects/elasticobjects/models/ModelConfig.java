@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.PathPattern;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -16,7 +15,7 @@ import java.util.TreeMap;
 /**
  * Created by Werner on 09.10.2016.
  */
-public abstract class ModelConfig extends ConfigConfig implements ModelConfigMethods {
+public abstract class ModelConfig extends Config implements ModelInterface {
     public static final String MODEL_KEY = "modelKey";
     public static final String INTERFACES = "interfaces";
     public static final String SUPER_KEY = "superKey";
@@ -155,7 +154,6 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     public String getModelKey() {
         return this.modelKey;
     }
-    //<call keep="JAVA" configKey="CacheGetter.tpl" }
 
     public String getPackagePath() {
         return this.packagePath;
@@ -182,7 +180,6 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         return modelClass;
     }
 
-    @Override
     public Map<String, FieldConfig> getFieldMap() {
         return fieldConfigMap;
     }
@@ -208,7 +205,7 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         }
     }
 
-    private final void setSuperModel(Map<String, ModelInterface> modelConfigMap) {
+    private final void setSuperModel(Map<String, ModelConfig> modelConfigMap) {
         if (!hasSuperKey()) {
             return;
         }
@@ -219,7 +216,7 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     }
 
 
-    private final void setDefaultImplementationModel(Map<String, ModelInterface> modelConfigMap) {
+    private final void setDefaultImplementationModel(Map<String, ModelConfig> modelConfigMap) {
         if (!hasDefaultImplementation()) {
             return;
         }
@@ -229,11 +226,11 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         this.defaultImplementationModel = (ModelConfig) modelConfigMap.get(getDefaultImplementation());
     }
 
-    public final ModelConfigMethods getDefaultImplementationModel() {
+    public final ModelConfig getDefaultImplementationModel() {
         return defaultImplementationModel;
     }
 
-    private final void setInterfacesMap(Map<String, ModelInterface> cache) {
+    private final void setInterfacesMap(Map<String, ModelConfig> cache) {
         if (interfaces == null || interfaces.isEmpty()) {
             return;
         }
@@ -243,13 +240,21 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         }
     }
 
-    private void setFieldConfigMap(final Map<String, ModelInterface> modelConfigMap) {
+    private boolean hasFieldConfigMap() {
+        return !fieldConfigMap.isEmpty();
+    }
+
+    private void setFieldConfigMap(final Map<String, ModelConfig> modelConfigMap) {
         if (!hasFieldConfigMap()) {
             return;
         }
         for (FieldConfig fieldConfig : fieldConfigMap.values()) {
             fieldConfig.resolve(this, modelConfigMap);
         }
+    }
+
+    public Set<String> keys(Object object)  {
+        throw new EoException("Could not get field names because no sub fields defined for scalar models! " + object.getClass().getSimpleName());
     }
 
     public Map getKeyValues(final Object object, final PathPattern pathPattern) {
@@ -263,9 +268,6 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         }
         for (String key : keys) {
             try {
-                /*if (fieldConfigMap.get(key).isTransient()) {
-                    continue;
-                }*/
                 Object value = get(key, object);
                 if (value == null) {
                     continue;
@@ -278,7 +280,11 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         return keyValues;
     }
 
-    public void resolve(Map<String, ModelInterface> modelConfigMap) {
+    public Object get(String fieldKey, Object value) {
+        throw new EoException("Could not get field value because no sub fields defined for scalar models: " + fieldKey);
+    }
+
+    public void resolve(Map<String, ModelConfig> modelConfigMap) {
         if (resolved) {
             return;
         }
@@ -333,5 +339,89 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
             return getShapeType().asObject(getModelClass(), object);
         }
         return getShapeType().asObject(object);
+    }
+
+    public void remove(final String fieldName, final Object object)  {
+        throw new EoException("Could not remove sub field because not sub fields defined for scalar models: " + fieldName);
+    }
+
+    public Object create() {
+        throw new EoException("Could not create empty object");
+    }
+
+    public boolean isEmpty(final Object object)  {
+        return object == null;
+    }
+
+    public boolean set(final String fieldName, final Object object, final Object value)  {
+        throw new EoException("Could not set value because no field defined for scalar models: " + fieldName);
+    }
+
+    public boolean exists(final String fieldName, final Object object)  {
+        throw new EoException("No sub fields defined for scalar models: " + fieldName);
+    }
+
+    public int size(final Object object)  {
+        throw new EoException("Could not get field names size because no sub fields  defined for scalar models!" + object.getClass().getSimpleName());
+    }
+
+    public Set<String> getFieldKeys()  {
+        throw new EoException("Could not get field names because no sub fields  defined for scalar models!");
+    }
+
+    public FieldConfig getField(final String fieldName)  {
+        throw new EoException("Could not get sub field because no field defined for scalar models: " + fieldName);
+    }
+
+    public ModelConfig getFieldModelConfig(final String fieldName)  {
+        throw new EoException("Could not get sub field because no field defined for scalar models: " + fieldName);
+    }
+
+    public boolean hasField(final String fieldKey)  {
+        return false;
+    }
+
+    public boolean isList() {
+        return (this instanceof ModelConfigList);
+    }
+
+    public boolean isMap() {
+        return (this instanceof ModelConfigMap);
+    }
+
+    public boolean isScalar() {
+        return (this instanceof ModelConfigScalar);
+    }
+
+    public boolean isEnum() {
+        return hasShapeType() && getShapeType() == ShapeTypes.ENUM;
+    }
+
+    public boolean isNumber() {
+        return hasShapeType() && getShapeType().isNumber();
+    }
+
+    public boolean isObject() {
+        return (this instanceof ModelConfigObject);
+    }
+
+    public boolean isCall() {
+        return getModelKey().endsWith("Call");
+    }
+
+    public boolean isInterface() {
+        return getShapeType() == ShapeTypes.INTERFACE;
+    }
+
+    public boolean isContainer() {
+        return !isScalar();
+    }
+
+    public boolean isProperty(final String fieldKey) {
+        return hasField(fieldKey) && getField(fieldKey).isProperty();
+    }
+
+    public boolean isJsonIgnore(final String fieldKey) {
+        return hasField(fieldKey) && getField(fieldKey).isJsonIgnore();
     }
 }

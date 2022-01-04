@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 import static org.fluentcodes.projects.elasticobjects.calls.files.FileInterface.F_FILE_NAME;
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.F_NATURAL_ID;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_MODULE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

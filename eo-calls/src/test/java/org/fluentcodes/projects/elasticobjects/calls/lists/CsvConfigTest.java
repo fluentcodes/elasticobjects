@@ -3,7 +3,6 @@ package org.fluentcodes.projects.elasticobjects.calls.lists;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.calls.files.CsvConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
-import org.fluentcodes.projects.elasticobjects.models.ConfigConfig;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypes;
@@ -16,7 +15,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.F_SCOPE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

@@ -21,7 +21,7 @@
         "notNull": false,
         "length": 256,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -29,7 +29,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -48,7 +48,7 @@
         "notNull": false,
         "length": -1,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -56,7 +56,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -75,7 +75,7 @@
         "notNull": false,
         "length": 512,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -83,7 +83,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -110,7 +110,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -129,7 +129,7 @@
         "notNull": true,
         "length": -1,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -137,7 +137,7 @@
         "unique": true,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -164,7 +164,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -191,7 +191,7 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -210,7 +210,7 @@
         "notNull": true,
         "length": 80,
         "staticName": false,
-        "super": true,
+        "super": false,
         "default": false,
         "min": -1,
         "generated": false,
@@ -218,7 +218,7 @@
         "unique": true,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     },
@@ -245,16 +245,15 @@
         "unique": false,
         "final": true,
         "property": false,
-        "override": true,
+        "override": false,
         "jsonIgnore": false
       }
     }
   },
-  "interfaces": "ConfigInterface",
-  "modelKey": "ConfigConfig",
+  "modelKey": "Config",
   "module": "elastic-objects",
   "moduleScope": "main",
-  "naturalId": "ConfigConfig",
+  "naturalId": "Config",
   "packagePath": "org.fluentcodes.projects.elasticobjects.models",
   "properties": {
     "dbAnnotated": false,
@@ -262,6 +261,5 @@
     "property": false,
     "create": false,
     "override": true
-  },
-  "superKey": "BaseConfig"
+  }
 }

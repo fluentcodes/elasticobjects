@@ -14,7 +14,6 @@ public class ModelConfigScalarTest {
         ModelConfig model = ProviderConfigMaps.CONFIG_MAPS.findModel(String.class);
         Assert.assertEquals(String.class, model.getModelClass());
         Assert.assertEquals(ShapeTypes.STRING, model.getShapeType());
-        Assert.assertTrue(model.hasModel());
         Assert.assertFalse(model.isObject());
         Assert.assertTrue(model.isScalar());
         Assert.assertEquals(String.class.getSimpleName(), model.getNaturalId());

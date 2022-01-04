@@ -54,8 +54,8 @@ public class ProviderConfigMapsDev {
         return new ModelFactoryFromConfigurations(CONFIG_MAPS_DEV).createBeanMap();
     }
 
-    public static final Map<String, ModelInterface> createModelConfigMap() {
-        Map<String, ModelInterface> modelConfigMap = new HashMap<>();
+    public static final Map<String, ModelConfig> createModelConfigMap() {
+        Map<String, ModelConfig> modelConfigMap = new HashMap<>();
         Map<String, ModelBean> modelBeanMap = new ModelFactoryFromConfigurations(CONFIG_MAPS_DEV).createBeanMap();
         for (Map.Entry<String, ModelBean> entry: modelBeanMap.entrySet()) {
             modelConfigMap.put(entry.getKey(), createModelConfig(entry.getValue()));

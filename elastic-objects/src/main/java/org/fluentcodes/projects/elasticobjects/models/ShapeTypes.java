@@ -76,4 +76,11 @@ public enum ShapeTypes {
         }
         throw new EoException("Could not map enum for " + object.getClass());
     }
+
+    public boolean isNumber() {
+        return this == ShapeTypes.DOUBLE ||
+                this == ShapeTypes.FLOAT ||
+                this == ShapeTypes.LONG ||
+                this == ShapeTypes.INTEGER;
+    }
 }

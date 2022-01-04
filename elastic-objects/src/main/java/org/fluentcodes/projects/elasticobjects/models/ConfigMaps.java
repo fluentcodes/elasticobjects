@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * @since 13.10.2016.
  */
 public class ConfigMaps {
-    private final Map<Class<? extends ConfigInterface>, Map<String, ConfigInterface>> configMaps;
+    private final Map<Class<? extends Config>, Map<String, Config>> configMaps;
     private final Scope scope;
     private boolean modelFinished;
 
@@ -48,7 +48,7 @@ public class ConfigMaps {
         return modelFinished;
     }
 
-    public Set<Class<? extends ConfigInterface>> getKeys() {
+    public Set<Class<? extends Config>> getKeys() {
         return configMaps.keySet();
     }
 
@@ -62,7 +62,7 @@ public class ConfigMaps {
      * @param configKey   the config key to find
      * @return The configuration class
      */
-    public Object find(final Class<? extends ConfigInterface> configClass, final String configKey)  {
+    public Object find(final Class<? extends Config> configClass, final String configKey)  {
         if (configKey == null || configKey.isEmpty()) {
             throw new EoException("Config key is empty within '" + configClass.getSimpleName() + "'!");
         }
@@ -93,7 +93,7 @@ public class ConfigMaps {
         return getConfigMap(configClass).keySet();
     }
 
-    private Map<String, ConfigInterface> getConfigMap(Class<? extends ConfigInterface> configClass) {
+    private Map<String, Config> getConfigMap(Class<? extends Config> configClass) {
         if (configClass == null) throw new EoException("Config class is null!");
         if (!this.configMaps.containsKey(configClass)) {
             String factoryClassName = configClass.getName().replace("Config", "Factory") ;
@@ -136,12 +136,12 @@ public class ConfigMaps {
         return findModel(modelValue.getClass());
     }
 
-    public String toString(Class<? extends ConfigInterface> configClass) {
+    public String toString(Class<? extends Config> configClass) {
         if (!isModelFinished()) {
             return "Not finshed yet.";
         }
 
-        Map<String, ConfigInterface> configMap = getConfigMap(configClass);
+        Map<String, Config> configMap = getConfigMap(configClass);
 
         EoRoot cloneMap = EoRoot.ofClass(this, Map.class);
         cloneMap.setSerializationType(JSONSerializationType.STANDARD);

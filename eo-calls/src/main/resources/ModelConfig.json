@@ -68,7 +68,6 @@
       }
     },
     "interfaces": "Call",
-    "superKey": "BaseBean",
     "expose": "NONE",
     "description": "Basic bean implementation for calls. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
@@ -251,33 +250,6 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "CsvConfig": {
-    "module": "eo-calls",
-    "moduleScope": "main",
-    "fieldKeys": {
-      "fieldDelimiter": {
-        "default": true,
-        "final": true
-      },
-      "rowDelimiter": {
-        "default": true,
-        "final": true
-      },
-      "listParamsConfig": {
-        "final": true
-      }
-    },
-    "superKey": "FileConfig",
-    "expose": "NONE",
-    "description": "Configuration for csv files with fieldDelimiter and rowDelimiter fields. ",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
-    "modelKey": "CsvConfig",
-    "properties": {
-      "create": false,
-      "final": true
-    },
-    "author": "Werner Diwischek"
-  },
   "CsvSimpleReadCall": {
     "module": "eo-calls",
     "moduleScope": "main",
@@ -409,7 +381,7 @@
   "FileBean": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "cached, fileName, filePath, hostConfigKey",
+    "fieldKeys": "cached, fileName, filePath, hostConfigKey, FileBean.properties",
     "interfaces": "FileInterface",
     "superKey": "PermissionBean",
     "expose": "NONE",
@@ -422,7 +394,33 @@
       "override": true
     },
     "author": "Werner Diwischek",
-    "creationDate": 1608073200000
+    "creationDate": 1608073200000,
+    "properties": {
+      "create": true
+    }
+  },
+  "FileBeanProperties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "fieldKeys": {
+      "colKeys": {},
+      "fieldDelimiter": {},
+      "filter": {},
+      "rowDelimiter": {},
+      "rowEnd": {},
+      "rowHead": {},
+      "rowStart": {}
+    },
+    "interfaces": "FilePropertiesInterface",
+    "expose": "NONE",
+    "description": "Configuration parameters for different purposes. ",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "modelKey": "FileBeanProperties",
+    "author": "Werner Diwischek",
+    "creationDate": 1539727200000,
+    "properties": {
+      "create": true
+    }
   },
   "FileCall": {
     "module": "eo-calls",
@@ -456,18 +454,56 @@
       },
       "hostConfigKey": {
         "final": true
+      },
+      "FileConfig.properties": {
+        "final": true
       }
     },
-    "interfaces": "FileInterface,FileConfigMethods",
+    "interfaces": "FileInterface",
     "superKey": "PermissionConfig",
     "expose": "NONE",
     "description": "Immutable EO file configuration allow read or write access to a specific file. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
     "modelKey": "FileConfig",
     "properties": {
-      "create": false,
-      "final": true,
-      "override": true
+      "create": false
+    },
+    "author": "Werner Diwischek",
+    "creationDate": 1539727200000
+  },
+  "FileConfigProperties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "fieldKeys": {
+      "colKeys": {
+        "final": true
+      },
+      "fieldDelimiter": {
+        "final": true
+      },
+      "filter": {
+        "final": true
+      },
+      "rowDelimiter": {
+        "final": true
+      },
+      "rowEnd": {
+        "final": true
+      },
+      "rowHead": {
+        "final": true
+      },
+      "rowStart": {
+        "final": true
+      }
+    },
+    "interfaces": "FilePropertiesInterface",
+    "expose": "NONE",
+    "description": "Immutable configuration parameters for different purposes. ",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "modelKey": "FileConfigProperties",
+    "properties": {
+      "create": false
     },
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
@@ -476,31 +512,25 @@
     "module": "eo-calls",
     "moduleScope": "main",
     "fieldKeys": "cached, fileName, filePath, hostConfigKey",
-    "interfaces": "PermissionInterface,ConfigInterface",
     "expose": "NONE",
     "description": "Access methods for field properties map. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
     "modelKey": "FileInterface",
     "properties": {
-      "create": false,
-      "final": true
+      "create": false
     },
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1599602400000
   },
-  "FileConfigMethods": {
+  "FilePropertiesInterface": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "expose": "NONE",
-    "description": "Access methods for field properties map. ",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
-    "modelKey": "FileConfigMethods",
-    "properties": {
-      "create": false,
-      "final": true
-    },
+    "expose": "WEB",
     "shapeType": "INTERFACE",
+    "description": "A common interface for {@link FileBeanProperties} and  {@link FileConfigProperties}",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "modelKey": "FilePropertiesInterface",
     "author": "Werner Diwischek",
     "creationDate": 1608073200000
   },
@@ -562,18 +592,33 @@
   "HostBean": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "port, protocol, password, hostName, user, url",
+    "fieldKeys": "hostName, HostBean.properties",
     "interfaces": "HostInterface",
     "superKey": "PermissionBean",
     "expose": "WEB",
-    "description": "A bean container class for Field values",
+    "description": "A bean container class for Host values from HostConfig.json",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "HostBean",
+    "author": "Werner Diwischek",
+    "creationDate": 1608073200000,
     "properties": {
       "create": true
-    },
+    }
+  },
+  "HostBeanProperties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "fieldKeys": "classPath, port, protocol, password, user, url",
+    "interfaces": "HostPropertiesInterface",
+    "expose": "WEB",
+    "description": "A bean container class for Host values",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "modelKey": "HostBeanProperties",
     "author": "Werner Diwischek",
-    "creationDate": 1608073200000
+    "creationDate": 1608073200000,
+    "properties": {
+      "create": true
+    }
   },
   "HostCall": {
     "module": "eo-calls",
@@ -597,12 +642,8 @@
     "module": "eo-calls",
     "moduleScope": "main",
     "fieldKeys": {
-      "port": {"final": true},
-      "protocol": {"final": true, "property": false},
-      "password": {"final": true, "property": false},
-      "hostName": {"final": true, "property": false},
-      "user": {"final": true, "property": false},
-      "url": {"final": true, "property": false}
+      "hostName": {"final": true},
+      "HostConfig.properties": {"final": true}
     },
     "interfaces": "HostInterface",
     "superKey": "PermissionConfig",
@@ -616,21 +657,51 @@
     },
     "creationDate": 1539727200000
   },
+  "HostConfigProperties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "fieldKeys": {
+      "classPath": {"final": true},
+      "port": {"final": true},
+      "protocol": {"final": true},
+      "password": {"final": true},
+      "user": {"final": true},
+      "url": {"final": true}
+    },
+    "interfaces": "HostPropertiesInterface",
+    "expose": "NONE",
+    "description": "Basic host definition for file or db cache. ",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "modelKey": "HostConfigProperties",
+    "properties": {
+      "create": false
+    },
+    "creationDate": 1539727200000
+  },
   "HostInterface": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "interfaces": "ConfigInterface",
     "expose": "NONE",
     "description": "Methods to get the properties schema from properties map.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "HostInterface",
     "properties": {
-      "create": false,
-      "final": true
+      "create": false
     },
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1600466400000
+  },
+  "HostPropertiesInterface": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "expose": "WEB",
+    "description": "A common interface for {@link HostBeanProperties} and  {@link HostConfigProperties}",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "modelKey": "HostPropertiesInterface",
+    "shapeType": "INTERFACE",
+    "author": "Werner Diwischek",
+    "creationDate": 1608073200000
   },
   "JsonWriteCall": {
     "module": "eo-calls",
@@ -687,20 +758,16 @@
         "override": false
       },
       "length": {
-        "override": false,
-        "property": true
+        "override": false
       },
       "rowEnd": {
-        "override": false,
-        "property": true
+        "override": false
       },
       "rowHead": {
-        "override": false,
-        "property": true
+        "override": false
       },
       "rowStart": {
-        "override": false,
-        "property": true
+        "override": false
       }
     },
     "expose": "NONE",
@@ -710,52 +777,6 @@
     "properties": {
       "create": true
     },
-    "author": "Werner Diwischek"
-  },
-  "ListParamsConfig": {
-    "module": "eo-calls",
-    "moduleScope": "main",
-    "fieldKeys": {
-      "colKeys": {
-        "default": true,
-        "transient": true,
-        "final": true
-      },
-      "filter": {
-        "default": true,
-        "transient": true,
-        "final": true
-      },
-      "length": {
-        "default": true,
-        "transient": true,
-        "final": true
-      },
-      "rowEnd": {
-        "default": true,
-        "transient": true,
-        "final": true
-      },
-      "rowHead": {
-        "default": true,
-        "transient": true,
-        "final": true
-      },
-      "rowStart": {
-        "default": true,
-        "transient": true,
-        "property": false,
-        "final": true
-      }
-    },
-    "expose": "NONE",
-    "description": "Defines default access values for ListParams",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
-    "modelKey": "ListParamsConfig",
-    "properties": {
-      "create": false
-    },
-    "shapeType": "CONFIG",
     "author": "Werner Diwischek"
   },
   "Or": {
@@ -793,7 +814,7 @@
     "module": "eo-calls",
     "moduleScope": "main",
     "fieldKeys": {"permissions": {"final": true}},
-    "superKey": "ConfigConfig",
+    "superKey": "Config",
     "expose": "NONE",
     "description": "Implementation for resources with permission method ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",

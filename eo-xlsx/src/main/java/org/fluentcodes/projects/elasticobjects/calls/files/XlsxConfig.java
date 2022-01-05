@@ -33,7 +33,6 @@ import java.util.List;
  * Created by Werner on 30.10.2016.
  */
 public class XlsxConfig extends FileConfig implements XlsxInterface, ListParamsConfigInterface {
-    private final ListParamsConfig listParams;
     private final String sheetName;
 
     public XlsxConfig(final ConfigBean configBean, final ConfigMaps configMaps) {

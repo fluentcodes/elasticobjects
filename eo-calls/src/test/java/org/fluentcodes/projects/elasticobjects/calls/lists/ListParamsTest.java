@@ -53,7 +53,7 @@ public class ListParamsTest implements IModelConfigCreateTests {
         Assert.assertEquals(new Integer(5), params.getRowStart());
         params.setRowStart(6);
         Assert.assertEquals(new Integer(5), params.getRowStart());
-        params.prepare();
+        params.setDefault();
         Assert.assertEquals(new Integer(5), params.getRowStart());
         Assert.assertEquals(new Integer(-1), params.getRowHead());
         Assert.assertEquals(new Integer(-1), params.getLength());
@@ -71,7 +71,7 @@ public class ListParamsTest implements IModelConfigCreateTests {
         Assert.assertEquals(new Integer(5), params.getLength());
         params.setLength(6);
         Assert.assertEquals(new Integer(5), params.getLength());
-        params.prepare();
+        params.setDefault();
         Assert.assertEquals(new Integer(0), params.getRowStart());
         Assert.assertEquals(new Integer(-1), params.getRowHead());
         Assert.assertEquals(new Integer(5), params.getLength());
@@ -92,7 +92,7 @@ public class ListParamsTest implements IModelConfigCreateTests {
         Assert.assertEquals(new Integer(5), params.getLength());
         params.setLength(6);
         Assert.assertEquals(new Integer(6), params.getLength());
-        params.prepare();
+        params.setDefault();
         Assert.assertEquals(new Integer(3), params.getRowStart());
         Assert.assertEquals(new Integer(2), params.getRowHead());
         Assert.assertEquals(new Integer(6), params.getLength());

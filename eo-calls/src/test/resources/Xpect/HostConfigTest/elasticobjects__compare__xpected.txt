@@ -7,5 +7,9 @@
   "naturalId": "elasticobjects",
   "permissions": {
   },
-  "protocol": "http"
+  "properties": {
+    "classPath": "src.main.resources",
+    "port": 80,
+    "protocol": "http"
+  }
 }

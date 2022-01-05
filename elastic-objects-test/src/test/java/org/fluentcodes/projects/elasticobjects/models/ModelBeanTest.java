@@ -23,8 +23,8 @@ import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_EXPOSE
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE_SCOPE;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_NAME;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FINAL;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FIELD_NAME;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FINAL;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.MODEL_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.SUPER_KEY;
@@ -32,11 +32,6 @@ import static org.fluentcodes.projects.elasticobjects.models.ModelInterface.SHAP
 import static org.junit.Assert.assertEquals;
 
 public class ModelBeanTest implements IModelConfigCreateTests {
-    public static void assertModel(final String fieldName, final Object value, final Object expectedResult) {
-        ModelBean bean = createModelBean(fieldName, value);
-        Object propertyValue = bean.getProperties().get(fieldName);
-        assertEquals("Problem for " + fieldName, expectedResult, propertyValue);
-    }
 
     public static ModelBean createModelBean(final String fieldName, final Object value) {
         final String serialized = "{     \"" + F_FIELD_NAME + "\": {\n" +
@@ -119,40 +114,11 @@ public class ModelBeanTest implements IModelConfigCreateTests {
         Assertions.assertThat(eo.get(SHAPE_TYPE)).isEqualTo(ShapeTypes.LIST);
     }
 
-    @Ignore("Check for later")
-    @Test
-    public void empty__getJavascriptType__EoInternalExcection() {
-        ModelBean modelBean = new ModelBean();
-        Assertions.assertThatThrownBy(() -> {
-            modelBean.getJavascriptType();
-        })
-                .isInstanceOf(EoInternalException.class);
-    }
-
-    @Ignore("Check for later")
-    @Test
-    public void empty__modelKey_String__getJavascriptType__string() {
-        ModelBean modelBean = new ModelBean();
-        modelBean.setModelKey(String.class.getSimpleName());
-        Assertions.assertThat(modelBean.getJavascriptType())
-                .isEqualTo("string");
-    }
-
-
-    @Ignore("Check for later")
-    @Test
-    public void empty__modelKey_Float__getJavascriptType__number() {
-        ModelBean modelBean = new ModelBean();
-        modelBean.setModelKey(Float.class.getSimpleName());
-        Assertions.assertThat(modelBean.getJavascriptType())
-                .isEqualTo("number");
-    }
-
     @Test
     public void empty__setFinal_true__isFinal_true() {
         ModelBean modelBean = new ModelBean();
-        modelBean.setFinal(true);
-        Assertions.assertThat(modelBean.isFinal()).isTrue();
+        modelBean.getProperties().setFinal(true);
+        Assertions.assertThat(modelBean.getProperties().isFinal()).isTrue();
     }
 
     @Test
@@ -166,11 +132,6 @@ public class ModelBeanTest implements IModelConfigCreateTests {
     public void ArrayListList__isList__true() {
         ModelBean modelBean = new ModelBean(ArrayList.class, ShapeTypes.LIST);
         Assertions.assertThat(modelBean.getShapeType()).isEqualTo(ShapeTypes.LIST);
-    }
-
-    @Test
-    public void testExample() {
-        assertModel(F_FINAL, true, true);
     }
 
     @Test

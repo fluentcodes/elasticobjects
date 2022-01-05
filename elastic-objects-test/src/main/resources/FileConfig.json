@@ -1,6 +1,5 @@
 {
   "AnObject.csv": {
-    "configModelKey": "CsvConfig",
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
@@ -28,7 +27,6 @@
       "read": ["guest"]
   },
   "ListSimple.csv": {
-    "configModelKey": "CsvConfig",
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "hostConfigKey": "localhost",

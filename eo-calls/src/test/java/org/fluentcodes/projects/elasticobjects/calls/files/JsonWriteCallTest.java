@@ -14,6 +14,7 @@ import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_VALUE11;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_VALUE12;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_VALUE21;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_VALUE22;
+import static org.fluentcodes.projects.elasticobjects.calls.Permissions.SUPER_ADMIN;
 
 /**
  * Created 23.8.2020
@@ -26,12 +27,12 @@ public class JsonWriteCallTest {
     public void call__Json__role_SuperAdmin__execute__logEmpty() {
         final JsonWriteCall callWrite = new JsonWriteCall(FILE_TMP_JSON);
         EoRoot eo = ProviderConfigMaps.createEo();
-        eo.setRoles(R_SUPER_ADMIN);
+        eo.setRoles(SUPER_ADMIN);
         eo.set(S_VALUE11, S0, S_KEY1);
         eo.set(S_VALUE12, S0, S_KEY2);
         eo.set(S_VALUE21, S1, S_KEY1);
         eo.set(S_VALUE22, S1, S_KEY2);
-        eo.setRoles(R_SUPER_ADMIN);
+        eo.setRoles(SUPER_ADMIN);
         String result = callWrite.execute(eo);
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(result).contains("target.json");

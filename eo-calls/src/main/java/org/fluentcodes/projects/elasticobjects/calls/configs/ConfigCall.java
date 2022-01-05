@@ -4,6 +4,7 @@ import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.models.Config;
 import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
@@ -34,11 +35,11 @@ public class ConfigCall extends ConfigKeysCall {
         super();
     }
 
-    public ConfigCall(final Class<? extends ConfigInterface> configClass) {
+    public ConfigCall(final Class<? extends Config> configClass) {
         super(configClass);
     }
 
-    public ConfigCall(final Class<? extends ConfigInterface> configClass, final String configFilter) {
+    public ConfigCall(final Class<? extends Config> configClass, final String configFilter) {
         super(configClass, configFilter);
     }
 

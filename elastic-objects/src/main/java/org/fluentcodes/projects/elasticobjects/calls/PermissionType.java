@@ -7,9 +7,9 @@ public enum PermissionType {
     CREATE(2, "create"),
     DELETE(1, "delete"),
     EXECUTE(0, "execute"),
-    NOTHING(5, "nothing"),
+    WRITE(3, "write"),
     READ(4, "read"),
-    WRITE(3, "write");
+    NOTHING(5, "nothing"),;
 
     private int value;
     private String fieldKey;

@@ -9,11 +9,9 @@
   "moduleScope": "main",
   "naturalId": "PermissionInterface",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
-  "properties": {
-    "dbAnnotated": false,
-    "final": true,
-    "property": false,
+  "(ModelBeanProperties)properties": {
     "create": false,
-    "override": false
+    "dbAnnotated": false,
+    "final": true
   }
 }

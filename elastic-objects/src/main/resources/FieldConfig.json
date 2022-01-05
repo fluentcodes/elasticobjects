@@ -5,11 +5,7 @@
     "modelKeys": "Boolean",
     "description": "If true the generated model will be initially set as abstract class.",
     "expose": "NONE",
-    "fieldKey": "abstract",
-    "properties": {
-      "property": true,
-      "default": true
-    }
+    "fieldKey": "abstract"
   },
   "author": {
     "module": "elastic-objects",
@@ -38,7 +34,14 @@
     "fieldKey": "configModelKey",
     "length": 80
   },
-
+  "create": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "Boolean",
+    "description": "If the model could be . ",
+    "expose": "NONE",
+    "fieldKey": "create"
+  },
   "creationDate": {
     "module": "elastic-objects",
     "moduleScope": "main",
@@ -53,11 +56,7 @@
     "modelKeys": "Boolean",
     "description": "If true a db annotation will be generated for java instance vars. ",
     "expose": "NONE",
-    "fieldKey": "dbAnnotated",
-    "properties": {
-      "property": true,
-      "default": true
-    }
+    "fieldKey": "dbAnnotated"
   },
   "default": {
     "module": "elastic-objects",
@@ -65,10 +64,16 @@
     "modelKeys": "Boolean",
     "description": "Set when an default implementation is defined within an interface. ",
     "expose": "NONE",
-    "fieldKey": "default",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "default"
+  },
+  "defaultImplementation": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "Set when an default implementation is defined within an interface.",
+    "expose": "WEB",
+    "length": 80,
+    "fieldKey": "defaultImplementation"
   },
   "description": {
     "module": "elastic-objects",
@@ -128,9 +133,24 @@
     "expose": "NONE",
     "fieldKey": "fieldName",
     "properties": {
-      "length": 80,
-      "property": true
+      "length": 80
     }
+  },
+  "FieldBean.properties": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "FieldBeanProperties",
+    "description": "Mutable field values to create FieldConfig.properties.",
+    "expose": "NONE",
+    "fieldKey": "properties"
+  },
+  "FieldConfig.properties": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "FieldConfigProperties",
+    "description": "Immutable field values.",
+    "expose": "NONE",
+    "fieldKey": "properties"
   },
   "final": {
     "module": "elastic-objects",
@@ -148,10 +168,7 @@
     "modelKeys": "Boolean",
     "description": "Indicates a generated value?! A generated flag for @FieldBean",
     "expose": "NONE",
-    "fieldKey": "generated",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "generated"
   },
   "id": {
     "module": "elastic-objects",
@@ -164,6 +181,15 @@
       "unique": true,
       "notNull": true
     }
+  },
+  "idKey": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "Set the name for an id independent of the id.",
+    "expose": "WEB",
+    "length": 80,
+    "fieldKey": "idKey"
   },
   "interfaces": {
     "module": "elastic-objects",
@@ -194,10 +220,7 @@
     "modelKeys": "Boolean",
     "description": "jsonIgnore",
     "expose": "NONE",
-    "fieldKey": "jsonIgnore",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "jsonIgnore"
   },
   "keepCall": {
     "module": "elastic-objects",
@@ -213,10 +236,7 @@
     "modelKeys": "Integer",
     "description": "Length of a field.",
     "expose": "WEB",
-    "fieldKey": "length",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "length"
   },
   "logLevel": {
     "module": "elastic-objects",
@@ -232,10 +252,7 @@
     "modelKeys": "Integer",
     "description": "A maximal length for field string types",
     "expose": "NONE",
-    "fieldKey": "max",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "max"
   },
   "min": {
     "module": "elastic-objects",
@@ -243,10 +260,23 @@
     "modelKeys": "Integer",
     "description": "A minimal length for field string types",
     "expose": "NONE",
-    "fieldKey": "min",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "min"
+  },
+  "ModelBean.properties": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "ModelBeanProperties",
+    "description": "Mutable model values to create ModelConfig.properties.",
+    "expose": "NONE",
+    "fieldKey": "properties"
+  },
+  "ModelConfig.properties": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "ModelConfigProperties",
+    "description": "Immutable model values.",
+    "expose": "NONE",
+    "fieldKey": "properties"
   },
   "modelKey": {
     "module": "elastic-objects",
@@ -315,16 +345,22 @@
       "notNull": true
     }
   },
+  "naturalKeys": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A comma separated list of fields used for natural id.",
+    "expose": "WEB",
+    "length": 240,
+    "fieldKey": "naturalKeys"
+  },
   "notNull": {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "notNull",
     "expose": "NONE",
-    "fieldKey": "notNull",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "notNull"
   },
   "override": {
     "module": "elastic-objects",
@@ -332,10 +368,7 @@
     "modelKeys": "Boolean",
     "description": "Indicates that a super or interface defines the method already but is overwritten. When java is generated an override annotation is set. ",
     "expose": "NONE",
-    "fieldKey": "override",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "override"
   },
   "overwrite": {
     "module": "elastic-objects",
@@ -343,10 +376,7 @@
     "modelKeys": "Boolean",
     "description": "A overwrite field flag for @Call.",
     "expose": "WEB",
-    "fieldKey": "overwrite",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "overwrite"
   },
   "packagePath": {
     "module": "elastic-objects",
@@ -375,24 +405,13 @@
     "fieldKey": "prepend",
     "length": 256
   },
-  "properties": {
-    "module": "elastic-objects",
-    "moduleScope": "main",
-    "modelKeys": "Map",
-    "description": "Properties for configurations.",
-    "expose": "WEB",
-    "fieldKey": "properties"
-  },
   "property": {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "Indicates that a field is a config property map value which can be implemented as a default interface method. ",
     "expose": "NONE",
-    "fieldKey": "property",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "property"
   },
   "scope": {
     "module": "elastic-objects",
@@ -443,10 +462,7 @@
     "modelKeys": "Boolean",
     "description": "staticName",
     "expose": "NONE",
-    "fieldKey": "staticName",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "staticName"
   },
   "super": {
     "module": "elastic-objects",
@@ -454,10 +470,7 @@
     "modelKeys": "Boolean",
     "description": "Marker to show, that the field is implemented in a super class. ",
     "expose": "NONE",
-    "fieldKey": "super",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "super"
   },
   "superKey": {
     "module": "elastic-objects",
@@ -467,6 +480,15 @@
     "expose": "NONE",
     "fieldKey": "superKey",
     "length": 256
+  },
+  "table": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A persistence name.",
+    "expose": "WEB",
+    "length": 240,
+    "fieldKey": "table"
   },
   "targetPath": {
     "module": "elastic-objects",
@@ -483,11 +505,7 @@
     "modelKeys": "Boolean",
     "description": "Will ignore field when a persistiong occure. Create a transient annotation when java is generated. ",
     "expose": "NONE",
-    "fieldKey": "transient",
-    "properties": {
-      "property": true,
-      "default": true
-    }
+    "fieldKey": "transient"
   },
   "unique": {
     "module": "elastic-objects",
@@ -495,9 +513,6 @@
     "modelKeys": "Boolean",
     "description": "unique",
     "expose": "NONE",
-    "fieldKey": "unique",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "unique"
   }
 }

@@ -3,6 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.lists;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.IEOObject;
 import org.fluentcodes.projects.elasticobjects.calls.condition.Or;
+import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerInteger;
@@ -52,13 +53,13 @@ public class ListParamsBean {
         }
     }
 
-    public void merge(ListParamsConfig listParams) {
-        this.mergeRowHead(listParams.getRowHead());
-        this.mergeRowStart(listParams.getRowStart());
-        this.mergeLength(listParams.getLength());
-        this.mergeRowEnd(listParams.getRowEnd());
-        this.mergeFilter(listParams.getFilter());
-        prepare();
+    public void merge(FileConfig listParams) {
+        this.mergeRowHead(listParams.getProperties().getRowHead());
+        this.mergeRowStart(listParams.getProperties().getRowStart());
+        this.mergeLength(listParams.getProperties().getLength());
+        this.mergeRowEnd(listParams.getProperties().getRowEnd());
+        this.mergeFilter(listParams.getProperties().getFilter());
+        setDefault();
     }
 
     public void initDb() {
@@ -269,7 +270,7 @@ public class ListParamsBean {
     }
 
     public void prepareStartEnd(int rowMax)  {
-        prepare();
+        setDefault();
         if (rowMax < rowEnd || rowEnd.equals(-1)) {
             rowEnd = rowMax;
             length = rowEnd - rowStart;
@@ -305,7 +306,7 @@ public class ListParamsBean {
         return this.length != null && this.length > 0;
     }
 
-    public void prepare() {
+    void setDefault() {
         if (rowHead == null) {
             return;
         }

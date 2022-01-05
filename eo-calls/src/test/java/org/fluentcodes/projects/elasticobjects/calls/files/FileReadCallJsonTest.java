@@ -6,6 +6,7 @@ import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.R_ANONYM;
@@ -27,12 +28,8 @@ public class FileReadCallJsonTest {
         final FileReadCall call = new FileReadCall(JsonWriteCallTest.FILE_TMP_JSON);
         EoRoot eo = ProviderConfigMaps.createEo();
         eo.setRoles(R_GUEST);
-        Assertions
-                .assertThatThrownBy(() -> {
-                    call.execute(eo);
-                })
-                .isInstanceOf(EoException.class)
-                .hasMessageContaining("No permissions for roles");
+        call.execute(eo);
+        Assert.assertTrue(eo.getLog().isEmpty());
     }
 
     @Test
@@ -45,7 +42,7 @@ public class FileReadCallJsonTest {
                     call.execute(eo);
                 })
                 .isInstanceOf(EoException.class)
-                .hasMessageContaining("No permissions for roles");
+                .hasMessageContaining("No READ right for [anonym] and resource ListSimple.json.");
     }
 
     @Test

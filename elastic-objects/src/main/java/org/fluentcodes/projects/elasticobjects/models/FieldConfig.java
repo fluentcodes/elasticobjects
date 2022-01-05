@@ -23,8 +23,6 @@ public class FieldConfig extends Config implements FieldInterface {
 /*.{javaInstanceVars}|*/
    /* fieldKey */
    private final String fieldKey;
-   /* Length of a field. */
-   private final Integer length;
    /* A string representation for a list of modelsConfig. */
    private final String modelKeys;
 /*.{}.*/
@@ -35,47 +33,17 @@ public class FieldConfig extends Config implements FieldInterface {
     private Models models;
     private Method getter;
     private Method setter;
-
-    private final Boolean defaultValue;
-    private final String fieldName;
-    private final Boolean finalValue;
-    private final Boolean generated;
-    private final String javascriptType;
-    private final Boolean jsonIgnore;
-    private final Boolean notNull;
-    private final Integer max;
-    private final Integer min;
-    private final Boolean override;
-    private final Boolean property;
-    private final Boolean staticName;
-    private final Boolean superValue;
-    private final Boolean transientValue;
-    private final Boolean unique;
+    private FieldConfigProperties properties;
 
     public FieldConfig(final ModelConfig parentModel, final FieldBean bean) {
         super(bean, parentModel.getConfigMaps());
         this.parentModel = parentModel;
-        this.defaultValue = bean.getDefault();
         this.toSerialize = false;
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
         this.modelList = Arrays.asList(modelKeys.split(","));
-        this.length = bean.getLength();
-        this.max = bean.getMax();
-        this.min = bean.getMin();
-        this.override = bean.getOverride();
-        this.property = bean.getProperty();
-        this.staticName = bean.getStaticName();
-        this.transientValue = bean.getTransient();
-        this.unique = bean.getUnique();
-        this.superValue = bean.getSuper();
-        this.fieldName = bean.getFieldName();
-        this.finalValue = bean.getFinal();
-        this.generated = bean.getGenerated();
-        this.javascriptType = bean.getJavascriptType();
-        this.jsonIgnore = bean.getJsonIgnore();
-        this.notNull = bean.getNotNull();
-    }
+        this.properties = new FieldConfigProperties(bean.getProperties());
+     }
 
     public FieldConfig(final ConfigBean bean, final ConfigMaps configMaps) {
         this((FieldBean)bean, configMaps);
@@ -86,28 +54,17 @@ public class FieldConfig extends Config implements FieldInterface {
         this.toSerialize = false;
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
+        this.properties = new FieldConfigProperties(bean.getProperties());
         if (hasModelKeys()) {
             this.modelList = Arrays.asList(modelKeys.split(","));
         } else {
             this.modelList = new ArrayList<>();
         }
-        this.length = bean.getLength();
-        this.max = bean.getMax();
-        this.min = bean.getMin();
-        this.override = bean.getOverride();
-        this.property = bean.getProperty();
-        this.staticName = bean.getStaticName();
-        this.transientValue = bean.getTransient();
-        this.unique = bean.getUnique();
-        this.superValue = bean.getSuper();
-        this.defaultValue = bean.getDefault();
-        this.fieldName = bean.getFieldName();
-        this.finalValue = bean.getFinal();
-        this.generated = bean.getGenerated();
-        this.javascriptType = bean.getJavascriptType();
-        this.jsonIgnore = bean.getJsonIgnore();
-        this.notNull = bean.getNotNull();
         parentModel = null;
+    }
+
+    public FieldConfigProperties getProperties() {
+        return properties;
     }
 
     protected void resolve(ModelConfig model, Map<String, ModelConfig> modelConfigMap) {
@@ -145,6 +102,25 @@ public class FieldConfig extends Config implements FieldInterface {
         }
 
         this.setter = getSetMethod(model, this.fieldKey);
+    }
+    Boolean isJsonIgnore() {
+        return properties.isJsonIgnore();
+    }
+
+    public Boolean isTransient() {
+        return properties.isTransient();
+    }
+
+    Boolean isDefault() {
+        return properties.isDefault();
+    }
+
+    Boolean isProperty() {
+        return properties.isProperty();
+    }
+
+    Boolean isFinal() {
+        return properties.isFinal();
     }
 
     private Method getGetMethod(final ModelConfig model, final String fieldKey) {
@@ -206,86 +182,6 @@ public class FieldConfig extends Config implements FieldInterface {
    public String getFieldKey() {
       return this.fieldKey;
    }
-
-   @Override
-   public Integer getLength() {
-      return this.length;
-   }
-
-   @Override
-   public Integer getMax() {
-       return max;
-   }
-
-    @Override
-    public Integer getMin() {
-        return min;
-    }
-
-    @Override
-    public Boolean getOverride() {
-        return override;
-    }
-
-    @Override
-    public Boolean getProperty() {
-        return property;
-    }
-
-    @Override
-    public Boolean getStaticName() {
-        return staticName;
-    }
-
-    @Override
-    public Boolean getTransient() {
-        return transientValue;
-    }
-
-    @Override
-    public Boolean getUnique() {
-        return unique;
-    }
-
-    @Override
-    public Boolean getSuper() {
-        return superValue;
-    }
-
-    @Override
-    public Boolean getDefault() {
-        return defaultValue;
-    }
-
-    @Override
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    @Override
-    public Boolean getFinal() {
-        return finalValue;
-    }
-
-    @Override
-    public Boolean getGenerated() {
-        return generated;
-    }
-
-    @Override
-    public String getJavascriptType() {
-       return this.javascriptType;
-    }
-
-    @Override
-    public Boolean getJsonIgnore() {
-        return jsonIgnore;
-    }
-
-    @Override
-    public Boolean getNotNull() {
-        return notNull;
-    }
 
    @Override
    public String getModelKeys() {

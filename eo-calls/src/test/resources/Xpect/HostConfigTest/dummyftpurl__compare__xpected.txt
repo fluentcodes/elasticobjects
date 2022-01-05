@@ -1,12 +1,16 @@
 {
   "description": "A connection to elastic objects",
   "expose": "NONE",
+  "hostName": "dummyftpurl",
   "module": "eo-calls",
   "moduleScope": "test",
   "naturalId": "dummyftpurl",
-  "password": "test1234",
   "permissions": {
   },
-  "url": "ftp://dummyftp:21",
-  "user": "dummy"
+  "properties": {
+    "classPath": "src.main.resources",
+    "password": "test1234",
+    "url": "ftp://dummyftp:21",
+    "user": "dummy"
+  }
 }

@@ -13,43 +13,27 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_AUTHOR;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_CREATION_DATE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_DESCRIPTION;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_ID;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_CONFIG_MODEL_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_EXPOSE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE_SCOPE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.*;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FIELD_NAME;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FINAL;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_GENERATED;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_NOT_NULL;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_OVERRIDE;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_NAME;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FINAL;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_GENERATED;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_MODEL_KEYS;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_NOT_NULL;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_OVERRIDE;
-import static org.fluentcodes.projects.elasticobjects.models.ModelInterface.F_ABSTRACT;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ABSTRACT;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class FieldBeanTest {
 
-    public static void assertField(final String fieldName, final Object value, final Object expectedResult){
-        FieldBean bean = createFieldBean(fieldName, value);
-        assertEquals("Problem for " + fieldName, expectedResult, bean.getProperties().get(fieldName));
-    }
-
-    public static FieldBean createFieldBean(final String fieldName, final Object value){
-        final String serialized =                 "{     \"" + F_FIELD_NAME + "\": {\n" +
-                "        \"" + fieldName + "\": "+ value + "\n" +
+    public static FieldBean createFieldBean(final String fieldName, final Object value) {
+        final String serialized = "{     \"" + F_FIELD_NAME + "\": {\n" +
+                "        \"" + fieldName + "\": " + value + "\n" +
                 "      }\n}}";
         EoRoot root = ProviderConfigMapsDev.createEo(serialized);
-        Map<String, Object> beanMap = (Map<String, Object>)root.get();
-        Map<String, Object> propertyFieldMap =  (Map<String, Object>)beanMap.get(F_FIELD_NAME);
+        Map<String, Object> beanMap = (Map<String, Object>) root.get();
+        Map<String, Object> propertyFieldMap = (Map<String, Object>) beanMap.get(F_FIELD_NAME);
         return new FieldBean(propertyFieldMap);
     }
 
@@ -98,31 +82,28 @@ public class FieldBeanTest {
     @Test
     public void set_notNull_true__get__true() {
         FieldBean fieldBean = new FieldBean();
-        fieldBean.setNotNull(true);
-        Assertions.assertThat(fieldBean.getNotNull()).isTrue();
-        Assertions.assertThat((Boolean)fieldBean.getProperties().get(F_NOT_NULL)).isTrue();
+        fieldBean.getProperties().setNotNull(true);
+        Assertions.assertThat(fieldBean.getProperties().getNotNull()).isTrue();
         EoRoot eo = ProviderConfigMaps.createEo(fieldBean);
-        Assertions.assertThat((Boolean)eo.get(F_NOT_NULL)).isTrue();
+        Assertions.assertThat((Boolean) eo.get(F_PROPERTIES, F_NOT_NULL)).isTrue();
     }
 
     @Test
     public void set_override_true__get__true() {
         FieldBean fieldBean = new FieldBean();
-        fieldBean.setOverride(true);
-        Assertions.assertThat(fieldBean.getOverride()).isTrue();
-        Assertions.assertThat((Boolean)fieldBean.getProperties().get(F_OVERRIDE)).isTrue();
+        fieldBean.getProperties().setOverride(true);
+        Assertions.assertThat(fieldBean.getProperties().getOverride()).isTrue();
         EoRoot eo = ProviderConfigMaps.createEo(fieldBean);
-        Assertions.assertThat((Boolean)eo.get(F_OVERRIDE)).isTrue();
+        Assertions.assertThat((Boolean) eo.get(F_PROPERTIES, F_OVERRIDE)).isTrue();
     }
 
     @Test
     public void set_generated_true__get__true() {
         FieldBean fieldBean = new FieldBean();
-        fieldBean.setGenerated(true);
-        Assertions.assertThat(fieldBean.getGenerated()).isTrue();
-        Assertions.assertThat((Boolean)fieldBean.getProperties().get(F_GENERATED)).isTrue();
+        fieldBean.getProperties().setGenerated(true);
+        Assertions.assertThat(fieldBean.getProperties().getGenerated()).isTrue();
         EoRoot eo = ProviderConfigMaps.createEo(fieldBean);
-        Assertions.assertThat((Boolean)eo.get(F_GENERATED)).isTrue();
+        Assertions.assertThat((Boolean) eo.get(F_PROPERTIES, F_GENERATED)).isTrue();
     }
 
 
@@ -132,16 +113,16 @@ public class FieldBeanTest {
         fieldBean.setScope(Arrays.asList(new Scope[]{Scope.DEV}));
         Assertions.assertThat(fieldBean.getScope()).isNotEmpty();
         EoRoot eo = ProviderConfigMaps.createEo(fieldBean);
-        Assertions.assertThat((List)eo.get(F_SCOPE)).isNotEmpty();
+        Assertions.assertThat((List) eo.get(F_SCOPE)).isNotEmpty();
     }
 
     @Test
     public void createByElement() {
-        final String serialized = "{  \"FieldBean\": {\n" +
+        final String serialized = "{ \"FieldBean\": {\n" +
                 "    \"module\": \"elastic-objects\",\n" +
                 "    \"moduleScope\": \"main\",\n" +
-                "    \"fieldKeys\": \"fieldKey, modelKeys, length, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property\",\n" +
-                "    \"interfaces\": \"FieldBeanInterface\",\n" +
+                "    \"fieldKeys\": \"fieldKey, modelKeys, FieldBean.properties\",\n" +
+                "    \"interfaces\": \"FieldInterface\",\n" +
                 "    \"superKey\": \"ConfigBean\",\n" +
                 "    \"expose\": \"NONE\",\n" +
                 "    \"description\": \"The basic bean container class for the configuration class@FieldConfig. Also used as a base for building source code. \",\n" +
@@ -152,11 +133,11 @@ public class FieldBeanTest {
                 "      \"override\": true\n" +
                 "    },\n" +
                 "    \"author\": \"Werner Diwischek\",\n" +
-                "    \"creationDate\": 1607468400000\n}" +
-                "}";
+                "    \"creationDate\": 1607468400000\n" +
+                "  }}";
         EoRoot root = ProviderConfigMapsDev.createEo(serialized);
-        Map<String, Object> beanMap = (Map<String, Object>)root.get();
-        Map<String, Object> modelConfigMap =  (Map<String, Object>)beanMap.get(FieldBean.class.getSimpleName());
+        Map<String, Object> beanMap = (Map<String, Object>) root.get();
+        Map<String, Object> modelConfigMap = (Map<String, Object>) beanMap.get(FieldBean.class.getSimpleName());
         ModelBean bean = new ModelBean(modelConfigMap);
         assertNotNull(bean);
         assertEquals(FieldBean.class.getSimpleName(), bean.getModelKey());
@@ -174,48 +155,43 @@ public class FieldBeanTest {
     }
 
     @Test
-    public void testExample(){
-        assertField(F_FINAL, null, null);
-    }
-
-    @Test
-    public void testFieldKey(){
+    public void testFieldKey() {
         FieldBean fieldBean = createFieldBean(F_FIELD_KEY, "\"NAME\"");
         assertEquals("NAME", fieldBean.getFieldKey());
     }
 
     @Test
-    public void testModelKeys(){
+    public void testModelKeys() {
         FieldBean fieldBean = createFieldBean(F_MODEL_KEYS, "\"Map,String\"");
         assertEquals("Map,String", fieldBean.getModelKeys());
     }
 
     @Test
-    public void testConfigModelKey(){
+    public void testConfigModelKey() {
         FieldBean fieldBean = createFieldBean(F_CONFIG_MODEL_KEY, "\"CONFIG\"");
         assertEquals("CONFIG", fieldBean.getConfigModelKey());
     }
 
     @Test
-    public void testExpose(){
+    public void testExpose() {
         FieldBean fieldBean = createFieldBean(F_EXPOSE, "\"WEB\"");
         assertEquals(Expose.WEB, fieldBean.getExpose());
     }
 
     @Test
-    public void testModuleScope(){
+    public void testModuleScope() {
         FieldBean fieldBean = createFieldBean(F_MODULE_SCOPE, "\"MODULE\"");
         assertEquals("MODULE", fieldBean.getModuleScope());
     }
 
     @Test
-    public void testModule(){
+    public void testModule() {
         FieldBean fieldBean = createFieldBean(F_MODULE, "\"MODULE\"");
         assertEquals("MODULE", fieldBean.getModule());
     }
 
     @Test
-    public void testScope(){
+    public void testScope() {
         List result = new ArrayList();
         result.add(Scope.DEV);
         result.add(Scope.PROD);
@@ -224,25 +200,25 @@ public class FieldBeanTest {
     }
 
     @Test
-    public void testAuthor(){
+    public void testAuthor() {
         FieldBean fieldBean = createFieldBean(F_AUTHOR, "\"Author\"");
         assertEquals("Author", fieldBean.getAuthor());
     }
 
     @Test
-    public void testCreationDate(){
+    public void testCreationDate() {
         FieldBean fieldBean = createFieldBean(F_CREATION_DATE, 1);
         assertEquals(new Date(1L), fieldBean.getCreationDate());
     }
 
     @Test
-    public void testId(){
+    public void testId() {
         FieldBean fieldBean = createFieldBean(F_ID, 1);
         assertEquals(new Long(1L), fieldBean.getId());
     }
 
     @Test
-    public void testNaturalId(){
+    public void testNaturalId() {
         FieldBean fieldBean = createFieldBean(F_NATURAL_ID, "\"natural\"");
         assertEquals("natural", fieldBean.getNaturalId());
     }
@@ -264,14 +240,14 @@ public class FieldBeanTest {
                 "  }" +
                 "}";
         EoRoot root = ProviderConfigMapsDev.createEo(serialized);
-        Map<String, Object> beanMap = (Map<String, Object>)root.get();
-        Map<String, Object> fieldConfigMap =  (Map<String, Object>)beanMap.get(F_ABSTRACT);
+        Map<String, Object> beanMap = (Map<String, Object>) root.get();
+        Map<String, Object> fieldConfigMap = (Map<String, Object>) beanMap.get(F_ABSTRACT);
         FieldBean bean = new FieldBean(fieldConfigMap);
         assertNotNull(bean);
         assertEquals(F_ABSTRACT, bean.getFieldKey());
         assertEquals(F_ABSTRACT, bean.getNaturalId());
         bean.setDefault();
-        FieldConfig fieldConfig = (FieldConfig)bean.createConfig(ProviderConfigMapsDev.CONFIG_MAPS_DEV);
+        FieldConfig fieldConfig = (FieldConfig) bean.createConfig(ProviderConfigMapsDev.CONFIG_MAPS_DEV);
         assertEquals(F_ABSTRACT, fieldConfig.getFieldKey());
         assertEquals(F_ABSTRACT, fieldConfig.getNaturalId());
     }
@@ -288,8 +264,8 @@ public class FieldBeanTest {
                 "    \"length\": 512\n" +
                 "  }}";
         EoRoot root = ProviderConfigMapsDev.createEo(serialized);
-        Map<String, Object> beanMap = (Map<String, Object>)root.get();
-        Map<String, Object> fieldConfigMap =  (Map<String, Object>)beanMap.get(F_DESCRIPTION);
+        Map<String, Object> beanMap = (Map<String, Object>) root.get();
+        Map<String, Object> fieldConfigMap = (Map<String, Object>) beanMap.get(F_DESCRIPTION);
         FieldBean bean = new FieldBean(fieldConfigMap);
         assertNotNull(bean);
         bean.setDefault();

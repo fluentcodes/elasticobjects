@@ -10,7 +10,6 @@ public class FieldBeanForClasses extends FieldBean {
     public FieldBeanForClasses(final Field field, final ModelBean modelBean, Map<String, ModelBean> modelBeanMap) {
         setParentModel(modelBean);
         setFieldKey(field.getName());
-        setFieldName(field.getName());
         setNaturalId(modelBean.getModelKey() + "." + getFieldKey());
         this.typeClass = field.getType();
         setModelKeys(getTypeKey());

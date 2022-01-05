@@ -68,7 +68,7 @@ public class ModelConfigObject extends ModelConfig {
             try {
                 return getModelClass().newInstance();
             } catch (Exception e) {
-                throw new EoException(e);
+                throw new EoException("Could not create empty instance of '" + getModelKey() + "': " + e.getMessage());
             }
         } else {
             ModelConfig implementation = getDefaultImplementationModel();

@@ -1,12 +1,11 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.utils.UnmodifiableList;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-/*.{javaHeader}|*/
 
 /**
  * A bean container class for Field values
@@ -17,8 +16,9 @@ import java.util.Map;
  */
 public class Permissions {
     /*.{}.*/
-
+    public static final String SUPER_ADMIN = "superadmin";
     final boolean hasPermissions;
+    private final String naturalId;
     private final List<String> createRoles;
     private final List<String> deleteRoles;
     private final List<String> executeRoles;
@@ -28,12 +28,13 @@ public class Permissions {
     private final Map<PermissionType, List<String>> permissionMap;
 
     public Permissions(final PermissionBean bean) {
+        this.naturalId = bean.getNaturalId();
         this.createRoles = new UnmodifiableList<>(bean.getCreate());
         this.deleteRoles = new UnmodifiableList<>(bean.getDelete());
         this.executeRoles = new UnmodifiableList<>(bean.getExecute());
         this.nothingRoles = new UnmodifiableList<>(bean.getNothing());
         this.readRoles = new UnmodifiableList<>(bean.getRead());
-        this.writeRoles =  new UnmodifiableList<>(bean.getWrite());
+        this.writeRoles = new UnmodifiableList<>(bean.getWrite());
         this.permissionMap = new HashMap<>();
         permissionMap.put(PermissionType.CREATE, this.createRoles);
         permissionMap.put(PermissionType.DELETE, this.deleteRoles);
@@ -41,12 +42,12 @@ public class Permissions {
         permissionMap.put(PermissionType.NOTHING, this.nothingRoles);
         permissionMap.put(PermissionType.READ, this.readRoles);
         permissionMap.put(PermissionType.WRITE, this.writeRoles);
-        hasPermissions = createRoles.isEmpty() &&
-                deleteRoles.isEmpty() &&
-                executeRoles.isEmpty() &&
-                nothingRoles.isEmpty() &&
-                readRoles.isEmpty() &&
-                writeRoles.isEmpty();
+        hasPermissions = !createRoles.isEmpty() ||
+                !deleteRoles.isEmpty() ||
+                !executeRoles.isEmpty() ||
+                !nothingRoles.isEmpty() ||
+                !readRoles.isEmpty() ||
+                !writeRoles.isEmpty();
     }
     /*.{javaAccessors}|*/
 
@@ -81,19 +82,22 @@ public class Permissions {
         if (!hasPermissions) {
             return true;
         }
+        if (roleKeys.contains(SUPER_ADMIN)) {
+            return true;
+        }
         if (roleKeys == null || roleKeys.isEmpty()) {
             return false;
         }
-        for (final String roleKey: roleKeys) {
+        for (final String roleKey : roleKeys) {
             int required = callPermission.ordinal();
-            for (int i = 0; i < required ;i++) {
+            for (int i = 0; i <= required; i++) {
                 PermissionType permissionType = PermissionType.values()[i];
                 if (permissionMap.get(permissionType).contains(roleKey)) {
                     return true;
                 }
             }
         }
-        return false;
+        throw new EoException("No " + callPermission + " right for " + roleKeys + " and resource " + naturalId + ".");
     }
 
 }

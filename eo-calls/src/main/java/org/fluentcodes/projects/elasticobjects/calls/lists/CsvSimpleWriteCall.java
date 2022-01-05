@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.lists;
 
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
-import org.fluentcodes.projects.elasticobjects.calls.files.CsvConfig;
+import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileWriteCall;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
@@ -40,8 +40,8 @@ public class CsvSimpleWriteCall extends FileWriteCall implements ListParamsBeanI
 
     @Override
     public String write(IEOScalar eo) {
-        CsvConfig config = (CsvConfig) init(PermissionType.READ, eo);
-        getListParams().merge(config.getListParamsConfig());
+        FileConfig config = init(PermissionType.READ, eo);
+        getListParams().merge(config);
         List rows = (List) eo.get();
         if (rows == null || rows.isEmpty()) {
             throw new EoException("Strange - no list values - nothing to write! Will return without doing anything.");
@@ -49,29 +49,29 @@ public class CsvSimpleWriteCall extends FileWriteCall implements ListParamsBeanI
         StringBuilder buffer = new StringBuilder();
         for (Object row : rows) {
             if (row == null) {
-                buffer.append(config.getRowDelimiter());
+                buffer.append(config.getProperties().getRowDelimiter());
                 continue;
             }
             if (!(row instanceof List)) {
-                buffer.append(config.getRowDelimiter());
+                buffer.append(config.getProperties().getRowDelimiter());
                 continue;
             }
             List rowList = (List) row;
             if (rowList.isEmpty()) {
-                buffer.append(config.getRowDelimiter());
+                buffer.append(config.getProperties().getRowDelimiter());
                 continue;
             }
             for (int i = 0; i < rowList.size(); i++) {
                 Object entry = rowList.get(i);
                 if (entry == null) {
-                    buffer.append(config.getFieldDelimiter());
+                    buffer.append(config.getProperties().getFieldDelimiter());
                 }
                 buffer.append(entry.toString());
                 if (i + 1 < rowList.size()) {
-                    buffer.append(config.getFieldDelimiter());
+                    buffer.append(config.getProperties().getFieldDelimiter());
                 }
             }
-            buffer.append(config.getRowDelimiter());
+            buffer.append(config.getProperties().getRowDelimiter());
         }
         setContent(buffer.toString());
         return super.execute(eo);

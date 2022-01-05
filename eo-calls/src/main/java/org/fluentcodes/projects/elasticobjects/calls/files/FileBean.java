@@ -5,9 +5,6 @@ import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerBoolean
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerString;
 
 import java.util.Map;
-
-/*.{javaHeader}|*/
-
 /**
  * The bean counterpart for {@link FileConfig}.
  *
@@ -16,9 +13,7 @@ import java.util.Map;
  * @modificationDate Thu Jan 14 14:48:43 CET 2021
  */
 public class FileBean extends PermissionBean implements FileInterface {
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
+    private FileBeanProperties properties;
     /* If true will cache the readed file within the cache object.  */
     private Boolean cached;
     /* A fileName used in different calls and configs like {@link FileConfig} or {@link DirectoryConfig}.  */
@@ -27,16 +22,19 @@ public class FileBean extends PermissionBean implements FileInterface {
     private String filePath;
     /* A key for host objects. */
     private String hostConfigKey;
-    /*.{}.*/
-
 
     public FileBean() {
         super();
+        this.properties = new FileBeanProperties();
         defaultConfigModelKey();
     }
 
-    public FileBean(final Map map) {
-        super();
+    public FileBeanProperties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(FileBeanProperties properties) {
+        this.properties = properties;
     }
 
     private void defaultConfigModelKey() {
@@ -85,43 +83,5 @@ public class FileBean extends PermissionBean implements FileInterface {
     public FileBean setHostConfigKey(final String hostConfigKey) {
         this.hostConfigKey = hostConfigKey;
         return this;
-    }
-
-    /*.{}.*/
-
-    private void mergeCached(final Object value) {
-        if (value == null) return;
-        if (hasCached()) return;
-        setCached(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeFileName(final Object value) {
-        if (value == null) return;
-        if (hasFileName()) return;
-        setFileName(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    private void mergeFilePath(final Object value) {
-        if (value == null) return;
-        if (hasFilePath()) return;
-        setFilePath(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    private void mergeHostConfigKey(final Object value) {
-        if (value == null) return;
-        if (hasHostConfigKey()) return;
-        setHostConfigKey(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    @Override
-    public String getTemplate() {
-        return (String) getProperties().get(F_TEMPLATE);
-    }
-
-    @Override
-    public boolean hasTemplate() {
-        return getProperties().containsKey(F_TEMPLATE) &&
-                getProperties().get(F_TEMPLATE) != null &&
-                !((String) getProperties().get(F_TEMPLATE)).isEmpty();
     }
 }

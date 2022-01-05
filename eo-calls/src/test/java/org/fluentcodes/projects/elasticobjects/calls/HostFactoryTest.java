@@ -10,7 +10,8 @@ public class HostFactoryTest {
 
     @Test
     public void TEST_hostBeanMap__find_localhost__notNull() {
-        HostBean bean = new HostFactory(ProviderConfigMaps.CONFIG_MAPS).createBeanMap()
+        HostBean bean = new HostFactory(ProviderConfigMaps.CONFIG_MAPS)
+                .createBeanMap()
                 .get("localhost");
         Assertions.assertThat(bean).isNotNull();
     }

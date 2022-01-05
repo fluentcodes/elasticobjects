@@ -1,6 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.assertj.core.api.Assertions;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +10,7 @@ import org.junit.Test;
  */
 public class ModelConfigScalarTest {
 
-    @Test
+    @Test(expected = EoException.class)
     public void assertString()  {
         ModelConfig model = ProviderConfigMaps.CONFIG_MAPS.findModel(String.class);
         Assert.assertEquals(String.class, model.getModelClass());

@@ -43,13 +43,13 @@ public class EoAnObjectSetTest {
 
     @Test
     public void TEST__find_AnObject_get_myString__$()  {
-        FieldInterface fieldConfig = ProviderConfigMaps.CONFIG_MAPS
+        FieldConfig fieldConfig = ProviderConfigMaps.CONFIG_MAPS
                 .findModel(AnObject.class)
                 .getField(AnObject.MY_STRING);
         Assert.assertNotNull(fieldConfig);
-        Assertions.assertThat(fieldConfig.isUnique()).isFalse();
-        Assertions.assertThat(fieldConfig.isNotNull()).isFalse();
-        Assert.assertEquals(new Integer(20), fieldConfig.getLength());
+        Assertions.assertThat(fieldConfig.getProperties().isUnique()).isFalse();
+        Assertions.assertThat(fieldConfig.getProperties().isNotNull()).isFalse();
+        Assert.assertEquals(new Integer(20), fieldConfig.getProperties().getLength());
     }
 
     @Test

@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -35,67 +34,62 @@ public class FieldBeanPropertiesParametrizedTest {
     }
 
     public static void assertProperties(final String fieldName, final Object value, final Object expectedResult){
-        final String serialized =                 "{     \"" + F_FIELD_NAME + "\": {\n" +
+        final String serialized =                 "{     \"" + FieldBeanProperties.F_FIELD_NAME + "\": {\n" +
                 "\"properties\":{\"" + fieldName + "\": "+ value + "\n}" +
                 "      }\n}}";
         EoRoot root = ProviderConfigMapsDev.createEo(serialized);
         Map<String, Object> beanMap = (Map<String, Object>)root.get();
-        Map<String, Object> propertyFieldMap =  (Map<String, Object>)beanMap.get(F_FIELD_NAME);
+        Map<String, Object> propertyFieldMap =  (Map<String, Object>)beanMap.get(FieldBeanProperties.F_FIELD_NAME);
         FieldBean bean = new FieldBean(propertyFieldMap);
-        assertEquals("Problem for " + fieldName, expectedResult, bean.getProperties().get(fieldName));
     }
 
     @Parameterized.Parameters
     public static Collection primeNumbers() {
         return Arrays.asList(new Object[][] {
-                { F_DEFAULT, true, true },
-                { F_DEFAULT, false, false },
-                { F_DEFAULT, null, null },
-                { F_FIELD_NAME, "\"NAME\"", "NAME" },
-                { F_FIELD_NAME, null, null },
-                { F_FINAL, true, true },
-                { F_FINAL, false, false },
-                { F_FINAL, null, null },
-                { F_GENERATED, true, true },
-                { F_GENERATED, false, false },
-                { F_GENERATED, null, null },
-                { F_JAVASCRIPT_TYPE, "\"string\"", "string" },
-                { F_JAVASCRIPT_TYPE, null, null },
-                { F_JSON_IGNORE, true, true },
-                { F_JSON_IGNORE, false, false },
-                { F_JSON_IGNORE, null, null },
-                { F_LENGTH, 1, 1 },
-                { F_LENGTH, null, null },
-                { F_MAX, 1, 1 },
-                { F_MAX, null, null },
-                { F_MIN, 1, 1 },
-                { F_MIN, null, null },
-                { F_NOT_NULL, true, true },
-                { F_NOT_NULL, false, false },
-                { F_NOT_NULL, null, null },
-                { F_OVERRIDE, true, true },
-                { F_OVERRIDE, false, false },
-                { F_OVERRIDE, null, null },
-                { F_PROPERTY, true, true },
-                { F_PROPERTY, false, false },
-                { F_PROPERTY, null, null },
-                { F_STATIC_NAME, true, true },
-                { F_STATIC_NAME, false, false },
-                { F_STATIC_NAME, null, null },
-                { F_SUPER, true, true },
-                { F_SUPER, false, false },
-                { F_SUPER, null, null },
-                { F_TRANSIENT, true, true },
-                { F_TRANSIENT, false, false },
-                { F_TRANSIENT, null, null },
-                { F_UNIQUE, true , true},
-                { F_UNIQUE, false, false },
-                { F_UNIQUE, null, null }
+                { FieldBeanProperties.F_DEFAULT, true, true },
+                { FieldBeanProperties.F_DEFAULT, false, false },
+                { FieldBeanProperties.F_DEFAULT, null, null },
+                { FieldBeanProperties.F_FIELD_NAME, "\"NAME\"", "NAME" },
+                { FieldBeanProperties.F_FIELD_NAME, null, null },
+                { FieldBeanProperties.F_FINAL, true, true },
+                { FieldBeanProperties.F_FINAL, false, false },
+                { FieldBeanProperties.F_FINAL, null, null },
+                { FieldBeanProperties.F_GENERATED, true, true },
+                { FieldBeanProperties.F_GENERATED, false, false },
+                { FieldBeanProperties.F_GENERATED, null, null },
+                { FieldBeanProperties.F_JAVASCRIPT_TYPE, "\"string\"", "string" },
+                { FieldBeanProperties.F_JAVASCRIPT_TYPE, null, null },
+                { FieldBeanProperties.F_JSON_IGNORE, true, true },
+                { FieldBeanProperties.F_JSON_IGNORE, false, false },
+                { FieldBeanProperties.F_JSON_IGNORE, null, null },
+                { FieldBeanProperties.F_LENGTH, 1, 1 },
+                { FieldBeanProperties.F_LENGTH, null, null },
+                { FieldBeanProperties.F_MAX, 1, 1 },
+                { FieldBeanProperties.F_MAX, null, null },
+                { FieldBeanProperties.F_MIN, 1, 1 },
+                { FieldBeanProperties.F_MIN, null, null },
+                { FieldBeanProperties.F_NOT_NULL, true, true },
+                { FieldBeanProperties.F_NOT_NULL, false, false },
+                { FieldBeanProperties.F_NOT_NULL, null, null },
+                { FieldBeanProperties.F_OVERRIDE, true, true },
+                { FieldBeanProperties.F_OVERRIDE, false, false },
+                { FieldBeanProperties.F_OVERRIDE, null, null },
+                { FieldBeanProperties.F_PROPERTY, true, true },
+                { FieldBeanProperties.F_PROPERTY, false, false },
+                { FieldBeanProperties.F_PROPERTY, null, null },
+                { FieldBeanProperties.F_STATIC_NAME, true, true },
+                { FieldBeanProperties.F_STATIC_NAME, false, false },
+                { FieldBeanProperties.F_STATIC_NAME, null, null },
+                { FieldBeanProperties.F_SUPER, true, true },
+                { FieldBeanProperties.F_SUPER, false, false },
+                { FieldBeanProperties.F_SUPER, null, null },
+                { FieldBeanProperties.F_TRANSIENT, true, true },
+                { FieldBeanProperties.F_TRANSIENT, false, false },
+                { FieldBeanProperties.F_TRANSIENT, null, null },
+                { FieldBeanProperties.F_UNIQUE, true , true},
+                { FieldBeanProperties.F_UNIQUE, false, false },
+                { FieldBeanProperties.F_UNIQUE, null, null }
         });
-    }
-    @Test
-    public void testFieldProperty(){
-            FieldBeanTest.assertField(fieldName, value, expectedResult);
     }
 
     @Test

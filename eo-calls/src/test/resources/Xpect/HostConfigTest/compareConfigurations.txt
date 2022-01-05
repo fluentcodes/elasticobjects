@@ -6,23 +6,31 @@
     "module": "eo-calls",
     "moduleScope": "test",
     "naturalId": "dummyftp",
-    "password": "test1234",
     "permissions": {
     },
-    "protocol": "ftp",
-    "user": "dummy"
+    "properties": {
+      "classPath": "src.main.resources",
+      "password": "test1234",
+      "port": 21,
+      "protocol": "ftp",
+      "user": "dummy"
+    }
   },
   "dummyftpurl": {
     "description": "A connection to elastic objects",
     "expose": "NONE",
+    "hostName": "dummyftpurl",
     "module": "eo-calls",
     "moduleScope": "test",
     "naturalId": "dummyftpurl",
-    "password": "test1234",
     "permissions": {
     },
-    "url": "ftp://dummyftp:21",
-    "user": "dummy"
+    "properties": {
+      "classPath": "src.main.resources",
+      "password": "test1234",
+      "url": "ftp://dummyftp:21",
+      "user": "dummy"
+    }
   },
   "elasticobjects": {
     "description": "A connection to elastic objects",
@@ -33,13 +41,17 @@
     "naturalId": "elasticobjects",
     "permissions": {
     },
-    "protocol": "http"
+    "properties": {
+      "classPath": "src.main.resources",
+      "port": 80,
+      "protocol": "http"
+    }
   },
   "local": {
     "description": "local host with key 'local'",
     "expose": "WEB",
     "hostName": "localhost",
-    "module": "elastic-objects",
+    "module": "eo-calls",
     "moduleScope": "main",
     "naturalId": "local",
     "permissions": {
@@ -52,7 +64,7 @@
     "description": "local host with key 'localhost'",
     "expose": "WEB",
     "hostName": "localhost",
-    "module": "elastic-objects",
+    "module": "eo-calls",
     "moduleScope": "main",
     "naturalId": "localhost",
     "permissions": {

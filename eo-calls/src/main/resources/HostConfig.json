@@ -4,9 +4,7 @@
     "moduleScope": "main",
     "description": "local host with key 'local'",
     "expose": "WEB",
-    "properties": {
-      "hostName": "localhost"
-    },
+    "hostName": "localhost",
     "read": ["guest"]
   },
   "localhost": {
@@ -14,9 +12,7 @@
     "moduleScope": "main",
     "description": "local host with key 'localhost'",
     "expose": "WEB",
-    "properties": {
-      "hostName": "localhost"
-    },
+    "hostName": "localhost",
     "read": ["guest"]
   }
 }

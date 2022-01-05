@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.PathPattern;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -25,22 +26,12 @@ public abstract class ModelConfig extends Config implements ModelInterface {
     private boolean resolved = false;
     private boolean resolvedFields = false;
 
-    private final Boolean abstractValue;
-    private final String bean;
-    private final Boolean create;
-    private final Boolean dbAnnotated;
-    private final String defaultImplementation;
-    private final Boolean finalValue;
-    private final String idKey;
+    private final ModelConfigProperties properties;
     private final String interfaces;
     private final String modelKey;
-    private final String naturalKeys;
-    private final Boolean override;
     private final String packagePath;
-    private final Boolean property;
     private final ShapeTypes shapeType;
     private final String superKey;
-    private final String table;
 
     private Class modelClass;
     private ModelConfig superModel;
@@ -61,18 +52,7 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         this.packagePath = bean.getPackagePath();
         this.superKey = bean.getSuperKey();
         this.interfaces = bean.getInterfaces();
-        this.defaultImplementation = bean.getDefaultImplementation();
-        this.abstractValue = bean.getAbstract();
-        this.finalValue = bean.getFinal();
-        this.override = bean.getOverride();
-        this.dbAnnotated = bean.getDbAnnotated();
-        this.create = bean.getCreate();
-        this.property = bean.getProperty();
-        this.bean = bean.getBean();
-        this.table = bean.getTable();
-        this.idKey = bean.getIdKey();
-        this.naturalKeys = bean.getNaturalKeys();
-
+        this.properties = new ModelConfigProperties(bean.getProperties());
         this.fieldConfigMap = new TreeMap<>();
         this.interfacesMap = new LinkedHashMap<>();
 
@@ -84,64 +64,13 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         setModelClass();
     }
 
+    public ModelConfigProperties getProperties() {
+        return properties;
+    }
+
     @Override
     public ShapeTypes getShapeType() {
         return this.shapeType;
-    }
-
-    @Override
-    public String getDefaultImplementation() {
-        return defaultImplementation;
-    }
-
-    @Override
-    public Boolean getAbstract() {
-        return abstractValue;
-    }
-
-    @Override
-    public Boolean getFinal() {
-        return finalValue;
-    }
-
-    @Override
-    public Boolean getOverride() {
-        return override;
-    }
-
-    @Override
-    public Boolean getDbAnnotated() {
-        return this.dbAnnotated;
-    }
-
-    @Override
-    public Boolean getCreate() {
-        return this.create;
-    }
-
-    @Override
-    public Boolean getProperty() {
-        return this.property;
-    }
-
-    @Override
-    public String getBean() {
-        return bean;
-    }
-
-    @Override
-    public String getTable() {
-        return table;
-    }
-
-    @Override
-    public String getIdKey() {
-        return idKey;
-    }
-
-    @Override
-    public String getNaturalKeys() {
-        return naturalKeys;
     }
 
     public Models getFieldModels(final String fieldKey) {
@@ -215,15 +144,18 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         this.superModel = (ModelConfig) modelConfigMap.get(superKey);
     }
 
+    boolean hasDefaultImplementation() {
+        return getProperties().hasDefaultImplementation();
+    }
 
     private final void setDefaultImplementationModel(Map<String, ModelConfig> modelConfigMap) {
         if (!hasDefaultImplementation()) {
             return;
         }
-        if (!modelConfigMap.containsKey(getDefaultImplementation())) {
-            throw new EoException("Could not find modelConfig for default implementation with key '" + getDefaultImplementation() + "' for '" + getNaturalId() + "'.");
+        if (!modelConfigMap.containsKey(getProperties().getDefaultImplementation())) {
+            throw new EoException("Could not find modelConfig for default implementation with key '" + getProperties().getDefaultImplementation() + "' for '" + getNaturalId() + "'.");
         }
-        this.defaultImplementationModel = (ModelConfig) modelConfigMap.get(getDefaultImplementation());
+        this.defaultImplementationModel = (ModelConfig) modelConfigMap.get(getProperties().getDefaultImplementation());
     }
 
     public final ModelConfig getDefaultImplementationModel() {
@@ -346,7 +278,7 @@ public abstract class ModelConfig extends Config implements ModelInterface {
     }
 
     public Object create() {
-        throw new EoException("Could not create empty object");
+        throw new EoException("Could not create empty object for '(" + shapeType + ")" + modelKey + "'");
     }
 
     public boolean isEmpty(final Object object)  {
@@ -422,6 +354,11 @@ public abstract class ModelConfig extends Config implements ModelInterface {
     }
 
     public boolean isJsonIgnore(final String fieldKey) {
-        return hasField(fieldKey) && getField(fieldKey).isJsonIgnore();
+        return hasField(fieldKey) && getField(fieldKey).getProperties().isJsonIgnore();
     }
+
+    public Boolean isCreate() {
+        return properties.isCreate();
+    }
+
 }

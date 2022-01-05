@@ -58,7 +58,7 @@ public class FileConfigTest implements IConfigurationTests {
 
     @Test
     public void createByElement() {
-        final String serialized = "{  \"FileConfig\": {\n" +
+        final String serialized = "{   \"FileConfig\": {\n" +
                 "    \"module\": \"eo-calls\",\n" +
                 "    \"moduleScope\": \"main\",\n" +
                 "    \"fieldKeys\": {\n" +
@@ -73,18 +73,19 @@ public class FileConfigTest implements IConfigurationTests {
                 "      },\n" +
                 "      \"hostConfigKey\": {\n" +
                 "        \"final\": true\n" +
+                "      },\n" +
+                "      \"FileConfig.properties\": {\n" +
+                "        \"final\": true\n" +
                 "      }\n" +
                 "    },\n" +
-                "    \"interfaces\": \"FileInterface,FileConfigMethods\",\n" +
+                "    \"interfaces\": \"FileInterface\",\n" +
                 "    \"superKey\": \"PermissionConfig\",\n" +
                 "    \"expose\": \"NONE\",\n" +
                 "    \"description\": \"Immutable EO file configuration allow read or write access to a specific file. \",\n" +
                 "    \"packagePath\": \"org.fluentcodes.projects.elasticobjects.calls.files\",\n" +
                 "    \"modelKey\": \"FileConfig\",\n" +
                 "    \"properties\": {\n" +
-                "      \"create\": false,\n" +
-                "      \"final\": true,\n" +
-                "      \"override\": true\n" +
+                "      \"create\": false\n" +
                 "    },\n" +
                 "    \"author\": \"Werner Diwischek\",\n" +
                 "    \"creationDate\": 1539727200000\n" +

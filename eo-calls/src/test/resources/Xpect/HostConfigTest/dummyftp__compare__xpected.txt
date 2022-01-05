@@ -5,9 +5,13 @@
   "module": "eo-calls",
   "moduleScope": "test",
   "naturalId": "dummyftp",
-  "password": "test1234",
   "permissions": {
   },
-  "protocol": "ftp",
-  "user": "dummy"
+  "properties": {
+    "classPath": "src.main.resources",
+    "password": "test1234",
+    "port": 21,
+    "protocol": "ftp",
+    "user": "dummy"
+  }
 }

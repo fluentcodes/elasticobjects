@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.lists;
 
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
-import org.fluentcodes.projects.elasticobjects.calls.files.CsvConfig;
+import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCall;
 
 import java.util.ArrayList;
@@ -19,15 +19,8 @@ import java.util.List;
  * @modificationDate Tue Dec 08 11:16:47 CET 2020
  */
 public class CsvSimpleReadCall extends FileReadCall implements ListParamsBeanInterface {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
     private ListParamsBean listParams;
 
-    /*.{}.*/
     public CsvSimpleReadCall() {
         super();
         listParams = new ListParamsBean();
@@ -44,19 +37,21 @@ public class CsvSimpleReadCall extends FileReadCall implements ListParamsBeanInt
     }
 
     public List readRaw(final IEOScalar eo) {
-        CsvConfig config = (CsvConfig) init(PermissionType.READ, eo);
-        getListParams().merge(config.getListParamsConfig());
+        FileConfig config = init(PermissionType.READ, eo);
+        listParams.merge(config);
+        final String rowDelimiter = config.getProperties().getRowDelimiter();
+        final String fieldDelimiter = config.getProperties().getFieldDelimiter();
         String content = super.read(eo);
         if (content == null || content.isEmpty()) {
             return new ArrayList<>();
         }
-        String[] rows = content.split(config.getRowDelimiter());
+        String[] rows = content.split(rowDelimiter);
         List result = new ArrayList<>();
 
         if (getListParams().hasRowHead(rows.length)) {
             String header = rows[getListParams().getRowHead()];
             if (header != null && !header.isEmpty()) {
-                String[] fields = header.split(config.getFieldDelimiter());
+                String[] fields = header.split(fieldDelimiter);
                 if (!getListParams().hasColKeys()) {
                     getListParams().setColKeys(Arrays.asList(fields));
                 }
@@ -76,7 +71,7 @@ public class CsvSimpleReadCall extends FileReadCall implements ListParamsBeanInt
             if (row == null || row.isEmpty()) {
                 continue;
             }
-            String[] fields = row.split(config.getFieldDelimiter());
+            String[] fields = row.split(fieldDelimiter);
             List rowEntry = Arrays.asList(fields);
             getListParams().addRowEntry(eo.getConfigMaps(), result, rowEntry);
         }

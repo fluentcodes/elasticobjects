@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,9 +13,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FINAL;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_OVERRIDE;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_PROPERTY;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.INTERFACES;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.MODEL_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
@@ -31,11 +29,13 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
     private Map<String, FieldBean> fieldBeans;
     private ShapeTypes shapeType;
     private Set<ModelBean> modelSet;
+    private ModelBeanProperties properties;
 
     public ModelBean() {
         super();
         fieldBeans = new TreeMap<>();
         modelSet = new TreeSet<>();
+        this.properties = new ModelBeanProperties(new HashMap<>());
     }
 
     public ModelBean(final String key) {
@@ -44,6 +44,7 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         setModelKey(key);
         fieldBeans = new TreeMap<>();
         modelSet = new TreeSet<>();
+        this.properties = new ModelBeanProperties(new HashMap<>());
     }
 
     public ModelBean(final Class modelClass, ShapeTypes shapeType) {
@@ -53,77 +54,48 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         setPackagePath(modelClass.getPackage().getName());
         setShapeType(shapeType);
         setConfigModelKey(shapeType.getModelConfigKey());
+        this.properties = new ModelBeanProperties(new HashMap<>());
     }
 
 
     public ModelBean(final ModelConfig config) {
         super(config);
-        setAbstract(config.getAbstract());
-        setBean(config.getBean());
-        setCreate(config.getCreate());
-        setDbAnnotated(config.getDbAnnotated());
-        setDefaultImplementation(config.getDefaultImplementation());
-        setFinal(config.getFinal());
-        setIdKey(config.getIdKey());
         setInterfaces(config.getInterfaces());
-        // TODO REMOVE?! setJavascriptType(config.getJavascriptType());
         setModelKey(config.getModelKey());
-        setNaturalKeys(config.getNaturalKeys());
-        setOverride(config.getOverride());
         setPackagePath(config.getPackagePath());
-        setProperty(config.getProperty());
-        // TODO check to implement in config: setRolePermissions(config.)
         setShapeType(config.getShapeType());
         setSuperKey(config.getSuperKey());
         fieldBeans = new TreeMap<>();
         modelSet = new TreeSet<>();
         setFieldMap(config);
+        this.properties = new ModelBeanProperties(config.getProperties());
     }
 
     public ModelBean(final Map<String, Object> valueMap) {
         super(valueMap);
-        Map<String, Object> properties = valueMap.containsKey(F_PROPERTIES) && valueMap.get(F_PROPERTIES) != null ?
-                (Map<String, Object>) valueMap.get(F_PROPERTIES) :
-                valueMap;
-
-        setAbstract(
-                toBoolean(properties.get(F_ABSTRACT)));
-        setBean(
-                toString(properties.get(BEAN)));
-        setCreate(
-                toBoolean(properties.get(F_CREATE)));
-        setDbAnnotated(
-                toBoolean(properties.get(DB_ANNOTATED)));
-        setDefaultImplementation(
-                toString(properties.get(DEFAULT_IMPLEMENTATION)));
-        setFinal(
-                toBoolean(properties.get(F_FINAL)));
         setInterfaces(
                 toString(valueMap.get(INTERFACES)));
-        setIdKey(
-                toString(properties.get(ID_KEY)));
-        setJavascriptType(
-                toString(properties.get(JAVASCRIPT_TYPE)));
         setModelKey(
                 toString(valueMap.get(MODEL_KEY)));
-        setNaturalKeys(
-                toString(properties.get(NATURAL_KEYS)));
-        setOverride(
-                toBoolean(properties.get(F_OVERRIDE)));
         setPackagePath(
                 toString(valueMap.get(PACKAGE_PATH)));
-        setProperty(
-                toBoolean(properties.get(F_PROPERTY)));
         setShapeType(
                 new ShapeTypeSerializerEnum<ShapeTypes>().asObject(ShapeTypes.class, valueMap.get(SHAPE_TYPE)));
         setSuperKey(
                 toString(valueMap.get(SUPER_KEY)));
-        setTable(
-                toString(properties.get(TABLE)));
+
+        if(valueMap.containsKey(F_PROPERTIES) && valueMap.get(F_PROPERTIES) != null) {
+            this.properties = new ModelBeanProperties((Map<String, Object>)valueMap.get(F_PROPERTIES));
+        }
+        else {
+            this.properties = new ModelBeanProperties(new HashMap<>());
+        }
+
         defaultConfigModelKey();
         defaultNaturalId();
-        modelSet = new TreeSet<>();
 
+
+        modelSet = new TreeSet<>();
         if (!valueMap.containsKey(FIELD_KEYS) || valueMap.get(FIELD_KEYS) == null) {
             this.fieldBeans = new TreeMap<>();
             return;
@@ -140,6 +112,19 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         }
     }
 
+    public ModelBeanProperties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(ModelBeanProperties properties) {
+        this.properties = properties;
+    }
+
+    ModelBean setCreate(final Boolean value) {
+        getProperties().setCreate(value);
+        return this;
+    }
+
     protected void setFieldMap(final ModelConfig config) {
         for (Map.Entry<String, FieldConfig> entry : config.getFieldMap().entrySet()) {
             fieldBeans.put(entry.getKey(), new FieldBean(entry.getValue()));
@@ -147,15 +132,10 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
     }
 
     public void setDefault() {
-        mergeAbstract(false);
-        mergeCreate(false);
         defaultConfigModelKey();
-        mergeDbAnnotated(false);
-        mergeFinal(false);
         defaultNaturalId();
-        mergeOverride(false);
-        mergeProperty(false);
         defaultShapeTypes();
+        properties.setDefault();
     }
 
     public void setFieldBeans(Map<String, FieldBean> fieldBeans) {
@@ -294,156 +274,6 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         return fieldBeans.get(fieldKey);
     }
 
-    @Override
-    public Boolean getAbstract() {
-        return (Boolean) getProperties().get(F_ABSTRACT);
-    }
-
-    public ModelBean setAbstract(Boolean abstractValue) {
-        getProperties().put(F_ABSTRACT, abstractValue);
-        return this;
-    }
-
-    private void mergeAbstract(Boolean value) {
-        if (hasAbstract()) {
-            return;
-        }
-        getProperties().put(F_ABSTRACT, value);
-    }
-
-    @Override
-    public String getBean() {
-        return (String) getProperties().get(BEAN);
-    }
-
-    public void setBean(String value) {
-        getProperties().put(BEAN, value);
-    }
-
-    @Override
-    public Boolean getCreate() {
-        return (Boolean) getProperties().get(F_CREATE);
-    }
-
-    public ModelBean setCreate(Boolean create) {
-        getProperties().put(F_CREATE, create);
-        return this;
-    }
-
-    private void mergeCreate(Boolean value) {
-        if (hasCreate()) {
-            return;
-        }
-        getProperties().put(F_CREATE, value);
-    }
-
-    @Override
-    public Boolean getDbAnnotated() {
-        return (Boolean) getProperties().get(DB_ANNOTATED);
-    }
-
-    public ModelBean setDbAnnotated(Boolean dbAnnotated) {
-        getProperties().put(DB_ANNOTATED, dbAnnotated);
-        return this;
-    }
-
-    private void mergeDbAnnotated(Boolean value) {
-        if (hasDbAnnotated()) {
-            return;
-        }
-        getProperties().put(DB_ANNOTATED, value);
-    }
-
-    @Override
-    public String getDefaultImplementation() {
-        return (String) getProperties().get(DEFAULT_IMPLEMENTATION);
-    }
-
-    public void setDefaultImplementation(String value) {
-        getProperties().put(DEFAULT_IMPLEMENTATION, value);
-    }
-
-
-    @Override
-    public Boolean getFinal() {
-        return (Boolean) getProperties().get(F_FINAL);
-    }
-
-    public void setFinal(Boolean value) {
-        getProperties().put(F_FINAL, value);
-    }
-
-    private void mergeFinal(Boolean value) {
-        if (hasFinal()) {
-            return;
-        }
-        getProperties().put(F_FINAL, value);
-    }
-
-    @Override
-    public String getIdKey() {
-        return hasProperties() ? (String) getProperties().get(ID_KEY) : null;
-    }
-
-    public void setIdKey(String value) {
-        getProperties().put(ID_KEY, value);
-    }
-
-    public void setJavascriptType(String value) {
-        getProperties().put(JAVASCRIPT_TYPE, value);
-    }
-
-    public String getJavascriptType() {
-        return (String) getProperties().get(JAVASCRIPT_TYPE);
-    }
-
-    public void setNaturalKeys(String value) {
-        getProperties().put(NATURAL_KEYS, value);
-    }
-
-    @Override
-    public String getNaturalKeys() {
-        return (String) getProperties().get(NATURAL_KEYS);
-    }
-
-    @Override
-    public Boolean getOverride() {
-        return (Boolean) getProperties().get(F_OVERRIDE);
-    }
-
-    @Override
-    public boolean hasOverride() {
-        return getProperties().containsKey(F_OVERRIDE) && getProperties().get(F_OVERRIDE) != null;
-    }
-
-    public void setOverride(Boolean value) {
-        getProperties().put(F_OVERRIDE, value);
-    }
-
-    private void mergeOverride(Boolean value) {
-        if (hasOverride()) {
-            return;
-        }
-        getProperties().put(F_OVERRIDE, value);
-    }
-
-    @Override
-    public Boolean getProperty() {
-        return (Boolean) getProperties().get(F_PROPERTY);
-    }
-
-    public ModelBean setProperty(Boolean value) {
-        getProperties().put(F_PROPERTY, value);
-        return this;
-    }
-
-    private void mergeProperty(Boolean value) {
-        if (hasProperty()) {
-            return;
-        }
-        getProperties().put(F_PROPERTY, value);
-    }
-
     public void setShapeType(String shapeType) {
         setShapeType(
                 new ShapeTypeSerializerEnum<ShapeTypes>().asObject(ShapeTypes.class, shapeType));
@@ -463,15 +293,6 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
             return;
         }
         setShapeType(ShapeTypes.BEAN);
-    }
-
-    @Override
-    public String getTable() {
-        return hasProperties() ? (String) getProperties().get(TABLE) : null;
-    }
-
-    public void setTable(String value) {
-        getProperties().put(TABLE, value);
     }
 
     public void mergeFieldBeanMap(Map<String, FieldBean> fieldBeanMap) {
@@ -559,11 +380,11 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         }
         for (FieldBean fieldBean : this.fieldBeans.values()) {
             if (subFieldBeans.containsKey(fieldBean.getNaturalId())) {
-                subFieldBeans.get(fieldBean.getNaturalId()).setOverride(true);
+                subFieldBeans.get(fieldBean.getNaturalId()).getProperties().setOverride(true);
                 continue;
             }
             FieldBean fieldBeanLocal = new FieldBean(fieldBean);
-            fieldBeanLocal.setSuper(true);
+            fieldBeanLocal.getProperties().setSuper(true);
             subFieldBeans.put(fieldBean.getNaturalId(), fieldBeanLocal);
         }
     }

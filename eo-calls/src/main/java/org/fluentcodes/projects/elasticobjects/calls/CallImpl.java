@@ -8,8 +8,8 @@ import org.fluentcodes.projects.elasticobjects.calls.condition.Or;
 import org.fluentcodes.projects.elasticobjects.calls.templates.KeepCalls;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.TemplateMarker;
-import org.fluentcodes.projects.elasticobjects.domain.BaseBean;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 
 /*.{javaHeader}|*/
 
@@ -20,7 +20,7 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
  * @creationDate null
  * @modificationDate Thu Jan 07 11:38:14 CET 2021
  */
-public abstract class CallImpl extends BaseBean implements Call {/*.{}.*/
+public abstract class CallImpl implements Call {/*.{}.*/
 
     /*.{javaStaticNames}|*/
     /*.{}.*/

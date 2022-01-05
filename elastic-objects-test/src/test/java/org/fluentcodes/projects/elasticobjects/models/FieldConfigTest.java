@@ -171,99 +171,99 @@ public class FieldConfigTest implements IConfigurationTests {
 
     @Test
     public void testDefault(){
-        FieldConfig fieldConfig = createFieldConfig(F_DEFAULT, true);
-        assertTrue( fieldConfig.getDefault());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_DEFAULT, true);
+        assertTrue( fieldConfig.getProperties().getDefault());
     }
 
     @Test
     public void testFieldName(){
-        FieldConfig fieldConfig = createFieldConfig(F_FIELD_NAME, "\"fieldName\"");
-        assertEquals("fieldName", fieldConfig.getFieldName());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_FIELD_NAME, "\"fieldName\"");
+        assertEquals("fieldName", fieldConfig.getProperties().getFieldName());
     }
 
     @Test
     public void testFinal(){
-        FieldConfig fieldConfig = createFieldConfig(F_FINAL, true);
-        assertTrue(fieldConfig.getFinal());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_FINAL, true);
+        assertTrue(fieldConfig.getProperties().getFinal());
     }
 
     @Test
     public void testGenerated(){
-        FieldConfig fieldConfig = createFieldConfig(F_GENERATED, true);
-        assertTrue(fieldConfig.getGenerated());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_GENERATED, true);
+        assertTrue(fieldConfig.getProperties().getGenerated());
     }
 
     @Test
     public void testJavascriptType(){
-        FieldConfig fieldConfig = createFieldConfig(F_JAVASCRIPT_TYPE, "\"string\"");
-        assertEquals("string", fieldConfig.getJavascriptType());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_JAVASCRIPT_TYPE, "\"string\"");
+        assertEquals("string", fieldConfig.getProperties().getJavascriptType());
     }
 
     @Test
     public void testJsonIgnore(){
-        FieldConfig fieldConfig = createFieldConfig(F_JSON_IGNORE, true);
-        assertTrue(fieldConfig.getJsonIgnore());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_JSON_IGNORE, true);
+        assertTrue(fieldConfig.getProperties().getJsonIgnore());
     }
 
     @Test
     public void testLength(){
-        FieldConfig fieldConfig = createFieldConfig(F_LENGTH, 1);
-        assertEquals(new Integer(1), fieldConfig.getLength());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_LENGTH, 1);
+        assertEquals(new Integer(1), fieldConfig.getProperties().getLength());
     }
 
     @Test
     public void testMax(){
-        FieldConfig fieldConfig = createFieldConfig(F_MAX, 1);
-        assertEquals(new Integer(1), fieldConfig.getMax());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_MAX, 1);
+        assertEquals(new Integer(1), fieldConfig.getProperties().getMax());
     }
 
     @Test
     public void testMin(){
-        FieldConfig fieldConfig = createFieldConfig(F_MIN, 1);
-        assertEquals(new Integer(1), fieldConfig.getMin());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_MIN, 1);
+        assertEquals(new Integer(1), fieldConfig.getProperties().getMin());
     }
 
     @Test
     public void testNotNull(){
-        FieldConfig fieldConfig = createFieldConfig(F_NOT_NULL, true);
-        assertTrue(fieldConfig.getNotNull());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_NOT_NULL, true);
+        assertTrue(fieldConfig.getProperties().getNotNull());
     }
 
     @Test
     public void testOverride(){
-        FieldConfig fieldConfig = createFieldConfig(F_OVERRIDE, true);
-        assertTrue(fieldConfig.getOverride());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_OVERRIDE, true);
+        assertTrue(fieldConfig.getProperties().getOverride());
     }
 
     @Test
     public void testProperty(){
-        FieldConfig fieldConfig = createFieldConfig(F_PROPERTY, true);
-        assertTrue(fieldConfig.getProperty());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_PROPERTY, true);
+        assertTrue(fieldConfig.getProperties().getProperty());
     }
 
     @Test
     public void testStaticName(){
-        FieldConfig fieldConfig = createFieldConfig(F_STATIC_NAME, true);
-        assertTrue(fieldConfig.getStaticName());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_STATIC_NAME, true);
+        assertTrue(fieldConfig.getProperties().getStaticName());
     }
 
 
     @Test
     public void testSuper(){
-        FieldConfig fieldConfig = createFieldConfig(F_SUPER, true);
-        assertTrue(fieldConfig.getSuper());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_SUPER, true);
+        assertTrue(fieldConfig.getProperties().getSuper());
     }
 
     @Test
     public void testTransient(){
-        FieldConfig fieldConfig = createFieldConfig(F_TRANSIENT, true);
-        assertTrue(fieldConfig.getTransient());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_TRANSIENT, true);
+        assertTrue(fieldConfig.getProperties().getTransient());
     }
 
     @Test
     public void testUnique(){
-        FieldConfig fieldConfig = createFieldConfig(F_UNIQUE, true);
-        assertTrue(fieldConfig.getUnique());
+        FieldConfig fieldConfig = createFieldConfig(FieldBeanProperties.F_UNIQUE, true);
+        assertTrue(fieldConfig.getProperties().getUnique());
     }
 
     @Test

@@ -1,0 +1,15 @@
+{
+  "creationDate": 1608073216000,
+  "description": "Interface with permissions methods ",
+  "expose": "NONE",
+  "modelKey": "PermissionInterface",
+  "module": "elastic-objects",
+  "moduleScope": "main",
+  "naturalId": "PermissionInterface",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+  "properties": {
+    "create": false,
+    "dbAnnotated": false,
+    "final": true
+  }
+}

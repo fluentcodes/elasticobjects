@@ -48,8 +48,8 @@ public class ConfigTest implements IModelConfigNoCreateTests {
     public void checkConfigConfig_FieldExpose_FinalTrue() {
         ModelConfig config = ProviderConfigMaps.findModel(Config.class);
         FieldConfig fieldConfig = config.getField(F_EXPOSE);
-        assertTrue(fieldConfig.getFinal());
-        Boolean property = fieldConfig.getProperty();
+        assertTrue(fieldConfig.getProperties().getFinal());
+        Boolean property = fieldConfig.getProperties().getProperty();
         assertFalse(property);
         XpectStringJunit4.assertStatic(fieldConfig.toString());
     }

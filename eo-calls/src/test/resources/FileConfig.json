@@ -114,7 +114,6 @@
     "write": ["admin"]
   },
   "target.csv": {
-    "configModelKey": "CsvConfig",
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
@@ -162,7 +161,6 @@
     "execute": ["guest"]
   },
   "AnObject.csv": {
-    "configModelKey": "CsvConfig",
     "module": "eo-calls",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
@@ -190,7 +188,6 @@
       "read": ["guest"]
   },
   "ListSimple.csv": {
-    "configModelKey": "CsvConfig",
     "module": "eo-calls",
     "moduleScope": "main",
     "hostConfigKey": "localhost",

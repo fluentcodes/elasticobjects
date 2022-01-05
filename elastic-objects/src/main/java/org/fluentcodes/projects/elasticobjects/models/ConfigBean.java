@@ -24,19 +24,15 @@ import java.util.TreeMap;
 public class ConfigBean {
     public static final String F_PROPERTIES = "properties";
     public static final String F_MODULE = "module";
-    /*.{javaStaticNames}|*/
     public static final String F_CONFIG_MODEL_KEY = "configModelKey";
     public static final String F_EXPOSE = "expose";
     public static final String F_MODULE_SCOPE = "moduleScope";
     public static final String F_SCOPE = "scope";
     public static final String F_CREATION_DATE = "creationDate";
-    /*.{}.*/
-    /*.{javaStaticNames}|*/
     public static final String F_AUTHOR = "author";
     public static final String F_DESCRIPTION = "description";
     public static final String F_ID = "id";
     public static final String F_NATURAL_ID = "naturalId";
-    /*.{}.*/
     private static final String CONFIG_MODEL_KEY = "configModelKey";
     public static final String SCOPE_FROM_STRING_EXCEPTION = "Could not set scope from string with value '";
     /*.{javaInstanceVars}|*/
@@ -146,18 +142,6 @@ public class ConfigBean {
 
     public static Date toDate(final Object value) {
         return new ShapeTypeSerializerDate().asObject(value);
-    }
-
-    public Map<String, Object> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Map<String, Object> properties) {
-        this.properties = properties;
-    }
-
-    public boolean hasProperties() {
-        return this.properties !=null && !this.properties.isEmpty();
     }
 
     /*.{javaAccessors}|*/

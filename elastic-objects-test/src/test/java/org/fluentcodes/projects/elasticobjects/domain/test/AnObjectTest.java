@@ -50,7 +50,7 @@ public class AnObjectTest implements IModelConfigCreateTests {
     public void TEST__get_ShapeType__BEAN() {
         ModelBean modelBean = ProviderConfigMaps.createModelBean(AnObject.class);
         assertEquals(ShapeTypes.BEAN, modelBean.getShapeType());
-        assertFalse(modelBean.getFinal());
+        assertFalse(modelBean.getProperties().getFinal());
     }
 
     @Test

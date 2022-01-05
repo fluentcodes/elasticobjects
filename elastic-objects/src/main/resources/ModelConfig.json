@@ -55,7 +55,7 @@
   "ConfigBean": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "id, description, naturalId, creationDate, author, expose, module, moduleScope, scope, configModelKey, properties",
+    "fieldKeys": "id, description, naturalId, creationDate, author, expose, module, moduleScope, scope, configModelKey",
     "expose": "NONE",
     "description": "The basic bean class for the configuration classes. Defines properies map for individual extensions.  ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
@@ -141,13 +141,29 @@
   "FieldBean": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "fieldKey, modelKeys, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
-    "interfaces": "FieldBeanInterface",
+    "fieldKeys": "fieldKey, modelKeys, FieldBean.properties",
+    "interfaces": "FieldInterface",
     "superKey": "ConfigBean",
     "expose": "NONE",
     "description": "The basic bean container class for the configuration class@FieldConfig. Also used as a base for building source code. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldBean",
+    "properties": {
+      "create": true,
+      "override": true
+    },
+    "author": "Werner Diwischek",
+    "creationDate": 1607468400000
+  },
+  "FieldBeanProperties": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "fieldKeys": "default, final, fieldName, jsonIgnore, generated, length, notNull, override, property, super, javascriptType, min, max, staticName, transient, unique",
+    "interfaces": "FieldPropertiesInterface",
+    "expose": "NONE",
+    "description": "The basic bean container class for the configuration class@FieldConfig. Also used as a base for building source code. ",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+    "modelKey": "FieldBeanProperties",
     "properties": {
       "create": true,
       "override": true
@@ -167,6 +183,29 @@
         "final": true,
         "property": false
       },
+      "FieldConfig.properties": {
+        "final": true,
+        "property": false
+      }
+    },
+    "interfaces": "FieldInterface",
+    "superKey": "Config",
+    "expose": "NONE",
+    "description": "Immutabel EO field configuration will be initalized by @FieldBean object.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+    "modelKey": "FieldConfig",
+    "properties": {
+      "create": false,
+      "final": true,
+      "override": true
+    },
+    "author": "Werner Diwischek",
+    "creationDate": 1539727200000
+  },
+  "FieldConfigProperties": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "fieldKeys": {
       "length": {
         "final": true,
         "property": false
@@ -199,10 +238,14 @@
         "final": true,
         "property": false
       },
-     "max": {
-       "final": true,
-       "property": false
-     },
+      "length": {
+        "final": true,
+        "property": false
+      },
+      "max": {
+        "final": true,
+        "property": false
+      },
       "min": {
         "final": true,
         "property": false
@@ -232,12 +275,11 @@
         "property": false
       }
     },
-    "interfaces": "FieldInterface",
-    "superKey": "Config",
+    "interfaces": "FieldPropertiesInterface",
     "expose": "NONE",
     "description": "Immutabel EO field configuration will be initalized by @FieldBean object.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
-    "modelKey": "FieldConfig",
+    "modelKey": "FieldConfigProperties",
     "properties": {
       "create": false,
       "final": true,
@@ -249,7 +291,7 @@
   "FieldInterface": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "",
+    "fieldKeys": "fieldKey, modelKeys",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
@@ -262,15 +304,14 @@
     "author": "Werner Diwischek",
     "creationDate": 1600466400000
   },
-  "FieldBeanInterface": {
+  "FieldPropertiesInterface": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "fieldKey, modelKeys, length, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
-    "interfaces": "FieldInterface",
+    "fieldKeys": "length, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
-    "modelKey": "FieldBeanInterface",
+    "modelKey": "FieldPropertiesInterface",
     "properties": {
       "create": false,
       "final": true
@@ -310,20 +351,7 @@
     "module": "elastic-objects",
     "moduleScope": "main",
     "fieldKeys": {
-      "abstract": {
-        "jsonSerialized": false,
-        "transient": true,
-        "default": true
-      },
-      "dbAnnotated": {
-        "jsonSerialized": false,
-        "transient": true,
-        "default": true
-      },
       "fieldBeans": {
-      },
-      "javascriptType": {
-        "override": false
       },
       "interfaces": {
         "override": true
@@ -331,6 +359,7 @@
       "modelKey": {
         "override": true
       },
+      "ModelBean.properties": {},
       "packagePath": {
         "override": true
       },
@@ -354,6 +383,37 @@
     },
     "author": "Werner Diwischek"
   },
+  "ModelBeanProperties": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "fieldKeys": {
+      "abstract": {
+      },
+      "create": {
+      },
+      "dbAnnotated": {
+      },
+      "defaultImplementation": {
+      },
+      "final": {
+      },
+      "idKey": {
+      },
+      "naturalKeys": {
+      },
+      "table": {
+      }
+    },
+    "interfaces": "ModelPropertiesInterface",
+    "expose": "WEB",
+    "description": "A bean container class for Model values",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+    "modelKey": "ModelBeanProperties",
+    "properties": {
+      "create": true
+    },
+    "author": "Werner Diwischek"
+  },
   "ModelConfig": {
     "module": "elastic-objects",
     "moduleScope": "main",
@@ -368,6 +428,9 @@
       },
       "fieldConfigMap": {
         "override": false,
+        "final": true
+      },
+      "ModelConfig.properties": {
         "final": true
       },
       "packagePath": {
@@ -391,6 +454,46 @@
     },
     "author": "Werner Diwischek"
   },
+  "ModelConfigProperties": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "fieldKeys": {
+      "abstract": {
+        "final": true
+      },
+      "create": {
+        "final": true
+      },
+      "dbAnnotated": {
+        "final": true
+      },
+      "defaultImplementation": {
+        "final": true
+      },
+      "final": {
+        "final": true
+      },
+      "idKey": {
+        "final": true
+      },
+      "naturalKeys": {
+        "final": true
+      },
+      "table": {
+        "final": true
+      }
+    },
+    "interfaces": "ModelPropertiesInterface",
+    "expose": "NONE",
+    "description": "Table definitions with pojo.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+    "modelKey": "ModelConfigProperties",
+    "properties": {
+      "create": false,
+      "final": true
+    },
+    "author": "Werner Diwischek"
+  },
   "ModelInterface": {
     "module": "elastic-objects",
     "moduleScope": "main",
@@ -398,6 +501,19 @@
     "description": "Elementary model properties.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelInterface",
+    "properties": {
+      "create": false
+    },
+    "shapeType": "INTERFACE",
+    "author": "Werner Diwischek"
+  },
+  "ModelPropertiesInterface": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "expose": "NONE",
+    "description": "Elementary model properties.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+    "modelKey": "ModelPropertiesInterface",
     "properties": {
       "create": false
     },

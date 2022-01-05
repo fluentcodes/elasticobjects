@@ -2,18 +2,19 @@
   "fieldConfigMap": {
     "id": {
       "fieldKey": "id",
-      "fieldName": "id",
       "modelKeys": "Long",
       "naturalId": "SuperExampleClass.id"
     },
     "subClass": {
       "fieldKey": "subClass",
-      "fieldName": "subClass",
       "modelKeys": "FieldExampleClass",
       "naturalId": "SuperExampleClass.subClass"
     }
   },
   "modelKey": "SuperExampleClass",
   "naturalId": "SuperExampleClass",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test"
+  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
+  "properties": {
+    "create": true
+  }
 }

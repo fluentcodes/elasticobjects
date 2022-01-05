@@ -18,6 +18,15 @@
     "expose": "NONE",
     "fieldKey": "cached"
   },
+  "classPath": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The classpath",
+    "expose": "WEB",
+    "fieldKey": "classPath",
+    "length": 128
+  },
   "colKeys": {
     "module": "eo-calls",
     "moduleScope": "main",
@@ -92,11 +101,7 @@
     "description": "A delimiter for fields used for csv files. ",
     "expose": "NONE",
     "fieldKey": "fieldDelimiter",
-    "length": 4,
-    "properties": {
-      "property": true,
-      "final": true
-    }
+    "length": 4
   },
   "fieldKeys": {
     "module": "eo-calls",
@@ -167,10 +172,7 @@
     "description": "A name for host objects.",
     "expose": "NONE",
     "fieldKey": "hostName",
-    "length": 80,
-    "properties": {
-      "property": true
-    }
+    "length": 80
   },
   "listParams": {
     "module": "eo-calls",
@@ -179,15 +181,6 @@
     "description": "Parameters of type @ListParamsBean for list type read call operations like @CsvSimpleReadCall.",
     "expose": "NONE",
     "fieldKey": "listParams",
-    "length": 80
-  },
-  "listParamsConfig": {
-    "module": "eo-calls",
-    "moduleScope": "main",
-    "modelKeys": "ListParamsConfig",
-    "description": "Parameters of type @ListParamsBean for list type read call operations like @CsvSimpleReadCall.",
-    "expose": "NONE",
-    "fieldKey": "listParamsConfig",
     "length": 80
   },
   "nothing": {
@@ -205,10 +198,7 @@
     "description": "The password instance var.",
     "expose": "NONE",
     "fieldKey": "password",
-    "length": 15,
-    "properties": {
-      "property": true
-    }
+    "length": 15
   },
   "permissions": {
     "module": "eo-calls",
@@ -224,10 +214,39 @@
     "modelKeys": "Integer",
     "description": "port",
     "expose": "NONE",
-    "fieldKey": "port",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "port"
+  },
+  "FileBean.properties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "FileBeanProperties",
+    "description": "Properties for file bean",
+    "expose": "NONE",
+    "fieldKey": "properties"
+  },
+  "FileConfig.properties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "FileConfigProperties",
+    "description": "Immutable properties for file config",
+    "expose": "NONE",
+    "fieldKey": "properties"
+  },
+  "HostBean.properties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "HostBeanProperties",
+    "description": "Properties for host bean",
+    "expose": "NONE",
+    "fieldKey": "properties"
+  },
+  "HostConfig.properties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "HostConfigProperties",
+    "description": "Immutable properties for host config",
+    "expose": "NONE",
+    "fieldKey": "properties"
   },
   "protocol": {
     "module": "eo-calls",
@@ -236,10 +255,7 @@
     "description": "protocol",
     "expose": "NONE",
     "fieldKey": "protocol",
-    "length": 8,
-    "properties": {
-      "property": true
-    }
+    "length": 8
   },
   "read": {
     "module": "eo-calls",
@@ -265,11 +281,7 @@
     "description": "A delimiter for rows used for csv files.",
     "expose": "NONE",
     "fieldKey": "rowDelimiter",
-    "length": 4,
-    "properties": {
-      "property": true,
-      "final": true
-    }
+    "length": 4
   },
   "rowEnd": {
     "module": "eo-calls",
@@ -277,10 +289,7 @@
     "modelKeys": "Integer",
     "description": "rowEnd",
     "expose": "WEB",
-    "fieldKey": "rowEnd",
-    "properties": {
-      "property": false
-    }
+    "fieldKey": "rowEnd"
   },
   "rowHead": {
     "module": "eo-calls",
@@ -288,10 +297,7 @@
     "modelKeys": "Integer",
     "description": "rowHead",
     "expose": "WEB",
-    "fieldKey": "rowHead",
-    "properties": {
-      "property": false
-    }
+    "fieldKey": "rowHead"
   },
   "rowStart": {
     "module": "eo-calls",
@@ -299,10 +305,7 @@
     "modelKeys": "Integer",
     "description": "rowStart",
     "expose": "WEB",
-    "fieldKey": "rowStart",
-    "properties": {
-      "property": false
-    }
+    "fieldKey": "rowStart"
   },
   "serializationType": {
     "module": "eo-calls",
@@ -363,10 +366,7 @@
     "description": "url",
     "expose": "NONE",
     "fieldKey": "url",
-    "length": 80,
-    "properties": {
-      "property": true
-    }
+    "length": 80
   },
   "user": {
     "module": "eo-calls",
@@ -375,10 +375,7 @@
     "description": "user",
     "expose": "NONE",
     "fieldKey": "user",
-    "length": 50,
-    "properties": {
-      "property": true
-    }
+    "length": 50
   },
   "write": {
     "module": "eo-calls",

@@ -1,5 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.testitemprovider;
 
+import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectEoJunit4;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
@@ -24,8 +25,9 @@ public interface IModelConfigTests {
     }
 
     default void assertBeanFromModelConfigEqualsPersisted() {
+        ModelBean modelBean = new ModelBean(getModelConfig());
         XpectEoJunit4.assertStaticEO(
-                ProviderConfigMaps.createEo(getModelConfig().createBean())
+                ProviderConfigMaps.createEo(modelBean)
         );
     }
 

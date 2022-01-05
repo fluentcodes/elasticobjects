@@ -10,17 +10,11 @@ import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
  * @creationDate Wed Sep 09 00:00:00 CEST 2020
  * @modificationDate Thu Jan 14 14:24:01 CET 2021
  */
-public interface FileInterface extends ConfigInterface {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
+public interface FileInterface {
     String F_FILE_NAME = "fileName";
     String F_FILE_PATH = "filePath";
     String F_CACHED = "cached";
     String F_TEMPLATE = "template";
-    /*.{}.*/
-
-    /*.{javaAccessors}|*/
     Boolean getCached();
 
     default boolean hasCached() {
@@ -49,14 +43,4 @@ public interface FileInterface extends ConfigInterface {
         return getHostConfigKey() != null && !getHostConfigKey().isEmpty();
     }
 
-    /*.{}.*/
-    String getTemplate();
-
-    default boolean hasTemplate() {
-        return getTemplate()!=null && !getTemplate().isEmpty();
-    }
-
-    default boolean isTargetTemplate() {
-        return true;
-    }
 }

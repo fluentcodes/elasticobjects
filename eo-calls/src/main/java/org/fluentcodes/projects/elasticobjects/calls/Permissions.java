@@ -82,11 +82,11 @@ public class Permissions {
         if (!hasPermissions) {
             return true;
         }
-        if (roleKeys.contains(SUPER_ADMIN)) {
-            return true;
-        }
         if (roleKeys == null || roleKeys.isEmpty()) {
             return false;
+        }
+        if (roleKeys.contains(SUPER_ADMIN)) {
+            return true;
         }
         for (final String roleKey : roleKeys) {
             int required = callPermission.ordinal();

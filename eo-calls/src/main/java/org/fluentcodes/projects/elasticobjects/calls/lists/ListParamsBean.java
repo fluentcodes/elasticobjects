@@ -53,12 +53,12 @@ public class ListParamsBean {
         }
     }
 
-    public void merge(FileConfig listParams) {
-        this.mergeRowHead(listParams.getProperties().getRowHead());
-        this.mergeRowStart(listParams.getProperties().getRowStart());
-        this.mergeLength(listParams.getProperties().getLength());
-        this.mergeRowEnd(listParams.getProperties().getRowEnd());
-        this.mergeFilter(listParams.getProperties().getFilter());
+    public void merge(FileConfig config) {
+        this.mergeRowHead(config.getProperties().getRowHead());
+        this.mergeRowStart(config.getProperties().getRowStart());
+        this.mergeLength(config.getProperties().getLength());
+        this.mergeRowEnd(config.getProperties().getRowEnd());
+        this.mergeFilter(config.getProperties().getFilter());
         setDefault();
     }
 

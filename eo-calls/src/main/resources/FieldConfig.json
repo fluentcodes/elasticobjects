@@ -86,6 +86,15 @@
     "expose": "WEB",
     "fieldKey": "delete"
   },
+  "dialect": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A database sql dialect.",
+    "expose": "NONE",
+    "fieldKey": "dialect",
+    "length": 80
+  },
   "execute": {
     "module": "eo-calls",
     "moduleScope": "main",
@@ -315,6 +324,15 @@
     "expose": "WEB",
     "fieldKey": "serializationType"
   },
+  "sheetName": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A name for the sheet selected.",
+    "expose": "NONE",
+    "fieldKey": "sheetName",
+    "length": 64
+  },
   "sortOrder": {
     "module": "eo-calls",
     "moduleScope": "main",
@@ -384,5 +402,41 @@
     "description": "Roles which are allowed to write.",
     "expose": "WEB",
     "fieldKey": "write"
+  },
+  "driver": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "driver",
+    "expose": "NONE",
+    "fieldKey": "driver",
+    "length": 80
+  },
+  "extension": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "An extension for database initialization. ",
+    "expose": "NONE",
+    "fieldKey": "extension",
+    "length": 1024
+  },
+  "jndi": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The jndi lookup for a hibernate session factory. ",
+    "expose": "NONE",
+    "fieldKey": "jndi",
+    "length": 80
+  },
+  "schema": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The database schema used for persisting as a property of @HostConfig",
+    "expose": "NONE",
+    "fieldKey": "schema",
+    "length": 80
   }
 }

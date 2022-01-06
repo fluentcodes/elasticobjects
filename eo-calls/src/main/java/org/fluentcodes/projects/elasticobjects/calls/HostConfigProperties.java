@@ -8,26 +8,61 @@ package org.fluentcodes.projects.elasticobjects.calls;
  * @modificationDate Thu Jan 14 12:17:41 CET 2021
  */
 public class HostConfigProperties implements HostPropertiesInterface {
+    private final String classPath;
+
+    private final String dialect;
+    private final String driver;
+    private final String extension;
+    private final String jndi;
 
     private final String password;
     private final Integer port;
     private final String protocol;
+    private final String schema;
     private final String url;
     private final String user;
-    private final String classPath;
+
+
 
     public HostConfigProperties(HostBeanProperties bean) {
+        this.classPath = bean.getClassPath();
+        this.dialect = bean.getDialect();
+        this.driver = bean.getDriver();
+        this.extension = bean.getExtension();
+        this.jndi = bean.getJndi();
+
         this.password = bean.getPassword();
         this.port = bean.getPort();
         this.protocol = bean.getProtocol();
+        this.schema = bean.getSchema();
         this.url = bean.getUrl();
         this.user = bean.getUser();
-        this.classPath = bean.getClassPath();
+
     }
 
     @Override
     public String getClassPath() {
         return classPath;
+    }
+
+    @Override
+    public String getDialect() {
+        return dialect;
+    }
+
+    @Override
+    public String getDriver() {
+        return driver;
+    }
+
+    @Override
+    public String getExtension() {
+        return extension;
+    }
+
+    @Override
+    public String getJndi() {
+        return jndi;
     }
 
     @Override
@@ -46,6 +81,11 @@ public class HostConfigProperties implements HostPropertiesInterface {
     }
 
     @Override
+    public String getSchema() {
+        return schema;
+    }
+
+    @Override
     public String getUrl() {
         return url;
     }
@@ -54,4 +94,5 @@ public class HostConfigProperties implements HostPropertiesInterface {
     public String getUser() {
         return user;
     }
+
 }

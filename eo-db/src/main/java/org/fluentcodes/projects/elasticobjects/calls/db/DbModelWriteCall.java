@@ -10,24 +10,15 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.List;
 
-/*.{javaHeader}|*/
-
 /**
  * Write an entry in database by creating a insert or update sql from entry in sourcePath.
- * The object must be an instance of {@link ModelConfigDbObject}.
+ * The object must be an instance of {@link DbModelConfig}.
  *
  * @author Werner Diwischek
  * @creationDate
  * @modificationDate Wed Nov 11 06:45:11 CET 2020
  */
 public class DbModelWriteCall extends DbModelCall implements ConfigWriteCommand {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
-    /*.{}.*/
     public DbModelWriteCall() {
         super();
     }
@@ -42,30 +33,24 @@ public class DbModelWriteCall extends DbModelCall implements ConfigWriteCommand 
     }
 
     public int save(final IEOScalar eo) {
-        ModelConfigDbObject modelConfig = init(PermissionType.WRITE, eo);
-        if (!modelConfig.isObject()) {
-            throw new EoException("No model is provided in path '" + eo.getPathAsString() + "");
-        }
+        DbModelConfig modelConfig = init(PermissionType.WRITE, eo);
         int updateCount = 0;
-        if (FindStatement.ofId(eo).execute(getDbConfig().getConnection()) == 1) {
+        if (FindStatement.ofId(eo).execute(modelConfig.getDbConfig().getConnection()) == 1) {
             updateCount = UpdateStatement
                     .of(eo)
-                    .execute(getDbConfig().getConnection());
+                    .execute(modelConfig.getDbConfig().getConnection());
         } else {
             updateCount = InsertStatement
                     .of(eo)
-                    .execute(getDbConfig().getConnection());
+                    .execute(modelConfig.getDbConfig().getConnection());
         }
         if (hasTargetPath()) {
             List result = FindStatement.of(eo)
                     .readFirst(
-                            getDbConfig().getConnection(),
+                            modelConfig.getDbConfig().getConnection(),
                             eo.getConfigMaps());
             eo.set(result, getTargetPath());
         }
         return updateCount;
     }
-
-    /*.{javaAccessors}|*/
-    /*.{}.*/
 }

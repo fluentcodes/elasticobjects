@@ -405,7 +405,7 @@ public class ConfigBean {
                     this.getClass().getPackage().toString().replace("package ", "")
                             + "." + configModelKey);
         } catch (Exception e) {
-            throw new EoException("Could not find configuration class: " + e.getMessage());
+            throw new EoException("Could not find configuration class with a Class.forName: " + e.getMessage());
         }
     }
 

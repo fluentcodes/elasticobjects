@@ -10,12 +10,29 @@ import java.util.List;
  */
 public interface FilePropertiesInterface {
 
+    List<String> getColKeys();
+
+    default boolean hasColKeys() {
+        return getColKeys() != null && !getColKeys().isEmpty();
+    }
+
+    String getFieldDelimiter();
+
+    default boolean hasFieldDelimiter() {
+        return getFieldDelimiter() != null && !getFieldDelimiter().isEmpty();
+    }
+
     String getFilter();
 
     default boolean hasFilter() {
         return getFilter() != null && !getFilter().isEmpty();
     }
 
+    Integer getLength();
+
+    default boolean hasLength() {
+        return getLength() != null && getLength() > 0;
+    }
 
     Integer getRowHead();
 
@@ -35,27 +52,16 @@ public interface FilePropertiesInterface {
         return getRowEnd() != null && getRowEnd() > -1;
     }
 
-    Integer getLength();
-
-    default boolean hasLength() {
-        return getLength() != null && getLength() > 0;
-    }
-
-    List<String> getColKeys();
-
-    default boolean hasColKeys() {
-        return getColKeys() != null && !getColKeys().isEmpty();
-    }
-
     String getRowDelimiter();
-
-    String getFieldDelimiter();
-
-    default boolean hasFieldDelimiter() {
-        return getFieldDelimiter() != null && !getFieldDelimiter().isEmpty();
-    }
 
     default boolean hasRowDelimiter() {
         return getRowDelimiter() != null && !getRowDelimiter().isEmpty();
     }
+
+    String getSheetName();
+
+    default boolean hasSheetName() {
+        return getSheetName() != null && !getSheetName().isEmpty();
+    }
+
 }

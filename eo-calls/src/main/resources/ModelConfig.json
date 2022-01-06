@@ -409,7 +409,8 @@
       "rowDelimiter": {},
       "rowEnd": {},
       "rowHead": {},
-      "rowStart": {}
+      "rowStart": {},
+      "sheetName": {}
     },
     "interfaces": "FilePropertiesInterface",
     "expose": "NONE",
@@ -494,6 +495,9 @@
         "final": true
       },
       "rowStart": {
+        "final": true
+      },
+      "sheetName": {
         "final": true
       }
     },
@@ -608,7 +612,7 @@
   "HostBeanProperties": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "classPath, port, protocol, password, user, url",
+    "fieldKeys": "classPath, dialect, driver, extension, jndi, port, protocol, password, schema, user, url",
     "interfaces": "HostPropertiesInterface",
     "expose": "WEB",
     "description": "A bean container class for Host values",
@@ -662,9 +666,14 @@
     "moduleScope": "main",
     "fieldKeys": {
       "classPath": {"final": true},
+      "dialect": {"final": true},
+      "driver": {"final": true},
+      "extension": {"final": true},
+      "jndi": {"final": true},
       "port": {"final": true},
       "protocol": {"final": true},
       "password": {"final": true},
+      "schema": {"final": true},
       "user": {"final": true},
       "url": {"final": true}
     },

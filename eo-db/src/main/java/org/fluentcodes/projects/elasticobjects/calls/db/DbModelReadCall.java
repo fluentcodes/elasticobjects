@@ -20,23 +20,15 @@ import java.util.List;
  * @modificationDate Wed Nov 11 06:39:50 CET 2020
  */
 public class DbModelReadCall extends DbModelCall implements ListParamsBeanInterface, ConfigReadCommand {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    public static final String LIST_PARAMS = "listParams";
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
     private ListParamsBean listParams;
-    /*.{}.*/
 
     public DbModelReadCall() {
         super();
         listParams = new ListParamsBean();
     }
 
-    public DbModelReadCall(final String hostConfigKey) {
-        super(hostConfigKey);
+    public DbModelReadCall(final String dbModelKey) {
+        super(dbModelKey);
         listParams = new ListParamsBean();
     }
 
@@ -47,21 +39,19 @@ public class DbModelReadCall extends DbModelCall implements ListParamsBeanInterf
     }
 
     public List readRaw(final IEOScalar eo) {
-        ModelConfigDbObject modelConfig = init(PermissionType.READ, eo);
+        DbModelConfig dbModelConfig = init(PermissionType.READ, eo);
         listParams.initDb();
         return FindStatement.of(eo)
                 .read(
-                        getDbConfig().getConnection(),
+                        dbModelConfig.getDbConfig().getConnection(),
                         eo.getConfigMaps(),
                         getListParams());
     }
 
-    /*.{javaAccessors}|*/
-
     /**
      * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
      */
-    @Override
+
     public DbModelReadCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
@@ -72,9 +62,7 @@ public class DbModelReadCall extends DbModelCall implements ListParamsBeanInterf
         return this.listParams;
     }
 
-    @Override
     public boolean hasListParams() {
         return listParams != null;
     }
-    /*.{}.*/
 }

@@ -25,6 +25,7 @@ public class DbModelWriteCallAnObjectTest {
     public void call_AnObject_1L_value1New__execute__updated() {
         DbModelWriteCall call = new DbModelWriteCall();
         Assertions.assertThat(call).isNotNull();
+        call.setConfigKey("h2:mem:AnObject");
         call.setTargetPath("/result");
         EoRoot eo = ProviderConfigMaps.createEo();
         AnObject anObject = new AnObject();
@@ -60,6 +61,7 @@ public class DbModelWriteCallAnObjectTest {
     public void call_AnObject_4L_value4__execute__inserted() {
         DbModelWriteCall call = new DbModelWriteCall();
         Assertions.assertThat(call).isNotNull();
+        call.setConfigKey("h2:mem:AnObject");
         call.setTargetPath("/result");
         EoRoot eo = ProviderConfigMaps.createEo();
         AnObject anObject = new AnObject();

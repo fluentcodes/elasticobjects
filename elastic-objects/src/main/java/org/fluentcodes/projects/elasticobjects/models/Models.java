@@ -234,8 +234,8 @@ public class Models {
             return dominator;
         }
 
-        throw new EoException("Mismatch for " +
-                dominator.getModelClass().getSimpleName() + " " +
+        throw new EoException("Mismatch for Models: Expected is " +
+                dominator.getModelClass().getSimpleName() + " but the other model is " +
                 descriminator.getModelClass().getSimpleName());
     }
 

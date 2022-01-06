@@ -20,40 +20,29 @@
       "notNull": true
     }
   },
-  "dbType": {
-    "module": "eo-db",
-    "moduleScope": "main",
-    "modelKeys": "DbTypes",
-    "description": "The type of the db as Enumeration providing informations like the driver.",
-    "expose": "NONE",
-    "fieldKey": "dbType"
-  },
-  "driver": {
+  "configKey": {
     "module": "eo-db",
     "moduleScope": "main",
     "modelKeys": "String",
-    "description": "driver",
+    "description": "The key finding a cache @DbConfig entry.",
     "expose": "NONE",
-    "fieldKey": "driver",
-    "length": 80
+    "fieldKey": "configKey",
+    "length": 80,
+    "properties": {
+      "notNull": true
+    }
   },
-  "extension": {
+  "dbConfigKey": {
     "module": "eo-db",
     "moduleScope": "main",
     "modelKeys": "String",
-    "description": "An extension for database initialization. ",
+    "description": "The key finding a cache @DbConfig entry.",
     "expose": "NONE",
-    "fieldKey": "extension",
-    "length": 1024
-  },
-  "jndi": {
-    "module": "eo-db",
-    "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "The jndi lookup for a hibernate session factory. ",
-    "expose": "NONE",
-    "fieldKey": "jndi",
-    "length": 80
+    "fieldKey": "dbConfigKey",
+    "length": 80,
+    "properties": {
+      "notNull": true
+    }
   },
   "modelConfigKey": {
     "module": "elastic-objects",
@@ -63,18 +52,6 @@
     "expose": "NONE",
     "fieldKey": "modelConfigKey",
     "length": 80
-  },
-  "schema": {
-    "module": "eo-db",
-    "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "The database schema used for persisting as a property of @HostConfig",
-    "expose": "NONE",
-    "fieldKey": "schema",
-    "length": 80,
-    "properties": {
-      "property": true
-    }
   },
   "sqlKey": {
     "module": "eo-db",

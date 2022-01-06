@@ -24,6 +24,7 @@ public class DbModelReadCallAnObjectTest {
     @Test
     public void call_DbQuery_AnObject__execute__3() {
         DbModelReadCall call = new DbModelReadCall();
+        call.setConfigKey("h2:mem:AnObject");
         call.setTargetPath("/result");
         Assertions.assertThat(call).isNotNull();
         EoRoot eo = ProviderConfigMaps.createEo();
@@ -44,6 +45,7 @@ public class DbModelReadCallAnObjectTest {
         eo.set(anObject, "test");
 
         DbModelReadCall call = new DbModelReadCall();
+        call.setConfigKey("h2:mem:AnObject");
         call.setTargetPath("/result");
         call.setSourcePath("/test");
         eo.addCall(call);
@@ -61,8 +63,8 @@ public class DbModelReadCallAnObjectTest {
                 "        \"id\":1\n" +
                 "   },\n" +
                 "   \"(DbModelReadCall)/xyz\":{\n" +
-                "       \"sourcePath\":\"abc\",\n" +
-                "       \"hostConfigKey\":\"h2:mem:basic\"\n" +
+                "       \"configKey\":\"h2:mem:AnObject\",\n" +
+                "       \"sourcePath\":\"abc\"\n" +
                 "   }\n" +
                 "}");
 

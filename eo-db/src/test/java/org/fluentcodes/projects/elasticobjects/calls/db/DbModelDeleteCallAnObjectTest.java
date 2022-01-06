@@ -24,6 +24,7 @@ public class DbModelDeleteCallAnObjectTest {
     @Test
     public void call_AnObject_3L__execute__deleted() {
         DbModelDeleteCall call = new DbModelDeleteCall();
+        call.setConfigKey("h2:mem:AnObject");
         call.setTargetPath("/result");
         Assertions.assertThat(call).isNotNull();
         EoRoot eo = ProviderConfigMaps.createEo();

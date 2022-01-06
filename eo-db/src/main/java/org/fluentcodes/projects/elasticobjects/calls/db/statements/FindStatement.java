@@ -7,6 +7,7 @@ import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
+import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.ModelInterface;
 
 import java.sql.Connection;
@@ -54,7 +55,7 @@ public class FindStatement extends PreparedStatementValues {
         if (source == null) {
             throw new EoException("Null eo for delete");
         }
-        ModelInterface model = source.getModel();
+        ModelConfig model = source.getModel();
         if (!model.isObject()) {
             throw new EoException("Model '" + model.getModelKey() + "' is not a object");
         }
@@ -65,7 +66,7 @@ public class FindStatement extends PreparedStatementValues {
         if (source == null) {
             throw new EoException("Null eo for delete");
         }
-        ModelInterface model = source.getModel();
+        ModelConfig model = source.getModel();
         if (!model.isObject()) {
             throw new EoException("Model '" + model.getModelKey() + "' is not a object");
         }

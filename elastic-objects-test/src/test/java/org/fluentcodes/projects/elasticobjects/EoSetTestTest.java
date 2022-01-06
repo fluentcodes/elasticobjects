@@ -32,7 +32,7 @@ public class EoSetTestTest {
                 .assertThatThrownBy(
                         ()->{eo.set(new AnObject(), AnObject.MY_STRING);}
                 )
-                .hasMessageContaining("Mismatch for String AnObject");
+                .hasMessageContaining("Mismatch for Models: Expected is String but the other model is AnObject");
     }
 
     @Test

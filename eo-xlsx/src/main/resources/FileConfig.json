@@ -1,6 +1,5 @@
 {
   "AnObject.xlsx": {
-    "configModelKey": "XlsxConfig",
     "module": "eo-xlsx",
     "moduleScope": "main",
     "hostConfigKey": "localhost",

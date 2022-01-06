@@ -161,7 +161,12 @@ public class EoChild extends EoChildScalar implements IEOObject {
     }
 
     IEOScalar createChild(final PathElement pathElement, final Object childValue) {
-        return getModels().createChild(this, pathElement, childValue);
+        try {
+            return getModels().createChild(this, pathElement, childValue);
+        }
+        catch (Exception e) {
+            throw new EoException("Problem creating child at '" + getPathAsString() + "/" + pathElement + "' with value '" + childValue + "' with message " + e.getMessage());
+        }
     }
 
     void removeChild(String fieldName) {

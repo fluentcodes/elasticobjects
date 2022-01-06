@@ -1,10 +1,17 @@
 package org.fluentcodes.projects.elasticobjects.calls.xlsx;
 
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
+import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCall;
-import org.fluentcodes.projects.elasticobjects.calls.files.XlsxConfig;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBeanInterface;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
@@ -12,29 +19,22 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-/*.{javaHeader}|*/
-
 /**
- * Read an Excel sheet specified by fileConfigKey referencing to a {@link XlsxConfig} configuration.
+ * Read an Excel sheet specified by fileConfigKey referencing to a {@link FileConfig} configuration.
  *
  * @author Werner Diwischek
  * @creationDate
  * @modificationDate Wed Nov 11 08:02:52 CET 2020
  */
 public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterface {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
     public static final String LIST_PARAMS = "listParams";
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
     private ListParamsBean listParams;
-
-    /*.{}.*/
     public XlsxReadCall() {
         super();
         listParams = new ListParamsBean();
@@ -51,16 +51,16 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
     }
 
     public List<Object> readRaw(final IEOScalar eo) {
-        XlsxConfig config = (XlsxConfig) init(PermissionType.READ, eo);
-        getListParams().merge(config.getListParamsConfig());
+        FileConfig config = init(PermissionType.READ, eo);
+        getListParams().merge(config);
         List result = new ArrayList<>();
-        Sheet sheet = config.getSheet(eo);
+        Sheet sheet = getSheet(eo);
         if (sheet == null) {
-            throw new EoException("The sheet for '" + getNaturalId() + "' is null. Perhaps the sheet name '" + config.getSheetName() + "' is undefined.");
+            throw new EoException("The sheet for '" + getFileConfig().getNaturalId() + "' is null. Perhaps the sheet name '" + config.getProperties().getSheetName() + "' is undefined.");
         }
         List rowEntry;
         int i = -1;
-        while ((rowEntry = config.getRowAsList(sheet.getRow(i + 1))) != null) {
+        while ((rowEntry = getRowAsList(sheet.getRow(i + 1))) != null) {
             i++;
             if (getListParams().isRowHead(i)) {
                 if (!getListParams().hasColKeys()) {
@@ -93,7 +93,6 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
     /**
      * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
      */
-    @Override
     public XlsxReadCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
@@ -104,9 +103,106 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
         return this.listParams;
     }
 
-    @Override
     public boolean hasListParams() {
         return listParams != null;
     }
-    /*.{}.*/
+
+    public Sheet getSheet(final IEOScalar eo) {
+        Workbook wb = readWorkbook(eo);
+        if (!getFileConfig().getProperties().hasSheetName()) {
+            return wb.getSheetAt(0);
+        } else {
+            return wb.getSheet(getFileConfig().getProperties().getSheetName());
+        }
+    }
+
+    public Workbook readWorkbook(final IEOScalar eo) {
+        URL url = getFileConfig().findUrl(eo, getHostConfigKey());
+        if (url == null) {
+            throw new EoException("Could not load url from " + getFileConfig().getNaturalId());
+        }
+        InputStream inp = null;
+        try {
+            inp = url.openStream();
+        } catch (IOException e) {
+            throw new EoException(e);
+        }
+
+        Workbook wb = null;
+        try {
+            return WorkbookFactory.create(inp);
+        } catch (IOException e) {
+            throw new EoException(e);
+        } catch (InvalidFormatException e) {
+            throw new EoException(e);
+        }
+    }
+
+    public List getRowAsList(Row row) {
+        if (row == null) {
+            return null;
+        }
+        List rowValues = new ArrayList();
+        boolean containsData = false;
+
+        for (int i = 0; i < row.getLastCellNum(); i++) {
+            final Cell cell = row.getCell(i);
+            if (cell == null) {
+                rowValues.add(null);
+                continue;
+            }
+            String value = "";
+            CellType cellType = cell.getCellTypeEnum();
+            //dateFormatted=HSSFDateUtil.isCellDateFormatted(cell);
+            //formulaResultType = cell.getCachedFormulaResultType();
+            //https://stackoverflow.com/questions/7608511/java-poi-how-to-read-excel-cell-value-and-not-the-formula-computing-it
+            try {
+                if (cellType == CellType.STRING) {
+                    String myValue = cell.getStringCellValue();
+                    if (myValue != null && !myValue.isEmpty()) {
+                        containsData = true;
+                        rowValues.add(myValue);
+                    } else {
+                        rowValues.add(null);
+                    }
+                    continue;
+                } else if (cellType == CellType.BOOLEAN) {
+                    rowValues.add(cell.getBooleanCellValue());
+                } else if (cellType != CellType.FORMULA && HSSFDateUtil.isCellDateFormatted(cell)) {
+                    Date dateValue = cell.getDateCellValue();
+                    rowValues.add(dateValue);
+                } else if (cellType == CellType.NUMERIC) {
+                    Double doubleValue = cell.getNumericCellValue();
+                    rowValues.add(doubleValue);
+                } else if (cellType == CellType.BLANK) {
+                    rowValues.add(null);
+                } else if (cellType == CellType.FORMULA) {
+                    switch (cell.getCachedFormulaResultType()) {
+                        case Cell.CELL_TYPE_NUMERIC:
+                            if (HSSFDateUtil.isCellDateFormatted(cell)) {
+                                rowValues.add(cell.getDateCellValue());
+                            } else {
+                                rowValues.add(cell.getNumericCellValue());
+                            }
+                            break;
+                        case Cell.CELL_TYPE_STRING:
+                            rowValues.add(cell.getStringCellValue());
+                            break;
+                    }
+                } else {
+                    //http://apache-poi.1045710.n5.nabble.com/CELL-TYPE-FORMULA-String-vs-Numeric-td2304091.html
+                    String formulaValue = cell.getStringCellValue();
+                    rowValues.add(formulaValue);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                rowValues.add(null);
+            }
+        }
+        if (containsData) {
+            return rowValues;
+        } else {
+            return null;
+        }
+    }
 }

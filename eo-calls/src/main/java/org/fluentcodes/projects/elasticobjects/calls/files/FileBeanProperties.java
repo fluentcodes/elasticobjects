@@ -28,6 +28,7 @@ public class FileBeanProperties implements FilePropertiesInterface {
     private List<String> colKeys;
     private String fieldDelimiter;
     private String rowDelimiter;
+    private String sheetName;
 
     public FileBeanProperties() {
     }
@@ -40,6 +41,7 @@ public class FileBeanProperties implements FilePropertiesInterface {
         this.rowDelimiter = config.getRowDelimiter();
         this.rowEnd = config.getRowEnd();
         this.rowStart = config.getRowStart();
+        this.sheetName = config.getSheetName();
     }
 
     @Override
@@ -112,5 +114,14 @@ public class FileBeanProperties implements FilePropertiesInterface {
 
     public void setRowDelimiter(String rowDelimiter) {
         this.rowDelimiter = rowDelimiter;
+    }
+
+    @Override
+    public String getSheetName() {
+        return sheetName;
+    }
+
+    public void setSheetName(String sheetName) {
+        this.sheetName = sheetName;
     }
 }

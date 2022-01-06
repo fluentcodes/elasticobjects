@@ -12,24 +12,15 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.List;
 
-/*.{javaHeader}|*/
-
 /**
  * Map results of a sql select to the targetPath.
  *
  * @author Werner Diwischek
  * @creationDate
- * @modificationDate Wed Nov 11 07:20:13 CET 2020
+ * @modificationDate Wed Nov 11 07:20:13 CET 2022
  */
 public class DbSqlReadCall extends DbSqlCall implements ListParamsBeanInterface, ConfigReadCommand {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
     private ListParamsBean listParams;
-    /*.{}.*/
 
     public DbSqlReadCall() {
         super();
@@ -92,7 +83,6 @@ public class DbSqlReadCall extends DbSqlCall implements ListParamsBeanInterface,
     /**
      * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
      */
-    @Override
     public DbSqlReadCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
@@ -103,7 +93,6 @@ public class DbSqlReadCall extends DbSqlCall implements ListParamsBeanInterface,
         return this.listParams;
     }
 
-    @Override
     public boolean hasListParams() {
         return listParams != null;
     }

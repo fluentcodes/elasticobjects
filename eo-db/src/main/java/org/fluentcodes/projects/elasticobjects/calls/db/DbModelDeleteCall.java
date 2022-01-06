@@ -19,13 +19,6 @@ import java.util.List;
  * @modificationDate Wed Nov 11 06:24:57 CET 2020
  */
 public class DbModelDeleteCall extends DbModelCall implements ConfigWriteCommand {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
-    /*.{}.*/
 
     public DbModelDeleteCall() {
         super();
@@ -41,21 +34,16 @@ public class DbModelDeleteCall extends DbModelCall implements ConfigWriteCommand
     }
 
     public Object remove(final IEOScalar eo) {
-        ModelConfigDbObject modelConfig = init(PermissionType.WRITE, eo);
-        if (!modelConfig.isObject()) {
-            throw new EoException("No model is provided in path '" + eo.getPathAsString() + "");
-        }
+        DbModelConfig modelConfig = init(PermissionType.WRITE, eo);
         if (hasTargetPath()) {
             List<String> result = FindStatement.of(eo)
                     .readFirst(
-                            getDbConfig().getConnection(),
+                            modelConfig.getDbConfig().getConnection(),
                             eo.getConfigMaps());
             eo.set(result, getTargetPath());
         }
 
         return DeleteStatement.of(eo)
-                .execute(getDbConfig().getConnection());
+                .execute(modelConfig.getDbConfig().getConnection());
     }
-    /*.{javaAccessors}|*/
-    /*.{}.*/
 }

@@ -1,8 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
-import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
-/*.{javaHeader}|*/
-
 /**
  * Methods for {@link HostConfigProperties} and {@link HostBeanProperties}.
  *
@@ -13,14 +10,39 @@ import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
 public interface HostPropertiesInterface {
 
     String getClassPath();
+
     default boolean hasClassPath() {
-        return getClassPath() != null && ! getClassPath().isEmpty();
+        return getClassPath() != null && !getClassPath().isEmpty();
+    }
+
+    String getDialect();
+
+    default boolean hasDialect() {
+        return getDialect() != null && !getDialect().isEmpty();
+    }
+
+    String getDriver();
+
+    default boolean hasDriver() {
+        return getDriver() != null && !getDriver().isEmpty();
+    }
+
+    String getExtension();
+
+    default boolean hasExtension() {
+        return getExtension() != null && !getExtension().isEmpty();
+    }
+
+    String getJndi();
+
+    default boolean hasJndi() {
+        return getJndi() != null && !getJndi().isEmpty();
     }
 
     String getPassword();
 
     default boolean hasPassword() {
-        return getPassword() != null && ! getPassword().isEmpty();
+        return getPassword() != null && !getPassword().isEmpty();
     }
 
     Integer getPort();
@@ -35,6 +57,12 @@ public interface HostPropertiesInterface {
         return getProtocol() != null && !getProtocol().isEmpty();
     }
 
+    String getSchema();
+
+    default boolean hasSchema() {
+        return getSchema() != null && !getSchema().isEmpty();
+    }
+
     String getUrl();
 
     default boolean hasUrl() {
@@ -46,6 +74,4 @@ public interface HostPropertiesInterface {
     default boolean hasUser() {
         return getUser() != null && !getUser().isEmpty();
     }
-    /*.{}.*/
-
 }

@@ -4,6 +4,8 @@ import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.IEOObject;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.tools.io.IOMappingObject;
 import org.fluentcodes.tools.io.IORuntimeException;
@@ -62,6 +64,8 @@ public class IOEo<T> extends IOMappingObject<T> {
     public T asObject(final String asString) {
         try {
             return (T) asEo(asString).get();
+        } catch (EoInternalException| EoException | IORuntimeException e) {
+            throw e;
         } catch (Exception e) {
             throw new IORuntimeException(e);
         }
@@ -70,8 +74,12 @@ public class IOEo<T> extends IOMappingObject<T> {
     public EoRoot asEo(final String asString) {
         try {
             return EoRoot.ofClass(configMaps, asString, getMappingClasses());
-        } catch (Exception e) {
-            throw new IORuntimeException(e);
+        }
+        catch (EoException | EoInternalException e) {
+            throw e;
+        }
+        catch (Exception e) {
+            throw new IORuntimeException("Problem with deserializing " + e.getMessage() + ".\n" + asString + "");
         }
     }
 }

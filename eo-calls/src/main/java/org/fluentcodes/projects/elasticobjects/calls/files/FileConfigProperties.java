@@ -10,15 +10,17 @@ import java.util.List;
 public class FileConfigProperties implements FilePropertiesInterface {
     public static final String F_DEFAULT_ROW_DELIMITER = "\n";
     public static final String F_DEFAULT_FIELD_DELIMITER = ";";
-
-    private final Integer rowStart;
-    private final Integer rowEnd;
-    private final Integer length;
-    private final Integer rowHead;
-    private final String filter;
     private final List<String> colKeys;
     private final String fieldDelimiter;
+    private final String filter;
+    private final Integer length;
     private final String rowDelimiter;
+    private final Integer rowEnd;
+    private final Integer rowHead;
+    private final Integer rowStart;
+    private final String sheetName;
+
+
 
     public FileConfigProperties(FileBeanProperties bean) {
         this.colKeys = bean.getColKeys();
@@ -29,6 +31,19 @@ public class FileConfigProperties implements FilePropertiesInterface {
         this.rowEnd = bean.getRowEnd();
         this.rowHead = bean.getRowHead();
         this.rowStart = bean.getRowStart();
+        this.sheetName = bean.getSheetName();
+    }
+
+    @Override
+    public String getFieldDelimiter() {
+        return hasFieldDelimiter() ?
+                fieldDelimiter :
+                F_DEFAULT_FIELD_DELIMITER;
+    }
+
+    @Override
+    public boolean hasFieldDelimiter() {
+        return fieldDelimiter!=null && !fieldDelimiter.isEmpty();
     }
 
     @Override
@@ -74,14 +89,7 @@ public class FileConfigProperties implements FilePropertiesInterface {
     }
 
     @Override
-    public String getFieldDelimiter() {
-        return hasFieldDelimiter() ?
-                fieldDelimiter :
-                F_DEFAULT_FIELD_DELIMITER;
-    }
-
-    @Override
-    public boolean hasFieldDelimiter() {
-        return fieldDelimiter!=null && !fieldDelimiter.isEmpty();
+    public String getSheetName() {
+        return sheetName;
     }
 }

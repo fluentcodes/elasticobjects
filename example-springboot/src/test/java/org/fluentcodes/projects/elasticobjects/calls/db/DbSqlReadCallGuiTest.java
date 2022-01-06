@@ -46,9 +46,9 @@ public class DbSqlReadCallGuiTest {
     @Test
     public void eo_DbQuery_AnObject_rowHead_1_rowStart_0_rowEnd_2__execute__2() {
         DbSqlReadCall call = new DbSqlReadCall(DB_DEFAULT, DB_TABLE);
-        call.setRowHead(-1);
-        call.setRowEnd(2);
-        call.setRowStart(0);
+        call.getListParams().setRowHead(-1);
+        call.getListParams().setRowEnd(2);
+        call.getListParams().setRowStart(0);
         call.setTargetPath(".");
         Assertions.assertThat(call).isNotNull();
         EoRoot eo = ProviderConfigMaps.createEo();
@@ -63,10 +63,10 @@ public class DbSqlReadCallGuiTest {
                 "   \"(DbSqlReadCall)abc\":{\n" +
                 "       \"hostConfigKey\":\"h2:mem:basic\",\n" +
                 "       \"sqlKey\":\"h2:mem:basic:AnObject\",\n" +
-                "        \"rowHead\":-1,\n" +
+                "        \"listParams\":{\"rowHead\":-1,\n" +
                 "        \"rowStart\":0,\n" +
                 "        \"rowEnd\":2\n" +
-                "   },\n" +
+                "   }},\n" +
                 "   \"_serializationType\":\"STANDARD\"\n" +
                 "}");
         eo.execute();

@@ -14,12 +14,14 @@ import java.sql.Statement;
 /**
  * Created by Werner on 09.10.2016.
  */
-public class DbConfig extends HostConfig implements DbInterface {
+public class DbConfig extends HostConfig {
     public static final String H2_BASIC = "h2:mem:basic";
     private Connection connection;
+
     public DbConfig(final ConfigBean configBean, final ConfigMaps configMaps) {
-        this((HostBean)configBean, configMaps);
+        this((HostBean) configBean, configMaps);
     }
+
     public DbConfig(final HostBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
     }
@@ -61,24 +63,20 @@ public class DbConfig extends HostConfig implements DbInterface {
                 throw new EoInternalException(e);
             }
         }
-        if (!hasDbType()) {
-            throw new EoException("No dbType defined, so no driver could be set '" + getNaturalId() + "'.");
-        }
-        if (getDbType().getDriver() == null) {
-            throw new EoException("No driver is addList for '" + getNaturalId() + "'.");
+        if (!getProperties().hasDriver()) {
+            throw new EoException("No db driver defined for host '" + getNaturalId() + "'.");
         }
         try {
-            Class.forName(getDbType().getDriver());
+            Class.forName(getProperties().getDriver());
             String url = getUrlPath();
-            connection = DriverManager.getConnection(url, getUser(), getPassword());
+            connection = DriverManager.getConnection(url, getProperties().getUser(), getProperties().getPassword());
             return connection;
-        }
-        catch (ClassNotFoundException|SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             throw new EoException(e);
         }
     }
 
-    public void closeConnection()  {
+    public void closeConnection() {
         if (connection == null) {
             throw new EoException("No connection initialized for '" + getNaturalId() + "'.");
         }
@@ -91,28 +89,28 @@ public class DbConfig extends HostConfig implements DbInterface {
     }
 
     @Override
-    public String getUrlPath()  {
+    public String getUrlPath() {
         if (hasUrlCache()) {
             return getUrlCache();
         }
         if (hasUrlCache()) {
-            super.getUrl();
+            getProperties().getUrl();
         }
         StringBuilder urlPath = new StringBuilder();
-        if (hasProtocol()) {
-            urlPath.append(getProtocol());
+        if (getProperties().hasProtocol()) {
+            urlPath.append(getProperties().getProtocol());
         }
         if (hasHostName()) {
             urlPath.append(":");
             urlPath.append(getHostName());
         }
-        if (hasSchema()) {
+        if (getProperties().hasSchema()) {
             urlPath.append(":");
-            urlPath.append(getSchema());
+            urlPath.append(getProperties().getSchema());
         }
-        if (hasExtension()) {
-            urlPath.append( ";");
-            urlPath.append(getExtension());
+        if (getProperties().hasExtension()) {
+            urlPath.append(";");
+            urlPath.append(getProperties().getExtension());
         }
         setUrlCache(urlPath.toString());
         return getUrlCache();

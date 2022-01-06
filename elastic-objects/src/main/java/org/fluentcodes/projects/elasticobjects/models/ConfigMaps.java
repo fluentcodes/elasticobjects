@@ -4,6 +4,7 @@ import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -106,8 +107,11 @@ public class ConfigMaps {
             try {
                 ConfigFactory configFactory = (ConfigFactory) factoryClass.getConstructor(ConfigMaps.class).newInstance(this);
                 configMaps.put(configClass, configFactory.createImmutableConfig());
-            } catch (Exception e) {
-                throw new EoException(e);
+            } catch (EoException| EoInternalException e) {
+                throw e;
+            }
+            catch (Exception exceptionOther) {
+                throw new EoException("Problem initalizing configurations " + factoryClassName + " " + exceptionOther.getMessage());
             }
 
         }

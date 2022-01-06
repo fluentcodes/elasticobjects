@@ -1,13 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
-/*.{javaHeader}|*/
-
-import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
-import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerInteger;
-import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerString;
-
-import java.util.Map;
-
 /**
  * Basic host definition for file or db cache.
  *
@@ -16,18 +8,31 @@ import java.util.Map;
  * @modificationDate Thu Jan 14 12:17:41 CET 2021
  */
 public class HostBeanProperties implements HostPropertiesInterface {
+    public static final String DIALECT = "dialect";
+    public static final String DRIVER = "driver";
+    public static final String EXTENSION = "extension";
+    public static final String JNDI = "jndi";
     public static final String PASSWORD = "password";
     public static final String PORT = "port";
     public static final String PROTOCOL = "protocol";
+    public static final String SCHEMA = "schema";
     public static final String URL = "url";
     public static final String USER = "user";
 
+    private String classPath;
+    private String dialect;
+    private String driver;
+    private String extension;
+    private String jndi;
     private String password;
     private Integer port;
     private String protocol;
     private String url;
     private String user;
-    private String classPath;
+
+    private String schema;
+
+
     public HostBeanProperties() {
     }
 
@@ -38,6 +43,10 @@ public class HostBeanProperties implements HostPropertiesInterface {
         this.url = config.getUrl();
         this.user = config.getUser();
         this.classPath = config.getClassPath();
+        this.driver = config.getDriver();
+        this.extension = config.getExtension();
+        this.jndi = config.getJndi();
+        this.schema = config.getSchema();
     }
 
     @Override
@@ -47,6 +56,42 @@ public class HostBeanProperties implements HostPropertiesInterface {
 
     public void setClassPath(String classPath) {
         this.classPath = classPath;
+    }
+
+    @Override
+    public String getDialect() {
+        return dialect;
+    }
+
+    public void setDialect(String dialect) {
+        this.dialect = dialect;
+    }
+
+    @Override
+    public String getDriver() {
+        return driver;
+    }
+
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
+
+    @Override
+    public String getJndi() {
+        return jndi;
+    }
+
+    public void setJndi(String jndi) {
+        this.jndi = jndi;
+    }
+
+    @Override
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
     @Override
@@ -93,4 +138,15 @@ public class HostBeanProperties implements HostPropertiesInterface {
     public void setUser(String user) {
         this.user = user;
     }
+
+
+    @Override
+    public String getSchema() {
+        return schema;
+    }
+
+    public void setSchema(String schema) {
+        this.schema = schema;
+    }
+
 }

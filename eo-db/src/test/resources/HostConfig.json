@@ -2,7 +2,8 @@
   "localMySql:core": {
     "configModelKey": "DbConfig",
     "properties": {
-      "dbType": "MYSQL",
+      "dialect": "org.hibernate.dialect.MySQLInnoDBDialect",
+      "driver": "com.mysql.jdbc.Driver",
       "schema": "core"
     },
     "module": "eo-db",
@@ -12,7 +13,8 @@
   "localMySql:test": {
     "configModelKey": "DbConfig",
     "properties": {
-      "dbType": "MYSQL",
+      "dialect": "org.hibernate.dialect.MySQLInnoDBDialect",
+      "driver": "com.mysql.jdbc.Driver",
       "schema": "test"
     },
     "module": "eo-db",
@@ -23,7 +25,8 @@
     "configModelKey": "DbConfig",
     "properties": {
       "schema": "XE",
-      "dbType": "ORACLE"
+      "dialect": "com.mysema.query.jpa.support.ExtendedOracleDialect",
+      "driver": "oracle.jdbc.driver.OracleDriver"
     },
     "module": "eo-db",
     "moduleScope": "main",
@@ -33,7 +36,8 @@
     "configModelKey": "DbConfig",
     "properties": {
       "schema": "mem",
-      "dbType": "HSQL"
+      "dialect": "com.mysema.query.jpa.support.ExtendedHSQLDialect",
+      "driver": "org.hsqldb.jdbcDriver"
     },
     "module": "eo-db",
     "moduleScope": "main",
@@ -43,7 +47,8 @@
     "configModelKey": "DbConfig",
     "properties": {
       "schema": "file:$[TMP]/test.hsql",
-      "dbType": "HSQL"
+      "dialect": "com.mysema.query.jpa.support.ExtendedHSQLDialect",
+      "driver": "org.hsqldb.jdbcDriver"
     },
     "module": "eo-db",
     "moduleScope": "main",
@@ -57,7 +62,7 @@
       "user": "sa",
       "schema": "mem:test",
       "driver": "org.h2.Driver",
-      "dbType": "H2",
+      "dialect": "org.hibernate.dialect.H2Dialect",
       "extension": "DATABASE_TO_UPPER=false;"
     },
     "module": "eo-db",
@@ -73,7 +78,6 @@
       "user": "sa",
       "schema": ".{TMP}./test",
       "driver": "org.h2.Driver",
-      "dbType": "H2",
       "extension": "DATABASE_TO_UPPER=false;"
     },
     "description": "local H2 with a temp file"

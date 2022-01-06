@@ -20,13 +20,6 @@ import org.fluentcodes.tools.io.IOString;
  * @modificationDate Tue Dec 08 09:46:41 CET 2020
  */
 public class FileReadCall extends FileCall implements ConfigReadCommand {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
-    /*.{}.*/
     public FileReadCall() {
         super();
     }

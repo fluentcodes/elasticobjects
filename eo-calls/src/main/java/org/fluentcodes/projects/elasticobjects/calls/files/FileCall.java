@@ -59,6 +59,10 @@ public abstract class FileCall extends HostCall {
         return fileConfig;
     }
 
+    protected FileConfig getFileConfig() {
+        return fileConfig;
+    }
+
     protected String getUrl() {
         return getHostConfig().getProperties().getUrl() + fileConfig.getUrl(getHostConfig());
     }

@@ -6,245 +6,391 @@
   "fieldConfigMap": {
     "author": {
       "description": "The author of the class.",
+      "expose": "WEB",
       "fieldKey": "author",
-      "length": 256,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "author",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 256,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "cached": {
       "description": "If true will cache the readed file within the cache object. ",
+      "expose": "NONE",
       "fieldKey": "cached",
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "cached",
       "properties": {
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": true,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "creationDate": {
       "description": "Used to define the creation of an item.",
+      "expose": "WEB",
       "fieldKey": "creationDate",
       "modelKeys": "Date",
-      "modelList": [
-        "Date"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "creationDate",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "description": {
       "description": "A description of the model used by every model extending BaseClassImpl. ",
+      "expose": "WEB",
       "fieldKey": "description",
-      "length": 512,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "description",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 512,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "expose": {
       "description": "expose",
+      "expose": "WEB",
       "fieldKey": "expose",
       "modelKeys": "Expose",
-      "modelList": [
-        "Expose"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "expose",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "fileName": {
       "description": "A fileName used in different calls and configs like @FileConfig or @DirectoryConfig. ",
+      "expose": "NONE",
       "fieldKey": "fileName",
-      "length": 80,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "fileName",
       "properties": {
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 80,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": true,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "filePath": {
       "description": "A filePath used in different calls and configs like @FileConfig or @DirectoryConfig. ",
+      "expose": "NONE",
       "fieldKey": "filePath",
-      "length": 512,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "filePath",
       "properties": {
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 512,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": true,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "hostConfigKey": {
       "description": "A key for host objects.",
+      "expose": "NONE",
       "fieldKey": "hostConfigKey",
-      "length": 80,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "eo-calls",
+      "moduleScope": "main",
       "naturalId": "hostConfigKey",
       "properties": {
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 80,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": true,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "id": {
       "description": "The numeric id of an instance of a class.",
+      "expose": "WEB",
       "fieldKey": "id",
       "modelKeys": "Long",
-      "modelList": [
-        "Long"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "id",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": true,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": true
       }
     },
     "module": {
       "description": "Defines a target module where generating occurs. ",
+      "expose": "WEB",
       "fieldKey": "module",
-      "length": 80,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "module",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 80,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "moduleScope": {
       "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
+      "expose": "WEB",
       "fieldKey": "moduleScope",
-      "length": 10,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "moduleScope",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 10,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "naturalId": {
       "description": "The natural key in @Base",
+      "expose": "NONE",
       "fieldKey": "naturalId",
-      "length": 80,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "naturalId",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 80,
+        "max": -1,
+        "min": -1,
+        "notNull": true,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": true
+      }
+    },
+    "permissions": {
+      "description": "Role permission wraüüer.",
+      "expose": "WEB",
+      "fieldKey": "permissions",
+      "modelKeys": "Permissions",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "permissions",
+      "properties": {
+        "default": false,
+        "final": true,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "properties": {
-      "description": "Properties for configurations.",
+      "description": "Immutable properties for file config",
+      "expose": "NONE",
       "fieldKey": "properties",
-      "modelKeys": "Map",
-      "modelList": [
-        "Map"
-      ],
-      "naturalId": "properties",
+      "modelKeys": "FileConfigProperties",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "FileConfig.properties",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
-      }
-    },
-    "rolePermissions": {
-      "description": "Lists for the different roles e.g. guest for write. Central point add permissions to a configuration. Dependent of the permission type of a call a certain list wll be selected. When ist write with role guest then no exception is thrown. ",
-      "fieldKey": "rolePermissions",
-      "modelKeys": "PermissionRole",
-      "modelList": [
-        "PermissionRole"
-      ],
-      "naturalId": "rolePermissions",
-      "properties": {
-        "super": true,
         "generated": false,
-        "final": true,
-        "override": true
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "scope": {
       "description": "A scope for the cache value.",
+      "expose": "WEB",
       "fieldKey": "scope",
       "modelKeys": "List,Scope",
-      "modelList": [
-        "List",
-        "Scope"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "scope",
       "properties": {
-        "super": true,
-        "generated": false,
+        "default": false,
         "final": true,
-        "override": true
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     }
   },
-  "interfaces": "FileInterface,FileConfigMethods",
+  "interfaces": "FileInterface",
   "modelKey": "FileConfig",
   "module": "eo-calls",
   "moduleScope": "main",
   "naturalId": "FileConfig",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
   "properties": {
-    "final": true,
+    "abstract": false,
     "create": false,
-    "override": true
+    "dbAnnotated": false,
+    "final": false
   },
   "superKey": "PermissionConfig"
 }

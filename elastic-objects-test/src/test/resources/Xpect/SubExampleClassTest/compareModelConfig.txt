@@ -3,36 +3,48 @@
     "id": {
       "fieldKey": "id",
       "modelKeys": "Long",
-      "modelList": [
-        "Long"
-      ],
       "naturalId": "SuperExampleClass.id",
       "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
         "super": true,
-        "fieldName": "id"
+        "transient": false,
+        "unique": false
       }
     },
     "name": {
       "fieldKey": "name",
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
-      "naturalId": "SubExampleClass.name",
-      "properties": {
-        "fieldName": "name"
-      }
+      "naturalId": "SubExampleClass.name"
     },
     "subClass": {
       "fieldKey": "subClass",
       "modelKeys": "FieldExampleClass",
-      "modelList": [
-        "FieldExampleClass"
-      ],
       "naturalId": "SuperExampleClass.subClass",
       "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
         "super": true,
-        "fieldName": "subClass"
+        "transient": false,
+        "unique": false
       }
     }
   },
@@ -40,7 +52,6 @@
   "naturalId": "SubExampleClass",
   "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
   "properties": {
-    "shapeType": "OBJECT",
     "create": true
   },
   "superKey": "SuperExampleClass"

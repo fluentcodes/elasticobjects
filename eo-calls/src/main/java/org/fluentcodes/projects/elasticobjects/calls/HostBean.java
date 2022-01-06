@@ -1,106 +1,50 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
+import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerInteger;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerString;
 
 import java.util.Map;
-/*.{javaHeader}|*/
 /**
  * 
- * A bean container class for Field values 
+ * A bean container class for host values to create {@link HostConfig}
  * @author Werner Diwischek
  * @creationDate Wed Dec 16 00:00:00 CET 2020
  * @modificationDate Thu Jan 14 12:24:13 CET 2021
  */
-public class HostBean extends PermissionBean implements HostInterface, PermissionInterface {
-/*.{}.*/
+public class HostBean extends PermissionBean implements HostInterface{
 
+    private static final String F_HOST_NAME = "hostName";
+    private String hostName;
+    private HostBeanProperties properties;
     public HostBean() {
         super();
+        properties = new HostBeanProperties();
         defaultConfigModelKey();
     }
 
-    public HostBean(final String naturalId, final Map<String, Object> map) {
-        super(naturalId, map);
-        defaultConfigModelKey();
+    public HostBean(final HostConfig config) {
+        super(config);
+        this.properties = new HostBeanProperties(config.getProperties());
+        setHostName(getHostName());
     }
 
-    public HostBean(final Map<String, Object> map) {
-        super();
-        defaultConfigModelKey();
+    public HostBeanProperties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(HostBeanProperties properties) {
+        this.properties = properties;
     }
 
     @Override
-    public String getUrlCache() {
-        return "";
+    public String getHostName() {
+        return hostName;
     }
 
-    public void merge(final Map configMap) {
-        super.merge(configMap);
-        defaultConfigModelKey();
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
     }
-    
-    /*.{javaAccessors}|*/
-    public HostBean setHostName(String value) {
-        getProperties().put(HOST_NAME, value);
-        return this;
-    }
-    private void mergeHostName(final Object value) {
-        if (value == null) return;
-        if (hasHostName()) return;
-        setHostName(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    public HostBean setPassword(String value) {
-        getProperties().put(PASSWORD, value);
-        return this;
-    }
-    private void mergePassword(final Object value) {
-        if (value == null) return;
-        if (hasPassword()) return;
-        setPassword(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    public HostBean setPort(Integer value) {
-        getProperties().put(PORT, value);
-        return this;
-    }
-    private void mergePort(final Object value) {
-        if (value == null) return;
-        if (hasPort()) return;
-        setPort(new ShapeTypeSerializerInteger().asObject(value));
-    }
-
-    public HostBean setProtocol(String value) {
-        getProperties().put(PROTOCOL, value);
-        return this;
-    }
-    private void mergeProtocol(final Object value) {
-        if (value == null) return;
-        if (hasProtocol()) return;
-        setProtocol(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    public HostBean setUrl(String value) {
-        getProperties().put(URL, value);
-        return this;
-    }
-    private void mergeUrl(final Object value) {
-        if (value == null) return;
-        if (hasUrl()) return;
-        setUrl(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    public HostBean setUser(String value) {
-        getProperties().put(USER, value);
-        return this;
-    }
-    private void mergeUser(final Object value) {
-        if (value == null) return;
-        if (hasUser()) return;
-        setUser(new ShapeTypeSerializerString().asObject(value));
-    }
-
 
     private void defaultConfigModelKey() {
         if (hasConfigModelKey()) {
@@ -111,6 +55,6 @@ public class HostBean extends PermissionBean implements HostInterface, Permissio
 
     @Override
     public String toString() {
-        return getNaturalId() + " -> " + getUrl();
+        return getNaturalId() + " -> " + properties.getUrl();
     }
 }

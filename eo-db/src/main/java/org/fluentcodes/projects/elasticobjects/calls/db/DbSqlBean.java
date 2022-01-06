@@ -11,6 +11,9 @@ import java.util.Map;
 public class DbSqlBean extends PermissionBean implements DbSqlInterface {
     public static final String SQL_LIST = "sqlList";
     public static final String DEFAULT_HOST_CONFIG_KEY = "defaultHostConfigKey";
+    private String modelKey;
+    private String dbConfigKey;
+    private String classPath;
     private List<String> sqlList;
 
     public DbSqlBean() {
@@ -18,15 +21,13 @@ public class DbSqlBean extends PermissionBean implements DbSqlInterface {
         defaultConfigModelKey();
     }
 
-    public DbSqlBean(final String naturalId, final Map<String, Object> map) {
-        super(naturalId, map);
+    public DbSqlBean(final DbSqlConfig config) {
+        super(config);
+        this.dbConfigKey = config.getDbConfigKey();
+        this.modelKey = config.getModelKey();
+        this.classPath = config.getClassPath();
+        this.sqlList = config.getSqlList();
     }
-
-    public void merge(final Map configMap) {
-        super.merge(configMap);
-        mergeSqlList(configMap.get(SQL_LIST));
-    }
-
 
     private void defaultConfigModelKey() {
         if (hasConfigModelKey()) {
@@ -35,6 +36,34 @@ public class DbSqlBean extends PermissionBean implements DbSqlInterface {
         setConfigModelKey(DbSqlConfig.class.getSimpleName());
     }
 
+    @Override
+    public String getModelKey() {
+        return modelKey;
+    }
+
+    public void setModelKey(String modelKey) {
+        this.modelKey = modelKey;
+    }
+
+    @Override
+    public String getDbConfigKey() {
+        return dbConfigKey;
+    }
+
+    public void setDbConfigKey(String dbConfigKey) {
+        this.dbConfigKey = dbConfigKey;
+    }
+
+    @Override
+    public String getClassPath() {
+        return classPath;
+    }
+
+    public void setClassPath(String classPath) {
+        this.classPath = classPath;
+    }
+
+    @Override
     public List<String> getSqlList() {
         return sqlList;
     }
@@ -49,15 +78,4 @@ public class DbSqlBean extends PermissionBean implements DbSqlInterface {
         return getNaturalId() + " -> ";
     }
 
-    private void mergeSqlList(final Object value) {
-        if (value == null) {
-            return;
-        }
-        if (hasSqlList()) {
-            return;
-        }
-        if (value instanceof List) {
-            setSqlList((List)value);
-        }
-    }
 }

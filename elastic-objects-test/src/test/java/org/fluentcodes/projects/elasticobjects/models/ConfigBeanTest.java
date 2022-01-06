@@ -4,6 +4,7 @@ import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCrea
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,14 +36,5 @@ public class ConfigBeanTest implements IModelConfigCreateTests {
         assertBeanFromModelConfigEqualsPersisted();
     }
 
-    @Test
-    public void merge_mapWithProperties() {
-        Map<String, Object> testMap = new HashMap<>();
-        Map<String, String> properties = new HashMap<>();
-        properties.put("Test", "Test");
-        testMap.put("properties", properties);
-        ConfigBean bean = new ConfigBean("test", testMap);
-        Assert.assertEquals("Test", bean.getProperties().get("Test"));
-    }
 
 }

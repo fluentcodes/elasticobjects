@@ -5,46 +5,36 @@ import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigReadCommand;
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListInterface;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBeanInterface;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
 import org.fluentcodes.projects.elasticobjects.calls.templates.KeepCalls;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.List;
-
-/*.{javaHeader}|*/
 
 /**
  * Map results of a sql select to the targetPath.
  *
  * @author Werner Diwischek
  * @creationDate
- * @modificationDate Wed Nov 11 07:20:13 CET 2020
+ * @modificationDate Wed Nov 11 07:20:13 CET 2022
  */
-public class DbSqlReadCall extends DbSqlCall implements ListInterface, ConfigReadCommand {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    public static String LIST_PARAMS = "listParams";
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
-    private ListParams listParams;
-    /*.{}.*/
+public class DbSqlReadCall extends DbSqlCall implements ListParamsBeanInterface, ConfigReadCommand {
+    private ListParamsBean listParams;
 
     public DbSqlReadCall() {
         super();
-        listParams = new ListParams();
+        listParams = new ListParamsBean();
     }
 
     public DbSqlReadCall(final String hostConfigKey) {
         super(hostConfigKey);
-        listParams = new ListParams();
+        listParams = new ListParamsBean();
     }
 
     public DbSqlReadCall(final String hostConfigKey, final String sqlConfigKey) {
         super(hostConfigKey, sqlConfigKey);
-        listParams = new ListParams();
+        listParams = new ListParamsBean();
     }
 
     @Override
@@ -91,20 +81,18 @@ public class DbSqlReadCall extends DbSqlCall implements ListInterface, ConfigRea
     /*.{javaAccessors}|*/
 
     /**
-     * Parameters of type {@link ListParams} for list type read call operations like {@link CsvSimpleReadCall}.
+     * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
      */
-    @Override
-    public DbSqlReadCall setListParams(ListParams listParams) {
+    public DbSqlReadCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
     }
 
     @Override
-    public ListParams getListParams() {
+    public ListParamsBean getListParams() {
         return this.listParams;
     }
 
-    @Override
     public boolean hasListParams() {
         return listParams != null;
     }

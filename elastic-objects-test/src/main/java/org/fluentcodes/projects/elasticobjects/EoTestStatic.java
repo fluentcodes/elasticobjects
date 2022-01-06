@@ -27,7 +27,6 @@ public class EoTestStatic {
 
     public static final String S_DATE_STRING = "Tue Jun 07 08:16:55 CEST 2016";
     public static final Date SAMPLE_DATE = new ShapeTypeSerializerDate().asObject(S_DATE_STRING);
-    public static final long SAMPLE_DATE_LONG = SAMPLE_DATE.getTime();
     public static final Boolean S_BOOLEAN = true;
     public static final Integer S_INTEGER = 1;
 
@@ -40,7 +39,6 @@ public class EoTestStatic {
     public static final String S_STRING = "test";
     public static final String S_STRING_OTHER = "testOther";
     public static final List<String> SAMPLE_LIST_EMPTY = new ArrayList();
-    public static final String S_KEY = "key";
     public static final String S_KEY0 = "key0";
     public static final String S_KEY1 = "key1";
     public static final String S_KEY2 = "key2";
@@ -60,11 +58,6 @@ public class EoTestStatic {
     public static final String R_SUPER_ADMIN = "superadmin";
     public static final String R_GUEST = "guest";
     public static final String R_ANONYM = "anonym";
-    public static final String R_TEST_ROLE_READ = "testRoleRead";
-    public static final String R_TEST_ROLE_WRITE = "testRoleWrite";
-    public static final String R_TEST_ROLE_CREATE = "testRoleCreate";
-    public static final String R_TEST_ROLE_DELETE = "testRoleDelete";
-    public static final String R_TEST_ROLE_EXECUTE = "testRoleExecute";
 
     public static final String join(String delimiter, String... keyValues) {
         if (keyValues == null || keyValues.length == 0) {

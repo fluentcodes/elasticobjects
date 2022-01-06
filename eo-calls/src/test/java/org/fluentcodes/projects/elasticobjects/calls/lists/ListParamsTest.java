@@ -12,7 +12,7 @@ public class ListParamsTest implements IModelConfigCreateTests {
 
     @Override
     public Class<?> getModelConfigClass() {
-        return ListParams.class;
+        return ListParamsBean.class;
     }
 
     @Override
@@ -35,12 +35,12 @@ public class ListParamsTest implements IModelConfigCreateTests {
 
     @Test
     public void getSetRowHead() {
-        assertSetGet(ListParams.ROW_HEAD, 1);
+        assertSetGet(ListParamsBean.ROW_HEAD, 1);
     }
 
     @Test
     public void callCheckRowStart() {
-        final ListParams bean = new ListParams();
+        final ListParamsBean bean = new ListParamsBean();
         bean.setRowHead(3);
         Assert.assertEquals(new Integer(4), bean.checkRowStart().getRowStart());
     }
@@ -48,12 +48,12 @@ public class ListParamsTest implements IModelConfigCreateTests {
     @Ignore
     @Test
     public void checkObjectSetRowStart() {
-        ListParams params = new ListParams();
+        ListParamsBean params = new ListParamsBean();
         params.setRowStart(5);
         Assert.assertEquals(new Integer(5), params.getRowStart());
         params.setRowStart(6);
         Assert.assertEquals(new Integer(5), params.getRowStart());
-        params.prepare();
+        params.setDefault();
         Assert.assertEquals(new Integer(5), params.getRowStart());
         Assert.assertEquals(new Integer(-1), params.getRowHead());
         Assert.assertEquals(new Integer(-1), params.getLength());
@@ -66,12 +66,12 @@ public class ListParamsTest implements IModelConfigCreateTests {
     @Ignore
     @Test
     public void checkObjectSetLength() {
-        ListParams params = new ListParams();
+        ListParamsBean params = new ListParamsBean();
         params.setLength(5);
         Assert.assertEquals(new Integer(5), params.getLength());
         params.setLength(6);
         Assert.assertEquals(new Integer(5), params.getLength());
-        params.prepare();
+        params.setDefault();
         Assert.assertEquals(new Integer(0), params.getRowStart());
         Assert.assertEquals(new Integer(-1), params.getRowHead());
         Assert.assertEquals(new Integer(5), params.getLength());
@@ -86,13 +86,13 @@ public class ListParamsTest implements IModelConfigCreateTests {
 
     @Test
     public void checkObjectSetHeadAndLength() {
-        ListParams params = new ListParams();
+        ListParamsBean params = new ListParamsBean();
         params.setRowHead(2);
         params.setLength(5);
         Assert.assertEquals(new Integer(5), params.getLength());
         params.setLength(6);
         Assert.assertEquals(new Integer(6), params.getLength());
-        params.prepare();
+        params.setDefault();
         Assert.assertEquals(new Integer(3), params.getRowStart());
         Assert.assertEquals(new Integer(2), params.getRowHead());
         Assert.assertEquals(new Integer(6), params.getLength());

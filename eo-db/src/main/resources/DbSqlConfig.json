@@ -4,28 +4,21 @@
     "moduleScope": "main",
     "description": "Query for AnObject",
     "expose": "WEB",
-    "properties": {
-      "classPath": "src/main/resources",
-      "dbKey": "h2:mem:basic",
-      "modelKey": "AnObject"
-    },
+    "classPath": "src/main/resources",
+    "dbConfigKey": "h2:mem:basic",
+    "modelKey": "AnObject",
     "sqlList": [
       "Select * from AnObject"
     ],
-    "rolePermissions": {
-      "read": "guest"
-    }
+    "read": ["guest"]
   },
   "h2:mem:basic:Create": {
     "module": "eo-db",
     "moduleScope": "main",
     "description": "Basic H2 creating tables",
     "expose": "WEB",
-    "properties": {
-      "classPath": "src/main/resources",
-      "dbKey": "h2:mem:basic",
-      "modelKey": ""
-    },
+    "classPath": "src/main/resources",
+    "dbConfigKey": "h2:mem:basic",
     "sqlList": [
       "drop table AnObject if exists",
       "drop table ASubObject if exists",
@@ -41,25 +34,19 @@
       "insert into AnObject (naturalId, myString,myInt,myBoolean) values ('key2', 'value2',2, false)",
       "insert into AnObject (naturalId, myString,myInt,myBoolean) values ('key3', 'value3',3, true)"
     ],
-    "rolePermissions": {
-      "execute": "admin"
-    }
+      "execute": ["admin"]
   },
   "h2:mem:basic:ASubObject": {
     "module": "eo-db",
     "moduleScope": "main",
     "description": "Query for ASubObject",
     "expose": "WEB",
-    "properties": {
-      "classPath": "src/main/resources",
-      "dbKey": "h2:mem:basic",
-      "modelKey": "ASubObject"
-    },
+    "classPath": "src/main/resources",
+    "dbConfigKey": "h2:mem:basic",
+    "modelKey": "ASubObject",
     "sqlList": [
       "Select * from ASubObject"
     ],
-    "rolePermissions": {
-      "read": "guest"
-    }
+    "read": ["guest"]
   }
 }

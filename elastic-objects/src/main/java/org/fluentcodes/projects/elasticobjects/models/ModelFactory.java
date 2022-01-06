@@ -1,6 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
 import java.util.Map;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import java.util.TreeMap;
  * Created by Werner on 21.1.2021.
  */
 
-public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterface> {
+public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelConfig> {
 
     protected ModelFactory(final ConfigMaps configMaps) {
         super(configMaps, ModelBean.class, ModelConfig.class);
@@ -22,8 +23,8 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterfa
      * @return the config map
      */
     @Override
-    public Map<String, ModelInterface> createConfigMap() {
-        Map<String, ModelInterface> configMap = new TreeMap<>();
+    public Map<String, ModelConfig> createConfigMap() {
+        Map<String, ModelConfig> configMap = new TreeMap<>();
         Map<String, ModelBean> beanMap = createBeanMap();
         for (Map.Entry<String, ModelBean> entry : beanMap.entrySet()) {
             try {
@@ -37,43 +38,43 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelInterfa
                 ShapeTypes shapeType = bean.getShapeType();
                 if (bean.hasConfigModelKey()) {
                     configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(),
+                            (ModelConfig)bean.createConfig(bean.deriveConfigClass(),
                                     getConfigMaps()));
                     continue;
                 }
+                ModelConfig modelConfig = null;
                 if (shapeType == ShapeTypes.SCALAR) {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(ModelConfigScalar.class.getSimpleName()),
-                                    getConfigMaps()));
+                    modelConfig = (ModelConfig) bean.createConfig(bean.deriveConfigClass(ModelConfigScalar.class.getSimpleName()),
+                                    getConfigMaps());
                 } else if (shapeType == ShapeTypes.SCALAR) {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(ModelConfigScalar.class.getSimpleName()),
-                                    getConfigMaps()));
+                    modelConfig = (ModelConfig) bean.createConfig(bean.deriveConfigClass(ModelConfigScalar.class.getSimpleName()),
+                                    getConfigMaps());
                 } else if (shapeType == ShapeTypes.MAP) {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(ModelConfigMap.class.getSimpleName()),
-                                    getConfigMaps()));
+                    modelConfig = (ModelConfig) bean.createConfig(bean.deriveConfigClass(ModelConfigMap.class.getSimpleName()),
+                                    getConfigMaps());
                 } else if (shapeType == ShapeTypes.LIST) {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(bean.deriveConfigClass(ModelConfigList.class.getSimpleName()),
-                                    getConfigMaps()));
+                    modelConfig = (ModelConfig) bean.createConfig(bean.deriveConfigClass(ModelConfigList.class.getSimpleName()),
+                                    getConfigMaps());
                 } else {
-                    configMap.put(key,
-                            (ModelInterface) bean.createConfig(
+                    modelConfig = (ModelConfig) bean.createConfig(
                                     bean.deriveConfigClass(ModelConfigObject.class.getSimpleName()),
-                                    getConfigMaps()));
+                                    getConfigMaps());
                 }
+                configMap.put(key, modelConfig);
 
-            } catch (EoException e) {
+            } catch (EoException| EoInternalException e) {
                 throw e;
             } catch (Exception e) {
                 throw new EoException(e);
             }
         }
-        for (Map.Entry<String, ModelInterface> entry : configMap.entrySet()) {
+        for (Map.Entry<String, ModelConfig> entry : configMap.entrySet()) {
             try {
                 ((ModelConfig) entry.getValue()).resolve(configMap);
-            } catch (Exception e) {
+            } catch (EoException e) {
+                throw e;
+            }
+            catch (Exception e) {
                 throw new EoException(e);
             }
         }

@@ -5,17 +5,14 @@
     "moduleScope": "main",
     "description": "Local H2 in file persisted for the test resources.",
     "expose": "WEB",
+    "hostName": "h2",
     "properties": {
       "schema": "file:basic",
-      "dbType": "H2",
       "extension": "DATABASE_TO_UPPER=false;",
       "driver": "org.h2.Driver",
-      "protocol": "jdbc",
-      "hostName": "h2"
+      "protocol": "jdbc"
     },
-    "rolePermissions": {
-      "read": "guest"
-    }
+      "read": ["guest"]
   },
   "h2:mem:basic": {
     "configModelKey": "DbConfig",
@@ -23,16 +20,13 @@
     "moduleScope": "main",
     "description": "Local H2 in memory for the test resources.",
     "expose": "WEB",
+    "hostName": "h2",
     "properties": {
       "schema": "mem:basic",
-      "dbType": "H2",
       "extension": "DATABASE_TO_UPPER=false;",
       "driver": "org.h2.Driver",
-      "protocol": "jdbc",
-      "hostName": "h2"
+      "protocol": "jdbc"
     },
-    "rolePermissions": {
-      "read": "guest"
-    }
+      "read": ["guest"]
   }
 }

@@ -32,6 +32,13 @@ public class ShapeTypeSerializerString implements ShapeTypeSerializerInterface<S
         return asObject(object.toString());
     }
 
+    public String asObject(String object, final String defaultValue) {
+        if (object == null) {
+            return defaultValue;
+        }
+        return asObject(object);
+    }
+
     public String asObject(String object) {
         if (object == null) {
             return "";

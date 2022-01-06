@@ -23,6 +23,7 @@ public class FieldFactory extends ConfigFactory<FieldBean, FieldConfig> {
         for (Map.Entry<String, Map<String, Object>> entry: mapValues.entrySet()) {
             Map<String, Object> mapValue = entry.getValue();
             FieldBean fieldBean = new FieldBean(mapValue);
+            fieldBean.setDefault();
             if (!fieldBean.hasFieldKey()) {
                 LOG.warn("No modelKey defined for {}.", entry.getKey());
                 continue;

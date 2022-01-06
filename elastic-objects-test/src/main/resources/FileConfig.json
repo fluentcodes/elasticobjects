@@ -1,6 +1,5 @@
 {
   "AnObject.csv": {
-    "configModelKey": "CsvConfig",
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
@@ -9,9 +8,7 @@
     "description": "A sample character separated file with 3x3 entries and a header which could be mapped to AnObject.",
     "expose": "WEB",
     "cached": "false",
-    "rolePermissions": {
-      "read": "guest"
-    },
+      "read": ["guest"],
     "properties": {
       "rowHead": 0,
       "rowStart": 1,
@@ -27,12 +24,9 @@
     "description": "Simple data for the AnObject.",
     "expose": "WEB",
     "cached": "false",
-    "rolePermissions": {
-      "read": "guest"
-    }
+      "read": ["guest"]
   },
   "ListSimple.csv": {
-    "configModelKey": "CsvConfig",
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
@@ -41,10 +35,8 @@
     "description": "A sample csv file with 2*2 values and a head as a source.",
     "expose": "NONE",
     "cached": "false",
-    "rolePermissions": {
-      "read": "guest",
-      "write": "admin"
-    },
+      "read": ["guest"],
+      "write": ["admin"],
     "properties": {
       "rowHead": 0,
       "rowStart": 1,

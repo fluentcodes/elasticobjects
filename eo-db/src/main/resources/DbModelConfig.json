@@ -1,0 +1,12 @@
+{
+  "h2:mem:AnObject":{
+    "modelKey": "AnObject",
+    "dbConfigKey": "h2:mem:basic",
+    "read": ["guest"]
+  },
+  "h2:mem:ASubObject":{
+    "modelKey": "ASubObject",
+    "dbConfigKey": "h2:mem:basic",
+    "read": ["guest"]
+  }
+}

@@ -1,15 +1,18 @@
 {
   "_rootmodel": "ModelBean",
-  "author": "Werner Diwischek",
   "configModelKey": "ModelConfigObject",
-  "(Date)creationDate": 1482274766848,
-  "description": "Base bean as super object for model beans with id, naturalId and description but no annotations. ",
-  "(Expose)expose": "NONE",
-  "modelKey": "BaseBean",
-  "module": "elastic-objects",
-  "moduleScope": "main",
-  "naturalId": "BaseBean",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.domain",
-  "properties": {
+  "fieldBeans": {
+    "(FieldBean)value": {
+      "configModelKey": "FieldConfig",
+      "fieldKey": "value",
+      "modelKeys": "String",
+      "naturalId": "FieldExampleClass.value"
+    }
+  },
+  "modelKey": "FieldExampleClass",
+  "naturalId": "FieldExampleClass",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
+  "(ModelBeanProperties)properties": {
+    "create": true
   }
 }

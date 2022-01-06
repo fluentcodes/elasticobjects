@@ -9,14 +9,9 @@
   },
   "(List)_calls": {
     "(CsvSimpleReadCall)0": {
-      "(List,String)colKeys": {
-        "0": "key1",
-        "1": "key2"
-      },
       "fileConfigKey": "ListSimple.csv",
       "hostConfigKey": "localhost",
-      "length": -1,
-      "(ListParams)listParams": {
+      "(ListParamsBean)listParams": {
         "(List,String)colKeys": {
           "0": "key1",
           "1": "key2"
@@ -27,10 +22,7 @@
         "rowStart": 1
       },
       "postpend": "",
-      "prepend": "",
-      "rowEnd": 3,
-      "rowHead": 0,
-      "rowStart": 1
+      "prepend": ""
     }
   }
 }

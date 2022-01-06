@@ -1,45 +1,9 @@
 {
-  "XlsxConfig": {
-    "module": "eo-xlsx",
-    "moduleScope": "main",
-    "interfaces": "XlsxInterface",
-    "superKey": "FileConfig",
-    "expose": "NONE",
-    "description": "The cache class for excel access. Contains the file cache.",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
-    "modelKey": "XlsxConfig",
-    "properties": {
-      "create": false,
-      "final": true
-    },
-    "author": "Werner Diwischek"
-  },
-  "XlsxInterface": {
-    "module": "eo-xlsx",
-    "moduleScope": "main",
-    "fieldKeys": {
-      "sheetName": {
-        "default": true,
-        "final": true,
-        "transient": true
-      }
-    },
-    "interfaces": "FileInterface",
-    "expose": "NONE",
-    "description": "The cache class for excel access. Contains the file cache.",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
-    "modelKey": "XlsxInterface",
-    "properties": {
-      "create": false,
-      "shapeType": "INTERFACE"
-    },
-    "author": "Werner Diwischek"
-  },
   "XlsxReadCall": {
     "module": "eo-xlsx",
     "moduleScope": "main",
-    "interfaces": "ListInterface",
     "superKey": "FileReadCall",
+    "interfaces": "ListParamsBeanInterface",
     "expose": "WEB",
     "description": "Read an Excel sheet specified by fileConfigKey referencing to a @XlsxConfig configuration.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.xlsx",

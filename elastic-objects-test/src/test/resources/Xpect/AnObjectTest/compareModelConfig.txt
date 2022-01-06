@@ -5,214 +5,402 @@
   "fieldConfigMap": {
     "id": {
       "description": "The numeric id of an instance of a class.",
+      "expose": "WEB",
       "fieldKey": "id",
       "modelKeys": "Long",
-      "modelList": [
-        "Long"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "id",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": true,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": true
       }
     },
     "myASubObject": {
       "description": "myASubObject",
+      "expose": "WEB",
       "fieldKey": "myASubObject",
       "modelKeys": "ASubObject",
-      "modelList": [
-        "ASubObject"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myASubObject",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myASubObjectList": {
       "description": "A generic parametrized example List with @ASubObject",
+      "expose": "WEB",
       "fieldKey": "myASubObjectList",
       "modelKeys": "List,ASubObject",
-      "modelList": [
-        "List",
-        "ASubObject"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myASubObjectList",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myASubObjectMap": {
       "description": "A generic parametrized example Map with @ASubObject",
+      "expose": "WEB",
       "fieldKey": "myASubObjectMap",
       "modelKeys": "Map,ASubObject",
-      "modelList": [
-        "Map",
-        "ASubObject"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myASubObjectMap",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myAnObject": {
       "description": "A AnObject field.",
+      "expose": "WEB",
       "fieldKey": "myAnObject",
       "modelKeys": "AnObject",
-      "modelList": [
-        "AnObject"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myAnObject",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myBoolean": {
       "description": "myBoolean",
+      "expose": "WEB",
       "fieldKey": "myBoolean",
       "modelKeys": "Boolean",
-      "modelList": [
-        "Boolean"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myBoolean",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myDate": {
       "description": "myDate",
+      "expose": "WEB",
       "fieldKey": "myDate",
       "modelKeys": "Date",
-      "modelList": [
-        "Date"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myDate",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myDouble": {
       "description": "myDouble",
+      "expose": "WEB",
       "fieldKey": "myDouble",
       "modelKeys": "Double",
-      "modelList": [
-        "Double"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myDouble",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myFloat": {
       "description": "myFloat",
+      "expose": "WEB",
       "fieldKey": "myFloat",
       "modelKeys": "Float",
-      "modelList": [
-        "Float"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myFloat",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myInt": {
       "description": "myInt",
+      "expose": "WEB",
       "fieldKey": "myInt",
       "modelKeys": "Integer",
-      "modelList": [
-        "Integer"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myInt",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myList": {
       "description": "myList",
+      "expose": "WEB",
       "fieldKey": "myList",
       "modelKeys": "List",
-      "modelList": [
-        "List"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myList",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myLong": {
       "description": "myLong",
+      "expose": "WEB",
       "fieldKey": "myLong",
       "modelKeys": "Long",
-      "modelList": [
-        "Long"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myLong",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myMap": {
       "description": "myMap",
+      "expose": "WEB",
       "fieldKey": "myMap",
       "modelKeys": "Map",
-      "modelList": [
-        "Map"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myMap",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myObject": {
       "description": "A test object thing. ",
+      "expose": "WEB",
       "fieldKey": "myObject",
       "modelKeys": "Object",
-      "modelList": [
-        "Object"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myObject",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "myString": {
       "description": "Just a small test string used in test models. ",
+      "expose": "WEB",
       "fieldKey": "myString",
-      "length": 20,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
       "naturalId": "myString",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": 20,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
       }
     },
     "naturalId": {
       "description": "The natural key in @Base",
+      "expose": "NONE",
       "fieldKey": "naturalId",
-      "length": 80,
       "modelKeys": "String",
-      "modelList": [
-        "String"
-      ],
+      "module": "elastic-objects",
+      "moduleScope": "main",
       "naturalId": "naturalId",
       "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
-        "final": false
+        "jsonIgnore": false,
+        "length": 80,
+        "max": -1,
+        "min": -1,
+        "notNull": true,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": true
       }
     }
   },
@@ -222,6 +410,9 @@
   "naturalId": "AnObject",
   "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
   "properties": {
-    "create": true
+    "abstract": false,
+    "create": true,
+    "dbAnnotated": false,
+    "final": false
   }
 }

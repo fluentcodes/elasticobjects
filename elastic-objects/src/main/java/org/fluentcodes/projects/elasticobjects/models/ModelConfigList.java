@@ -13,8 +13,8 @@ import java.util.Set;
 /**
  * Created by Werner on 09.10.2016.
  */
-public class ModelConfigList extends ModelConfig implements ModelConfigMethods {
-    private static final Logger LOG = LogManager.getLogger(ConfigConfig.class);
+public class ModelConfigList extends ModelConfig {
+    private static final Logger LOG = LogManager.getLogger(Config.class);
 
     public ModelConfigList(ConfigBean bean, final ConfigMaps configMaps) {
         this((ModelBean) bean, configMaps);
@@ -22,11 +22,6 @@ public class ModelConfigList extends ModelConfig implements ModelConfigMethods {
 
     public ModelConfigList(ModelBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
-    }
-
-    @Override
-    public ModelConfig getFieldModel(final String fieldName)  {
-        return null; //getConfigsCache().findModel(Object.class); //TODO
     }
 
     @Override
@@ -114,8 +109,12 @@ public class ModelConfigList extends ModelConfig implements ModelConfigMethods {
     }
 
     @Override
+    public boolean isEmpty(final Object object)  {
+        return object == null || ((List) object).isEmpty();
+    }
+
+    @Override
     public void remove(final String fieldName, final Object object)  {
-        //TODO
         Integer i = Integer.parseInt(fieldName);
         List list = ((List) object);
         if (((List) object).size() <= i) {

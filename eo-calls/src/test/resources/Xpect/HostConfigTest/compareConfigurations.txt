@@ -2,40 +2,47 @@
   "dummyftp": {
     "description": "A connection to elastic objects",
     "expose": "NONE",
+    "hostName": "dummyftp",
     "module": "eo-calls",
     "moduleScope": "test",
     "naturalId": "dummyftp",
+    "permissions": {
+    },
     "properties": {
       "classPath": "src.main.resources",
-      "hostName": "dummyftp",
-      "user": "dummy",
       "password": "test1234",
       "port": 21,
-      "protocol": "ftp"
+      "protocol": "ftp",
+      "user": "dummy"
     }
   },
   "dummyftpurl": {
     "description": "A connection to elastic objects",
     "expose": "NONE",
+    "hostName": "dummyftpurl",
     "module": "eo-calls",
     "moduleScope": "test",
     "naturalId": "dummyftpurl",
+    "permissions": {
+    },
     "properties": {
       "classPath": "src.main.resources",
-      "user": "dummy",
       "password": "test1234",
-      "url": "ftp://dummyftp:21"
+      "url": "ftp://dummyftp:21",
+      "user": "dummy"
     }
   },
   "elasticobjects": {
     "description": "A connection to elastic objects",
     "expose": "NONE",
+    "hostName": "elasticobjects",
     "module": "eo-calls",
     "moduleScope": "test",
     "naturalId": "elasticobjects",
+    "permissions": {
+    },
     "properties": {
       "classPath": "src.main.resources",
-      "hostName": "elasticobjects",
       "port": 80,
       "protocol": "http"
     }
@@ -43,27 +50,27 @@
   "local": {
     "description": "local host with key 'local'",
     "expose": "WEB",
-    "module": "elastic-objects",
+    "hostName": "localhost",
+    "module": "eo-calls",
     "moduleScope": "main",
     "naturalId": "local",
-    "properties": {
-      "hostName": "localhost"
-    },
-    "rolePermissions": {
-      "read": "guest"
+    "permissions": {
+      "read": [
+        "guest"
+      ]
     }
   },
   "localhost": {
     "description": "local host with key 'localhost'",
     "expose": "WEB",
-    "module": "elastic-objects",
+    "hostName": "localhost",
+    "module": "eo-calls",
     "moduleScope": "main",
     "naturalId": "localhost",
-    "properties": {
-      "hostName": "localhost"
-    },
-    "rolePermissions": {
-      "read": "guest"
+    "permissions": {
+      "read": [
+        "guest"
+      ]
     }
   }
 }

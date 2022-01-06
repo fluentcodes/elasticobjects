@@ -5,6 +5,7 @@ import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.models.Config;
 import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
@@ -30,7 +31,7 @@ public class GithubLinkCall extends CallImpl  {
    private  String configType;
 /*.{}.*/
 
-    private ConfigInterface config;
+    private Config config;
     private boolean configured = true;
     private boolean noLabel = false;
     private Boolean noGithub = false;
@@ -115,7 +116,7 @@ public class GithubLinkCall extends CallImpl  {
             builder.append("</a></nobreak>");
             return builder.toString();
         }
-        this.config = (ConfigInterface) eo.getConfigMaps().find(configClass, configKey);
+        this.config = (Config) eo.getConfigMaps().find(configClass, configKey);
         builder.append(config.getModule());
         if (configClass.equals(ModelConfig.class)) {
             builder.append("/src/");
@@ -163,7 +164,7 @@ public class GithubLinkCall extends CallImpl  {
         this.noGithub = noGithub;
     }
 
-    protected ConfigInterface getConfig() {
+    protected Config getConfig() {
         return config;
     }
     protected void setNoLabel() {

@@ -1,9 +1,8 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.domain.BaseInterface;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 /*.{javaHeader}|*/
 
 /**
@@ -13,16 +12,7 @@ import java.util.Map;
  * @creationDate
  * @modificationDate Tue Dec 08 17:46:47 CET 2020
  */
-public interface ConfigInterface extends BaseInterface {
-  /*.{}.*/
-
-  /*.{javaStaticNames}|*/
-  String F_EXPOSE = "expose";
-  String F_MODULE = "module";
-  String F_MODULE_SCOPE = "moduleScope";
-  String F_SCOPE = "scope";
-  String F_PROPERTIES = "properties";
-  /*.{}.*/
+public interface ConfigInterface {
 
   default boolean hasScope(final Scope scope) {
     return scope == Scope.ALL ||
@@ -30,16 +20,6 @@ public interface ConfigInterface extends BaseInterface {
             getScope().isEmpty() ||
             getScope().contains(scope);
   }
-
-  /*.{javaAccessors}|*/
-  default boolean hasProperties() {
-    return getProperties() != null && !getProperties().isEmpty();
-  }
-
-  /**
-   * Properties for configurations.
-   */
-  Map<String, Object> getProperties();
 
   /**
    * expose
@@ -76,5 +56,41 @@ public interface ConfigInterface extends BaseInterface {
   default boolean hasScope() {
     return getScope() != null && !getScope().isEmpty();
   }
+
+  public String getAuthor();
+
+  default boolean hasAuthor() {
+    return getAuthor() != null && !getAuthor().isEmpty();
+  }
+
+  public Date getCreationDate();
+
+  default boolean hasCreationDate() {
+    return getCreationDate() != null;
+  }
+
+  public String getDescription();
+
+  default boolean hasDescription() {
+    return getDescription() != null && !getDescription().isEmpty();
+  }
+
+  public Long getId();
+
+  default boolean hasId() {
+    return getId() != null;
+  }
+
+  public String getNaturalId();
+
+  default boolean hasNaturalId() {
+    return getNaturalId() != null && !getNaturalId().isEmpty();
+  }
+
   /*.{}.*/
+
+  default Date getModificationDate() {
+    return new Date();
+  }
+
 }

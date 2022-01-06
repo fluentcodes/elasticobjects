@@ -29,9 +29,7 @@
       "create": true
     },
     "author": "Werner Diwischek",
-    "rolePermissions": {
       "read": "guest"
-    }
   },
   "ASubObject": {
     "configModelKey": "ModelConfigObject",
@@ -63,9 +61,7 @@
       "create": true
     },
     "author": "Werner Diwischek",
-    "rolePermissions": {
-      "read": "guest"
-    },
+      "read": "guest",
     "creationDate": 1605826800000
   }
 }

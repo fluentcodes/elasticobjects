@@ -16,10 +16,17 @@ public class ShapeTypeSerializerBoolean implements ShapeTypeSerializerInterface<
         return asString(value);
     }
 
+    public Boolean asObject(Object value, Boolean defaultValue) {
+        if (value == null) {
+            return defaultValue;
+        }
+        return asObject(value);
+    }
+
     @Override
     public Boolean asObject(Object value) {
         if (value == null) {
-            return false;
+            return null;
         }
         if (value instanceof Boolean) {
             return (Boolean) value;
@@ -44,7 +51,7 @@ public class ShapeTypeSerializerBoolean implements ShapeTypeSerializerInterface<
         if (value == null) {
             return false;
         }
-        if (value.equals("1")|| value.equals("true")) {
+        if (value.equals("1") || value.equals("true")) {
             return true;
         }
         return false;

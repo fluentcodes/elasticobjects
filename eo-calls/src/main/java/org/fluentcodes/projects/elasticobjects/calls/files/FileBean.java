@@ -5,11 +5,6 @@ import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerBoolean
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerString;
 
 import java.util.Map;
-
-import static org.fluentcodes.projects.elasticobjects.calls.HostCall.HOST_CONFIG_KEY;
-
-/*.{javaHeader}|*/
-
 /**
  * The bean counterpart for {@link FileConfig}.
  *
@@ -18,9 +13,7 @@ import static org.fluentcodes.projects.elasticobjects.calls.HostCall.HOST_CONFIG
  * @modificationDate Thu Jan 14 14:48:43 CET 2021
  */
 public class FileBean extends PermissionBean implements FileInterface {
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
+    private FileBeanProperties properties;
     /* If true will cache the readed file within the cache object.  */
     private Boolean cached;
     /* A fileName used in different calls and configs like {@link FileConfig} or {@link DirectoryConfig}.  */
@@ -29,30 +22,19 @@ public class FileBean extends PermissionBean implements FileInterface {
     private String filePath;
     /* A key for host objects. */
     private String hostConfigKey;
-    /*.{}.*/
-
 
     public FileBean() {
         super();
+        this.properties = new FileBeanProperties();
         defaultConfigModelKey();
     }
 
-    public FileBean(final String naturalId, final Map map) {
-        super(naturalId, map);
+    public FileBeanProperties getProperties() {
+        return properties;
     }
 
-    public FileBean(final Map map) {
-        super();
-        merge(map);
-    }
-
-    public void merge(final Map configMap) {
-        super.merge(configMap);
-        mergeFileName(configMap.get(F_FILE_NAME));
-        mergeFilePath(configMap.get(F_FILE_PATH));
-        mergeCached(configMap.get(F_CACHED));
-        mergeHostConfigKey(configMap.get(HOST_CONFIG_KEY));
-        defaultConfigModelKey();
+    public void setProperties(FileBeanProperties properties) {
+        this.properties = properties;
     }
 
     private void defaultConfigModelKey() {
@@ -101,31 +83,5 @@ public class FileBean extends PermissionBean implements FileInterface {
     public FileBean setHostConfigKey(final String hostConfigKey) {
         this.hostConfigKey = hostConfigKey;
         return this;
-    }
-
-    /*.{}.*/
-
-    private void mergeCached(final Object value) {
-        if (value == null) return;
-        if (hasCached()) return;
-        setCached(new ShapeTypeSerializerBoolean().asObject(value));
-    }
-
-    private void mergeFileName(final Object value) {
-        if (value == null) return;
-        if (hasFileName()) return;
-        setFileName(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    private void mergeFilePath(final Object value) {
-        if (value == null) return;
-        if (hasFilePath()) return;
-        setFilePath(new ShapeTypeSerializerString().asObject(value));
-    }
-
-    private void mergeHostConfigKey(final Object value) {
-        if (value == null) return;
-        if (hasHostConfigKey()) return;
-        setHostConfigKey(new ShapeTypeSerializerString().asObject(value));
     }
 }

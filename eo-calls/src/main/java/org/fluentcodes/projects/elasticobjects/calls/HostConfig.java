@@ -3,7 +3,6 @@ package org.fluentcodes.projects.elasticobjects.calls;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
-/*.{javaHeader}|*/
 
 /**
  * Basic host definition for file or db cache.
@@ -13,19 +12,28 @@ import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
  * @modificationDate Thu Jan 14 12:17:41 CET 2021
  */
 public class HostConfig extends PermissionConfig implements HostInterface {
-  /*.{}.*/
   public static final String LOCALHOST = "localhost";
 
-  /*.{javaAccessors}|*/
-  /*.{}.*/
   private String urlCache;
+  private final String hostName;
+  private final HostConfigProperties properties;
 
   public HostConfig(ConfigBean bean, final ConfigMaps configMaps) {
     this((HostBean) bean, configMaps);
   }
+  public HostConfig(final HostBean bean, final ConfigMaps configMaps) {
+    super(bean, configMaps);
+    this.hostName = bean.getHostName();
+    this.properties = new HostConfigProperties(bean.getProperties());
+  }
 
-  public HostConfig(final HostBean host, final ConfigMaps configMaps) {
-    super(host, configMaps);
+  public HostConfigProperties getProperties() {
+    return properties;
+  }
+
+  @Override
+  public String getHostName() {
+    return hostName;
   }
 
   protected boolean hasUrlCache() {
@@ -45,14 +53,14 @@ public class HostConfig extends PermissionConfig implements HostInterface {
 
   protected String createUrl() {
     if (!hasHostName()) {
-      return getProtocol();
+      return properties.getProtocol();
     } else if (LOCALHOST.equals(getHostName())) {
       urlCache = "file:";
     } else {
-      if (hasPort()) {
-        urlCache = getProtocol() + "://" + getHostName() + ":" + getPort();
+      if (properties.hasPort()) {
+        urlCache = properties.getProtocol() + "://" + getHostName() + ":" + properties.getPort();
       } else {
-        urlCache = getProtocol() + "://" + getHostName();
+        urlCache = properties.getProtocol() + "://" + getHostName();
       }
     }
     return urlCache;
@@ -62,30 +70,14 @@ public class HostConfig extends PermissionConfig implements HostInterface {
     if (hasUrlCache()) {
       return urlCache;
     }
-    if (hasUrl()) {
-      this.urlCache = getUrl();
+    if (properties.hasUrl()) {
+      this.urlCache = properties.getUrl();
       return urlCache;
     }
     if (getHostName() == null) {
       throw new EoException("Incomplete host exception: host name not add!");
     }
     return createUrl();
-  }
-
-  /**
-   * Set the values from config to {@link HostBean}
-   *
-   * @param bean hostbean
-   */
-  public void populateBean(HostBean bean) {
-    super.populateBean(bean);
-    bean.setHostName(getHostName());
-    bean.setPassword(getPassword());
-    bean.setPort(getPort());
-    bean.setUrl(getUser());
-    bean.setUser(getUser());
-    bean.setUrl(getUrl());
-    bean.setProtocol(getProtocol());
   }
 
 }

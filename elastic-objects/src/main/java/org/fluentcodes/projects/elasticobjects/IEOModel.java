@@ -21,7 +21,7 @@ public interface IEOModel {
     }
 
     default boolean isTransient(final String fieldName) {
-        return getModel().hasFieldConfig(fieldName) && getModel().getField(fieldName).isTransient();
+        return getModel().hasField(fieldName) && getModel().getField(fieldName).isTransient();
     }
 
     default boolean isContainer() {
@@ -29,23 +29,19 @@ public interface IEOModel {
     }
 
     default boolean isList() {
-        return getModel().isList();
+        return getModels().isList();
     }
 
     default boolean isObject() {
-        return getModel().isObject();
+        return getModels().isObject();
     }
 
     default boolean isScalar() {
-        return getModel().isScalar() || getModels().isEnum();
+        return getModels().isScalar();
     }
 
     default boolean isMap() {
-        return getModel().isMap();
-    }
-
-    default boolean isNull() {
-        return getModel().isNull();
+        return getModels().isMap();
     }
 
     default ConfigMaps getConfigMaps() {

@@ -1,8 +1,10 @@
 package org.fluentcodes.projects.elasticobjects;
 
-import org.fluentcodes.projects.elasticobjects.domain.BaseBean;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.models.FieldBeanInterface;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
+import org.fluentcodes.projects.elasticobjects.models.Config;
+import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
+import org.fluentcodes.projects.elasticobjects.models.FieldInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.Models;
 
@@ -21,6 +23,7 @@ public class EoChild extends EoChildScalar implements IEOObject {
 
     EoChild(final Object value, final Models models) {
         super(value, models);
+        eoMap = new LinkedHashMap<>();
     }
 
     public EoChild(final IEOObject parentEo, final String fieldKey, final Object value, final Models fieldModels) {
@@ -43,11 +46,14 @@ public class EoChild extends EoChildScalar implements IEOObject {
     }
 
     @Override
-    public boolean hasEo(final String key) {
-        return eoMap != null && eoMap.containsKey(key);
+    public boolean hasEo(final String fieldKey) {
+        if (eoMap == null) {
+            throw new EoInternalException("Null eoMap should never happen!");
+        }
+        return eoMap.containsKey(fieldKey);
     }
 
-    protected boolean hasEo(PathElement pathElement) {
+    boolean hasEo(PathElement pathElement) {
         return hasEo(pathElement.getKey());
     }
 
@@ -155,7 +161,12 @@ public class EoChild extends EoChildScalar implements IEOObject {
     }
 
     IEOScalar createChild(final PathElement pathElement, final Object childValue) {
-        return getModels().createChild(this, pathElement, childValue);
+        try {
+            return getModels().createChild(this, pathElement, childValue);
+        }
+        catch (Exception e) {
+            throw new EoException("Problem creating child at '" + getPathAsString() + "/" + pathElement + "' with value '" + childValue + "' with message " + e.getMessage());
+        }
     }
 
     void removeChild(String fieldName) {
@@ -185,10 +196,11 @@ public class EoChild extends EoChildScalar implements IEOObject {
         if (fieldValue == null) {
             fieldValue = getModels().create();
         }
+        if (eoMap == null) {
+            eoMap = new LinkedHashMap<>();
+        }
         if (hasParent()) {
             getParentEo().setValueByModel(getFieldKey(), fieldValue);
-        } else if (eoMap == null) {
-            eoMap = new LinkedHashMap<>();
         }
         map(value);
     }
@@ -259,20 +271,20 @@ public class EoChild extends EoChildScalar implements IEOObject {
             }
         }
         Set<String> fieldNameSet = valueModel.keys(value);
-        for (String fieldName : fieldNameSet) {
+        for (String fieldKey : fieldNameSet) {
             if (valueModel.isObject()) {
-                FieldBeanInterface fieldBean = valueModel.getField(fieldName);
+                FieldInterface fieldBean = valueModel.getField(fieldKey);
                 if (fieldBean == null) {
                     continue;
                 }
             }
-            PathElement pathElement = new PathElement(fieldName);
-            if (valueModel.isJsonIgnore(fieldName)) continue;
-            if (valueModel.isProperty(fieldName)) continue;
-            if (!valueModel.exists(fieldName, value)) continue;
-            Object childValue = valueModel.get(fieldName, value);
+            PathElement pathElement = new PathElement(fieldKey);
+            if (valueModel.isJsonIgnore(fieldKey)) continue;
+            if (valueModel.isProperty(fieldKey)) continue;
+            if (!valueModel.exists(fieldKey, value)) continue;
+            Object childValue = valueModel.get(fieldKey, value);
 
-            if (childValue == null && hasEo(pathElement)) {
+            if (childValue == null && !hasEo(pathElement)) {
                 continue;
             }
             createChild(pathElement, childValue);
@@ -282,12 +294,12 @@ public class EoChild extends EoChildScalar implements IEOObject {
 
     private Object createBaseObject(Object value) {
         Object object = getModels().create();
-        if (object instanceof BaseBean) {
+        if (object instanceof ConfigBean) {
 
             if (value instanceof Long) {
-                ((BaseBean) object).setId((Long) object);
+                ((ConfigBean) object).setId((Long) object);
             } else if (value instanceof String) {
-                ((BaseBean) object).setNaturalId((String) object);
+                ((ConfigBean) object).setNaturalId((String) object);
             }
             return object;
         }

@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.csv;
 import au.com.bytecode.opencsv.CSVReader;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
-import org.fluentcodes.projects.elasticobjects.calls.files.CsvConfig;
+import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/*.{javaHeader}|*/
-
 /**
  * Defines read call for a csv action depending on one link CsvConfig.
  *
@@ -24,13 +22,6 @@ import java.util.List;
  * @modificationDate Wed Nov 11 06:03:07 CET 2020
  */
 public class CsvReadCall extends CsvSimpleReadCall {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
-    /*.{}.*/
     public CsvReadCall() {
         super();
     }
@@ -41,13 +32,13 @@ public class CsvReadCall extends CsvSimpleReadCall {
 
     @Override
     public List readRaw(final IEOScalar eo) {
-        CsvConfig csvFileConfig = (CsvConfig) init(PermissionType.READ, eo);
-        getListParams().merge(csvFileConfig.getProperties());
-        URL url = csvFileConfig.findUrl(eo, getHostConfigKey());
-        //System.out.println("CSV " + url.toString());
+        FileConfig config = init(PermissionType.READ, eo);
+        getListParams().merge(config);
+        URL url = config.findUrl(eo, getHostConfigKey());
+        final char fieldDelimiter = config.getProperties().getFieldDelimiter().charAt(0);
         CSVReader reader = null;
         try {
-            reader = new CSVReader(new InputStreamReader(url.openStream()), csvFileConfig.getFieldDelimiter().charAt(0));
+            reader = new CSVReader(new InputStreamReader(url.openStream()), fieldDelimiter);
         } catch (IOException e) {
             throw new EoException(e);
         }
@@ -88,6 +79,4 @@ public class CsvReadCall extends CsvSimpleReadCall {
         }
         return result;
     }
-    /*.{javaAccessors}|*/
-    /*.{}.*/
 }

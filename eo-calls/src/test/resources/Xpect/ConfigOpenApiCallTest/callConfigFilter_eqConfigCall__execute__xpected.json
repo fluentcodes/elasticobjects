@@ -5,10 +5,6 @@
         "type": "object",
         "description": "For getting a map of configurations for a specific configuration type.",
         "properties": {
-          "author": {
-            "description": "The author of the class.",
-            "type": "string"
-          },
           "condition": {
             "description": "A condition for calls. ",
             "type": "string"
@@ -19,15 +15,6 @@
           },
           "configType": {
             "description": "Key for configuration type like ModelConfig, FileConfig, FieldConfig, HostConfig, DbSqlConfig.",
-            "type": "string"
-          },
-          "creationDate": {
-            "description": "Used to define the creation of an item.",
-            "type": "string",
-            "format": "date-time"
-          },
-          "description": {
-            "description": "A description of the model used by every model extending BaseClassImpl. ",
             "type": "string"
           },
           "duration": {
@@ -44,11 +31,6 @@
               "CREATE",
               "NONE"
             ]
-          },
-          "id": {
-            "description": "The numeric id of an instance of a class.",
-            "type": "integer",
-            "format": "int62"
           },
           "keepCall": {
             "description": "Will use an existing  result file beforehand as template. ",
@@ -83,10 +65,6 @@
           },
           "moduleScope": {
             "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
-            "type": "string"
-          },
-          "naturalId": {
-            "description": "The natural key in @Base",
             "type": "string"
           },
           "overwrite": {

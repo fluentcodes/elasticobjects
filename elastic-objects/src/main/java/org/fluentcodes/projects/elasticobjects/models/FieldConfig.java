@@ -17,40 +17,23 @@ import java.util.Map;
  * @creationDate Wed Oct 17 00:00:00 CEST 2018
  * @modificationDate Thu Jan 14 04:26:27 CET 2021
  */
-public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
+public class FieldConfig extends Config implements FieldInterface {
     public static final String AND_MODEL = "' and model '";
     /*.{}.*/
 /*.{javaInstanceVars}|*/
    /* fieldKey */
    private final String fieldKey;
-   /* Length of a field. */
-   private final Integer length;
    /* A string representation for a list of modelsConfig. */
    private final String modelKeys;
 /*.{}.*/
     private boolean resolved;
     private final boolean toSerialize;
     private List<String> modelList;
-    private final ModelInterface parentModel;
+    private final ModelConfig parentModel;
     private Models models;
     private Method getter;
     private Method setter;
-    private final Integer max;
-    private final Integer min;
-    private final Boolean override;
-    private final Boolean property;
-    private final Boolean staticName;
-    private final Boolean transientValue;
-    private final Boolean unique;
-    private final Boolean superValue;
-    private final Boolean defaultValue;
-    private final String fieldName;
-    private final Boolean finalValue;
-    private final Boolean generated;
-    private final String javascriptType;
-    private final Boolean jsonIgnore;
-    private final Boolean notNull;
-
+    private FieldConfigProperties properties;
 
     public FieldConfig(final ModelConfig parentModel, final FieldBean bean) {
         super(bean, parentModel.getConfigMaps());
@@ -59,23 +42,8 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
         this.modelList = Arrays.asList(modelKeys.split(","));
-        this.length = bean.getLength();
-        this.max = bean.getMax();
-        this.min = bean.getMin();
-        this.override = bean.getOverride();
-        this.property = bean.getProperty();
-        this.staticName = bean.getStaticName();
-        this.transientValue = bean.getTransient();
-        this.unique = bean.getUnique();
-        this.superValue = bean.getSuper();
-        this.defaultValue = bean.getDefault();
-        this.fieldName = bean.getFieldName();
-        this.finalValue = bean.getFinal();
-        this.generated = bean.getGenerated();
-        this.javascriptType = bean.getJavascriptType();
-        this.jsonIgnore = bean.getJsonIgnore();
-        this.notNull = bean.getNotNull();
-    }
+        this.properties = new FieldConfigProperties(bean.getProperties());
+     }
 
     public FieldConfig(final ConfigBean bean, final ConfigMaps configMaps) {
         this((FieldBean)bean, configMaps);
@@ -86,28 +54,20 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
         this.toSerialize = false;
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
-        this.modelList = Arrays.asList(modelKeys.split(","));
-        this.length = bean.getLength();
-        this.max = bean.getMax();
-        this.min = bean.getMin();
-        this.override = bean.getOverride();
-        this.property = bean.getProperty();
-        this.staticName = bean.getStaticName();
-        this.transientValue = bean.getTransient();
-        this.unique = bean.getUnique();
-        this.superValue = bean.getSuper();
-        this.defaultValue = bean.getDefault();
-        this.fieldName = bean.getFieldName();
-        this.finalValue = bean.getFinal();
-        this.generated = bean.getGenerated();
-        this.javascriptType = bean.getJavascriptType();
-        this.jsonIgnore = bean.getJsonIgnore();
-        this.notNull = bean.getNotNull();
+        this.properties = new FieldConfigProperties(bean.getProperties());
+        if (hasModelKeys()) {
+            this.modelList = Arrays.asList(modelKeys.split(","));
+        } else {
+            this.modelList = new ArrayList<>();
+        }
         parentModel = null;
     }
 
+    public FieldConfigProperties getProperties() {
+        return properties;
+    }
 
-    protected void resolve(ModelConfig model, Map<String, ModelInterface> modelConfigMap) {
+    protected void resolve(ModelConfig model, Map<String, ModelConfig> modelConfigMap) {
         if (resolved) {
             return;
         }
@@ -131,7 +91,7 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
 
         if (model.getShapeType() == ShapeTypes.INTERFACE &&
                 !isDefault() &&
-                !hasProperty()) {
+                !isProperty()) {
                 return;
         }
 
@@ -143,12 +103,31 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
 
         this.setter = getSetMethod(model, this.fieldKey);
     }
+    Boolean isJsonIgnore() {
+        return properties.isJsonIgnore();
+    }
+
+    public Boolean isTransient() {
+        return properties.isTransient();
+    }
+
+    Boolean isDefault() {
+        return properties.isDefault();
+    }
+
+    Boolean isProperty() {
+        return properties.isProperty();
+    }
+
+    Boolean isFinal() {
+        return properties.isFinal();
+    }
 
     private Method getGetMethod(final ModelConfig model, final String fieldKey) {
         try {
             return model.getModelClass().getMethod("get" + ModelConfigObject.upper(fieldKey), null);
         } catch (NoSuchMethodException e) {
-            throw new EoException("\nCould not find getter method for '" + fieldKey + AND_MODEL + parentModel.getNaturalId() + "' with input type '" + models.getModelClass().getSimpleName() + "': " + e.getMessage());
+            throw new EoException("\nCould not find getter method for '" + fieldKey + AND_MODEL + parentModel.getModelKey() + "' with input type '" + models.getModelClass().getSimpleName() + "': " + e.getMessage());
         }
     }
 
@@ -205,86 +184,6 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
    }
 
    @Override
-   public Integer getLength() {
-      return this.length;
-   }
-
-   @Override
-   public Integer getMax() {
-       return max;
-   }
-
-    @Override
-    public Integer getMin() {
-        return min;
-    }
-
-    @Override
-    public Boolean getOverride() {
-        return override;
-    }
-
-    @Override
-    public Boolean getProperty() {
-        return property;
-    }
-
-    @Override
-    public Boolean getStaticName() {
-        return staticName;
-    }
-
-    @Override
-    public Boolean getTransient() {
-        return transientValue;
-    }
-
-    @Override
-    public Boolean getUnique() {
-        return unique;
-    }
-
-    @Override
-    public Boolean getSuper() {
-        return superValue;
-    }
-
-    @Override
-    public Boolean getDefault() {
-        return defaultValue;
-    }
-
-    @Override
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    @Override
-    public Boolean getFinal() {
-        return finalValue;
-    }
-
-    @Override
-    public Boolean getGenerated() {
-        return generated;
-    }
-
-    @Override
-    public String getJavascriptType() {
-       return this.javascriptType;
-    }
-
-    @Override
-    public Boolean getJsonIgnore() {
-        return jsonIgnore;
-    }
-
-    @Override
-    public Boolean getNotNull() {
-        return notNull;
-    }
-
-   @Override
    public String getModelKeys() {
       return this.modelKeys;
    }
@@ -313,27 +212,5 @@ public class FieldConfig extends ConfigConfig implements FieldConfigInterface {
             return super.toString();
         }
         return fieldKey + "(" + modelKeys +")";
-    }
-
-    public void populateBean(final FieldBean bean) {
-        super.populateBean(bean);
-        bean.setFieldKey(fieldKey);
-        bean.setOverride(getOverride());
-        bean.setFinal(getFinal());
-        bean.setModelKeys(modelKeys);
-        bean.setLength(getLength());
-        bean.setGenerated(getGenerated());
-        bean.setNotNull(getNotNull());
-        bean.setSuper(getSuper());
-        bean.setDefault(getDefault());
-        bean.setTransient(getTransient());
-        bean.setUnique(getUnique());
-        bean.setFieldName(getFieldName());
-        bean.setJavascriptType(getJavascriptType());
-        bean.setJsonIgnore(bean.getJsonIgnore());
-        bean.setMax(getMax());
-        bean.setMin(getMin());
-        bean.setStaticName(getStaticName());
-        bean.setProperty(getProperty());
     }
 }

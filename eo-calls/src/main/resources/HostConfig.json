@@ -4,23 +4,15 @@
     "moduleScope": "main",
     "description": "local host with key 'local'",
     "expose": "WEB",
-    "properties": {
-      "hostName": "localhost"
-    },
-    "rolePermissions": {
-      "read": "guest"
-    }
+    "hostName": "localhost",
+    "read": ["guest"]
   },
   "localhost": {
     "module": "eo-calls",
     "moduleScope": "main",
     "description": "local host with key 'localhost'",
     "expose": "WEB",
-    "properties": {
-      "hostName": "localhost"
-    },
-    "rolePermissions": {
-      "read": "guest"
-    }
+    "hostName": "localhost",
+    "read": ["guest"]
   }
 }

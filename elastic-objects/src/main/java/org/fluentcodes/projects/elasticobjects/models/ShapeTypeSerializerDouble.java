@@ -8,7 +8,7 @@ public class ShapeTypeSerializerDouble extends ShapeTypeSerializerNumber<Double>
     @Override
     public Double asObject(String object) {
         if (object == null) {
-            throw new EoInternalException("Null object " + object.getClass());
+            return null;
         }
         try {
             return Double.parseDouble(object);

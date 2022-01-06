@@ -3,10 +3,11 @@ package org.fluentcodes.projects.elasticobjects.calls.db.statements;
 import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.calls.DbConfig;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
+import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.ModelInterface;
 
 import java.sql.Connection;
@@ -54,7 +55,7 @@ public class FindStatement extends PreparedStatementValues {
         if (source == null) {
             throw new EoException("Null eo for delete");
         }
-        ModelInterface model = source.getModel();
+        ModelConfig model = source.getModel();
         if (!model.isObject()) {
             throw new EoException("Model '" + model.getModelKey() + "' is not a object");
         }
@@ -65,7 +66,7 @@ public class FindStatement extends PreparedStatementValues {
         if (source == null) {
             throw new EoException("Null eo for delete");
         }
-        ModelInterface model = source.getModel();
+        ModelConfig model = source.getModel();
         if (!model.isObject()) {
             throw new EoException("Model '" + model.getModelKey() + "' is not a object");
         }
@@ -94,14 +95,14 @@ public class FindStatement extends PreparedStatementValues {
     }
 
     public List readFirst(Connection connection, ConfigMaps configsCache) {
-        ListParams listParams = new ListParams()
+        ListParamsBean listParams = new ListParamsBean()
                 .setRowHead(0)
                 .setRowStart(0)
                 .setRowEnd(1);
         return read(connection, configsCache, listParams);
     }
 
-    public List read(Connection connection, ConfigMaps configsCache, ListParams listParams) {
+    public List read(Connection connection, ConfigMaps configsCache, ListParamsBean listParams) {
         if (connection == null) {
             throw new EoInternalException("Null connection");
         }
@@ -122,7 +123,7 @@ public class FindStatement extends PreparedStatementValues {
         }
     }
 
-    private List readRaw(final ResultSet resultSet, ConfigMaps configsCache, ListParams listParams) {
+    private List readRaw(final ResultSet resultSet, ConfigMaps configsCache, ListParamsBean listParams) {
         List result = new ArrayList<>();
         if (listParams.hasRowHead()) {
             try {

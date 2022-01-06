@@ -74,8 +74,8 @@ In the example the
 <a href="/config/ModelConfig/ModelConfigObject">&equiv;ModelConfigObject</a>
 . Any
     object with a configuration of type
-<nobreak><a target="github" href="https://github.com/fluentcodes/elasticobjects/blob/master/eo-calls/src/main/java/org/fluentcodes/projects/elasticobjects/models/ModelConfigDbObject.java"> <img src="/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/></a></nobreak>
-<a href="/config/ModelConfig/ModelConfigDbObject">&equiv;ModelConfigDbObject</a>
+<nobreak><a target="github" href="https://github.com/fluentcodes/elasticobjects/blob/master/eo-db/src/main/java/org/fluentcodes/projects/elasticobjects/calls/db/DbModelConfig.java"> <img src="/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/></a></nobreak>
+<a href="/config/ModelConfig/DbModelConfig">&equiv;DbModelConfig</a>
 
     could be used for a generic
 <nobreak><a target="github" href="https://github.com/fluentcodes/elasticobjects/blob/master/eo-db/src/main/java/org/fluentcodes/projects/elasticobjects/calls/db/DbModelCall.java"> <img src="/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/></a></nobreak>

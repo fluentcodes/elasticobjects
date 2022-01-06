@@ -16,7 +16,7 @@ public class ShapeTypeSerializerEnum<T> implements ShapeTypeSerializerInterface<
     }
 
 
-    public T asObject(Class<?> enumClass, String object) {
+    public T asObject(Class<?> enumClass, Object object) {
         if (object == null) {
             return null;
         }

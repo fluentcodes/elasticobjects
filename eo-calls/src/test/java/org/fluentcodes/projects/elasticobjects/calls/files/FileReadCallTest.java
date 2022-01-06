@@ -95,7 +95,7 @@ public class FileReadCallTest implements IModelConfigCreateTests {
                     call.execute(eo);
                 })
                 .isInstanceOf(EoException.class)
-                .hasMessageContaining("No permissions for roles");
+                .hasMessageContaining("No READ right for [anonym] and resource FileTest.txt.");
     }
 
     @Test

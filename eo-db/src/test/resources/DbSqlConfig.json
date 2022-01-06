@@ -4,16 +4,12 @@
     "moduleScope": "test",
     "description": "Basic H2 dropping AnObject table",
     "expose": "WEB",
-    "properties": {
-      "classPath": "src/main/resources",
-      "dbKey": "h2:mem:basic",
-      "modelKey": "AnObject"
-    },
+    "classPath": "src/main/resources",
+    "dbConfigKey": "h2:mem:basic",
+    "modelKey": "AnObject",
     "sqlList": [
       "drop table AnObject if exists"
     ],
-    "rolePermissions": {
-      "execute": "admin"
-    }
+      "execute": ["admin"]
   }
 }

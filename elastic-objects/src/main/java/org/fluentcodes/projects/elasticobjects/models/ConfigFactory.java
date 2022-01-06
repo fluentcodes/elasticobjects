@@ -2,6 +2,7 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.utils.UnmodifiableMap;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.io.IOClasspathEOFlatMap;
@@ -14,14 +15,14 @@ import java.util.TreeMap;
  * Created by Werner on 22.10.2021.
  */
 
-public abstract class ConfigFactory<T extends ConfigBean, U extends ConfigInterface> {
+public abstract class ConfigFactory<T extends ConfigBean, U extends Config> {
     public static final Logger LOG = LogManager.getLogger(ConfigFactory.class);
     private final Scope scope;
-    private final Class<? extends ConfigInterface> configClass;
+    private final Class<? extends Config> configClass;
     private final Class<? extends ConfigBean> beanClass;
     private final ConfigMaps configMaps;
 
-    protected ConfigFactory(final ConfigMaps configMaps, final Class<? extends ConfigBean> beanClass, Class<? extends ConfigInterface> configClass) {
+    protected ConfigFactory(final ConfigMaps configMaps, final Class<? extends ConfigBean> beanClass, Class<? extends Config> configClass) {
         this.configMaps = configMaps;
         this.scope = configMaps.getScope();
         this.configClass = configClass;
@@ -32,7 +33,7 @@ public abstract class ConfigFactory<T extends ConfigBean, U extends ConfigInterf
         return configMaps;
     }
 
-    public Map<String, ConfigInterface> createImmutableConfig() {
+    public Map<String, Config> createImmutableConfig() {
         return new UnmodifiableMap<>(createConfigMap());
     }
 
@@ -63,7 +64,11 @@ public abstract class ConfigFactory<T extends ConfigBean, U extends ConfigInterf
                 U config = (U) entry.getValue().createConfig(configMaps);
                 configMap.put(entry.getKey(), config);
             }
-        } catch (Exception e) {
+        }
+        catch (EoInternalException| EoException e) {
+            throw e;
+        }
+        catch (Exception e) {
             throw new EoInternalException(e);
         }
         return configMap;

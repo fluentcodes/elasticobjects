@@ -16,7 +16,7 @@ import java.util.TreeMap;
 /**
  * Created by Werner on 09.10.2016.
  */
-public abstract class ModelConfig extends ConfigConfig implements ModelConfigMethods {
+public abstract class ModelConfig extends Config implements ModelInterface {
     public static final String MODEL_KEY = "modelKey";
     public static final String INTERFACES = "interfaces";
     public static final String SUPER_KEY = "superKey";
@@ -25,23 +25,13 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     private static final Logger LOG = LogManager.getLogger(ModelConfig.class);
     private boolean resolved = false;
     private boolean resolvedFields = false;
+
+    private final ModelConfigProperties properties;
+    private final String interfaces;
     private final String modelKey;
     private final String packagePath;
-    private final String superKey;
-    private final String interfaces;
-
-    private final Boolean dbAnnotated;
-    private final Boolean create;
     private final ShapeTypes shapeType;
-    private final String defaultImplementation;
-    private final Boolean abstractValue;
-    private final Boolean finalValue;
-    private final Boolean override;
-    private final Boolean property;
-    private final String bean;
-    private final String table;
-    private final String idKey;
-    private final String naturalKeys;
+    private final String superKey;
 
     private Class modelClass;
     private ModelConfig superModel;
@@ -54,16 +44,7 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     public ModelConfig(final ModelBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
         try {
-            Object shapeTypeValue = getProperties().get(SHAPE_TYPE);
-            if (shapeTypeValue == null) {
-                this.shapeType = ShapeTypes.BEAN;
-            } else if (shapeTypeValue instanceof ShapeTypes) {
-                this.shapeType = (ShapeTypes) shapeTypeValue;
-            } else if (shapeTypeValue instanceof String) {
-                this.shapeType = ShapeTypes.valueOf((String) shapeTypeValue);
-            } else {
-                throw new EoException("Problem with shapeType");
-            }
+            this.shapeType = bean.getShapeType() == null? ShapeTypes.BEAN : bean.getShapeType();
         } catch (Exception e) {
             throw new EoException(e);
         }
@@ -71,18 +52,7 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         this.packagePath = bean.getPackagePath();
         this.superKey = bean.getSuperKey();
         this.interfaces = bean.getInterfaces();
-        this.defaultImplementation = bean.getDefaultImplementation();
-        this.abstractValue = bean.getAbstract();
-        this.finalValue = bean.getFinal();
-        this.override = bean.getOverride();
-        this.dbAnnotated = bean.getDbAnnotated();
-        this.create = bean.getCreate();
-        this.property = bean.getProperty();
-        this.bean = bean.getBean();
-        this.table = bean.getTable();
-        this.idKey = bean.getIdKey();
-        this.naturalKeys = bean.getNaturalKeys();
-
+        this.properties = new ModelConfigProperties(bean.getProperties());
         this.fieldConfigMap = new TreeMap<>();
         this.interfacesMap = new LinkedHashMap<>();
 
@@ -94,64 +64,13 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         setModelClass();
     }
 
+    public ModelConfigProperties getProperties() {
+        return properties;
+    }
+
     @Override
     public ShapeTypes getShapeType() {
         return this.shapeType;
-    }
-
-    @Override
-    public String getDefaultImplementation() {
-        return defaultImplementation;
-    }
-
-    @Override
-    public Boolean getAbstract() {
-        return abstractValue;
-    }
-
-    @Override
-    public Boolean getFinal() {
-        return finalValue;
-    }
-
-    @Override
-    public Boolean getOverride() {
-        return override;
-    }
-
-    @Override
-    public Boolean getDbAnnotated() {
-        return this.dbAnnotated;
-    }
-
-    @Override
-    public Boolean getCreate() {
-        return this.create;
-    }
-
-    @Override
-    public Boolean getProperty() {
-        return this.property;
-    }
-
-    @Override
-    public String getBean() {
-        return bean;
-    }
-
-    @Override
-    public String getTable() {
-        return table;
-    }
-
-    @Override
-    public String getIdKey() {
-        return idKey;
-    }
-
-    @Override
-    public String getNaturalKeys() {
-        return naturalKeys;
     }
 
     public Models getFieldModels(final String fieldKey) {
@@ -164,7 +83,6 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     public String getModelKey() {
         return this.modelKey;
     }
-    //<call keep="JAVA" configKey="CacheGetter.tpl" }
 
     public String getPackagePath() {
         return this.packagePath;
@@ -191,7 +109,6 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         return modelClass;
     }
 
-    @Override
     public Map<String, FieldConfig> getFieldMap() {
         return fieldConfigMap;
     }
@@ -202,20 +119,22 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
 
     public void setModelClass() {
         if (getModelKey() == null) {
-            throw new EoException("No modelkey defined. No model class could be derived!");
+            return;
+            //throw new EoException("No modelkey defined. No model class could be derived!");
         }
         String packagePath = getPackagePath();
         if (packagePath == null) {
-            throw new EoException("No packagePath for " + modelKey + "defined.");
+            return;
+            //throw new EoException("No packagePath for " + modelKey + "defined.");
         }
         try {
             this.modelClass = (Class.forName(packagePath + "." + modelKey));
         } catch (Exception e) {
-            throw new EoException("Class not resolved with packagePath " + packagePath + " and modelKey " + modelKey, e);
+            throw new EoException("Class not resolved with packagePath " + packagePath + " and modelKey " + modelKey);
         }
     }
 
-    private final void setSuperModel(Map<String, ModelInterface> modelConfigMap) {
+    private final void setSuperModel(Map<String, ModelConfig> modelConfigMap) {
         if (!hasSuperKey()) {
             return;
         }
@@ -225,22 +144,25 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         this.superModel = (ModelConfig) modelConfigMap.get(superKey);
     }
 
+    boolean hasDefaultImplementation() {
+        return getProperties().hasDefaultImplementation();
+    }
 
-    private final void setDefaultImplementationModel(Map<String, ModelInterface> modelConfigMap) {
+    private final void setDefaultImplementationModel(Map<String, ModelConfig> modelConfigMap) {
         if (!hasDefaultImplementation()) {
             return;
         }
-        if (!modelConfigMap.containsKey(getDefaultImplementation())) {
-            throw new EoException("Could not find modelConfig for default implementation with key '" + getDefaultImplementation() + "' for '" + getNaturalId() + "'.");
+        if (!modelConfigMap.containsKey(getProperties().getDefaultImplementation())) {
+            throw new EoException("Could not find modelConfig for default implementation with key '" + getProperties().getDefaultImplementation() + "' for '" + getNaturalId() + "'.");
         }
-        this.defaultImplementationModel = (ModelConfig) modelConfigMap.get(getDefaultImplementation());
+        this.defaultImplementationModel = (ModelConfig) modelConfigMap.get(getProperties().getDefaultImplementation());
     }
 
-    public final ModelConfigMethods getDefaultImplementationModel() {
+    public final ModelConfig getDefaultImplementationModel() {
         return defaultImplementationModel;
     }
 
-    private final void setInterfacesMap(Map<String, ModelInterface> cache) {
+    private final void setInterfacesMap(Map<String, ModelConfig> cache) {
         if (interfaces == null || interfaces.isEmpty()) {
             return;
         }
@@ -250,13 +172,21 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         }
     }
 
-    private void setFieldConfigMap(final Map<String, ModelInterface> modelConfigMap) {
+    private boolean hasFieldConfigMap() {
+        return !fieldConfigMap.isEmpty();
+    }
+
+    private void setFieldConfigMap(final Map<String, ModelConfig> modelConfigMap) {
         if (!hasFieldConfigMap()) {
             return;
         }
         for (FieldConfig fieldConfig : fieldConfigMap.values()) {
             fieldConfig.resolve(this, modelConfigMap);
         }
+    }
+
+    public Set<String> keys(Object object)  {
+        throw new EoException("Could not get field names because no sub fields defined for scalar models! " + object.getClass().getSimpleName());
     }
 
     public Map getKeyValues(final Object object, final PathPattern pathPattern) {
@@ -270,9 +200,6 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         }
         for (String key : keys) {
             try {
-                /*if (fieldConfigMap.get(key).isTransient()) {
-                    continue;
-                }*/
                 Object value = get(key, object);
                 if (value == null) {
                     continue;
@@ -285,7 +212,11 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         return keyValues;
     }
 
-    public void resolve(Map<String, ModelInterface> modelConfigMap) {
+    public Object get(String fieldKey, Object value) {
+        throw new EoException("Could not get field value because no sub fields defined for scalar models: " + fieldKey);
+    }
+
+    public void resolve(Map<String, ModelConfig> modelConfigMap) {
         if (resolved) {
             return;
         }
@@ -320,22 +251,7 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
     }
 
     public ModelBean createBean() {
-        ModelBean bean = new ModelBean();
-        populateBean(bean);
-        return bean;
-    }
-
-    public void populateBean(ModelBean bean) {
-        super.populateBean(bean);
-        bean.setModelKey(getModelKey());
-        bean.setPackagePath(getPackagePath());
-        bean.setInterfaces(getInterfaces());
-        bean.setSuperKey(getSuperKey());
-
-        bean.setAbstract(getAbstract());
-        bean.setDbAnnotated(getDbAnnotated());
-        bean.setProperty(getProperty());
-        //bean.setRolePermissions(getR)
+        return new ModelBean(this);
     }
 
     String asString(Object object) {
@@ -356,4 +272,93 @@ public abstract class ModelConfig extends ConfigConfig implements ModelConfigMet
         }
         return getShapeType().asObject(object);
     }
+
+    public void remove(final String fieldName, final Object object)  {
+        throw new EoException("Could not remove sub field because not sub fields defined for scalar models: " + fieldName);
+    }
+
+    public Object create() {
+        throw new EoException("Could not create empty object for '(" + shapeType + ")" + modelKey + "'");
+    }
+
+    public boolean isEmpty(final Object object)  {
+        return object == null;
+    }
+
+    public boolean set(final String fieldName, final Object object, final Object value)  {
+        throw new EoException("Could not set value because no field defined for scalar models: " + fieldName);
+    }
+
+    public boolean exists(final String fieldName, final Object object)  {
+        throw new EoException("No sub fields defined for scalar models: " + fieldName);
+    }
+
+    public int size(final Object object)  {
+        throw new EoException("Could not get field names size because no sub fields  defined for scalar models!" + object.getClass().getSimpleName());
+    }
+
+    public Set<String> getFieldKeys()  {
+        throw new EoException("Could not get field names because no sub fields  defined for scalar models!");
+    }
+
+    public FieldConfig getField(final String fieldName)  {
+        throw new EoException("Could not get sub field because no field defined for scalar models: " + fieldName);
+    }
+
+    public ModelConfig getFieldModelConfig(final String fieldName)  {
+        throw new EoException("Could not get sub field because no field defined for scalar models: " + fieldName);
+    }
+
+    public boolean hasField(final String fieldKey)  {
+        return false;
+    }
+
+    public boolean isList() {
+        return (this instanceof ModelConfigList);
+    }
+
+    public boolean isMap() {
+        return (this instanceof ModelConfigMap);
+    }
+
+    public boolean isScalar() {
+        return (this instanceof ModelConfigScalar);
+    }
+
+    public boolean isEnum() {
+        return hasShapeType() && getShapeType() == ShapeTypes.ENUM;
+    }
+
+    public boolean isNumber() {
+        return hasShapeType() && getShapeType().isNumber();
+    }
+
+    public boolean isObject() {
+        return (this instanceof ModelConfigObject);
+    }
+
+    public boolean isCall() {
+        return getModelKey().endsWith("Call");
+    }
+
+    public boolean isInterface() {
+        return getShapeType() == ShapeTypes.INTERFACE;
+    }
+
+    public boolean isContainer() {
+        return !isScalar();
+    }
+
+    public boolean isProperty(final String fieldKey) {
+        return hasField(fieldKey) && getField(fieldKey).isProperty();
+    }
+
+    public boolean isJsonIgnore(final String fieldKey) {
+        return hasField(fieldKey) && getField(fieldKey).getProperties().isJsonIgnore();
+    }
+
+    public Boolean isCreate() {
+        return properties.isCreate();
+    }
+
 }

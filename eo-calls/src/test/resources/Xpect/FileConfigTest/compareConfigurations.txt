@@ -9,17 +9,18 @@
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "naturalId": "AnObject.csv",
+    "permissions": {
+      "read": [
+        "guest"
+      ]
+    },
     "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n",
+      "rowEnd": 4,
       "rowHead": 0,
-      "rowStart": 1,
-      "rowEnd": 4
-    },
-    "rolePermissions": {
-      "read": "guest"
-    },
-    "rowEnd": 4,
-    "rowHead": 0,
-    "rowStart": 1
+      "rowStart": 1
+    }
   },
   "AnObject.json": {
     "cached": false,
@@ -31,8 +32,14 @@
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "naturalId": "AnObject.json",
-    "rolePermissions": {
-      "read": "guest"
+    "permissions": {
+      "read": [
+        "guest"
+      ]
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
     }
   },
   "ContentExample": {
@@ -44,7 +51,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExample"
+    "naturalId": "ContentExample",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "ContentExampleData": {
     "cached": true,
@@ -55,7 +68,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleData"
+    "naturalId": "ContentExampleData",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "ContentExampleDynamic": {
     "cached": true,
@@ -66,7 +85,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleDynamic"
+    "naturalId": "ContentExampleDynamic",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "ContentExampleElement1": {
     "cached": true,
@@ -77,7 +102,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleElement1"
+    "naturalId": "ContentExampleElement1",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "ContentExampleElement2": {
     "cached": true,
@@ -88,7 +119,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleElement2"
+    "naturalId": "ContentExampleElement2",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "ContentExampleStatic": {
     "cached": true,
@@ -99,7 +136,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleStatic"
+    "naturalId": "ContentExampleStatic",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "ContentExampleStaticCondition": {
     "cached": true,
@@ -110,7 +153,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleStaticCondition"
+    "naturalId": "ContentExampleStaticCondition",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "ContentExampleStaticKeep": {
     "cached": true,
@@ -121,7 +170,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleStaticKeep"
+    "naturalId": "ContentExampleStaticKeep",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "FileTest.txt": {
     "cached": false,
@@ -133,9 +188,17 @@
     "module": "eo-calls",
     "moduleScope": "test",
     "naturalId": "FileTest.txt",
-    "rolePermissions": {
-      "read": "guest",
-      "write": "admin"
+    "permissions": {
+      "read": [
+        "guest"
+      ],
+      "write": [
+        "admin"
+      ]
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
     }
   },
   "FileTestCached.txt": {
@@ -147,7 +210,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "FileTestCached.txt"
+    "naturalId": "FileTestCached.txt",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "ListSimple.csv": {
     "cached": false,
@@ -159,18 +228,21 @@
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "naturalId": "ListSimple.csv",
+    "permissions": {
+      "read": [
+        "guest"
+      ],
+      "write": [
+        "admin"
+      ]
+    },
     "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n",
+      "rowEnd": 3,
       "rowHead": 0,
-      "rowStart": 1,
-      "rowEnd": 3
-    },
-    "rolePermissions": {
-      "read": "guest",
-      "write": "admin"
-    },
-    "rowEnd": 3,
-    "rowHead": 0,
-    "rowStart": 1
+      "rowStart": 1
+    }
   },
   "ListSimple.json": {
     "cached": false,
@@ -182,9 +254,17 @@
     "module": "eo-calls",
     "moduleScope": "test",
     "naturalId": "ListSimple.json",
-    "rolePermissions": {
-      "read": "guest",
-      "write": "admin"
+    "permissions": {
+      "read": [
+        "guest"
+      ],
+      "write": [
+        "admin"
+      ]
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
     }
   },
   "XPECT_TEST": {
@@ -197,8 +277,14 @@
     "module": "eo-calls",
     "moduleScope": "test",
     "naturalId": "XPECT_TEST",
-    "rolePermissions": {
-      "execute": "guest"
+    "permissions": {
+      "execute": [
+        "guest"
+      ]
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
     }
   },
   "target.csv": {
@@ -211,14 +297,19 @@
     "module": "eo-calls",
     "moduleScope": "test",
     "naturalId": "target.csv",
+    "permissions": {
+      "read": [
+        "guest"
+      ],
+      "write": [
+        "admin"
+      ]
+    },
     "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n",
       "rowHead": 0
-    },
-    "rolePermissions": {
-      "read": "guest",
-      "write": "admin"
-    },
-    "rowHead": 0
+    }
   },
   "target.json": {
     "cached": false,
@@ -229,7 +320,13 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "target.json"
+    "naturalId": "target.json",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   },
   "target.txt": {
     "cached": false,
@@ -240,6 +337,12 @@
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "target.txt"
+    "naturalId": "target.txt",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
   }
 }

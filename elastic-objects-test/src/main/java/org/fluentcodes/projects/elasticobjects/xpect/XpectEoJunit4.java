@@ -1,6 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.xpect;
 
-import org.fluentcodes.projects.elasticobjects.IEOObject;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.junit.Assert;
 import org.junit.Test;

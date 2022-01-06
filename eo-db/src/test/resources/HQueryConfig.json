@@ -5,8 +5,6 @@
     "modelKey": "AnObject",
     "properties": {
     },
-    "rolePermissions": {
-    },
     "module": "elastic-objects-test",
     "subModule": "main",
     "description": "Basic H2 Test with AnObject table",
@@ -17,8 +15,6 @@
     "hibernateKey": "h2:file:basic",
     "modelKey": "ASubObject",
     "properties": {
-    },
-    "rolePermissions": {
     },
     "module": "elastic-objects-test",
     "subModule": "main",
@@ -31,8 +27,6 @@
     "modelKey": "AnObject",
     "properties": {
     },
-    "rolePermissions": {
-    },
     "module": "elastic-objects-test",
     "subModule": "main",
     "description": "Basic H2 in Memory Test with AnObject Table",
@@ -43,8 +37,6 @@
     "hibernateKey": "h2:mem:basic",
     "modelKey": "ASubObject",
     "properties": {
-    },
-    "rolePermissions": {
     },
     "module": "elastic-objects-test",
     "subModule": "main",

@@ -4,9 +4,9 @@
     "moduleScope": "test",
     "description": "A connection to elastic objects",
     "expose": "NONE",
+    "hostName": "elasticobjects",
     "properties": {
       "classPath": "src.main.resources",
-      "hostName": "elasticobjects",
       "port": 80,
       "protocol": "http"
     }
@@ -16,9 +16,9 @@
     "moduleScope": "test",
     "description": "A connection to elastic objects",
     "expose": "NONE",
+    "hostName": "dummyftp",
     "properties": {
       "classPath": "src.main.resources",
-      "hostName": "dummyftp",
       "user": "dummy",
       "password": "test1234",
       "port": 21,
@@ -30,6 +30,7 @@
     "moduleScope": "test",
     "description": "A connection to elastic objects",
     "expose": "NONE",
+    "hostName": "dummyftpurl",
     "properties": {
       "classPath": "src.main.resources",
       "user": "dummy",

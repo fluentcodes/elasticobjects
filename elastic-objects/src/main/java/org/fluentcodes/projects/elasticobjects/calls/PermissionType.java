@@ -4,14 +4,26 @@ package org.fluentcodes.projects.elasticobjects.calls;
  * Created by Werner on 7.2.2015
  */
 public enum PermissionType {
-    EXECUTE(4), DELETE(3), CREATE(2), WRITE(1), READ(0), NOTHING(-1);
-    private int value = 0;
+    CREATE(2, "create"),
+    DELETE(1, "delete"),
+    EXECUTE(0, "execute"),
+    WRITE(3, "write"),
+    READ(4, "read"),
+    NOTHING(5, "nothing"),;
 
-    PermissionType(int level) {
+    private int value;
+    private String fieldKey;
+
+    PermissionType(final int level, final String fieldKey) {
         this.value = level;
+        this.fieldKey = fieldKey;
     }
 
     public int value() {
         return this.value;
+    }
+
+    public final String getFieldKey() {
+        return fieldKey;
     }
 }

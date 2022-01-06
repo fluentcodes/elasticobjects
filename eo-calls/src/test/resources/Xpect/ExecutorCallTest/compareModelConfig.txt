@@ -8,7 +8,9 @@
   "naturalId": "ExecutorCall",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
   "properties": {
+    "abstract": false,
     "create": false,
-    "shapeType": "OBJECT"
+    "dbAnnotated": false,
+    "final": false
   }
 }

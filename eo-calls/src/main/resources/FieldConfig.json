@@ -18,6 +18,15 @@
     "expose": "NONE",
     "fieldKey": "cached"
   },
+  "classPath": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The classpath",
+    "expose": "WEB",
+    "fieldKey": "classPath",
+    "length": 128
+  },
   "colKeys": {
     "module": "eo-calls",
     "moduleScope": "main",
@@ -61,23 +70,38 @@
     "fieldKey": "content",
     "length": 10000
   },
+  "Permissions.create": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to create.",
+    "expose": "WEB",
+    "fieldKey": "create"
+  },
   "delete": {
     "module": "eo-calls",
     "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to delete.",
+    "expose": "WEB",
+    "fieldKey": "delete"
+  },
+  "dialect": {
+    "module": "eo-calls",
+    "moduleScope": "main",
     "modelKeys": "String",
-    "description": "String representation of RolePermission delete permissions",
+    "description": "A database sql dialect.",
     "expose": "NONE",
-    "fieldKey": "delete",
-    "length": 256
+    "fieldKey": "dialect",
+    "length": 80
   },
   "execute": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "String representation of RolePermission execute permissions",
-    "expose": "NONE",
-    "fieldKey": "execute",
-    "length": 256
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to execute.",
+    "expose": "WEB",
+    "fieldKey": "execute"
   },
   "fieldDelimiter": {
     "module": "eo-calls",
@@ -86,10 +110,7 @@
     "description": "A delimiter for fields used for csv files. ",
     "expose": "NONE",
     "fieldKey": "fieldDelimiter",
-    "length": 4,
-    "properties": {
-      "property": true
-    }
+    "length": 4
   },
   "fieldKeys": {
     "module": "eo-calls",
@@ -160,19 +181,24 @@
     "description": "A name for host objects.",
     "expose": "NONE",
     "fieldKey": "hostName",
-    "length": 80,
-    "properties": {
-      "property": true
-    }
+    "length": 80
   },
   "listParams": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "ListParams",
-    "description": "Parameters of type @ListParams for list type read call operations like @CsvSimpleReadCall.",
+    "modelKeys": "ListParamsBean",
+    "description": "Parameters of type @ListParamsBean for list type read call operations like @CsvSimpleReadCall.",
     "expose": "NONE",
     "fieldKey": "listParams",
     "length": 80
+  },
+  "nothing": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to nothing.",
+    "expose": "WEB",
+    "fieldKey": "nothing"
   },
   "password": {
     "module": "eo-calls",
@@ -181,19 +207,15 @@
     "description": "The password instance var.",
     "expose": "NONE",
     "fieldKey": "password",
-    "length": 15,
-    "properties": {
-      "property": true
-    }
+    "length": 15
   },
-  "Permissions.create": {
+  "permissions": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "String representation of RolePermission create permissions",
-    "expose": "NONE",
-    "fieldKey": "create",
-    "length": 256
+    "modelKeys": "Permissions",
+    "description": "Role permission wraüüer.",
+    "expose": "WEB",
+    "fieldKey": "permissions"
   },
   "port": {
     "module": "eo-calls",
@@ -201,10 +223,39 @@
     "modelKeys": "Integer",
     "description": "port",
     "expose": "NONE",
-    "fieldKey": "port",
-    "properties": {
-      "property": true
-    }
+    "fieldKey": "port"
+  },
+  "FileBean.properties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "FileBeanProperties",
+    "description": "Properties for file bean",
+    "expose": "NONE",
+    "fieldKey": "properties"
+  },
+  "FileConfig.properties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "FileConfigProperties",
+    "description": "Immutable properties for file config",
+    "expose": "NONE",
+    "fieldKey": "properties"
+  },
+  "HostBean.properties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "HostBeanProperties",
+    "description": "Properties for host bean",
+    "expose": "NONE",
+    "fieldKey": "properties"
+  },
+  "HostConfig.properties": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "HostConfigProperties",
+    "description": "Immutable properties for host config",
+    "expose": "NONE",
+    "fieldKey": "properties"
   },
   "protocol": {
     "module": "eo-calls",
@@ -213,19 +264,15 @@
     "description": "protocol",
     "expose": "NONE",
     "fieldKey": "protocol",
-    "length": 8,
-    "properties": {
-      "property": true
-    }
+    "length": 8
   },
   "read": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "modelKeys": "String",
-    "description": "String representation of RolePermission read permissions",
-    "expose": "NONE",
-    "fieldKey": "read",
-    "length": 256
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to read.",
+    "expose": "WEB",
+    "fieldKey": "read"
   },
   "replaceBy": {
     "module": "eo-calls",
@@ -236,14 +283,6 @@
     "fieldKey": "replaceBy",
     "length": 5
   },
-  "rolePermissions": {
-    "module": "eo-calls",
-    "moduleScope": "main",
-    "modelKeys": "PermissionRole",
-    "description": "Lists for the different roles e.g. guest for write. Central point add permissions to a configuration. Dependent of the permission type of a call a certain list wll be selected. When ist write with role guest then no exception is thrown. ",
-    "expose": "NONE",
-    "fieldKey": "rolePermissions"
-  },
   "rowDelimiter": {
     "module": "eo-calls",
     "moduleScope": "main",
@@ -251,10 +290,7 @@
     "description": "A delimiter for rows used for csv files.",
     "expose": "NONE",
     "fieldKey": "rowDelimiter",
-    "length": 4,
-    "properties": {
-      "property": true
-    }
+    "length": 4
   },
   "rowEnd": {
     "module": "eo-calls",
@@ -262,10 +298,7 @@
     "modelKeys": "Integer",
     "description": "rowEnd",
     "expose": "WEB",
-    "fieldKey": "rowEnd",
-    "properties": {
-      "property": false
-    }
+    "fieldKey": "rowEnd"
   },
   "rowHead": {
     "module": "eo-calls",
@@ -273,10 +306,7 @@
     "modelKeys": "Integer",
     "description": "rowHead",
     "expose": "WEB",
-    "fieldKey": "rowHead",
-    "properties": {
-      "property": false
-    }
+    "fieldKey": "rowHead"
   },
   "rowStart": {
     "module": "eo-calls",
@@ -284,10 +314,7 @@
     "modelKeys": "Integer",
     "description": "rowStart",
     "expose": "WEB",
-    "fieldKey": "rowStart",
-    "properties": {
-      "property": false
-    }
+    "fieldKey": "rowStart"
   },
   "serializationType": {
     "module": "eo-calls",
@@ -296,6 +323,15 @@
     "description": "The types of Serialization. ",
     "expose": "WEB",
     "fieldKey": "serializationType"
+  },
+  "sheetName": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A name for the sheet selected.",
+    "expose": "NONE",
+    "fieldKey": "sheetName",
+    "length": 64
   },
   "sortOrder": {
     "module": "eo-calls",
@@ -348,10 +384,7 @@
     "description": "url",
     "expose": "NONE",
     "fieldKey": "url",
-    "length": 80,
-    "properties": {
-      "property": true
-    }
+    "length": 80
   },
   "user": {
     "module": "eo-calls",
@@ -360,18 +393,50 @@
     "description": "user",
     "expose": "NONE",
     "fieldKey": "user",
-    "length": 50,
-    "properties": {
-      "property": true
-    }
+    "length": 50
   },
   "write": {
     "module": "eo-calls",
     "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to write.",
+    "expose": "WEB",
+    "fieldKey": "write"
+  },
+  "driver": {
+    "module": "eo-calls",
+    "moduleScope": "main",
     "modelKeys": "String",
-    "description": "String representation of RolePermission write permissions",
+    "description": "driver",
     "expose": "NONE",
-    "fieldKey": "write",
-    "length": 256
+    "fieldKey": "driver",
+    "length": 80
+  },
+  "extension": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "An extension for database initialization. ",
+    "expose": "NONE",
+    "fieldKey": "extension",
+    "length": 1024
+  },
+  "jndi": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The jndi lookup for a hibernate session factory. ",
+    "expose": "NONE",
+    "fieldKey": "jndi",
+    "length": 80
+  },
+  "schema": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The database schema used for persisting as a property of @HostConfig",
+    "expose": "NONE",
+    "fieldKey": "schema",
+    "length": 80
   }
 }

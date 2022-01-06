@@ -1,9 +1,9 @@
 package org.fluentcodes.projects.elasticobjects.calls.xlsx;
 
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -13,8 +13,8 @@ import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCall;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBeanInterface;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBeanInterface;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
@@ -35,6 +35,7 @@ import java.util.List;
 public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterface {
     public static final String LIST_PARAMS = "listParams";
     private ListParamsBean listParams;
+
     public XlsxReadCall() {
         super();
         listParams = new ListParamsBean();
@@ -125,16 +126,14 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
         try {
             inp = url.openStream();
         } catch (IOException e) {
-            throw new EoException(e);
+            throw new EoException("Problem with open stream '" + url.toString() + "': " + e.getMessage());
         }
 
         Workbook wb = null;
         try {
             return WorkbookFactory.create(inp);
-        } catch (IOException e) {
-            throw new EoException(e);
-        } catch (InvalidFormatException e) {
-            throw new EoException(e);
+        } catch (Exception e) {
+            throw new EoException("Problem create workbook from input stream '" + url.toString() + "': " + e.getMessage());
         }
     }
 
@@ -152,50 +151,58 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
                 continue;
             }
             String value = "";
-            CellType cellType = cell.getCellTypeEnum();
+            CellType cellType = cell.getCellType();
             //dateFormatted=HSSFDateUtil.isCellDateFormatted(cell);
             //formulaResultType = cell.getCachedFormulaResultType();
             //https://stackoverflow.com/questions/7608511/java-poi-how-to-read-excel-cell-value-and-not-the-formula-computing-it
             try {
-                if (cellType == CellType.STRING) {
-                    String myValue = cell.getStringCellValue();
-                    if (myValue != null && !myValue.isEmpty()) {
-                        containsData = true;
-                        rowValues.add(myValue);
-                    } else {
+                switch (cell.getCellType()) {
+                    case STRING:
+                        String myValue = cell.getStringCellValue();
+                        if (myValue != null && !myValue.isEmpty()) {
+                            containsData = true;
+                            rowValues.add(myValue);
+                        } else {
+                            rowValues.add(null);
+                        }
+                        break;
+                    case BOOLEAN:
+                        rowValues.add(cell.getBooleanCellValue());
+                        break;
+                    case NUMERIC:
+                        Double doubleValue = cell.getNumericCellValue();
+                        rowValues.add(doubleValue);
+                        break;
+                    case BLANK:
                         rowValues.add(null);
-                    }
-                    continue;
-                } else if (cellType == CellType.BOOLEAN) {
-                    rowValues.add(cell.getBooleanCellValue());
-                } else if (cellType != CellType.FORMULA && HSSFDateUtil.isCellDateFormatted(cell)) {
-                    Date dateValue = cell.getDateCellValue();
-                    rowValues.add(dateValue);
-                } else if (cellType == CellType.NUMERIC) {
-                    Double doubleValue = cell.getNumericCellValue();
-                    rowValues.add(doubleValue);
-                } else if (cellType == CellType.BLANK) {
-                    rowValues.add(null);
-                } else if (cellType == CellType.FORMULA) {
-                    switch (cell.getCachedFormulaResultType()) {
-                        case Cell.CELL_TYPE_NUMERIC:
-                            if (HSSFDateUtil.isCellDateFormatted(cell)) {
-                                rowValues.add(cell.getDateCellValue());
-                            } else {
-                                rowValues.add(cell.getNumericCellValue());
+                        break;
+                    case FORMULA:
+                        if (DateUtil.isCellDateFormatted(cell)) {
+                            Date dateValue = cell.getDateCellValue();
+                            rowValues.add(dateValue);
+                        } else {
+                            switch (cell.getCachedFormulaResultType()) {
+                                case NUMERIC:
+                                    if (DateUtil.isCellDateFormatted(cell)) {
+                                        rowValues.add(cell.getDateCellValue());
+                                    } else {
+                                        rowValues.add(cell.getNumericCellValue());
+                                    }
+                                    break;
+                                case STRING:
+                                    rowValues.add(cell.getStringCellValue());
+                                    break;
+                                default:
+                                    //http://apache-poi.1045710.n5.nabble.com/CELL-TYPE-FORMULA-String-vs-Numeric-td2304091.html
+                                    String formulaValue = cell.getStringCellValue();
+                                    rowValues.add(formulaValue);
                             }
-                            break;
-                        case Cell.CELL_TYPE_STRING:
-                            rowValues.add(cell.getStringCellValue());
-                            break;
-                    }
-                } else {
-                    //http://apache-poi.1045710.n5.nabble.com/CELL-TYPE-FORMULA-String-vs-Numeric-td2304091.html
-                    String formulaValue = cell.getStringCellValue();
-                    rowValues.add(formulaValue);
+                        }
+                        break;
+                    default:
+                        rowValues.add(null);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
                 rowValues.add(null);
             }
         }

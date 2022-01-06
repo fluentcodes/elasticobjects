@@ -37,7 +37,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>2.0.206git</version>
+            <version>2.0.206</version>
             <scope>runtime</scope>
         </dependency>
 

@@ -170,8 +170,14 @@ public class FindStatement extends PreparedStatementValues {
                 case "VARCHAR":
                     row.add(resultSet.getString(i));
                     break;
+                case "CHARACTER VARYING":
+                    row.add(resultSet.getString(i));
+                    break;
                 case "INTEGER":
                     row.add(resultSet.getInt(i));
+                    break;
+                case "DOUBLE PRECISION":
+                    row.add(resultSet.getDouble(i));
                     break;
                 case "BOOLEAN":
                     row.add(resultSet.getBoolean(i));

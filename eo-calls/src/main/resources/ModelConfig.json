@@ -804,17 +804,14 @@
   "PermissionBean": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "Permissions.create, delete, execute, nothing, read, write",
+    "fieldKeys": "PermissionBean.permissions",
     "superKey": "ConfigBean",
     "expose": "NONE",
     "description": "Container Bean for setting permission config.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "PermissionBean",
     "properties": {
-      "create": false,
-      "final": true,
-      "override": true,
-      "abstract": true
+      "create": true
     },
     "shapeType": "BEAN",
     "creationDate": 1608073200000
@@ -822,43 +819,58 @@
   "PermissionConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {"permissions": {"final": true}},
+    "fieldKeys": {"PermissionConfig.permissions": {"final": true}},
     "superKey": "Config",
     "expose": "NONE",
     "description": "Implementation for resources with permission method ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "PermissionConfig",
     "properties": {
-      "create": false,
-      "final": true,
-      "override": true,
-      "abstract": true
+      "create": false
     },
     "shapeType": "CONFIG",
     "creationDate": 1608073200000
   },
-  "Permissions": {
+  "PermissionsForConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
     "fieldKeys": {
-      "Permissions.create": {"final": true},
-      "delete": {"final": true},
-      "execute": {"final": true},
-      "nothing": {"final": true},
-      "read": {"final": true},
-      "write": {"final": true}
+      "createRoles": {"final": true},
+      "deleteRoles": {"final": true},
+      "executeRoles": {"final": true},
+      "nothingRoles": {"final": true},
+      "readRoles": {"final": true},
+      "writeRoles": {"final": true}
     },
     "expose": "NONE",
-    "description": "Config wrapper for permissions. ",
+    "description": "Config wrapper for permission role lists.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
-    "modelKey": "Permissions",
+    "modelKey": "PermissionsForConfig",
     "properties": {
-      "create": false,
-      "final": true,
-      "override": true,
-      "abstract": true
+      "create": false
     },
     "shapeType": "CONFIG",
+    "creationDate": 1608073200000
+  },
+  "PermissionsForBean": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "fieldKeys": {
+      "createRoles": {},
+      "deleteRoles": {},
+      "executeRoles": {},
+      "nothingRoles": {},
+      "readRoles": {},
+      "writeRoles": {}
+    },
+    "expose": "NONE",
+    "description": "Bean wrapper for permission role lists.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "modelKey": "PermissionsForBean",
+    "shapeType": "BEAN",
+    "properties": {
+      "create": true
+    },
     "creationDate": 1608073200000
   },
   "SimpleCommand": {

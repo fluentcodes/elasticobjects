@@ -427,10 +427,10 @@ public class ConfigBean {
                 throw e;
             }
             catch (Exception e) {
-                throw new EoInternalException("Problem with create new instance for config constructor with bean class for '" + getNaturalId() + "'/'" + configClass.getSimpleName() + "' in ModelConfig", e);
+                throw new EoInternalException(e.getClass().getSimpleName() + ": Problem creating '" + configClass.getSimpleName() + "' configuration with bean '" + getNaturalId() + "'", e);
             }
         } catch (NoSuchMethodException e) {
-            throw new EoInternalException("Problem find constructor for '" + getNaturalId() + "'  '" + configClass.getSimpleName() + "' with ConfigBean", e);
+            throw new EoInternalException("No constructor found for  '" + configClass.getSimpleName() + "' creating configuration with bean for '" + getNaturalId() + "'", e);
         }
     }
 

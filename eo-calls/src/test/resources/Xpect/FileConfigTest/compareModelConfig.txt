@@ -308,10 +308,10 @@
       "description": "Role permission wraüüer.",
       "expose": "WEB",
       "fieldKey": "permissions",
-      "modelKeys": "Permissions",
+      "modelKeys": "PermissionsForConfig",
       "module": "eo-calls",
       "moduleScope": "main",
-      "naturalId": "permissions",
+      "naturalId": "PermissionConfig.permissions",
       "properties": {
         "default": false,
         "final": true,

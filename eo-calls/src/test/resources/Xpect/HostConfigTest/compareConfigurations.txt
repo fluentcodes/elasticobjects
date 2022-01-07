@@ -55,7 +55,7 @@
     "moduleScope": "main",
     "naturalId": "local",
     "permissions": {
-      "read": [
+      "readRoles": [
         "guest"
       ]
     }
@@ -68,7 +68,7 @@
     "moduleScope": "main",
     "naturalId": "localhost",
     "permissions": {
-      "read": [
+      "readRoles": [
         "guest"
       ]
     }

@@ -15,37 +15,34 @@ import static org.junit.Assert.assertNotNull;
 public class PermissionsTest {
     @Test
     public void createByElement() {
-        final String serialized = "{   \"Permissions\": {\n" +
+        final String serialized = "{   \"PermissionsForConfig\": {\n" +
                 "    \"module\": \"eo-calls\",\n" +
                 "    \"moduleScope\": \"main\",\n" +
                 "    \"fieldKeys\": {\n" +
-                "      \"Permissions.create\": {\"final\": true},\n" +
-                "      \"delete\": {\"final\": true},\n" +
-                "      \"execute\": {\"final\": true},\n" +
-                "      \"nothing\": {\"final\": true},\n" +
-                "      \"read\": {\"final\": true},\n" +
-                "      \"write\": {\"final\": true}\n" +
+                "      \"createRoles\": {\"final\": true},\n" +
+                "      \"deleteRoles\": {\"final\": true},\n" +
+                "      \"executeRoles\": {\"final\": true},\n" +
+                "      \"nothingRoles\": {\"final\": true},\n" +
+                "      \"readRoles\": {\"final\": true},\n" +
+                "      \"writeRoles\": {\"final\": true}\n" +
                 "    },\n" +
                 "    \"expose\": \"NONE\",\n" +
-                "    \"description\": \"Config wrapper for permissions. \",\n" +
+                "    \"description\": \"Config wrapper for permission role lists.\",\n" +
                 "    \"packagePath\": \"org.fluentcodes.projects.elasticobjects.calls\",\n" +
-                "    \"modelKey\": \"Permissions\",\n" +
+                "    \"modelKey\": \"PermissionsForConfig\",\n" +
                 "    \"properties\": {\n" +
-                "      \"create\": false,\n" +
-                "      \"final\": true,\n" +
-                "      \"override\": true,\n" +
-                "      \"abstract\": true\n" +
+                "      \"create\": false\n" +
                 "    },\n" +
                 "    \"shapeType\": \"CONFIG\",\n" +
                 "    \"creationDate\": 1608073200000\n" +
                 "  }}";
         EoRoot root = ProviderConfigMapsDev.createEo(serialized);
         Map<String, Object> beanMap = (Map<String, Object>)root.get();
-        Map<String, Object> modelConfigMap =  (Map<String, Object>)beanMap.get(Permissions.class.getSimpleName());
+        Map<String, Object> modelConfigMap =  (Map<String, Object>)beanMap.get(PermissionsForConfig.class.getSimpleName());
         ModelBean bean = new ModelBean(modelConfigMap);
         assertNotNull(bean);
-        assertEquals(Permissions.class.getSimpleName(), bean.getModelKey());
-        assertEquals(Permissions.class.getSimpleName(), bean.getNaturalId());
+        assertEquals(PermissionsForConfig.class.getSimpleName(), bean.getModelKey());
+        assertEquals(PermissionsForConfig.class.getSimpleName(), bean.getNaturalId());
 
         bean.mergeFieldBeanMap(ProviderConfigMapsDev.createFieldBeanMap());
         bean.setDefault();

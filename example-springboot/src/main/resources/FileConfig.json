@@ -9,7 +9,11 @@
     "description": "A sample xml file with 3x3 entries and a header which could be mapped to AnObject.",
     "expose": "WEB",
     "cached": "false",
-      "read": ["guest"],
+      "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    },
     "properties": {
       "rowHead": 0
     }
@@ -24,7 +28,11 @@
     "description": "Directory access for web/blog for fileNames matching *.html",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+    "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "blog_Nav.html": {
     "module": "example-springboot",
@@ -35,7 +43,11 @@
     "description": "From the \"blog\" directory file content generated navigation file for the left hand link list. ",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+    "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "configs": {
     "configModelKey": "DirectoryConfig",
@@ -47,7 +59,11 @@
     "description": "Directory access for web/configs for fileNames matching *.html",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+    "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "ConfigsNavigation.html": {
     "module": "example-springboot",
@@ -58,7 +74,11 @@
     "description": "The Wordpress header part",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "ConfigsPage.html": {
     "module": "example-springboot",
@@ -69,7 +89,11 @@
     "description": "The config template loading a config and show it's properties.",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "ConfigsStartPage.html": {
     "module": "example-springboot",
@@ -80,7 +104,11 @@
     "description": "The config start page template.",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "content.xlsx": {
     "module": "example-springboot",
@@ -91,7 +119,11 @@
     "description": "The content for example-springboot.",
     "expose": "WEB",
     "cached": "false",
-      "read": ["admin"],
+    "permissions": {
+      "readRoles": [
+        "admin"
+      ]
+    },
     "properties": {
       "rowHead": 0,
       "sheetName": "intro"
@@ -106,7 +138,11 @@
     "description": "The content template loading a content template file in the content part without navigation.",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "docs": {
     "configModelKey": "DirectoryConfig",
@@ -118,7 +154,11 @@
     "description": "Directory access for web/docs for fileNames matching *.html",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "docs_Nav.html": {
     "module": "example-springboot",
@@ -129,7 +169,11 @@
     "description": "From the \"docs\" directory file content generated navigation file for the left hand link list. ",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "eo": {
     "configModelKey": "DirectoryConfig",
@@ -141,7 +185,11 @@
     "description": "Directory access for web/eo for fileNames matching *.html",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "eo_Nav.html": {
     "module": "example-springboot",
@@ -152,7 +200,11 @@
     "description": "From the \"eo\" directory file content generated navigation file for the left hand link list. ",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "examples": {
     "configModelKey": "DirectoryConfig",
@@ -164,7 +216,11 @@
     "description": "Directory access for web/examples for fileNames matching *.html",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "examples_Nav.html": {
     "module": "example-springboot",
@@ -175,7 +231,11 @@
     "description": "From the \"examples\" directory file content generated navigation file for the left hand link list. ",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "faq": {
     "configModelKey": "DirectoryConfig",
@@ -187,7 +247,11 @@
     "description": "Directory access for web/faq for fileNames matching *.html",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "faq_Nav.html": {
     "module": "example-springboot",
@@ -198,7 +262,11 @@
     "description": "From the \"faq\" directory file content generated navigation file for the left hand link list. ",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "list.json": {
     "module": "example-springboot",
@@ -209,7 +277,11 @@
     "description": "A simple list as example.",
     "expose": "WEB",
     "cached": "false",
-      "read": ["guest"]
+      "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   },
   "map.json": {
     "module": "example-springboot",
@@ -220,7 +292,11 @@
     "description": "Example simple map which has the same field names as AnObject, so its mapable.",
     "expose": "WEB",
     "cached": "false",
-      "read": ["guest"]
+      "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   },
   "Nav.tpl": {
     "module": "example-springboot",
@@ -231,7 +307,11 @@
     "description": "Create a \"_Nav.html\" file with links to the files from the directory content .",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["admin"]
+      "permissions": {
+      "executeRoles": [
+        "admin"
+      ]
+    }
   },
   "NavElement.tpl": {
     "module": "example-springboot",
@@ -242,7 +322,11 @@
     "description": "Create the links of \"_Nav.html\" from the directory content .",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["admin"]
+      "permissions": {
+      "executeRoles": [
+        "admin"
+      ]
+    }
   },
   "Presentation.html": {
     "module": "example-springboot",
@@ -253,7 +337,11 @@
     "description": "Template for presentation",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["admin"]
+      "permissions": {
+      "executeRoles": [
+        "admin"
+      ]
+    }
   },
   "PresentationFooter.html": {
     "module": "example-springboot",
@@ -264,7 +352,11 @@
     "description": "Template footer for presentation.",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["admin"]
+      "permissions": {
+      "executeRoles": [
+        "admin"
+      ]
+    }
   },
   "PresentationHeader.html": {
     "module": "example-springboot",
@@ -275,7 +367,11 @@
     "description": "Template Header for presentation.",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["admin"]
+      "permissions": {
+      "executeRoles": [
+        "admin"
+      ]
+    }
   },
   "public.txt": {
     "module": "example-springboot",
@@ -286,7 +382,11 @@
     "description": "Example with restricted permission for read.",
     "expose": "WEB",
     "cached": "false",
-      "read": ["guest"]
+      "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   },
   "Responsive.svg": {
     "module": "example-springboot",
@@ -297,7 +397,11 @@
     "description": "The svg part of the page for responsiveness.",
     "expose": "WEB",
     "cached": "false",
-      "read": ["guest"]
+      "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   },
   "secret.txt": {
     "module": "example-springboot",
@@ -308,7 +412,11 @@
     "description": "Example with restricted permission for read.",
     "expose": "WEB",
     "cached": "false",
-      "read": ["admin"]
+    "permissions": {
+      "readRoles": [
+        "admin"
+      ]
+    }
   },
   "table.tpl": {
     "module": "example-springboot",
@@ -319,8 +427,13 @@
     "description": "Template for presentation",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"],
-      "read": ["guest"]
+
+      "permissions": {
+      "readRoles": [
+        "guest"
+      ],
+"executeRoles": ["guest"]
+}
   },
   "WEB": {
     "configModelKey": "DirectoryConfig",
@@ -332,7 +445,11 @@
     "description": "Directory access for fileNames matching *.html",
     "expose": "WEB",
     "cached": "false",
-      "execute": ["guest"]
+      "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
   },
   "withoutPermissions-public.txt": {
     "module": "example-springboot",

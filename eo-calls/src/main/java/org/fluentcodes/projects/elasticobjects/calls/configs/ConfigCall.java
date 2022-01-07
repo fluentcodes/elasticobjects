@@ -11,8 +11,6 @@ import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import java.util.List;
 import java.util.Map;
 
-/*.{javaHeader}|*/
-
 /**
  * For getting a map of configurations for a specific configuration type.
  *
@@ -21,15 +19,8 @@ import java.util.Map;
  * @modificationDate Tue Dec 08 09:33:28 CET 2020
  */
 public class ConfigCall extends ConfigKeysCall {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
     private String module;
     private String moduleScope;
-    /*.{}.*/
 
     public ConfigCall() {
         super();
@@ -54,7 +45,7 @@ public class ConfigCall extends ConfigKeysCall {
         ModelConfig model = eo.getConfigMaps().findModel(getConfigType());
         Class configClass = model.getModelClass();
         for (String key : keys) {
-            ConfigInterface configEntry = (ConfigInterface) eo.getConfigMaps().find(configClass, key);
+            Config configEntry = (Config) eo.getConfigMaps().find(configClass, key);
             try {
                 if (hasModule() && (configEntry.getModule() == null || !configEntry.getModule().equals(this.getModule()))) {
                     continue;

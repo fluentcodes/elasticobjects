@@ -54,31 +54,6 @@
         "unique": false
       }
     },
-    "create": {
-      "description": "Roles which are allowed to create.",
-      "expose": "WEB",
-      "fieldKey": "create",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "Permissions.create",
-      "properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
     "creationDate": {
       "description": "Used to define the creation of an item.",
       "expose": "WEB",
@@ -87,31 +62,6 @@
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "creationDate",
-      "properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "delete": {
-      "description": "Roles which are allowed to delete.",
-      "expose": "WEB",
-      "fieldKey": "delete",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "delete",
       "properties": {
         "default": false,
         "final": false,
@@ -143,31 +93,6 @@
         "generated": false,
         "jsonIgnore": false,
         "length": 512,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "execute": {
-      "description": "Roles which are allowed to execute.",
-      "expose": "WEB",
-      "fieldKey": "execute",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "execute",
-      "properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -329,14 +254,14 @@
         "unique": true
       }
     },
-    "nothing": {
-      "description": "Roles which are allowed to nothing.",
+    "permissions": {
+      "description": "Role permission wraüüer.",
       "expose": "WEB",
-      "fieldKey": "nothing",
-      "modelKeys": "List,String",
+      "fieldKey": "permissions",
+      "modelKeys": "PermissionsForBean",
       "module": "eo-calls",
       "moduleScope": "main",
-      "naturalId": "nothing",
+      "naturalId": "PermissionBean.permissions",
       "properties": {
         "default": false,
         "final": false,
@@ -379,31 +304,6 @@
         "unique": false
       }
     },
-    "read": {
-      "description": "Roles which are allowed to read.",
-      "expose": "WEB",
-      "fieldKey": "read",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "read",
-      "properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
     "scope": {
       "description": "A scope for the cache value.",
       "expose": "WEB",
@@ -412,31 +312,6 @@
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "scope",
-      "properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "write": {
-      "description": "Roles which are allowed to write.",
-      "expose": "WEB",
-      "fieldKey": "write",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "write",
       "properties": {
         "default": false,
         "final": false,

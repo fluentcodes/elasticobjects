@@ -5,7 +5,11 @@
     "description": "local host with key 'local'",
     "expose": "WEB",
     "hostName": "localhost",
-    "read": ["guest"]
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   },
   "localhost": {
     "module": "eo-calls",
@@ -13,6 +17,10 @@
     "description": "local host with key 'localhost'",
     "expose": "WEB",
     "hostName": "localhost",
-    "read": ["guest"]
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   }
 }

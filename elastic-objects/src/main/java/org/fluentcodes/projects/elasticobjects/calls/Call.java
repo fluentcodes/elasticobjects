@@ -159,6 +159,8 @@ public interface Call {
 
     Call setStartCondition(String startCondition);
 
+    boolean evalStartCondition(IEOScalar eo);
+
     default boolean hasStartCondition() {
         return getStartCondition() != null && !getStartCondition().isEmpty();
     }

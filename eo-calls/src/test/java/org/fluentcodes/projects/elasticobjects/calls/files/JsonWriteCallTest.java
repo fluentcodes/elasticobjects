@@ -5,7 +5,6 @@ import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
 import org.junit.Test;
 
-import static org.fluentcodes.projects.elasticobjects.EoTestStatic.R_SUPER_ADMIN;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S0;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S1;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_KEY1;
@@ -14,7 +13,7 @@ import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_VALUE11;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_VALUE12;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_VALUE21;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_VALUE22;
-import static org.fluentcodes.projects.elasticobjects.calls.Permissions.SUPER_ADMIN;
+import static org.fluentcodes.projects.elasticobjects.calls.PermissionsForConfig.SUPER_ADMIN;
 
 /**
  * Created 23.8.2020

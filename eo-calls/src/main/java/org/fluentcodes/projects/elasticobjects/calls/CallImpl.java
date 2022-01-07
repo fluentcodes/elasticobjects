@@ -21,11 +21,6 @@ import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
  * @modificationDate Thu Jan 07 11:38:14 CET 2021
  */
 public abstract class CallImpl implements Call {/*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
     /* A condition for calls.  */
     private String condition;
     /* The duration of a call. */
@@ -74,7 +69,8 @@ public abstract class CallImpl implements Call {/*.{}.*/
      * @param eo the current wrapper in the loop.
      * @return
      */
-    protected boolean evalStartCondition(IEOScalar eo) {
+    @Override
+    public boolean evalStartCondition(IEOScalar eo) {
         if (!hasStartCondition()) {
             return true;
         }

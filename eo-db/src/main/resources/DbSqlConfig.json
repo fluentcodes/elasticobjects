@@ -10,7 +10,11 @@
     "sqlList": [
       "Select * from AnObject"
     ],
-    "read": ["guest"]
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   },
   "h2:mem:basic:Create": {
     "module": "eo-db",
@@ -34,7 +38,11 @@
       "insert into AnObject (naturalId, myString,myInt,myBoolean) values ('key2', 'value2',2, false)",
       "insert into AnObject (naturalId, myString,myInt,myBoolean) values ('key3', 'value3',3, true)"
     ],
-      "execute": ["admin"]
+    "permissions": {
+      "executeRoles": [
+        "admin"
+      ]
+    }
   },
   "h2:mem:basic:ASubObject": {
     "module": "eo-db",
@@ -47,6 +55,10 @@
     "sqlList": [
       "Select * from ASubObject"
     ],
-    "read": ["guest"]
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   }
 }

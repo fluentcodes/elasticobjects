@@ -62,13 +62,6 @@ public class FileBeanTest implements IModelConfigCreateTests {
     }
 
     @Test
-    public void getSetPermissionRole() {
-        List<String> readPermission = new ArrayList<>();
-        FileBean fileBean = (FileBean) assertSetGet(PermissionType.READ.getFieldKey(), readPermission);
-        Assertions.assertThat(fileBean.getRead()).isEqualTo(readPermission);
-    }
-
-    @Test
     public void createByElement() {
         final String serialized = "{    \"FileBean\": {\n" +
                 "    \"module\": \"eo-calls\",\n" +

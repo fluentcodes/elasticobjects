@@ -12,8 +12,8 @@
     "sqlList": [
       "drop table AnObject if exists"
     ],
-    "rolePermissions": {
-      "execute": "admin"
+    "permissions": {
+      "executeRoles": "admin"
     }
   }
 ,
@@ -59,8 +59,8 @@
       "insert into AnObject (naturalId, myString,myInt,myBoolean) values ('key2', 'value2',2, false)",
       "insert into AnObject (naturalId, myString,myInt,myBoolean) values ('key3', 'value3',3, true)"
     ],
-    "rolePermissions": {
-      "execute": "admin"
+    "permissions": {
+      "executeRoles": "admin"
     }
   },
   "h2:mem:basic:ASubObject": {

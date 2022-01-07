@@ -45,7 +45,7 @@ public class ParamsHandler extends HandlerAbstract {
                 returnResult.append(value.toString());
             }
         } catch (Exception e) {
-            if (hasDefaultValue()) {
+            if (!hasDefaultValue()) {
                 returnResult.append(e.getMessage());
             } else {
                 returnResult.append(getDefaultValue());

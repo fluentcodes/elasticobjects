@@ -42,6 +42,9 @@ public class ExecutorCall {
             eo.warn("Already executed within " + call.getDuration() + " ms. ");
             return "Already executed within " + call.getDuration() + " ms. ";
         }
+        if (!call.evalStartCondition(eo)) {
+            return "";
+        }
         Map<IEOScalar,String> sourceList = createSourceList(call, eo);
 
         StringBuilder templateResult = new StringBuilder();

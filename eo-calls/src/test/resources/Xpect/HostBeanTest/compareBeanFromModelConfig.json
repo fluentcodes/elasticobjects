@@ -58,32 +58,6 @@
         "unique": false
       }
     },
-    "(FieldBean)create": {
-      "configModelKey": "FieldConfig",
-      "description": "Roles which are allowed to create.",
-      "(Expose)expose": "WEB",
-      "fieldKey": "create",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "Permissions.create",
-      "(FieldBeanProperties)properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
     "(FieldBean)creationDate": {
       "configModelKey": "FieldConfig",
       "description": "Used to define the creation of an item.",
@@ -93,32 +67,6 @@
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "creationDate",
-      "(FieldBeanProperties)properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "(FieldBean)delete": {
-      "configModelKey": "FieldConfig",
-      "description": "Roles which are allowed to delete.",
-      "(Expose)expose": "WEB",
-      "fieldKey": "delete",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "delete",
       "(FieldBeanProperties)properties": {
         "default": false,
         "final": false,
@@ -151,32 +99,6 @@
         "generated": false,
         "jsonIgnore": false,
         "length": 512,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "(FieldBean)execute": {
-      "configModelKey": "FieldConfig",
-      "description": "Roles which are allowed to execute.",
-      "(Expose)expose": "WEB",
-      "fieldKey": "execute",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "execute",
-      "(FieldBeanProperties)properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -344,15 +266,15 @@
         "unique": true
       }
     },
-    "(FieldBean)nothing": {
+    "(FieldBean)permissions": {
       "configModelKey": "FieldConfig",
-      "description": "Roles which are allowed to nothing.",
+      "description": "Role permission wraüüer.",
       "(Expose)expose": "WEB",
-      "fieldKey": "nothing",
-      "modelKeys": "List,String",
+      "fieldKey": "permissions",
+      "modelKeys": "PermissionsForBean",
       "module": "eo-calls",
       "moduleScope": "main",
-      "naturalId": "nothing",
+      "naturalId": "PermissionBean.permissions",
       "(FieldBeanProperties)properties": {
         "default": false,
         "final": false,
@@ -396,32 +318,6 @@
         "unique": false
       }
     },
-    "(FieldBean)read": {
-      "configModelKey": "FieldConfig",
-      "description": "Roles which are allowed to read.",
-      "(Expose)expose": "WEB",
-      "fieldKey": "read",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "read",
-      "(FieldBeanProperties)properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
     "(FieldBean)scope": {
       "configModelKey": "FieldConfig",
       "description": "A scope for the cache value.",
@@ -431,32 +327,6 @@
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "scope",
-      "(FieldBeanProperties)properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "(FieldBean)write": {
-      "configModelKey": "FieldConfig",
-      "description": "Roles which are allowed to write.",
-      "(Expose)expose": "WEB",
-      "fieldKey": "write",
-      "modelKeys": "List,String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "write",
       "(FieldBeanProperties)properties": {
         "default": false,
         "final": false,

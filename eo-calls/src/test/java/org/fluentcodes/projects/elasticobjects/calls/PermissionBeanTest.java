@@ -18,8 +18,8 @@ public class PermissionBeanTest {
     @Test
     public void create() {
         PermissionBean bean = new PermissionBean();
-        bean.setCreate(Arrays.asList("1", "2"));
-        assertEquals(Arrays.asList("1", "2"), bean.getCreate());
+        bean.getPermissions().setCreateRoles(Arrays.asList("1", "2"));
+        assertEquals(Arrays.asList("1", "2"), bean.getPermissions().getCreateRoles());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class PermissionBeanTest {
         final String serialized = "{  \"PermissionBean\": {\n" +
                 "    \"module\": \"eo-calls\",\n" +
                 "    \"moduleScope\": \"main\",\n" +
-                "    \"fieldKeys\": \"Permissions.create, delete, execute, nothing, read, write\",\n" +
+                "    \"fieldKeys\": \"PermissionBean.permissions\",\n" +
                 "    \"superKey\": \"ConfigBean\",\n" +
                 "    \"expose\": \"NONE\",\n" +
                 "    \"description\": \"Container Bean for setting permission config.\",\n" +

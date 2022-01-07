@@ -4,12 +4,12 @@ package org.fluentcodes.projects.elasticobjects.calls;
  * Created by Werner on 7.2.2015
  */
 public enum PermissionType {
-    CREATE(2, "create"),
-    DELETE(1, "delete"),
-    EXECUTE(0, "execute"),
-    WRITE(3, "write"),
-    READ(4, "read"),
-    NOTHING(5, "nothing"),;
+    CREATE(0, "createRoles"),
+    DELETE(1, "deleteRoles"),
+    EXECUTE(2, "executeRoles"),
+    WRITE(3, "writeRoles"),
+    READ(4, "readRoles"),
+    NOTHING(5, "nothingRoles");
 
     private int value;
     private String fieldKey;

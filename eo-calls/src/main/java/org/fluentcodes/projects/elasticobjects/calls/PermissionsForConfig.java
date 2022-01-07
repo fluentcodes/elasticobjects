@@ -3,19 +3,19 @@ package org.fluentcodes.projects.elasticobjects.calls;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.utils.UnmodifiableList;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * A bean container class for Field values
+ * A config container for permissions.
  *
  * @author Werner Diwischek
  * @creationDate Wed Dec 16 00:00:00 CET 2020
- * @modificationDate Thu Jan 14 13:07:13 CET 2021
+ * @modificationDate Fri Jan 07 00:00:00 CET 2022
  */
-public class Permissions {
-    /*.{}.*/
+public class PermissionsForConfig {
     public static final String SUPER_ADMIN = "superadmin";
     final boolean hasPermissions;
     private final String naturalId;
@@ -27,15 +27,16 @@ public class Permissions {
     private final List<String> writeRoles;
     private final Map<PermissionType, List<String>> permissionMap;
 
-    public Permissions(final PermissionBean bean) {
+    public PermissionsForConfig(final PermissionBean bean) {
         this.naturalId = bean.getNaturalId();
-        this.createRoles = new UnmodifiableList<>(bean.getCreate());
-        this.deleteRoles = new UnmodifiableList<>(bean.getDelete());
-        this.executeRoles = new UnmodifiableList<>(bean.getExecute());
-        this.nothingRoles = new UnmodifiableList<>(bean.getNothing());
-        this.readRoles = new UnmodifiableList<>(bean.getRead());
-        this.writeRoles = new UnmodifiableList<>(bean.getWrite());
-        this.permissionMap = new HashMap<>();
+        this.createRoles = new UnmodifiableList<>(bean.getPermissions().getCreateRoles());
+        this.deleteRoles = new UnmodifiableList<>(bean.getPermissions().getDeleteRoles());
+        this.executeRoles = new UnmodifiableList<>(bean.getPermissions().getExecuteRoles());
+        this.nothingRoles = new UnmodifiableList<>(bean.getPermissions().getNothingRoles());
+        this.readRoles = new UnmodifiableList<>(bean.getPermissions().getReadRoles());
+        this.writeRoles = new UnmodifiableList<>(bean.getPermissions().getWriteRoles());
+
+        this.permissionMap = new EnumMap<>(PermissionType.class);
         permissionMap.put(PermissionType.CREATE, this.createRoles);
         permissionMap.put(PermissionType.DELETE, this.deleteRoles);
         permissionMap.put(PermissionType.EXECUTE, this.executeRoles);
@@ -49,32 +50,28 @@ public class Permissions {
                 !readRoles.isEmpty() ||
                 !writeRoles.isEmpty();
     }
-    /*.{javaAccessors}|*/
 
-    /*.{}.*/
-
-
-    public List<String> getCreate() {
+    public List<String> getCreateRoles() {
         return createRoles;
     }
 
-    public List<String> getDelete() {
+    public List<String> getDeleteRoles() {
         return deleteRoles;
     }
 
-    public List<String> getExecute() {
+    public List<String> getExecuteRoles() {
         return executeRoles;
     }
 
-    public List<String> getNothing() {
+    public List<String> getNothingRoles() {
         return nothingRoles;
     }
 
-    public List<String> getRead() {
+    public List<String> getReadRoles() {
         return readRoles;
     }
 
-    public List<String> getWrite() {
+    public List<String> getWriteRoles() {
         return writeRoles;
     }
 

@@ -18,11 +18,14 @@ import java.util.List;
 public class PermissionConfig extends Config implements PermissionInterface {
   /*.{}.*/
 
-  private final Permissions permissions;
+  private final PermissionsForConfig permissions;
 
   protected PermissionConfig(PermissionBean bean, final ConfigMaps configMaps) {
     super(bean, configMaps);
-    this.permissions = new Permissions(bean);
+    if (bean.getPermissions() == null) {
+      bean.setPermissions(new PermissionsForBean());
+    }
+    this.permissions = new PermissionsForConfig(bean);
   }
 
   /*.{javaAccessors}|*/
@@ -33,32 +36,32 @@ public class PermissionConfig extends Config implements PermissionInterface {
     return permissions.hasPermissions(callPermission, roleKeys);
   }
 
-  public Permissions getPermissions() {
+  public PermissionsForConfig getPermissions() {
     return permissions;
   }
 
   public List<String> getCreate() {
-    return new ArrayList<>(permissions.getCreate());
+    return new ArrayList<>(permissions.getCreateRoles());
   }
 
   public List<String> getDelete() {
-    return new ArrayList<>(permissions.getCreate());
+    return new ArrayList<>(permissions.getCreateRoles());
   }
 
   public List<String> getExecute() {
-    return new ArrayList<>(permissions.getExecute());
+    return new ArrayList<>(permissions.getExecuteRoles());
   }
 
   public List<String> getNothing() {
-    return new ArrayList<>(permissions.getNothing());
+    return new ArrayList<>(permissions.getNothingRoles());
   }
 
   public List<String> getRead() {
-    return new ArrayList<>(permissions.getRead());
+    return new ArrayList<>(permissions.getReadRoles());
   }
 
   public List<String> getWrite() {
-    return new ArrayList<>(permissions.getWrite());
+    return new ArrayList<>(permissions.getWriteRoles());
   }
 
 }

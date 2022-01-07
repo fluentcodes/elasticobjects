@@ -9,7 +9,7 @@
     "moduleScope": "main",
     "naturalId": "h2:mem:basic:ASubObject",
     "permissions": {
-      "read": [
+      "readRoles": [
         "guest"
       ]
     },
@@ -27,7 +27,7 @@
     "moduleScope": "main",
     "naturalId": "h2:mem:basic:AnObject",
     "permissions": {
-      "read": [
+      "readRoles": [
         "guest"
       ]
     },
@@ -45,7 +45,7 @@
     "moduleScope": "test",
     "naturalId": "h2:mem:basic:AnObjectDrop",
     "permissions": {
-      "execute": [
+      "executeRoles": [
         "admin"
       ]
     },
@@ -62,7 +62,7 @@
     "moduleScope": "main",
     "naturalId": "h2:mem:basic:Create",
     "permissions": {
-      "execute": [
+      "executeRoles": [
         "admin"
       ]
     },

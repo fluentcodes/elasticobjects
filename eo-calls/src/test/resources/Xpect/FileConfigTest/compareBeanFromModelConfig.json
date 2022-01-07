@@ -323,10 +323,10 @@
       "description": "Role permission wraüüer.",
       "(Expose)expose": "WEB",
       "fieldKey": "permissions",
-      "modelKeys": "Permissions",
+      "modelKeys": "PermissionsForConfig",
       "module": "eo-calls",
       "moduleScope": "main",
-      "naturalId": "permissions",
+      "naturalId": "PermissionConfig.permissions",
       "(FieldBeanProperties)properties": {
         "default": false,
         "final": true,

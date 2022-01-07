@@ -12,7 +12,11 @@
       "driver": "org.h2.Driver",
       "protocol": "jdbc"
     },
-      "read": ["guest"]
+      "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   },
   "h2:mem:basic": {
     "configModelKey": "DbConfig",
@@ -27,6 +31,10 @@
       "driver": "org.h2.Driver",
       "protocol": "jdbc"
     },
-      "read": ["guest"]
+      "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
   }
 }

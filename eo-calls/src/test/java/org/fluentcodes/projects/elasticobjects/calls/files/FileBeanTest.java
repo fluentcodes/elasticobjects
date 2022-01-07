@@ -1,17 +1,13 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
-import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypes;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import static org.fluentcodes.projects.elasticobjects.calls.files.FileInterface.F_FILE_NAME;
@@ -81,7 +77,7 @@ public class FileBeanTest implements IModelConfigCreateTests {
                 "    \"author\": \"Werner Diwischek\",\n" +
                 "    \"creationDate\": 1608073200000\n" +
                 "  }}";
-        EoRoot root = ProviderConfigMapsDev.createEo(serialized);
+        EoRoot root = ObjectProviderDev.createEo(serialized);
         Map<String, Object> beanMap = (Map<String, Object>)root.get();
         Map<String, Object> modelConfigMap =  (Map<String, Object>)beanMap.get(FileBean.class.getSimpleName());
         ModelBean bean = new ModelBean(modelConfigMap);
@@ -89,13 +85,13 @@ public class FileBeanTest implements IModelConfigCreateTests {
         assertEquals(FileBean.class.getSimpleName(), bean.getModelKey());
         assertEquals(FileBean.class.getSimpleName(), bean.getNaturalId());
 
-        bean.mergeFieldBeanMap(ProviderConfigMapsDev.createFieldBeanMap());
+        bean.mergeFieldBeanMap(ObjectProviderDev.createFieldBeanMap());
         bean.setDefault();
         assertEquals(ShapeTypes.BEAN, bean.getShapeType());
-        bean.resolveSuper(ProviderConfigMapsDev.createModelBeanMap(), true);
+        bean.resolveSuper(ObjectProviderDev.assertCreateModelBeanMap(), true);
 
-        ModelConfig modelConfig = ProviderConfigMapsDev.createModelConfig(bean);
-        modelConfig.resolve(ProviderConfigMapsDev.createModelConfigMap());
+        ModelConfig modelConfig = ObjectProviderDev.createModelConfig(bean);
+        modelConfig.resolve(ObjectProviderDev.createModelConfigMap());
     }
 
 }

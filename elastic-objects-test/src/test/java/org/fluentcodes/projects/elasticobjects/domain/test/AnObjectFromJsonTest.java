@@ -3,12 +3,11 @@ package org.fluentcodes.projects.elasticobjects.domain.test;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_DOUBLE;
-import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_FLOAT;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_INTEGER;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING;
 
@@ -110,7 +109,7 @@ public class AnObjectFromJsonTest {
             "}";
 
     public static final EoRoot createAnObjectEo()  {
-        return ProviderConfigMaps.createEo(new AnObject());
+        return ObjectProvider.createEo(new AnObject());
     }
     public static final EoRoot createAnObjectEo(final String json)  {
         EoRoot root = createAnObjectEo();
@@ -120,7 +119,7 @@ public class AnObjectFromJsonTest {
 
     @Test
     public void id_1____id_1() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "   \"(AnObject)abc\":{\n" +
                 "        \"id\":1\n" +
                 "   }" +
@@ -140,7 +139,7 @@ public class AnObjectFromJsonTest {
 
     @Test
     public void givenJsonUntypedDouble_thenDouble()  {
-        EoRoot root = ProviderConfigMaps.createEo(new AnObject());
+        EoRoot root = ObjectProvider.createEo(new AnObject());
         root.set("{\"myDouble\": 2.2}");
         AnObject bt = (AnObject) root.get();
         Assertions.assertThat(bt.getMyDouble()).isEqualTo((SAMPLE_DOUBLE));

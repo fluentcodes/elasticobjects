@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects;
 
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,7 +25,7 @@ public class EoOverwriteTest {
     public void givenAnObject_whenOverwriteWithMap_isMap()  {
         AnObject bt = new AnObject();
         bt.setMyString(S_TEST_STRING);
-        EoChild child = (EoChild) ProviderConfigMaps.createEo(new LinkedHashMap<>())
+        EoChild child = (EoChild) ObjectProvider.createEo(new LinkedHashMap<>())
                 .set(bt, S_LEVEL0,S_LEVEL1,S_LEVEL2);
 
         EoRoot root = child.getRoot();

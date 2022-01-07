@@ -41,7 +41,10 @@ public class FieldConfig extends Config implements FieldInterface {
         this.toSerialize = false;
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
-        this.modelList = Arrays.asList(modelKeys.split(","));
+
+        this.modelList = hasModelKeys() ?
+                Arrays.asList(modelKeys.split(",")):
+                new ArrayList<>();
         this.properties = new FieldConfigProperties(bean.getProperties());
      }
 

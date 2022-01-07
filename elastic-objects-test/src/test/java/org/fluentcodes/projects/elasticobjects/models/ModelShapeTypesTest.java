@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -47,13 +47,13 @@ public class ModelShapeTypesTest {
     }
 
     private void testTypeClass(Class clazz, ShapeTypes shapeType)  {
-        ShapeTypes shapeTypeStored = ProviderConfigMaps.CONFIG_MAPS.findModel(clazz).getShapeType();
+        ShapeTypes shapeTypeStored = ObjectProvider.CONFIG_MAPS.findModel(clazz).getShapeType();
         Assert.assertEquals(shapeType, shapeTypeStored);
     }
 
     private void testTypeObject(Object object, ShapeTypes shapeType) {
         try {
-            ShapeTypes shapeTypeStored = ProviderConfigMaps.CONFIG_MAPS.findModel(object).getShapeType();
+            ShapeTypes shapeTypeStored = ObjectProvider.CONFIG_MAPS.findModel(object).getShapeType();
             Assert.assertEquals(shapeType, shapeTypeStored);
         } catch (Exception e) {
             e.printStackTrace();

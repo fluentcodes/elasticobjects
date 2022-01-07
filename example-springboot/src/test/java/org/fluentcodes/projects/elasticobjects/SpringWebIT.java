@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.calls.configs.ConfigKeysCallTest;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -70,7 +70,7 @@ public class SpringWebIT {
         ResponseEntity<String> result = restTemplate.postForEntity(url, json, String.class);
         String body = result.getBody();
         Assertions.assertThat(body).isNotEmpty();
-        EoRoot eo = ProviderConfigMaps.createEo(body);
+        EoRoot eo = ObjectProvider.createEo(body);
         Assertions.assertThat(eo.getLog()).isEmpty();
     }
 
@@ -97,7 +97,7 @@ public class SpringWebIT {
         ResponseEntity<String> result = restTemplate.postForEntity(url, ConfigKeysCallTest.DATA, String.class);
         String body = result.getBody();
         Assertions.assertThat(body).isNotEmpty();
-        EoRoot eo = ProviderConfigMaps.createEo(body);
+        EoRoot eo = ObjectProvider.createEo(body);
         Assertions.assertThat((List) eo.get("keys")).isNotEmpty();
     }
 

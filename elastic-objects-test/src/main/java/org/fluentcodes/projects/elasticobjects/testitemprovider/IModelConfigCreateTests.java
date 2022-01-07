@@ -17,7 +17,7 @@ public interface IModelConfigCreateTests extends IModelConfigTests {
 
     default Object assertSetGet(final String fieldKey, final Object value) {
         Object object = getModelConfig().create();
-        ModelConfig model = ProviderConfigMaps.CONFIG_MAPS.findModel(getModelConfigClass());
+        ModelConfig model = ObjectProvider.CONFIG_MAPS.findModel(getModelConfigClass());
         model.set(fieldKey, object, value);
         Assert.assertEquals(value, model.get(fieldKey, object));
         return object;

@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.condition;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,11 +16,11 @@ import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING;
  * Created by werner.diwischek on 08.01.18.
  */
 public class AndTest {
-    public static final List EXAMPLE_LIST = (List) ProviderConfigMapsDev
+    public static final List EXAMPLE_LIST = (List) ObjectProviderDev
             .createEo("[\"test\",\n\"testOther\",\n" + null + ",\n\"key0\",\n1]")
             .get();
     public static final String TEST_STRING = "{\"myString\": \"test\"}";
-    public static final EoRoot TEST_STRING_DEV = ProviderConfigMapsDev.createEo(TEST_STRING);
+    public static final EoRoot TEST_STRING_DEV = ObjectProviderDev.createEo(TEST_STRING);
 
     @Test
     public void eq_testString_string__createQuery__expected() {

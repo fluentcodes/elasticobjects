@@ -3,7 +3,6 @@ package org.fluentcodes.projects.elasticobjects.domain.test;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
 import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_FLOAT;

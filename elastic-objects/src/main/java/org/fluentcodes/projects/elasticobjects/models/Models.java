@@ -157,7 +157,6 @@ public class Models {
             else {
                 return new EoChildSpecial(parent, key, value, childModels);
             }
-
         }
     }
 
@@ -167,26 +166,35 @@ public class Models {
 
     final Models deriveChildModels(final PathElement pathElement, final Object childValue) {
         Models childModels = createChild(pathElement);
-
         if (childModels == null && childValue == null) {
-            return new Models(getConfigMaps());
+            return new Models(getConfigMaps()); // Map
         }
         if (childValue == null) {
             return childModels;
         }
-        if (childModels == null) {
-            return Models.ofValue(getConfigMaps(), childValue);
-        }
+        Models valueModels = Models.ofValue(getConfigMaps(), childValue);
         if (childValue instanceof String) {
-            Models valueModels = Models.ofValue(getConfigMaps(), childValue);
             if ((valueModels.getModelClass() == List.class|| valueModels.getModelClass() == Map.class)
-                    && childModels.getModelClass() == String.class) {
+                    && childModels!=null && childModels.getModelClass() == String.class) {
                 return childModels;
             }
         }
         if (childValue instanceof Call) {
             return new Models(getConfigMaps(), childValue.getClass());
         }
+        if (childModels == null) {
+            if (valueModels.hasDefaultImplementation()) {
+                return valueModels.getDefaultImplementation();
+            }
+            /*if (models.isCreate()) {
+                return models;
+            }
+            if (models.isContainer()) {
+                return new Models(getConfigMaps(), Map.class);
+            }*/
+            return valueModels;
+        }
+
         return competeModels(childModels, Models.ofValue(getConfigMaps(), childValue));
     }
 
@@ -266,6 +274,14 @@ public class Models {
             e.printStackTrace();
             return true;
         }
+    }
+
+    public boolean hasDefaultImplementation() {
+        return getModel().hasDefaultImplementation();
+    }
+
+    public Models getDefaultImplementation() {
+        return new Models(getConfigMaps(), getModel().getProperties().getDefaultImplementation());
     }
 
     public boolean hasModel() {

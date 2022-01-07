@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.PathPattern;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -17,9 +16,9 @@ import java.util.TreeMap;
  * Created by Werner on 09.10.2016.
  */
 public abstract class ModelConfig extends Config implements ModelInterface {
-    public static final String MODEL_KEY = "modelKey";
-    public static final String INTERFACES = "interfaces";
-    public static final String SUPER_KEY = "superKey";
+    public static final String F_MODEL_KEY = "modelKey";
+    public static final String F_INTERFACES = "interfaces";
+    public static final String F_SUPER_KEY = "superKey";
     public static final String PACKAGE_PATH = "packagePath";
 
     private static final Logger LOG = LogManager.getLogger(ModelConfig.class);
@@ -38,7 +37,7 @@ public abstract class ModelConfig extends Config implements ModelInterface {
     private ModelConfig defaultImplementationModel;
 
     //resolved
-    private final Map<String, FieldConfig> fieldConfigMap;
+    private final Map<String, FieldConfig> fields;
     private final Map<String, ModelConfig> interfacesMap;
 
     public ModelConfig(final ModelBean bean, final ConfigMaps configMaps) {
@@ -53,12 +52,12 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         this.superKey = bean.getSuperKey();
         this.interfaces = bean.getInterfaces();
         this.properties = new ModelConfigProperties(bean.getProperties());
-        this.fieldConfigMap = new TreeMap<>();
+        this.fields = new TreeMap<>();
         this.interfacesMap = new LinkedHashMap<>();
 
         if (bean.hasFieldBeans()) {
-            for (FieldBean fieldBean : bean.getFieldBeans().values()) {
-                fieldConfigMap.put(fieldBean.getFieldKey(), new FieldConfig(this, fieldBean));
+            for (Map.Entry<String, FieldBean> entry: bean.getFields().entrySet()) {
+                fields.put(entry.getKey(), new FieldConfig(this, entry.getValue()));
             }
         }
         setModelClass();
@@ -109,12 +108,8 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         return modelClass;
     }
 
-    public Map<String, FieldConfig> getFieldMap() {
-        return fieldConfigMap;
-    }
-
-    public Map<String, FieldConfig> getFieldConfigMap() {
-        return fieldConfigMap;
+    public Map<String, FieldConfig> getFields() {
+        return fields;
     }
 
     public void setModelClass() {
@@ -173,14 +168,14 @@ public abstract class ModelConfig extends Config implements ModelInterface {
     }
 
     private boolean hasFieldConfigMap() {
-        return !fieldConfigMap.isEmpty();
+        return !fields.isEmpty();
     }
 
-    private void setFieldConfigMap(final Map<String, ModelConfig> modelConfigMap) {
+    private void setFields(final Map<String, ModelConfig> modelConfigMap) {
         if (!hasFieldConfigMap()) {
             return;
         }
-        for (FieldConfig fieldConfig : fieldConfigMap.values()) {
+        for (FieldConfig fieldConfig : fields.values()) {
             fieldConfig.resolve(this, modelConfigMap);
         }
     }
@@ -216,6 +211,10 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         throw new EoException("Could not get field value because no sub fields defined for scalar models: " + fieldKey);
     }
 
+    public boolean hasValue(String fieldKey, Object value) {
+        throw new EoException("Could not get field value because no sub fields defined for scalar models: " + fieldKey);
+    }
+
     public void resolve(Map<String, ModelConfig> modelConfigMap) {
         if (resolved) {
             return;
@@ -227,7 +226,7 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         if (!hasFieldConfigMap()) {
             return;
         }
-        setFieldConfigMap(modelConfigMap);
+        setFields(modelConfigMap);
         resolved = true;
     }
 

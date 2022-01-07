@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.condition;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class EqTest {
     private static final String DATA_LIST_STRING = "[\"test\",\n\"testOther\",\n" + null + ",\n\"key0\",\n1]";
-    static final EoRoot DATA_LIST_DEV = ProviderConfigMapsDev.createEo(DATA_LIST_STRING);
+    static final EoRoot DATA_LIST_DEV = ObjectProviderDev.createEo(DATA_LIST_STRING);
     static final List DATA_LIST = (List) DATA_LIST_DEV.get();
 
     @Test

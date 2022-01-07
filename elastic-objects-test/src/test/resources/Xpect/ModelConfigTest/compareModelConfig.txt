@@ -1,8 +1,5 @@
 {
-  "author": "Werner Diwischek",
-  "description": "Table definitions with pojo.",
-  "expose": "NONE",
-  "fieldConfigMap": {
+  "fields": {
     "author": {
       "description": "The author of the class.",
       "expose": "WEB",
@@ -103,14 +100,14 @@
         "unique": false
       }
     },
-    "fieldConfigMap": {
-      "description": "A fieldConfig map with @FieldConfig",
+    "fields": {
+      "description": "A fieldConfig map for with @FieldConfig",
       "expose": "NONE",
-      "fieldKey": "fieldConfigMap",
+      "fieldKey": "fields",
       "modelKeys": "Map,FieldConfig",
       "module": "elastic-objects",
       "moduleScope": "main",
-      "naturalId": "fieldConfigMap",
+      "naturalId": "ModelConfig.fields",
       "properties": {
         "default": false,
         "final": true,
@@ -379,16 +376,19 @@
       }
     }
   },
+  "properties": {
+    "create": false,
+    "dbAnnotated": false,
+    "final": true
+  },
+  "author": "Werner Diwischek",
+  "description": "Model config object.",
+  "expose": "NONE",
   "interfaces": "ModelInterface",
   "modelKey": "ModelConfig",
   "module": "elastic-objects",
   "moduleScope": "main",
   "naturalId": "ModelConfig",
   "packagePath": "org.fluentcodes.projects.elasticobjects.models",
-  "properties": {
-    "create": false,
-    "dbAnnotated": false,
-    "final": true
-  },
   "superKey": "Config"
 }

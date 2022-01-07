@@ -5,8 +5,7 @@ import org.fluentcodes.projects.elasticobjects.domain.test.ASubObject;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 /**
@@ -15,7 +14,7 @@ import org.junit.Test;
 public class EoToJsonTest {
     @Test
     public void class_AnObject_values____expected() {
-        final EoRoot eo = ProviderConfigMaps.createEo(AnObject.class);
+        final EoRoot eo = ObjectProvider.createEo(AnObject.class);
         eo.map("{\"myString\": \"value\", \"myInt\", 1}");
         String json = new EOToJSON()
                 .toJson(eo);
@@ -32,7 +31,7 @@ public class EoToJsonTest {
         AnObject anObject = new AnObject();
         anObject.setMyString("value");
         String json = new EOToJSON()
-                .toJson(ProviderConfigMaps.CONFIG_MAPS, anObject);
+                .toJson(ObjectProvider.CONFIG_MAPS, anObject);
         Assertions.assertThat(json)
                 .isEqualTo("{\n" +
                         "  \"_rootmodel\": \"AnObject\",\n" +
@@ -41,24 +40,19 @@ public class EoToJsonTest {
     }
 
 
-    @Test
+    @Test(expected = EoException.class)
     public void ModelConfig_ASubObject____exception() {
-        ModelConfig modelConfig = ProviderConfigMaps.CONFIG_MAPS.findModel(ASubObject.class);
+        ModelConfig modelConfig = ObjectProvider.CONFIG_MAPS.findModel(ASubObject.class);
         EOToJSON eoToJSON = new EOToJSON();
-        Assertions
-                .assertThatThrownBy(() -> {
                     eoToJSON
-                            .toJson(ProviderConfigMaps.CONFIG_MAPS, modelConfig);
-                })
-                .isInstanceOf(EoException.class)
-                .hasMessageContaining("ModelConfig has no create flag -> no empty instance will created for 'ModelConfigObject'");
-    }
+                            .toJson(ObjectProvider.CONFIG_MAPS, modelConfig);
+     }
 
     @Test
     public void ModelConfig_ASubObject__JSONSerializationType_STANDARD__no_exception() {
-        ModelConfig modelConfig = ProviderConfigMaps.CONFIG_MAPS.findModel(ASubObject.class);
+        ModelConfig modelConfig = ObjectProvider.CONFIG_MAPS.findModel(ASubObject.class);
         String json = new EOToJSON(JSONSerializationType.STANDARD)
-                .toJson(ProviderConfigMaps.CONFIG_MAPS, modelConfig);
+                .toJson(ObjectProvider.CONFIG_MAPS, modelConfig);
         Assertions.assertThat(json).isNotEmpty();
     }
 }

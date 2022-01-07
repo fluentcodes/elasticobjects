@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps.CONFIG_MAPS;
+import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
 
 public class XpectEoJunit4 extends XpectEo {
     public XpectEoJunit4(Class<?>... classes) {

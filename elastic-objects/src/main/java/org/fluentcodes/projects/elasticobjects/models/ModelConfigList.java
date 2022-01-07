@@ -5,9 +5,11 @@ import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -87,18 +89,28 @@ public class ModelConfigList extends ModelConfig {
     }
 
     @Override
-    public Object get(final String fieldName, final Object object)  {
-        //TODO
-        Integer i = ((List) object).size();
-        try {
-            i = Integer.parseInt(fieldName);
-        } catch (Exception e) {
+    public boolean hasValue(String fieldKey, Object parent) {
+        return get(fieldKey, parent) != null;
+    }
 
-        }
-        if (i + 1 > ((List) object).size()) {
+    @Override
+    public Object get(final String fieldKey, final Object parent)  {
+        if (parent == null) {
             return null;
         }
-        return ((List) object).get(i);
+        List list = (List) parent;
+        if (list.isEmpty()) {
+            return null;
+        }
+        try {
+            int i = Integer.parseInt(fieldKey);
+            if (i + 1 > list.size()) {
+                return null;
+            }
+            return list.get(i);
+        } catch (Exception e) {
+            throw new EoException("Could not parse fieldKey '" + fieldKey + "' for list integer: " + e.getMessage());
+        }
     }
 
     @Override

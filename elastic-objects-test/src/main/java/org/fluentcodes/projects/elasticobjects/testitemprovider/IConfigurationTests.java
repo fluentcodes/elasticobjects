@@ -8,7 +8,7 @@ import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
  */
 public interface IConfigurationTests extends IModelConfigNoCreateTests {
     default void assertConfigBeanEqualsPersisted(final String configKey)  {
-        Config selectedConfig = (Config) ProviderConfigMaps.
+        Config selectedConfig = (Config) ObjectProvider.
                 CONFIG_MAPS.
                 find((Class<? extends Config>)getModelConfigClass(), configKey);
 
@@ -16,7 +16,7 @@ public interface IConfigurationTests extends IModelConfigNoCreateTests {
     }
 
     default void assertLoadedConfigurationsEqualsPersisted()  {
-        String configurationsAsString = ProviderConfigMaps.
+        String configurationsAsString = ObjectProvider.
                 CONFIG_MAPS.
                 toString((Class<? extends Config>)getModelConfigClass());
 

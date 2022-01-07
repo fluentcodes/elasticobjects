@@ -3,7 +3,7 @@
     "configModelKey": "ModelConfigObject",
     "module": "elastic-objects-test",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "id",
       "naturalId",
       "myAnObject",
@@ -34,7 +34,7 @@
     "configModelKey": "ModelConfigObject",
     "module": "elastic-objects-test",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "id": {
         "final": false,
         "staticName": false

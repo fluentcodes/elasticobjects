@@ -1,8 +1,5 @@
 {
-  "author": "Werner Diwischek",
-  "description": "A bean container class for Model values",
-  "expose": "WEB",
-  "fieldConfigMap": {
+  "fields": {
     "author": {
       "description": "The author of the class.",
       "expose": "WEB",
@@ -128,14 +125,14 @@
         "unique": false
       }
     },
-    "fieldBeans": {
-      "description": "A fieldBean map with @FieldConfig",
+    "fields": {
+      "description": "A fieldBean map",
       "expose": "NONE",
-      "fieldKey": "fieldBeans",
+      "fieldKey": "fields",
       "modelKeys": "Map,FieldBean",
       "module": "elastic-objects",
       "moduleScope": "main",
-      "naturalId": "fieldBeans",
+      "naturalId": "ModelBean.fields",
       "properties": {
         "default": false,
         "final": false,
@@ -429,17 +426,20 @@
       }
     }
   },
-  "interfaces": "ModelInterface",
-  "modelKey": "ModelBean",
-  "module": "elastic-objects",
-  "moduleScope": "main",
-  "naturalId": "ModelBean",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.models",
   "properties": {
     "abstract": false,
     "create": true,
     "dbAnnotated": false,
     "final": false
   },
+  "author": "Werner Diwischek",
+  "description": "A bean container class for Model values",
+  "expose": "WEB",
+  "interfaces": "ModelInterface",
+  "modelKey": "ModelBean",
+  "module": "elastic-objects",
+  "moduleScope": "main",
+  "naturalId": "ModelBean",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.models",
   "superKey": "ConfigBean"
 }

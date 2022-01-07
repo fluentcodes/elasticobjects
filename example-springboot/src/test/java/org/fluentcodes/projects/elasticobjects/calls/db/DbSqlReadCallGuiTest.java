@@ -6,7 +6,7 @@ import org.fluentcodes.projects.elasticobjects.IEOObject;
 import org.fluentcodes.projects.elasticobjects.PathElement;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class DbSqlReadCallGuiTest {
 
     @Before
     public void init() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         Call call = new DbSqlExecuteCall(DB_DEFAULT, "h2:mem:basic:Create");
         call.execute(eo);
     }
@@ -27,7 +27,7 @@ public class DbSqlReadCallGuiTest {
     public void call_DbQuery_AnObject__execute__3() {
         DbSqlReadCall call = new DbSqlReadCall(DB_DEFAULT, DB_TABLE);
         Assertions.assertThat(call).isNotNull();
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         call.execute(eo);
         Assertions.assertThat(eo.size()).isEqualTo(3);
     }
@@ -37,7 +37,7 @@ public class DbSqlReadCallGuiTest {
         DbSqlReadCall call = new DbSqlReadCall(DB_DEFAULT, DB_TABLE);
         call.setTargetPath(".");
         Assertions.assertThat(call).isNotNull();
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.addCall(call);
         eo.execute();
         Assertions.assertThat(eo.size()).isEqualTo(3);
@@ -51,7 +51,7 @@ public class DbSqlReadCallGuiTest {
         call.getListParams().setRowStart(0);
         call.setTargetPath(".");
         Assertions.assertThat(call).isNotNull();
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.addCall(call);
         eo.execute();
         Assertions.assertThat(eo.size()).isEqualTo(2);
@@ -59,7 +59,7 @@ public class DbSqlReadCallGuiTest {
 
     @Test
     public void eo_DbQuery_AnObject_rowHead_1_rowStart_0_rowEnd_2_json__execute__2() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "   \"(DbSqlReadCall)abc\":{\n" +
                 "       \"hostConfigKey\":\"h2:mem:basic\",\n" +
                 "       \"sqlKey\":\"h2:mem:basic:AnObject\",\n" +
@@ -75,7 +75,7 @@ public class DbSqlReadCallGuiTest {
 
     @Test
     public void eo_DbQuery_with_tableTpl____3() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "   \"(DbSqlReadCall)xyz\":{\n" +
                 "       \"hostConfigKey\":\"h2:mem:basic\",\n" +
                 "       \"sqlKey\":\"h2:mem:basic:AnObject\"\n" +
@@ -95,7 +95,7 @@ public class DbSqlReadCallGuiTest {
                 "#{DbSqlReadCall->h2:mem:basic, h2:mem:basic:AnObject, xyz}.\n" +
                 "#{TemplateResourceCall->table.tpl, xyz}." +
                 "END");
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         String result = call.execute(eo);
         Assertions.assertThat(eo.getLog())
                 .isEmpty();

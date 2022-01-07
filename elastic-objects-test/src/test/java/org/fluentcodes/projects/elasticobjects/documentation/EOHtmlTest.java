@@ -4,8 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Test;
 
 import java.util.Map;
@@ -17,14 +17,14 @@ public class EOHtmlTest {
 
     @Test
     public void DEV__ConstructorEmpty__hasClassLinkedHashMap() {
-        EoRoot eoRoot = ProviderConfigMapsDev.createEo();
+        EoRoot eoRoot = ObjectProviderDev.createEo();
         Assertions.assertThat(eoRoot.getModelClass())
                 .isEqualTo(Map.class);
     }
 
     @Test
     public void DEV__ConstructorJson__hasClassLinkedHashMap() {
-        EoRoot eoRoot = ProviderConfigMapsDev.createEo("{\"key\":1}");
+        EoRoot eoRoot = ObjectProviderDev.createEo("{\"key\":1}");
         Assertions.assertThat(eoRoot.get("key"))
                 .isEqualTo(1);
     }
@@ -32,7 +32,7 @@ public class EOHtmlTest {
 
     @Test
     public void TEST__ConstructorJsonAnObjectTyped__hasClassAnObject() {
-        EoRoot eoRoot = ProviderConfigMaps.createEo("{\"(AnObject)key\":{\"myString\":\"test\"}}");
+        EoRoot eoRoot = ObjectProvider.createEo("{\"(AnObject)key\":{\"myString\":\"test\"}}");
         Assertions.assertThat(eoRoot.get("key/myString"))
                 .isEqualTo("test");
         Assertions.assertThat(eoRoot.getEo("key").getModelClass())
@@ -41,7 +41,7 @@ public class EOHtmlTest {
 
     @Test
     public void DEV__set_abc_test__hasMapTree() {
-        EoRoot eoRoot = ProviderConfigMapsDev.createEo();
+        EoRoot eoRoot = ObjectProviderDev.createEo();
         IEOScalar eoChild = eoRoot.set("test", "a/b/c");
         Assertions.assertThat(eoChild.get())
                 .isEqualTo("test");
@@ -51,7 +51,7 @@ public class EOHtmlTest {
 
     @Test
     public void DEV__set_a_b_c_test__hasValue() {
-        EoRoot eoRoot = ProviderConfigMapsDev.createEo();
+        EoRoot eoRoot = ObjectProviderDev.createEo();
         IEOScalar eoChild = eoRoot.set("test", "a", "b", "c");
         Assertions.assertThat(eoRoot.get("a/b/c"))
                 .isEqualTo("test");
@@ -62,7 +62,7 @@ public class EOHtmlTest {
     @Test
     public void TEST__set_xyz_AnObject_myString_test__hasMyString() {
         AnObject anObject = new AnObject().setMyString("test");
-        EoRoot eoRoot = ProviderConfigMaps.createEo();
+        EoRoot eoRoot = ObjectProvider.createEo();
         IEOScalar eoChild = eoRoot.set(anObject, "x/y/z");
         Assertions.assertThat(eoRoot.get("x/y/z/myString"))
                 .isEqualTo("test");
@@ -72,7 +72,7 @@ public class EOHtmlTest {
 
     @Test
     public void TEST__set_typed_abmyString_test__isTest() {
-        EoRoot eoRoot = ProviderConfigMaps.createEo();
+        EoRoot eoRoot = ObjectProvider.createEo();
         eoRoot.set("test", "a/(AnObject)b/myString");
         Assertions.assertThat(eoRoot.get("a/b/myString"))
                 .isEqualTo("test");
@@ -82,7 +82,7 @@ public class EOHtmlTest {
 
     @Test
     public void scopeDev_set_abc_Test__getEO_get__isTest() {
-        EoRoot eoRoot = ProviderConfigMapsDev.createEo();
+        EoRoot eoRoot = ObjectProviderDev.createEo();
         IEOScalar eoChild = eoRoot.set("test", "a/b/c");
         Assertions.assertThat(eoChild
                 .get())
@@ -100,7 +100,7 @@ public class EOHtmlTest {
 
     @Test
     public void DEV__getBack__isTest2() {
-        EoRoot eoRoot = ProviderConfigMapsDev.createEo();
+        EoRoot eoRoot = ObjectProviderDev.createEo();
         IEOScalar eoChild = eoRoot.set("test1", "a/b/c");
         eoRoot.set("test2", "a/b/x");
         Assertions.assertThat(eoChild
@@ -111,7 +111,7 @@ public class EOHtmlTest {
 
     @Test
     public void scopeDev_set_abc_Test__get__isTest() {
-        EoRoot eoRoot = ProviderConfigMapsDev.createEo();
+        EoRoot eoRoot = ObjectProviderDev.createEo();
         IEOScalar eoChild = eoRoot.set("test", "a/b/c");
         Assertions.assertThat(eoChild.get())
                 .isEqualTo("test");

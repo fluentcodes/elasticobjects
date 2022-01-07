@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.condition;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,49 +45,49 @@ public class OrTest {
     @Test
     public void eq_key0_test0_eq_key1_test1__filter_eoKey0Test__true() {
         Or or = new Or("key0 eq test0 || key1 eq test1");
-        EoRoot eo = ProviderConfigMapsDev.createEo("{\"key0\":\"test0\"}");
+        EoRoot eo = ObjectProviderDev.createEo("{\"key0\":\"test0\"}");
         Assertions.assertThat(or.filter(eo)).isTrue();
     }
 
     @Test
     public void eq_tey0_test0_eq_key1_test1__filter_eoKey1Test1__true() {
         Or or = new Or("key0 eq test || key1 eq test1");
-        EoRoot eo = ProviderConfigMapsDev.createEo("{\"key1\":\"test1\"}");
+        EoRoot eo = ObjectProviderDev.createEo("{\"key1\":\"test1\"}");
         Assertions.assertThat(or.filter(eo)).isTrue();
     }
 
     @Test
     public void eq_key0_test0_eq_key1_test1__filter_eoKey0Test1__false() {
         Or or = new Or("key0 eq test0 || key1 eq test1");
-        EoRoot eo = ProviderConfigMapsDev.createEo("{\"key0\":\"test1\"}");
+        EoRoot eo = ObjectProviderDev.createEo("{\"key0\":\"test1\"}");
         Assertions.assertThat(or.filter(eo)).isFalse();
     }
 
     @Test
     public void eq_key0_test0_eq_key1_test1_eq_key2_test2__filter_eoKey1Test1__true() {
         Or or = new Or("key0 eq test0 || key1 eq test1  || key2 eq test2");
-        EoRoot eo = ProviderConfigMapsDev.createEo("{\"key1\":\"test1\"}");
+        EoRoot eo = ObjectProviderDev.createEo("{\"key1\":\"test1\"}");
         Assertions.assertThat(or.filter(eo)).isTrue();
     }
 
     @Test
     public void eq_key0_test0_eq_key1_test1_eq_key2_test2__filter_eoKey2Test2__true() {
         Or or = new Or("key0 eq test0 || key1 eq test1  || key2 eq test2");
-        EoRoot eo = ProviderConfigMapsDev.createEo("{\"key2\":\"test2\"}");
+        EoRoot eo = ObjectProviderDev.createEo("{\"key2\":\"test2\"}");
         Assertions.assertThat(or.filter(eo)).isTrue();
     }
 
     @Test
     public void eq_key0_test0_eq_key1_test1_eq_key2_test2__filter_eoKey0Test0__true() {
         Or or = new Or("key0 eq test0 || key1 eq test1  || key2 eq test2");
-        EoRoot eo = ProviderConfigMapsDev.createEo("{\"key0\":\"test0\"}");
+        EoRoot eo = ObjectProviderDev.createEo("{\"key0\":\"test0\"}");
         Assertions.assertThat(or.filter(eo)).isTrue();
     }
 
     @Test
     public void eq_key0_test0_eq_key1_test1_eq_key2_test2__filterEoKey0Test1__false() {
         Or or = new Or("key0 eq test0 || key1 eq test1  || key2 eq test2");
-        EoRoot eo = ProviderConfigMapsDev.createEo("{\"key0\":\"test1\"}");
+        EoRoot eo = ObjectProviderDev.createEo("{\"key0\":\"test1\"}");
         Assertions.assertThat(or.filter(eo)).isFalse();
     }
 

@@ -2,8 +2,8 @@ package org.fluentcodes.projects.elasticobjects;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,7 +26,7 @@ public class EoRemoveTest {
      */
     @Test
     public void givenAnObject_thenRemoved() {
-        EoRoot root = ProviderConfigMaps.createEo(new AnObject());
+        EoRoot root = ObjectProvider.createEo(new AnObject());
         root.set(S_STRING, AnObject.MY_STRING);
         Assert.assertEquals(1, (root).size());
 
@@ -36,7 +36,7 @@ public class EoRemoveTest {
 
     @Test
     public void givenBtEmpty_WhenRemove_thenExceptionThrown() {
-        EoRoot root = ProviderConfigMaps.createEo(AnObject.class);
+        EoRoot root = ObjectProvider.createEo(AnObject.class);
         Assertions
                 .assertThatThrownBy(() -> {
                     root.remove(AnObject.MY_STRING);
@@ -51,7 +51,7 @@ public class EoRemoveTest {
      */
     @Test
     public void givenMap_thenRemoved() {
-        EoRoot root = ProviderConfigMaps.createEo();
+        EoRoot root = ObjectProvider.createEo();
         root.set(S_STRING, S_TEST_STRING);
         Assert.assertEquals(1, root.size());
         Assert.assertEquals(S_STRING, root.get(S_TEST_STRING));
@@ -62,7 +62,7 @@ public class EoRemoveTest {
 
     @Test
     public void givenMapEmpty_WhenRemove_thenExceptionThrown() {
-        EoRoot root = ProviderConfigMapsDev.createEo(Map.class);
+        EoRoot root = ObjectProviderDev.createEo(Map.class);
         Assertions
                 .assertThatThrownBy(() -> {
                     root.remove("test");
@@ -72,7 +72,7 @@ public class EoRemoveTest {
 
     @Test
     public void givenList_thenRemoved() {
-        EoRoot root = ProviderConfigMaps.createEo(new ArrayList<>());
+        EoRoot root = ObjectProvider.createEo(new ArrayList<>());
         root.set(S_STRING, S0);
         Assert.assertEquals(1, root.size());
         root.remove(S0);
@@ -81,7 +81,7 @@ public class EoRemoveTest {
 
     @Test
     public void givenListEmpty_WhenRemove_thenExceptionThrown() {
-        EoRoot root = ProviderConfigMapsDev.createEo(new ArrayList<>());
+        EoRoot root = ObjectProviderDev.createEo(new ArrayList<>());
         Assertions
                 .assertThatThrownBy(() -> {
                     root.remove(S0);

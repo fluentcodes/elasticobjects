@@ -5,7 +5,7 @@
   "(Date)creationDate": 1605826772992,
   "description": "A sub object as an example.",
   "(Expose)expose": "WEB",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)id": {
       "configModelKey": "FieldConfig",
       "description": "The numeric id of an instance of a class.",

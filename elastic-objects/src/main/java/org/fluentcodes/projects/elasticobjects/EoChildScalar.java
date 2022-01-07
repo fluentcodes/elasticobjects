@@ -48,7 +48,7 @@ public class EoChildScalar implements IEOScalar {
         if (!hasParent()) {
             throw new EoException("Root could not be a scalar type but starting value is '" + getModels().toString() + "'!");
         }
-        if (getParentEo().get(fieldKey) != null) {
+        if (getParentEo().hasValue(fieldKey)) {
             if (!new Models(getConfigMaps(), value.getClass()).isScalar()) {
                 throw new EoException("Could not create '" + getModels().toString() + "' value from '" + value.toString() + "'");
             }

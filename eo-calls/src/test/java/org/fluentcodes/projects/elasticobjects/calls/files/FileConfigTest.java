@@ -6,8 +6,8 @@ import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypes;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IConfigurationTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Test;
 
 import java.util.Map;
@@ -51,7 +51,7 @@ public class FileConfigTest implements IConfigurationTests {
 
     @Test
     public void testScope__findFileConfig_FileTestTxt__found() {
-        FileConfig config = (FileConfig) ProviderConfigMaps.CONFIG_MAPS.find(FileConfig.class, FILE_TEST_TXT);
+        FileConfig config = (FileConfig) ObjectProvider.CONFIG_MAPS.find(FileConfig.class, FILE_TEST_TXT);
         Assertions.assertThat(config).isNotNull();
         Assertions.assertThat(config.getDescription()).isNotNull();
     }
@@ -90,7 +90,7 @@ public class FileConfigTest implements IConfigurationTests {
                 "    \"author\": \"Werner Diwischek\",\n" +
                 "    \"creationDate\": 1539727200000\n" +
                 "  }}";
-        EoRoot root = ProviderConfigMapsDev.createEo(serialized);
+        EoRoot root = ObjectProviderDev.createEo(serialized);
         Map<String, Object> beanMap = (Map<String, Object>)root.get();
         Map<String, Object> modelConfigMap =  (Map<String, Object>)beanMap.get(FileConfig.class.getSimpleName());
         ModelBean bean = new ModelBean(modelConfigMap);
@@ -98,13 +98,13 @@ public class FileConfigTest implements IConfigurationTests {
         assertEquals(FileConfig.class.getSimpleName(), bean.getModelKey());
         assertEquals(FileConfig.class.getSimpleName(), bean.getNaturalId());
 
-        bean.mergeFieldBeanMap(ProviderConfigMapsDev.createFieldBeanMap());
+        bean.mergeFieldBeanMap(ObjectProviderDev.createFieldBeanMap());
         bean.setDefault();
         assertEquals(ShapeTypes.BEAN, bean.getShapeType());
-        bean.resolveSuper(ProviderConfigMapsDev.createModelBeanMap(), true);
+        bean.resolveSuper(ObjectProviderDev.assertCreateModelBeanMap(), true);
 
-        ModelConfig modelConfig = ProviderConfigMapsDev.createModelConfig(bean);
-        modelConfig.resolve(ProviderConfigMapsDev.createModelConfigMap());
+        ModelConfig modelConfig = ObjectProviderDev.createModelConfig(bean);
+        modelConfig.resolve(ObjectProviderDev.createModelConfigMap());
     }
 
 }

@@ -6,7 +6,7 @@ import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCall;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.junit.Test;
 
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps.createEo;
+import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createEo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

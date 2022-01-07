@@ -5,7 +5,7 @@ import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.IEOObject ;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ import static org.fluentcodes.projects.elasticobjects.domain.test.AnObjectFromJs
 public class AnObjectToJsonTest {
 
     private static final String EMPTY = "{}";
-    private static final IEOObject  AN_OBJECT_EMPTY = ProviderConfigMaps.createEoWithClasses(AnObject.class).map(EMPTY);
+    private static final IEOObject  AN_OBJECT_EMPTY = ObjectProvider.createEoWithClasses(AnObject.class).map(EMPTY);
     @Test
     public void mapDefault()  {
         IEOObject eo = AN_OBJECT_EMPTY;

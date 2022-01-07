@@ -5,7 +5,7 @@
   "(Date)creationDate": 1608073216000,
   "description": "Basic cache as super object for other cached items. ",
   "(Expose)expose": "NONE",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)author": {
       "configModelKey": "FieldConfig",
       "description": "The author of the class.",

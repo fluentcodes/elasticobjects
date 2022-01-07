@@ -23,7 +23,7 @@ public class ModelConfigMap extends ModelConfig {
     }
 
     @Override
-    public FieldConfig getField(final String fieldName) {
+    public FieldConfig getField(final String fieldKey) {
         return null; //TODO
     }
 
@@ -49,34 +49,30 @@ public class ModelConfigMap extends ModelConfig {
         return counter;
     }
 
-    public boolean set(String fieldName, Object object, Object value)  {
-        ((Map) object).put(fieldName, value);
+    public boolean set(String fieldKey, Object object, Object value)  {
+        ((Map) object).put(fieldKey, value);
         return true;
     }
 
     /**
-     * Gets the value for fieldName of the object.
+     * Gets the value for fieldKey of the object.
      *
-     * @param fieldName
-     * @param object
+     * @param fieldKey
+     * @param parent
      * @return
      * @
      */
-    public Object get(String fieldName, Object object)  {
-        if (((Map) object).containsKey(fieldName)) {
-            return ((Map) object).get(fieldName);
-        } else if (fieldName.matches("^\\d+$")) {
-            Integer i = Integer.parseInt(fieldName);
-            if (((Map) object).containsKey(i)) {
-                return ((Map) object).get(i);
-            }
-        }
-        throw new EoException("No value add for fieldName=" + fieldName);
-
+    public Object get(String fieldKey, Object parent)  {
+        return ((Map) parent).get(fieldKey);
     }
 
-    public boolean exists(final String fieldName, final Object object)  {
-        return ((Map) object).containsKey(fieldName);
+    @Override
+    public boolean hasValue(String fieldKey, Object parent) {
+        return get(fieldKey, parent) != null;
+    }
+
+    public boolean exists(final String fieldKey, final Object object)  {
+        return ((Map) object).containsKey(fieldKey);
     }
 
     @Override
@@ -84,9 +80,9 @@ public class ModelConfigMap extends ModelConfig {
         return object == null || ((Map) object).isEmpty();
     }
 
-    public void remove(final String fieldName, final Object object)  {
-        get(fieldName, object);
-        ((Map) object).remove(fieldName);
+    public void remove(final String fieldKey, final Object object)  {
+        get(fieldKey, object);
+        ((Map) object).remove(fieldKey);
     }
 
     public Object create() {

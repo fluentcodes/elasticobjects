@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.configs;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class ConfigTypesCallTest implements IModelConfigCreateTests {
     @Test
     public void givenCall_whenExecute_thenResultIsOrderedList() {
         ConfigTypesCall call = new ConfigTypesCall();
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         List<String> result = (List<String>) call.execute(eo);
         Assertions.assertThat(result).isNotEmpty();
     }

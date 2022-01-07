@@ -1,36 +1,14 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 /**
- * Access methods for field properties map and get method definitions for final fields.
+ * Interface methods for field properties in {@link FieldBeanProperties} and {@link FieldConfigProperties}.
  *
  * @author Werner Diwischek
  * @creationDate Sat Sep 19 00:00:00 CEST 2020
- * @modificationDate Thu Jan 14 06:06:25 CET 2021
+ * @modificationDate Thu Jan 10 06:06:25 CET 2022
  */
 public interface FieldPropertiesInterface {
-    /*.{}.*/
 
-    /*.{javaStaticNames}|*/
-    String F_DEFAULT = "default";
-    String F_FIELD_NAME = "fieldName";
-    String F_FINAL = "final";
-    String F_GENERATED = "generated";
-    String F_JAVASCRIPT_TYPE = "javascriptType";
-    String F_JSON_IGNORE = "jsonIgnore";
-    String F_LENGTH = "length";
-    String F_MAX = "max";
-    String F_MIN = "min";
-    String F_MODEL_KEYS = "modelKeys";
-    String F_NOT_NULL = "notNull";
-    String F_OVERRIDE = "override";
-    String F_PROPERTY = "property";
-    String F_STATIC_NAME = "staticName";
-    String F_SUPER = "super";
-    String F_TRANSIENT = "transient";
-    String F_UNIQUE = "unique";
-    /*.{}.*/
-
-    /*.{javaAccessors}|*/
     Boolean getDefault();
 
     default boolean isDefault() {

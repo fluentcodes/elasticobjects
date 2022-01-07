@@ -1,9 +1,5 @@
 {
-  "author": "Werner Diwischek",
-  "creationDate": 1608073216000,
-  "description": "Basic cache as super object for other cached items. ",
-  "expose": "NONE",
-  "fieldConfigMap": {
+  "fields": {
     "author": {
       "description": "The author of the class.",
       "expose": "WEB",
@@ -230,14 +226,18 @@
       }
     }
   },
-  "modelKey": "Config",
-  "module": "elastic-objects",
-  "moduleScope": "main",
-  "naturalId": "Config",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.models",
   "properties": {
     "create": false,
     "dbAnnotated": false,
     "final": true
-  }
+  },
+  "author": "Werner Diwischek",
+  "creationDate": 1608073216000,
+  "description": "Basic cache as super object for other cached items. ",
+  "expose": "NONE",
+  "modelKey": "Config",
+  "module": "elastic-objects",
+  "moduleScope": "main",
+  "naturalId": "Config",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.models"
 }

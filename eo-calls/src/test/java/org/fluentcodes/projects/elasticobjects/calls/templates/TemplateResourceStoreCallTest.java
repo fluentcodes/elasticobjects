@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.templates;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.calls.Call.F_KEEP_CALL;
@@ -40,7 +40,7 @@ public class TemplateResourceStoreCallTest implements IModelConfigCreateTests {
 
     @Test
     public void call__set_targetFile_model_test__accessOk() {
-        ModelConfig modelConfig = ProviderConfigMaps.CONFIG_MAPS.findModel(TemplateResourceStoreCall.class.getSimpleName());
+        ModelConfig modelConfig = ObjectProvider.CONFIG_MAPS.findModel(TemplateResourceStoreCall.class.getSimpleName());
         TemplateResourceStoreCall call = new TemplateResourceStoreCall();
 
         modelConfig.set(TARGET_FILE_CONFIG_KEY, call, "test");
@@ -50,7 +50,7 @@ public class TemplateResourceStoreCallTest implements IModelConfigCreateTests {
 
     @Test
     public void __setKeepCall__accessOk() {
-        ModelConfig modelConfig = ProviderConfigMaps.CONFIG_MAPS.findModel(TemplateResourceStoreCall.class.getSimpleName());
+        ModelConfig modelConfig = ObjectProvider.CONFIG_MAPS.findModel(TemplateResourceStoreCall.class.getSimpleName());
         TemplateResourceStoreCall call = new TemplateResourceStoreCall();
 
         modelConfig.set(F_KEEP_CALL, call, KeepCalls.JAVA);

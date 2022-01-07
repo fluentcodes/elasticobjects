@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class EoTransformTest {
     @Test
     public void eo_Map_empty__mapObject_AnObject_myString_value__Map_naturalId_value()  {
         AnObject anObject = new AnObject().setMyString("value");
-        final EoRoot eo = ProviderConfigMaps.createEo();
+        final EoRoot eo = ObjectProvider.createEo();
         eo.map(anObject);
         Assertions.assertThat(eo.get().getClass()).isEqualTo(LinkedHashMap.class);
         Assertions.assertThat(((Map)eo.get()).get("myString")).isEqualTo("value");
@@ -29,7 +29,7 @@ public class EoTransformTest {
 
     @Test
     public void eo_AnObject_empty__mapObject_Map_myString_value__AnObject_naturalId_value()  {
-        final EoRoot eo = ProviderConfigMaps.createEo(AnObject.class);
+        final EoRoot eo = ObjectProvider.createEo(AnObject.class);
         Map map = new HashMap();
         map.put(MY_STRING, "value");
         eo.map(map);
@@ -39,7 +39,7 @@ public class EoTransformTest {
 
     @Test
     public void eo_AnObject_empty__mapObject_Map_unknown_value__exception()  {
-        final EoRoot eo = ProviderConfigMaps.createEo(AnObject.class);
+        final EoRoot eo = ObjectProvider.createEo(AnObject.class);
         Map map = new HashMap();
         map.put("unknown", "value");
         Assertions.assertThatThrownBy(()->{eo.map(map);})

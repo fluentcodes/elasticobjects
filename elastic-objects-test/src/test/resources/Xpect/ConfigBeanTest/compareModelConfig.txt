@@ -1,9 +1,5 @@
 {
-  "author": "Werner Diwischek",
-  "creationDate": 1608073216000,
-  "description": "The basic bean class for the configuration classes. Defines properies map for individual extensions.  ",
-  "expose": "NONE",
-  "fieldConfigMap": {
+  "fields": {
     "author": {
       "description": "The author of the class.",
       "expose": "WEB",
@@ -255,15 +251,19 @@
       }
     }
   },
-  "modelKey": "ConfigBean",
-  "module": "elastic-objects",
-  "moduleScope": "main",
-  "naturalId": "ConfigBean",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.models",
   "properties": {
     "abstract": false,
     "create": true,
     "dbAnnotated": false,
     "final": false
-  }
+  },
+  "author": "Werner Diwischek",
+  "creationDate": 1608073216000,
+  "description": "The basic bean class for the configuration classes. Defines properies map for individual extensions.  ",
+  "expose": "NONE",
+  "modelKey": "ConfigBean",
+  "module": "elastic-objects",
+  "moduleScope": "main",
+  "naturalId": "ConfigBean",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.models"
 }

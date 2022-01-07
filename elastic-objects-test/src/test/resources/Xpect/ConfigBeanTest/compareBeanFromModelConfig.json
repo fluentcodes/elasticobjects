@@ -5,7 +5,7 @@
   "(Date)creationDate": 1608073216000,
   "description": "The basic bean class for the configuration classes. Defines properies map for individual extensions.  ",
   "(Expose)expose": "NONE",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)author": {
       "configModelKey": "FieldConfig",
       "description": "The author of the class.",

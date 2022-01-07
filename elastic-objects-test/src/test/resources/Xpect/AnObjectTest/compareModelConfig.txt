@@ -1,8 +1,5 @@
 {
-  "author": "Werner Diwischek",
-  "description": "Model class with different types of fields including generic collections, maps and @ASubObject objects.",
-  "expose": "WEB",
-  "fieldConfigMap": {
+  "fields": {
     "id": {
       "description": "The numeric id of an instance of a class.",
       "expose": "WEB",
@@ -404,15 +401,18 @@
       }
     }
   },
-  "modelKey": "AnObject",
-  "module": "elastic-objects-test",
-  "moduleScope": "main",
-  "naturalId": "AnObject",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
   "properties": {
     "abstract": false,
     "create": true,
     "dbAnnotated": false,
     "final": false
-  }
+  },
+  "author": "Werner Diwischek",
+  "description": "Model class with different types of fields including generic collections, maps and @ASubObject objects.",
+  "expose": "WEB",
+  "modelKey": "AnObject",
+  "module": "elastic-objects-test",
+  "moduleScope": "main",
+  "naturalId": "AnObject",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test"
 }

@@ -4,7 +4,7 @@
   "configModelKey": "ModelConfigObject",
   "description": "A bean container class for Model values",
   "(Expose)expose": "WEB",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)author": {
       "configModelKey": "FieldConfig",
       "description": "The author of the class.",
@@ -135,15 +135,15 @@
         "unique": false
       }
     },
-    "(FieldBean)fieldBeans": {
+    "(FieldBean)fields": {
       "configModelKey": "FieldConfig",
-      "description": "A fieldBean map with @FieldConfig",
+      "description": "A fieldBean map",
       "(Expose)expose": "NONE",
-      "fieldKey": "fieldBeans",
+      "fieldKey": "fields",
       "modelKeys": "Map,FieldBean",
       "module": "elastic-objects",
       "moduleScope": "main",
-      "naturalId": "fieldBeans",
+      "naturalId": "ModelBean.fields",
       "(FieldBeanProperties)properties": {
         "default": false,
         "final": false,

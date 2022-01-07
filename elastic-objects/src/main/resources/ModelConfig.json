@@ -15,7 +15,7 @@
   "Call": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "sourcePath",
       "targetPath",
       "models",
@@ -55,7 +55,7 @@
   "ConfigBean": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "id, description, naturalId, creationDate, author, expose, module, moduleScope, scope, configModelKey",
+    "fields": "id, description, naturalId, creationDate, author, expose, module, moduleScope, scope, configModelKey",
     "expose": "NONE",
     "description": "The basic bean class for the configuration classes. Defines properies map for individual extensions.  ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
@@ -70,7 +70,7 @@
   "Config": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "id": {
         "final": true
       },
@@ -141,7 +141,7 @@
   "FieldBean": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "fieldKey, modelKeys, FieldBean.properties",
+    "fields": "fieldKey, modelKeys, FieldBean.properties",
     "interfaces": "FieldInterface",
     "superKey": "ConfigBean",
     "expose": "NONE",
@@ -158,7 +158,7 @@
   "FieldBeanProperties": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "default, final, fieldName, jsonIgnore, generated, length, notNull, override, property, super, javascriptType, min, max, staticName, transient, unique",
+    "fields": "default, final, fieldName, jsonIgnore, generated, length, notNull, override, property, super, javascriptType, min, max, staticName, transient, unique",
     "interfaces": "FieldPropertiesInterface",
     "expose": "NONE",
     "description": "The basic bean container class for the configuration class@FieldConfig. Also used as a base for building source code. ",
@@ -174,7 +174,7 @@
   "FieldConfig": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "fieldKey": {
         "final": true,
         "property": false
@@ -195,7 +195,8 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldConfig",
     "properties": {
-      "create": false,
+      "defaultImplementation": "TreeMap",
+      "create": true,
       "final": true,
       "override": true
     },
@@ -205,7 +206,7 @@
   "FieldConfigProperties": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "length": {
         "final": true,
         "property": false
@@ -281,9 +282,8 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldConfigProperties",
     "properties": {
-      "create": false,
-      "final": true,
-      "override": true
+      "defaultImplementation": "TreeMap",
+      "create": true
     },
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
@@ -291,7 +291,7 @@
   "FieldInterface": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "fieldKey, modelKeys",
+    "fields": "fieldKey, modelKeys",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
@@ -307,7 +307,7 @@
   "FieldPropertiesInterface": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": "length, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
+    "fields": "length, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
@@ -350,8 +350,8 @@
   "ModelBean": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": {
-      "fieldBeans": {
+    "fields": {
+      "ModelBean.fields": {
       },
       "interfaces": {
         "override": true
@@ -386,7 +386,7 @@
   "ModelBeanProperties": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "abstract": {
       },
       "create": {
@@ -417,7 +417,7 @@
   "ModelConfig": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "interfaces": {
         "override": true,
         "final": true
@@ -426,7 +426,7 @@
         "override": true,
         "final": true
       },
-      "fieldConfigMap": {
+      "ModelConfig.fields": {
         "override": false,
         "final": true
       },
@@ -445,7 +445,7 @@
     "interfaces": "ModelInterface",
     "superKey": "Config",
     "expose": "NONE",
-    "description": "Table definitions with pojo.",
+    "description": "Model config object.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfig",
     "properties": {
@@ -457,7 +457,7 @@
   "ModelConfigProperties": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "abstract": {
         "final": true
       },
@@ -489,7 +489,8 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfigProperties",
     "properties": {
-      "create": false,
+      "defaultImplementation": "TreeMap",
+      "create": true,
       "final": true
     },
     "author": "Werner Diwischek"
@@ -557,7 +558,8 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfigObject",
     "properties": {
-      "create": false,
+      "defaultImplementation": "TreeMap",
+      "create": true,
       "final": true
     },
     "author": "Werner Diwischek"
@@ -618,7 +620,7 @@
   "PathPattern": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "serialized"
     ],
     "expose": "NONE",

@@ -1,9 +1,5 @@
 {
-  "author": "Werner Diwischek",
-  "creationDate": 1539727163392,
-  "description": "Immutabel EO field configuration will be initalized by @FieldBean object.",
-  "expose": "NONE",
-  "fieldConfigMap": {
+  "fields": {
     "author": {
       "description": "The author of the class.",
       "expose": "WEB",
@@ -305,16 +301,21 @@
       }
     }
   },
+  "properties": {
+    "create": true,
+    "dbAnnotated": false,
+    "defaultImplementation": "TreeMap",
+    "final": true
+  },
+  "author": "Werner Diwischek",
+  "creationDate": 1539727163392,
+  "description": "Immutabel EO field configuration will be initalized by @FieldBean object.",
+  "expose": "NONE",
   "interfaces": "FieldInterface",
   "modelKey": "FieldConfig",
   "module": "elastic-objects",
   "moduleScope": "main",
   "naturalId": "FieldConfig",
   "packagePath": "org.fluentcodes.projects.elasticobjects.models",
-  "properties": {
-    "create": false,
-    "dbAnnotated": false,
-    "final": true
-  },
   "superKey": "Config"
 }

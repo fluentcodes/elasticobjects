@@ -5,10 +5,9 @@ import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCallTest;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectEoJunit4;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
-import org.fluentcodes.tools.xpect.XpectString;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -42,7 +41,7 @@ public class TemplateCallTest implements IModelConfigCreateTests {
 
     @Test
     public void call_level0_test_StringUpperCall_StringUpperFirstCall__execute__TEST_Test() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         final String template = "START - \n" +
                 "@{\"level0\":\"test.\"," +
                 "\n\"(StringUpperCall)\":{" +
@@ -61,7 +60,7 @@ public class TemplateCallTest implements IModelConfigCreateTests {
 
     @Test
     public void call_level0_asString_FileReadCall__execute__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         final String template = "START - \n" +
                 "@{" +
                 "\n\"(FileReadCall)\":{" +
@@ -82,7 +81,7 @@ public class TemplateCallTest implements IModelConfigCreateTests {
     @Ignore("problem with maven")
     @Test
     public void call_level0_asString_FileReadCall_KeepCall__execute__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         final String template = "START - /*\n" +
                 "@{" +
                 "\n\"(FileReadCall)\":{" +
@@ -105,7 +104,7 @@ public class TemplateCallTest implements IModelConfigCreateTests {
     @Ignore("problem with maven")
     @Test
     public void call_asString_FileReadCall_KeepCall__execute__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         final String template = "START - /*\n#{FileReadCall->" +
                 FileReadCallTest.FILE_TEST_TXT + ", _asString, , JAVA}.*/ - END";
         final TemplateCall call = new TemplateCall(template);

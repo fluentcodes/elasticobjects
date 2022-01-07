@@ -4,8 +4,7 @@ import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.projects.elasticobjects.models.FieldBean;
 import org.fluentcodes.projects.elasticobjects.models.FieldFactory;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.junit.Assert;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.TreeSet;
 public class HealthCheck {
 
     public static List<String> checkUnusedFields() {
-        ConfigMaps configMaps = ProviderConfigMaps.CONFIG_MAPS;
+        ConfigMaps configMaps = ObjectProvider.CONFIG_MAPS;
         Set<String> modelKeys = configMaps.getConfigKeys(ModelConfig.class);
         Set<String> fieldKeys = new TreeSet<>();
         for (String modelKey : modelKeys) {

@@ -100,19 +100,19 @@
     "expose": "WEB",
     "fieldKey": "expose"
   },
-  "fieldConfigMap": {
-    "module": "elastic-objects",
-    "moduleScope": "main",
-    "modelKeys": "Map,FieldConfig",
-    "description": "A fieldConfig map with @FieldConfig",
-    "expose": "NONE",
-    "fieldKey": "fieldConfigMap"
-  },
-  "fieldBeans": {
+  "ModelBean.fields": {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Map,FieldBean",
-    "description": "A fieldBean map with @FieldConfig",
+    "description": "A fieldBean map",
+    "expose": "NONE",
+    "fieldKey": "fieldBeans"
+  },
+  "ModelConfig.fields": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "Map,FieldConfig",
+    "description": "A fieldConfig map for with @FieldConfig",
     "expose": "NONE",
     "fieldKey": "fieldBeans"
   },

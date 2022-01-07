@@ -6,7 +6,7 @@ import org.fluentcodes.projects.elasticobjects.IEOObject;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ import static org.fluentcodes.projects.elasticobjects.calls.DbConfig.H2_BASIC;
 public class DbModelReadCallAnObjectTest {
     @Before
     public void init() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         Call call = new DbSqlExecuteCall(H2_BASIC, "h2:mem:basic:Create");
         call.execute(eo);
     }
@@ -27,7 +27,7 @@ public class DbModelReadCallAnObjectTest {
         call.setConfigKey("h2:mem:AnObject");
         call.setTargetPath("/result");
         Assertions.assertThat(call).isNotNull();
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         AnObject anObject = new AnObject();
         anObject.setMyString("value1");
         IEOScalar child = eo.set(anObject, "test");
@@ -39,7 +39,7 @@ public class DbModelReadCallAnObjectTest {
 
     @Test
     public void eo_DbQuery_AnObject__execute__1() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         AnObject anObject = new AnObject();
         anObject.setMyString("value1");
         eo.set(anObject, "test");
@@ -58,7 +58,7 @@ public class DbModelReadCallAnObjectTest {
 
     @Test
     public void eo_sourcePath_abc_AnObject_id_1_targetPath_xyz__execute__1() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "   \"(AnObject)abc\":{\n" +
                 "        \"id\":1\n" +
                 "   },\n" +

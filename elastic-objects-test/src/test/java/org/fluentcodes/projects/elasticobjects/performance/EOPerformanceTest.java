@@ -8,7 +8,7 @@ import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObjectFromJsonTest;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.tools.io.IOString;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -60,7 +60,7 @@ public class EOPerformanceTest {
         result.append(head);
         result.append(" **\n");
         result.append("--> toJson\n");
-        EoRoot eo = ProviderConfigMaps.createEo(object);
+        EoRoot eo = ObjectProvider.createEo(object);
         result.append(serializeWithEoAndEoObject(eo));
         result.append(serializeWithJackson(object));
         result.append(serializeWithGson(object));
@@ -115,7 +115,7 @@ public class EOPerformanceTest {
     private String createWithEo(Object object) {
         long start = System.currentTimeMillis();
         for (long i = 0; i < maxRoot; i++) {
-            EoRoot eo = ProviderConfigMaps.createEo(object);
+            EoRoot eo = ObjectProvider.createEo(object);
         }
         long duration = System.currentTimeMillis() - start;
         String result = "EO     : " + duration + " ms\n";

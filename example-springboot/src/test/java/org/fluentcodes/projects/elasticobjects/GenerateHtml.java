@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects;
 
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateResourceStoreCall;
 import org.fluentcodes.projects.elasticobjects.calls.xlsx.XlsxReadCall;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 public class GenerateHtml {
@@ -25,7 +25,7 @@ public class GenerateHtml {
         XlsxReadCall call = new XlsxReadCall(xlsxFile);
         //call.setFilter("head like Get");
         call.setTargetPath(String.join(Path.DELIMITER, new String[]{DATA, ".[head]."}));
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         call.execute(eo);
 
         return eo;

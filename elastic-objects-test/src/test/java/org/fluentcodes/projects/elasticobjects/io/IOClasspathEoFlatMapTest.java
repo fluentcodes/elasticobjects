@@ -1,13 +1,11 @@
 package org.fluentcodes.projects.elasticobjects.io;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.models.FieldBean;
 import org.junit.Test;
 
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps.CONFIG_MAPS;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev.CONFIG_MAPS_DEV;
+import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.CONFIG_MAPS_DEV;
 
 public class IOClasspathEoFlatMapTest {
     @Test

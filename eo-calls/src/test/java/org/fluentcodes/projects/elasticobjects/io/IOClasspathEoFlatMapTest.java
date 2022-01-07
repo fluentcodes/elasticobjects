@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps.CONFIG_MAPS;
+import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
 
 public class IOClasspathEoFlatMapTest {
     @Test

@@ -7,7 +7,7 @@ import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,16 +48,16 @@ public class StringLowerCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenModelCreateAndValueTest_whenExecute_thenUpperCaseReturned() {
-        final ModelConfig model = ProviderConfigMaps.findModel(StringLowerCall.class);
+        final ModelConfig model = ObjectProvider.findModel(StringLowerCall.class);
         final StringLowerCall call = (StringLowerCall) model.create();
-        final IEOScalar child = ProviderConfigMaps.createEo().set("tEsT", S_LEVEL0);
+        final IEOScalar child = ObjectProvider.createEo().set("tEsT", S_LEVEL0);
         Assertions.assertThat(child.get()).isEqualTo("tEsT");
         Assertions.assertThat(call.execute(child)).isEqualTo("test");
     }
 
     @Test
     public void givenTemplateWithValueCallJsonMap_whenExecute_thenEoIsMap() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         final String template = "^" +
                 "@{" +
                 "\"level0\":\"tEsT\"}." +

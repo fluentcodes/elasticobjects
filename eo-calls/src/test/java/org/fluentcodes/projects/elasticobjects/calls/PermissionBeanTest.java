@@ -1,11 +1,10 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.calls.files.FileBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypes;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -42,7 +41,7 @@ public class PermissionBeanTest {
                 "    \"shapeType\": \"BEAN\",\n" +
                 "    \"creationDate\": 1608073200000\n" +
                 "  }}";
-        EoRoot root = ProviderConfigMapsDev.createEo(serialized);
+        EoRoot root = ObjectProviderDev.createEo(serialized);
         Map<String, Object> beanMap = (Map<String, Object>)root.get();
         Map<String, Object> modelConfigMap =  (Map<String, Object>)beanMap.get(PermissionBean.class.getSimpleName());
         ModelBean bean = new ModelBean(modelConfigMap);
@@ -50,12 +49,12 @@ public class PermissionBeanTest {
         assertEquals(PermissionBean.class.getSimpleName(), bean.getModelKey());
         assertEquals(PermissionBean.class.getSimpleName(), bean.getNaturalId());
 
-        bean.mergeFieldBeanMap(ProviderConfigMapsDev.createFieldBeanMap());
+        bean.mergeFieldBeanMap(ObjectProviderDev.createFieldBeanMap());
         bean.setDefault();
         assertEquals(ShapeTypes.BEAN, bean.getShapeType());
-        bean.resolveSuper(ProviderConfigMapsDev.createModelBeanMap(), true);
+        bean.resolveSuper(ObjectProviderDev.assertCreateModelBeanMap(), true);
 
-        ModelConfig modelConfig = ProviderConfigMapsDev.createModelConfig(bean);
-        modelConfig.resolve(ProviderConfigMapsDev.createModelConfigMap());
+        ModelConfig modelConfig = ObjectProviderDev.createModelConfig(bean);
+        modelConfig.resolve(ObjectProviderDev.createModelConfigMap());
     }
 }

@@ -2,9 +2,9 @@
   "_rootmodel": "ModelBean",
   "author": "Werner Diwischek",
   "configModelKey": "ModelConfigObject",
-  "description": "Table definitions with pojo.",
+  "description": "Model config object.",
   "(Expose)expose": "NONE",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)author": {
       "configModelKey": "FieldConfig",
       "description": "The author of the class.",
@@ -109,15 +109,15 @@
         "unique": false
       }
     },
-    "(FieldBean)fieldConfigMap": {
+    "(FieldBean)fields": {
       "configModelKey": "FieldConfig",
-      "description": "A fieldConfig map with @FieldConfig",
+      "description": "A fieldConfig map for with @FieldConfig",
       "(Expose)expose": "NONE",
-      "fieldKey": "fieldConfigMap",
+      "fieldKey": "fields",
       "modelKeys": "Map,FieldConfig",
       "module": "elastic-objects",
       "moduleScope": "main",
-      "naturalId": "fieldConfigMap",
+      "naturalId": "ModelConfig.fields",
       "(FieldBeanProperties)properties": {
         "default": false,
         "final": true,

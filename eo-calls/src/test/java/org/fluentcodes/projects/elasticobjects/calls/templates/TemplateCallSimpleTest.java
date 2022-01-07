@@ -2,8 +2,8 @@ package org.fluentcodes.projects.elasticobjects.calls.templates;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Test;
 
 /**
@@ -16,7 +16,7 @@ public class TemplateCallSimpleTest {
     public void call_TemplateCall_placeholder__execute__replaced() {
         TemplateCall call = new TemplateCall();
         call.setContent("Just a content with placeHolder testKey='.{testKey}.'");
-        EoRoot eo = ProviderConfigMapsDev.createEo();
+        EoRoot eo = ObjectProviderDev.createEo();
         eo.set("testValue", "testKey");
         String result = call.execute(eo);
         Assertions.assertThat(eo.getLog()).isEmpty();
@@ -27,7 +27,7 @@ public class TemplateCallSimpleTest {
     public void eo_TemplateCall_placeholder__execute__replaced() {
         TemplateCall call = new TemplateCall();
         call.setContent("Just a content with placeHolder testKey='.{testKey}.'");
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.addCall(call);
         eo.set("testValue", "testKey");
         eo.execute();

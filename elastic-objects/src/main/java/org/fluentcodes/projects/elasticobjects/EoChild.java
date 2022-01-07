@@ -17,6 +17,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static org.fluentcodes.projects.elasticobjects.Path.DELIMITER;
+
 public class EoChild extends EoChildScalar implements IEOObject {
     private Map<String, IEOScalar> eoMap;
     private Object fieldValue;
@@ -60,7 +62,7 @@ public class EoChild extends EoChildScalar implements IEOObject {
     @Override
     public IEOScalar set(Object value, final String... paths) {
         if (value == null) {
-            throw new EoException("Null value not allowed: Occured when setting null to + '" + Arrays.stream(paths).collect(Collectors.joining(Path.DELIMITER)) + "' at '" + getPathAsString() + "'.");
+            throw new EoException("Null value not allowed: Occured when setting null to + '" + Arrays.stream(paths).collect(Collectors.joining(DELIMITER)) + "' at '" + getPathAsString() + "'.");
         }
         return createChild(new Path(paths), value);
     }
@@ -73,14 +75,24 @@ public class EoChild extends EoChildScalar implements IEOObject {
         }
     }
 
+    boolean hasValue(final String fieldKey) {
+        return this.getModel().hasValue(fieldKey, get());
+    }
+
     @Override
     public Object get(final String... pathStrings) {
+        if (pathStrings.length == 1 && !pathStrings[0].contains(DELIMITER)) {
+            if (!hasEo(pathStrings[0])) {
+                throw new EoException("No entry found for '" + pathStrings[0] + "' at '" + getPathAsString() + "'");
+            }
+            if (pathStrings[0].startsWith("_")) {
+                return eoMap.get(pathStrings[0]).get();
+            }
+            return this.getModel().get(pathStrings[0], get());
+        }
         try {
             return getEo(pathStrings).get();
         } catch (EoException e) {
-            if (pathStrings.length == 1) {
-                return this.getModel().get(pathStrings[0], get());
-            }
             throw new EoException(String.join("/", pathStrings) + e.getMessage());
         }
     }
@@ -272,13 +284,18 @@ public class EoChild extends EoChildScalar implements IEOObject {
         }
         Set<String> fieldNameSet = valueModel.keys(value);
         for (String fieldKey : fieldNameSet) {
+            PathElement pathElement =null;
             if (valueModel.isObject()) {
                 FieldInterface fieldBean = valueModel.getField(fieldKey);
+                pathElement = new PathElement(fieldBean.getFieldKey());
                 if (fieldBean == null) {
                     continue;
                 }
             }
-            PathElement pathElement = new PathElement(fieldKey);
+            else {
+                 pathElement = new PathElement(fieldKey);
+            }
+
             if (valueModel.isJsonIgnore(fieldKey)) continue;
             if (valueModel.isProperty(fieldKey)) continue;
             if (!valueModel.exists(fieldKey, value)) continue;
@@ -371,8 +388,8 @@ public class EoChild extends EoChildScalar implements IEOObject {
             if (key.equals(".config")) {
                 continue;
             }
-            String nextPath = path + Path.DELIMITER + key;
-            nextPath = nextPath.replaceAll("^" + Path.DELIMITER, "");
+            String nextPath = path + DELIMITER + key;
+            nextPath = nextPath.replaceAll("^" + DELIMITER, "");
             IEOScalar childAdapter = getEo(key);
             if (childAdapter == null) {
                 continue;
@@ -407,7 +424,7 @@ public class EoChild extends EoChildScalar implements IEOObject {
 
     void getPathAsString(final StringBuilder builder) {
         builder.insert(0, getFieldKey());
-        builder.insert(0, Path.DELIMITER);
+        builder.insert(0, DELIMITER);
         getParentEo().getPathAsString(builder);
     }
 
@@ -442,7 +459,7 @@ public class EoChild extends EoChildScalar implements IEOObject {
             if (list.contains(key)) {
                 continue;
             }
-            builder.append(getPathAsString() + Path.DELIMITER + key + ": null <> " + other.getEo(key).getModelClass().getSimpleName() + "\n");
+            builder.append(getPathAsString() + DELIMITER + key + ": null <> " + other.getEo(key).getModelClass().getSimpleName() + "\n");
         }
         for (String key : list) {
             if (!other.hasEo(key)) {

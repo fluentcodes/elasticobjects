@@ -44,11 +44,11 @@ public class EoMapTest {
         final EoRoot eo = ObjectProvider.createEo();
         final String jsonString = "{\n" +
                 "\t\"(" + AnObject.class.getSimpleName() + ")key0\":{\n" +
-                "\t\t\"" + AnObject.MY_STRING + "\":\"value\"\n" +
+                "\t\t\"" + AnObject.F_MY_STRING + "\":\"value\"\n" +
                 "    }\n" +
                 "}";
         eo.map(jsonString);
-        assertThat(eo.get("key0", AnObject.MY_STRING)).isEqualTo("value");
+        assertThat(eo.get("key0", AnObject.F_MY_STRING)).isEqualTo("value");
         assertThat(((AnObject) eo.get("key0")).getMyString()).isEqualTo("value");
         assertThat(eo.getEo("key0").getModelClass()).isEqualTo(AnObject.class);
     }
@@ -61,7 +61,7 @@ public class EoMapTest {
         final EoRoot eo = ObjectProvider.createEo();
         final String jsonString = "{\n" +
                 "\t\"(" + AnObject.class.getSimpleName() + ")level0\":{\n" +
-                "\t\t\"" + AnObject.MY_STRING + "\":\"value\",\n" +
+                "\t\t\"" + AnObject.F_MY_STRING + "\":\"value\",\n" +
                 "\"_comment\":\"_comment is not a field of the " + AnObject.class.getSimpleName() + ".class\"" +
                 "    }\n" +
                 "}";
@@ -78,7 +78,7 @@ public class EoMapTest {
         AnObject bt = new AnObject()
                 .setMyString("value");
         eo.map(bt);
-        assertThat(eo.get(AnObject.MY_STRING)).isEqualTo("value");
+        assertThat(eo.get(AnObject.F_MY_STRING)).isEqualTo("value");
         assertThat(eo.getModelClass()).isEqualTo(Map.class);
     }
 
@@ -89,8 +89,8 @@ public class EoMapTest {
         eo.map("{\"myString\": \"value\"}");
         eo.map("{\"myInt\": 1}");
         assertThat(eo.getModelClass()).isEqualTo(AnObject.class);
-        assertThat(eo.get(AnObject.MY_STRING)).isEqualTo("value");
-        assertThat(eo.get(AnObject.MY_INT)).isEqualTo(1);
+        assertThat(eo.get(AnObject.F_MY_STRING)).isEqualTo("value");
+        assertThat(eo.get(AnObject.F_MY_INT)).isEqualTo(1);
     }
 }
 

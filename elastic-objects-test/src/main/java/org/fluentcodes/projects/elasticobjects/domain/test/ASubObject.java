@@ -1,22 +1,12 @@
 package org.fluentcodes.projects.elasticobjects.domain.test;
 
-/*.{javaHeader}|*/
 /**
  * 
- * A sub object as an example. 
- * @author Werner Diwischek
- * @creationDate Fri Nov 20 00:00:00 CET 2020
- * @modificationDate Tue Jan 19 12:14:01 CET 2021
+ * A sub object as an example.
  */
 public class ASubObject  {
-/*.{}.*/
-
-    /*!!Problem invoke getter with 'javaStaticNames' and model 'ModelBeanGen':null!!*/
    public static final String MY_STRING = "myString";
-/*!!Could not create 'String' value from 'ASubObject(BEAN)' (ModelBeanGen)!!*/
-
-    /*!!Problem invoke getter with 'javaInstanceVars' and model 'ModelBeanGen':null!!*/
-   /* The id with a autonumbering */
+   public static final String F_NAME = "name";
     @SuppressWarnings({"java:S1845", "may be later"})
    private Long id;
    /* myASubObject */
@@ -28,9 +18,6 @@ public class ASubObject  {
    private String name;
    /* The natural key in @Base */
    private String naturalId;
-/*!!Could not create 'String' value from 'ASubObject(BEAN)' (ModelBeanGen)!!*/
-
-    /*!!Problem invoke getter with 'javaAccessors' and model 'ModelBeanGen':null!!*/
    public Long getId() {
       return this.id;
    }
@@ -91,5 +78,4 @@ public class ASubObject  {
    public boolean hasNaturalId() {
       return this.naturalId != null && this.naturalId.isEmpty();
    }
-/*!!Could not create 'String' value from 'ASubObject(BEAN)' (ModelBeanGen)!!*/
 }

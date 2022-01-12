@@ -22,7 +22,7 @@ public class EoSetTestTest {
         final EoRoot eo = ObjectProvider.createEo(new AnObject());
         Assertions
                 .assertThatThrownBy(
-                        ()->{eo.set(new AnObject(), AnObject.MY_STRING);}
+                        ()->{eo.set(new AnObject(), AnObject.F_MY_STRING);}
                 )
                 .hasMessageContaining("Mismatch for Models: Expected is String but the other model is AnObject");
     }

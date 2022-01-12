@@ -127,8 +127,8 @@ public class EoSetDevTest {
         final EoRoot eoEmpty = ObjectProviderDev.createEo();
         eoEmpty.set("{\"myString\": \"test\", \"myInt\": 1}", "test1");
         Assertions.assertThat(eoEmpty.getEo("test1").getModelClass()).isEqualTo(Map.class);
-        Assertions.assertThat(eoEmpty.get("test1", AnObject.MY_INT)).isEqualTo(1);
-        Assertions.assertThat(eoEmpty.get("test1", AnObject.MY_STRING)).isEqualTo("test");
+        Assertions.assertThat(eoEmpty.get("test1", AnObject.F_MY_INT)).isEqualTo(1);
+        Assertions.assertThat(eoEmpty.get("test1", AnObject.F_MY_STRING)).isEqualTo("test");
     }
 
     @Test

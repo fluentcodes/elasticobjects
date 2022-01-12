@@ -19,25 +19,25 @@ public class OrTest {
     //static final Pattern ifPattern = Pattern.compile("(key).*");
     @Test
     public void eq_testString_test__filter_eoString__true() {
-        Or or = new Or(AnObject.MY_STRING + " eq test");
-        Assert.assertEquals(AnObject.MY_STRING, or.getAnd(0).getCondition(0).getKey());
+        Or or = new Or(AnObject.F_MY_STRING + " eq test");
+        Assert.assertEquals(AnObject.F_MY_STRING, or.getAnd(0).getCondition(0).getKey());
         Assert.assertEquals("test", or.getAnd(0).getCondition(0).getValue());
-        Assert.assertEquals(AnObject.MY_STRING + "=:" + AnObject.MY_STRING + "_0 ", or.getAnd(0).getCondition(0).createQuery(new HashMap<>()));
-        Assert.assertEquals("(" + AnObject.MY_STRING + "=:" + AnObject.MY_STRING + "_0 )", or.createQuery());
+        Assert.assertEquals(AnObject.F_MY_STRING + "=:" + AnObject.F_MY_STRING + "_0 ", or.getAnd(0).getCondition(0).createQuery(new HashMap<>()));
+        Assert.assertEquals("(" + AnObject.F_MY_STRING + "=:" + AnObject.F_MY_STRING + "_0 )", or.createQuery());
         EoRoot eo = AndTest.TEST_STRING_DEV;
         Assertions.assertThat(or.filter(eo)).isTrue();
     }
 
     @Test
     public void eq_testString_test2__filter_eoString__false() {
-        Or or = new Or(AnObject.MY_STRING + " eq test2");
+        Or or = new Or(AnObject.F_MY_STRING + " eq test2");
         EoRoot eo = AndTest.TEST_STRING_DEV;
         Assertions.assertThat(or.filter(eo)).isFalse();
     }
 
     @Test
     public void eq_testString2_test2__filter_eoString__false() {
-        Or or = new Or(AnObject.MY_STRING + "2 eq test2");
+        Or or = new Or(AnObject.F_MY_STRING + "2 eq test2");
         EoRoot eo = AndTest.TEST_STRING_DEV;
         Assertions.assertThat(or.filter(eo)).isFalse();
     }

@@ -150,8 +150,8 @@ public class AnObjectFromJsonTest {
         EoRoot eo = createAnObjectEo("{\"myString\": \"test\", \"myInt\": 1}");
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getModelClass()).isEqualTo(AnObject.class);
-        Assertions.assertThat(eo.get(AnObject.MY_STRING)).isEqualTo((S_STRING));
-        Assertions.assertThat(eo.get(AnObject.MY_INT)).isEqualTo((S_INTEGER));
+        Assertions.assertThat(eo.get(AnObject.F_MY_STRING)).isEqualTo((S_STRING));
+        Assertions.assertThat(eo.get(AnObject.F_MY_INT)).isEqualTo((S_INTEGER));
     }
 
     @Test
@@ -159,8 +159,8 @@ public class AnObjectFromJsonTest {
         EoRoot eo = createAnObjectEo(ALL);
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getModelClass()).isEqualTo(AnObject.class);
-        Assertions.assertThat(eo.get(AnObject.MY_STRING)).isEqualTo((S_STRING));
-        Assertions.assertThat(eo.get(AnObject.MY_INT)).isEqualTo((S_INTEGER));
+        Assertions.assertThat(eo.get(AnObject.F_MY_STRING)).isEqualTo((S_STRING));
+        Assertions.assertThat(eo.get(AnObject.F_MY_INT)).isEqualTo((S_INTEGER));
     }
 
     @Test
@@ -168,6 +168,6 @@ public class AnObjectFromJsonTest {
         EoRoot eo = createAnObjectEo("{\"(ASubObject)myASubObject\": {\"name\": \"testOther\",\"myString\": \"test\"}}");
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getModelClass()).isEqualTo(AnObject.class);
-        Assertions.assertThat(eo.get(AnObject.MY_ASUB_OBJECT, AnObject.MY_STRING)).isEqualTo((S_STRING));
+        Assertions.assertThat(eo.get(AnObject.MY_ASUB_OBJECT, AnObject.F_MY_STRING)).isEqualTo((S_STRING));
     }
 }

@@ -2,14 +2,11 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_AUTHOR;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_CONFIG_MODEL_KEY;
@@ -20,7 +17,7 @@ import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE_SCOPE;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createBean;
+import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createObject;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -59,7 +56,7 @@ public class ConfigBeanTest implements IModelConfigCreateTests {
 
     @Test
     public void createBean_Expose() {
-        FieldBean fieldBean = (FieldBean) createBean(FieldBean.class, F_EXPOSE, "WEB");
+        FieldBean fieldBean = (FieldBean) createObject(FieldBean.class, "WEB", F_EXPOSE);
         assertEquals(Expose.WEB, fieldBean.getExpose());
     }
 

@@ -1,31 +1,23 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
-import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Test;
-
-import java.util.Map;
 
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.*;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createKeyValueJson;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 public class FieldBeanPropertiesTest {
 
     static FieldBeanProperties createFieldBeanProperties(final String key, final Object value) {
-        EoRoot root = ObjectProvider.createEoWithClasses(FieldBeanProperties.class);
-        root.map(createKeyValueJson(key, value));
-        return (FieldBeanProperties)root.get();
+        return (FieldBeanProperties) ObjectProvider.createObject(FieldBeanProperties.class, value, key);
     }
 
     @Test
-    public void readModelConfig() {
-        ModelConfig config = ObjectProviderDev.readModelConfig(FieldBeanProperties.class.getSimpleName());
+    public void findModelConfig() {
+        ModelConfig config = ObjectProvider.findModel(FieldBeanProperties.class);
         assertTrue(config.getProperties().getCreate());
         assertEquals(16, config.getFields().size());
     }

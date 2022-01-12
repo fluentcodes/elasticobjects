@@ -18,7 +18,6 @@ import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE_SCOPE;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createBean;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

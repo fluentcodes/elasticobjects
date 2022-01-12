@@ -103,7 +103,7 @@ public class ParserTest {
     @Test
     public void TemplateCall_testPath__parse__replaced() {
         final EoRoot eo = ObjectProvider.createEo();
-        eo.set(AnObject.MY_STRING, "testPath");
+        eo.set(AnObject.F_MY_STRING, "testPath");
         final String replace = "-" +
                 " @{\"(TemplateCall).\":{" +
                 "\"sourcePath\":\"testPath\"}" +
@@ -114,7 +114,7 @@ public class ParserTest {
                 ".{}.-";
         String result = new Parser(replace).parse(eo);
         Assertions.assertThat(eo.getLog()).isEmpty();
-        Assertions.assertThat(result).isEqualTo("-+" + AnObject.MY_STRING + "+-");
+        Assertions.assertThat(result).isEqualTo("-+" + AnObject.F_MY_STRING + "+-");
     }
 
     @Test

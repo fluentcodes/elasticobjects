@@ -87,7 +87,7 @@ public class FileReadCallJsonTest {
         eo.execute();
         Assertions.assertThat(eo.getLog())
                 .isEmpty();
-        Assertions.assertThat(eo.get("level0", "0", AnObject.MY_STRING)).isEqualTo(S_STRING);
+        Assertions.assertThat(eo.get("level0", "0", AnObject.F_MY_STRING)).isEqualTo(S_STRING);
         Assertions.assertThat(eo.getEo("level0", "0").getModelClass()).isEqualTo(AnObject.class);
     }
 

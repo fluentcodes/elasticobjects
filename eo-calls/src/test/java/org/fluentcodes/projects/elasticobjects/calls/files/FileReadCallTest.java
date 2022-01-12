@@ -76,13 +76,13 @@ public class FileReadCallTest implements IModelConfigCreateTests {
     @Test
     public void eo_SourceTxt_targetPath_test_role_Guest__execute__content_set() {
         final Call call = new FileReadCall(FileConfigTest.FILE_TEST_TXT)
-                .setTargetPath(AnObject.MY_STRING);
+                .setTargetPath(AnObject.F_MY_STRING);
         EoRoot eo = ObjectProvider.createEo();
         eo.setRoles(R_GUEST);
         eo.addCall(call);
         eo.execute();
         Assertions.assertThat(eo.getLog()).isEmpty();
-        Assertions.assertThat(eo.get(AnObject.MY_STRING)).isEqualTo(S_STRING);
+        Assertions.assertThat(eo.get(AnObject.F_MY_STRING)).isEqualTo(S_STRING);
     }
 
     @Test

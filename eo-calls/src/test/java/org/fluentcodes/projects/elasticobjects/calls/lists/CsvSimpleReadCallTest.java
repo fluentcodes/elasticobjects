@@ -164,7 +164,7 @@ public class CsvSimpleReadCallTest implements IModelConfigCreateTests {
         eo.execute();
         Assertions.assertThat(eo.getLog())
                 .isEmpty();
-        Assertions.assertThat(eo.get("0/" + AnObject.MY_STRING)).isEqualTo("value1");
+        Assertions.assertThat(eo.get("0/" + AnObject.F_MY_STRING)).isEqualTo("value1");
         Assertions.assertThat(eo.getEo("0").getModelClass()).isEqualTo(LinkedHashMap.class);
     }
 
@@ -177,7 +177,7 @@ public class CsvSimpleReadCallTest implements IModelConfigCreateTests {
         eo.execute();
         Assertions.assertThat(eo.getLog())
                 .isEmpty();
-        Assertions.assertThat(eo.get("level0/0/" + AnObject.MY_STRING)).isEqualTo("value1");
+        Assertions.assertThat(eo.get("level0/0/" + AnObject.F_MY_STRING)).isEqualTo("value1");
         Assertions.assertThat(eo.getEo("level0/0").getModelClass()).isEqualTo(AnObject.class);
     }
 
@@ -188,7 +188,7 @@ public class CsvSimpleReadCallTest implements IModelConfigCreateTests {
         call.execute(eo);
         Assertions.assertThat(eo.getLog())
                 .isEmpty();
-        Assertions.assertThat(eo.get("xyz/0", AnObject.MY_STRING)).isEqualTo("value1");
+        Assertions.assertThat(eo.get("xyz/0", AnObject.F_MY_STRING)).isEqualTo("value1");
     }
 
     @Test
@@ -199,6 +199,6 @@ public class CsvSimpleReadCallTest implements IModelConfigCreateTests {
         call.execute(eo);
         Assertions.assertThat(eo.getLog())
                 .isEmpty();
-        Assertions.assertThat(eo.get("xyz/0", AnObject.MY_STRING)).isEqualTo("value1");
+        Assertions.assertThat(eo.get("xyz/0", AnObject.F_MY_STRING)).isEqualTo("value1");
     }
 }

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.MY_STRING;
+import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.F_MY_STRING;
 
 /**
  * Transform examples
@@ -31,7 +31,7 @@ public class EoTransformTest {
     public void eo_AnObject_empty__mapObject_Map_myString_value__AnObject_naturalId_value()  {
         final EoRoot eo = ObjectProvider.createEo(AnObject.class);
         Map map = new HashMap();
-        map.put(MY_STRING, "value");
+        map.put(F_MY_STRING, "value");
         eo.map(map);
         Assertions.assertThat(eo.get().getClass()).isEqualTo(AnObject.class);
         Assertions.assertThat(((AnObject)eo.get()).getMyString()).isEqualTo("value");

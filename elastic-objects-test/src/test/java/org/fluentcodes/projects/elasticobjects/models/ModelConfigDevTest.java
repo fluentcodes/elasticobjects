@@ -1,7 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Test;
 
@@ -21,10 +20,10 @@ import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FINAL;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_MODEL_KEYS;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ABSTRACT;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_INTERFACES;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_MODEL_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_SUPER_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_INTERFACES;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_MODEL_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_SUPER_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_PACKAGE_PATH;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.toStringWithMap;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelConfig;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelConfigWithFieldKey;
@@ -112,7 +111,7 @@ public class ModelConfigDevTest {
 
     @Test
     public void createModelConfig_packagePath() {
-        ModelConfig  config = createModelConfig(PACKAGE_PATH, "org.fluentcodes.projects.exlasticobjects");
+        ModelConfig  config = createModelConfig(F_PACKAGE_PATH, "org.fluentcodes.projects.exlasticobjects");
         assertEquals("org.fluentcodes.projects.exlasticobjects",  config.getPackagePath());
     }
 

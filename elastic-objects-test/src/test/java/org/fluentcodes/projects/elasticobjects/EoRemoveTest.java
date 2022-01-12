@@ -27,10 +27,10 @@ public class EoRemoveTest {
     @Test
     public void givenAnObject_thenRemoved() {
         EoRoot root = ObjectProvider.createEo(new AnObject());
-        root.set(S_STRING, AnObject.MY_STRING);
+        root.set(S_STRING, AnObject.F_MY_STRING);
         Assert.assertEquals(1, (root).size());
 
-        root.remove(AnObject.MY_STRING);
+        root.remove(AnObject.F_MY_STRING);
         Assert.assertEquals(0, (root).size());
     }
 
@@ -39,9 +39,9 @@ public class EoRemoveTest {
         EoRoot root = ObjectProvider.createEo(AnObject.class);
         Assertions
                 .assertThatThrownBy(() -> {
-                    root.remove(AnObject.MY_STRING);
+                    root.remove(AnObject.F_MY_STRING);
                 })
-                .hasMessage("Could not remove entry '" + AnObject.MY_STRING + "' because it is not set in '" + AnObject.class.getSimpleName() + "'");
+                .hasMessage("Could not remove entry '" + AnObject.F_MY_STRING + "' because it is not set in '" + AnObject.class.getSimpleName() + "'");
     }
 
     /**

@@ -134,8 +134,8 @@ public class EoMapDevTest {
         eo.map("{\"myString\": \"test\", \"myInt\": 1}");
         assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getModelClass()).isEqualTo(Map.class);
-        Assertions.assertThat(eo.get(AnObject.MY_STRING)).isEqualTo(S_STRING);
-        Assertions.assertThat(eo.get(AnObject.MY_INT)).isEqualTo(S_INTEGER);
+        Assertions.assertThat(eo.get(AnObject.F_MY_STRING)).isEqualTo(S_STRING);
+        Assertions.assertThat(eo.get(AnObject.F_MY_INT)).isEqualTo(S_INTEGER);
     }
 
     @Test
@@ -145,8 +145,8 @@ public class EoMapDevTest {
         eo.map(AnObjectFromJsonTest.ALL);
         assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getModelClass()).isEqualTo(Map.class);
-        Assertions.assertThat(eo.get(AnObject.MY_STRING)).isEqualTo(S_STRING);
-        Assertions.assertThat(eo.get(AnObject.MY_INT)).isEqualTo(S_INTEGER);
+        Assertions.assertThat(eo.get(AnObject.F_MY_STRING)).isEqualTo(S_STRING);
+        Assertions.assertThat(eo.get(AnObject.F_MY_INT)).isEqualTo(S_INTEGER);
     }
 
     @Test
@@ -154,8 +154,8 @@ public class EoMapDevTest {
         EoRoot root = ObjectProviderDev.createEo(AnObjectFromJsonTest.ALL);
         assertThat(root.getLog()).isEmpty();
         Assertions.assertThat(root.getModelClass()).isEqualTo(Map.class);
-        Assertions.assertThat(root.get(AnObject.MY_STRING)).isEqualTo(S_STRING);
-        Assertions.assertThat(root.get(AnObject.MY_INT)).isEqualTo(S_INTEGER);
+        Assertions.assertThat(root.get(AnObject.F_MY_STRING)).isEqualTo(S_STRING);
+        Assertions.assertThat(root.get(AnObject.F_MY_INT)).isEqualTo(S_INTEGER);
     }
 
     @Test

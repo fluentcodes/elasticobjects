@@ -22,16 +22,17 @@ import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURA
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FINAL;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ABSTRACT;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_MODEL_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_SUPER_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
-import static org.fluentcodes.projects.elasticobjects.models.ModelInterface.SHAPE_TYPE;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_MODEL_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_SUPER_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_PACKAGE_PATH;
+import static org.fluentcodes.projects.elasticobjects.models.ModelInterface.F_SHAPE_TYPE;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createModelBean;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createModelBeanWithFieldKey;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createModelBeanWithFieldProperty;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createModelBeanWithProperty;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 public class ModelBeanTest implements IModelConfigCreateTests {
@@ -85,8 +86,8 @@ public class ModelBeanTest implements IModelConfigCreateTests {
     @Test
     public void eo_set_ShapeTypes_LIST() {
         EoRoot eo = ObjectProvider.createEo(new ModelBean());
-        eo.set(ShapeTypes.LIST, SHAPE_TYPE);
-        Assertions.assertThat(eo.get(SHAPE_TYPE)).isEqualTo(ShapeTypes.LIST);
+        eo.set(ShapeTypes.LIST, F_SHAPE_TYPE);
+        Assertions.assertThat(eo.get(F_SHAPE_TYPE)).isEqualTo(ShapeTypes.LIST);
     }
 
     @Test
@@ -97,7 +98,7 @@ public class ModelBeanTest implements IModelConfigCreateTests {
 
     @Test
     public void createModelBean_shapeType() {
-        ModelBean bean = createModelBean(SHAPE_TYPE, "STRING");
+        ModelBean bean = createModelBean(F_SHAPE_TYPE, "STRING");
         assertEquals(ShapeTypes.STRING, bean.getShapeType());
     }
 
@@ -107,14 +108,15 @@ public class ModelBeanTest implements IModelConfigCreateTests {
         assertEquals("FieldBeanInterfaces", bean.getSuperKey());
     }
 
-    @Test(expected = EoException.class)
+    @Test
     public void createModelBean_superKeyNull() {
         ModelBean bean = createModelBean(F_SUPER_KEY, null);
+        assertNull(bean.getSuperKey());
     }
 
     @Test
     public void createModelBean_packagePath() {
-        ModelBean bean = createModelBean(PACKAGE_PATH, "org.fluentcodes.projects.elasticobjects");
+        ModelBean bean = createModelBean(F_PACKAGE_PATH, "org.fluentcodes.projects.elasticobjects");
         assertEquals("org.fluentcodes.projects.elasticobjects", bean.getPackagePath());
     }
 

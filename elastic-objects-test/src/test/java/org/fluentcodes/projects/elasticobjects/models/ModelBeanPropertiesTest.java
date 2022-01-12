@@ -1,7 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
-import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
@@ -13,17 +12,13 @@ import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_NATURAL_KEYS;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_TABLE;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.CONFIG_MAPS_DEV;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createKeyValueJson;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class ModelBeanPropertiesTest {
 
     static ModelBeanProperties createModelBeanProperties(final String key, final Object value) {
-        EoRoot root = ObjectProvider.createEoWithClasses(ModelBeanProperties.class);
-        root.map(createKeyValueJson(key, value));
-        return (ModelBeanProperties)root.get();
+        return (ModelBeanProperties) ObjectProvider.createObject(ModelBeanProperties.class, value, key);
     }
 
     @Test

@@ -23,14 +23,11 @@ import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_OVERRIDE;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_FIELDS;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ABSTRACT;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_INTERFACES;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_MODEL_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_SUPER_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelInterface.SHAPE_TYPE;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.assertCreateLevel2Map;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.assertCreateLevel2Root;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createLevel2Json;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_INTERFACES;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_MODEL_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_SUPER_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_PACKAGE_PATH;
+import static org.fluentcodes.projects.elasticobjects.models.ModelInterface.F_SHAPE_TYPE;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelBean;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelBeanWithFieldKey;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelBeanWithFieldProperty;
@@ -100,7 +97,7 @@ public class ModelBeanDevTest {
     @Test
     public void createMapFromJson() {
         Map map = ObjectProviderDev.createMapFromJson(JSON);
-        assertEquals("org.fluentcodes.projects.elasticobjects.models", map.get(PACKAGE_PATH));
+        assertEquals("org.fluentcodes.projects.elasticobjects.models", map.get(F_PACKAGE_PATH));
     }
 
     @Test
@@ -183,22 +180,6 @@ public class ModelBeanDevTest {
     }
 
     @Test
-    public void createModelBeanJson_miscValues() {
-        String value = createLevel2Json(F_FIELDS, "fieldKey", "key", "value");
-        assertEquals("{\"fields\":{\"fieldKey\":{\"key\":\"value\"}}}", value);
-    }
-
-    @Test
-    public void assertCreateModelBeanRoot_miscValues() {
-        assertCreateLevel2Root(F_FIELDS, "fieldKey", "key", "value");
-    }
-
-    @Test
-    public void assertCreateModelBeanMap_miscValues() {
-        assertCreateLevel2Map(F_FIELDS, "fieldKey", "key", "value");
-    }
-
-    @Test
     public void createModelBeanWithFieldKey_module() {
         ModelBean bean = createModelBeanWithFieldKey("fieldKey", F_MODULE, "moduleValue");
         assertNotNull(bean.getFields());
@@ -229,7 +210,7 @@ public class ModelBeanDevTest {
 
     @Test
     public void testShapeType() {
-        ModelBean modelBean = createModelBean(SHAPE_TYPE, "STRING");
+        ModelBean modelBean = createModelBean(F_SHAPE_TYPE, "STRING");
         assertEquals(ShapeTypes.STRING, modelBean.getShapeType());
     }
 
@@ -241,7 +222,7 @@ public class ModelBeanDevTest {
 
     @Test
     public void testPackagePath() {
-        ModelBean modelBean = createModelBean(PACKAGE_PATH, "org.fluentcodes.projects.elasticobjects");
+        ModelBean modelBean = createModelBean(F_PACKAGE_PATH, "org.fluentcodes.projects.elasticobjects");
         assertEquals("org.fluentcodes.projects.elasticobjects", modelBean.getPackagePath());
     }
 

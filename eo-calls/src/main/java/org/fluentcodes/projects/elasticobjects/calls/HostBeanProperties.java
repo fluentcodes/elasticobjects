@@ -8,16 +8,16 @@ package org.fluentcodes.projects.elasticobjects.calls;
  * @modificationDate Thu Jan 14 12:17:41 CET 2021
  */
 public class HostBeanProperties implements HostPropertiesInterface {
-    public static final String DIALECT = "dialect";
-    public static final String DRIVER = "driver";
-    public static final String EXTENSION = "extension";
-    public static final String JNDI = "jndi";
-    public static final String PASSWORD = "password";
-    public static final String PORT = "port";
-    public static final String PROTOCOL = "protocol";
-    public static final String SCHEMA = "schema";
-    public static final String URL = "url";
-    public static final String USER = "user";
+    public static final String F_DIALECT = "dialect";
+    public static final String F_DRIVER = "driver";
+    public static final String F_EXTENSION = "extension";
+    public static final String F_JNDI = "jndi";
+    public static final String F_PASSWORD = "password";
+    public static final String F_PORT = "port";
+    public static final String F_PROTOCOL = "protocol";
+    public static final String F_SCHEMA = "schema";
+    public static final String F_URL = "url";
+    public static final String F_USER = "user";
 
     private String classPath;
     private String dialect;

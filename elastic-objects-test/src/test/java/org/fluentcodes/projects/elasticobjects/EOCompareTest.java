@@ -30,7 +30,7 @@ public class EOCompareTest {
     @Test
     public void Map_myString_value_AnObject_myString_value__compare__equals()  {
         final Map map = new HashMap();
-        map.put(AnObject.MY_STRING, "value");
+        map.put(AnObject.F_MY_STRING, "value");
         final EoRoot eo1 = ObjectProvider.createEo(map);
 
         final EoRoot eo2 = ObjectProvider.createEo(new AnObject().setMyString("value"));
@@ -42,7 +42,7 @@ public class EOCompareTest {
     @Test
     public void Map_myString_value_AnObject_myString_value2__compare__notquals()  {
         final Map map = new HashMap();
-        map.put(AnObject.MY_STRING, "value");
+        map.put(AnObject.F_MY_STRING, "value");
         final EoRoot eoMap = ObjectProvider.createEo(map);
 
         final EoRoot eoAnObject = ObjectProvider.createEo(new AnObject().setMyString("value2"));

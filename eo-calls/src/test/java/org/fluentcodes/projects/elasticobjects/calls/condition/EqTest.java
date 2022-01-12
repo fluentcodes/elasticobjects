@@ -17,14 +17,14 @@ public class EqTest {
 
     @Test
     public void testString_test__filter_eoString__true() {
-        Eq eq = new Eq(AnObject.MY_STRING, "test");
+        Eq eq = new Eq(AnObject.F_MY_STRING, "test");
         EoRoot eo = AndTest.TEST_STRING_DEV;
         Assertions.assertThat(eq.filter(eo)).isTrue();
     }
 
     @Test
     public void testString_test__filter_eoString__false() {
-        Eq eq = new Eq(AnObject.MY_STRING, "testOther");
+        Eq eq = new Eq(AnObject.F_MY_STRING, "testOther");
         EoRoot eo = AndTest.TEST_STRING_DEV;
         Assertions.assertThat(eq.filter(eo)).isFalse();
     }
@@ -49,10 +49,10 @@ public class EqTest {
 
     @Test
     public void testString_test__createQuery__expected() {
-        Eq eq = new Eq(AnObject.MY_STRING, "test");
-        Assert.assertEquals(AnObject.MY_STRING, eq.getKey());
+        Eq eq = new Eq(AnObject.F_MY_STRING, "test");
+        Assert.assertEquals(AnObject.F_MY_STRING, eq.getKey());
         Assert.assertEquals("test", eq.getValue());
-        Assert.assertEquals(AnObject.MY_STRING + "=:" + AnObject.MY_STRING + "_0 ", eq.createQuery(new HashMap<>()));
+        Assert.assertEquals(AnObject.F_MY_STRING + "=:" + AnObject.F_MY_STRING + "_0 ", eq.createQuery(new HashMap<>()));
     }
 
 }

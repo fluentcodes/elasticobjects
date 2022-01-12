@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 public class ModelBeanPropertiesDevTest {
 
     static ModelBeanProperties createModelBeanProperties(final String key, final Object value) {
-        EoRoot root = ObjectProviderDev.assertCreateKeyValueRoot(key, value);
+        EoRoot root = ObjectProviderDev.createRoot(value, key);
         return new ModelBeanProperties((Map) root.get());
     }
 

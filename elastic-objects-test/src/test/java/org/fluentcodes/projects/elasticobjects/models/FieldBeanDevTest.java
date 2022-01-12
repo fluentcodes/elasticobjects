@@ -6,17 +6,13 @@ import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDe
 import org.fluentcodes.projects.elasticobjects.xpect.XpectEoJunit4;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.*;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_DESCRIPTION;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FINAL;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_MODEL_KEYS;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ABSTRACT;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createBean;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

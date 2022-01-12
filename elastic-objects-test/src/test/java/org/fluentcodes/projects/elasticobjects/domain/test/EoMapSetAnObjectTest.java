@@ -20,7 +20,7 @@ public class EoMapSetAnObjectTest {
         AnObject bt = new AnObject()
                 .setMyString("value");
         eo.set(bt, "level0");
-        assertThat(eo.get("level0/" + AnObject.MY_STRING)).isEqualTo("value");
+        assertThat(eo.get("level0/" + AnObject.F_MY_STRING)).isEqualTo("value");
         assertThat(eo.getEo("level0").getModelClass()).isEqualTo(AnObject.class);
     }
 

@@ -13,14 +13,16 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_INTERFACES;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_MODEL_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_SUPER_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
 
 public class ModelBean extends ConfigBean implements ModelInterface, Comparable<ModelBean> {
-    private static final Logger LOG = LogManager.getLogger(ModelBean.class);
+    public static final String F_MODEL_KEY = "modelKey";
+    public static final String F_INTERFACES = "interfaces";
+    public static final String F_SUPER_KEY = "superKey";
+    public static final String F_PACKAGE_PATH = "packagePath";
     public static final String F_FIELDS = "fields";
+
+    private static final Logger LOG = LogManager.getLogger(ModelBean.class);
+
     private boolean resolved;
     private String modelKey;
     private String packagePath;
@@ -47,7 +49,7 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         this.properties = new ModelBeanProperties(new HashMap<>());
     }
 
-    public ModelBean(final Class modelClass, ShapeTypes shapeType) {
+    public ModelBean(final Class<?> modelClass, ShapeTypes shapeType) {
         this();
         setNaturalId(modelClass.getSimpleName());
         setModelKey(getNaturalId());
@@ -78,9 +80,9 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         setModelKey(
                 toString(valueMap.get(F_MODEL_KEY)));
         setPackagePath(
-                toString(valueMap.get(PACKAGE_PATH)));
+                toString(valueMap.get(F_PACKAGE_PATH)));
         setShapeType(
-                new ShapeTypeSerializerEnum<ShapeTypes>().asObject(ShapeTypes.class, valueMap.get(SHAPE_TYPE)));
+                new ShapeTypeSerializerEnum<ShapeTypes>().asObject(ShapeTypes.class, valueMap.get(F_SHAPE_TYPE)));
         setSuperKey(
                 toString(valueMap.get(F_SUPER_KEY)));
 
@@ -390,5 +392,4 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
     public int compareTo(ModelBean modelBean) {
         return getClassName().compareTo(modelBean.getClassName());
     }
-
 }

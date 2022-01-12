@@ -9,7 +9,7 @@ import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCrea
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_PACKAGE_PATH;
 
 /**
  * Created by werner.diwischek on 11.03.18.
@@ -45,7 +45,7 @@ public class StringReplaceCallTest implements IModelConfigCreateTests {
         eo.setSerializationType(JSONSerializationType.STANDARD);
         eo.map(ObjectProvider.CONFIG_MAPS.findModel(StringReplaceCall.class));
         Assertions.assertThat(eo.getLog()).isEmpty();
-        String content = new StringReplaceCall("\\.", "/").execute(eo.getEo(PACKAGE_PATH));
+        String content = new StringReplaceCall("\\.", "/").execute(eo.getEo(F_PACKAGE_PATH));
         Assertions.assertThat(content).isEqualTo("org/fluentcodes/projects/elasticobjects/calls/values");
     }
 
@@ -62,7 +62,7 @@ public class StringReplaceCallTest implements IModelConfigCreateTests {
                 "\"replaceBy\"=\"/\" }" +
                 "}." +
                 " *")
-                .execute(eo.getEo(PACKAGE_PATH));
+                .execute(eo.getEo(F_PACKAGE_PATH));
         Assertions.assertThat(content).isEqualTo("* org/fluentcodes/projects/elasticobjects/calls/values *");
     }
 }

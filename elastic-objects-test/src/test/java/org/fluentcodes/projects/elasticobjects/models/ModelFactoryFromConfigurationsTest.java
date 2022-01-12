@@ -36,7 +36,7 @@ public class ModelFactoryFromConfigurationsTest {
         Map<String, ModelBean> beanMap = new ModelFactoryFromConfigurations(ObjectProvider.CONFIG_MAPS).createBeanMap();
         ModelBean modelBean = beanMap.get(Config.class.getSimpleName());
         Assertions.assertThat( modelBean
-                .getFieldBean("moduleScope").getModelKeys())
+                .getField("moduleScope").getModelKeys())
                 .isEqualTo(String.class.getSimpleName());
     }
 }

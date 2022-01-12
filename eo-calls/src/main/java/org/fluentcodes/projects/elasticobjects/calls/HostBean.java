@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class HostBean extends PermissionBean implements HostInterface{
 
-    private static final String F_HOST_NAME = "hostName";
+    static final String F_HOST_NAME = "hostName";
     private String hostName;
     private HostBeanProperties properties;
     public HostBean() {

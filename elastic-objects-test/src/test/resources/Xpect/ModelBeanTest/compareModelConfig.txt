@@ -1,4 +1,7 @@
 {
+  "author": "Werner Diwischek",
+  "description": "A bean container class for Model values",
+  "expose": "WEB",
   "fields": {
     "author": {
       "description": "The author of the class.",
@@ -426,20 +429,17 @@
       }
     }
   },
-  "properties": {
-    "abstract": false,
-    "create": true,
-    "dbAnnotated": false,
-    "final": false
-  },
-  "author": "Werner Diwischek",
-  "description": "A bean container class for Model values",
-  "expose": "WEB",
   "interfaces": "ModelInterface",
   "modelKey": "ModelBean",
   "module": "elastic-objects",
   "moduleScope": "main",
   "naturalId": "ModelBean",
   "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+  "properties": {
+    "abstract": false,
+    "create": true,
+    "dbAnnotated": false,
+    "final": false
+  },
   "superKey": "ConfigBean"
 }

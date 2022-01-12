@@ -81,7 +81,7 @@ public class TemplateContentExampleTest {
     public void eo_DataJson__parse_Template_WrongPathRelativePath__notReplaced() {
         EoRoot eo = ObjectProvider.createEo(DATA);
         String value = new Parser("-.{0/header}.-").parse(eo.getEo("1"));
-        Assertions.assertThat(value).isEqualTo("-!!No value add for fieldName=0/header!!-");
+        Assertions.assertThat(value).isEqualTo("-!!0/headerCould not move to path '0' because key '0' does not exist on '/1'.!!-");
     }
 
     @Test

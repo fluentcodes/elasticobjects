@@ -167,7 +167,7 @@ public class ModelBeanDevTest {
     public void new_empty__addField_test__getFieldBean_not_null() {
         ModelBean modelBean = new ModelBean();
         modelBean.addField("test");
-        Assertions.assertThat(modelBean.getFieldBean("test")).isNotNull();
+        Assertions.assertThat(modelBean.getField("test")).isNotNull();
     }
 
     @Test
@@ -202,16 +202,16 @@ public class ModelBeanDevTest {
     public void createModelBeanWithFieldKey_module() {
         ModelBean bean = createModelBeanWithFieldKey("fieldKey", F_MODULE, "moduleValue");
         assertNotNull(bean.getFields());
-        assertNotNull(bean.getFieldBean("fieldKey"));
-        assertEquals("moduleValue", bean.getFieldBean("fieldKey").getModule());
+        assertNotNull(bean.getField("fieldKey"));
+        assertEquals("moduleValue", bean.getField("fieldKey").getModule());
     }
 
     @Test
     public void createModelBeanWithFieldProperty_module() {
         ModelBean bean = createModelBeanWithFieldProperty("fieldKey", F_FINAL, true);
         assertNotNull(bean.getFields());
-        assertNotNull(bean.getFieldBean("fieldKey"));
-        assertTrue(bean.getFieldBean("fieldKey").getProperties().getFinal());
+        assertNotNull(bean.getField("fieldKey"));
+        assertTrue(bean.getField("fieldKey").getProperties().getFinal());
     }
 
     @Test

@@ -1,4 +1,7 @@
 {
+  "author": "Werner Diwischek",
+  "description": "Model config object.",
+  "expose": "NONE",
   "fields": {
     "author": {
       "description": "The author of the class.",
@@ -376,19 +379,16 @@
       }
     }
   },
-  "properties": {
-    "create": false,
-    "dbAnnotated": false,
-    "final": true
-  },
-  "author": "Werner Diwischek",
-  "description": "Model config object.",
-  "expose": "NONE",
   "interfaces": "ModelInterface",
   "modelKey": "ModelConfig",
   "module": "elastic-objects",
   "moduleScope": "main",
   "naturalId": "ModelConfig",
   "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+  "properties": {
+    "create": false,
+    "dbAnnotated": false,
+    "final": true
+  },
   "superKey": "Config"
 }

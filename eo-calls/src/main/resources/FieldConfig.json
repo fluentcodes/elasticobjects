@@ -213,7 +213,7 @@
     "module": "eo-calls",
     "moduleScope": "main",
     "modelKeys": "PermissionsForConfig",
-    "description": "Role permission wraüüer.",
+    "description": "Role permission wrapper config.",
     "expose": "WEB",
     "fieldKey": "permissions"
   },
@@ -221,7 +221,7 @@
     "module": "eo-calls",
     "moduleScope": "main",
     "modelKeys": "PermissionsForBean",
-    "description": "Role permission wraüüer.",
+    "description": "Role permission wrapper bean.",
     "expose": "WEB",
     "fieldKey": "permissions"
   },

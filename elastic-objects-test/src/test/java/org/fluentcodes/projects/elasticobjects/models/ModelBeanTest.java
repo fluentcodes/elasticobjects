@@ -32,7 +32,6 @@ import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectPro
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createModelBeanWithProperty;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 public class ModelBeanTest implements IModelConfigCreateTests {
@@ -64,16 +63,16 @@ public class ModelBeanTest implements IModelConfigCreateTests {
     public void createModelBeanWithFieldKey_module() {
         ModelBean bean = createModelBeanWithFieldKey("fieldKey", F_MODULE, "moduleValue");
         assertNotNull(bean.getFields());
-        assertNotNull(bean.getFieldBean("fieldKey"));
-        assertEquals("moduleValue", bean.getFieldBean("fieldKey").getModule());
+        assertNotNull(bean.getField("fieldKey"));
+        assertEquals("moduleValue", bean.getField("fieldKey").getModule());
     }
 
     @Test
     public void createModelBeanWithFieldProperty_final() {
         ModelBean bean = createModelBeanWithFieldProperty(F_MODEL_KEY, F_FINAL, true);
         assertNotNull(bean.getFields());
-        assertNotNull(bean.getFieldBean(F_MODEL_KEY));
-        assertTrue(bean.getFieldBean(F_MODEL_KEY).getProperties().getFinal());
+        assertNotNull(bean.getField(F_MODEL_KEY));
+        assertTrue(bean.getField(F_MODEL_KEY).getProperties().getFinal());
     }
 
     @Test
@@ -92,55 +91,55 @@ public class ModelBeanTest implements IModelConfigCreateTests {
 
     @Test
     public void createModelBean_modelKey() {
-        ModelBean modelBean = createModelBean(F_MODEL_KEY, "FieldBeanInterfaces");
-        assertEquals("FieldBeanInterfaces", modelBean.getModelKey());
+        ModelBean bean = createModelBean(F_MODEL_KEY, "FieldBeanInterfaces");
+        assertEquals("FieldBeanInterfaces", bean.getModelKey());
     }
 
     @Test
     public void createModelBean_shapeType() {
-        ModelBean modelBean = createModelBean(SHAPE_TYPE, "STRING");
-        assertEquals(ShapeTypes.STRING, modelBean.getShapeType());
+        ModelBean bean = createModelBean(SHAPE_TYPE, "STRING");
+        assertEquals(ShapeTypes.STRING, bean.getShapeType());
     }
 
     @Test
     public void createModelBean_superKey() {
-        ModelBean modelBean = createModelBean(F_SUPER_KEY, "FieldBeanInterfaces");
-        assertEquals("FieldBeanInterfaces", modelBean.getSuperKey());
+        ModelBean bean = createModelBean(F_SUPER_KEY, "FieldBeanInterfaces");
+        assertEquals("FieldBeanInterfaces", bean.getSuperKey());
     }
 
     @Test(expected = EoException.class)
     public void createModelBean_superKeyNull() {
-        ModelBean modelBean = createModelBean(F_SUPER_KEY, null);
+        ModelBean bean = createModelBean(F_SUPER_KEY, null);
     }
 
     @Test
     public void createModelBean_packagePath() {
-        ModelBean modelBean = createModelBean(PACKAGE_PATH, "org.fluentcodes.projects.elasticobjects");
-        assertEquals("org.fluentcodes.projects.elasticobjects", modelBean.getPackagePath());
+        ModelBean bean = createModelBean(PACKAGE_PATH, "org.fluentcodes.projects.elasticobjects");
+        assertEquals("org.fluentcodes.projects.elasticobjects", bean.getPackagePath());
     }
 
     @Test
     public void createModelBean_configModelKey() {
-        ModelBean modelBean = createModelBean(F_CONFIG_MODEL_KEY, "CONFIG");
-        assertEquals("CONFIG", modelBean.getConfigModelKey());
+        ModelBean bean = createModelBean(F_CONFIG_MODEL_KEY, "CONFIG");
+        assertEquals("CONFIG", bean.getConfigModelKey());
     }
 
     @Test
     public void createModelBean_expose() {
-        ModelBean modelBean = createModelBean(F_EXPOSE, "WEB");
-        assertEquals(Expose.WEB, modelBean.getExpose());
+        ModelBean bean = createModelBean(F_EXPOSE, "WEB");
+        assertEquals(Expose.WEB, bean.getExpose());
     }
 
     @Test
     public void createModelBean_moduleScope() {
-        ModelBean modelBean = createModelBean(F_MODULE_SCOPE, "MODULE_SCOPE");
-        assertEquals("MODULE_SCOPE", modelBean.getModuleScope());
+        ModelBean bean = createModelBean(F_MODULE_SCOPE, "MODULE_SCOPE");
+        assertEquals("MODULE_SCOPE", bean.getModuleScope());
     }
 
     @Test
     public void createModelBean_module() {
-        ModelBean modelBean = createModelBean(F_MODULE, "MODULE");
-        assertEquals("MODULE", modelBean.getModule());
+        ModelBean bean = createModelBean(F_MODULE, "MODULE");
+        assertEquals("MODULE", bean.getModule());
     }
 
     @Test
@@ -148,32 +147,32 @@ public class ModelBeanTest implements IModelConfigCreateTests {
         List result = new ArrayList();
         result.add(Scope.DEV);
         result.add(Scope.PROD);
-        ModelBean modelBean = createModelBean(F_SCOPE, "[\\\"DEV\\\",\\\"PROD\\\"]");
-        assertEquals(result, modelBean.getScope());
+        ModelBean bean = createModelBean(F_SCOPE, "[\\\"DEV\\\",\\\"PROD\\\"]");
+        assertEquals(result, bean.getScope());
     }
 
     @Test
     public void createModelBean_author() {
-        ModelBean modelBean = createModelBean(F_AUTHOR, "Author");
-        assertEquals("Author", modelBean.getAuthor());
+        ModelBean bean = createModelBean(F_AUTHOR, "Author");
+        assertEquals("Author", bean.getAuthor());
     }
 
     @Test
     public void createModelBean_creationDate() {
-        ModelBean modelBean = createModelBean(F_CREATION_DATE, 1L);
-        assertEquals(new Date(1L), modelBean.getCreationDate());
+        ModelBean bean = createModelBean(F_CREATION_DATE, 1L);
+        assertEquals(new Date(1L), bean.getCreationDate());
     }
 
     @Test
     public void createModelBean_id() {
-        ModelBean modelBean = createModelBean(F_ID, Long.valueOf(1L));
-        assertEquals(Long.valueOf(1L), modelBean.getId());
+        ModelBean bean = createModelBean(F_ID, Long.valueOf(1L));
+        assertEquals(Long.valueOf(1L), bean.getId());
     }
 
     @Test
     public void createModelBean_naturalId() {
-        ModelBean modelBean = createModelBean(F_NATURAL_ID, "natural");
-        assertEquals("natural", modelBean.getNaturalId());
+        ModelBean bean = createModelBean(F_NATURAL_ID, "natural");
+        assertEquals("natural", bean.getNaturalId());
     }
 
 }

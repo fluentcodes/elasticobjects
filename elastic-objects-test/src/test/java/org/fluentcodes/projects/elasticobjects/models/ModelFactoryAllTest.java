@@ -25,8 +25,8 @@ public class ModelFactoryAllTest {
     public void TEST_modelBeanMapResolved__find_ModelBean__notNull() {
         ModelBean bean = BEAN_MAP
                 .get(ModelBean.class.getSimpleName());
-        Assertions.assertThat(bean.getFieldBean(PACKAGE_PATH)).isNotNull();
-        Assertions.assertThat(bean.getFieldBean(F_MODULE_SCOPE)).isNull();
+        Assertions.assertThat(bean.getField(PACKAGE_PATH)).isNotNull();
+        Assertions.assertThat(bean.getField(F_MODULE_SCOPE)).isNull();
     }
 
     @Test

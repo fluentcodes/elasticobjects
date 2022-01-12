@@ -10,10 +10,6 @@ import java.util.Map;
 
 /**
  * A config container for permissions.
- *
- * @author Werner Diwischek
- * @creationDate Wed Dec 16 00:00:00 CET 2020
- * @modificationDate Fri Jan 07 00:00:00 CET 2022
  */
 public class PermissionsForConfig {
     public static final String SUPER_ADMIN = "superadmin";

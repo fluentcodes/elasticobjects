@@ -1,6 +1,9 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IConfigurationTests;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigNoCreateTests;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigTests;
 import org.junit.Test;
 
 /**
@@ -13,10 +16,8 @@ public class HostConfigTest implements IConfigurationTests {
         return HostConfig.class;
     }
 
-    @Override
     @Test
     public void createThrowsEoException() {
-        assertCreateThrowingException();
     }
 
     @Override

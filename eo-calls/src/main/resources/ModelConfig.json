@@ -15,7 +15,7 @@
   "CallContent": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "content"
     ],
     "expose": "NONE",
@@ -32,7 +32,7 @@
   "CallImpl": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "condition": {
         "override": true
       },
@@ -94,7 +94,7 @@
   "ConfigAsFlatListCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "configType",
       "fieldKeys"
     ],
@@ -112,7 +112,7 @@
   "ConfigCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "module",
       "moduleScope"
     ],
@@ -143,7 +143,7 @@
   "ConfigKeysCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "configType",
       "configFilter",
       "expose",
@@ -163,7 +163,7 @@
   "ConfigOpenApiCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "module",
       "moduleScope",
       "configFilter",
@@ -253,7 +253,7 @@
   "CsvSimpleReadCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "listParams": {
         "override": false
       }
@@ -300,7 +300,7 @@
   "DirectoryListReadCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "absolute"
     ],
     "superKey": "FileReadCall",
@@ -316,7 +316,7 @@
   "DirectoryMapReadCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "toReplace",
       "replaceBy",
       "fileEnding"
@@ -334,7 +334,7 @@
   "DirectoryReadCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "fileName"
     ],
     "interfaces": "ConfigDirectoryReadCommand",
@@ -351,7 +351,7 @@
   "DirectoryWriteCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "fileName"
     ],
     "superKey": "FileWriteCall",
@@ -381,7 +381,7 @@
   "FileBean": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "cached, fileName, filePath, hostConfigKey, FileBean.properties",
+    "fields": "cached, fileName, filePath, hostConfigKey, FileBean.properties",
     "interfaces": "FileInterface",
     "superKey": "PermissionBean",
     "expose": "NONE",
@@ -402,7 +402,7 @@
   "FileBeanProperties": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "colKeys": {},
       "fieldDelimiter": {},
       "filter": {},
@@ -426,7 +426,7 @@
   "FileCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "fileConfigKey"
     ],
     "superKey": "HostCall",
@@ -443,7 +443,7 @@
   "FileConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "cached": {
         "final": true
       },
@@ -475,7 +475,7 @@
   "FileConfigProperties": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "colKeys": {
         "final": true
       },
@@ -515,7 +515,7 @@
   "FileInterface": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "cached, fileName, filePath, hostConfigKey",
+    "fields": "cached, fileName, filePath, hostConfigKey",
     "expose": "NONE",
     "description": "Access methods for field properties map. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
@@ -555,7 +555,7 @@
   "FileReadWriteCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "sourceFileConfigKey",
       "targetFileConfigKey",
       "compare"
@@ -574,7 +574,7 @@
   "FileWriteCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "compare": {
         "override": false
       },
@@ -596,7 +596,7 @@
   "HostBean": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "hostName, HostBean.properties",
+    "fields": "hostName, HostBean.properties",
     "interfaces": "HostInterface",
     "superKey": "PermissionBean",
     "expose": "WEB",
@@ -612,7 +612,7 @@
   "HostBeanProperties": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "classPath, dialect, driver, extension, jndi, port, protocol, password, schema, user, url",
+    "fields": "classPath, dialect, driver, extension, jndi, port, protocol, password, schema, user, url",
     "interfaces": "HostPropertiesInterface",
     "expose": "WEB",
     "description": "A bean container class for Host values",
@@ -627,7 +627,7 @@
   "HostCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "hostConfigKey"
     ],
     "interfaces": "Call",
@@ -645,7 +645,7 @@
   "HostConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "hostName": {"final": true},
       "HostConfig.properties": {"final": true}
     },
@@ -656,15 +656,15 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "HostConfig",
     "properties": {
-      "create": false,
-      "final": true
-    },
+      "create": true,
+      "defaultImplementation": "TreeMap",
+      "final": true},
     "creationDate": 1539727200000
   },
   "HostConfigProperties": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "classPath": {"final": true},
       "dialect": {"final": true},
       "driver": {"final": true},
@@ -683,7 +683,8 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "HostConfigProperties",
     "properties": {
-      "create": false
+      "create": true,
+      "defaultImplementation": "TreeMap"
     },
     "creationDate": 1539727200000
   },
@@ -715,7 +716,7 @@
   "JsonWriteCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "serializationType",
       "spacer"
     ],
@@ -759,7 +760,7 @@
   "ListParamsBean": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "colKeys": {
         "override": false
       },
@@ -804,7 +805,7 @@
   "PermissionBean": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": "PermissionBean.permissions",
+    "fields": "PermissionBean.permissions",
     "superKey": "ConfigBean",
     "expose": "NONE",
     "description": "Container Bean for setting permission config.",
@@ -819,14 +820,15 @@
   "PermissionConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {"PermissionConfig.permissions": {"final": true}},
+    "fields": {"PermissionConfig.permissions": {"final": true}},
     "superKey": "Config",
     "expose": "NONE",
     "description": "Implementation for resources with permission method ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "PermissionConfig",
     "properties": {
-      "create": false
+      "create": true,
+      "defaultImplementation": "TreeMap"
     },
     "shapeType": "CONFIG",
     "creationDate": 1608073200000
@@ -834,7 +836,7 @@
   "PermissionsForConfig": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "createRoles": {"final": true},
       "deleteRoles": {"final": true},
       "executeRoles": {"final": true},
@@ -847,7 +849,8 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "PermissionsForConfig",
     "properties": {
-      "create": false
+      "create": true,
+      "defaultImplementation": "TreeMap"
     },
     "shapeType": "CONFIG",
     "creationDate": 1608073200000
@@ -855,7 +858,7 @@
   "PermissionsForBean": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "createRoles": {},
       "deleteRoles": {},
       "executeRoles": {},
@@ -960,7 +963,7 @@
   "StringReplaceCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "toReplace",
       "replaceBy",
       "content"
@@ -1035,7 +1038,7 @@
   "TemplateCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "content": {
         "override": true
       }
@@ -1093,7 +1096,7 @@
   "ValueCall": {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "content": {
         "override": true
       }

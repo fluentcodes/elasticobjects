@@ -16,7 +16,7 @@
   "GithubLinkCall": {
     "module": "example-springboot",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "configKey",
       "configType"
     ],
@@ -33,7 +33,7 @@
   "TheGreetingCall": {
     "module": "example-springboot",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "greeting"
     ],
     "interfaces": "SimpleCommand",

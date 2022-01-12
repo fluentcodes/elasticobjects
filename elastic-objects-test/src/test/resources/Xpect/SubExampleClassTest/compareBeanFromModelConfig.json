@@ -2,33 +2,11 @@
   "_rootmodel": "ModelBean",
   "configModelKey": "ModelConfigObject",
   "fields": {
-    "(FieldBean)SuperExampleClass.id": {
+    "(FieldBean)id": {
       "configModelKey": "FieldConfig",
       "fieldKey": "id",
       "modelKeys": "Long",
       "naturalId": "SuperExampleClass.id",
-      "(FieldBeanProperties)properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "(FieldBean)SuperExampleClass.subClass": {
-      "configModelKey": "FieldConfig",
-      "fieldKey": "subClass",
-      "modelKeys": "FieldExampleClass",
-      "naturalId": "SuperExampleClass.subClass",
       "(FieldBeanProperties)properties": {
         "default": false,
         "final": false,
@@ -51,6 +29,28 @@
       "fieldKey": "name",
       "modelKeys": "String",
       "naturalId": "SubExampleClass.name"
+    },
+    "(FieldBean)subClass": {
+      "configModelKey": "FieldConfig",
+      "fieldKey": "subClass",
+      "modelKeys": "FieldExampleClass",
+      "naturalId": "SuperExampleClass.subClass",
+      "(FieldBeanProperties)properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
     }
   },
   "modelKey": "SubExampleClass",

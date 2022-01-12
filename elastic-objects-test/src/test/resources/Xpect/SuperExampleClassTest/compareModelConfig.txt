@@ -11,10 +11,10 @@
       "naturalId": "SuperExampleClass.subClass"
     }
   },
-  "properties": {
-    "create": true
-  },
   "modelKey": "SuperExampleClass",
   "naturalId": "SuperExampleClass",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test"
+  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
+  "properties": {
+    "create": true
+  }
 }

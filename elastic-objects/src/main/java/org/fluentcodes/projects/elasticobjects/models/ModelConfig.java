@@ -55,7 +55,7 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         this.fields = new TreeMap<>();
         this.interfacesMap = new LinkedHashMap<>();
 
-        if (bean.hasFieldBeans()) {
+        if (bean.hasFields()) {
             for (Map.Entry<String, FieldBean> entry: bean.getFields().entrySet()) {
                 fields.put(entry.getKey(), new FieldConfig(this, entry.getValue()));
             }

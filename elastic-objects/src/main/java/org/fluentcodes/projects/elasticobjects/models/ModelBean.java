@@ -15,8 +15,8 @@ import java.util.TreeSet;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_INTERFACES;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_MODEL_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
 import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.F_SUPER_KEY;
+import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
 
 public class ModelBean extends ConfigBean implements ModelInterface, Comparable<ModelBean> {
     private static final Logger LOG = LogManager.getLogger(ModelBean.class);
@@ -84,10 +84,9 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         setSuperKey(
                 toString(valueMap.get(F_SUPER_KEY)));
 
-        if(valueMap.containsKey(F_PROPERTIES) && valueMap.get(F_PROPERTIES) != null) {
-            this.properties = new ModelBeanProperties((Map<String, Object>)valueMap.get(F_PROPERTIES));
-        }
-        else {
+        if (valueMap.containsKey(F_PROPERTIES) && valueMap.get(F_PROPERTIES) != null) {
+            this.properties = new ModelBeanProperties((Map<String, Object>) valueMap.get(F_PROPERTIES));
+        } else {
             this.properties = new ModelBeanProperties(new HashMap<>());
         }
 
@@ -146,22 +145,8 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         addField(new FieldBean(fieldKey));
     }
 
-    protected void addField(final FieldConfig fieldConfig) {
-        fields.put(fieldConfig.getNaturalId(), new FieldBean(fieldConfig));
-    }
-
-    protected void addField(final String fieldKey, final Map<String, Object> fieldMap) {
-        addField(new FieldBean(fieldKey, fieldMap));
-    }
-
     protected void addField(final FieldBean fieldBean) {
         fields.put(fieldBean.getNaturalId(), fieldBean);
-    }
-
-    protected void setFieldMap(final Map fieldConfigMap) {
-        for (Object key : fieldConfigMap.keySet()) {
-            addField((String) key, (Map<String, Object>) fieldConfigMap.get(key));
-        }
     }
 
     public Map<String, FieldBean> createFields(final Map<String, Object> fields) {
@@ -174,7 +159,8 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
                 Map<String, Object> fieldEntryMap = (Map<String, Object>) entry.getValue();
                 fieldEntryMap.put(F_FIELD_KEY, entry.getKey().replaceAll(".*\\.", ""));
                 fieldEntryMap.put(F_NATURAL_ID, entry.getKey());
-                fieldMap.put((String) entry.getKey(), new FieldBean(fieldEntryMap));
+                FieldBean bean = new FieldBean(fieldEntryMap);
+                fieldMap.put(bean.getFieldKey(), bean);
             } catch (Exception e) {
                 throw new EoException("Problem casting field value " + entry.getKey());
             }
@@ -188,7 +174,8 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
             return fieldMap;
         }
         for (String key : fields) {
-            fieldMap.put(key, new FieldBean(key));
+            FieldBean bean = new FieldBean(key);
+            fieldMap.put(bean.getFieldKey(), bean);
         }
         return fieldMap;
     }
@@ -200,7 +187,8 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         }
         String[] fieldKeys = fields.split(",\\s*");
         for (String key : fieldKeys) {
-            fieldMap.put(key, new FieldBean(key));
+            FieldBean bean = new FieldBean(key);
+            fieldMap.put(bean.getFieldKey(), bean);
         }
         return fieldMap;
     }
@@ -266,11 +254,11 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         return fields;
     }
 
-    public boolean hasFieldBeans() {
+    public boolean hasFields() {
         return fields != null && !fields.isEmpty();
     }
 
-    public FieldBean getFieldBean(final String fieldKey) {
+    public FieldBean getField(final String fieldKey) {
         return fields.get(fieldKey);
     }
 
@@ -302,10 +290,10 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
                 continue;
             }
             FieldBean fieldBean = entry.getValue();
-            if (!fieldBeanMap.containsKey(entry.getKey())) {
+            if (!fieldBeanMap.containsKey(fieldBean.getNaturalId())) {
                 throw new EoInternalException("Could not get field definition for '" + fieldBean.getNaturalId() + "'.");
             }
-            FieldBean fieldBeanFromMap = fieldBeanMap.get(entry.getKey() );
+            FieldBean fieldBeanFromMap = fieldBeanMap.get(fieldBean.getNaturalId());
 
             fieldBean.merge(fieldBeanFromMap);
             fieldBean.setParentModel(this);
@@ -385,7 +373,7 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
             }
             FieldBean fieldBeanLocal = new FieldBean(fieldBean);
             fieldBeanLocal.getProperties().setSuper(true);
-            subFieldBeans.put(fieldBean.getNaturalId(), fieldBeanLocal);
+            subFieldBeans.put(fieldBean.getFieldKey(), fieldBeanLocal);
         }
     }
 

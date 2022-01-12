@@ -1,0 +1,18 @@
+{
+  "_rootmodel": "ModelBean",
+  "author": "Werner Diwischek",
+  "configModelKey": "ModelConfigScalar",
+  "description": "Enum for templates to keep the template directives in the template result as a comment. ",
+  "(Expose)expose": "NONE",
+  "modelKey": "KeepCalls",
+  "module": "elastic-objects",
+  "moduleScope": "main",
+  "naturalId": "KeepCalls",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.calls.templates",
+  "(ModelBeanProperties)properties": {
+    "abstract": false,
+    "create": false,
+    "dbAnnotated": false,
+    "final": false
+  }
+}

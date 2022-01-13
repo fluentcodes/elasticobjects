@@ -35,4 +35,9 @@ public class ShapeTypeSerializerBytes implements ShapeTypeSerializerInterface<by
         return Base64.getDecoder().decode(object.getBytes());
     }
 
+    @Override
+    public boolean isValid(final Object object, final FieldConfigProperties properties) {
+        return true;
+    }
+
 }

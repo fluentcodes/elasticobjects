@@ -3,7 +3,7 @@
   "configModelKey": "ModelConfigObject",
   "fields": {
     "(FieldBean)value": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "fieldKey": "value",
       "modelKeys": "String",
       "naturalId": "FieldExampleClass.value"

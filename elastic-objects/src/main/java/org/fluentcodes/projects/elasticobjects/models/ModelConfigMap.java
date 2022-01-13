@@ -20,12 +20,19 @@ public class ModelConfigMap extends ModelConfig {
 
     public ModelConfigMap(ModelBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
+        if (!bean.hasFields()) {
+            return;
+        }
+        for (Map.Entry<String, FieldBean> entry : bean.getFields().entrySet()) {
+            addField(entry.getKey(), new FieldConfigMap(this, entry.getValue()));
+        }
     }
 
     @Override
-    public FieldConfig getField(final String fieldKey) {
-        return null; //TODO
+    public Set<String> getFieldKeys() {
+        return getFields().keySet();
     }
+
 
     @Override
     public Set<String> keys(Object object)  {
@@ -49,8 +56,17 @@ public class ModelConfigMap extends ModelConfig {
         return counter;
     }
 
-    public boolean set(String fieldKey, Object object, Object value)  {
-        ((Map) object).put(fieldKey, value);
+    public boolean set(String fieldKey, Object parent, Object value)  {
+        if (hasFields()) {
+            if (hasField(fieldKey)) {
+                getField(fieldKey).set(parent, value);
+                return true;
+            }
+            else {
+                throw new EoException("No field defined for '" + fieldKey + "'.");
+            }
+        }
+        ((Map) parent).put(fieldKey, value);
         return true;
     }
 
@@ -60,9 +76,16 @@ public class ModelConfigMap extends ModelConfig {
      * @param fieldKey
      * @param parent
      * @return
-     * @
      */
     public Object get(String fieldKey, Object parent)  {
+        if (hasFields()) {
+            if (hasField(fieldKey)) {
+                return getField(fieldKey).get(parent);
+            }
+            else {
+                throw new EoException("No field defined for '" + fieldKey + "'.");
+            }
+        }
         return ((Map) parent).get(fieldKey);
     }
 

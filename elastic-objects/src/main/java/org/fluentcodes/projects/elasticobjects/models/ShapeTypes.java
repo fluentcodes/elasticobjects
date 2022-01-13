@@ -30,12 +30,15 @@ public enum ShapeTypes {
     CONFIG();
     private Class<? extends ModelConfig> modelConfig;
     private ShapeTypeSerializerInterface serializer;
+
     ShapeTypes() {
         this(ModelConfigObject.class, new ShapeTypeSerializer());
     }
+
     ShapeTypes(Class<? extends ModelConfig> modelConfig) {
         this(modelConfig, new ShapeTypeSerializer());
     }
+
     ShapeTypes(Class<? extends ModelConfig> modelConfig, ShapeTypeSerializerInterface serializer) {
         this.modelConfig = modelConfig;
         this.serializer = serializer;
@@ -48,22 +51,31 @@ public enum ShapeTypes {
     public boolean hasModelConfig() {
         return modelConfig != null;
     }
+
     public String getModelConfigKey() {
         return modelConfig.getSimpleName();
+    }
+
+    public ShapeTypeSerializerInterface<Object> getShapeTypeSerializer() {
+        return serializer;
     }
 
     public String asString(Object object) {
         return serializer.asString(object);
     }
+
     public boolean compare(Object left, Object right) {
         return serializer.compare(left, right);
     }
+
     public String asJson(Object object) {
         return serializer.asJson(object);
     }
+
     public Object asObject(Object object) {
         return serializer.asObject(object);
     }
+
     public Object asObject(Class<?> enumClass, Object object) {
         if (object == null) {
             return null;
@@ -71,7 +83,7 @@ public enum ShapeTypes {
         if (object instanceof String) {
             return ((ShapeTypeSerializerEnum) serializer).asObject(enumClass, (String) object);
         }
-        if (object.getClass() ==  enumClass) {
+        if (object.getClass() == enumClass) {
             return object;
         }
         throw new EoException("Could not map enum for " + object.getClass());

@@ -117,12 +117,8 @@ public class Models {
         ) {
             childModels = new Models(getConfigMaps());
         }
-        if (value == null) {
-            if (childModels.isCreate()) {
-                value = childModels.create();
-            }
-        } else if (childModels.isScalar() && value.getClass() != childModels.getModelClass()) {
-            value = childModels.asObject(value);
+        if (value == null && childModels.isCreate()) {
+            value = childModels.create();
         }
         String key = deriveFieldKey(parent, pathElement);
         if (value instanceof Call) {

@@ -176,16 +176,13 @@
     "moduleScope": "main",
     "fields": {
       "fieldKey": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "modelKeys": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "FieldConfig.properties": {
-        "final": true,
-        "property": false
+        "final": true
       }
     },
     "interfaces": "FieldInterface",
@@ -194,6 +191,40 @@
     "description": "Immutabel EO field configuration will be initalized by @FieldBean object.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldConfig",
+    "properties": {
+      "defaultImplementation": "TreeMap",
+      "create": true,
+      "final": true,
+      "override": true
+    },
+    "author": "Werner Diwischek",
+    "creationDate": 1539727200000
+  },
+  "FieldConfigObject": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "superKey": "FieldConfig",
+    "expose": "NONE",
+    "description": "Immutable EO field configuration for object access with setter and getter will be initalized by @FieldBean object.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+    "modelKey": "FieldConfigObject",
+    "properties": {
+      "defaultImplementation": "TreeMap",
+      "create": true,
+      "final": true,
+      "override": true
+    },
+    "author": "Werner Diwischek",
+    "creationDate": 1539727200000
+  },
+  "FieldConfigMap": {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "superKey": "FieldConfig",
+    "expose": "NONE",
+    "description": "Immutable EO field configuration for map access methods will be initalized by @FieldBean object.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.models",
+    "modelKey": "FieldConfigMap",
     "properties": {
       "defaultImplementation": "TreeMap",
       "create": true,

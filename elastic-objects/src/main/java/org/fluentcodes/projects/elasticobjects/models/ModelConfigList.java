@@ -27,7 +27,7 @@ public class ModelConfigList extends ModelConfig {
     }
 
     @Override
-    public FieldConfig getField(final String fieldName) {
+    public FieldConfig getField(final String fieldKey) {
         return null; //TODO
     }
 

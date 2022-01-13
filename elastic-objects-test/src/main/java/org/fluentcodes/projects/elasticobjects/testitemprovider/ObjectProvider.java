@@ -39,6 +39,10 @@ public class ObjectProvider {
         return CONFIG_MAPS.findModel(eoClass);
     }
 
+    public static final ModelConfig findModel(final String modelName) {
+        return CONFIG_MAPS.findModel(modelName);
+    }
+
     public static final ModelBean createModelBean(final Class<?> eoClass) {
         ModelConfig config = CONFIG_MAPS.findModel(eoClass);
         return new ModelBean(config);

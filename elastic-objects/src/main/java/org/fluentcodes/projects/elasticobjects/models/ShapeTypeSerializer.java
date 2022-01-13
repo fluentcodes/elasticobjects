@@ -4,11 +4,16 @@ public class ShapeTypeSerializer implements ShapeTypeSerializerInterface<Object>
 
     @Override
     public Object asObject(Object value) {
-        return null;
+        return value;
     }
 
     @Override
     public Object asObject(String value) {
-        return null;
+        return value;
+    }
+
+    @Override
+    public boolean isValid(Object value, FieldConfigProperties properties) {
+        return true;
     }
 }

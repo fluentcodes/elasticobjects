@@ -6,7 +6,7 @@
   "(Expose)expose": "NONE",
   "fields": {
     "(FieldBean)author": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The author of the class.",
       "(Expose)expose": "WEB",
       "fieldKey": "author",
@@ -32,7 +32,7 @@
       }
     },
     "(FieldBean)creationDate": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Used to define the creation of an item.",
       "(Expose)expose": "WEB",
       "fieldKey": "creationDate",
@@ -58,7 +58,7 @@
       }
     },
     "(FieldBean)description": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A description of the model used by every model extending BaseClassImpl. ",
       "(Expose)expose": "WEB",
       "fieldKey": "description",
@@ -84,7 +84,7 @@
       }
     },
     "(FieldBean)expose": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "expose",
       "(Expose)expose": "WEB",
       "fieldKey": "expose",
@@ -110,7 +110,7 @@
       }
     },
     "(FieldBean)hostName": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A name for host objects.",
       "(Expose)expose": "NONE",
       "fieldKey": "hostName",
@@ -136,7 +136,7 @@
       }
     },
     "(FieldBean)id": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "(Expose)expose": "WEB",
       "fieldKey": "id",
@@ -162,7 +162,7 @@
       }
     },
     "(FieldBean)module": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Defines a target module where generating occurs. ",
       "(Expose)expose": "WEB",
       "fieldKey": "module",
@@ -188,7 +188,7 @@
       }
     },
     "(FieldBean)moduleScope": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
       "(Expose)expose": "WEB",
       "fieldKey": "moduleScope",
@@ -214,7 +214,7 @@
       }
     },
     "(FieldBean)naturalId": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "(Expose)expose": "NONE",
       "fieldKey": "naturalId",
@@ -240,7 +240,7 @@
       }
     },
     "(FieldBean)permissions": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Role permission wrapper config.",
       "(Expose)expose": "WEB",
       "fieldKey": "permissions",
@@ -266,7 +266,7 @@
       }
     },
     "(FieldBean)properties": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Immutable properties for host config",
       "(Expose)expose": "NONE",
       "fieldKey": "properties",
@@ -292,7 +292,7 @@
       }
     },
     "(FieldBean)scope": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A scope for the cache value.",
       "(Expose)expose": "WEB",
       "fieldKey": "scope",

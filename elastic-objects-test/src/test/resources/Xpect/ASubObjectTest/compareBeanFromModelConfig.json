@@ -7,7 +7,7 @@
   "(Expose)expose": "WEB",
   "fields": {
     "(FieldBean)id": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "(Expose)expose": "WEB",
       "fieldKey": "id",
@@ -33,7 +33,7 @@
       }
     },
     "(FieldBean)myASubObject": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myASubObject",
       "(Expose)expose": "WEB",
       "fieldKey": "myASubObject",
@@ -59,7 +59,7 @@
       }
     },
     "(FieldBean)myString": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Just a small test string used in test models. ",
       "(Expose)expose": "WEB",
       "fieldKey": "myString",
@@ -85,7 +85,7 @@
       }
     },
     "(FieldBean)name": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The name field of a class. ",
       "(Expose)expose": "WEB",
       "fieldKey": "name",
@@ -111,7 +111,7 @@
       }
     },
     "(FieldBean)naturalId": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "(Expose)expose": "NONE",
       "fieldKey": "naturalId",

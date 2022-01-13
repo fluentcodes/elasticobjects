@@ -34,4 +34,5 @@ public class ShapeTypeSerializerInteger extends ShapeTypeSerializerNumber<Intege
         }
         return asObject(object.toString());
     }
+
 }

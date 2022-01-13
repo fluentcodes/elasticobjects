@@ -6,7 +6,7 @@
   "(Expose)expose": "WEB",
   "fields": {
     "(FieldBean)id": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "(Expose)expose": "WEB",
       "fieldKey": "id",
@@ -32,7 +32,7 @@
       }
     },
     "(FieldBean)myASubObject": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myASubObject",
       "(Expose)expose": "WEB",
       "fieldKey": "myASubObject",
@@ -58,7 +58,7 @@
       }
     },
     "(FieldBean)myASubObjectList": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A generic parametrized example List with @ASubObject",
       "(Expose)expose": "WEB",
       "fieldKey": "myASubObjectList",
@@ -84,7 +84,7 @@
       }
     },
     "(FieldBean)myASubObjectMap": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A generic parametrized example Map with @ASubObject",
       "(Expose)expose": "WEB",
       "fieldKey": "myASubObjectMap",
@@ -110,7 +110,7 @@
       }
     },
     "(FieldBean)myAnObject": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A AnObject field.",
       "(Expose)expose": "WEB",
       "fieldKey": "myAnObject",
@@ -136,7 +136,7 @@
       }
     },
     "(FieldBean)myBoolean": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myBoolean",
       "(Expose)expose": "WEB",
       "fieldKey": "myBoolean",
@@ -162,7 +162,7 @@
       }
     },
     "(FieldBean)myDate": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myDate",
       "(Expose)expose": "WEB",
       "fieldKey": "myDate",
@@ -188,7 +188,7 @@
       }
     },
     "(FieldBean)myDouble": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myDouble",
       "(Expose)expose": "WEB",
       "fieldKey": "myDouble",
@@ -214,7 +214,7 @@
       }
     },
     "(FieldBean)myFloat": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myFloat",
       "(Expose)expose": "WEB",
       "fieldKey": "myFloat",
@@ -240,7 +240,7 @@
       }
     },
     "(FieldBean)myInt": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myInt",
       "(Expose)expose": "WEB",
       "fieldKey": "myInt",
@@ -266,7 +266,7 @@
       }
     },
     "(FieldBean)myList": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myList",
       "(Expose)expose": "WEB",
       "fieldKey": "myList",
@@ -292,7 +292,7 @@
       }
     },
     "(FieldBean)myLong": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myLong",
       "(Expose)expose": "WEB",
       "fieldKey": "myLong",
@@ -318,7 +318,7 @@
       }
     },
     "(FieldBean)myMap": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myMap",
       "(Expose)expose": "WEB",
       "fieldKey": "myMap",
@@ -344,7 +344,7 @@
       }
     },
     "(FieldBean)myObject": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A test object thing. ",
       "(Expose)expose": "WEB",
       "fieldKey": "myObject",
@@ -370,7 +370,7 @@
       }
     },
     "(FieldBean)myString": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Just a small test string used in test models. ",
       "(Expose)expose": "WEB",
       "fieldKey": "myString",
@@ -396,7 +396,7 @@
       }
     },
     "(FieldBean)naturalId": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "(Expose)expose": "NONE",
       "fieldKey": "naturalId",

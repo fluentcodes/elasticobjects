@@ -7,7 +7,7 @@
   "(Expose)expose": "NONE",
   "fields": {
     "(FieldBean)condition": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A condition for calls. ",
       "(Expose)expose": "WEB",
       "fieldKey": "condition",
@@ -33,7 +33,7 @@
       }
     },
     "(FieldBean)duration": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The duration of a call.",
       "(Expose)expose": "WEB",
       "fieldKey": "duration",
@@ -59,7 +59,7 @@
       }
     },
     "(FieldBean)keepCall": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Will use an existing  result file beforehand as template. ",
       "(Expose)expose": "WEB",
       "fieldKey": "keepCall",
@@ -85,7 +85,7 @@
       }
     },
     "(FieldBean)logLevel": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "logLevel",
       "(Expose)expose": "WEB",
       "fieldKey": "logLevel",
@@ -111,7 +111,7 @@
       }
     },
     "(FieldBean)models": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A string representation for a list of model keys.",
       "(Expose)expose": "WEB",
       "fieldKey": "models",
@@ -137,7 +137,7 @@
       }
     },
     "(FieldBean)overwrite": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A overwrite field flag for @Call.",
       "(Expose)expose": "WEB",
       "fieldKey": "overwrite",
@@ -163,7 +163,7 @@
       }
     },
     "(FieldBean)postpend": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "postpend String when executed by ExecutorCallImpl",
       "(Expose)expose": "NONE",
       "fieldKey": "postpend",
@@ -189,7 +189,7 @@
       }
     },
     "(FieldBean)prepend": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "prepend String when executed by ExecutorCallImpl",
       "(Expose)expose": "NONE",
       "fieldKey": "prepend",
@@ -215,7 +215,7 @@
       }
     },
     "(FieldBean)sourcePath": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A sourcePath where EO offers it's input value when the execution starts.",
       "(Expose)expose": "WEB",
       "fieldKey": "sourcePath",
@@ -241,7 +241,7 @@
       }
     },
     "(FieldBean)startCondition": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A condition for calls. ",
       "(Expose)expose": "WEB",
       "fieldKey": "startCondition",
@@ -267,7 +267,7 @@
       }
     },
     "(FieldBean)targetPath": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A targetPath where the result of the execution will be mapped. If value is \"_asString\" no mapping occured but a seralized version is returned as value to embed it in the resulting file. Path parameters could be set dynamically with =&gt;[path]. in any combination.",
       "(Expose)expose": "WEB",
       "fieldKey": "targetPath",

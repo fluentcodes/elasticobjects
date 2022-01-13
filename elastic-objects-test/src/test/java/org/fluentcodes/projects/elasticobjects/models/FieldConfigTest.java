@@ -19,7 +19,7 @@ public class FieldConfigTest implements IModelConfigCreateTests {
 
     public static FieldConfig createFieldConfig(final String fieldName, final Object value) {
         FieldBean bean = createFieldBean(fieldName, value);
-        return new FieldConfig(bean, ObjectProviderDev.CONFIG_MAPS_DEV);
+        return new FieldConfigObject(bean, ObjectProviderDev.CONFIG_MAPS_DEV);
     }
 
 

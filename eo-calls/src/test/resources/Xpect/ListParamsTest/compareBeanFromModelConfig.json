@@ -6,7 +6,7 @@
   "(Expose)expose": "NONE",
   "fields": {
     "(FieldBean)colKeys": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The key list for mapping values in a value list. ",
       "(Expose)expose": "NONE",
       "fieldKey": "colKeys",
@@ -32,7 +32,7 @@
       }
     },
     "(FieldBean)filter": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Filter for List entries.",
       "(Expose)expose": "WEB",
       "fieldKey": "filter",
@@ -58,7 +58,7 @@
       }
     },
     "(FieldBean)length": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Length of a field.",
       "(Expose)expose": "WEB",
       "fieldKey": "length",
@@ -84,7 +84,7 @@
       }
     },
     "(FieldBean)rowEnd": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "rowEnd",
       "(Expose)expose": "WEB",
       "fieldKey": "rowEnd",
@@ -110,7 +110,7 @@
       }
     },
     "(FieldBean)rowHead": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "rowHead",
       "(Expose)expose": "WEB",
       "fieldKey": "rowHead",
@@ -136,7 +136,7 @@
       }
     },
     "(FieldBean)rowStart": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "rowStart",
       "(Expose)expose": "WEB",
       "fieldKey": "rowStart",

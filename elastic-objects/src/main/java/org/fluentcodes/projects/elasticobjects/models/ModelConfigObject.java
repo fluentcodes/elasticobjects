@@ -2,10 +2,11 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
+import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by Werner on 09.10.2016.
+* Accessor for objects with setter and getter.
  */
 public class ModelConfigObject extends ModelConfig {
     public ModelConfigObject(ConfigBean bean, final ConfigMaps configMaps) {
@@ -14,14 +15,12 @@ public class ModelConfigObject extends ModelConfig {
 
     public ModelConfigObject(ModelBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
-    }
-
-    public static String getter(final String field) {
-        return "get" + upper(field);
-    }
-
-    public ModelConfig getFieldModel(final String fieldName) {
-        return getFieldModels(fieldName).getModel();
+        if (!bean.hasFields()) {
+            return;
+        }
+        for (Map.Entry<String, FieldBean> entry : bean.getFields().entrySet()) {
+            addField(entry.getKey(), new FieldConfigObject(this, entry.getValue()));
+        }
     }
 
     public Models getFieldModels(final String fieldName) {
@@ -106,16 +105,16 @@ public class ModelConfigObject extends ModelConfig {
         return getField(fieldName) != null;
     }
 
-    public FieldConfig getField(final String fieldName) {
-        FieldConfig fieldConfig = getFields().get(fieldName);
+    public FieldConfig getField(final String fieldKey) {
+        FieldConfig fieldConfig = getFields().get(fieldKey);
         if (fieldConfig == null) {
-            throw new EoException("No fieldConfig '" + fieldName + "' defined in model '" + this.getModelKey() + "' ! ");
+            throw new EoException("No fieldConfig '" + fieldKey + "' defined in model '" + this.getModelKey() + "' ! ");
         }
         return fieldConfig;
     }
 
-    public ModelConfig getFieldModelConfig(final String fieldName) {
-        return getFieldModels(fieldName).getModel();
+    public ModelConfig getFieldModelConfig(final String fieldKey) {
+        return getFieldModels(fieldKey).getModel();
     }
 
     public Set<String> getFieldKeys() {

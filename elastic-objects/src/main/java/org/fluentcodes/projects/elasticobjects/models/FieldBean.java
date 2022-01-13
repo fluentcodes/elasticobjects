@@ -109,7 +109,7 @@ public class FieldBean extends ConfigBean implements FieldInterface {
         if (hasConfigModelKey()) {
             return;
         }
-        setConfigModelKey(FieldConfig.class.getSimpleName());
+        setConfigModelKey(FieldConfigObject.class.getSimpleName());
     }
 
     private void defaultNaturalId() {

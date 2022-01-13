@@ -9,9 +9,11 @@ import org.fluentcodes.projects.elasticobjects.models.Config;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.projects.elasticobjects.models.FieldBean;
 import org.fluentcodes.projects.elasticobjects.models.FieldConfig;
+import org.fluentcodes.projects.elasticobjects.models.FieldConfigObject;
 import org.fluentcodes.projects.elasticobjects.models.FieldFactory;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
+import org.fluentcodes.projects.elasticobjects.models.ModelConfigMap;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfigObject;
 import org.fluentcodes.projects.elasticobjects.models.ModelFactoryFromConfigurations;
 import org.fluentcodes.projects.elasticobjects.models.Models;
@@ -78,8 +80,12 @@ public class ObjectProviderDev {
         return new ModelConfigObject(readModelBean(configKey), CONFIG_MAPS_DEV);
     }
 
+    public static final ModelConfig readModelConfigMap(String configKey) {
+        return new ModelConfigMap(readModelBean(configKey), CONFIG_MAPS_DEV);
+    }
+
     public static final FieldConfig readFieldConfig(String configKey) {
-        return new FieldConfig(readFieldBean(configKey), CONFIG_MAPS_DEV);
+        return new FieldConfigObject(readFieldBean(configKey), CONFIG_MAPS_DEV);
     }
 
     public static final ModelConfig createModelConfigFromJson(String json) {
@@ -198,10 +204,10 @@ public class ObjectProviderDev {
     }
 
     public static FieldConfig createFieldConfig(final String key, final Object value) {
-        return new FieldConfig(createFieldBean(key, value), CONFIG_MAPS_DEV);
+        return new FieldConfigObject(createFieldBean(key, value), CONFIG_MAPS_DEV);
     }
 
     public static FieldConfig createFieldConfigProperty(final String key, final Object value) {
-        return new FieldConfig(createFieldBeanProperty(key, value), CONFIG_MAPS_DEV);
+        return new FieldConfigObject(createFieldBeanProperty(key, value), CONFIG_MAPS_DEV);
     }
 }

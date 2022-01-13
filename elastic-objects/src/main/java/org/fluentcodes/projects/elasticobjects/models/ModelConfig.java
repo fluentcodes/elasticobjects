@@ -43,15 +43,15 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         this.superKey = bean.getSuperKey();
         this.interfaces = bean.getInterfaces();
         this.properties = new ModelConfigProperties(bean.getProperties());
-        this.fields = new TreeMap<>();
-        this.interfacesMap = new LinkedHashMap<>();
 
-        if (bean.hasFields()) {
-            for (Map.Entry<String, FieldBean> entry : bean.getFields().entrySet()) {
-                fields.put(entry.getKey(), new FieldConfig(this, entry.getValue()));
-            }
-        }
+        this.fields = new TreeMap<>();
+
+        this.interfacesMap = new LinkedHashMap<>();
         setModelClass();
+    }
+
+    void addField(final String fieldKey, FieldConfig fieldConfig) {
+        fields.put(fieldKey, fieldConfig);
     }
 
     public ModelConfigProperties getProperties() {
@@ -101,6 +101,10 @@ public abstract class ModelConfig extends Config implements ModelInterface {
 
     public Map<String, FieldConfig> getFields() {
         return fields;
+    }
+
+    public boolean hasFields() {
+        return fields!=null && !fields.isEmpty();
     }
 
     public void setModelClass() {
@@ -155,10 +159,6 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         for (String interfaceEntry : interfaceArray) {
             interfacesMap.put(interfaceEntry, cache.get(interfaceEntry));
         }
-    }
-
-    private boolean hasFields() {
-        return !fields.isEmpty();
     }
 
     public Set<String> keys(Object object) {
@@ -280,16 +280,19 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         throw new EoException("Could not get field names because no sub fields  defined for scalar models!");
     }
 
-    public FieldConfig getField(final String fieldName) {
-        throw new EoException("Could not get sub field because no field defined for scalar models: " + fieldName);
+    public FieldConfig getField(final String fieldKey) {
+        return fields.get(fieldKey);
     }
 
-    public ModelConfig getFieldModelConfig(final String fieldName) {
-        throw new EoException("Could not get sub field because no field defined for scalar models: " + fieldName);
+    public ModelConfig getFieldModelConfig(final String fieldKey) {
+        if (!hasField(fieldKey)) {
+            throw new EoException("Could not find field for '" + fieldKey + "'");
+        }
+        return getField(fieldKey).getModels().getModel();
     }
 
     public boolean hasField(final String fieldKey) {
-        return false;
+        return fields.containsKey(fieldKey) && getField(fieldKey)!=null;
     }
 
     public boolean isList() {

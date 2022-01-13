@@ -9,9 +9,9 @@ import java.util.TreeMap;
  * Created by Werner on 21.10.2021.
  */
 
-public class FieldFactory extends ConfigFactory<FieldBean, FieldConfig> {
+public class FieldFactory extends ConfigFactory<FieldBean, FieldConfigObject> {
     public FieldFactory(final ConfigMaps configMaps) {
-        super(configMaps, FieldBean.class, FieldConfig.class);
+        super(configMaps, FieldBean.class, FieldConfigObject.class);
     }
 
     @Override

@@ -3,13 +3,13 @@
   "configModelKey": "ModelConfigObject",
   "fields": {
     "(FieldBean)id": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "fieldKey": "id",
       "modelKeys": "Long",
       "naturalId": "SuperExampleClass.id"
     },
     "(FieldBean)subClass": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "fieldKey": "subClass",
       "modelKeys": "FieldExampleClass",
       "naturalId": "SuperExampleClass.subClass"

@@ -54,7 +54,7 @@ public class EoChildScalar implements IEOScalar {
             }
             this.changed = true;
         }
-        getParentEo().setValueByModel(getFieldKey(), value);
+        getParentEo().setValueByModel(getFieldKey(), getModels().asObject(value));
     }
 
     @Override

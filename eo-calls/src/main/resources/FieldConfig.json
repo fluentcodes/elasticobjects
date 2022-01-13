@@ -374,7 +374,7 @@
     "description": "A target for persisting template results in TemplateResourceStoreCall. ",
     "expose": "WEB",
     "fieldKey": "targetFileConfigKey",
-    "length": 80
+    "length": 256
   },
   "toReplace": {
     "module": "eo-calls",

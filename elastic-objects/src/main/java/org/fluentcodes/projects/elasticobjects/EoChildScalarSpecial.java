@@ -25,7 +25,7 @@ public class EoChildScalarSpecial extends EoChildScalar {
             String models = (String)value;
             ((EoChild)getParent()).setModels(models.isEmpty()?"Map":models);
         }
-        this.value = value;
+        this.value = getModels().asObject(value);
     }
 
     @Override

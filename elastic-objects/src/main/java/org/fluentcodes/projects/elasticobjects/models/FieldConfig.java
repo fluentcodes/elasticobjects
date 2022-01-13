@@ -4,31 +4,17 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
-/*.{javaHeader}|*/
 /**
- * 
- * Immutabel EO field configuration will be initalized by internal builder using map values. 
- * @author Werner Diwischek
- * @creationDate Wed Oct 17 00:00:00 CEST 2018
- * @modificationDate Thu Jan 14 04:26:27 CET 2021
+ * Immutabel EO field configuration will be initalized by internal builder using map values.
  */
 public class FieldConfig extends Config implements FieldInterface {
     public static final String AND_MODEL = "' and model '";
-    /*.{}.*/
-/*.{javaInstanceVars}|*/
-   /* fieldKey */
-   private final String fieldKey;
-   /* A string representation for a list of modelsConfig. */
-   private final String modelKeys;
-/*.{}.*/
+    private final String fieldKey;
+    private final String modelKeys;
     private boolean resolved;
     private final boolean toSerialize;
-    private List<String> modelList;
     private final ModelConfig parentModel;
     private Models models;
     private Method getter;
@@ -41,15 +27,11 @@ public class FieldConfig extends Config implements FieldInterface {
         this.toSerialize = false;
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
-
-        this.modelList = hasModelKeys() ?
-                Arrays.asList(modelKeys.split(",")):
-                new ArrayList<>();
         this.properties = new FieldConfigProperties(bean.getProperties());
-     }
+    }
 
     public FieldConfig(final ConfigBean bean, final ConfigMaps configMaps) {
-        this((FieldBean)bean, configMaps);
+        this((FieldBean) bean, configMaps);
     }
 
     public FieldConfig(final FieldBean bean, final ConfigMaps configMaps) {
@@ -58,11 +40,6 @@ public class FieldConfig extends Config implements FieldInterface {
         this.fieldKey = bean.getFieldKey();
         this.modelKeys = bean.getModelKeys();
         this.properties = new FieldConfigProperties(bean.getProperties());
-        if (hasModelKeys()) {
-            this.modelList = Arrays.asList(modelKeys.split(","));
-        } else {
-            this.modelList = new ArrayList<>();
-        }
         parentModel = null;
     }
 
@@ -70,42 +47,33 @@ public class FieldConfig extends Config implements FieldInterface {
         return properties;
     }
 
-    protected void resolve(ModelConfig model, Map<String, ModelConfig> modelConfigMap) {
+    private void resolve() {
         if (resolved) {
             return;
         }
         resolved = true;
         if (!hasModelKeys()) {
-            throw new EoException("Every field needs a model type but '" + getNaturalId() + "' has none!" );
+            throw new EoException("Every field needs a model type but '" + getNaturalId() + "' has none!");
         }
-        String[] modelKeyArray = modelKeys.split(",");
-        List<ModelConfig> modelConfigList = new ArrayList<>();
-        for (String modelKey: modelKeyArray) {
-            if (!modelConfigMap.containsKey(modelKey)) {
-                throw new EoException("Could not resolve fieldType '" + modelKey + "' for '" + fieldKey + "' (" + getModelKeys() + ").");
-            }
-            modelConfigList.add((ModelConfig)modelConfigMap.get(modelKey));
+        this.models = new Models(parentModel.getConfigMaps(), modelKeys.split(","));
+        if (!parentModel.isObject()) {
+            return;
         }
-        this.models = new Models(modelConfigList);
-
-        if (!model.isObject()) {
+        if (parentModel.getShapeType() == ShapeTypes.INTERFACE &&
+                !isDefault() &&
+                !isProperty()) {
             return;
         }
 
-        if (model.getShapeType() == ShapeTypes.INTERFACE &&
-                !isDefault() &&
-                !isProperty()) {
-                return;
-        }
-
-        this.getter = getGetMethod(model, this.fieldKey);
+        this.getter = getGetMethod(parentModel, this.fieldKey);
 
         if (isFinal()) {
             return;
         }
 
-        this.setter = getSetMethod(model, this.fieldKey);
+        this.setter = getSetMethod(parentModel, this.fieldKey);
     }
+
     Boolean isJsonIgnore() {
         return properties.isJsonIgnore();
     }
@@ -143,13 +111,11 @@ public class FieldConfig extends Config implements FieldInterface {
     }
 
     protected Object get(Object parent) {
-        if (getter==null) {
-            /*for (Object key: getProperties().keySet()) {
-                System.out.println(key + " " + getProperties().get(key));
-            }*/
+        resolve();
+        if (getter == null) {
             throw new EoException("No getter defined '" + getNaturalId() + "' for '" + parent.getClass().getSimpleName() + "'.");
         }
-        if (parent==null) {
+        if (parent == null) {
             throw new EoException("Null parent for get '" + getNaturalId() + "' for '\" + parent.getClass().getSimpleName() + \"'.");
         }
         try {
@@ -160,60 +126,60 @@ public class FieldConfig extends Config implements FieldInterface {
     }
 
     protected void set(Object parent, Object value) {
+        resolve();
         if (isFinal()) {
             throw new EoException("Field '" + getNaturalId() + "' marked as final for model '" + parent.getClass().getSimpleName() + "'.");
         }
-        if (setter==null) {
+        if (setter == null) {
             throw new EoException("Setter is null for field '" + getNaturalId() + "' and model '" + parent.getClass().getSimpleName() + "'.");
         }
-        if (parent==null) {
+        if (parent == null) {
             throw new EoException("Null parent for field '" + getNaturalId() + "'.");
         }
         try {
+            if ((value instanceof String) && getProperties().hasLength() && getProperties().getLength() < ((String) value).length()) {
+                throw new EoException("String value for field '" + getNaturalId() + "' has size " + ((String) value).length() + " bigger than max length " + getProperties().getLength() + ".");
+            }
             setter.invoke(parent, value);
+        } catch (EoException e) {
+            throw e;
         } catch (Exception e) {
             throw new EoException("\nProblem invoke setter with '" + getNaturalId() + "' and model '" + parent.getClass().getSimpleName() + "' with value class'" + value.getClass().getSimpleName() + "':" + e.getMessage());
         }
     }
 
-    public List<String> getModelList() {
-        return new ArrayList<>(modelList);
+    /*.{javaAccessors}|*/
+    @Override
+    public String getFieldKey() {
+        return this.fieldKey;
     }
 
-/*.{javaAccessors}|*/
-   @Override
-   public String getFieldKey() {
-      return this.fieldKey;
-   }
+    @Override
+    public String getModelKeys() {
+        return this.modelKeys;
+    }
 
-   @Override
-   public String getModelKeys() {
-      return this.modelKeys;
-   }
-
-/*.{}.*/
+    /*.{}.*/
 
     public Models getModels() {
+        resolve();
         return models;
     }
 
-    public Class<?> getModelClass()  {
+    public Class<?> getModelClass() {
         return models.getModelClass();
     }
 
-    public String getModel()  {
+    public String getModel() {
         return getModels().getModel().getModelKey();
     }
 
-    public ModelInterface getParentModel()  {
+    public ModelInterface getParentModel() {
         return parentModel;
     }
 
     @Override
     public String toString() {
-        if (getConfigMaps().isModelFinished()) {
-            return super.toString();
-        }
-        return fieldKey + "(" + modelKeys +")";
+        return fieldKey + "(" + modelKeys + ")";
     }
 }

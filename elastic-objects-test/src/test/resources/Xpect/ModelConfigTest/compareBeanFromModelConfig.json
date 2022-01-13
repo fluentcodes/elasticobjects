@@ -253,7 +253,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 10,
+        "length": 32,
         "max": -1,
         "min": -1,
         "notNull": false,

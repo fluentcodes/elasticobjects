@@ -1,6 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.domain.test;
 
 import org.assertj.core.api.Assertions;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.FieldInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
@@ -58,37 +59,42 @@ public class AnObjectTest implements IModelConfigCreateTests {
     }
 
     @Test
-    public void fieldConfigMString_xpected() {
+    public void fieldConfig_myString() {
         FieldInterface field = ObjectProvider.findModel(AnObject.class).getField(F_MY_STRING);
         XpectStringJunit4.assertStatic(field.toString());
     }
 
     @Test
-    public void createAnObject_myString() {
+    public void createObject_myString() {
         AnObject object = (AnObject) ObjectProvider.createObject(AnObject.class,"test", F_MY_STRING);
         assertEquals("test", object.getMyString());
     }
 
+    @Test(expected = EoException.class)
+    public void createObject_myString_tooLong() {
+        ObjectProvider.createObject(AnObject.class,"test01234567890123456789", F_MY_STRING);
+    }
+
     @Test
-    public void createAnObject_myInt() {
+    public void createObject_myInt() {
         AnObject object = (AnObject) ObjectProvider.createObject(AnObject.class, 1, F_MY_INT);
         assertEquals(Integer.valueOf(1), object.getMyInt());
     }
 
     @Test
-    public void createAnObjectLevel1_myInt() {
+    public void createObject_myAnObject_myInt() {
         AnObject object =  (AnObject) ObjectProvider.createObject(AnObject.class, 1, MY_AN_OBJECT, F_MY_INT);
         assertEquals(Integer.valueOf(1), object.getMyAnObject().getMyInt());
     }
 
     @Test
-    public void createAnObjectLevel2_myString() {
+    public void createObject_myAnObject_myAnObject_myString() {
         AnObject object = (AnObject) ObjectProvider.createObject(AnObject.class, "test", MY_AN_OBJECT, MY_AN_OBJECT, F_MY_STRING);
         assertEquals("test", object.getMyAnObject().getMyAnObject().getMyString());
     }
 
     @Test
-    public void createAnObjectLevel3_myString() {
+    public void createObjectLevel_myAsubObject_myAsubObject_myAsubObject_myString() {
         AnObject object = (AnObject) ObjectProvider.createObject(AnObject.class, "test", MY_ASUB_OBJECT, MY_ASUB_OBJECT, MY_ASUB_OBJECT, F_MY_STRING);
         assertEquals("test", object.getMyASubObject().getMyASubObject().getMyASubObject().getMyString());
     }

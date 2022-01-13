@@ -1,20 +1,17 @@
 {
-  "_rootmodel": "ModelBean",
   "author": "Werner Diwischek",
-  "configModelKey": "ModelConfigObject",
-  "description": "For setting sinus value to EO.",
-  "(Expose)expose": "WEB",
+  "description": "Creates an open api schema from model configuration.",
+  "expose": "WEB",
   "fields": {
-    "(FieldBean)condition": {
-      "configModelKey": "FieldConfig",
+    "condition": {
       "description": "A condition for calls. ",
-      "(Expose)expose": "WEB",
+      "expose": "WEB",
       "fieldKey": "condition",
       "modelKeys": "String",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "condition",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -31,16 +28,40 @@
         "unique": false
       }
     },
-    "(FieldBean)duration": {
-      "configModelKey": "FieldConfig",
+    "configFilter": {
+      "description": "Key for filter configuration",
+      "expose": "WEB",
+      "fieldKey": "configFilter",
+      "modelKeys": "String",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "configFilter",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 64,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "duration": {
       "description": "The duration of a call.",
-      "(Expose)expose": "WEB",
+      "expose": "WEB",
       "fieldKey": "duration",
       "modelKeys": "Long",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "duration",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -57,16 +78,40 @@
         "unique": false
       }
     },
-    "(FieldBean)keepCall": {
-      "configModelKey": "FieldConfig",
+    "expose": {
+      "description": "expose",
+      "expose": "WEB",
+      "fieldKey": "expose",
+      "modelKeys": "Expose",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "expose",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "keepCall": {
       "description": "Will use an existing  result file beforehand as template. ",
-      "(Expose)expose": "WEB",
+      "expose": "WEB",
       "fieldKey": "keepCall",
       "modelKeys": "KeepCalls",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "keepCall",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -83,16 +128,15 @@
         "unique": false
       }
     },
-    "(FieldBean)logLevel": {
-      "configModelKey": "FieldConfig",
+    "logLevel": {
       "description": "logLevel",
-      "(Expose)expose": "WEB",
+      "expose": "WEB",
       "fieldKey": "logLevel",
       "modelKeys": "LogLevel",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "logLevel",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -109,16 +153,15 @@
         "unique": false
       }
     },
-    "(FieldBean)models": {
-      "configModelKey": "FieldConfig",
+    "models": {
       "description": "A string representation for a list of model keys.",
-      "(Expose)expose": "WEB",
+      "expose": "WEB",
       "fieldKey": "models",
       "modelKeys": "String",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "models",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -135,16 +178,65 @@
         "unique": false
       }
     },
-    "(FieldBean)overwrite": {
-      "configModelKey": "FieldConfig",
+    "module": {
+      "description": "Defines a target module where generating occurs. ",
+      "expose": "WEB",
+      "fieldKey": "module",
+      "modelKeys": "String",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "module",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 80,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "moduleScope": {
+      "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
+      "expose": "WEB",
+      "fieldKey": "moduleScope",
+      "modelKeys": "String",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "moduleScope",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 32,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "overwrite": {
       "description": "A overwrite field flag for @Call.",
-      "(Expose)expose": "WEB",
+      "expose": "WEB",
       "fieldKey": "overwrite",
       "modelKeys": "Boolean",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "overwrite",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -161,16 +253,15 @@
         "unique": false
       }
     },
-    "(FieldBean)postpend": {
-      "configModelKey": "FieldConfig",
+    "postpend": {
       "description": "postpend String when executed by ExecutorCallImpl",
-      "(Expose)expose": "NONE",
+      "expose": "NONE",
       "fieldKey": "postpend",
       "modelKeys": "String",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "postpend",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -187,16 +278,15 @@
         "unique": false
       }
     },
-    "(FieldBean)prepend": {
-      "configModelKey": "FieldConfig",
+    "prepend": {
       "description": "prepend String when executed by ExecutorCallImpl",
-      "(Expose)expose": "NONE",
+      "expose": "NONE",
       "fieldKey": "prepend",
       "modelKeys": "String",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "prepend",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -213,16 +303,15 @@
         "unique": false
       }
     },
-    "(FieldBean)sourcePath": {
-      "configModelKey": "FieldConfig",
+    "sourcePath": {
       "description": "A sourcePath where EO offers it's input value when the execution starts.",
-      "(Expose)expose": "WEB",
+      "expose": "WEB",
       "fieldKey": "sourcePath",
       "modelKeys": "String",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "sourcePath",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -239,16 +328,15 @@
         "unique": false
       }
     },
-    "(FieldBean)startCondition": {
-      "configModelKey": "FieldConfig",
+    "startCondition": {
       "description": "A condition for calls. ",
-      "(Expose)expose": "WEB",
+      "expose": "WEB",
       "fieldKey": "startCondition",
       "modelKeys": "String",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "startCondition",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -265,16 +353,15 @@
         "unique": false
       }
     },
-    "(FieldBean)targetPath": {
-      "configModelKey": "FieldConfig",
+    "targetPath": {
       "description": "A targetPath where the result of the execution will be mapped. If value is \"_asString\" no mapping occured but a seralized version is returned as value to embed it in the resulting file. Path parameters could be set dynamically with =&gt;[path]. in any combination.",
-      "(Expose)expose": "WEB",
+      "expose": "WEB",
       "fieldKey": "targetPath",
       "modelKeys": "String",
       "module": "elastic-objects",
       "moduleScope": "main",
       "naturalId": "targetPath",
-      "(FieldBeanProperties)properties": {
+      "properties": {
         "default": false,
         "final": false,
         "generated": false,
@@ -293,12 +380,12 @@
     }
   },
   "interfaces": "SimpleCommand",
-  "modelKey": "SinusValueCall",
+  "modelKey": "ConfigOpenApiCall",
   "module": "eo-calls",
   "moduleScope": "main",
-  "naturalId": "SinusValueCall",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
-  "(ModelBeanProperties)properties": {
+  "naturalId": "ConfigOpenApiCall",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.calls.configs",
+  "properties": {
     "abstract": false,
     "create": true,
     "dbAnnotated": false,

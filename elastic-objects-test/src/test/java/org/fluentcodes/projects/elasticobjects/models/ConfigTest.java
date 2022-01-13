@@ -50,7 +50,7 @@ public class ConfigTest implements IModelConfigNoCreateTests {
     }
 
     @Test
-    public void checkConfigConfig_FieldExpose_FinalTrue() {
+    public void fieldConfig_expose() {
         ModelConfig config = ObjectProvider.findModel(Config.class);
         FieldConfig fieldConfig = config.getField(F_EXPOSE);
         assertTrue(fieldConfig.getProperties().getFinal());

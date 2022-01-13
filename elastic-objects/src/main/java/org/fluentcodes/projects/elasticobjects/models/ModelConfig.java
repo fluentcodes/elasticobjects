@@ -157,17 +157,8 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         }
     }
 
-    private boolean hasFieldConfigMap() {
+    private boolean hasFields() {
         return !fields.isEmpty();
-    }
-
-    private void setFields(final Map<String, ModelConfig> modelConfigMap) {
-        if (!hasFieldConfigMap()) {
-            return;
-        }
-        for (FieldConfig fieldConfig : fields.values()) {
-            fieldConfig.resolve(this, modelConfigMap);
-        }
     }
 
     public Set<String> keys(Object object) {
@@ -213,10 +204,9 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         setDefaultImplementationModel(modelConfigMap);
         setInterfacesMap(modelConfigMap);
         resolved = true;
-        if (!hasFieldConfigMap()) {
+        if (!hasFields()) {
             return;
         }
-        setFields(modelConfigMap);
         resolved = true;
     }
 

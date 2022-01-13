@@ -1,8 +1,7 @@
 {
   "author": "Werner Diwischek",
-  "creationDate": 1608073216000,
-  "description": "Basic cache as super object for other cached items. ",
-  "expose": "NONE",
+  "description": "A bean container class for Model values",
+  "expose": "WEB",
   "fields": {
     "author": {
       "description": "The author of the class.",
@@ -14,10 +13,35 @@
       "naturalId": "author",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
         "length": 256,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "configModelKey": {
+      "description": "The model of the configuration to determine type.",
+      "expose": "NONE",
+      "fieldKey": "configModelKey",
+      "modelKeys": "String",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "configModelKey",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 80,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -39,7 +63,7 @@
       "naturalId": "creationDate",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -64,7 +88,7 @@
       "naturalId": "description",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
         "length": 512,
@@ -89,7 +113,32 @@
       "naturalId": "expose",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "fields": {
+      "description": "A fieldBean map",
+      "expose": "NONE",
+      "fieldKey": "fields",
+      "modelKeys": "Map,FieldBean",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "ModelBean.fields",
+      "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -114,7 +163,7 @@
       "naturalId": "id",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -129,6 +178,56 @@
         "unique": true
       }
     },
+    "interfaces": {
+      "description": "A comma separeted list of interface keys. ",
+      "expose": "NONE",
+      "fieldKey": "interfaces",
+      "modelKeys": "String",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "interfaces",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 256,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": true,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "modelKey": {
+      "description": "The model name for the bean/action object @ModelConfig.",
+      "expose": "NONE",
+      "fieldKey": "modelKey",
+      "modelKeys": "String",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "modelKey",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 80,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": true,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
     "module": {
       "description": "Defines a target module where generating occurs. ",
       "expose": "WEB",
@@ -139,7 +238,7 @@
       "naturalId": "module",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
         "length": 80,
@@ -164,10 +263,10 @@
       "naturalId": "moduleScope",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 10,
+        "length": 32,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -189,7 +288,7 @@
       "naturalId": "naturalId",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
         "length": 80,
@@ -204,17 +303,42 @@
         "unique": true
       }
     },
-    "scope": {
-      "description": "A scope for the cache value.",
-      "expose": "WEB",
-      "fieldKey": "scope",
-      "modelKeys": "List,Scope",
+    "packagePath": {
+      "description": "packagePath",
+      "expose": "NONE",
+      "fieldKey": "packagePath",
+      "modelKeys": "String",
       "module": "elastic-objects",
       "moduleScope": "main",
-      "naturalId": "scope",
+      "naturalId": "packagePath",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 124,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": true,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "properties": {
+      "description": "Mutable model values to create ModelConfig.properties.",
+      "expose": "NONE",
+      "fieldKey": "properties",
+      "modelKeys": "ModelBeanProperties",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "ModelBean.properties",
+      "properties": {
+        "default": false,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -228,16 +352,94 @@
         "transient": false,
         "unique": false
       }
+    },
+    "scope": {
+      "description": "A scope for the cache value.",
+      "expose": "WEB",
+      "fieldKey": "scope",
+      "modelKeys": "List,Scope",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "scope",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "shapeType": {
+      "description": "shapeType",
+      "expose": "NONE",
+      "fieldKey": "shapeType",
+      "modelKeys": "ShapeTypes",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "shapeType",
+      "properties": {
+        "default": true,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": -1,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": true,
+        "unique": false
+      }
+    },
+    "superKey": {
+      "description": "A key for the super class of a class.",
+      "expose": "NONE",
+      "fieldKey": "superKey",
+      "modelKeys": "String",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "superKey",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "length": 256,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": true,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
     }
   },
-  "modelKey": "Config",
+  "interfaces": "ModelInterface",
+  "modelKey": "ModelBean",
   "module": "elastic-objects",
   "moduleScope": "main",
-  "naturalId": "Config",
+  "naturalId": "ModelBean",
   "packagePath": "org.fluentcodes.projects.elasticobjects.models",
   "properties": {
-    "create": false,
+    "abstract": false,
+    "create": true,
     "dbAnnotated": false,
-    "final": true
-  }
+    "final": false
+  },
+  "superKey": "ConfigBean"
 }

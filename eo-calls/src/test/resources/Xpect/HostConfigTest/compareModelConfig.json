@@ -1,8 +1,7 @@
 {
-  "author": "Werner Diwischek",
-  "creationDate": 1608073216000,
-  "description": "A bean container class for Host values from HostConfig.json",
-  "expose": "WEB",
+  "creationDate": 1539727163392,
+  "description": "Basic host definition for file or db cache. ",
+  "expose": "NONE",
   "fields": {
     "author": {
       "description": "The author of the class.",
@@ -14,35 +13,10 @@
       "naturalId": "author",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": 256,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "configModelKey": {
-      "description": "The model of the configuration to determine type.",
-      "expose": "NONE",
-      "fieldKey": "configModelKey",
-      "modelKeys": "String",
-      "module": "elastic-objects",
-      "moduleScope": "main",
-      "naturalId": "configModelKey",
-      "properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": 80,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -64,7 +38,7 @@
       "naturalId": "creationDate",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -89,7 +63,7 @@
       "naturalId": "description",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": 512,
@@ -114,7 +88,7 @@
       "naturalId": "expose",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -139,7 +113,7 @@
       "naturalId": "hostName",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": 80,
@@ -164,7 +138,7 @@
       "naturalId": "id",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -189,7 +163,7 @@
       "naturalId": "module",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": 80,
@@ -214,10 +188,10 @@
       "naturalId": "moduleScope",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 10,
+        "length": 32,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -239,7 +213,7 @@
       "naturalId": "naturalId",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": 80,
@@ -255,16 +229,16 @@
       }
     },
     "permissions": {
-      "description": "Role permission wrapper bean.",
+      "description": "Role permission wrapper config.",
       "expose": "WEB",
       "fieldKey": "permissions",
-      "modelKeys": "PermissionsForBean",
+      "modelKeys": "PermissionsForConfig",
       "module": "eo-calls",
       "moduleScope": "main",
-      "naturalId": "PermissionBean.permissions",
+      "naturalId": "PermissionConfig.permissions",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -280,16 +254,16 @@
       }
     },
     "properties": {
-      "description": "Properties for host bean",
+      "description": "Immutable properties for host config",
       "expose": "NONE",
       "fieldKey": "properties",
-      "modelKeys": "HostBeanProperties",
+      "modelKeys": "HostConfigProperties",
       "module": "eo-calls",
       "moduleScope": "main",
-      "naturalId": "HostBean.properties",
+      "naturalId": "HostConfig.properties",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -314,7 +288,7 @@
       "naturalId": "scope",
       "properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "length": -1,
@@ -331,16 +305,16 @@
     }
   },
   "interfaces": "HostInterface",
-  "modelKey": "HostBean",
+  "modelKey": "HostConfig",
   "module": "eo-calls",
   "moduleScope": "main",
-  "naturalId": "HostBean",
+  "naturalId": "HostConfig",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
   "properties": {
-    "abstract": false,
     "create": true,
     "dbAnnotated": false,
-    "final": false
+    "defaultImplementation": "TreeMap",
+    "final": true
   },
-  "superKey": "PermissionBean"
+  "superKey": "PermissionConfig"
 }

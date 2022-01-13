@@ -1,6 +1,7 @@
 {
   "author": "Werner Diwischek",
-  "description": "Mainly the schema information as base for  @DbQueryConfig",
+  "creationDate": 1608073216000,
+  "description": "Basic cache as super object for other cached items. ",
   "expose": "NONE",
   "fields": {
     "author": {
@@ -103,31 +104,6 @@
         "unique": false
       }
     },
-    "hostName": {
-      "description": "A name for host objects.",
-      "expose": "NONE",
-      "fieldKey": "hostName",
-      "modelKeys": "String",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "hostName",
-      "properties": {
-        "default": false,
-        "final": true,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
     "id": {
       "description": "The numeric id of an instance of a class.",
       "expose": "WEB",
@@ -191,7 +167,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 10,
+        "length": 32,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -228,56 +204,6 @@
         "unique": true
       }
     },
-    "permissions": {
-      "description": "Role permission wrapper config.",
-      "expose": "WEB",
-      "fieldKey": "permissions",
-      "modelKeys": "PermissionsForConfig",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "PermissionConfig.permissions",
-      "properties": {
-        "default": false,
-        "final": true,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "properties": {
-      "description": "Immutable properties for host config",
-      "expose": "NONE",
-      "fieldKey": "properties",
-      "modelKeys": "HostConfigProperties",
-      "module": "eo-calls",
-      "moduleScope": "main",
-      "naturalId": "HostConfig.properties",
-      "properties": {
-        "default": false,
-        "final": true,
-        "generated": false,
-        "jsonIgnore": false,
-        "length": -1,
-        "max": -1,
-        "min": -1,
-        "notNull": false,
-        "override": false,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
     "scope": {
       "description": "A scope for the cache value.",
       "expose": "WEB",
@@ -304,15 +230,14 @@
       }
     }
   },
-  "modelKey": "DbConfig",
-  "module": "eo-db",
+  "modelKey": "Config",
+  "module": "elastic-objects",
   "moduleScope": "main",
-  "naturalId": "DbConfig",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+  "naturalId": "Config",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.models",
   "properties": {
     "create": false,
     "dbAnnotated": false,
     "final": true
-  },
-  "superKey": "HostConfig"
+  }
 }

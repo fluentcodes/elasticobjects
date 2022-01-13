@@ -321,7 +321,7 @@
     "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
     "expose": "WEB",
     "fieldKey": "moduleScope",
-    "length": 10
+    "length": 32
   },
   "name": {
     "module": "elastic-objects",

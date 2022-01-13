@@ -80,4 +80,8 @@ public class HostConfig extends PermissionConfig implements HostInterface {
     return createUrl();
   }
 
+  @Override
+  public String toString() {
+    return getNaturalId() + " -> " + properties.getUrl();
+  }
 }

@@ -2,6 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls;
 
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoChild;
+import org.fluentcodes.projects.elasticobjects.IEOObject;
 import org.fluentcodes.projects.elasticobjects.IEOScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.LogLevel;
@@ -100,9 +101,13 @@ public abstract class CallImpl implements Call {/*.{}.*/
         }
         String localPath = eo.getPathAsString();
         if (targetPath.endsWith(localPath)) {
-            eo.getRoot().remove(localPath);
+            IEOObject parent = eo.remove();
+            IEOScalar newEo = parent.set(result, targetPath);
+            newEo.setChanged();
         }
-        eo.set(result, targetPath);
+        else {
+            eo.set(result, targetPath);
+        }
         return "";
     }
 

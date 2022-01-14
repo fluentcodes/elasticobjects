@@ -113,6 +113,15 @@ public class EoChildScalar implements IEOScalar {
     }
 
     @Override
+    public IEOObject remove() {
+        String fieldKey = getFieldKey();
+        EoChild parent = (EoChild)getParent();
+        parent.getModel().remove(fieldKey, parent.get());
+        parent.removeEo(fieldKey);
+        return parent;
+    }
+
+    @Override
     public Path getPath() {
         return new Path(getPathAsString());
     }

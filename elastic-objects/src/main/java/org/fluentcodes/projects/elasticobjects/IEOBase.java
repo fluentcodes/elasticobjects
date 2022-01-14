@@ -43,6 +43,8 @@ public interface IEOBase {
 
     void setChanged();
 
+    IEOObject remove();
+
     default boolean isEmpty() {
         return get() == null;
     }

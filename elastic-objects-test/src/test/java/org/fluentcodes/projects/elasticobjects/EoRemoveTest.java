@@ -2,6 +2,7 @@ package org.fluentcodes.projects.elasticobjects;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Assert;
@@ -34,14 +35,10 @@ public class EoRemoveTest {
         Assert.assertEquals(0, (root).size());
     }
 
-    @Test
+    @Test(expected = EoException.class)
     public void givenBtEmpty_WhenRemove_thenExceptionThrown() {
         EoRoot root = ObjectProvider.createEo(AnObject.class);
-        Assertions
-                .assertThatThrownBy(() -> {
-                    root.remove(AnObject.F_MY_STRING);
-                })
-                .hasMessage("Could not remove entry '" + AnObject.F_MY_STRING + "' because it is not set in '" + AnObject.class.getSimpleName() + "'");
+        root.remove(AnObject.F_MY_STRING);
     }
 
     /**
@@ -55,19 +52,17 @@ public class EoRemoveTest {
         root.set(S_STRING, S_TEST_STRING);
         Assert.assertEquals(1, root.size());
         Assert.assertEquals(S_STRING, root.get(S_TEST_STRING));
-        root.remove(S_TEST_STRING);
+        IEOObject child = root.remove(S_TEST_STRING);
         Assert.assertEquals(0, root.size());
-
+        Assert.assertEquals(0, root.sizeEo());
+        Assert.assertEquals(0, child.size());
+        Assert.assertEquals(0, child.sizeEo());
     }
 
-    @Test
+    @Test(expected = EoException.class)
     public void givenMapEmpty_WhenRemove_thenExceptionThrown() {
         EoRoot root = ObjectProviderDev.createEo(Map.class);
-        Assertions
-                .assertThatThrownBy(() -> {
-                    root.remove("test");
-                })
-                .hasMessage("Could not remove entry 'test' because it is not set in 'Map'");
+        root.remove("test");
     }
 
     @Test
@@ -79,13 +74,9 @@ public class EoRemoveTest {
         Assert.assertEquals(0, root.size());
     }
 
-    @Test
+    @Test(expected = EoException.class)
     public void givenListEmpty_WhenRemove_thenExceptionThrown() {
         EoRoot root = ObjectProviderDev.createEo(new ArrayList<>());
-        Assertions
-                .assertThatThrownBy(() -> {
-                    root.remove(S0);
-                })
-                .hasMessage("Could not remove entry '0' because it is not set in 'ArrayList'");
+        root.remove(S0);
     }
 }

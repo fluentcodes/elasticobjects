@@ -181,21 +181,14 @@ public class EoChild extends EoChildScalar implements IEOObject {
         }
     }
 
-    void removeChild(String fieldName) {
+    void removeEo(String fieldName) {
         this.eoMap.remove(fieldName);
-        getModel().remove(fieldName, get());
     }
 
     @Override
     public IEOObject remove(final String... path) {
-        Path removePath = new Path(path);
-        EoChild eoChild = (EoChild) getEo(removePath.parent());
-        String parentFieldName = removePath.getParentKey();
-        if (!eoChild.hasEo(parentFieldName)) {
-            throw new EoException("Could not remove entry '" + parentFieldName + "' because it is not set in '" + getModel().getModelKey() + "'");
-        }
-        eoChild.removeChild(parentFieldName);
-        return eoChild;
+        EoChildScalar eoToRemove = (EoChildScalar)getEo(path);
+        return eoToRemove.remove();
     }
 
     public IEOScalar overWrite(final Object value, final String... path) {

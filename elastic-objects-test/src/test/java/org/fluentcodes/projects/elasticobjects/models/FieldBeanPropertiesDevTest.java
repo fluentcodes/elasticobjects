@@ -26,14 +26,14 @@ public class FieldBeanPropertiesDevTest {
     public void readModelBean() {
         ModelBean bean = ObjectProviderDev.readModelBean(FieldBeanProperties.class.getSimpleName());
         assertNull(bean.getSuperKey());
-        assertEquals(16, bean.getFieldKeys().size());
+        assertEquals(15, bean.getFieldKeys().size());
     }
 
     @Test
     public void readModelConfig() {
         ModelConfig config = ObjectProviderDev.readModelConfig(FieldBeanProperties.class.getSimpleName());
         assertTrue(config.getProperties().getCreate());
-        assertEquals(16, config.getFields().size());
+        assertEquals(15, config.getFields().size());
     }
 
     @Test
@@ -64,12 +64,6 @@ public class FieldBeanPropertiesDevTest {
     public void createFieldBeanProperties_jsonIgnore() {
         FieldBeanProperties properties = createFieldBeanProperties(F_JSON_IGNORE, true);
         assertEquals(true, properties.getJsonIgnore());
-    }
-
-    @Test
-    public void createFieldBeanProperties_length() {
-        FieldBeanProperties properties = createFieldBeanProperties(F_LENGTH, 1);
-        assertEquals(Integer.valueOf(1), properties.getLength());
     }
 
     @Test

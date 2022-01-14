@@ -1,26 +1,238 @@
 [![Open Source Helpers](https://www.codetriage.com/fluentcodes/elasticobjects/badges/users.svg)](https://www.codetriage.com/fluentcodes/elasticobjects)
 
 > A detailed documentation with interactive examples you find at [elasticobjects.org](https://www.elasticobjects.org/examples/ExamplesStart.html).  
-> This website is an example by itself. Its build by one generic spring boot endpoint and  
+> The web site itself is build by one generic spring boot endpoint and  
 > EO template calls.
 
-<h1>EO - Elastic Objects</h1>
+# (EO) Elastic Objects
+
+Elastic Objects offer with path access methods to a java object tree. The underlying
+access to java object is passed via
+**object configurations** identified by a key.
+
+The json serialization/deserialization could include the object configuration key. This allows
+typesafe communication without endpoints or web frameworks.
+
+## Core (elastic-objects)
+### Module
+The [core](elastic-objects) has actually no dependencies beside Log4j and is rather small with a jar size of approximately 90 KB.
+
+```
+    <dependency>
+        <groupId>org.fluentcodes.projects.elasticobjects</groupId>
+        <artifactId>elastic-objects</artifactId>
+        <version>0.9.3</version>
+    </dependency>
+```
+<div align="right" id="mvn">
+<a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/elastic-objects">mvn repository</a></div>
+
+### Examples
 <p>
-Elastic Objects is a java framework using typed JSON for looseless communication with
-composed objects by one generic endpoint.
+The following examples you find in
+<nobreak><a href="elastic-objects-test/src/test/java/org/fluentcodes/projects/elasticobjects/documentation/EOReadmeTest.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;EOReadmeTest</a></nobreak>.
+The test object is
+<nobreak><a href="elastic-objects-test/src/main/java/org/fluentcodes/projects/elasticobjects/domain/test/AnObject.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;AnObject</a></nobreak>
+with the configurations
+<nobreak><a href="elastic-objects-test/src/main/resources/ModelConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;ModelConfig.json</a></nobreak>
+and
+<nobreak><a href="elastic-objects-test/src/main/resources/FieldConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;FieldConfig.json</a></nobreak>
+.
 </p>
+
+#### Get and Set
+
+Some get and set operations.
+
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+        IEOScalar child = root.set("test", "myAnObject", "myString");
+        
+        assertEquals("test", root.get("myAnObject", "myString"));
+        assertEquals("test", child.get());
+
+#### Underlying object
+The set changes the objects value by the model configuration:
+
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+        root.set("test", "myAnObject", "myString");
+        
+        AnObject anObject = (AnObject) root.get();
+        assertEquals("test", anObject.getMyAnObject().getMyString());    
+
+#### String Path Representation
+
+One can use a path string representation similar to a unix.
+
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+        IEOScalar child = root.set("test", "myAnObject/myString");
+        
+        assertEquals("test", root.get("myAnObject/myString"));
+        assertEquals("test", child.get());
+
+#### Typed JSON
+
+The default json representation contains keys of the model configurations:
+
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+        IEOScalar child = root.set("test", "myAnObject", "myString");
+        assertEquals("{\n" +
+                "  \"_rootmodel\": \"AnObject\",\n" +
+                "  \"(AnObject)myAnObject\": {\n" +
+                "    \"myString\": \"test\"\n" +
+                "  }\n" +
+                "}", root.toJson());
+
+#### From JSON
+
+This typed json will mapped to the appropriate object class when deserialized:
+
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+        root.set("test", "myAnObject", "myString");
+        String json = root.toJson();      
+         
+        EoRoot rootFromJson = EoRoot.ofValue(CONFIG_MAPS, json);       
+        assertEquals(AnObject.class, rootFromJson.get().getClass());
+        
+        AnObject myAnObject = (AnObject)rootFromJson.get();
+        assertEquals("test", myAnObject.getMyAnObject().getMyString());
+
+## Calls (eo-calls)
+### Module
+The [calls](elastic-objects) module with a jar size of about 150 KB offers some basic calls for files and directories, simple csv or templates with a role permission concept.
+
+    <dependency>
+        <groupId>org.fluentcodes.projects.elasticobjects</groupId>
+        <artifactId>eo-calls</artifactId>
+        <version>0.9.2</version>
+    </dependency>
+  <div align="right" style="font-size:9px">
+<a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-calls">mvn repository</font></a></div>
+
+
+### Examples
 <p>
-Functionality is provided by special
-<nobreak><a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>call</a></nobreak>
+The call classes implementing the
+<nobreak><a href="elastic-objects/src/test/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;Call</a></nobreak>
+interface offer functionality. A bunch of calls including file access or
+templates you find in
+<nobreak><a href="eo-calls/src/test/java/org/fluentcodes/projects/elasticobjects/"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;eo-calls</a></nobreak>.
+</p>
+
+<p>
+ The following examples using
+ <nobreak><a
+ href="eo-calls/src/main/java/org/fluentcodes/projects/elasticobjects/values/SinusValueCall.java"> <img
+ src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"
+ />&nbsp;SinusValueCall</a></nobreak>
+are found in
+<nobreak><a href="eo-calls/src/test/java/org/fluentcodes/projects/elasticobjects/documentation/EOReadmeTest.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;EOReadmeTest</a></nobreak>.
+</p>
+
+#### Java Example
+
+<p>
+The generic execute method has EO as input. Here we set the field key "source" to 2.1 and direcly call
+ <nobreak><a
+ href="eo-calls/src/main/java/org/fluentcodes/projects/elasticobjects/values/SinusValueCall.java"> <img
+ src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"
+ />&nbsp;SinusValueCall</a></nobreak>.
+</p>
+
+        final Call call = new SinusValueCall();
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new HashMap());
+        IEOScalar child = root.set(2.1, "source");
+        assertEquals(2.1, child.get());
+
+        assertEquals(Double.valueOf(0.8632093666488737), call.execute(child));
+
+#### JSON Example
+
+This call could be also embedded in some arbitrary json using the "sourcePath" as input. The value target will be used implicitly as "targetPath" value.
+
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, "{\n" +
+                "  \"(Double)source\":1,\n" +
+                "  \"(SinusValueCall)/target\": {\n" +
+                "    \"sourcePath\": \"/source\"\n" +
+                "  }\n" +
+                "}");
+        root.execute();
+        assertEquals("{\n" +
+                "  \"source\": 1.0,\n" +
+                "  \"target\": 0.8414709848078965\n" +
+                "}", root.toJson(JSONSerializationType.STANDARD));
+
+#### Template Example
+
+This json will be interpreted in an arbitrary text file via template call with the "@{...}" pattern. Here the target _asString will return the result to the template instead of setting the target in json.
+
+        EoRoot root = EoRoot.of(CONFIG_MAPS);
+        String template = "START - @{\n" +
+                "  \"(Double)source\":1,\n" +
+                "  \"(SinusValueCall)_asString\": {\n" +
+                "    \"sourcePath\": \"/source\"\n" +
+                "  }\n" +
+                "}. - END";
+        Call call = new TemplateCall(template);
+        assertEquals("START -0.8414709848078965 - END", call.execute(root));
+
+## Csv (eo-csv)
+[eo-csv](eo-csv) offers calls and configurations for reading and writing csv files  
+using [OpenCsv](https://mvnrepository.com/artifact/com.opencsv/opencsv).
+
+    <dependency>
+        <groupId>org.fluentcodes.projects.elasticobjects</groupId>
+        <artifactId>eo-csv</artifactId>
+        <version>0.9.3</version>
+    </dependency>
+
+<div align="right" style="font-size:9px">
+<a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-csv">mvn repository</a>
+</div>
+
+## Database (eo-db)
+[eo-db](eo-db)
+is experimental providing the execution of sql configurations as list or as query.
+
+    <dependency>
+        <groupId>org.fluentcodes.projects.elasticobjects</groupId>
+        <artifactId>eo-db</artifactId>
+        <version>0.9.3</version>
+    </dependency>
+
+<div align="right">
+<a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-db" style="font-size:9px;">mvn repository</font></a></div>
+
+## Excel (eo-xlsx)
+[eo-xlsx](eo-xlsx) offers calls and configurations for reading and writing xlsx files using [Apache POI](https://mvnrepository.com/artifact/org.apache.poi/poi).
+
+    <dependency>
+        <groupId>org.fluentcodes.projects.elasticobjects</groupId>
+        <artifactId>eo-xlsx</artifactId>
+        <version>0.9.3</version>
+    </dependency>
+
+
+## Other Modules
+### elastic-objects-test
+The objectives [elastic-objects-test](elastic-objects-test) is providing all tests for elastic-object module together with a main package providing test helper and test objects to other modules.
+
+### examples-springboot
+[examples-springboot](example-springboot)
+are the sources for the spring boot web example on
+[http://www.elasticobjects.org](http://www.elasticobjects.org).
+
+## Background
+
+<p>Functionality is provided by special
+<nobreak><a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>call</a></nobreak>
 objects with a generic execution method using a <strong>source path</strong> as <strong>input</strong> and
 a <strong>target path</strong> for <strong>output</strong>.
 </p>
-<p>
+
 Compared with todays RPC concepts its more a "Remote Object Call" (ROC) architecture. One can easily
 create new calls for almost anything. A client can create a typed JSON message addressing call objects
 in any combination.
-</p>
-<p>
+
 There are some predefined generic  calls e.g. for
 <a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/files/FileReadCall.java">files</a>,
 <a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/lists/CsvSimpleReadCall.java">csv</a>,
@@ -39,26 +251,28 @@ The calls implemented are used in the two applications:
 
 
 
-<h3>Elastic Objects</h5>
+### Elastic Objects
 <p>
     Elastic Objects is a generic object wrapper skin
     with <strong>typed</strong> path methods to an java object skeleton.
     Typed objects are embedded in an untyped map structure.
 </p>
-<img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/eoTree.svg" width="200" style="margin:20px;"/>
+<img src="example-springboot/src/main/resources/static/pics/eoTree.svg" width="200" style="margin:20px;"/>
 
 <p>
 Some code examples you will find in <a href="http://elasticobjects.org/eo/EO.html">http://elasticobjects.org/eo/EO.html</a>.
 </p>
-<h3>Model Configurations</h5>
-    For the access to the embedded java objects EO
+
+### Model Configurations
+
+For the access to the embedded java objects EO
     is provided by preloaded <a href="http://elasticobjects.org/configs/ModelConfig.html">model configurations</a> in JSON.
 </p>
-<img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/eoModel.svg" width="200" style="margin:20px;"/>
+<img src="example-springboot/src/main/resources/static/pics/eoModel.svg" width="200" style="margin:20px;"/>
 
-<h3>Call Types</h5>
+### Call Types
 <p>A special
-<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>Call</a>
+<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>Call</a>
  bean with a
     generic execution method offers <strong>functionality</strong>. Its has the following important fields: </p>
 
@@ -73,9 +287,9 @@ Some code examples you will find in <a href="http://elasticobjects.org/eo/EO.htm
 <a href="http://elasticobjects.org/config/FieldConfig/condition">&equiv;condition</a>
 </li>
 </ul>
-<img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/eoCall.svg" width="200" style="margin:20px;"/>
+<img src="example-springboot/src/main/resources/static/pics/eoCall.svg" width="200" style="margin:20px;"/>
 
-<h3>Pseudo JSON Example</h5>
+### Pseudo JSON Example
 <p>
     The following pseudo code would call the execute method in the <strong>ACall</strong> instance,
     which uses the <strong>AnObject</strong> object provided in <em>input</em> path
@@ -87,7 +301,8 @@ Some code examples you will find in <a href="http://elasticobjects.org/eo/EO.htm
     }
 </p>
 
-<h3>A CSV Example</h5>
+###  A CSV Example
+
 <p>
 This example is executable on
 <a href="https://www.elasticobjects.org/Home.html#templateResourceCallHtml">elasticobjects.org</a>.
@@ -108,17 +323,18 @@ This example is executable on
     }
 
 
-<h4>Elements</h4>
+### Elements
+
 <ul>
     <li>
-<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/lists/CsvSimpleReadCall.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>CsvSimpleReadCall</a>
+<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/lists/CsvSimpleReadCall.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>CsvSimpleReadCall</a>
  reads
-<nobreak><a target="github" href="elastic-objects-test/src/main/resources/input/assets/bt/AnObject.csv"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>AnObject.csv</a>
+<nobreak><a target="github" href="elastic-objects-test/src/main/resources/input/assets/bt/AnObject.csv"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>AnObject.csv</a>
  and store it under the path "/data/csv"</li>
     <li>
-<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/templates/TemplateResourceCall.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>TemplateResourceCall</a>
+<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/templates/TemplateResourceCall.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>TemplateResourceCall</a>
  use /data/csv as input
-<nobreak><a target="github" href="example-springboot/src/main/resources/templates/table.tpl"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>table.tpl</a>
+<nobreak><a target="github" href="example-springboot/src/main/resources/templates/table.tpl"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>table.tpl</a>
  and store it under the path "_asTemplate"</li>
 </ul>
 <a href="http://elasticobjects.org/config/ModelConfig/TemplateResourceCall">&equiv;TemplateResourceCall</a>
@@ -130,7 +346,8 @@ This example is executable on
 
 
 
-<h3>Sending Template</h5>
+### Sending Template
+
 <p>
     The following example is executable on
     <a href="https://www.elasticobjects.org/Home.html#templateCall">elasticobjects.org</a>
@@ -151,7 +368,8 @@ This example is executable on
     #{TemplateResourceCall->table.tpl, data/db}.
 
 
-<h4>Short Form</h4>
+#### Short Form
+
 <p>In the template a short form of one call JSON is used:
 
      #{CsvSimpleReadCall->AnObject.csv, data/csv}.
@@ -176,40 +394,42 @@ is equivalent to
  </p>
 
 
-<h4>Elements</h4>
+#### Elements
+
 <p>
    On elasticobjects.org a second endpoint is defined for receiving templates via
-   <a target="github" href="example-springboot/src/main/java/org/fluentcodes/projects/elasticobjects/web/WebEo.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>WebEo.java</a>.
+   <a target="github" href="example-springboot/src/main/java/org/fluentcodes/projects/elasticobjects/web/WebEo.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>WebEo.java</a>.
 </p>
 <ul>
     <li>
-<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/lists/CsvSimpleReadCall.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>CsvSimpleReadCall</a>
+<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/lists/CsvSimpleReadCall.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>CsvSimpleReadCall</a>
  with
-<nobreak><a target="github" href="elastic-objects-test/src/main/resources/input/assets/bt/AnObject.csv"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>AnObject.csv</a>
+<nobreak><a target="github" href="elastic-objects-test/src/main/resources/input/assets/bt/AnObject.csv"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>AnObject.csv</a>
 </li>
     <li>
-<nobreak><a target="github" href="eo-xlsx/src/main/java/org/fluentcodes/projects/elasticobjects/calls/xlsx/XlsxReadCall.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>XlsxReadCall</a>
+<nobreak><a target="github" href="eo-xlsx/src/main/java/org/fluentcodes/projects/elasticobjects/calls/xlsx/XlsxReadCall.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>XlsxReadCall</a>
  with
-<nobreak><a target="github" href="example-springboot/input/data/lists/AnObject.xlsx"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>AnObject.xlsx:test</a>
+<nobreak><a target="github" href="example-springboot/input/data/lists/AnObject.xlsx"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>AnObject.xlsx:test</a>
 </li>
     <li>
-<nobreak><a target="github" href="eo-db/src/main/java/org/fluentcodes/projects/elasticobjects/calls/db/DbQueryCall.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>DbQueryCall</a>
+<nobreak><a target="github" href="eo-db/src/main/java/org/fluentcodes/projects/elasticobjects/calls/db/DbQueryCall.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>DbQueryCall</a>
  with
-<nobreak><a target="github" href="eo-db/src/main/resources//DbSqlConfig.json"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>DbSqlConfig.json</a></nobreak></li>
+<nobreak><a target="github" href="eo-db/src/main/resources//DbSqlConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>DbSqlConfig.json</a></nobreak></li>
 </ul>
 <p>
     After each read call the
-<nobreak><a target="github" href="elastic-objects-test/src/main/java/org/fluentcodes/projects/elasticobjects/domain/test/AnObject.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>AnObject</a>
+<nobreak><a target="github" href="elastic-objects-test/src/main/java/org/fluentcodes/projects/elasticobjects/domain/test/AnObject.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>AnObject</a>
  example data a
-<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/templates/TemplateResourceCall.java"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>TemplateResourceCall</a>
+<nobreak><a target="github" href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/templates/TemplateResourceCall.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>TemplateResourceCall</a>
  will render this
     data with
-<nobreak><a target="github" href="example-springboot/src/main/resources/templates/table.tpl"> <img src="https://raw.githubusercontent.com/fluentcodes/elasticobjects/master/example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>table.tpl</a>
+<nobreak><a target="github" href="example-springboot/src/main/resources/templates/table.tpl"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>table.tpl</a>
  again.
 </p>
 
-<h3>Other Examples</h5>
-<h4>Service Examples</h4>
+### Other Examples
+#### Service Examples
+
 <p>
     Under <a href="http://elasticobjects.org/examples/ExamplesStart.html">http://elasticobjects.org/examples/ExamplesStart.html</a>
     you find further working editable service examples:
@@ -227,7 +447,7 @@ is equivalent to
 
 
 
-<h4>Direct Java Usage</h4>
+### Direct Java Usage
 <p>
     Under the
 <a href="http://elasticobjects.org/eo/EO.html">http://elasticobjects.org/eo/EO.html</a>
@@ -240,10 +460,11 @@ is equivalent to
 </ul>
 </p>
 
-<h3>Conclusion</h3>
+## Conclusion
+
 <p>
 The project has now version 0.9.3-SNAPSHOT and it's good enough for a proof of concept. For
-the hyped microservice architectures it would offer an incredible flexibility compared with
+the microservice architectures it offer an incredible flexibility compared with
 RPC API solutions.
 </p>
 
@@ -301,69 +522,8 @@ methods to create, set or access objects.
 generic execute method with EO as input.
 </p>-->
 
-### Modules
-Actually three modules are deployed to [Maven Central](https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects).
 
-#### elastic-objects
-The [core](elastic-objects) has actually no dependencies beside Log4j  
-and is rather small with a jar size of approximately 270 KB. It already includes the template calls.
-```
-    <dependency>
-        <groupId>org.fluentcodes.projects.elasticobjects</groupId>
-        <artifactId>elastic-objects</artifactId>
-        <version>0.8.0</version>
-    </dependency>
-```
-
-<div align="right" style="font-size:10px">
-<a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/elastic-objects">
-<font size="1">mvn repository</font>
-</a></div>
-
-#### elastic-objects-test
-The objectives [elastic-objects-test](elastic-objects-test) is providing all tests for elastic-object module together with a main package providing test helper and test objects to other modules.
-
-#### examples-springboot
-[examples-springboot](examples-springboot)
-are the sources for the spring boot web example on
-[http://www.elasticobjects.org](http://www.elasticobjects.org).
-
-#### eo-csv
-[eo-csv](eo-csv) offers calls and configurations for reading and writing csv files using [OpenCsv](https://mvnrepository.com/artifact/com.opencsv/opencsv).
-
-
-    <dependency>
-        <groupId>org.fluentcodes.projects.elasticobjects</groupId>
-        <artifactId>eo-csv</artifactId>
-        <version>0.8.0</version>
-    </dependency>
-    
-    <div align="right" style="font-size:10px">
-<a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-csv">
-<font size="1">mvn repository</font>
-</a></div>
-
-#### eo-db
-[eo-db](eo-db)
-is provide the execution of some sql configurations as list or as query.
-
-#### eo-xlsx
-[eo-xlsx](eo-xlsx) offers calls and configurations for reading and writing xlsx files using [Apache POI](https://mvnrepository.com/artifact/org.apache.poi/poi).
-
-
-    <dependency>
-        <groupId>org.fluentcodes.projects.elasticobjects</groupId>
-        <artifactId>eo-xlsx</artifactId>
-        <version>0.8.0</version>
-    </dependency>
-
-#### builder
-[builder](eo-builder) offers calls and configurations  
-for generating sources like java classes or json configuration by a simple Excel file.
-
-<div align="right" style="font-size:10px"><a href="#page"><font size="2">top</font></a></div>
-
-### Links
+## Links
 * https://tech.signavio.com/2017/json-type-information
 * https://www.json.org/json-en.html
 * https://de.wikipedia.org/wiki/JSON-LD

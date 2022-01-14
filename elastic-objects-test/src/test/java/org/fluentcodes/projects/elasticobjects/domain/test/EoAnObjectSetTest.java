@@ -49,7 +49,7 @@ public class EoAnObjectSetTest {
         Assert.assertNotNull(fieldConfig);
         Assertions.assertThat(fieldConfig.getProperties().isUnique()).isFalse();
         Assertions.assertThat(fieldConfig.getProperties().isNotNull()).isFalse();
-        Assert.assertEquals(new Integer(20), fieldConfig.getProperties().getLength());
+        Assert.assertEquals(new Integer(20), fieldConfig.getProperties().getMax());
     }
 
     @Test

@@ -14,7 +14,7 @@
     "description": "The author of the class.",
     "expose": "WEB",
     "fieldKey": "author",
-    "length": 256
+    "max": 256
   },
   "condition": {
     "module": "elastic-objects",
@@ -23,7 +23,7 @@
     "description": "A condition for calls. ",
     "expose": "WEB",
     "fieldKey": "condition",
-    "length": 1000
+    "max": 1000
   },
   "configModelKey": {
     "module": "elastic-objects",
@@ -32,7 +32,7 @@
     "description": "The model of the configuration to determine type.",
     "expose": "NONE",
     "fieldKey": "configModelKey",
-    "length": 80
+    "max": 80
   },
   "create": {
     "module": "elastic-objects",
@@ -72,7 +72,7 @@
     "modelKeys": "String",
     "description": "Set when an default implementation is defined within an interface.",
     "expose": "WEB",
-    "length": 80,
+    "max": 80,
     "fieldKey": "defaultImplementation"
   },
   "description": {
@@ -82,7 +82,7 @@
     "description": "A description of the model used by every model extending BaseClassImpl. ",
     "expose": "WEB",
     "fieldKey": "description",
-    "length": 512
+    "max": 512
   },
   "duration": {
     "module": "elastic-objects",
@@ -123,7 +123,7 @@
     "description": "fieldKey",
     "expose": "NONE",
     "fieldKey": "fieldKey",
-    "length": 80
+    "max": 80
   },
   "fieldName": {
     "module": "elastic-objects",
@@ -133,7 +133,7 @@
     "expose": "NONE",
     "fieldKey": "fieldName",
     "properties": {
-      "length": 80
+      "max": 80
     }
   },
   "FieldBean.properties": {
@@ -188,7 +188,7 @@
     "modelKeys": "String",
     "description": "Set the name for an id independent of the id.",
     "expose": "WEB",
-    "length": 80,
+    "max": 80,
     "fieldKey": "idKey"
   },
   "interfaces": {
@@ -198,7 +198,7 @@
     "description": "A comma separeted list of interface keys. ",
     "expose": "NONE",
     "fieldKey": "interfaces",
-    "length": 256
+    "max": 256
   },
   "javascriptType": {
     "module": "elastic-objects",
@@ -209,7 +209,7 @@
     "fieldKey": "javascriptType",
 
     "properties": {
-      "length": 10,
+      "max": 10,
       "transient": true,
       "final": true
     }
@@ -230,7 +230,7 @@
     "expose": "WEB",
     "fieldKey": "keepCall"
   },
-  "length": {
+  "max": {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Integer",
@@ -285,7 +285,7 @@
     "description": "The model name for the bean/action object @ModelConfig.",
     "expose": "NONE",
     "fieldKey": "modelKey",
-    "length": 80
+    "max": 80
   },
   "modelKeys": {
     "module": "elastic-objects",
@@ -294,7 +294,7 @@
     "description": "A string representation for a list of modelsConfig.",
     "expose": "NONE",
     "fieldKey": "modelKeys",
-    "length": 256
+    "max": 256
   },
   "models": {
     "module": "elastic-objects",
@@ -303,7 +303,7 @@
     "description": "A string representation for a list of model keys.",
     "expose": "WEB",
     "fieldKey": "models",
-    "length": 512
+    "max": 512
   },
   "module": {
     "module": "elastic-objects",
@@ -312,7 +312,7 @@
     "description": "Defines a target module where generating occurs. ",
     "expose": "WEB",
     "fieldKey": "module",
-    "length": 80
+    "max": 80
   },
   "moduleScope": {
     "module": "elastic-objects",
@@ -321,7 +321,7 @@
     "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
     "expose": "WEB",
     "fieldKey": "moduleScope",
-    "length": 32
+    "max": 32
   },
   "name": {
     "module": "elastic-objects",
@@ -330,7 +330,7 @@
     "description": "The name field of a class. ",
     "expose": "WEB",
     "fieldKey": "name",
-    "length": 80
+    "max": 80
   },
   "naturalId": {
     "module": "elastic-objects",
@@ -340,7 +340,7 @@
     "expose": "NONE",
     "fieldKey": "naturalId",
     "properties": {
-      "length": 80,
+      "max": 80,
       "unique": true,
       "notNull": true
     }
@@ -351,7 +351,7 @@
     "modelKeys": "String",
     "description": "A comma separated list of fields used for natural id.",
     "expose": "WEB",
-    "length": 240,
+    "max": 240,
     "fieldKey": "naturalKeys"
   },
   "notNull": {
@@ -385,7 +385,7 @@
     "description": "packagePath",
     "expose": "NONE",
     "fieldKey": "packagePath",
-    "length": 124
+    "max": 124
   },
   "postpend": {
     "module": "elastic-objects",
@@ -394,7 +394,7 @@
     "description": "postpend String when executed by ExecutorCallImpl",
     "expose": "NONE",
     "fieldKey": "postpend",
-    "length": 256
+    "max": 256
   },
   "prepend": {
     "module": "elastic-objects",
@@ -403,7 +403,7 @@
     "description": "prepend String when executed by ExecutorCallImpl",
     "expose": "NONE",
     "fieldKey": "prepend",
-    "length": 256
+    "max": 256
   },
   "property": {
     "module": "elastic-objects",
@@ -428,7 +428,7 @@
     "description": "The serialized field for @{link pathPattern}.",
     "expose": "NONE",
     "fieldKey": "serialized",
-    "length": 2056
+    "max": 2056
   },
   "shapeType": {
     "module": "elastic-objects",
@@ -445,7 +445,7 @@
     "description": "A sourcePath where EO offers it's input value when the execution starts.",
     "expose": "WEB",
     "fieldKey": "sourcePath",
-    "length": 80
+    "max": 80
   },
   "startCondition": {
     "module": "elastic-objects",
@@ -454,7 +454,7 @@
     "description": "A condition for calls. ",
     "expose": "WEB",
     "fieldKey": "startCondition",
-    "length": 1000
+    "max": 1000
   },
   "staticName": {
     "module": "elastic-objects",
@@ -479,7 +479,7 @@
     "description": "A key for the super class of a class.",
     "expose": "NONE",
     "fieldKey": "superKey",
-    "length": 256
+    "max": 256
   },
   "table": {
     "module": "elastic-objects",
@@ -487,7 +487,7 @@
     "modelKeys": "String",
     "description": "A persistence name.",
     "expose": "WEB",
-    "length": 240,
+    "max": 240,
     "fieldKey": "table"
   },
   "targetPath": {
@@ -497,7 +497,7 @@
     "description": "A targetPath where the result of the execution will be mapped. If value is \"_asString\" no mapping occured but a seralized version is returned as value to embed it in the resulting file. Path parameters could be set dynamically with =&gt;[path]. in any combination.",
     "expose": "WEB",
     "fieldKey": "targetPath",
-    "length": 80
+    "max": 80
   },
   "transient": {
     "module": "elastic-objects",

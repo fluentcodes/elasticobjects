@@ -14,7 +14,7 @@
     "description": "The key finding a cache @DbCache entry.",
     "expose": "NONE",
     "fieldKey": "dbKey",
-    "length": 80,
+    "max": 80,
     "properties": {
       "unique": true,
       "notNull": true
@@ -29,7 +29,7 @@
     "fieldKey": "configKey",
     "properties": {
       "notNull": true,
-      "length": 80
+      "max": 80
     }
   },
   "dbConfigKey": {
@@ -41,7 +41,7 @@
     "fieldKey": "dbConfigKey",
     "properties": {
       "notNull": true,
-      "length": 80
+      "max": 80
     }
   },
   "modelConfigKey": {
@@ -52,7 +52,7 @@
     "expose": "NONE",
     "fieldKey": "modelConfigKey",
     "properties": {
-      "length": 80
+      "max": 80
     }
   },
   "sqlKey": {
@@ -63,7 +63,7 @@
     "expose": "NONE",
     "fieldKey": "sqlKey",
     "properties": {
-      "length": 128
+      "max": 128
     }
   },
   "sqlList": {

@@ -426,7 +426,11 @@ public class EoChild extends EoChildScalar implements IEOObject {
         return "(" + getModels().toString() + ") " + getPathAsString() + " -> " + get().toString() + "";
     }
 
-    String toString(JSONSerializationType serializationType) {
+    public String toJson() {
+        return toJson(getSerializationType());
+    }
+
+    public String toJson(JSONSerializationType serializationType) {
         if (isScalar()) {
             return get().toString();
         }

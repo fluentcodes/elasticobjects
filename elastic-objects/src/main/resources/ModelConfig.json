@@ -158,7 +158,7 @@
   "FieldBeanProperties": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fields": "default, final, fieldName, jsonIgnore, generated, length, notNull, override, property, super, javascriptType, min, max, staticName, transient, unique",
+    "fields": "default, final, fieldName, jsonIgnore, generated, notNull, override, property, super, javascriptType, min, max, staticName, transient, unique",
     "interfaces": "FieldPropertiesInterface",
     "expose": "NONE",
     "description": "The basic bean container class for the configuration class@FieldConfig. Also used as a base for building source code. ",
@@ -238,10 +238,6 @@
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": {
-      "length": {
-        "final": true,
-        "property": false
-      },
       "default": {
         "final": true,
         "property": false
@@ -267,10 +263,6 @@
         "property": false
       },
       "notNull": {
-        "final": true,
-        "property": false
-      },
-      "length": {
         "final": true,
         "property": false
       },
@@ -338,7 +330,7 @@
   "FieldPropertiesInterface": {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fields": "length, notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
+    "fields": "notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",

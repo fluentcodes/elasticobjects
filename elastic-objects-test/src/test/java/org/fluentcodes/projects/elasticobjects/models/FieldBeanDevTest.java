@@ -3,12 +3,10 @@ package org.fluentcodes.projects.elasticobjects.models;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
-import org.fluentcodes.projects.elasticobjects.xpect.XpectEoJunit4;
 import org.junit.Test;
 
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_DESCRIPTION;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FINAL;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_MODEL_KEYS;
@@ -118,27 +116,5 @@ public class FieldBeanDevTest {
         FieldConfig fieldConfig = (FieldConfig) bean.createConfig(ObjectProviderDev.CONFIG_MAPS_DEV);
         assertEquals(F_ABSTRACT, fieldConfig.getFieldKey());
         assertEquals(F_ABSTRACT, fieldConfig.getNaturalId());
-    }
-
-    @Test
-    public void createDescription() {
-        final String serialized = "{  \"description\": {\n" +
-                "    \"module\": \"elastic-objects\",\n" +
-                "    \"moduleScope\": \"main\",\n" +
-                "    \"modelKeys\": \"String\",\n" +
-                "    \"description\": \"A description of the model used by every model extending BaseClassImpl. \",\n" +
-                "    \"expose\": \"WEB\",\n" +
-                "    \"fieldKey\": \"description\",\n" +
-                "    \"length\": 512\n" +
-                "  }}";
-        EoRoot root = ObjectProviderDev.createEo(serialized);
-        Map<String, Object> beanMap = (Map<String, Object>) root.get();
-        Map<String, Object> fieldConfigMap = (Map<String, Object>) beanMap.get(F_DESCRIPTION);
-        FieldBean bean = new FieldBean(fieldConfigMap);
-        assertNotNull(bean);
-        bean.setDefault();
-        assertEquals(F_DESCRIPTION, bean.getFieldKey());
-        assertEquals(F_DESCRIPTION, bean.getNaturalId());
-        XpectEoJunit4.assertStatic(bean);
     }
 }

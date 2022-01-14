@@ -115,12 +115,6 @@ public class FieldConfigDevTest {
     }
 
     @Test
-    public void createFieldConfigProperty_length(){
-        FieldConfig config = ObjectProviderDev.createFieldConfigProperty(FieldBeanProperties.F_LENGTH, 1);
-        assertEquals(new Integer(1), config.getProperties().getLength());
-    }
-
-    @Test
     public void createFieldConfigProperty_max(){
         FieldConfig config = ObjectProviderDev.createFieldConfigProperty(FieldBeanProperties.F_MAX, 1);
         assertEquals(new Integer(1), config.getProperties().getMax());

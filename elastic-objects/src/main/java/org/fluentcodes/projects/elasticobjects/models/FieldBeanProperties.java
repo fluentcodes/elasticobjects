@@ -4,10 +4,6 @@ import java.util.Map;
 
 /**
  * The basic bean container class for the configuration class {@link FieldConfig}. Also used as a base for building source code.
- *
- * @author Werner Diwischek
- * @creationDate Wed Dec 09 00:00:00 CET 2020
- * @modificationDate Thu Jan 14 04:43:19 CET 2021
  */
 public class FieldBeanProperties implements FieldPropertiesInterface {
 
@@ -18,7 +14,6 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
     public static final String F_GENERATED = "generated";
     public static final String F_JAVASCRIPT_TYPE = "javascriptType";
     public static final String F_JSON_IGNORE = "jsonIgnore";
-    public static final String F_LENGTH = "length";
     public static final String F_MAX = "max";
     public static final String F_MIN = "min";
     public static final String F_NOT_NULL = "notNull";
@@ -36,7 +31,6 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
     private String javascriptType;
     private Boolean jsonIgnore;
     private Boolean notNull;
-    private Integer length;
     private Integer max;
     private Integer min;
     private Boolean override;
@@ -62,8 +56,6 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
                 ConfigBean.toString(properties.get(F_JAVASCRIPT_TYPE)));
         setJsonIgnore(
                 ConfigBean.toBoolean(properties.get(F_JSON_IGNORE)));
-        setLength(
-                ConfigBean.toInteger(properties.get(F_LENGTH)));
         setMax(
                 ConfigBean.toInteger(properties.get(F_MAX)));
         setMin(
@@ -91,7 +83,6 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
         setGenerated(config.getGenerated());
         setJavascriptType(config.getJavascriptType());
         setJsonIgnore(config.getJsonIgnore());
-        setLength(config.getLength());
         setMax(config.getMax());
         setMin(config.getMin());
         setNotNull(config.getNotNull());
@@ -110,7 +101,6 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
         mergeGenerated(bean.getGenerated());
         mergeJavascriptType(bean.getJavascriptType());
         mergeJsonIgnore(bean.getJsonIgnore());
-        mergeLength(bean.getLength());
         mergeMax(bean.getMax());
         mergeMin(bean.getMin());
         mergeNotNull(bean.getNotNull());
@@ -179,16 +169,6 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
 
     public FieldBeanProperties setJsonIgnore(Boolean value) {
         this.jsonIgnore = value;
-        return this;
-    }
-
-    @Override
-    public Integer getLength() {
-        return length;
-    }
-
-    public FieldBeanProperties setLength(final Integer value) {
-        this.length = value;
         return this;
     }
 
@@ -311,11 +291,6 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
     private void mergeJsonIgnore(final Object value) {
         if (hasJsonIgnore()) return;
         setJsonIgnore(new ShapeTypeSerializerBoolean().asObject(value, false));
-    }
-
-    private void mergeLength(final Object value) {
-        if (hasLength()) return;
-        setLength(new ShapeTypeSerializerInteger().asObject(value, -1));
     }
 
     private void mergeMax(final Object value) {

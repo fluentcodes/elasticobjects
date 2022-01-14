@@ -57,12 +57,6 @@ public interface FieldPropertiesInterface {
         return hasJsonIgnore() && getJsonIgnore();
     }
 
-    Integer getLength();
-
-    default boolean hasLength() {
-        return getLength() != null;
-    }
-
     Integer getMax();
 
     default boolean hasMax() {

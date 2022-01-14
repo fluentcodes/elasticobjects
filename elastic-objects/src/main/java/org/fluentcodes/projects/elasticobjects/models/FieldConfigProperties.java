@@ -2,9 +2,6 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 /**
  * Immutabel EO field configuration will be initalized by internal builder using map values.
- *
- * @author Werner Diwischek
- * @creationDate Tue Jan 4 04:26:27 CET 2022
  */
 public class FieldConfigProperties implements FieldPropertiesInterface {
     public static final String AND_MODEL = "' and model '";
@@ -14,7 +11,6 @@ public class FieldConfigProperties implements FieldPropertiesInterface {
     private final Boolean generated;
     private final String javascriptType;
     private final Boolean jsonIgnore;
-    private final Integer length;
     private final Integer max;
     private final Integer min;
     private final Boolean notNull;
@@ -32,7 +28,6 @@ public class FieldConfigProperties implements FieldPropertiesInterface {
         this.generated = bean.getGenerated();
         this.javascriptType = bean.getJavascriptType();
         this.jsonIgnore = bean.getJsonIgnore();
-        this.length = bean.getLength();
         this.max = bean.getMax();
         this.min = bean.getMin();
         this.override = bean.getOverride();
@@ -77,11 +72,6 @@ public class FieldConfigProperties implements FieldPropertiesInterface {
     @Override
     public Boolean getNotNull() {
         return notNull;
-    }
-
-    @Override
-    public Integer getLength() {
-        return length;
     }
 
     @Override

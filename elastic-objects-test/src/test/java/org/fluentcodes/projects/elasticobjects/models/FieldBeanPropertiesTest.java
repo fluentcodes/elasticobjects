@@ -19,7 +19,7 @@ public class FieldBeanPropertiesTest {
     public void findModelConfig() {
         ModelConfig config = ObjectProvider.findModel(FieldBeanProperties.class);
         assertTrue(config.getProperties().getCreate());
-        assertEquals(16, config.getFields().size());
+        assertEquals(15, config.getFields().size());
     }
 
     @Test
@@ -55,12 +55,6 @@ public class FieldBeanPropertiesTest {
     public void createFieldBeanProperties_jsonIgnore() {
         FieldBeanProperties properties = createFieldBeanProperties(F_JSON_IGNORE, true);
         assertEquals(true, properties.getJsonIgnore());
-    }
-
-    @Test
-    public void createFieldBeanProperties_length() {
-        FieldBeanProperties properties = createFieldBeanProperties(F_LENGTH, 1);
-        assertEquals(Integer.valueOf(1), properties.getLength());
     }
 
     @Test

@@ -6,7 +6,7 @@
     "description": "Key for configuration @Config",
     "expose": "WEB",
     "fieldKey": "configKey",
-    "length": 64
+    "max": 64
   },
   "greeting": {
     "module": "example-springboot",
@@ -15,7 +15,7 @@
     "description": "The field value for @TheGreetingCall example. ",
     "expose": "NONE",
     "fieldKey": "greeting",
-    "length": 15
+    "max": 15
   },
   "noGithub": {
     "module": "example-springboot",

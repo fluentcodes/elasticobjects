@@ -41,7 +41,7 @@ public class ShapeTypeSerializerString implements ShapeTypeSerializerInterface<S
             return true;
         }
         if (object == null){
-            if (!properties.hasLength()) {
+            if (!properties.hasMax() || properties.getMax() == -1) {
                 return true;
             }
             /*else if (properties.getLength() > -1) {
@@ -52,8 +52,8 @@ public class ShapeTypeSerializerString implements ShapeTypeSerializerInterface<S
             }
         }
         String value = (String)object;
-        if (properties.hasLength() && properties.getLength() < value.length()) {
-            throw new EoException("String value for field '" + value + "' has size " + value.length() + " bigger than max length " + properties.getLength() + ".");
+        if (properties.hasMax() && properties.getMax() < value.length()) {
+            throw new EoException("String value for field '" + value + "' has size " + value.length() + " bigger than max length " + properties.getMax() + ".");
         }
         return true;
     }

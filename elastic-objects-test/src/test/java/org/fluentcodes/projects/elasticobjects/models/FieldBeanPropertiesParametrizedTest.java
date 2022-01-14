@@ -62,8 +62,6 @@ public class FieldBeanPropertiesParametrizedTest {
                 { FieldBeanProperties.F_JSON_IGNORE, true, true },
                 { FieldBeanProperties.F_JSON_IGNORE, false, false },
                 { FieldBeanProperties.F_JSON_IGNORE, null, null },
-                { FieldBeanProperties.F_LENGTH, 1, 1 },
-                { FieldBeanProperties.F_LENGTH, null, null },
                 { FieldBeanProperties.F_MAX, 1, 1 },
                 { FieldBeanProperties.F_MAX, null, null },
                 { FieldBeanProperties.F_MIN, 1, 1 },

@@ -462,7 +462,7 @@ is equivalent to
 ## Conclusion
 
 <p>
-The project has now version 0.9.3-SNAPSHOT and it's good enough for a proof of concept. For
+The project has now version 0.9.3 and it's good enough for a proof of concept. For
 the microservice architectures it offer an incredible flexibility compared with
 RPC API solutions.
 </p>

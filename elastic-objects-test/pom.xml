@@ -6,7 +6,7 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>elastic-objects-test</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.3-SNAPSHOT</version>
+    <version>0.9.3</version>
     <name>EO - Elastic Objects Tests and Test Resource</name>
     <description>Package for testing Elastic Objects</description>
 
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>elastic-objects</artifactId>
-            <version>0.9.3-SNAPSHOT</version>
+            <version>0.9.3</version>
         </dependency>
         <dependency>
             <groupId>org.fluentcodes.tools</groupId>

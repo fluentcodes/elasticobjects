@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigReadWriteCommand;
 
@@ -41,19 +41,19 @@ public class FileReadWriteCall extends CallImpl implements ConfigReadWriteComman
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         return writeTarget(eo, readSource(eo));
     }
 
-    protected String readSource(final IEOScalar eo) {
+    protected String readSource(final EOInterfaceScalar eo) {
         return (String) new FileReadCall(sourceFileConfigKey).execute(eo);
     }
 
-    protected String readTarget(final IEOScalar eo) {
+    protected String readTarget(final EOInterfaceScalar eo) {
         return (String) new FileReadCall(targetFileConfigKey).execute(eo);
     }
 
-    protected String writeTarget(final IEOScalar eo, final String content) {
+    protected String writeTarget(final EOInterfaceScalar eo, final String content) {
         return new FileWriteCall(targetFileConfigKey)
                 .setContent(content)
                 .setCompare(compare)

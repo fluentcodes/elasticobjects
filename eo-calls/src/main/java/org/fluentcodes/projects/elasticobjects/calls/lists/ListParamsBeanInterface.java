@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.calls.lists;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.TemplateMarker;
@@ -18,7 +18,7 @@ public interface ListParamsBeanInterface {
 
     String getTargetPath();
 
-    default String mapEo(final IEOScalar eo, final List filteredResult) {
+    default String mapEo(final EOInterfaceScalar eo, final List filteredResult) {
         if (filteredResult.isEmpty()) {
             return "";
         }

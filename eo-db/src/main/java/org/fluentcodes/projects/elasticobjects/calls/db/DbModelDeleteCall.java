@@ -1,11 +1,10 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigWriteCommand;
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.DeleteStatement;
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.List;
 
@@ -29,11 +28,11 @@ public class DbModelDeleteCall extends DbModelCall implements ConfigWriteCommand
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         return remove(eo);
     }
 
-    public Object remove(final IEOScalar eo) {
+    public Object remove(final EOInterfaceScalar eo) {
         DbModelConfig modelConfig = init(PermissionType.WRITE, eo);
         if (hasTargetPath()) {
             List<String> result = FindStatement.of(eo)

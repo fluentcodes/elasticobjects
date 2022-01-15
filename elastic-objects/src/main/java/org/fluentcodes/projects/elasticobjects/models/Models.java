@@ -3,8 +3,8 @@ import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.EoChildScalar;
 import org.fluentcodes.projects.elasticobjects.EoChildScalarSpecial;
 import org.fluentcodes.projects.elasticobjects.EoChildSpecial;
-import org.fluentcodes.projects.elasticobjects.IEOObject;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.Path;
 import org.fluentcodes.projects.elasticobjects.PathElement;
@@ -110,7 +110,7 @@ public class Models {
         return toBeStripped;
     }
 
-    public IEOScalar createChild(IEOObject parent, final PathElement pathElement, Object value) {
+    public EOInterfaceScalar createChild(EO parent, final PathElement pathElement, Object value) {
         Models childModels = deriveChildModels(pathElement, value);
         if (parent.getSerializationType() == JSONSerializationType.STANDARD &&
                 (childModels.isObject() || childModels.isMap())
@@ -243,7 +243,7 @@ public class Models {
                 descriminator.getModelClass().getSimpleName());
     }
 
-    private final String deriveFieldKey(IEOObject parentEo, final PathElement pathElement) {
+    private final String deriveFieldKey(EO parentEo, final PathElement pathElement) {
         if (isList() && pathElement.isParentSet() && pathElement.hasKey()) {
             if (pathElement.getKey().matches("\\d+")) {
                 return Integer.valueOf(pathElement.getKey()).toString();

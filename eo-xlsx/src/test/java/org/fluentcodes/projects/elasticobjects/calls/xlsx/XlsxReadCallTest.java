@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.xlsx;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoChild;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
@@ -45,7 +45,7 @@ public class XlsxReadCallTest implements IModelConfigCreateTests {
     @Test
     public void call_ListSimpleXlsx__execute__listReturned() {
         final Call call = new XlsxReadCall(LIST_SIMPLE_XLSX);
-        IEOScalar eo = ObjectProvider.createEo(new ArrayList<>());
+        EOInterfaceScalar eo = ObjectProvider.createEo(new ArrayList<>());
         call.execute(eo);
         List value = (List) eo.get();
         Assertions.assertThat(value).isNotEmpty();
@@ -59,7 +59,7 @@ public class XlsxReadCallTest implements IModelConfigCreateTests {
     public void eo_ListSimpleXlx__execute__2rows() {
         final Call call = new XlsxReadCall(LIST_SIMPLE_XLSX);
         call.setTargetPath(".");
-        IEOScalar eo = ObjectProvider.createEoWithClasses(List.class);
+        EOInterfaceScalar eo = ObjectProvider.createEoWithClasses(List.class);
         eo.addCall(call);
         eo.execute();
         Assertions.assertThat(eo.getLog()).isEmpty();

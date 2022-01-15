@@ -45,7 +45,7 @@ and
 Some get and set operations.
 
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        IEOScalar child = root.set("test", "myAnObject", "myString");
+        EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
         
         assertEquals("test", root.get("myAnObject", "myString"));
         assertEquals("test", child.get());
@@ -64,7 +64,7 @@ The set changes the objects value by the model configuration:
 One can use a path string representation similar to a unix.
 
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        IEOScalar child = root.set("test", "myAnObject/myString");
+        EOInterfaceScalar child = root.set("test", "myAnObject/myString");
         
         assertEquals("test", root.get("myAnObject/myString"));
         assertEquals("test", child.get());
@@ -74,7 +74,7 @@ One can use a path string representation similar to a unix.
 The default json representation contains keys of the model configurations:
 
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        IEOScalar child = root.set("test", "myAnObject", "myString");
+        EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
         assertEquals("{\n" +
                 "  \"_rootmodel\": \"AnObject\",\n" +
                 "  \"(AnObject)myAnObject\": {\n" +
@@ -140,7 +140,7 @@ The generic execute method has EO as input. Here we set the field key "source" t
 
         final Call call = new SinusValueCall();
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new HashMap());
-        IEOScalar child = root.set(2.1, "source");
+        EOInterfaceScalar child = root.set(2.1, "source");
         assertEquals(2.1, child.get());
 
         assertEquals(Double.valueOf(0.8632093666488737), call.execute(child));
@@ -176,8 +176,7 @@ This json will be interpreted in an arbitrary text file via template call with t
         assertEquals("START -0.8414709848078965 - END", call.execute(root));
 
 ## Csv (eo-csv)
-[eo-csv](eo-csv) offers calls and configurations for reading and writing csv files  
-using [OpenCsv](https://mvnrepository.com/artifact/com.opencsv/opencsv).
+[eo-csv](eo-csv) offers calls and configurations for reading and writing csv files  using [OpenCsv](https://mvnrepository.com/artifact/com.opencsv/opencsv).
 
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>

@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.files;
 /*.{javaHeader}|*/
 
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 
 /**
@@ -35,7 +35,7 @@ public class JsonWriteCall extends FileWriteCall {
     }
 
     @Override
-    public String execute(final IEOScalar eo) {
+    public String execute(final EOInterfaceScalar eo) {
         if (!hasSerializationType()) {
             serializationType = JSONSerializationType.STANDARD;
         }

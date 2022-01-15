@@ -36,7 +36,7 @@ public class EoSetParentValueTest {
     @Test
     public void givenDevString_whenSetOtherString_thenIsChanged() {
         final EoRoot root = ObjectProviderDev.createEo();
-        final IEOScalar childEo = root.set("value", "key");
+        final EOInterfaceScalar childEo = root.set("value", "key");
         Assertions.assertThat(childEo.isChanged()).isFalse();
         childEo.set("valueOther");
         Assertions.assertThat(root.getLog()).isEmpty();

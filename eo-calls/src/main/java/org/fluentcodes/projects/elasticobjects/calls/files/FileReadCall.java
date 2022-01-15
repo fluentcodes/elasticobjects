@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
-import org.fluentcodes.projects.elasticobjects.IEOObject;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.Path;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigReadCommand;
@@ -33,25 +33,25 @@ public class FileReadCall extends FileCall implements ConfigReadCommand {
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         return createReturnString(eo, read(eo));
     }
 
-    public String read(final IEOScalar eo) {
+    public String read(final EOInterfaceScalar eo) {
         FileConfig fileConfig = super.init(PermissionType.READ, eo);
         if (fileConfig.hasCachedContent()) {
             return fileConfig.getCachedContent();
         }
         String filePath = fileConfig.getFilePath() + "/" + fileConfig.getFileName();
         filePath = filePath.replaceAll("^\\./", "");
-        String result = read((IEOObject) eo, filePath);
+        String result = read((EO) eo, filePath);
         if (fileConfig.getCached()) {
             fileConfig.setCachedContent(result);
         }
         return result;
     }
 
-    protected static String read(final IEOObject eo, String filePath) {
+    protected static String read(final EO eo, String filePath) {
         filePath = Parser.replacePathValues(filePath, eo);
         return new IOString(filePath).read();
     }

@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.lists;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileWriteCall;
@@ -34,12 +34,12 @@ public class CsvSimpleWriteCall extends FileWriteCall implements ListParamsBeanI
     }
 
     @Override
-    public String execute(IEOScalar eo) {
+    public String execute(EOInterfaceScalar eo) {
         return write(eo);
     }
 
     @Override
-    public String write(IEOScalar eo) {
+    public String write(EOInterfaceScalar eo) {
         FileConfig config = init(PermissionType.READ, eo);
         getListParams().merge(config);
         List rows = (List) eo.get();

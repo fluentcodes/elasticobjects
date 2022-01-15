@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.db;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOObject;
+import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.PathElement;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
@@ -70,7 +70,7 @@ public class DbSqlReadCallGuiTest {
                 "   \"_serializationType\":\"STANDARD\"\n" +
                 "}");
         eo.execute();
-        Assertions.assertThat(((IEOObject) eo.getEo("abc")).size()).isEqualTo(2);
+        Assertions.assertThat(((EO) eo.getEo("abc")).size()).isEqualTo(2);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class DbSqlReadCallGuiTest {
                 "}");
         eo.execute();
         Assertions.assertThat(eo.getLog()).isEmpty();
-        Assertions.assertThat(((IEOObject) eo.getEo("xyz")).size()).isEqualTo(3);
+        Assertions.assertThat(((EO) eo.getEo("xyz")).size()).isEqualTo(3);
         XpectStringJunit4.assertStatic((String) eo.get(PathElement.TEMPLATE));
     }
 

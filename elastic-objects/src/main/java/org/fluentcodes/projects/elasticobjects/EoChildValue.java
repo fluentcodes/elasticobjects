@@ -5,7 +5,7 @@ import org.fluentcodes.projects.elasticobjects.models.Models;
 public class EoChildValue extends EoChildScalar {
     private Object fieldValue;
 
-    public EoChildValue(final IEOObject parentEo, final String fieldKey, final Object value, final Models fieldModels) {
+    public EoChildValue(final EO parentEo, final String fieldKey, final Object value, final Models fieldModels) {
         super(parentEo, fieldKey, value, fieldModels);
     }
 

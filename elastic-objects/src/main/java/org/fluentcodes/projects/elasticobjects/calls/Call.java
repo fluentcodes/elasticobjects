@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.LogLevel;
 import org.fluentcodes.projects.elasticobjects.Path;
 import org.fluentcodes.projects.elasticobjects.calls.templates.KeepCalls;
@@ -29,7 +29,7 @@ public interface Call {
         }
     }
 
-    Object execute(final IEOScalar eo);
+    Object execute(final EOInterfaceScalar eo);
 
     void setByParameter(final String values);
 
@@ -159,7 +159,7 @@ public interface Call {
 
     Call setStartCondition(String startCondition);
 
-    boolean evalStartCondition(IEOScalar eo);
+    boolean evalStartCondition(EOInterfaceScalar eo);
 
     default boolean hasStartCondition() {
         return getStartCondition() != null && !getStartCondition().isEmpty();

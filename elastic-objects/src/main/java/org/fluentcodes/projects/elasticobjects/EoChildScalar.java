@@ -6,8 +6,8 @@ import org.fluentcodes.projects.elasticobjects.models.Models;
 
 import java.io.StringWriter;
 
-public class EoChildScalar implements IEOScalar {
-    private final IEOObject parentEo;
+public class EoChildScalar implements EOInterfaceScalar {
+    private final EO parentEo;
     private final String fieldKey;
     private Models fieldModels;
     private boolean changed = false;
@@ -18,7 +18,7 @@ public class EoChildScalar implements IEOScalar {
         this.fieldModels = models;
     }
 
-    public EoChildScalar(final IEOObject parentEo, final String fieldKey, final Object value, final Models fieldModels) {
+    public EoChildScalar(final EO parentEo, final String fieldKey, final Object value, final Models fieldModels) {
         if (parentEo == null) {
             throw new EoInternalException("Null parent for " + fieldKey);
         }
@@ -67,7 +67,7 @@ public class EoChildScalar implements IEOScalar {
     }
 
     @Override
-    public IEOObject getParent() {
+    public EO getParent() {
         return parentEo;
     }
 
@@ -96,7 +96,7 @@ public class EoChildScalar implements IEOScalar {
     }
 
     @Override
-    public IEOScalar getEo(String... pathString) {
+    public EOInterfaceScalar getEo(String... pathString) {
         Path path = new Path(pathString);
         return getEoObject(path).getEo(path);
     }
@@ -107,13 +107,13 @@ public class EoChildScalar implements IEOScalar {
     }
 
     @Override
-    public IEOScalar set(final Object value, final String... pathStrings) {
+    public EOInterfaceScalar set(final Object value, final String... pathStrings) {
         Path path = new Path(pathStrings);
         return getEoObject(path).createChild(path, value);
     }
 
     @Override
-    public IEOObject remove() {
+    public EO remove() {
         String fieldKey = getFieldKey();
         EoChild parent = (EoChild)getParent();
         parent.getModel().remove(fieldKey, parent.get());
@@ -159,7 +159,7 @@ public class EoChildScalar implements IEOScalar {
     }
 
     @Override
-    public IEOScalar map(Object value) {
+    public EOInterfaceScalar map(Object value) {
         if (value == null) {
             return this;
         }
@@ -168,13 +168,13 @@ public class EoChildScalar implements IEOScalar {
     }
 
     @Override
-    public String compare(final IEOScalar other) {
+    public String compare(final EOInterfaceScalar other) {
         StringBuilder diff = new StringBuilder();
         compare(diff, other);
         return diff.toString();
     }
 
-    void compare(final StringBuilder builder, final IEOScalar other) {
+    void compare(final StringBuilder builder, final EOInterfaceScalar other) {
         if (other.isScalar()) {
             if (!getModels().compare(this.get(), other.get())) {
                 builder.append(getPathAsString() + ": " + this.get() + " <> " + other.get());

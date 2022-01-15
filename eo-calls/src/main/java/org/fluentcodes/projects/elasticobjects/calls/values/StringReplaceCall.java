@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.values;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallContent;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
@@ -60,7 +60,7 @@ public class StringReplaceCall extends CallImpl implements CallContent {
     }
 
     @Override
-    public String execute(final IEOScalar eo) {
+    public String execute(final EOInterfaceScalar eo) {
         super.check(eo);
         if (eo.get() == null) {
             throw new EoException("Value " + eo.getPathAsString() + " is null ");

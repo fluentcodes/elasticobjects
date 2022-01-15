@@ -10,7 +10,7 @@
  */
 package org.fluentcodes.projects.elasticobjects.calls.templates.handler;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
@@ -56,7 +56,7 @@ public class Parser {
      * @param eo       eo
      * @return
      */
-    public static String replacePathValues(final String template, final IEOScalar eo) {
+    public static String replacePathValues(final String template, final EOInterfaceScalar eo) {
         if (template == null || template.isEmpty()) {
             return template;
         }
@@ -102,7 +102,7 @@ public class Parser {
      * @return the concatenated result of call results.
      */
 
-    public String parse(final IEOScalar eo) {
+    public String parse(final EOInterfaceScalar eo) {
         if (!templateMarker.hasStartSequence(template)) {
             return template == null ? "" : template;
         }
@@ -125,7 +125,7 @@ public class Parser {
         return result.toString();
     }
 
-    void handle(IEOScalar eo, String callSequence, Indicators callIndicator, String finish, StringBuilder result) {
+    void handle(EOInterfaceScalar eo, String callSequence, Indicators callIndicator, String finish, StringBuilder result) {
         String defaultValue = getDefault(callSequence);
         callSequence = callSequence.replaceAll("\\" + DEFAULT_SEPARATOR + ".*", "");
         String content = templateMarker.isContinueSequence(finish) ? findContent() : null;

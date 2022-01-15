@@ -4,8 +4,8 @@ package org.fluentcodes.projects.elasticobjects;
  * Offers an adapter for scalar wrapper to access elements via path.
  */
 
-public interface IEOBase {
-    IEOObject getParent();
+public interface EOInterfaceBase {
+    EO getParent();
 
     default boolean hasParent() {
         return getParent() != null;
@@ -15,7 +15,7 @@ public interface IEOBase {
         return !hasParent();
     }
 
-    IEOScalar map(Object source);
+    EOInterfaceScalar map(Object source);
 
     String getFieldKey();
 
@@ -25,13 +25,13 @@ public interface IEOBase {
 
     Object get();
 
-    IEOScalar getEo(String... path);
+    EOInterfaceScalar getEo(String... path);
 
     Object get(final String... pathStrings);
 
     void set(final Object value);
 
-    IEOScalar set(Object value, String... paths);
+    EOInterfaceScalar set(Object value, String... paths);
 
     EoRoot getRoot();
 
@@ -43,7 +43,7 @@ public interface IEOBase {
 
     void setChanged();
 
-    IEOObject remove();
+    EO remove();
 
     default boolean isEmpty() {
         return get() == null;

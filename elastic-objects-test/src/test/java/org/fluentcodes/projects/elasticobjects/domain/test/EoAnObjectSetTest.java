@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.domain.test;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.models.FieldConfig;
 import org.fluentcodes.projects.elasticobjects.models.FieldInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
@@ -60,7 +60,7 @@ public class EoAnObjectSetTest {
         map.put(AnObject.F_MY_STRING, "value");
         map.put(AnObject.MY_FLOAT, 1.1D);
 
-        final IEOScalar child = eo.set( map, "(" + AnObject.class.getSimpleName() + ")level0");
+        final EOInterfaceScalar child = eo.set( map, "(" + AnObject.class.getSimpleName() + ")level0");
         Assert.assertEquals(AnObject.class, child.getModelClass());
         assertEquals("value", child.get(AnObject.F_MY_STRING));
         assertEquals(1.1F, child.get(AnObject.MY_FLOAT));

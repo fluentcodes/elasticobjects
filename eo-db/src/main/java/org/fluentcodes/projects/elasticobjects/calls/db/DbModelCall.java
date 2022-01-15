@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 
@@ -22,7 +22,7 @@ public abstract class DbModelCall extends CallImpl {
         this.configKey = configKey;
     }
 
-    protected DbModelConfig init(final PermissionType permissionType, final IEOScalar eo) {
+    protected DbModelConfig init(final PermissionType permissionType, final EOInterfaceScalar eo) {
         DbModelConfig config = (DbModelConfig) eo.getConfigMaps().find(DbModelConfig.class, configKey);
         config.hasPermissions(permissionType, eo.getRoles());
         config.getDbConfig().hasPermissions(permissionType, eo.getRoles());

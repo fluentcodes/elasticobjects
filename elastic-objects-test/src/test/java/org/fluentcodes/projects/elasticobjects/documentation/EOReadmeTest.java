@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.documentation;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class EOReadmeTest {
     @Test
     public void setAndGet() {
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        IEOScalar child = root.set("test", "myAnObject", "myString");
+        EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
 
         assertEquals("test", root.get("myAnObject", "myString"));
         assertEquals("test", child.get());
@@ -21,7 +21,7 @@ public class EOReadmeTest {
     @Test
     public void getObject() {
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        IEOScalar child = root.set("test", "myAnObject", "myString");
+        EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
 
         AnObject anObject = (AnObject) root.get();
         assertEquals("test", anObject.getMyAnObject().getMyString());
@@ -30,7 +30,7 @@ public class EOReadmeTest {
     @Test
     public void stringPathRepresentation() {
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        IEOScalar child = root.set("test", "myAnObject/myString");
+        EOInterfaceScalar child = root.set("test", "myAnObject/myString");
 
         assertEquals("test", root.get("myAnObject/myString"));
         assertEquals("test", child.get());
@@ -39,7 +39,7 @@ public class EOReadmeTest {
     @Test
     public void toJson() {
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        IEOScalar child = root.set("test", "myAnObject", "myString");
+        EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
 
         assertEquals("{\n" +
                 "  \"_rootmodel\": \"AnObject\",\n" +

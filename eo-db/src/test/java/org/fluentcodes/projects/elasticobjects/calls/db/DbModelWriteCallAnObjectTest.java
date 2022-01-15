@@ -2,8 +2,8 @@ package org.fluentcodes.projects.elasticobjects.calls.db;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOObject;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
@@ -31,9 +31,9 @@ public class DbModelWriteCallAnObjectTest {
         AnObject anObject = new AnObject();
         anObject.setMyString("value1New");
         anObject.setId(1L);
-        IEOScalar child = eo.set(anObject, "test");
+        EOInterfaceScalar child = eo.set(anObject, "test");
         call.execute(child);
-        Assertions.assertThat(((IEOObject) eo.getEo("/result")).size()).isEqualTo(1);
+        Assertions.assertThat(((EO) eo.getEo("/result")).size()).isEqualTo(1);
         Assertions.assertThat(eo.get("/result/0/myString")).isEqualTo("value1New");
         Assertions.assertThat(eo.get("/result/0/id")).isEqualTo(1L);
     }
@@ -67,9 +67,9 @@ public class DbModelWriteCallAnObjectTest {
         AnObject anObject = new AnObject();
         anObject.setMyString("value4");
         anObject.setId(4L);
-        IEOScalar child = eo.set(anObject, "test");
+        EOInterfaceScalar child = eo.set(anObject, "test");
         call.execute(child);
-        Assertions.assertThat(((IEOObject) eo.getEo("/result")).size()).isEqualTo(1);
+        Assertions.assertThat(((EO) eo.getEo("/result")).size()).isEqualTo(1);
         Assertions.assertThat(eo.get("/result/0/myString")).isEqualTo("value4");
         Assertions.assertThat(eo.get("/result/0/id")).isEqualTo(4L);
     }

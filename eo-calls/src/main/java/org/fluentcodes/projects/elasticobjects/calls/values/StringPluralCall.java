@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.values;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.SimpleCommand;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -23,7 +23,7 @@ public class StringPluralCall extends CallImpl implements SimpleCommand {
     /*.{javaInstanceVars}|*/
     /*.{}.*/
     @Override
-    public String execute(final IEOScalar eo) {
+    public String execute(final EOInterfaceScalar eo) {
         super.check(eo);
         try {
             return plural((String) eo.get());

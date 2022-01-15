@@ -96,7 +96,7 @@ public class EoSetDevTest {
         final EoRoot root = ObjectProviderDev.createEo();
         Map<String, String> map = new LinkedHashMap<>();
         map.put("test3", "value");
-        IEOScalar child = root.set(map, "test", "test2");
+        EOInterfaceScalar child = root.set(map, "test", "test2");
         Assert.assertEquals("value", root.get("test", "test2", "test3"));
         Assert.assertEquals("value", child.get("test3"));
     }
@@ -112,7 +112,7 @@ public class EoSetDevTest {
         subMap.put("test5", "value2");
         map.put("test4", subMap);
 
-        IEOScalar child = root.set(map, "test1", "test2");
+        EOInterfaceScalar child = root.set(map, "test1", "test2");
         Assert.assertEquals("value1", root.get("test1", "test2", "test3"));
         Assert.assertEquals("value2", child.get("test4", "test5"));
     }
@@ -146,7 +146,7 @@ public class EoSetDevTest {
     @Test
     public void DEV__key0_key1_value__getPathAsString_key0_key1()  {
         final EoRoot eo = ObjectProviderDev.createEo();
-        final IEOScalar child = eo.set("value", "key0", "key1");
+        final EOInterfaceScalar child = eo.set("value", "key0", "key1");
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(child.getModelClass()).isEqualTo(String.class);
         Assertions.assertThat(child.getPathAsString()).isEqualTo(Path.DELIMITER + "key0" + Path.DELIMITER + "key1");
@@ -173,7 +173,7 @@ public class EoSetDevTest {
     @Test
     public void DEV__key0_key1_key2_key3_value__get_key0_key1_key2_key3_value()  {
         final EoRoot eo = ObjectProviderDev.createEo();
-        final IEOScalar child = eo.set("value", "key0","key1","key2", "key3");
+        final EOInterfaceScalar child = eo.set("value", "key0","key1","key2", "key3");
         assertEquals("value", eo.get("key0","key1","key2", "key3"));
 
         assertEquals(Map.class, eo.getModelClass());

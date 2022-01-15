@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.files;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -112,7 +112,7 @@ public class FileReadCallTest implements IModelConfigCreateTests {
     public void eo_SourceTxt_child_level0_targetPath_level2___execute__eo_set_level2() {
         final EoRoot root = ObjectProvider.createEo();
         root.set(S_STRING, S_LEVEL0, S_LEVEL1);
-        final IEOScalar child = root.getEo(S_LEVEL0);
+        final EOInterfaceScalar child = root.getEo(S_LEVEL0);
 
         final Call call = new FileReadCall(FileConfigTest.FILE_TEST_TXT)
                 .setTargetPath(S_LEVEL2);

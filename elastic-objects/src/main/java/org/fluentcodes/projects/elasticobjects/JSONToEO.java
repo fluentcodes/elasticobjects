@@ -269,7 +269,7 @@ public class JSONToEO {
                 + json.substring(positionNext, max));
     }
 
-    public IEOObject mapObject(IEOObject eoCurrent)  {
+    public EO mapObject(EO eoCurrent)  {
         if (eoCurrent == null) {
             LOG.error("Null MODULE_NAME!!!! " + debug());
             return null;
@@ -303,7 +303,7 @@ public class JSONToEO {
     }
 
 
-    private IEOObject mapList(final IEOObject currentEO)  {
+    private EO mapList(final EO currentEO)  {
         if (currentEO == null) {
             LOG.error("Null MODULE_NAME!!!! " + debug());
             return null;
@@ -328,8 +328,8 @@ public class JSONToEO {
         }
     }
 
-    public IEOScalar createChild(IEOObject parentAdapter)  {
-        IEOScalar eo = createChild(parentAdapter, null);
+    public EOInterfaceScalar createChild(EO parentAdapter)  {
+        EOInterfaceScalar eo = createChild(parentAdapter, null);
         if (isEof()) {
             return parentAdapter;
         }
@@ -357,7 +357,7 @@ public class JSONToEO {
      * @return
      * @
      */
-    private IEOScalar createChild(IEOObject eoParent, final String rawFieldName)  {
+    private EOInterfaceScalar createChild(EO eoParent, final String rawFieldName)  {
 
         if (eoParent == null) {
             throw new EoException("parent eo is null ...!");
@@ -377,7 +377,7 @@ public class JSONToEO {
 
             case '{':  //
                 if (rawFieldName!=null) {// Object value
-                    IEOObject child = (IEOObject)((EoChild)eoParent).createChild(new PathElement(rawFieldName, Map.class), null);
+                    EO child = (EO)((EoChild)eoParent).createChild(new PathElement(rawFieldName, Map.class), null);
                     mapObject(child);
                     return eoParent;
                 }
@@ -388,8 +388,8 @@ public class JSONToEO {
             case '[':
                 if (rawFieldName != null) {// List value
                     PathElement pathFromKey = new PathElement(rawFieldName, List.class);
-                    IEOScalar child = ((EoChild)eoParent).createChild(pathFromKey);
-                    mapList((IEOObject) child);
+                    EOInterfaceScalar child = ((EoChild)eoParent).createChild(pathFromKey);
+                    mapList((EO) child);
                     return child;
                 }
                 else {

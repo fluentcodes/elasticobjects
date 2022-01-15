@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.documentation;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
@@ -18,7 +18,7 @@ public class EOReadmeTest {
     public void direct() {
         final Call call = new SinusValueCall();
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new HashMap());
-        IEOScalar child = root.set(2.1, "source");
+        EOInterfaceScalar child = root.set(2.1, "source");
         assertEquals(2.1, child.get());
 
         assertEquals(Double.valueOf(0.8632093666488737), call.execute(child));

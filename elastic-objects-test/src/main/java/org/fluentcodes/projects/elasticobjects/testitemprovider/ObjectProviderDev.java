@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.testitemprovider;
 
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOObject;
+import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.io.IOClasspathEOFlatMap;
 import org.fluentcodes.projects.elasticobjects.models.Config;
@@ -98,7 +98,7 @@ public class ObjectProviderDev {
         return EoRoot.ofValue(CONFIG_MAPS_DEV, value);
     }
 
-    public static final EoRoot assertCompare(IEOObject in, String toCompare) {
+    public static final EoRoot assertCompare(EO in, String toCompare) {
         String stringify = new EOToJSON().toJson(in);
         Assert.assertEquals(toCompare, stringify);
         return createEo(stringify);

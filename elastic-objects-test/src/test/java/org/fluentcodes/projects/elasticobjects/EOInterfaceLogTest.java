@@ -12,7 +12,7 @@ import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING;
 /**
  * Created by werner.diwischek on 12.12.17.
  */
-public class IEOLogTest {
+public class EOInterfaceLogTest {
 
     @Test
     public void ____getLogLevel_WARN() {
@@ -93,7 +93,7 @@ public class IEOLogTest {
     @Test
     public void child__warn__log_isNotEmpty() {
         EoRoot eo = ObjectProviderDev.createEo();
-        IEOScalar eoChild = eo
+        EOInterfaceScalar eoChild = eo
                 .createChild(S_LEVEL0);
         Assertions.assertThat(eo.getLogLevel()).isEqualTo(LogLevel.WARN);
         eo.warn(S_MESSAGE);
@@ -111,7 +111,7 @@ public class IEOLogTest {
     @Test
     public void child_LogLevel_INFO__info__log_isNotEmpty() {
         EoRoot eo = ObjectProviderDev.createEo();
-        IEOScalar child = eo.createChild(S_LEVEL0);
+        EOInterfaceScalar child = eo.createChild(S_LEVEL0);
         child.setLogLevel(LogLevel.INFO);
         child.info(S_MESSAGE);
         Assertions.assertThat(eo.getLog()).isNotEmpty();

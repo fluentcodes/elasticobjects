@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.values;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.SimpleCommand;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -11,7 +11,7 @@ import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerDouble;
  */
 public class SinusValueCall extends CallImpl implements SimpleCommand {
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         super.check(eo);
         Double value = new ShapeTypeSerializerDouble().asObject(eo.get());
         try {

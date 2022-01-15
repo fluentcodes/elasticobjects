@@ -10,13 +10,13 @@ import static org.fluentcodes.projects.elasticobjects.PathElement.LOG_LEVEL;
  * Offers an adapter for objects to access elements via path.
  */
 
-public interface IEOObject extends IEOScalar {
+public interface EO extends EOInterfaceScalar {
 
     default boolean isEmpty() {
         return getModels().isEmpty(get());
     }
 
-    IEOScalar createChild(String... paths);
+    EOInterfaceScalar createChild(String... paths);
 
     default int sizeEo() {
         return keysEo().size();
@@ -38,7 +38,7 @@ public interface IEOObject extends IEOScalar {
 
     Map<String, Object> getKeyValues();
 
-    IEOObject remove(String... path);
+    EO remove(String... path);
 
     @Override
     default boolean hasLogLevel() {

@@ -1,6 +1,5 @@
 package org.fluentcodes.projects.elasticobjects;
 
-import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
@@ -52,7 +51,7 @@ public class EoRemoveTest {
         root.set(S_STRING, S_TEST_STRING);
         Assert.assertEquals(1, root.size());
         Assert.assertEquals(S_STRING, root.get(S_TEST_STRING));
-        IEOObject child = root.remove(S_TEST_STRING);
+        EO child = root.remove(S_TEST_STRING);
         Assert.assertEquals(0, root.size());
         Assert.assertEquals(0, root.sizeEo());
         Assert.assertEquals(0, child.size());

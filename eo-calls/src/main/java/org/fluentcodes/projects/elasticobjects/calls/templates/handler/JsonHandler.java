@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.calls.templates.handler;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.CallContent;
 import org.fluentcodes.projects.elasticobjects.calls.ExecutorCall;
@@ -36,7 +36,7 @@ public class JsonHandler extends HandlerAbstract {
         return executeCalls(eoCall);
     }
 
-    private String executeCalls(IEOScalar eoCall) {
+    private String executeCalls(EOInterfaceScalar eoCall) {
         List<String> callSet = new ArrayList<>(eoCall.getCallKeys());
         StringBuilder returnResult = new StringBuilder();
         String postPend = "";

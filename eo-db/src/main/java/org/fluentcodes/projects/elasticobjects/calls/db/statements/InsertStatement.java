@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.calls.db.statements;
 
 import org.fluentcodes.projects.elasticobjects.EoChild;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.Map;
@@ -25,7 +25,7 @@ public class InsertStatement extends PreparedStatementValues {
         append(builderValues.toString().replaceAll(", $", ") "));
     }
 
-    public static InsertStatement of(IEOScalar source) {
+    public static InsertStatement of(EOInterfaceScalar source) {
         if (source == null) {
             throw new EoException("Null eo for delete");
         }

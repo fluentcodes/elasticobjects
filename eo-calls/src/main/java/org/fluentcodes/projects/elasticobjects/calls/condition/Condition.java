@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.condition;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 
 import java.util.List;
 import java.util.Map;
@@ -29,5 +29,5 @@ public interface Condition {
 
     boolean filter(final List row);
 
-    boolean filter(final IEOScalar eo);
+    boolean filter(final EOInterfaceScalar eo);
 }

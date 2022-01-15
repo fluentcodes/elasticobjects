@@ -1,14 +1,13 @@
 package org.fluentcodes.projects.elasticobjects.calls.db.statements;
 
 import org.fluentcodes.projects.elasticobjects.EoChild;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.DbConfig;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
-import org.fluentcodes.projects.elasticobjects.models.ModelInterface;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,7 +34,7 @@ public class FindStatement extends PreparedStatementValues {
         append(builderValues.toString().replaceAll(" AND $", " "));
     }
 
-    public FindStatement(final String preparedStatement, IEOScalar eo) {
+    public FindStatement(final String preparedStatement, EOInterfaceScalar eo) {
         super(SqlType.FIND);
         append(preparedStatement);
         if (countParams() == 0) {
@@ -51,7 +50,7 @@ public class FindStatement extends PreparedStatementValues {
         checkHealth();
     }
 
-    public static FindStatement of(IEOScalar source) {
+    public static FindStatement of(EOInterfaceScalar source) {
         if (source == null) {
             throw new EoException("Null eo for delete");
         }
@@ -62,7 +61,7 @@ public class FindStatement extends PreparedStatementValues {
         return new FindStatement(model.getModelKey(), ((EoChild) source).getKeyValues());
     }
 
-    public static FindStatement ofId(IEOScalar source) {
+    public static FindStatement ofId(EOInterfaceScalar source) {
         if (source == null) {
             throw new EoException("Null eo for delete");
         }

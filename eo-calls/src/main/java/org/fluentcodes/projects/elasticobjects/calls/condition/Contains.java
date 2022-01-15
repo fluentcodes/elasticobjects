@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.condition;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerString;
 
 import java.util.List;
@@ -65,7 +65,7 @@ public class Contains implements Condition {
         return false;
     }
 
-    public boolean filter(IEOScalar adapter) {
+    public boolean filter(EOInterfaceScalar adapter) {
         if (adapter == null) {
             LOG.warn("Null adapter should not occure!");
             return true;

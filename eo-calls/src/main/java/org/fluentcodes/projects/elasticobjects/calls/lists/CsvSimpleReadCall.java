@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.lists;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCall;
@@ -32,11 +32,11 @@ public class CsvSimpleReadCall extends FileReadCall implements ListParamsBeanInt
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         return mapEo(eo, readRaw(eo));
     }
 
-    public List readRaw(final IEOScalar eo) {
+    public List readRaw(final EOInterfaceScalar eo) {
         FileConfig config = init(PermissionType.READ, eo);
         listParams.merge(config);
         final String rowDelimiter = config.getProperties().getRowDelimiter();

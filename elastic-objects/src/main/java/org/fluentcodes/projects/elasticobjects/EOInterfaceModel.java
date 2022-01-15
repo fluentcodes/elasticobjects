@@ -9,7 +9,7 @@ import org.fluentcodes.projects.elasticobjects.models.Scope;
  * Offers an adapter for objects to access elements via path.
  */
 
-public interface IEOModel {
+public interface EOInterfaceModel {
     Models getModels();
 
     default Class<?> getModelClass() {

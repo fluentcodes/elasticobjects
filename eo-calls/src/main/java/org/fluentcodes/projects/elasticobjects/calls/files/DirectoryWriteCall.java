@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.TemplateMarker;
@@ -35,14 +35,14 @@ public class DirectoryWriteCall extends FileWriteCall {
     }
 
     @Override
-    public String execute(final IEOScalar eo) {
+    public String execute(final EOInterfaceScalar eo) {
         if (!init(eo)) {
             return "";
         }
         return write(eo);
     }
 
-    public String write(final IEOScalar eo) {
+    public String write(final EOInterfaceScalar eo) {
         if (!hasFileName()) {
             throw new EoException("No fileName is set for " + this.getClass().getSimpleName() + " with config '" + getFileConfigKey() + "'.");
         }

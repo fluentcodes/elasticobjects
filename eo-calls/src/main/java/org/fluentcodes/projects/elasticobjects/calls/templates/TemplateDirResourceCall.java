@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.templates;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.LogLevel;
 import org.fluentcodes.projects.elasticobjects.calls.files.DirectoryConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.DirectoryReadCall;
@@ -65,7 +65,7 @@ public class TemplateDirResourceCall extends DirectoryReadCall {
     }
 
     @Override
-    public String execute(IEOScalar eo) {
+    public String execute(EOInterfaceScalar eo) {
         String content = super.read(eo);
         try {
             String result = new TemplateCall(content)

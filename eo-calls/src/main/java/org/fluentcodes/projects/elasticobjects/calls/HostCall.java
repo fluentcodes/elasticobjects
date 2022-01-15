@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 /**
@@ -27,7 +27,7 @@ public abstract class HostCall extends CallImpl implements Call {
         setHostConfigKey(configKey);
     }
 
-    protected HostConfig initHostConfig(final PermissionType permissionType, final IEOScalar eo) {
+    protected HostConfig initHostConfig(final PermissionType permissionType, final EOInterfaceScalar eo) {
         if (!hasHostConfigKey()) {
             throw new EoException("Empty key for host");
         }

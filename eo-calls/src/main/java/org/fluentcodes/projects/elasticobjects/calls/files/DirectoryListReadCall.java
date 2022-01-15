@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.Path;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -41,12 +41,12 @@ public class DirectoryListReadCall extends FileReadCall  {
     }
 
     @Override
-    public Object execute(final IEOScalar eo)  {
+    public Object execute(final EOInterfaceScalar eo)  {
         List<String> result = listFiles(eo);
         return createReturnType(eo, result);
     }
 
-    public List<String> listFiles(IEOScalar eo)  {
+    public List<String> listFiles(EOInterfaceScalar eo)  {
         DirectoryConfig config = (DirectoryConfig)init(PermissionType.READ, eo);
         return listFiles(config.getFilePath(), config.getFileName(), absolute);
     }

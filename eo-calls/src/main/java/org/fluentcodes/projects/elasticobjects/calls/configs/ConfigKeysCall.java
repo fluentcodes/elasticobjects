@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.configs;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigsCommand;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
@@ -57,7 +57,7 @@ public class ConfigKeysCall extends CallImpl implements ConfigsCommand {
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         if (!hasConfigFilter()) {
             configFilter = ".*";
         }

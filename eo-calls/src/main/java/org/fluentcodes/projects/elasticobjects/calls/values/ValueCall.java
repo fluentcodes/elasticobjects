@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.calls.values;
 
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.calls.CallContent;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
@@ -37,7 +37,7 @@ public class ValueCall extends CallImpl implements CallContent, SimpleCommand {
     }
 
     @Override
-    public String execute(final IEOScalar eo) {
+    public String execute(final EOInterfaceScalar eo) {
         super.check(eo);
         if (!hasContent()) {
             if (eo.isScalar()) {

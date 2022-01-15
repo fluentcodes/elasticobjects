@@ -8,8 +8,8 @@ import java.util.Set;
  * Offers an adapter for calls.
  */
 
-public interface IEOCall extends IEOBase {
-    default IEOObject addCall(Call call) {
+public interface EOInterfaceCall extends EOInterfaceBase {
+    default EO addCall(Call call) {
         return getRoot().addCall(call);
     }
 

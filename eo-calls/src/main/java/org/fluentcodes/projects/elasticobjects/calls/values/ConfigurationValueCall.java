@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.values;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.SimpleCommand;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -14,7 +14,7 @@ public class ConfigurationValueCall extends CallImpl implements SimpleCommand {
     private String configFilter;
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         super.check(eo);
         if (configType == null) {
             throw new EoException("No config type defined");

@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.condition;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,24 +16,24 @@ import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING;
  * Created by werner.diwischek on 08.01.18.
  */
 public class AndTest {
-    public static final List EXAMPLE_LIST = (List) ProviderConfigMapsDev
+    public static final List EXAMPLE_LIST = (List) ObjectProviderDev
             .createEo("[\"test\",\n\"testOther\",\n" + null + ",\n\"key0\",\n1]")
             .get();
     public static final String TEST_STRING = "{\"myString\": \"test\"}";
-    public static final EoRoot TEST_STRING_DEV = ProviderConfigMapsDev.createEo(TEST_STRING);
+    public static final EoRoot TEST_STRING_DEV = ObjectProviderDev.createEo(TEST_STRING);
 
     @Test
     public void eq_testString_string__createQuery__expected() {
-        And and = new And(new Eq(AnObject.MY_STRING, "test"));
+        And and = new And(new Eq(AnObject.F_MY_STRING, "test"));
         Assertions
                 .assertThat(and.getCondition(0).getKey())
-                .isEqualTo(AnObject.MY_STRING);
+                .isEqualTo(AnObject.F_MY_STRING);
         Assertions
                 .assertThat(and.getCondition(0).getValue())
                 .isEqualTo("test");
         Assertions
                 .assertThat(and.getCondition(0).createQuery(new HashMap<>()))
-                .isEqualTo("" + AnObject.MY_STRING + "=:" + AnObject.MY_STRING + "_0 ");
+                .isEqualTo("" + AnObject.F_MY_STRING + "=:" + AnObject.F_MY_STRING + "_0 ");
         Assert.assertEquals(S_STRING, and.getCondition(0).getValue());
     }
 
@@ -55,14 +55,14 @@ public class AndTest {
 
     @Test
     public void eq_testString_test__filter_eoString__true() {
-        And and = new And(new Eq(AnObject.MY_STRING, "test"));
+        And and = new And(new Eq(AnObject.F_MY_STRING, "test"));
         EoRoot eo = TEST_STRING_DEV;
         Assertions.assertThat(and.filter(eo)).isTrue();
     }
 
     @Test
     public void eq_testString_test__filter_eoString__false() {
-        And and = new And(new Eq(AnObject.MY_STRING, "testOther"));
+        And and = new And(new Eq(AnObject.F_MY_STRING, "testOther"));
         EoRoot eo = TEST_STRING_DEV;
         Assertions.assertThat(and.filter(eo)).isFalse();
     }

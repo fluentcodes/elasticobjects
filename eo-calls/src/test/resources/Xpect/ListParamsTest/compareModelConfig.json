@@ -1,0 +1,162 @@
+{
+  "author": "Werner Diwischek",
+  "description": "Defines the parameter like rowStart, rowEnd and length.",
+  "expose": "NONE",
+  "fields": {
+    "colKeys": {
+      "description": "The key list for mapping values in a value list. ",
+      "expose": "NONE",
+      "fieldKey": "colKeys",
+      "modelKeys": "List,String",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "colKeys",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "filter": {
+      "description": "Filter for List entries.",
+      "expose": "WEB",
+      "fieldKey": "filter",
+      "modelKeys": "String",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "filter",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": 512,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "length": {
+      "description": "length for {@link ListParams}",
+      "expose": "WEB",
+      "fieldKey": "length",
+      "modelKeys": "Integer",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "length",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "rowEnd": {
+      "description": "rowEnd",
+      "expose": "WEB",
+      "fieldKey": "rowEnd",
+      "modelKeys": "Integer",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "rowEnd",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "rowHead": {
+      "description": "rowHead",
+      "expose": "WEB",
+      "fieldKey": "rowHead",
+      "modelKeys": "Integer",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "rowHead",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
+    "rowStart": {
+      "description": "rowStart",
+      "expose": "WEB",
+      "fieldKey": "rowStart",
+      "modelKeys": "Integer",
+      "module": "eo-calls",
+      "moduleScope": "main",
+      "naturalId": "rowStart",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    }
+  },
+  "modelKey": "ListParamsBean",
+  "module": "eo-calls",
+  "moduleScope": "main",
+  "naturalId": "ListParamsBean",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
+  "properties": {
+    "abstract": false,
+    "create": true,
+    "dbAnnotated": false,
+    "final": false
+  }
+}

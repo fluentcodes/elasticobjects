@@ -9,7 +9,7 @@ import org.fluentcodes.projects.elasticobjects.models.FieldConfig;
 import org.fluentcodes.projects.elasticobjects.models.FieldFactory;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigNoCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 /**
@@ -41,7 +41,7 @@ public class KeepCallsTest implements IModelConfigNoCreateTests {
 
     @Test(expected = EoException.class)
     public void createByModelConfig() {
-        ModelConfig modelConfig = ProviderConfigMaps.CONFIG_MAPS
+        ModelConfig modelConfig = ObjectProvider.CONFIG_MAPS
                 .findModel(KeepCalls.class);
         Assertions.assertThat(modelConfig.isCreate()).isFalse();
         Assertions.assertThat(modelConfig.isScalar()).isTrue();
@@ -51,7 +51,7 @@ public class KeepCallsTest implements IModelConfigNoCreateTests {
 
     @Test
     public void DEV_fieldBeanMap__find_keepCall__notNull() {
-        FieldBean bean = new FieldFactory(ProviderConfigMaps.CONFIG_MAPS).createBeanMap()
+        FieldBean bean = new FieldFactory(ObjectProvider.CONFIG_MAPS).createBeanMap()
                 .get("keepCall");
         Assertions.assertThat(bean).isNotNull();
         Assertions.assertThat(bean.getModelKeys()).isEqualTo(KeepCalls.class.getSimpleName());
@@ -59,7 +59,7 @@ public class KeepCallsTest implements IModelConfigNoCreateTests {
 
     @Test
     public void ModelConfig__find_keepCall__notNull() {
-        ModelConfig modelConfig = ProviderConfigMaps.CONFIG_MAPS
+        ModelConfig modelConfig = ObjectProvider.CONFIG_MAPS
                 .findModel(CallImpl.class);
         Assertions.assertThat(modelConfig).isNotNull();
         FieldConfig fieldConfig = modelConfig.getField("keepCall");

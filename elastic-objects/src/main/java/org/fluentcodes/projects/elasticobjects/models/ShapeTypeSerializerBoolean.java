@@ -56,4 +56,9 @@ public class ShapeTypeSerializerBoolean implements ShapeTypeSerializerInterface<
         }
         return false;
     }
+
+    @Override
+    public boolean isValid( final Object object, final FieldConfigProperties properties) {
+        return true;
+    }
 }

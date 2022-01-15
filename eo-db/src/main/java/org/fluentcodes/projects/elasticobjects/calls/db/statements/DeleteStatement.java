@@ -1,10 +1,9 @@
 package org.fluentcodes.projects.elasticobjects.calls.db.statements;
 
 import org.fluentcodes.projects.elasticobjects.EoChild;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
-import org.fluentcodes.projects.elasticobjects.models.ModelInterface;
 
 import java.util.Map;
 
@@ -23,7 +22,7 @@ public class DeleteStatement extends PreparedStatementValues {
         append(builderValues.toString().replaceAll(" AND $", " "));
     }
 
-    public static DeleteStatement of(IEOScalar source) {
+    public static DeleteStatement of(EOInterfaceScalar source) {
         if (source == null) {
             throw new EoException("Null eo for delete");
         }

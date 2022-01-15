@@ -14,7 +14,7 @@
     "description": "The key finding a cache @DbCache entry.",
     "expose": "NONE",
     "fieldKey": "dbKey",
-    "length": 80,
+    "max": 80,
     "properties": {
       "unique": true,
       "notNull": true
@@ -27,9 +27,9 @@
     "description": "The key finding a cache @DbConfig entry.",
     "expose": "NONE",
     "fieldKey": "configKey",
-    "length": 80,
     "properties": {
-      "notNull": true
+      "notNull": true,
+      "max": 80
     }
   },
   "dbConfigKey": {
@@ -39,9 +39,9 @@
     "description": "The key finding a cache @DbConfig entry.",
     "expose": "NONE",
     "fieldKey": "dbConfigKey",
-    "length": 80,
     "properties": {
-      "notNull": true
+      "notNull": true,
+      "max": 80
     }
   },
   "modelConfigKey": {
@@ -51,7 +51,9 @@
     "description": "The model name for the cache object @ModelConfig.",
     "expose": "NONE",
     "fieldKey": "modelConfigKey",
-    "length": 80
+    "properties": {
+      "max": 80
+    }
   },
   "sqlKey": {
     "module": "eo-db",
@@ -60,7 +62,9 @@
     "description": "The key to select a configuration from DbSqlConfig within DbSqlCall.",
     "expose": "NONE",
     "fieldKey": "sqlKey",
-    "length": 128
+    "properties": {
+      "max": 128
+    }
   },
   "sqlList": {
     "module": "eo-db",

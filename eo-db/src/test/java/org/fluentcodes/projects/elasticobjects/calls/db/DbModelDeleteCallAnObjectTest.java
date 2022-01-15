@@ -2,11 +2,11 @@ package org.fluentcodes.projects.elasticobjects.calls.db;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOObject;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ import static org.fluentcodes.projects.elasticobjects.calls.DbConfig.H2_BASIC;
 public class DbModelDeleteCallAnObjectTest {
     @Before
     public void init() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         Call call = new DbSqlExecuteCall(H2_BASIC, "h2:mem:basic:Create");
         call.execute(eo);
     }
@@ -27,12 +27,12 @@ public class DbModelDeleteCallAnObjectTest {
         call.setConfigKey("h2:mem:AnObject");
         call.setTargetPath("/result");
         Assertions.assertThat(call).isNotNull();
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         AnObject anObject = new AnObject();
         anObject.setId(3L);
-        IEOScalar child = eo.set(anObject, "test");
+        EOInterfaceScalar child = eo.set(anObject, "test");
         Object value = call.execute(child);
-        Assertions.assertThat(((IEOObject) eo.getEo("/result")).size()).isEqualTo(1);
+        Assertions.assertThat(((EO) eo.getEo("/result")).size()).isEqualTo(1);
         Assertions.assertThat(eo.get("/result/0/myString")).isEqualTo("value3");
         Assertions.assertThat(eo.get("/result/0/id")).isEqualTo(3L);
     }
@@ -42,7 +42,7 @@ public class DbModelDeleteCallAnObjectTest {
         AnObject anObject = new AnObject();
         anObject.setId(3L);
 
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.set(anObject, "test");
         eo.setRoles("guest");
 

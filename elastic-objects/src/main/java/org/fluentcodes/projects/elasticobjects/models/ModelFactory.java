@@ -70,7 +70,7 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelConfig>
         }
         for (Map.Entry<String, ModelConfig> entry : configMap.entrySet()) {
             try {
-                ((ModelConfig) entry.getValue()).resolve(configMap);
+                entry.getValue().resolve(configMap);
             } catch (EoException e) {
                 throw e;
             }

@@ -1,11 +1,9 @@
 package org.fluentcodes.projects.elasticobjects.calls.lists;
 
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 /**
  * Created by Werner on 11.10.2016.
@@ -14,7 +12,7 @@ public class FileConfigCsvTest{
 
     @Test
     public void checkTargetCsv() {
-        FileConfig config = (FileConfig)ProviderConfigMaps.CONFIG_MAPS
+        FileConfig config = (FileConfig) ObjectProvider.CONFIG_MAPS
                 .find(FileConfig.class, "target.csv");
         Assert.assertNotNull(config);
         Assert.assertTrue(config.getProperties().hasRowHead());

@@ -5,7 +5,7 @@ import org.fluentcodes.projects.elasticobjects.models.Models;
 
 public class EoChildScalarSpecial extends EoChildScalar {
     private Object value;
-    public EoChildScalarSpecial(final IEOObject parentEo, final String fieldKey, final Object value, final Models fieldModels) {
+    public EoChildScalarSpecial(final EO parentEo, final String fieldKey, final Object value, final Models fieldModels) {
         super (parentEo, fieldKey, value, fieldModels);
     }
 
@@ -25,7 +25,7 @@ public class EoChildScalarSpecial extends EoChildScalar {
             String models = (String)value;
             ((EoChild)getParent()).setModels(models.isEmpty()?"Map":models);
         }
-        this.value = value;
+        this.value = getModels().asObject(value);
     }
 
     @Override

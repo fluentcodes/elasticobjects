@@ -28,4 +28,5 @@ public class ShapeTypeSerializerLong extends ShapeTypeSerializerNumber<Long> {
         }
         return asObject(object.toString());
     }
+
 }

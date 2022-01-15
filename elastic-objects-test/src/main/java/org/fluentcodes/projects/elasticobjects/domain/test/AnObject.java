@@ -25,12 +25,12 @@ public class AnObject  {
    public static final String MY_DATE = "myDate";
    public static final String MY_DOUBLE = "myDouble";
    public static final String MY_FLOAT = "myFloat";
-   public static final String MY_INT = "myInt";
+   public static final String F_MY_INT = "myInt";
    public static final String MY_LIST = "myList";
    public static final String MY_LONG = "myLong";
    public static final String MY_MAP = "myMap";
    public static final String MY_OBJECT = "myObject";
-   public static final String MY_STRING = "myString";
+   public static final String F_MY_STRING = "myString";
    public static final String NATURAL_ID = "naturalId";
 /*.{}.*/
 

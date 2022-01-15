@@ -2,8 +2,7 @@ package org.fluentcodes.projects.elasticobjects;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Test;
 
 /**
@@ -15,7 +14,7 @@ public class EoSetParentValueTest {
 
     @Test
     public void DEV__null__exception() {
-        final EoRoot eo = ProviderConfigMapsDev.createEo();
+        final EoRoot eo = ObjectProviderDev.createEo();
         Assertions.assertThatThrownBy(() -> {
             eo.setParentValue(null);
         })
@@ -25,7 +24,7 @@ public class EoSetParentValueTest {
 
     @Test
     public void DEV_root__exception() {
-        final EoRoot eo = ProviderConfigMapsDev.createEo();
+        final EoRoot eo = ObjectProviderDev.createEo();
         Assertions.assertThatThrownBy(() -> {
             ((EoChild) eo).setParentValue("value");
         })
@@ -36,8 +35,8 @@ public class EoSetParentValueTest {
 
     @Test
     public void givenDevString_whenSetOtherString_thenIsChanged() {
-        final EoRoot root = ProviderConfigMapsDev.createEo();
-        final IEOScalar childEo = root.set("value", "key");
+        final EoRoot root = ObjectProviderDev.createEo();
+        final EOInterfaceScalar childEo = root.set("value", "key");
         Assertions.assertThat(childEo.isChanged()).isFalse();
         childEo.set("valueOther");
         Assertions.assertThat(root.getLog()).isEmpty();

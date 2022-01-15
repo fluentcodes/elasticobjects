@@ -1,0 +1,20 @@
+{
+  "fields": {
+    "id": {
+      "fieldKey": "id",
+      "modelKeys": "Long",
+      "naturalId": "SuperExampleClass.id"
+    },
+    "subClass": {
+      "fieldKey": "subClass",
+      "modelKeys": "FieldExampleClass",
+      "naturalId": "SuperExampleClass.subClass"
+    }
+  },
+  "modelKey": "SuperExampleClass",
+  "naturalId": "SuperExampleClass",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
+  "properties": {
+    "create": true
+  }
+}

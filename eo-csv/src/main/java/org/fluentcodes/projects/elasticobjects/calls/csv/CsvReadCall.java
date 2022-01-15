@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.calls.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
@@ -31,7 +31,7 @@ public class CsvReadCall extends CsvSimpleReadCall {
     }
 
     @Override
-    public List readRaw(final IEOScalar eo) {
+    public List readRaw(final EOInterfaceScalar eo) {
         FileConfig config = init(PermissionType.READ, eo);
         getListParams().merge(config);
         URL url = config.findUrl(eo, getHostConfigKey());

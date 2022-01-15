@@ -1,0 +1,15 @@
+{
+  "fields": {
+    "value": {
+      "fieldKey": "value",
+      "modelKeys": "String",
+      "naturalId": "FieldExampleClass.value"
+    }
+  },
+  "modelKey": "FieldExampleClass",
+  "naturalId": "FieldExampleClass",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
+  "properties": {
+    "create": true
+  }
+}

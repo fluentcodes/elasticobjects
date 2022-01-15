@@ -1,0 +1,24 @@
+{
+  "AnObjectMap": {
+    "configModelKey": "ModelConfigMap",
+    "module": "elastic-objects-test",
+    "moduleScope": "test",
+    "fields": {
+      "id": {
+        "final": false,
+        "staticName": false
+      },
+       "myString": {
+        "final": false
+      }
+    },
+    "expose": "WEB",
+    "description": "A map with fields as a test example.",
+    "modelKey": "AnObjectMap",
+    "properties": {
+      "create": true
+    },
+    "author": "Werner Diwischek",
+    "creationDate": 1605826800000
+  }
+}

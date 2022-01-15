@@ -1,9 +1,9 @@
 {
   "_rootmodel": "ModelBean",
   "configModelKey": "ModelConfigObject",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)value": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "fieldKey": "value",
       "modelKeys": "String",
       "naturalId": "FieldExampleClass.value"

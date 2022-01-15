@@ -3,8 +3,8 @@ import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.EoChildScalar;
 import org.fluentcodes.projects.elasticobjects.EoChildScalarSpecial;
 import org.fluentcodes.projects.elasticobjects.EoChildSpecial;
-import org.fluentcodes.projects.elasticobjects.IEOObject;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.Path;
 import org.fluentcodes.projects.elasticobjects.PathElement;
@@ -110,19 +110,15 @@ public class Models {
         return toBeStripped;
     }
 
-    public IEOScalar createChild(IEOObject parent, final PathElement pathElement, Object value) {
+    public EOInterfaceScalar createChild(EO parent, final PathElement pathElement, Object value) {
         Models childModels = deriveChildModels(pathElement, value);
         if (parent.getSerializationType() == JSONSerializationType.STANDARD &&
                 (childModels.isObject() || childModels.isMap())
         ) {
             childModels = new Models(getConfigMaps());
         }
-        if (value == null) {
-            if (childModels.isCreate()) {
-                value = childModels.create();
-            }
-        } else if (childModels.isScalar() && value.getClass() != childModels.getModelClass()) {
-            value = childModels.asObject(value);
+        if (value == null && childModels.isCreate()) {
+            value = childModels.create();
         }
         String key = deriveFieldKey(parent, pathElement);
         if (value instanceof Call) {
@@ -157,7 +153,6 @@ public class Models {
             else {
                 return new EoChildSpecial(parent, key, value, childModels);
             }
-
         }
     }
 
@@ -167,26 +162,35 @@ public class Models {
 
     final Models deriveChildModels(final PathElement pathElement, final Object childValue) {
         Models childModels = createChild(pathElement);
-
         if (childModels == null && childValue == null) {
-            return new Models(getConfigMaps());
+            return new Models(getConfigMaps()); // Map
         }
         if (childValue == null) {
             return childModels;
         }
-        if (childModels == null) {
-            return Models.ofValue(getConfigMaps(), childValue);
-        }
+        Models valueModels = Models.ofValue(getConfigMaps(), childValue);
         if (childValue instanceof String) {
-            Models valueModels = Models.ofValue(getConfigMaps(), childValue);
             if ((valueModels.getModelClass() == List.class|| valueModels.getModelClass() == Map.class)
-                    && childModels.getModelClass() == String.class) {
+                    && childModels!=null && childModels.getModelClass() == String.class) {
                 return childModels;
             }
         }
         if (childValue instanceof Call) {
             return new Models(getConfigMaps(), childValue.getClass());
         }
+        if (childModels == null) {
+            if (valueModels.hasDefaultImplementation()) {
+                return valueModels.getDefaultImplementation();
+            }
+            /*if (models.isCreate()) {
+                return models;
+            }
+            if (models.isContainer()) {
+                return new Models(getConfigMaps(), Map.class);
+            }*/
+            return valueModels;
+        }
+
         return competeModels(childModels, Models.ofValue(getConfigMaps(), childValue));
     }
 
@@ -239,7 +243,7 @@ public class Models {
                 descriminator.getModelClass().getSimpleName());
     }
 
-    private final String deriveFieldKey(IEOObject parentEo, final PathElement pathElement) {
+    private final String deriveFieldKey(EO parentEo, final PathElement pathElement) {
         if (isList() && pathElement.isParentSet() && pathElement.hasKey()) {
             if (pathElement.getKey().matches("\\d+")) {
                 return Integer.valueOf(pathElement.getKey()).toString();
@@ -266,6 +270,14 @@ public class Models {
             e.printStackTrace();
             return true;
         }
+    }
+
+    public boolean hasDefaultImplementation() {
+        return getModel().hasDefaultImplementation();
+    }
+
+    public Models getDefaultImplementation() {
+        return new Models(getConfigMaps(), getModel().getProperties().getDefaultImplementation());
     }
 
     public boolean hasModel() {

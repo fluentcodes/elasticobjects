@@ -4,9 +4,9 @@
   "configModelKey": "ModelConfigObject",
   "description": "A bean container class for Model values",
   "(Expose)expose": "WEB",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)author": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The author of the class.",
       "(Expose)expose": "WEB",
       "fieldKey": "author",
@@ -19,8 +19,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 256,
-        "max": -1,
+        "max": 256,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -32,7 +31,7 @@
       }
     },
     "(FieldBean)configModelKey": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The model of the configuration to determine type.",
       "(Expose)expose": "NONE",
       "fieldKey": "configModelKey",
@@ -45,8 +44,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -58,7 +56,7 @@
       }
     },
     "(FieldBean)creationDate": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Used to define the creation of an item.",
       "(Expose)expose": "WEB",
       "fieldKey": "creationDate",
@@ -71,7 +69,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -84,7 +81,7 @@
       }
     },
     "(FieldBean)description": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A description of the model used by every model extending BaseClassImpl. ",
       "(Expose)expose": "WEB",
       "fieldKey": "description",
@@ -97,8 +94,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 512,
-        "max": -1,
+        "max": 512,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -110,7 +106,7 @@
       }
     },
     "(FieldBean)expose": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "expose",
       "(Expose)expose": "WEB",
       "fieldKey": "expose",
@@ -123,7 +119,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -135,21 +130,20 @@
         "unique": false
       }
     },
-    "(FieldBean)fieldBeans": {
-      "configModelKey": "FieldConfig",
-      "description": "A fieldBean map with @FieldConfig",
+    "(FieldBean)fields": {
+      "configModelKey": "FieldConfigObject",
+      "description": "A fieldBean map",
       "(Expose)expose": "NONE",
-      "fieldKey": "fieldBeans",
+      "fieldKey": "fields",
       "modelKeys": "Map,FieldBean",
       "module": "elastic-objects",
       "moduleScope": "main",
-      "naturalId": "fieldBeans",
+      "naturalId": "ModelBean.fields",
       "(FieldBeanProperties)properties": {
         "default": false,
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -162,7 +156,7 @@
       }
     },
     "(FieldBean)id": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "(Expose)expose": "WEB",
       "fieldKey": "id",
@@ -175,7 +169,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": true,
@@ -188,7 +181,7 @@
       }
     },
     "(FieldBean)interfaces": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A comma separeted list of interface keys. ",
       "(Expose)expose": "NONE",
       "fieldKey": "interfaces",
@@ -201,8 +194,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 256,
-        "max": -1,
+        "max": 256,
         "min": -1,
         "notNull": false,
         "override": true,
@@ -214,7 +206,7 @@
       }
     },
     "(FieldBean)modelKey": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The model name for the bean/action object @ModelConfig.",
       "(Expose)expose": "NONE",
       "fieldKey": "modelKey",
@@ -227,8 +219,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": false,
         "override": true,
@@ -240,7 +231,7 @@
       }
     },
     "(FieldBean)module": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Defines a target module where generating occurs. ",
       "(Expose)expose": "WEB",
       "fieldKey": "module",
@@ -253,8 +244,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -266,7 +256,7 @@
       }
     },
     "(FieldBean)moduleScope": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
       "(Expose)expose": "WEB",
       "fieldKey": "moduleScope",
@@ -279,8 +269,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 10,
-        "max": -1,
+        "max": 32,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -292,7 +281,7 @@
       }
     },
     "(FieldBean)naturalId": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "(Expose)expose": "NONE",
       "fieldKey": "naturalId",
@@ -305,8 +294,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": true,
         "override": false,
@@ -318,7 +306,7 @@
       }
     },
     "(FieldBean)packagePath": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "packagePath",
       "(Expose)expose": "NONE",
       "fieldKey": "packagePath",
@@ -331,8 +319,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 124,
-        "max": -1,
+        "max": 124,
         "min": -1,
         "notNull": false,
         "override": true,
@@ -344,7 +331,7 @@
       }
     },
     "(FieldBean)properties": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Mutable model values to create ModelConfig.properties.",
       "(Expose)expose": "NONE",
       "fieldKey": "properties",
@@ -357,7 +344,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -370,7 +356,7 @@
       }
     },
     "(FieldBean)scope": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A scope for the cache value.",
       "(Expose)expose": "WEB",
       "fieldKey": "scope",
@@ -383,7 +369,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -396,7 +381,7 @@
       }
     },
     "(FieldBean)shapeType": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "shapeType",
       "(Expose)expose": "NONE",
       "fieldKey": "shapeType",
@@ -409,7 +394,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -422,7 +406,7 @@
       }
     },
     "(FieldBean)superKey": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A key for the super class of a class.",
       "(Expose)expose": "NONE",
       "fieldKey": "superKey",
@@ -435,8 +419,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 256,
-        "max": -1,
+        "max": 256,
         "min": -1,
         "notNull": false,
         "override": true,

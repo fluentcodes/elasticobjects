@@ -16,7 +16,7 @@
   "DbModelBean": {
     "module": "eo-db",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "modelKey", "dbConfigKey"
     ],
     "interfaces": "DbModelInterface",
@@ -33,7 +33,7 @@
   "DbModelCall": {
     "module": "eo-db",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "configKey"
     ],
     "superKey": "CallImpl",
@@ -49,7 +49,7 @@
   "DbModelConfig": {
     "module": "eo-db",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "modelKey": {"final": true},
       "dbConfigKey": {"final": true}
     },
@@ -115,7 +115,7 @@
   "DbSqlBean": {
     "module": "eo-db",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "dbConfigKey": {},
       "modelKey": {},
       "classPath": {},
@@ -135,7 +135,7 @@
   "DbSqlCall": {
     "module": "eo-db",
     "moduleScope": "main",
-    "fieldKeys": [
+    "fields": [
       "sqlKey"
     ],
     "superKey": "HostCall",
@@ -151,7 +151,7 @@
   "DbSqlConfig": {
     "module": "eo-db",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "dbConfigKey": {"final": true},
       "modelKey": {"final": true},
       "classPath": {"final": true},
@@ -174,7 +174,7 @@
   "DbSqlInterface": {
     "module": "eo-db",
     "moduleScope": "main",
-    "fieldKeys": {
+    "fields": {
       "sqlList": {
         "final": true,
         "notNull": true
@@ -208,7 +208,7 @@
     "module": "eo-db",
     "moduleScope": "main",
     "interfaces": "ListParamsBeanInterface,ConfigReadCommand",
-    "fieldKeys": "listParams",
+    "fields": "listParams",
     "superKey": "DbSqlCall",
     "expose": "WEB",
     "description": "Map results of a sql select to the targetPath.",
@@ -216,20 +216,6 @@
     "modelKey": "DbSqlReadCall",
     "properties": {
       "create": true
-    },
-    "author": "Werner Diwischek"
-  },
-  "DbTypes": {
-    "configModelKey": "ModelConfigScalar",
-    "module": "eo-db",
-    "moduleScope": "main",
-    "expose": "NONE",
-    "description": "Enum with different shapetypes like ORACLE or H2",
-    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
-    "modelKey": "DbTypes",
-    "properties": {
-      "create": false,
-      "shapeType": "ENUM"
     },
     "author": "Werner Diwischek"
   }

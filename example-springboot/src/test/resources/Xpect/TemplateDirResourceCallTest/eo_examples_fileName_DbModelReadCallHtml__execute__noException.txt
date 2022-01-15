@@ -85,10 +85,16 @@ In the example the
 <p>
 This allows to define properties like
 <a href="/config/FieldConfig/table">&equiv;table</a>
- withnull
+ with
+<nobreak><a target="github" href="https://github.com/fluentcodes/elasticobjects/blob/master/eo-db/src/main/java/org/fluentcodes/projects/elasticobjects/calls/db/DbModelConfig.java"> <img src="/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/></a></nobreak>
+<a href="/config/ModelConfig/DbModelConfig">&equiv;DbModelConfig</a>
+
 </p>
 <p>
-    With the implementation ofnull
+    With the implementation of
+<nobreak><a target="github" href="https://github.com/fluentcodes/elasticobjects/blob/master/eo-calls/src/main/java/org/fluentcodes/projects/elasticobjects/calls/PermissionConfig.java"> <img src="/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/></a></nobreak>
+<a href="/config/ModelConfig/PermissionConfig">&equiv;PermissionConfig</a>
+
     the model configuration has some role access restrictions.
 </p>
 <p>

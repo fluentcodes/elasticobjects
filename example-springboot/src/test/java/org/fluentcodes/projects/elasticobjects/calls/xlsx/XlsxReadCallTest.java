@@ -5,7 +5,7 @@ import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
 import org.junit.Test;
 
@@ -41,7 +41,7 @@ public class XlsxReadCallTest implements IModelConfigCreateTests {
     @Test
     public void call_AnObjectXlsxTest__execute__notEmpty() {
         final Call call = new XlsxReadCall("AnObject.xlsx:test");
-        EoRoot eo = ProviderConfigMaps.createEo(new ArrayList<>());
+        EoRoot eo = ObjectProvider.createEo(new ArrayList<>());
         call.execute(eo);
         List value = (List) eo.get();
         Assertions.assertThat(value).isNotEmpty();
@@ -53,7 +53,7 @@ public class XlsxReadCallTest implements IModelConfigCreateTests {
                 "#{XlsxReadCall->AnObject.xlsx:test, xyz}.\n" +
                 "#{TemplateResourceCall->table.tpl, xyz}." +
                 "END");
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         String result = call.execute(eo);
         Assertions.assertThat(eo.getLog())
                 .isEmpty();

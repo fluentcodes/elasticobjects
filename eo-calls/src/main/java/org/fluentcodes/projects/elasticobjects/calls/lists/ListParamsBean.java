@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.calls.lists;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOObject;
+import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.calls.condition.Or;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -74,7 +74,7 @@ public class ListParamsBean {
         }
     }
 
-    public boolean filter(IEOObject toFilter) {
+    public boolean filter(EO toFilter) {
         if (!hasFilter()) {
             return true;
         }

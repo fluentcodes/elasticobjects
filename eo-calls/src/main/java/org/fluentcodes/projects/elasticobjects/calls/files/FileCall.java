@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.HostCall;
 import org.fluentcodes.projects.elasticobjects.calls.HostConfig;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
@@ -42,7 +42,7 @@ public abstract class FileCall extends HostCall {
         setFileConfigKey(configKey);
     }
 
-    protected FileConfig init(final PermissionType permissionType, final IEOScalar eo) {
+    protected FileConfig init(final PermissionType permissionType, final EOInterfaceScalar eo) {
         if (!hasFileConfigKey()) {
             throw new EoException("Empty file config key.");
         }

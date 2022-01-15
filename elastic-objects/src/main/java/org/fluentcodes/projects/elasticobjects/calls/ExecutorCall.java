@@ -1,8 +1,8 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
 import org.fluentcodes.projects.elasticobjects.EoChild;
-import org.fluentcodes.projects.elasticobjects.IEOObject;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.LogLevel;
 import org.fluentcodes.projects.elasticobjects.Path;
 import org.fluentcodes.projects.elasticobjects.PathElement;
@@ -31,7 +31,7 @@ public class ExecutorCall {
 
     }
 
-    public static Object execute(final IEOScalar eo, final Call call) {
+    public static Object execute(final EOInterfaceScalar eo, final Call call) {
         if (eo == null) {
             return "eo is null!";
         }
@@ -45,7 +45,7 @@ public class ExecutorCall {
         if (!call.evalStartCondition(eo)) {
             return "";
         }
-        Map<IEOScalar,String> sourceList = createSourceList(call, eo);
+        Map<EOInterfaceScalar,String> sourceList = createSourceList(call, eo);
 
         StringBuilder templateResult = new StringBuilder();
         templateResult.append(call.getPrepend());
@@ -53,7 +53,7 @@ public class ExecutorCall {
         if (PathElement.SAME.equals(call.getTargetPath())) {
             call.setTargetPath(TARGET_AS_STRING);
         }
-        for (Map.Entry<IEOScalar, String> source : sourceList.entrySet()) {
+        for (Map.Entry<EOInterfaceScalar, String> source : sourceList.entrySet()) {
             try {
                 call.setTargetPath(source.getValue());
                 templateResult.append(call.execute(source.getKey()));
@@ -71,7 +71,7 @@ public class ExecutorCall {
         return templateResult.toString();
     }
 
-    public static String executeEo(final IEOObject eo) {
+    public static String executeEo(final EO eo) {
         if (eo == null) {
             throw new EoInternalException("Null adapter!");
         }
@@ -84,7 +84,7 @@ public class ExecutorCall {
         int counter = 0;
         for (String key : keys) {
             long startTime = System.currentTimeMillis();
-            IEOObject callEo = eo.getCallEo(key);
+            EO callEo = eo.getCallEo(key);
             if (callEo == null) {
                 continue;
             }
@@ -108,9 +108,9 @@ public class ExecutorCall {
         return stringResult.toString();
     }
 
-    static Map<IEOScalar, String> createSourceList(Call call, IEOScalar eo) {
+    static Map<EOInterfaceScalar, String> createSourceList(Call call, EOInterfaceScalar eo) {
         String targetPath = call.getTargetPath();
-        Map<IEOScalar, String> result = new LinkedHashMap<>();
+        Map<EOInterfaceScalar, String> result = new LinkedHashMap<>();
         if (!call.hasSourcePath()) {
             if (targetPath == null) {
                 targetPath = TARGET_AS_STRING;
@@ -122,7 +122,7 @@ public class ExecutorCall {
         /*String source = new Parser(TemplateMarker.SQUARE, call.getSourcePath()).parse(eo);*/
         if (!(source.contains(MATCHER) || source.contains(MATCHER_ALL))) {
 
-            IEOScalar sourceEo = eo.getEo(source);
+            EOInterfaceScalar sourceEo = eo.getEo(source);
             if (targetPath == null) {
                 targetPath = sourceEo.getPathAsString();
             }
@@ -145,7 +145,7 @@ public class ExecutorCall {
             return result;
         }
         for (String key : keys) {
-            IEOScalar sourceEntry = sourceParentEo.getEo(new PathElement(key));
+            EOInterfaceScalar sourceEntry = sourceParentEo.getEo(new PathElement(key));
             if (TARGET_AS_STRING.equals(targetPath)) {
                 result.put(sourceEntry, targetPath);
             }

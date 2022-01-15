@@ -6,10 +6,9 @@ import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCall;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectEoJunit4;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
-import org.fluentcodes.tools.xpect.XpectString;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -40,7 +39,7 @@ public class TemplateContentExampleTest {
 
     @Test
     public void DATA__() {
-        EoRoot eo = ProviderConfigMaps.createEo(DATA);
+        EoRoot eo = ObjectProvider.createEo(DATA);
         Assert.assertEquals("header1", eo.get("0/header"));
         TemplateResourceCall call = new TemplateResourceCall("ContentExampleElement1");
         call.setTargetPath(Call.TARGET_AS_STRING);
@@ -53,7 +52,7 @@ public class TemplateContentExampleTest {
 
     @Test
     public void eoList_FileReadCall_ContentExampleData__execute__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEoWithClasses(List.class);
+        EoRoot eo = ObjectProvider.createEoWithClasses(List.class);
         final FileReadCall call = new FileReadCall(CONTENT_EXAMPLE_DATA);
         call.setTargetPath(".");
         eo.addCall(call);
@@ -64,7 +63,7 @@ public class TemplateContentExampleTest {
 
     @Test
     public void __eo_ContentExampleDataJson__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo(DATA);
+        EoRoot eo = ObjectProvider.createEo(DATA);
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getModelClass()).isEqualTo(List.class);
         eo.setSerializationType(JSONSerializationType.STANDARD);
@@ -73,28 +72,28 @@ public class TemplateContentExampleTest {
 
     @Test
     public void eo_DataJson__parse_Template__replaced() {
-        EoRoot eo = ProviderConfigMaps.createEo(DATA);
+        EoRoot eo = ObjectProvider.createEo(DATA);
         String value = new Parser("-.{0/header}.-").parse(eo);
         Assertions.assertThat(value).isEqualTo("-header1-");
     }
 
     @Test
     public void eo_DataJson__parse_Template_WrongPathRelativePath__notReplaced() {
-        EoRoot eo = ProviderConfigMaps.createEo(DATA);
+        EoRoot eo = ObjectProvider.createEo(DATA);
         String value = new Parser("-.{0/header}.-").parse(eo.getEo("1"));
-        Assertions.assertThat(value).isEqualTo("-!!No value add for fieldName=0/header!!-");
+        Assertions.assertThat(value).isEqualTo("-!!0/headerCould not move to path '0' because key '0' does not exist on '/1'.!!-");
     }
 
     @Test
     public void eo_DataJson__parse_template_absolutePath__replaced() {
-        EoRoot eo = ProviderConfigMaps.createEo(DATA);
+        EoRoot eo = ObjectProvider.createEo(DATA);
         String value = new Parser("-.{/0/header}.-").parse(eo.getEo("1"));
         Assertions.assertThat(value).isEqualTo("-header1-");
     }
 
     @Test
     public void eo_StaticJson__execute_xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "  \"(FileReadCall)data\": {\n" +
                 "    \"fileConfigKey\":\"ContentExampleData\"\n" +
                 "  },\n" +
@@ -115,7 +114,7 @@ public class TemplateContentExampleTest {
     @Ignore
     @Test
     public void call_StaticTpl__execute__xpected() {
-        final EoRoot eo = ProviderConfigMaps.createEo();
+        final EoRoot eo = ObjectProvider.createEo();
 
         final TemplateResourceCall call = new TemplateResourceCall("ContentExampleStatic");
         final String result = call.execute(eo);
@@ -125,7 +124,7 @@ public class TemplateContentExampleTest {
     @Ignore("problem with maven")
     @Test
     public void call_StaticKeepTpl__execute__xpected() {
-        final EoRoot eo = ProviderConfigMaps.createEo();
+        final EoRoot eo = ObjectProvider.createEo();
 
         final TemplateResourceCall call = new TemplateResourceCall(STATIC_KEEP_TPL);
         final String result = call.execute(eo);
@@ -134,7 +133,7 @@ public class TemplateContentExampleTest {
 
     @Test
     public void call_StaticConditionTpl__execute__xpected() {
-        final EoRoot eo = ProviderConfigMaps.createEo();
+        final EoRoot eo = ObjectProvider.createEo();
 
         final TemplateResourceCall call = new TemplateResourceCall("ContentExampleStaticCondition");
         final String result = call.execute(eo);
@@ -143,7 +142,7 @@ public class TemplateContentExampleTest {
 
     @Test
     public void eo_DynamicJson__execute__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "  \"(FileReadCall)data\": {\n" +
                 "    \"fileConfigKey\":\"ContentExampleData\"\n" +
                 "  },\n" +
@@ -163,7 +162,7 @@ public class TemplateContentExampleTest {
 
     @Test
     public void call_DynamicTpl__execute__xpected() {
-        final EoRoot eo = ProviderConfigMaps.createEo();
+        final EoRoot eo = ObjectProvider.createEo();
         final TemplateResourceCall call = new TemplateResourceCall(DYNAMIC_TPL);
         final String result = call.execute(eo);
         XpectStringJunit4.assertStatic(result);

@@ -11,13 +11,10 @@ public class ModelBeanProperties implements ModelPropertiesInterface {
     public static final String F_ABSTRACT = "abstract";
     public static final String F_CREATE = "create";
     public static final String F_DB_ANNOTATED = "dbAnnotated";
+    public static final String F_DEFAULT_IMPLEMENTATION = "defaultImplementation";
     public static final String F_ID_KEY = "idKey";
-    public static final String F_JAVASCRIPT_TYPE = "javascriptType";
     public static final String F_NATURAL_KEYS = "naturalKeys";
     public static final String F_TABLE = "table";
-    public static final String F_DEFAULT_IMPLEMENTATION = "defaultImplementation";
-
-    private static final Logger LOG = LogManager.getLogger(ModelBeanProperties.class);
 
     private Boolean abstractValue;
     private Boolean create;
@@ -123,7 +120,7 @@ public class ModelBeanProperties implements ModelPropertiesInterface {
     }
 
     public void setDefaultImplementation(String value) {
-        this.defaultImplementation = defaultImplementation;
+        this.defaultImplementation = value;
     }
 
 
@@ -149,7 +146,7 @@ public class ModelBeanProperties implements ModelPropertiesInterface {
     }
 
     public void setIdKey(String value) {
-        this.idKey = idKey;
+        this.idKey = value;
     }
 
     public void setNaturalKeys(String value) {

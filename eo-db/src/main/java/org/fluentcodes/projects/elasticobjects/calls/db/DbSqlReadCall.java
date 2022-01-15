@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigReadCommand;
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement;
@@ -38,7 +38,7 @@ public class DbSqlReadCall extends DbSqlCall implements ListParamsBeanInterface,
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         return mapEo(eo, readRaw(eo));
     }
 
@@ -68,7 +68,7 @@ public class DbSqlReadCall extends DbSqlCall implements ListParamsBeanInterface,
         }
     }
 
-    public List readRaw(final IEOScalar eo) {
+    public List readRaw(final EOInterfaceScalar eo) {
         DbSqlConfig config = init(PermissionType.READ, eo);
         listParams.initDb();
         return new FindStatement(config.getSql(), eo)

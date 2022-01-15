@@ -1,4 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.models;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+
 import java.util.regex.Pattern;
 
 public class ShapeTypeSerializerString implements ShapeTypeSerializerInterface<String> {
@@ -19,6 +21,7 @@ public class ShapeTypeSerializerString implements ShapeTypeSerializerInterface<S
                 .replaceAll("") + "\"";
     }
 
+    @Override
     public String asObject(Object object) {
         if (object == null) {
             return null;
@@ -30,6 +33,29 @@ public class ShapeTypeSerializerString implements ShapeTypeSerializerInterface<S
             return new String((byte[])object);
         }
         return asObject(object.toString());
+    }
+
+    @Override
+    public boolean isValid(final Object object, final FieldConfigProperties properties) {
+        if (properties == null) {
+            return true;
+        }
+        if (object == null){
+            if (!properties.hasMax() || properties.getMax() == -1) {
+                return true;
+            }
+            /*else if (properties.getLength() > -1) {
+                throw new EoException("String value is null and has length " + properties.getLength() + " property.");
+            }*/
+            else {
+                return true;
+            }
+        }
+        String value = (String)object;
+        if (properties.hasMax() && properties.getMax() < value.length()) {
+            throw new EoException("String value for field '" + value + "' has size " + value.length() + " bigger than max length " + properties.getMax() + ".");
+        }
+        return true;
     }
 
     public String asObject(String object, final String defaultValue) {

@@ -110,6 +110,6 @@
     "description": "Just a small test string used in test models. ",
     "expose": "WEB",
     "fieldKey": "myString",
-    "length": 20
+    "max": 20
   }
 }

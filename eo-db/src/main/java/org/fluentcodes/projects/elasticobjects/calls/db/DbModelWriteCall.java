@@ -1,12 +1,11 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigWriteCommand;
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement;
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.InsertStatement;
 import org.fluentcodes.projects.elasticobjects.calls.db.statements.UpdateStatement;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.List;
 
@@ -28,11 +27,11 @@ public class DbModelWriteCall extends DbModelCall implements ConfigWriteCommand 
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         return save(eo);
     }
 
-    public int save(final IEOScalar eo) {
+    public int save(final EOInterfaceScalar eo) {
         DbModelConfig modelConfig = init(PermissionType.WRITE, eo);
         int updateCount = 0;
         if (FindStatement.ofId(eo).execute(modelConfig.getDbConfig().getConnection()) == 1) {

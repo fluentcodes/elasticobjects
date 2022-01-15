@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.files;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.HostConfig;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionConfig;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
@@ -93,13 +93,13 @@ public class FileConfig extends PermissionConfig implements FileInterface {
         return new Parser(hostPath + "" + filePath + "/" + fileName).parse();
     }
 
-    protected HostConfig resolveHostConfig(final IEOScalar eo, final String hostConfigKey) {
+    protected HostConfig resolveHostConfig(final EOInterfaceScalar eo, final String hostConfigKey) {
         if (hostConfigKey != null && !hostConfigKey.isEmpty())
             return (HostConfig) eo.getConfigMaps().find(HostConfig.class, hostConfigKey);
         return (HostConfig) eo.getConfigMaps().find(HostConfig.class, this.getHostConfigKey());
     }
 
-    public URL findUrl(final IEOScalar eo, final String hostConfigKey) {
+    public URL findUrl(final EOInterfaceScalar eo, final String hostConfigKey) {
         return findUrl(resolveHostConfig(eo, hostConfigKey));
     }
 

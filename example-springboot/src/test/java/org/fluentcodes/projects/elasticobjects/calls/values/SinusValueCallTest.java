@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.values;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 /**
@@ -36,7 +36,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
 
     @Test
     public void eoStringTemplate__execute__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "   \"(List,Double)source\": {\n" +
                 "     \"0\": 1,\n" +
                 "     \"1\": 2,\n" +

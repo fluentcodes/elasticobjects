@@ -4,9 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.PathElement;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
-import org.fluentcodes.tools.xpect.XpectString;
 import org.junit.Test;
 
 
@@ -18,7 +17,7 @@ public class TemplateResourceCallConfigsNavigationTest {
 
     @Test
     public void ModelConfig_configFilter_TemplateCall_expose_WEB__execute__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.set("ModelConfig", "configType");
         eo.set("TemplateCall","configFilter");
         eo.set("WEB","expose");
@@ -31,7 +30,7 @@ public class TemplateResourceCallConfigsNavigationTest {
 
     @Test
     public void ModelConfig_configFilter_TemplateCall_expose_WEB_role_guest__execute__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.set("ModelConfig", "configType");
         eo.set("TemplateCall","configFilter");
         eo.set("WEB","expose");
@@ -44,7 +43,7 @@ public class TemplateResourceCallConfigsNavigationTest {
 
     @Test
     public void ModelConfig_configFilter_TemplateCall_expose_WEB_role_none__execute__xpected() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.set("ModelConfig", "configType");
         eo.set("TemplateCall","configFilter");
         eo.set("WEB","expose");

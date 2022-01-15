@@ -10,14 +10,14 @@ public class LikeTest {
 
     @Test
     public void testString_string__filter_eoString__true() {
-        Like like = new Like(AnObject.MY_STRING, "test");
+        Like like = new Like(AnObject.F_MY_STRING, "test");
         EoRoot eo = AndTest.TEST_STRING_DEV;
         Assertions.assertThat(like.filter(eo)).isTrue();
     }
 
     @Test
     public void testString_stringOther__filter_eoString__false() {
-        Like like = new Like(AnObject.MY_STRING, "stringOther");
+        Like like = new Like(AnObject.F_MY_STRING, "stringOther");
         EoRoot eo = AndTest.TEST_STRING_DEV;
         Assertions.assertThat(like.filter(eo)).isFalse();
     }

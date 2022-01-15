@@ -67,7 +67,7 @@ public class ModelFactoryFromModels extends ModelFactory {
             LOG.info("Already defined '{}'", modelClass.getSimpleName());
             return;
         }
-        for (FieldBean fieldBean : modelBean.getFieldBeans().values()) {
+        for (FieldBean fieldBean : modelBean.getFields().values()) {
             String typeKey = ((FieldBeanForClasses) fieldBean).getTypeKey();
             if (!beanMap.containsKey(typeKey)) {
                 addModelForClasses(beanMap, ((FieldBeanForClasses) fieldBean).getTypeClass().getTypeName());

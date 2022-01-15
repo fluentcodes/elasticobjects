@@ -1,8 +1,7 @@
 package org.fluentcodes.projects.elasticobjects;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +12,7 @@ public class IEoSerializeTest {
 
     @Test
     public void givenDev_thenSerializationTypeEo()  {
-        EoRoot eo = ProviderConfigMapsDev.createEo();
+        EoRoot eo = ObjectProviderDev.createEo();
         Assertions.assertThat(eo.getSerializationType()).isEqualTo(JSONSerializationType.EO);
         Assertions.assertThat(eo.size()).isEqualTo(0);
         String serialized = new EOToJSON().toJson(eo);
@@ -25,13 +24,13 @@ public class IEoSerializeTest {
         Assert.assertEquals("{\n" +
                 "  \"(JSONSerializationType)_serializationType\": \"EO\"\n" +
                 "}", serialized);
-        EoRoot fromJson = ProviderConfigMapsDev.createEo(serialized);
+        EoRoot fromJson = ObjectProviderDev.createEo(serialized);
         Assertions.assertThat(fromJson.getSerializationType()).isEqualTo(JSONSerializationType.EO);
     }
 
     @Test
     public void givenDev_whenSetSerializationTypeStandard_thenSerializationTypeEo()  {
-        EoRoot eo = ProviderConfigMapsDev.createEo();
+        EoRoot eo = ObjectProviderDev.createEo();
         eo.setSerializationType(JSONSerializationType.STANDARD);
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getSerializationType()).isEqualTo(JSONSerializationType.STANDARD);
@@ -43,7 +42,7 @@ public class IEoSerializeTest {
         Assert.assertEquals("{\n" +
                 "  \"(JSONSerializationType)_serializationType\": \"STANDARD\"\n" +
                 "}", serialized);
-        EoRoot fromJson = ProviderConfigMapsDev.createEo(serialized);
+        EoRoot fromJson = ObjectProviderDev.createEo(serialized);
         Assertions.assertThat(fromJson.getSerializationType()).isEqualTo(JSONSerializationType.STANDARD);
     }
 }

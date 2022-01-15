@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.calls.configs;
 
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.SimpleCommand;
@@ -47,7 +47,7 @@ public class ConfigAsFlatListCall extends CallImpl implements SimpleCommand {
     }
 
     @Override
-    public String execute(IEOScalar eo) {
+    public String execute(EOInterfaceScalar eo) {
         List<Object> resultAsListMap = (List) new ConfigCall()
                 .setConfigType(configType)
                 .execute(eo);
@@ -91,7 +91,7 @@ public class ConfigAsFlatListCall extends CallImpl implements SimpleCommand {
     }
     /*.{}.*/
 
-    static List<List<String>> flattenToStringList(final IEOScalar eo, List values, List<String> keys) {
+    static List<List<String>> flattenToStringList(final EOInterfaceScalar eo, List values, List<String> keys) {
         List<List<String>> result = new ArrayList<>();
         Map<String, Integer> keyPosition = new LinkedHashMap<>();
         boolean externalKey = true;
@@ -155,7 +155,7 @@ public class ConfigAsFlatListCall extends CallImpl implements SimpleCommand {
         return result;
     }
 
-    static String asString(IEOScalar eo, List values, List<String> keys) {
+    static String asString(EOInterfaceScalar eo, List values, List<String> keys) {
         List<List<String>> flattened = flattenToStringList(eo, values, keys);
         int max = flattened.get(0).size();
         StringBuilder builder = new StringBuilder();

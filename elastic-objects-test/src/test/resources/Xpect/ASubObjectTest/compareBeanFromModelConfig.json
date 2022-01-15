@@ -5,9 +5,9 @@
   "(Date)creationDate": 1605826772992,
   "description": "A sub object as an example.",
   "(Expose)expose": "WEB",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)id": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "(Expose)expose": "WEB",
       "fieldKey": "id",
@@ -20,7 +20,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": true,
@@ -33,7 +32,7 @@
       }
     },
     "(FieldBean)myASubObject": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "myASubObject",
       "(Expose)expose": "WEB",
       "fieldKey": "myASubObject",
@@ -46,7 +45,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -59,7 +57,7 @@
       }
     },
     "(FieldBean)myString": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Just a small test string used in test models. ",
       "(Expose)expose": "WEB",
       "fieldKey": "myString",
@@ -72,8 +70,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 20,
-        "max": -1,
+        "max": 20,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -85,7 +82,7 @@
       }
     },
     "(FieldBean)name": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The name field of a class. ",
       "(Expose)expose": "WEB",
       "fieldKey": "name",
@@ -98,8 +95,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -111,7 +107,7 @@
       }
     },
     "(FieldBean)naturalId": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "(Expose)expose": "NONE",
       "fieldKey": "naturalId",
@@ -124,8 +120,7 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": true,
         "override": false,

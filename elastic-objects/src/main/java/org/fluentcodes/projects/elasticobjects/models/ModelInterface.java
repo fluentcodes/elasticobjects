@@ -1,8 +1,8 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 public interface ModelInterface {
-    String SHAPE_TYPE = "shapeType";
-    String CLASS_PATH = "classPath";
+    String F_SHAPE_TYPE = "shapeType";
+    String F_CLASS_PATH = "classPath";
 
     String getModelKey();
 

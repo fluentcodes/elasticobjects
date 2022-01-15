@@ -1,6 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.calls.xlsx;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -8,7 +7,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadCall;
@@ -47,11 +46,11 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         return mapEo(eo, readRaw(eo));
     }
 
-    public List<Object> readRaw(final IEOScalar eo) {
+    public List<Object> readRaw(final EOInterfaceScalar eo) {
         FileConfig config = init(PermissionType.READ, eo);
         getListParams().merge(config);
         List result = new ArrayList<>();
@@ -108,7 +107,7 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
         return listParams != null;
     }
 
-    public Sheet getSheet(final IEOScalar eo) {
+    public Sheet getSheet(final EOInterfaceScalar eo) {
         Workbook wb = readWorkbook(eo);
         if (!getFileConfig().getProperties().hasSheetName()) {
             return wb.getSheetAt(0);
@@ -117,7 +116,7 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
         }
     }
 
-    public Workbook readWorkbook(final IEOScalar eo) {
+    public Workbook readWorkbook(final EOInterfaceScalar eo) {
         URL url = getFileConfig().findUrl(eo, getHostConfigKey());
         if (url == null) {
             throw new EoException("Could not load url from " + getFileConfig().getNaturalId());

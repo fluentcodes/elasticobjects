@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.files;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S0;
@@ -25,7 +25,7 @@ public class JsonWriteCallTest {
     @Test
     public void call__Json__role_SuperAdmin__execute__logEmpty() {
         final JsonWriteCall callWrite = new JsonWriteCall(FILE_TMP_JSON);
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.setRoles(SUPER_ADMIN);
         eo.set(S_VALUE11, S0, S_KEY1);
         eo.set(S_VALUE12, S0, S_KEY2);

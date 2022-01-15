@@ -25,7 +25,7 @@
     "description": "The classpath",
     "expose": "WEB",
     "fieldKey": "classPath",
-    "length": 128
+    "max": 128
   },
   "colKeys": {
     "module": "eo-calls",
@@ -50,7 +50,7 @@
     "description": "Key for filter configuration",
     "expose": "WEB",
     "fieldKey": "configFilter",
-    "length": 64
+    "max": 64
   },
   "configType": {
     "module": "eo-calls",
@@ -59,7 +59,7 @@
     "description": "Key for configuration type like ModelConfig, FileConfig, FieldConfig, HostConfig, DbSqlConfig.",
     "expose": "WEB",
     "fieldKey": "configType",
-    "length": 64
+    "max": 64
   },
   "content": {
     "module": "eo-calls",
@@ -68,7 +68,7 @@
     "description": "A content for different calls. In a template context the content of the markup. ",
     "expose": "WEB",
     "fieldKey": "content",
-    "length": 10000
+    "max": 10000
   },
   "createRoles": {
     "module": "eo-calls",
@@ -93,7 +93,7 @@
     "description": "A database sql dialect.",
     "expose": "NONE",
     "fieldKey": "dialect",
-    "length": 80
+    "max": 80
   },
   "executeRoles": {
     "module": "eo-calls",
@@ -110,7 +110,7 @@
     "description": "A delimiter for fields used for csv files. ",
     "expose": "NONE",
     "fieldKey": "fieldDelimiter",
-    "length": 4
+    "max": 4
   },
   "fieldKeys": {
     "module": "eo-calls",
@@ -127,7 +127,7 @@
     "description": "Defines the key for a file configuration @FileConfig where to read or write a file.",
     "expose": "NONE",
     "fieldKey": "fileConfigKey",
-    "length": 80
+    "max": 80
   },
   "fileEnding": {
     "module": "eo-calls",
@@ -136,7 +136,7 @@
     "description": "It's used to specify the file ending in different context. ",
     "expose": "NONE",
     "fieldKey": "fileEnding",
-    "length": 16
+    "max": 16
   },
   "fileName": {
     "module": "eo-calls",
@@ -145,7 +145,7 @@
     "description": "A fileName used in different calls and configs like @FileConfig or @DirectoryConfig. ",
     "expose": "NONE",
     "fieldKey": "fileName",
-    "length": 80
+    "max": 80
   },
   "filePath": {
     "module": "eo-calls",
@@ -154,7 +154,7 @@
     "description": "A filePath used in different calls and configs like @FileConfig or @DirectoryConfig. ",
     "expose": "NONE",
     "fieldKey": "filePath",
-    "length": 512
+    "max": 512
   },
   "filter": {
     "module": "eo-calls",
@@ -163,7 +163,7 @@
     "description": "Filter for List entries.",
     "expose": "WEB",
     "fieldKey": "filter",
-    "length": 512
+    "max": 512
   },
   "hostConfigKey": {
     "module": "eo-calls",
@@ -172,7 +172,7 @@
     "description": "A key for host objects.",
     "expose": "NONE",
     "fieldKey": "hostConfigKey",
-    "length": 80
+    "max": 80
   },
   "hostName": {
     "module": "eo-calls",
@@ -181,7 +181,15 @@
     "description": "A name for host objects.",
     "expose": "NONE",
     "fieldKey": "hostName",
-    "length": 80
+    "max": 80
+  },
+  "length": {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "Integer",
+    "description": "length for {@link ListParams}",
+    "expose": "WEB",
+    "fieldKey": "length"
   },
   "listParams": {
     "module": "eo-calls",
@@ -190,7 +198,7 @@
     "description": "Parameters of type @ListParamsBean for list type read call operations like @CsvSimpleReadCall.",
     "expose": "NONE",
     "fieldKey": "listParams",
-    "length": 80
+    "max": 80
   },
   "nothingRoles": {
     "module": "eo-calls",
@@ -207,13 +215,13 @@
     "description": "The password instance var.",
     "expose": "NONE",
     "fieldKey": "password",
-    "length": 15
+    "max": 15
   },
   "PermissionConfig.permissions": {
     "module": "eo-calls",
     "moduleScope": "main",
     "modelKeys": "PermissionsForConfig",
-    "description": "Role permission wraüüer.",
+    "description": "Role permission wrapper config.",
     "expose": "WEB",
     "fieldKey": "permissions"
   },
@@ -221,7 +229,7 @@
     "module": "eo-calls",
     "moduleScope": "main",
     "modelKeys": "PermissionsForBean",
-    "description": "Role permission wraüüer.",
+    "description": "Role permission wrapper bean.",
     "expose": "WEB",
     "fieldKey": "permissions"
   },
@@ -272,7 +280,7 @@
     "description": "protocol",
     "expose": "NONE",
     "fieldKey": "protocol",
-    "length": 8
+    "max": 8
   },
   "readRoles": {
     "module": "eo-calls",
@@ -289,7 +297,7 @@
     "description": "replaceBy",
     "expose": "WEB",
     "fieldKey": "replaceBy",
-    "length": 5
+    "max": 5
   },
   "rowDelimiter": {
     "module": "eo-calls",
@@ -298,7 +306,7 @@
     "description": "A delimiter for rows used for csv files.",
     "expose": "NONE",
     "fieldKey": "rowDelimiter",
-    "length": 4
+    "max": 4
   },
   "rowEnd": {
     "module": "eo-calls",
@@ -339,7 +347,7 @@
     "description": "A name for the sheet selected.",
     "expose": "NONE",
     "fieldKey": "sheetName",
-    "length": 64
+    "max": 64
   },
   "sortOrder": {
     "module": "eo-calls",
@@ -356,7 +364,7 @@
     "description": "Defines the key for a file configuration @FileConfig where to read a file.",
     "expose": "NONE",
     "fieldKey": "sourceFileConfigKey",
-    "length": 80
+    "max": 80
   },
   "spacer": {
     "module": "eo-calls",
@@ -365,7 +373,7 @@
     "description": "A spacer for json serialization",
     "expose": "NONE",
     "fieldKey": "spacer",
-    "length": 10
+    "max": 10
   },
   "targetFileConfigKey": {
     "module": "eo-calls",
@@ -374,7 +382,7 @@
     "description": "A target for persisting template results in TemplateResourceStoreCall. ",
     "expose": "WEB",
     "fieldKey": "targetFileConfigKey",
-    "length": 80
+    "max": 256
   },
   "toReplace": {
     "module": "eo-calls",
@@ -383,7 +391,7 @@
     "description": "toReplace",
     "expose": "WEB",
     "fieldKey": "toReplace",
-    "length": 5
+    "max": 5
   },
   "url": {
     "module": "eo-calls",
@@ -392,7 +400,7 @@
     "description": "url",
     "expose": "NONE",
     "fieldKey": "url",
-    "length": 80
+    "max": 80
   },
   "user": {
     "module": "eo-calls",
@@ -401,7 +409,7 @@
     "description": "user",
     "expose": "NONE",
     "fieldKey": "user",
-    "length": 50
+    "max": 50
   },
   "writeRoles": {
     "module": "eo-calls",
@@ -418,7 +426,7 @@
     "description": "driver",
     "expose": "NONE",
     "fieldKey": "driver",
-    "length": 80
+    "max": 80
   },
   "extension": {
     "module": "eo-calls",
@@ -427,7 +435,7 @@
     "description": "An extension for database initialization. ",
     "expose": "NONE",
     "fieldKey": "extension",
-    "length": 1024
+    "max": 1024
   },
   "jndi": {
     "module": "eo-calls",
@@ -436,7 +444,7 @@
     "description": "The jndi lookup for a hibernate session factory. ",
     "expose": "NONE",
     "fieldKey": "jndi",
-    "length": 80
+    "max": 80
   },
   "schema": {
     "module": "eo-calls",
@@ -445,6 +453,6 @@
     "description": "The database schema used for persisting as a property of @HostConfig",
     "expose": "NONE",
     "fieldKey": "schema",
-    "length": 80
+    "max": 80
   }
 }

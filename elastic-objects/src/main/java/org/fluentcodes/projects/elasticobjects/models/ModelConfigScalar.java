@@ -26,4 +26,12 @@ public class ModelConfigScalar extends ModelConfig {
         return (getModelClass().isEnum());
     }
 
+    public FieldConfig getField(final String fieldKey) {
+        throw new EoException("Could not get sub field because no field defined for scalar models: " + fieldKey);
+    }
+
+    public ModelConfig getFieldModelConfig(final String fieldKey) {
+        throw new EoException("Could not get sub field because no field defined for scalar models: " + fieldKey);
+    }
+
 }

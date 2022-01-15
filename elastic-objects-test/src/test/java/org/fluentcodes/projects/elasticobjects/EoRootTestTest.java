@@ -2,16 +2,9 @@ package org.fluentcodes.projects.elasticobjects;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
-import org.fluentcodes.projects.elasticobjects.xpect.XpectEo;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Werner Diwischek
@@ -47,14 +40,14 @@ public class EoRootTestTest {
                 "    }\n" +
                 "  }\n" +
                 "}";
-        EoRoot modelEo = ProviderConfigMapsDev.createEo( json);
+        EoRoot modelEo = ObjectProviderDev.createEo( json);
     }
 
     @Test
     public void TEST__ofValue_AnObject_myString_value__get_myString_value() {
         AnObject anObject = new AnObject()
                 .setMyString("value");
-        EoRoot eoRoot = ProviderConfigMaps.createEo( anObject);
+        EoRoot eoRoot = ObjectProvider.createEo( anObject);
         Assertions.assertThat(eoRoot.get("myString"))
                 .isEqualTo("value");
     }

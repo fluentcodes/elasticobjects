@@ -1,11 +1,10 @@
 package org.fluentcodes.projects.elasticobjects.calls.configs;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.Config;
-import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class ConfigCall extends ConfigKeysCall {
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         EoRoot result = EoRoot.ofClass(eo.getConfigMaps(), List.class, Map.class);
         result.setSerializationType(JSONSerializationType.STANDARD);
         String targetPath = getTargetPath();
@@ -56,7 +55,7 @@ public class ConfigCall extends ConfigKeysCall {
             } catch (Exception e) {
                 throw new EoException(e);
             }
-            IEOScalar child = result.set(configEntry, Integer.toString(result.size()));
+            EOInterfaceScalar child = result.set(configEntry, Integer.toString(result.size()));
             child.set(key, "naturalId");
         }
         return super.createReturnType(eo, result.get());

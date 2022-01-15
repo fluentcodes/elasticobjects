@@ -13,27 +13,29 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.INTERFACES;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.MODEL_KEY;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.PACKAGE_PATH;
-import static org.fluentcodes.projects.elasticobjects.models.ModelConfig.SUPER_KEY;
 
 public class ModelBean extends ConfigBean implements ModelInterface, Comparable<ModelBean> {
+    public static final String F_MODEL_KEY = "modelKey";
+    public static final String F_INTERFACES = "interfaces";
+    public static final String F_SUPER_KEY = "superKey";
+    public static final String F_PACKAGE_PATH = "packagePath";
+    public static final String F_FIELDS = "fields";
+
     private static final Logger LOG = LogManager.getLogger(ModelBean.class);
-    public static final String FIELD_KEYS = "fieldKeys";
+
     private boolean resolved;
     private String modelKey;
     private String packagePath;
     private String superKey;
     private String interfaces;
-    private Map<String, FieldBean> fieldBeans;
+    private Map<String, FieldBean> fields;
     private ShapeTypes shapeType;
     private Set<ModelBean> modelSet;
     private ModelBeanProperties properties;
 
     public ModelBean() {
         super();
-        fieldBeans = new TreeMap<>();
+        fields = new TreeMap<>();
         modelSet = new TreeSet<>();
         this.properties = new ModelBeanProperties(new HashMap<>());
     }
@@ -42,12 +44,12 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         super();
         setNaturalId(key);
         setModelKey(key);
-        fieldBeans = new TreeMap<>();
+        fields = new TreeMap<>();
         modelSet = new TreeSet<>();
         this.properties = new ModelBeanProperties(new HashMap<>());
     }
 
-    public ModelBean(final Class modelClass, ShapeTypes shapeType) {
+    public ModelBean(final Class<?> modelClass, ShapeTypes shapeType) {
         this();
         setNaturalId(modelClass.getSimpleName());
         setModelKey(getNaturalId());
@@ -65,7 +67,7 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         setPackagePath(config.getPackagePath());
         setShapeType(config.getShapeType());
         setSuperKey(config.getSuperKey());
-        fieldBeans = new TreeMap<>();
+        fields = new TreeMap<>();
         modelSet = new TreeSet<>();
         setFieldMap(config);
         this.properties = new ModelBeanProperties(config.getProperties());
@@ -74,20 +76,19 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
     public ModelBean(final Map<String, Object> valueMap) {
         super(valueMap);
         setInterfaces(
-                toString(valueMap.get(INTERFACES)));
+                toString(valueMap.get(F_INTERFACES)));
         setModelKey(
-                toString(valueMap.get(MODEL_KEY)));
+                toString(valueMap.get(F_MODEL_KEY)));
         setPackagePath(
-                toString(valueMap.get(PACKAGE_PATH)));
+                toString(valueMap.get(F_PACKAGE_PATH)));
         setShapeType(
-                new ShapeTypeSerializerEnum<ShapeTypes>().asObject(ShapeTypes.class, valueMap.get(SHAPE_TYPE)));
+                new ShapeTypeSerializerEnum<ShapeTypes>().asObject(ShapeTypes.class, valueMap.get(F_SHAPE_TYPE)));
         setSuperKey(
-                toString(valueMap.get(SUPER_KEY)));
+                toString(valueMap.get(F_SUPER_KEY)));
 
-        if(valueMap.containsKey(F_PROPERTIES) && valueMap.get(F_PROPERTIES) != null) {
-            this.properties = new ModelBeanProperties((Map<String, Object>)valueMap.get(F_PROPERTIES));
-        }
-        else {
+        if (valueMap.containsKey(F_PROPERTIES) && valueMap.get(F_PROPERTIES) != null) {
+            this.properties = new ModelBeanProperties((Map<String, Object>) valueMap.get(F_PROPERTIES));
+        } else {
             this.properties = new ModelBeanProperties(new HashMap<>());
         }
 
@@ -96,19 +97,19 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
 
 
         modelSet = new TreeSet<>();
-        if (!valueMap.containsKey(FIELD_KEYS) || valueMap.get(FIELD_KEYS) == null) {
-            this.fieldBeans = new TreeMap<>();
+        if (!valueMap.containsKey(F_FIELDS) || valueMap.get(F_FIELDS) == null) {
+            this.fields = new TreeMap<>();
             return;
         }
-        if (valueMap.get(FIELD_KEYS) instanceof String) {
-            fieldBeans = createFields((String) valueMap.get(FIELD_KEYS));
-        } else if (valueMap.get(FIELD_KEYS) instanceof List) {
-            fieldBeans = createFields((List) valueMap.get(FIELD_KEYS));
-        } else if (valueMap.get(FIELD_KEYS) instanceof Map) {
-            fieldBeans = createFields((Map) valueMap.get(FIELD_KEYS));
+        if (valueMap.get(F_FIELDS) instanceof String) {
+            fields = createFields((String) valueMap.get(F_FIELDS));
+        } else if (valueMap.get(F_FIELDS) instanceof List) {
+            fields = createFields((List) valueMap.get(F_FIELDS));
+        } else if (valueMap.get(F_FIELDS) instanceof Map) {
+            fields = createFields((Map) valueMap.get(F_FIELDS));
         } else {
-            this.fieldBeans = new TreeMap<>();
-            LOG.warn("FieldBeans is neither Map, String or List but " + valueMap.get(FIELD_KEYS).getClass().getSimpleName());
+            this.fields = new TreeMap<>();
+            LOG.warn("FieldBeans is neither Map, String or List but " + valueMap.get(F_FIELDS).getClass().getSimpleName());
         }
     }
 
@@ -126,8 +127,8 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
     }
 
     protected void setFieldMap(final ModelConfig config) {
-        for (Map.Entry<String, FieldConfig> entry : config.getFieldMap().entrySet()) {
-            fieldBeans.put(entry.getKey(), new FieldBean(entry.getValue()));
+        for (Map.Entry<String, FieldConfig> entry : config.getFields().entrySet()) {
+            fields.put(entry.getKey(), new FieldBean(entry.getValue()));
         }
     }
 
@@ -138,30 +139,16 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         properties.setDefault();
     }
 
-    public void setFieldBeans(Map<String, FieldBean> fieldBeans) {
-        this.fieldBeans = fieldBeans;
+    public void setFields(Map<String, FieldBean> fields) {
+        this.fields = fields;
     }
 
     protected void addField(final String fieldKey) {
         addField(new FieldBean(fieldKey));
     }
 
-    protected void addField(final FieldConfig fieldConfig) {
-        fieldBeans.put(fieldConfig.getNaturalId(), new FieldBean(fieldConfig));
-    }
-
-    protected void addField(final String fieldKey, final Map<String, Object> fieldMap) {
-        addField(new FieldBean(fieldKey, fieldMap));
-    }
-
     protected void addField(final FieldBean fieldBean) {
-        fieldBeans.put(fieldBean.getNaturalId(), fieldBean);
-    }
-
-    protected void setFieldMap(final Map fieldConfigMap) {
-        for (Object key : fieldConfigMap.keySet()) {
-            addField((String) key, (Map<String, Object>) fieldConfigMap.get(key));
-        }
+        fields.put(fieldBean.getNaturalId(), fieldBean);
     }
 
     public Map<String, FieldBean> createFields(final Map<String, Object> fields) {
@@ -174,7 +161,8 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
                 Map<String, Object> fieldEntryMap = (Map<String, Object>) entry.getValue();
                 fieldEntryMap.put(F_FIELD_KEY, entry.getKey().replaceAll(".*\\.", ""));
                 fieldEntryMap.put(F_NATURAL_ID, entry.getKey());
-                fieldMap.put((String) entry.getKey(), new FieldBean(fieldEntryMap));
+                FieldBean bean = new FieldBean(fieldEntryMap);
+                fieldMap.put(bean.getFieldKey(), bean);
             } catch (Exception e) {
                 throw new EoException("Problem casting field value " + entry.getKey());
             }
@@ -188,7 +176,8 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
             return fieldMap;
         }
         for (String key : fields) {
-            fieldMap.put(key, new FieldBean(key));
+            FieldBean bean = new FieldBean(key);
+            fieldMap.put(bean.getFieldKey(), bean);
         }
         return fieldMap;
     }
@@ -200,7 +189,8 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         }
         String[] fieldKeys = fields.split(",\\s*");
         for (String key : fieldKeys) {
-            fieldMap.put(key, new FieldBean(key));
+            FieldBean bean = new FieldBean(key);
+            fieldMap.put(bean.getFieldKey(), bean);
         }
         return fieldMap;
     }
@@ -259,19 +249,19 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
     }
 
     public Set<String> getFieldKeys() {
-        return getFieldBeans().keySet();
+        return getFields().keySet();
     }
 
-    public Map<String, FieldBean> getFieldBeans() {
-        return fieldBeans;
+    public Map<String, FieldBean> getFields() {
+        return fields;
     }
 
-    public boolean hasFieldBeans() {
-        return fieldBeans != null && !fieldBeans.isEmpty();
+    public boolean hasFields() {
+        return fields != null && !fields.isEmpty();
     }
 
-    public FieldBean getFieldBean(final String fieldKey) {
-        return fieldBeans.get(fieldKey);
+    public FieldBean getField(final String fieldKey) {
+        return fields.get(fieldKey);
     }
 
     public void setShapeType(String shapeType) {
@@ -297,21 +287,21 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
 
     public void mergeFieldBeanMap(Map<String, FieldBean> fieldBeanMap) {
         Map<String, FieldBean> mergedMap = new TreeMap<>();
-        for (Map.Entry<String, FieldBean> entry : fieldBeans.entrySet()) {
+        for (Map.Entry<String, FieldBean> entry : fields.entrySet()) {
             if (entry.getValue().isMerged()) {
                 continue;
             }
             FieldBean fieldBean = entry.getValue();
-            if (!fieldBeanMap.containsKey(entry.getKey())) {
+            if (!fieldBeanMap.containsKey(fieldBean.getNaturalId())) {
                 throw new EoInternalException("Could not get field definition for '" + fieldBean.getNaturalId() + "'.");
             }
-            FieldBean fieldBeanFromMap = fieldBeanMap.get(entry.getKey() );
+            FieldBean fieldBeanFromMap = fieldBeanMap.get(fieldBean.getNaturalId());
 
             fieldBean.merge(fieldBeanFromMap);
             fieldBean.setParentModel(this);
             mergedMap.put(fieldBean.getFieldKey(), fieldBean);
         }
-        this.fieldBeans = mergedMap;
+        this.fields = mergedMap;
     }
 
     public void resolveSuper(Map<String, ModelBean> modelBeans, boolean mergeFields) {
@@ -324,7 +314,7 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
             }
             ModelBean superModelBean = modelBeans.get(this.getSuperKey());
             modelSet.add(superModelBean);
-            superModelBean.resolveSuper(modelBeans, this.fieldBeans, mergeFields);
+            superModelBean.resolveSuper(modelBeans, this.fields, mergeFields);
         }
         if (this.hasInterfaces()) {
             String[] interfaceArray = this.getInterfaces().split(",");
@@ -334,10 +324,10 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
                 }
                 ModelBean interfaceModelBean = modelBeans.get(interfaceKey);
                 modelSet.add(interfaceModelBean);
-                interfaceModelBean.resolveSuper(modelBeans, this.fieldBeans, mergeFields);
+                interfaceModelBean.resolveSuper(modelBeans, this.fields, mergeFields);
             }
         }
-        for (FieldBean fieldBean : fieldBeans.values()) {
+        for (FieldBean fieldBean : fields.values()) {
             fieldBean.setParentModel(this);
             if (!fieldBean.hasModelKeys()) {
                 throw new EoInternalException("No Model defined for field '" + fieldBean.getNaturalId() + "'");
@@ -359,7 +349,7 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
                     throw new EoException("Could not resolve super key '" + getSuperKey() + "' for '" + getNaturalId() + "'.");
                 }
                 ModelBean superModelBean = modelBeans.get(this.getSuperKey());
-                superModelBean.resolveSuper(modelBeans, this.fieldBeans, mergeFields);
+                superModelBean.resolveSuper(modelBeans, this.fields, mergeFields);
             }
 
             if (this.hasInterfaces()) {
@@ -369,7 +359,7 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
                         throw new EoInternalException("Could not find interface '" + interfaceKey + "' for '" + getNaturalId() + "'.");
                     }
                     ModelBean interfaceModelBean = modelBeans.get(interfaceKey);
-                    interfaceModelBean.resolveSuper(modelBeans, this.fieldBeans, mergeFields);
+                    interfaceModelBean.resolveSuper(modelBeans, this.fields, mergeFields);
                 }
             }
             resolved = true;
@@ -378,14 +368,14 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
         if (!mergeFields) {
             return;
         }
-        for (FieldBean fieldBean : this.fieldBeans.values()) {
+        for (FieldBean fieldBean : this.fields.values()) {
             if (subFieldBeans.containsKey(fieldBean.getNaturalId())) {
                 subFieldBeans.get(fieldBean.getNaturalId()).getProperties().setOverride(true);
                 continue;
             }
             FieldBean fieldBeanLocal = new FieldBean(fieldBean);
             fieldBeanLocal.getProperties().setSuper(true);
-            subFieldBeans.put(fieldBean.getNaturalId(), fieldBeanLocal);
+            subFieldBeans.put(fieldBean.getFieldKey(), fieldBeanLocal);
         }
     }
 
@@ -402,5 +392,4 @@ public class ModelBean extends ConfigBean implements ModelInterface, Comparable<
     public int compareTo(ModelBean modelBean) {
         return getClassName().compareTo(modelBean.getClassName());
     }
-
 }

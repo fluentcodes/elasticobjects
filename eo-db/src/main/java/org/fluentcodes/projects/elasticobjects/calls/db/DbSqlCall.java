@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.DbConfig;
 import org.fluentcodes.projects.elasticobjects.calls.HostCall;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
@@ -46,7 +46,7 @@ public abstract class DbSqlCall extends HostCall {
         this.sqlKey = configKey;
     }
 
-    protected DbSqlConfig init(final PermissionType permissionType, final IEOScalar eo) {
+    protected DbSqlConfig init(final PermissionType permissionType, final EOInterfaceScalar eo) {
         if (!hasSqlKey()) {
             throw new EoException("Empty key");
         }

@@ -1,8 +1,8 @@
 package org.fluentcodes.projects.elasticobjects.io;
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOObject;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
@@ -41,10 +41,10 @@ public class IOEo<T> extends IOMappingObject<T> {
             return (String) object;
         }
         try {
-            if (object instanceof IEOObject) {
+            if (object instanceof EO) {
                 return new EOToJSON()
                         .setSerializationType(type)
-                        .toJson((IEOScalar) object);
+                        .toJson((EOInterfaceScalar) object);
             }
             EoRoot eo = EoRoot.ofValue(configMaps, object);
             if (type != null) {

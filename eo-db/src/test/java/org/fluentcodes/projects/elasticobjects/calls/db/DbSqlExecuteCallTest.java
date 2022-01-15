@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects.calls.db;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.calls.DbConfig;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -42,7 +42,7 @@ public class DbSqlExecuteCallTest implements IModelConfigCreateTests {
     public void queryAnObject() {
         DbSqlExecuteCall call = new DbSqlExecuteCall(DbConfig.H2_BASIC, CREATE);
         Assert.assertNotNull(call);
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         call.execute(eo);
     }
 }

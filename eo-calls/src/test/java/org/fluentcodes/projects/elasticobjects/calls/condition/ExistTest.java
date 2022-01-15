@@ -10,7 +10,7 @@ import static org.fluentcodes.projects.elasticobjects.calls.condition.EqTest.DAT
 public class ExistTest {
     @Test
     public void testString__filter_eoString__true()  {
-        Exists exists = new Exists(AnObject.MY_STRING);
+        Exists exists = new Exists(AnObject.F_MY_STRING);
         EoRoot eo = AndTest.TEST_STRING_DEV;
 
         Assertions.assertThat( exists.filter(eo)).isTrue();

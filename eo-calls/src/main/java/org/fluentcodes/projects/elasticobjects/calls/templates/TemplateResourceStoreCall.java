@@ -1,5 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.calls.templates;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileReadWriteCall;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.TemplateMarker;
 
@@ -31,7 +31,7 @@ public class TemplateResourceStoreCall extends FileReadWriteCall {
     }
 
 
-    public String execute(IEOScalar eo) {
+    public String execute(EOInterfaceScalar eo) {
         String template = readSourceOrTarget(eo);
         if (!TemplateMarker.CURLY.hasStartSequence(template)) {
             return "Nothing to do no template parts.";
@@ -41,7 +41,7 @@ public class TemplateResourceStoreCall extends FileReadWriteCall {
         return writeTarget(eo, content);
     }
 
-    private String readSourceOrTarget(final IEOScalar eo) {
+    private String readSourceOrTarget(final EOInterfaceScalar eo) {
         if (!hasSourceFileConfigKey()) {
             return readTarget(eo);
         }

@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 /**
  * PathElement encapsulate eo local values of eo and its parent.
- * Created by Werner on 4.07.2020.
  */
 public class PathElement {
     public static final Pattern modelPattern = Pattern.compile("^\\(([^\\)]*)\\)(.*)");

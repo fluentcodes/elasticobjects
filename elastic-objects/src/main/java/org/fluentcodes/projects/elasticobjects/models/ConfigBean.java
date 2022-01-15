@@ -447,4 +447,9 @@ public class ConfigBean {
         this.mergeScope(bean.getScope());
     }
 
+    @Override
+    public String toString() {
+        return hasNaturalId() ? getNaturalId() : "";
+    }
+
 }

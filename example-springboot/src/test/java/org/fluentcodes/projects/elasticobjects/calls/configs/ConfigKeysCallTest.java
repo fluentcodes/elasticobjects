@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.configs;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class ConfigKeysCallTest {
             "    \"configType\": \"ModelConfig\"\n" +
             "  }\n" +
             "}";
-    static final EoRoot DATA_EO = ProviderConfigMaps.createEo(DATA);
+    static final EoRoot DATA_EO = ObjectProvider.createEo(DATA);
 
     @Test
     public void givenEoWithModelConfig_whenExecute_thenResultIsOrderedList() {

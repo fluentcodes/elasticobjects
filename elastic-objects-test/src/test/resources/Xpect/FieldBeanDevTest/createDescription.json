@@ -1,0 +1,13 @@
+{
+  "configModelKey": "FieldConfigObject",
+  "description": "A description of the model used by every model extending BaseClassImpl. ",
+  "expose": "WEB",
+  "fieldKey": "description",
+  "modelKeys": "String",
+  "module": "elastic-objects",
+  "moduleScope": "main",
+  "naturalId": "description",
+  "properties": {
+    "length": 512
+  }
+}

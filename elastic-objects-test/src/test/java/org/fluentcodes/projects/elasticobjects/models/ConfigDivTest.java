@@ -2,9 +2,8 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,7 +24,7 @@ public class ConfigDivTest {
     @Test
     public void testMap()  {
         
-        ModelConfig mapModel = ProviderConfigMaps.CONFIG_MAPS.findModel(Map.class.getSimpleName());
+        ModelConfig mapModel = ObjectProvider.CONFIG_MAPS.findModel(Map.class.getSimpleName());
         Assert.assertEquals(Map.class.getSimpleName(), mapModel.getModelKey());
         Map map = (Map) mapModel.create();
         Assert.assertEquals(LinkedHashMap.class, map.getClass());
@@ -38,7 +37,7 @@ public class ConfigDivTest {
 
     @Test(expected = EoException.class)
     public void scalarModel__setKeyValue__EoException()  {
-        ModelConfig scalarModel = ProviderConfigMaps.CONFIG_MAPS.findModel(String.class.getSimpleName());
+        ModelConfig scalarModel = ObjectProvider.CONFIG_MAPS.findModel(String.class.getSimpleName());
         Assert.assertEquals(String.class.getSimpleName(), scalarModel.getModelKey());
         Assert.assertTrue(scalarModel.isScalar());
 

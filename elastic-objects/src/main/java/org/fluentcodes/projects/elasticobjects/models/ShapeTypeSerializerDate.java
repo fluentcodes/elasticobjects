@@ -72,4 +72,9 @@ public class ShapeTypeSerializerDate implements ShapeTypeSerializerInterface<Dat
         }
         return new Date();
     }
+
+    @Override
+    public boolean isValid(final Object object, final FieldConfigProperties properties) {
+        return true;
+    }
 }

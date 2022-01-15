@@ -17,7 +17,7 @@ public class EOToJSON {
     private PathPattern pathPattern;
     private JSONSerializationType serializationType;
     private boolean checkObjectReplication = false;
-    private List<IEOObject> objectRegistry;
+    private List<EO> objectRegistry;
     private String spacer = "  ";
 
     public EOToJSON() {
@@ -76,7 +76,7 @@ public class EOToJSON {
         return toJson(EoRoot.ofValue(cache, object));
     }
 
-    public String toJson(final IEOScalar eo) {
+    public String toJson(final EOInterfaceScalar eo) {
         if (eo.isScalar()) {
             return eo.get().toString();
         }
@@ -90,7 +90,7 @@ public class EOToJSON {
         return stringWriter.toString();
     }
 
-    private void toJson(final StringWriter stringWriter, final IEOScalar eoParent, final String indentSpace) {
+    private void toJson(final StringWriter stringWriter, final EOInterfaceScalar eoParent, final String indentSpace) {
         if (eoParent.isEmpty() && serializationType != JSONSerializationType.EO) {
             return;
         }
@@ -131,7 +131,7 @@ public class EOToJSON {
         }
     }
 
-    private final void addContainerStart(final StringWriter stringWriter, final IEOScalar eo) {
+    private final void addContainerStart(final StringWriter stringWriter, final EOInterfaceScalar eo) {
         if (serializationType == JSONSerializationType.EO) {
             stringWriter.append("{");
             return;
@@ -143,7 +143,7 @@ public class EOToJSON {
         }
     }
 
-    private void addContainerEnd(final StringWriter stringWriter, final IEOScalar eo, final String indentSpace) {
+    private void addContainerEnd(final StringWriter stringWriter, final EOInterfaceScalar eo, final String indentSpace) {
         if (!spacer.isEmpty()) {
             stringWriter.append("\n");
         }
@@ -159,7 +159,7 @@ public class EOToJSON {
         }
     }
 
-    private void addRepeated(final StringWriter stringWriter, final IEOObject repeated, final String indentSpace) {
+    private void addRepeated(final StringWriter stringWriter, final EO repeated, final String indentSpace) {
         stringWriter.append(indentSpace);
         stringWriter.append("{\"");
         stringWriter.append(REPEATED);
@@ -171,18 +171,18 @@ public class EOToJSON {
         }
     }
 
-    private final IEOObject checkObjectReplication(final IEOObject eo) {
+    private final EO checkObjectReplication(final EO eo) {
         if (!this.checkObjectReplication) {
             return null;
         }
         if (objectRegistry == null) {
-            objectRegistry = new ArrayList<IEOObject>();
+            objectRegistry = new ArrayList<EO>();
         }
         if (eo.get() == null) {
             return null;
         }
         Object object = eo.get();
-        for (IEOObject registered : objectRegistry) {
+        for (EO registered : objectRegistry) {
             if (registered.get() == object) {
                 return registered;
             }

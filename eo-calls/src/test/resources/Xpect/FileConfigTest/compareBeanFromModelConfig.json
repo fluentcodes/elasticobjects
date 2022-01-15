@@ -5,9 +5,9 @@
   "(Date)creationDate": 1539727163392,
   "description": "Immutable EO file configuration allow read or write access to a specific file. ",
   "(Expose)expose": "NONE",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)author": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The author of the class.",
       "(Expose)expose": "WEB",
       "fieldKey": "author",
@@ -20,8 +20,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 256,
-        "max": -1,
+        "max": 256,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -33,7 +32,7 @@
       }
     },
     "(FieldBean)cached": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "If true will cache the readed file within the cache object. ",
       "(Expose)expose": "NONE",
       "fieldKey": "cached",
@@ -46,7 +45,6 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -59,7 +57,7 @@
       }
     },
     "(FieldBean)creationDate": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Used to define the creation of an item.",
       "(Expose)expose": "WEB",
       "fieldKey": "creationDate",
@@ -72,7 +70,6 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -85,7 +82,7 @@
       }
     },
     "(FieldBean)description": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A description of the model used by every model extending BaseClassImpl. ",
       "(Expose)expose": "WEB",
       "fieldKey": "description",
@@ -98,8 +95,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 512,
-        "max": -1,
+        "max": 512,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -111,7 +107,7 @@
       }
     },
     "(FieldBean)expose": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "expose",
       "(Expose)expose": "WEB",
       "fieldKey": "expose",
@@ -124,7 +120,6 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -137,7 +132,7 @@
       }
     },
     "(FieldBean)fileName": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A fileName used in different calls and configs like @FileConfig or @DirectoryConfig. ",
       "(Expose)expose": "NONE",
       "fieldKey": "fileName",
@@ -150,8 +145,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": false,
         "override": true,
@@ -163,7 +157,7 @@
       }
     },
     "(FieldBean)filePath": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A filePath used in different calls and configs like @FileConfig or @DirectoryConfig. ",
       "(Expose)expose": "NONE",
       "fieldKey": "filePath",
@@ -176,8 +170,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 512,
-        "max": -1,
+        "max": 512,
         "min": -1,
         "notNull": false,
         "override": true,
@@ -189,7 +182,7 @@
       }
     },
     "(FieldBean)hostConfigKey": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A key for host objects.",
       "(Expose)expose": "NONE",
       "fieldKey": "hostConfigKey",
@@ -202,8 +195,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": false,
         "override": true,
@@ -215,7 +207,7 @@
       }
     },
     "(FieldBean)id": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "(Expose)expose": "WEB",
       "fieldKey": "id",
@@ -228,7 +220,6 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": true,
@@ -241,7 +232,7 @@
       }
     },
     "(FieldBean)module": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Defines a target module where generating occurs. ",
       "(Expose)expose": "WEB",
       "fieldKey": "module",
@@ -254,8 +245,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -267,7 +257,7 @@
       }
     },
     "(FieldBean)moduleScope": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
       "(Expose)expose": "WEB",
       "fieldKey": "moduleScope",
@@ -280,8 +270,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 10,
-        "max": -1,
+        "max": 32,
         "min": -1,
         "notNull": false,
         "override": false,
@@ -293,7 +282,7 @@
       }
     },
     "(FieldBean)naturalId": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "(Expose)expose": "NONE",
       "fieldKey": "naturalId",
@@ -306,8 +295,7 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": 80,
-        "max": -1,
+        "max": 80,
         "min": -1,
         "notNull": true,
         "override": false,
@@ -319,8 +307,8 @@
       }
     },
     "(FieldBean)permissions": {
-      "configModelKey": "FieldConfig",
-      "description": "Role permission wraüüer.",
+      "configModelKey": "FieldConfigObject",
+      "description": "Role permission wrapper config.",
       "(Expose)expose": "WEB",
       "fieldKey": "permissions",
       "modelKeys": "PermissionsForConfig",
@@ -332,7 +320,6 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -345,7 +332,7 @@
       }
     },
     "(FieldBean)properties": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "Immutable properties for file config",
       "(Expose)expose": "NONE",
       "fieldKey": "properties",
@@ -358,7 +345,6 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -371,7 +357,7 @@
       }
     },
     "(FieldBean)scope": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "description": "A scope for the cache value.",
       "(Expose)expose": "WEB",
       "fieldKey": "scope",
@@ -384,7 +370,6 @@
         "final": true,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,

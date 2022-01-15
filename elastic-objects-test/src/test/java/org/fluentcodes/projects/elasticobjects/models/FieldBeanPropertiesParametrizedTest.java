@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMapsDev;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
@@ -37,7 +37,7 @@ public class FieldBeanPropertiesParametrizedTest {
         final String serialized =                 "{     \"" + FieldBeanProperties.F_FIELD_NAME + "\": {\n" +
                 "\"properties\":{\"" + fieldName + "\": "+ value + "\n}" +
                 "      }\n}}";
-        EoRoot root = ProviderConfigMapsDev.createEo(serialized);
+        EoRoot root = ObjectProviderDev.createEo(serialized);
         Map<String, Object> beanMap = (Map<String, Object>)root.get();
         Map<String, Object> propertyFieldMap =  (Map<String, Object>)beanMap.get(FieldBeanProperties.F_FIELD_NAME);
         FieldBean bean = new FieldBean(propertyFieldMap);
@@ -62,8 +62,6 @@ public class FieldBeanPropertiesParametrizedTest {
                 { FieldBeanProperties.F_JSON_IGNORE, true, true },
                 { FieldBeanProperties.F_JSON_IGNORE, false, false },
                 { FieldBeanProperties.F_JSON_IGNORE, null, null },
-                { FieldBeanProperties.F_LENGTH, 1, 1 },
-                { FieldBeanProperties.F_LENGTH, null, null },
                 { FieldBeanProperties.F_MAX, 1, 1 },
                 { FieldBeanProperties.F_MAX, null, null },
                 { FieldBeanProperties.F_MIN, 1, 1 },

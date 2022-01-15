@@ -32,4 +32,9 @@ public class ShapeTypeSerializerEnum<T> implements ShapeTypeSerializerInterface<
         }
         throw new EoException("Could not map for class " + object.getClass());
     }
+
+    @Override
+    public boolean isValid(final Object object, final FieldConfigProperties properties) {
+        return true;
+    }
 }

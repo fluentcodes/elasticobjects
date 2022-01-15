@@ -1,44 +1,32 @@
 package org.fluentcodes.projects.elasticobjects.calls.configs;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigsCommand;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.TemplateMarker;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.Config;
-import org.fluentcodes.projects.elasticobjects.models.ConfigInterface;
 import org.fluentcodes.projects.elasticobjects.models.Expose;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/*.{javaHeader}|*/
-
 /**
  * For getting a list of keys for a specific configuration type, config filter and expose type.
- *
- * @author Werner Diwischek
- * @creationDate
- * @modificationDate Tue Dec 08 09:35:56 CET 2020
  */
 public class ConfigKeysCall extends CallImpl implements ConfigsCommand {
-    /*.{}.*/
 
-    /*.{javaStaticNames}|*/
-    public static final String CONFIG_FILTER = "configFilter";
-    public static final String CONFIG_TYPE = "configType";
-    public static final String EXPOSE = "expose";
-    public static final String SORT_ORDER = "sortOrder";
-    /*.{}.*/
+    public static final String F_CONFIG_FILTER = "configFilter";
+    public static final String F_CONFIG_TYPE = "configType";
+    public static final String F_EXPOSE = "expose";
+    public static final String F_SORT_ORDER = "sortOrder";
 
-    /*.{javaInstanceVars}|*/
     private String configFilter;
     private String configType;
     private Expose expose;
     private SortOrder sortOrder;
-    /*.{}.*/
     private Class<? extends Config> configClass;
 
     public ConfigKeysCall() {
@@ -69,7 +57,7 @@ public class ConfigKeysCall extends CallImpl implements ConfigsCommand {
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         if (!hasConfigFilter()) {
             configFilter = ".*";
         }
@@ -85,7 +73,7 @@ public class ConfigKeysCall extends CallImpl implements ConfigsCommand {
         }
         if (configClass == null) {
             ModelConfig configTypeConfig = eo.getConfigMaps().findModel(configType);
-            configClass = configTypeConfig.getModelClass();
+            configClass = (Class<? extends Config>) configTypeConfig.getModelClass();
         }
         Set<String> keys = eo.getConfigMaps().getConfigKeys(configClass, expose);
         try {
@@ -169,5 +157,4 @@ public class ConfigKeysCall extends CallImpl implements ConfigsCommand {
     public boolean hasSortOrder() {
         return sortOrder != null;
     }
-    /*.{}.*/
 }

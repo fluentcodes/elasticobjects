@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -40,7 +40,7 @@ public class TheGreetingCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenNameAndGreeting_whenExecuteCall_thenNameIsSet() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.set("Albert", "abc");
         Assertions.assertThat(eo.getLog()).isEmpty();
         String content = new TheGreetingCall("Hello").execute(eo.getEo("abc"));
@@ -49,7 +49,7 @@ public class TheGreetingCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenNameAndGreetingAndTargetPath_whenExecuteCall_thenNamesAreSet() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.set("Albert", "abc");
         eo.addCall(new TheGreetingCall("Hello").setSourcePath("abc").setTargetPath("/x/y/z"));
         eo.execute();
@@ -59,7 +59,7 @@ public class TheGreetingCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenNameListAndGreeting_whenExecuteCall_thenNamesAreSet() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         List<String> nameList = Arrays.asList(new String[]{"Albert", "Victor", "Chessy"});
         eo.set(nameList, "abc");
         eo.addCall(new TheGreetingCall("Hello").setSourcePath("abc/*"));
@@ -70,7 +70,7 @@ public class TheGreetingCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenNameListAndGreetingAndTargetPath_whenExecuteCall_thenNamesAreSet() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         List<String> nameList = Arrays.asList(new String[]{"Albert", "Victor", "Chessy"});
         eo.set(nameList, "abc");
         eo.addCall(new TheGreetingCall("Hello").setSourcePath("abc/*").setTargetPath("/x/y/z"));
@@ -81,7 +81,7 @@ public class TheGreetingCallTest implements IModelConfigCreateTests {
 
     @Test
     public void callTemplateCall_GreetingCall__execute__replaced() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         Assertions.assertThat(eo.getLog()).isEmpty();
         String content = new TemplateCall("* \n#{TheGreetingCall->., asString }. *").execute(eo);
         Assertions.assertThat(content).isEqualTo("* Hi Stranger! *");

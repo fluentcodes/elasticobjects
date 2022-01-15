@@ -4,13 +4,11 @@ import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 
 /**
  * A bean container class for {@link PermissionsForBean}.
- *
- * @author Werner Diwischek
- * @creationDate Wed Dec 16 00:00:00 CET 2020
- * @modificationDate Thu Jan 07 13:07:13 CET 2022
  */
 public class PermissionBean extends ConfigBean {
+    static final String F_PERMISSIONS = "permissions";
     private PermissionsForBean permissions;
+
 
     public PermissionBean() {
         super();

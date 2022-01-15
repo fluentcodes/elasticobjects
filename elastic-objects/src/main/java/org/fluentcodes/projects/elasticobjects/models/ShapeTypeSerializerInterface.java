@@ -14,6 +14,7 @@ public interface ShapeTypeSerializerInterface<T> {
 
     T asObject(Object value);
     T asObject(String value);
+    boolean isValid(Object value, FieldConfigProperties properties);
 
     default boolean compare(Object right, Object left) {
         if (right == null && left == null) {

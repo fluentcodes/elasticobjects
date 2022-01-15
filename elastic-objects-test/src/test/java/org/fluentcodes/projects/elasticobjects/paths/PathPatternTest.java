@@ -16,6 +16,7 @@ import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL2;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_PATH1;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_PATH2;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.join;
+import static org.fluentcodes.projects.elasticobjects.Path.DELIMITER;
 
 
 public class PathPatternTest {
@@ -23,10 +24,10 @@ public class PathPatternTest {
     public PathPattern createPathPatternExample()  {
         
         PathPattern pattern = new PathPattern();
-        String path1 = Path.ofs(S_LEVEL0, S_LEVEL1);
+        String path1 = new Path(S_LEVEL0, S_LEVEL1).directory();
         pattern.addPath(path1);
         Assert.assertEquals(path1, pattern.getPath(0).directory(false));
-        String path2 = Path.ofs(S_LEVEL0, S_LEVEL2);
+        String path2 = new Path(S_LEVEL0, S_LEVEL2).directory();
         pattern.addPath(path2);
         Assert.assertEquals(path2, pattern.getPath(1).directory(false));
         pattern.addPath(PathElement.MATCHER_ALL);

@@ -33,7 +33,7 @@ public class ModelBeanForClasses extends ModelBean {
         final Field[] fields = modelClass.getDeclaredFields();
         for (Field field : fields) {
             FieldBean fieldBean = new FieldBeanForClasses(field, this, modelMap);
-            getFieldBeans().put(fieldBean.getFieldKey(), fieldBean);
+            getFields().put(fieldBean.getFieldKey(), fieldBean);
         }
     }
 

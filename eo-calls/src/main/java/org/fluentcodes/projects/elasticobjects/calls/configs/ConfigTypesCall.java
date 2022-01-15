@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.configs;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.SimpleCommand;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -35,7 +35,7 @@ public class ConfigTypesCall extends CallImpl implements SimpleCommand {
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         super.check(eo);
         Set<Class<? extends Config>> keys = eo.getConfigMaps().getKeys();
         try {

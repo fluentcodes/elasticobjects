@@ -2,12 +2,12 @@ package org.fluentcodes.projects.elasticobjects.calls.values;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,16 +48,16 @@ public class StringUpperCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenModelCreateAndValueTest_whenExecute_thenUpperCaseReturned() {
-        final ModelConfig model = ProviderConfigMaps.findModel(StringUpperCall.class);
+        final ModelConfig model = ObjectProvider.findModel(StringUpperCall.class);
         final StringUpperCall call = (StringUpperCall) model.create();
-        IEOScalar eo = ProviderConfigMaps.createEo().set(S_STRING, S_LEVEL0);
+        EOInterfaceScalar eo = ObjectProvider.createEo().set(S_STRING, S_LEVEL0);
         Assertions.assertThat(eo.get()).isEqualTo("test");
         Assertions.assertThat(call.execute(eo)).isEqualTo("TEST");
     }
 
     @Test
     public void call_TemplateCall_level0_test__execute__valueInTemplate() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         final String template = "START" +
                 "@{\"level0\":\"test\"}. - \n" +
                 "@{\"(StringUpperCall)\":{" +

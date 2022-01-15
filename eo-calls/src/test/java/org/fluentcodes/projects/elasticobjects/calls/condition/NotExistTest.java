@@ -11,7 +11,7 @@ import static org.fluentcodes.projects.elasticobjects.calls.condition.EqTest.DAT
 public class NotExistTest {
     @Test
     public void testString__filter_eoString__false() {
-        NotExists notExists = new NotExists(AnObject.MY_STRING);
+        NotExists notExists = new NotExists(AnObject.F_MY_STRING);
         EoRoot eo = AndTest.TEST_STRING_DEV;
         Assertions.assertThat(notExists.filter(eo)).isFalse();
     }

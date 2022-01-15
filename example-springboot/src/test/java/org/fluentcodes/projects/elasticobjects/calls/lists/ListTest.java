@@ -5,7 +5,7 @@ import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ public class ListTest {
     public void eo_AnObjectCsv_target_list_AnObject__execute__mapped_to_object() {
         final Call call = new CsvSimpleReadCall("AnObject.csv")
                 .setTargetPath("(List,AnObject)level0");
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.addCall(call);
         eo.execute();
         Assertions.assertThat(eo.getLog())
@@ -30,7 +30,7 @@ public class ListTest {
                 "#{CsvSimpleReadCall->AnObject.csv, xyz}.\n" +
                 "#{TemplateResourceCall->table.tpl, xyz}." +
                 "END");
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         String result = call.execute(eo);
         Assertions.assertThat(eo.getLog())
                 .isEmpty();

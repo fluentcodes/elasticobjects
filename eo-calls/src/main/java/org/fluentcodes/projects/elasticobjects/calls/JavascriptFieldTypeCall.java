@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.commands.SimpleCommand;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
@@ -23,7 +23,7 @@ public class JavascriptFieldTypeCall extends CallImpl implements SimpleCommand {
     /*.{javaInstanceVars}|*/
     /*.{}.*/
     @Override
-    public String execute(final IEOScalar eo) {
+    public String execute(final EOInterfaceScalar eo) {
         if (eo.getModelClass() != String.class) {
             throw new EoException("No string class in '" + this.getClass().getSimpleName() + "' but '" + eo.getModelClass().getSimpleName() + "'");
         }

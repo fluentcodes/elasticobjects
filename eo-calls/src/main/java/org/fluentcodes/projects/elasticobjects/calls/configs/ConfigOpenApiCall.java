@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.configs;
 
 import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.commands.SimpleCommand;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
@@ -93,7 +93,7 @@ public class ConfigOpenApiCall extends CallImpl implements SimpleCommand {
     }
 
     @Override
-    public Object execute(final IEOScalar eo) {
+    public Object execute(final EOInterfaceScalar eo) {
         if (!hasExpose()) {
             expose = Expose.NONE;
         }
@@ -104,8 +104,8 @@ public class ConfigOpenApiCall extends CallImpl implements SimpleCommand {
                 .setSortOrder(sortOrder);
         List<String> keys = (List<String>) keysCall.execute(eo);
         EoRoot schemeRoot = EoRoot.of(eo.getConfigMaps());
-        IEOScalar components = schemeRoot.createChild("components");
-        IEOScalar schemas = ((EoChild)components).createChild("schemas");
+        EOInterfaceScalar components = schemeRoot.createChild("components");
+        EOInterfaceScalar schemas = ((EoChild)components).createChild("schemas");
 
         for (String key : keys) {
             if (created.contains(key)) {
@@ -127,15 +127,15 @@ public class ConfigOpenApiCall extends CallImpl implements SimpleCommand {
         return super.createReturnType(eo, schemeRoot.get());
     }
 
-    private void create(IEOScalar schemasEo, ModelConfig modelConfig) {
-        IEOScalar entry = ((EoChild)schemasEo).createChild(modelConfig.getModelKey());
+    private void create(EOInterfaceScalar schemasEo, ModelConfig modelConfig) {
+        EOInterfaceScalar entry = ((EoChild)schemasEo).createChild(modelConfig.getModelKey());
         created.add(modelConfig.getModelKey());
         entry.set("object", "type");
         entry.set(modelConfig.getDescription(), "description");
-        IEOScalar properties = ((EoChild)entry).createChild("properties");
+        EOInterfaceScalar properties = ((EoChild)entry).createChild("properties");
         for (String fieldKey : modelConfig.getFieldKeys()) {
             FieldConfig fieldConfig = (FieldConfig) modelConfig.getField(fieldKey);
-            IEOScalar field = ((EoChild)properties).createChild(fieldConfig.getFieldKey());
+            EOInterfaceScalar field = ((EoChild)properties).createChild(fieldConfig.getFieldKey());
             Models fieldModels = fieldConfig.getModels();
             if (fieldConfig.hasDescription()) {
                 field.set(fieldConfig.getDescription(), "description");
@@ -157,7 +157,7 @@ public class ConfigOpenApiCall extends CallImpl implements SimpleCommand {
                     toCreate.add(fieldModels.getModelClass().getSimpleName());
                 }
             } else if (fieldModels.isList()) {
-                IEOScalar array = field.set("array", "$ref");
+                EOInterfaceScalar array = field.set("array", "$ref");
                 if (fieldModels.hasChildModel()) {
                     ModelConfig childModel = fieldModels.getChildModel();
                     ((EoChild)array).createChild("items");

@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.templates;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class TemplateCallForEmbeddedTest {
             "            }\n" +
             "    }\n" +
             "}";
-    private static final EoRoot DATA_EO = ProviderConfigMaps.createEo(DATA);
+    private static final EoRoot DATA_EO = ObjectProvider.createEo(DATA);
 
     @Test
     public void call_sourcePath_level0__execute__replaced() {

@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.DbConfig;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigWriteCommand;
@@ -40,11 +40,11 @@ public class DbSqlExecuteCall extends DbSqlCall implements ConfigWriteCommand {
     }
 
 
-    public Boolean execute(final IEOScalar eo) {
+    public Boolean execute(final EOInterfaceScalar eo) {
         return executeSql(eo);
     }
 
-    public boolean executeSql(final IEOScalar eo) {
+    public boolean executeSql(final EOInterfaceScalar eo) {
 
         if (eo == null) {
             throw new EoException("Null or empty EO. But checkConfig needs values to be readed from the db!");

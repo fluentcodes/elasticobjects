@@ -13,7 +13,7 @@ import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectEoJunit4;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
     private static final Double ARRAY_RESULT2 = 0.1411200080598672;
 
     private static final String DATA = "{\"(List,Double)source\":[1,2,3]}";
-    private static final EoRoot DATA_EO = ProviderConfigMaps.createEo(DATA);
+    private static final EoRoot DATA_EO = ObjectProvider.createEo(DATA);
 
     @Override
     public Class<?> getModelConfigClass() {
@@ -61,7 +61,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
 
 
     public static final EoRoot createSimple() {
-        return ProviderConfigMaps.createEo("{\"(Double)source\":2.1}");
+        return ObjectProvider.createEo("{\"(Double)source\":2.1}");
     }
 
     /**
@@ -69,7 +69,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
      */
     @Test
     public void eo_source_1_call_target__execute__get_target_0_8414709848078965() {
-        final EoRoot eo = ProviderConfigMaps.createEo();
+        final EoRoot eo = ObjectProvider.createEo();
         final String jsonString = "{\n" +
                 "  \"(Double)source\":1,\n" +
                 "  \"(SinusValueCall)/target\": {\n" +
@@ -83,7 +83,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenCallSinusValue_thenInputValueIsReplaced() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "  \"(Double)source\":1,\n" +
                 "  \"(SinusValueCall)\": {\n" +
                 "      \"sourcePath\": \"/source\"\n" +
@@ -110,7 +110,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
         eo.addCall(call);
         Assertions.assertThat(eo.getLog()).isEmpty();
         String value = new EOToJSON().setSerializationType(JSONSerializationType.EO).toJson(eo);
-        EoRoot eoFromString = ProviderConfigMaps.createEo(value);
+        EoRoot eoFromString = ObjectProvider.createEo(value);
         Assertions.assertThat(eoFromString.getLog()).isEmpty();
         eoFromString.execute();
     }
@@ -118,16 +118,16 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
     @Ignore("Check to delete")
     @Test
     public void createFromModel_ok() {
-        final ModelConfig model = ProviderConfigMaps.findModel(SinusValueCall.class);
+        final ModelConfig model = ObjectProvider.findModel(SinusValueCall.class);
         final Call call = (Call) model.create();
         EoRoot eo = createSimple();
         Double result = (Double) call.execute(eo);
         Assertions.assertThat(result).isNotNull();
-        final EoRoot eoCall = ProviderConfigMaps.createEo(call);
+        final EoRoot eoCall = ObjectProvider.createEo(call);
         final String asString = new EOToJSON()
                 .setSerializationType(JSONSerializationType.EO)
                 .toJson(eoCall);
-        final Call fromString = (Call) ProviderConfigMaps.createEo(asString).get();
+        final Call fromString = (Call) ObjectProvider.createEo(asString).get();
         Double fromResult = (Double) fromString.execute(eo);
         Assertions.assertThat(fromResult).isEqualTo(result);
     }
@@ -152,7 +152,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
         eo.setSerializationType(JSONSerializationType.EO);
         final String asString = new EOToJSON()
                 .toJson(eo.getRoot());
-        final EoRoot fromString = ProviderConfigMaps.createEo(asString);
+        final EoRoot fromString = ObjectProvider.createEo(asString);
         fromString.setLogLevel(LogLevel.INFO);
         fromString.execute();
         Assertions.assertThat(fromString.get(SOURCE)).isEqualTo(SIMPLE_RESULT);
@@ -162,7 +162,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenEoArrayWithSourceAndTargetFromFile_whenExecute_hasSinusValueInTarget() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "  \"(List,Double)source\": {\n" +
                 "    \"0\": 1,\n" +
                 "    \"1\": 2,\n" +
@@ -184,7 +184,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
     @Ignore("Check to delete")
     @Test
     public void givenEoArrayWithSourceAndTargetFromFileOnTargetPath_whenExecute_hasSinusValueInTarget() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "  \"(List,Double)source\": {\n" +
                 "    \"0\": 1,\n" +
                 "    \"1\": 2,\n" +
@@ -213,7 +213,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
         String value = new EOToJSON()
                 .setSerializationType(JSONSerializationType.EO)
                 .toJson(eo.getRoot());
-        EoRoot eoFromJson = ProviderConfigMaps.createEo(value);
+        EoRoot eoFromJson = ObjectProvider.createEo(value);
         Assertions.assertThat(eoFromJson.get(TARGET, "2")).isEqualTo(ARRAY_RESULT2);
         Assertions.assertThat(eoFromJson.get(PathElement.CALLS, "0")).isNotNull();
         Assertions.assertThat(eoFromJson.get(PathElement.CALLS, "0", "targetPath")).isEqualTo(TARGET + "/2");
@@ -227,7 +227,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
                 "\"sourcePath\":\"testKey\", " +
                 "\"targetPath\":\"" + Call.TARGET_AS_STRING + "\"}" +
                 "}.");
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.addCall(call);
         eo.set(2, "testKey");
         eo.execute();
@@ -239,7 +239,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
 
     @Test
     public void eo_CallSinusArrayTemplateJson__execute__3times() {
-        EoRoot eo = ProviderConfigMaps.createEo("{\n" +
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "   \"(List,Double)source\": {\n" +
                 "     \"0\": 1,\n" +
                 "     \"1\": 2,\n" +
@@ -266,7 +266,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
 
     @Test
     public void Eo_value_2_template__parse__get_value_0() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.set(2, "value");
         String result = new Parser("-" +
                 " @{\"(SinusValueCall)value\":{" +
@@ -279,7 +279,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenEo_whenReplaceStringInTemplate_thenPlaceHolderIsReplaced() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.set(2, "value");
         String result = new Parser("-" +
                 " @{\"(SinusValueCall).\":{" +

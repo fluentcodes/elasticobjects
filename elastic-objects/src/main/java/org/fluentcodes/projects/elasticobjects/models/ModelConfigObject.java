@@ -1,13 +1,12 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.PathPattern;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by Werner on 09.10.2016.
+* Accessor for objects with setter and getter.
  */
 public class ModelConfigObject extends ModelConfig {
     public ModelConfigObject(ConfigBean bean, final ConfigMaps configMaps) {
@@ -16,14 +15,12 @@ public class ModelConfigObject extends ModelConfig {
 
     public ModelConfigObject(ModelBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
-    }
-
-    public static String getter(final String field) {
-        return "get" + upper(field);
-    }
-
-    public ModelConfig getFieldModel(final String fieldName) {
-        return getFieldModels(fieldName).getModel();
+        if (!bean.hasFields()) {
+            return;
+        }
+        for (Map.Entry<String, FieldBean> entry : bean.getFields().entrySet()) {
+            addField(entry.getKey(), new FieldConfigObject(this, entry.getValue()));
+        }
     }
 
     public Models getFieldModels(final String fieldName) {
@@ -59,7 +56,7 @@ public class ModelConfigObject extends ModelConfig {
 
     public Object create() {
         if (!isCreate()) {
-            throw new EoException("ModelConfig has no create flag -> no empty instance will created for '" + getModelKey() + "'");
+            throw new EoException("Model has no create flag -> no empty instance will created for '" + getModelKey() + "'");
         }
         if (getShapeType() == ShapeTypes.CONFIG) {
             throw new EoException("A config has no empty constructor and can't initialized by eo " + getModelKey());
@@ -105,38 +102,31 @@ public class ModelConfigObject extends ModelConfig {
     }
 
     public boolean hasFieldConfig(final String fieldName) {
-        return getFieldMap().containsKey(fieldName) && getFieldMap().get(fieldName) != null;
+        return getField(fieldName) != null;
     }
 
-    public boolean hasFieldConfigMap() {
-        return !getFieldMap().isEmpty();
-    }
-
-    public void existFieldConfig(final String fieldName) {
-        if (!hasFieldConfig(fieldName)) {
-            throw new EoException("No fieldConfig '" + fieldName + "' defined in model '" + this.getModelKey() + "' ! ");
+    public FieldConfig getField(final String fieldKey) {
+        FieldConfig fieldConfig = getFields().get(fieldKey);
+        if (fieldConfig == null) {
+            throw new EoException("No fieldConfig '" + fieldKey + "' defined in model '" + this.getModelKey() + "' ! ");
         }
+        return fieldConfig;
     }
 
-    public FieldConfig getField(final String fieldName) {
-        existFieldConfig(fieldName);
-        return getFieldMap().get(fieldName);
-    }
-
-    public ModelConfig getFieldModelConfig(final String fieldName)  {
-        return getFieldModels(fieldName).getModel();
+    public ModelConfig getFieldModelConfig(final String fieldKey) {
+        return getFieldModels(fieldKey).getModel();
     }
 
     public Set<String> getFieldKeys() {
-        return getFieldMap().keySet();
+        return getFields().keySet();
     }
 
-    public boolean hasField(final String fieldKey)  {
-        return getFieldMap().containsKey(fieldKey);
+    public boolean hasField(final String fieldKey) {
+        return getFields().containsKey(fieldKey);
     }
 
     public boolean isNotEmpty(Object object) {
-        for (String key: keys(object)) {
+        for (String key : keys(object)) {
             if (exists(key, object)) {
                 return false;
             }
@@ -148,7 +138,7 @@ public class ModelConfigObject extends ModelConfig {
         if (object == null) {
             return true;
         }
-        for (final String key: keys(object)) {
+        for (final String key : keys(object)) {
             if (exists(key, object)) {
                 return false;
             }
@@ -156,16 +146,17 @@ public class ModelConfigObject extends ModelConfig {
         return true;
     }
 
-    public boolean set(final String fieldName, final Object parent, final Object value)  {
+    public boolean set(final String fieldName, final Object parent, final Object value) {
         getField(fieldName).set(parent, value);
         return true;
     }
 
-    public Object get(final String fieldName, final Object parent)  {
-        return getField(fieldName).get(parent);
+    @Override
+    public boolean hasValue(String fieldKey, Object parent) {
+        return get(fieldKey, parent) != null;
     }
 
-    public boolean hasValue(final String fieldName, final Object object) {
-        return get(fieldName, object) != null;
+    public Object get(final String fieldName, final Object parent) {
+        return getField(fieldName).get(parent);
     }
 }

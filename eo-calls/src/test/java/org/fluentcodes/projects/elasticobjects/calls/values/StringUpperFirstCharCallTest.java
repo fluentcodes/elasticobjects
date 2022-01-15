@@ -2,12 +2,12 @@ package org.fluentcodes.projects.elasticobjects.calls.values;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateCall;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,9 +48,9 @@ public class StringUpperFirstCharCallTest implements IModelConfigCreateTests {
 
     @Test
     public void givenModelCreateAndValueTest_whenExecute_thenUpperCaseReturned() {
-        final ModelConfig model = ProviderConfigMaps.findModel(StringUpperFirstCharCall.class);
+        final ModelConfig model = ObjectProvider.findModel(StringUpperFirstCharCall.class);
         final StringUpperFirstCharCall call = (StringUpperFirstCharCall) model.create();
-        IEOScalar child = ProviderConfigMaps.createEo()
+        EOInterfaceScalar child = ObjectProvider.createEo()
                 .set("test", S_LEVEL0);
         Assertions.assertThat(child.get()).isEqualTo("test");
         Assertions.assertThat(call.execute(child)).isEqualTo("Test");
@@ -58,7 +58,7 @@ public class StringUpperFirstCharCallTest implements IModelConfigCreateTests {
 
     @Test
     public void call_TemplateCall_level0_test__execute__Test() {
-        EoRoot eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         final String template = "START" +
                 "@{\"level0\":\"test\"}." +
                 " - \n" +

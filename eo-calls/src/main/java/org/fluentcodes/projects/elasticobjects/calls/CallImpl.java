@@ -1,7 +1,8 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
-import org.fluentcodes.projects.elasticobjects.IEOScalar;
+import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.LogLevel;
 import org.fluentcodes.projects.elasticobjects.calls.condition.Or;
@@ -9,7 +10,6 @@ import org.fluentcodes.projects.elasticobjects.calls.templates.KeepCalls;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.TemplateMarker;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 
 /*.{javaHeader}|*/
 
@@ -50,7 +50,7 @@ public abstract class CallImpl implements Call {/*.{}.*/
         postpend = "";
     }
 
-    public void check(final IEOScalar eo) {
+    public void check(final EOInterfaceScalar eo) {
         if (eo == null) {
             throw new EoException("Null eo value");
         }
@@ -59,7 +59,7 @@ public abstract class CallImpl implements Call {/*.{}.*/
         }
     }
 
-    protected boolean init(final IEOScalar eo) {
+    protected boolean init(final EOInterfaceScalar eo) {
         return evalCondition(eo);
     }
 
@@ -70,7 +70,7 @@ public abstract class CallImpl implements Call {/*.{}.*/
      * @return
      */
     @Override
-    public boolean evalStartCondition(IEOScalar eo) {
+    public boolean evalStartCondition(EOInterfaceScalar eo) {
         if (!hasStartCondition()) {
             return true;
         }
@@ -83,25 +83,33 @@ public abstract class CallImpl implements Call {/*.{}.*/
      * @param eo the current wrapper in the loop.
      * @return
      */
-    protected boolean evalCondition(final IEOScalar eo) {
+    protected boolean evalCondition(final EOInterfaceScalar eo) {
         if (!hasCondition()) {
             return true;
         }
         return new Or(Parser.replacePathValues(getCondition(), eo)).filter(eo);
     }
 
-    protected Object createReturnScalar(IEOScalar eo, Object result) {
+    protected Object createReturnScalar(EOInterfaceScalar eo, Object result) {
         if (!hasTargetPath()) {
             return result;
         }
         if (isTargetAsString()) {
             return result.toString();
         }
-        eo.set(result, targetPath);
+        String localPath = eo.getPathAsString();
+        if (targetPath.endsWith(localPath)) {
+            EO parent = eo.remove();
+            EOInterfaceScalar newEo = parent.set(result, targetPath);
+            newEo.setChanged();
+        }
+        else {
+            eo.set(result, targetPath);
+        }
         return "";
     }
 
-    protected Object createReturnType(IEOScalar eo, Object result) {
+    protected Object createReturnType(EOInterfaceScalar eo, Object result) {
         if (!hasTargetPath()) {
             return result;
         }
@@ -114,7 +122,7 @@ public abstract class CallImpl implements Call {/*.{}.*/
         return "";
     }
 
-    protected String createReturnString(IEOScalar eo, String result) {
+    protected String createReturnString(EOInterfaceScalar eo, String result) {
         if (!hasTargetPath() || isTargetAsString()) {
             return result;
         }

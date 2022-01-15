@@ -1,9 +1,9 @@
 {
   "_rootmodel": "ModelBean",
   "configModelKey": "ModelConfigObject",
-  "fieldBeans": {
+  "fields": {
     "(FieldBean)id": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "fieldKey": "id",
       "modelKeys": "Long",
       "naturalId": "SuperExampleClass.id",
@@ -12,7 +12,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,
@@ -25,13 +24,13 @@
       }
     },
     "(FieldBean)name": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "fieldKey": "name",
       "modelKeys": "String",
       "naturalId": "SubExampleClass.name"
     },
     "(FieldBean)subClass": {
-      "configModelKey": "FieldConfig",
+      "configModelKey": "FieldConfigObject",
       "fieldKey": "subClass",
       "modelKeys": "FieldExampleClass",
       "naturalId": "SuperExampleClass.subClass",
@@ -40,7 +39,6 @@
         "final": false,
         "generated": false,
         "jsonIgnore": false,
-        "length": -1,
         "max": -1,
         "min": -1,
         "notNull": false,

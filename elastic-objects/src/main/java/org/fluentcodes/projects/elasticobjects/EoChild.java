@@ -159,7 +159,12 @@ public class EoChild extends EoChildScalar implements EO {
             child.set(value);
             return child;
         }
-        return parent.getModels().createChild((EO) parent, path.getPathElement(path.size() - 1), value);
+        try {
+            return parent.getModels().createChild((EO) parent, path.getPathElement(path.size() - 1), value);
+        }
+        catch (Exception e) {
+            throw new EoException("Problem creating child at '" + getPathAsString() + "' with key '" + pathElement + "' with value '" + value + "' with message " + e.getMessage());
+        }
     }
 
     EOInterfaceScalar createChild(PathElement element) {
@@ -187,7 +192,9 @@ public class EoChild extends EoChildScalar implements EO {
     @Override
     public EO remove(final String... path) {
         EoChildScalar eoToRemove = (EoChildScalar)getEo(path);
-        return eoToRemove.remove();
+        EO parent = eoToRemove.remove();
+        eoToRemove = null;
+        return parent;
     }
 
     public EOInterfaceScalar overWrite(final Object value, final String... path) {

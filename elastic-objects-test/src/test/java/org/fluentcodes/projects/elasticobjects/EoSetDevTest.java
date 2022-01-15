@@ -22,14 +22,11 @@ import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL5;
 
 public class EoSetDevTest {
 
-    @Test
-    public void mapSmall__set_model_List__Exception() {
+    @Test(expected = EoException.class)
+    public void mapSmall__set_model_List__exception() {
         final EoRoot root = ObjectProviderDev
                 .createEo("{\"key0\": \"test\", \"key1\": 1}");
-        Assertions.assertThatThrownBy(() -> {
-            root.set(List.class.getSimpleName(), PathElement.ROOT_MODEL);
-        })
-                .hasMessage("Could not change model when values are already set");
+        root.set(List.class.getSimpleName(), PathElement.ROOT_MODEL);
     }
 
     @Test
@@ -46,14 +43,11 @@ public class EoSetDevTest {
         Assertions.assertThat(((Map) eo.get()).get("key")).isEqualTo("value");
     }
 
-    @Test
+    @Test(expected = EoException.class)
     public void key_value__set_model_List__exception() {
         final EoRoot eo = ObjectProviderDev.createEo();
         eo.set("value", "key");
-        Assertions.assertThatThrownBy(() -> {
-            eo.set(List.class.getSimpleName(), PathElement.ROOT_MODEL);
-        })
-                .hasMessage("Could not change model when values are already set");
+        eo.set(List.class.getSimpleName(), PathElement.ROOT_MODEL);
     }
 
     @Test

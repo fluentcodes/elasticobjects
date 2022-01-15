@@ -5,7 +5,7 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>elastic-objects</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.3</version>
+    <version>0.9.4-SNAPSHOT</version>
     <name>EO - Elastic Objects Core</name>
     <description>An object wrapper for access, navigate, modify, serialize and deserialize complex java object via path in a typesafe and ordered way with JSON.</description>
 

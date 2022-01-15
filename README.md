@@ -6,7 +6,7 @@
 
 # (EO) Elastic Objects
 
-Elastic Objects offer with path access methods to a java object tree. The underlying
+Elastic Objects offers path access methods to java object trees. The underlying
 access to java object is passed via
 **object configurations** identified by a key.
 
@@ -17,13 +17,12 @@ typesafe communication without endpoints or web frameworks.
 ### Module
 The [core](elastic-objects) has actually no dependencies beside Log4j and is rather small with a jar size of approximately 90 KB.
 
-```
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>elastic-objects</artifactId>
-        <version>0.9.3</version>
+        <version>0.9.4-SNAPSHOT</version>
     </dependency>
-```
+
 <div align="right" id="mvn">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/elastic-objects">mvn repository</a></div>
 
@@ -44,57 +43,120 @@ and
 
 Some get and set operations.
 
-        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
-        
-        assertEquals("test", root.get("myAnObject", "myString"));
-        assertEquals("test", child.get());
+    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+    EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
+    
+    assertEquals("test", root.get("myAnObject", "myString"));
+    assertEquals("test", child.get());
 
 #### Underlying object
 The set changes the objects value by the model configuration:
 
-        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        root.set("test", "myAnObject", "myString");
-        
-        AnObject anObject = (AnObject) root.get();
-        assertEquals("test", anObject.getMyAnObject().getMyString());    
+    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+    root.set("test", "myAnObject", "myString");
+    
+    AnObject anObject = (AnObject) root.get();
+    assertEquals("test", anObject.getMyAnObject().getMyString());    
 
 #### String Path Representation
 
 One can use a path string representation similar to a unix.
 
-        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        EOInterfaceScalar child = root.set("test", "myAnObject/myString");
-        
-        assertEquals("test", root.get("myAnObject/myString"));
-        assertEquals("test", child.get());
+    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+    EOInterfaceScalar child = root.set("test", "myAnObject/myString");
+    
+    assertEquals("test", root.get("myAnObject/myString"));
+    assertEquals("test", child.get());
+
+#### Remove child
+
+One can remove a branch from the object tree in a path way.
+
+    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+    EOInterfaceScalar child = root.set("test", "myAnObject/myString");
+    
+    EO parent = child.remove();
+    assertFalse(parent.hasEo("myString"));
+    
+    AnObject parentObject = (AnObject) parent.get();
+    assertNull(parentObject.getMyString());    
+
+#### Field Length Restrictions
+
+The myString field has a max size of 20. It will be checked when set a value:
+
+    EoRoot root = EoRoot.ofClass(CONFIG_MAPS, AnObject.class);
+    assertEquals(AnObject.class, root.getModelClass());
+    Assertions.assertThatThrownBy(
+            ()->{root.set("test01234567890123456789", "myString");})
+            .isInstanceOf(EoException.class)
+            .hasMessageContaining("Problem creating child at '/' with key 'myString' with value 'test01234567890123456789' with message String value for field 'test01234567890123456789' has size 24 bigger than max length 20.");
+
+#### Restrictions to a Map
+<p>
+It's possible to add field configurations to a map. In
+<nobreak><a href="elastic-objects-test/src/test/resources/ModelConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;ModelConfig.json</a></nobreak>
+the map configuration "AnObjectMap" is defined.
+</p>
+Here the previous example with a length example but the underlying object is a map:
+
+    EoRoot root = EoRoot.ofClassName(CONFIG_MAPS, "AnObjectMap");
+    assertEquals(LinkedHashMap.class.getSimpleName(), root.get().getClass().getSimpleName());
+    Assertions.assertThatThrownBy(
+            ()->{root.set("test01234567890123456789", "myString");})
+            .isInstanceOf(EoException.class)
+                .hasMessageContaining("Problem creating child at '/' with key 'myString' with value 'test01234567890123456789' with message String value for field 'test01234567890123456789' has size 24 bigger than max length 20.");
+
+When field definition are set, also names will be checked:
+
+    EoRoot root = EoRoot.ofClassName(CONFIG_MAPS, "AnObjectMap");
+    Assertions.assertThatThrownBy(
+            ()->{root.set("test", "notValid");})
+            .isInstanceOf(EoException.class)
+            .hasMessageContaining("Problem creating child at '/' with key 'notValid' with value 'test' with message No field defined for 'notValid'.");
 
 #### Typed JSON
 
 The default json representation contains keys of the model configurations:
 
-        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
-        assertEquals("{\n" +
-                "  \"_rootmodel\": \"AnObject\",\n" +
-                "  \"(AnObject)myAnObject\": {\n" +
-                "    \"myString\": \"test\"\n" +
-                "  }\n" +
-                "}", root.toJson());
+    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+    EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
+    assertEquals("{\n" +
+            "  \"_rootmodel\": \"AnObject\",\n" +
+            "  \"(AnObject)myAnObject\": {\n" +
+            "    \"myString\": \"test\"\n" +
+            "  }\n" +
+            "}", root.toJson());
 
 #### From JSON
 
 This typed json will mapped to the appropriate object class when deserialized:
 
-        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-        root.set("test", "myAnObject", "myString");
-        String json = root.toJson();      
-         
-        EoRoot rootFromJson = EoRoot.ofValue(CONFIG_MAPS, json);       
-        assertEquals(AnObject.class, rootFromJson.get().getClass());
-        
-        AnObject myAnObject = (AnObject)rootFromJson.get();
-        assertEquals("test", myAnObject.getMyAnObject().getMyString());
+    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+    root.set("test", "myAnObject", "myString");
+    String json = root.toJson();      
+     
+    EoRoot rootFromJson = EoRoot.ofValue(CONFIG_MAPS, json);       
+    assertEquals(AnObject.class, rootFromJson.get().getClass());
+    
+    AnObject myAnObject = (AnObject)rootFromJson.get();
+    assertEquals("test", myAnObject.getMyAnObject().getMyString());
+
+#### Compare
+The comparision of two objects with same key/values also of different types are rather simple to implement.
+
+Here a map will be compared with AnObject.
+
+    final Map map = new HashMap();
+    map.put("myString", "value1");
+
+    final AnObject anObject = new AnObject();
+    anObject.setMyString("value2");
+
+    final EoRoot rootMap = EoRoot.ofValue(CONFIG_MAPS, map);
+    final EoRoot rootAnObject = EoRoot.ofValue(CONFIG_MAPS, anObject);
+
+    assertEquals("/myString: value1 <> value2", rootMap.compare(rootAnObject));
 
 ## Calls (eo-calls)
 ### Module
@@ -105,6 +167,7 @@ The [calls](elastic-objects) module with a jar size of about 150 KB offers some 
         <artifactId>eo-calls</artifactId>
         <version>0.9.2</version>
     </dependency>
+
   <div align="right" style="font-size:9px">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-calls">mvn repository</font></a></div>
 
@@ -138,28 +201,28 @@ The generic execute method has EO as input. Here we set the field key "source" t
  />&nbsp;SinusValueCall</a></nobreak>.
 </p>
 
-        final Call call = new SinusValueCall();
-        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new HashMap());
-        EOInterfaceScalar child = root.set(2.1, "source");
-        assertEquals(2.1, child.get());
+    final Call call = new SinusValueCall();
+    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new HashMap());
+    EOInterfaceScalar child = root.set(2.1, "source");
+    assertEquals(2.1, child.get());
 
-        assertEquals(Double.valueOf(0.8632093666488737), call.execute(child));
+    assertEquals(Double.valueOf(0.8632093666488737), call.execute(child));
 
 #### JSON Example
 
 This call could be also embedded in some arbitrary json using the "sourcePath" as input. The value target will be used implicitly as "targetPath" value.
 
-        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, "{\n" +
-                "  \"(Double)source\":1,\n" +
-                "  \"(SinusValueCall)/target\": {\n" +
-                "    \"sourcePath\": \"/source\"\n" +
-                "  }\n" +
-                "}");
-        root.execute();
-        assertEquals("{\n" +
-                "  \"source\": 1.0,\n" +
-                "  \"target\": 0.8414709848078965\n" +
-                "}", root.toJson(JSONSerializationType.STANDARD));
+    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, "{\n" +
+            "  \"(Double)source\":1,\n" +
+            "  \"(SinusValueCall)/target\": {\n" +
+            "    \"sourcePath\": \"/source\"\n" +
+            "  }\n" +
+            "}");
+    root.execute();
+    assertEquals("{\n" +
+            "  \"source\": 1.0,\n" +
+            "  \"target\": 0.8414709848078965\n" +
+            "}", root.toJson(JSONSerializationType.STANDARD));
 
 #### Template Example
 
@@ -181,7 +244,7 @@ This json will be interpreted in an arbitrary text file via template call with t
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>eo-csv</artifactId>
-        <version>0.9.3</version>
+        <version>0.9.4-SNAPSHOT</version>
     </dependency>
 
 <div align="right" style="font-size:9px">
@@ -195,7 +258,7 @@ is experimental providing the execution of sql configurations as list or as quer
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>eo-db</artifactId>
-        <version>0.9.3</version>
+        <version>0.9.4-SNAPSHOT</version>
     </dependency>
 
 <div align="right">
@@ -207,7 +270,7 @@ is experimental providing the execution of sql configurations as list or as quer
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>eo-xlsx</artifactId>
-        <version>0.9.3</version>
+        <version>0.9.4-SNAPSHOT</version>
     </dependency>
 
 
@@ -462,7 +525,7 @@ is equivalent to
 ## Conclusion
 
 <p>
-The project has now version 0.9.3 and it's good enough for a proof of concept. For
+The project has now version 0.9.4-SNAPSHOT and it's good enough for a proof of concept. For
 the microservice architectures it offer an incredible flexibility compared with
 RPC API solutions.
 </p>

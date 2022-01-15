@@ -6,7 +6,7 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>example-springboot</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.3</version>
+    <version>0.9.4-SNAPSHOT</version>
     <name>EO example spring boot</name>
 
     <properties>
@@ -21,17 +21,17 @@
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>elastic-objects-test</artifactId>
-            <version>0.9.3</version>
+            <version>0.9.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>eo-xlsx</artifactId>
-            <version>0.9.3</version>
+            <version>0.9.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>eo-db</artifactId>
-            <version>0.9.3</version>
+            <version>0.9.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

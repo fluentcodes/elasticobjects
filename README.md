@@ -86,7 +86,7 @@ One can remove a branch from the object tree in a path way.
 The myString field has a max size of 20. It will be checked when set a value:
 
     EoRoot root = EoRoot.ofClass(CONFIG_MAPS, AnObject.class);
-    assertEquals(AnObject.class, root.getModelClass());
+    assertEquals(AnObject.class, root.getModelClass());g
     Assertions.assertThatThrownBy(
             ()->{root.set("test01234567890123456789", "myString");})
             .isInstanceOf(EoException.class)

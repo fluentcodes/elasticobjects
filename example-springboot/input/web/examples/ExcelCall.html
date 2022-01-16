@@ -20,22 +20,7 @@ The table that you see beforehand is created by the following template sequence 
 In the <a href="#post4">last example</a> you can see the post version of these calls.
  #{ConfigLinkCall->ModelConfig, AnObject}. is a test class.
 
-<h5>Simple Call</h5>
-<p>
-    In the following example will read the file as a list of maps.
-</p>
-<form action="/eo-form" method="post" target="example">
-    <textarea name="eo" style="height:120px">{
-   "(XlsxReadCall)values":{
-       "fileConfigKey":"AnObject.xlsx:test"
-   },
-   "_serializationType":"STANDARD"
-}</textarea>
-    <input type="submit" value="post"/>
-</form>
-<p>
-    Since the xlsx configuration defines "rowHead" with 0, the value entries will be mapped as a list of map entries using the first row as a key.
-</p>
+#{TemplateDirResourceCall->examples, ExcelCallSimple.html}.
 
 <h5>Setting Parameters</h5>
 <p>

@@ -181,7 +181,7 @@ public class EoChild extends EoChildScalar implements EO {
             return getModels().createChild(this, pathElement, childValue);
         }
         catch (Exception e) {
-            throw new EoException("Problem creating child at '" + getPathAsString() + "/" + pathElement + "' with value '" + childValue + "' with message " + e.getMessage());
+            throw new EoException("Problem creating child at '" + getPathAsString() + "' with key '" + pathElement + "' with value '" + childValue + "' with message " + e.getMessage());
         }
     }
 

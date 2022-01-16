@@ -92,6 +92,8 @@ The myString field has a max size of 20. It will be checked when set a value:
             .isInstanceOf(EoException.class)
             .hasMessageContaining("Problem creating child at '/' with key 'myString' with value 'test01234567890123456789' with message String value for field 'test01234567890123456789' has size 24 bigger than max length 20.");
 
+This example has also an interactive example at https://www.elasticobjects.org/examples/AnObjectTooLong.html.
+
 #### Restrictions to a Map
 <p>
 It's possible to add field configurations to a map. In
@@ -107,6 +109,10 @@ Here the previous example with a length example but the underlying object is a m
             .isInstanceOf(EoException.class)
                 .hasMessageContaining("Problem creating child at '/' with key 'myString' with value 'test01234567890123456789' with message String value for field 'test01234567890123456789' has size 24 bigger than max length 20.");
 
+This example has also an interactive example at https://www.elasticobjects.org/examples/AnObjectMapTooLong.html.
+
+##### Field does not exist
+
 When field definition are set, also names will be checked:
 
     EoRoot root = EoRoot.ofClassName(CONFIG_MAPS, "AnObjectMap");
@@ -114,6 +120,8 @@ When field definition are set, also names will be checked:
             ()->{root.set("test", "notValid");})
             .isInstanceOf(EoException.class)
             .hasMessageContaining("Problem creating child at '/' with key 'notValid' with value 'test' with message No field defined for 'notValid'.");
+
+This example has also an interactive example at https://www.elasticobjects.org/examples/AnObjectMapFieldNotExists.html.
 
 #### Typed JSON
 
@@ -159,7 +167,7 @@ Here a map will be compared with AnObject.
     assertEquals("/myString: value1 <> value2", rootMap.compare(rootAnObject));
 
 ## Calls (eo-calls)
-### Module
+### eo-calls Module
 The [calls](elastic-objects) module with a jar size of about 150 KB offers some basic calls for files and directories, simple csv or templates with a role permission concept.
 
     <dependency>
@@ -172,7 +180,7 @@ The [calls](elastic-objects) module with a jar size of about 150 KB offers some 
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-calls">mvn repository</font></a></div>
 
 
-### Examples
+### eo-calls Examples
 <p>
 The call classes implementing the
 <nobreak><a href="elastic-objects/src/test/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;Call</a></nobreak>
@@ -224,6 +232,8 @@ This call could be also embedded in some arbitrary json using the "sourcePath" a
             "  \"target\": 0.8414709848078965\n" +
             "}", root.toJson(JSONSerializationType.STANDARD));
 
+This example has also an interactive example at https://www.elasticobjects.org/examples/SinusValueCall.html.
+
 #### Template Example
 
 This json will be interpreted in an arbitrary text file via template call with the "@{...}" pattern. Here the target _asString will return the result to the template instead of setting the target in json.
@@ -238,6 +248,8 @@ This json will be interpreted in an arbitrary text file via template call with t
         Call call = new TemplateCall(template);
         assertEquals("START -0.8414709848078965 - END", call.execute(root));
 
+This example has also an interactive example at https://www.elasticobjects.org/examples/SinusValueCallTemplate.html.
+
 ## Csv (eo-csv)
 [eo-csv](eo-csv) offers calls and configurations for reading and writing csv files  using [OpenCsv](https://mvnrepository.com/artifact/com.opencsv/opencsv).
 
@@ -250,6 +262,8 @@ This json will be interpreted in an arbitrary text file via template call with t
 <div align="right" style="font-size:9px">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-csv">mvn repository</a>
 </div>
+
+Interactive examples you can find  at https://www.elasticobjects.org/examples/ListCall.html.
 
 ## Database (eo-db)
 [eo-db](eo-db)
@@ -264,6 +278,8 @@ is experimental providing the execution of sql configurations as list or as quer
 <div align="right">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-db" style="font-size:9px;">mvn repository</font></a></div>
 
+Interactive examples you can find  at https://www.elasticobjects.org/examples/DbCall.html.
+
 ## Excel (eo-xlsx)
 [eo-xlsx](eo-xlsx) offers calls and configurations for reading and writing xlsx files using [Apache POI](https://mvnrepository.com/artifact/org.apache.poi/poi).
 
@@ -273,6 +289,9 @@ is experimental providing the execution of sql configurations as list or as quer
         <version>0.9.4-SNAPSHOT</version>
     </dependency>
 
+<a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-xlsx" style="font-size:9px;">mvn repository</font></a></div>
+
+Interactive examples you can find  at https://www.elasticobjects.org/examples/ExcelCall.html.
 
 ## Other Modules
 ### elastic-objects-test

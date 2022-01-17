@@ -1,6 +1,7 @@
-{
-  "h2:mem:basic": {
+[
+  {
     "hibernateKey": "h2:mem:basic",
+  "naturalId": "h2:mem:basic",
     "models": "AnObject,ASubObject",
     "configFile": "config.hbm.xml",
     "auto": "create",
@@ -14,8 +15,9 @@
     "description": "Basic H2 in memory database for the test resources. ",
     "naturalId": "h2:mem:basic"
   },
-  "h2:file:basic": {
+  {
     "hibernateKey": "h2:file:basic",
+    "naturalId": "h2:file:basic",
     "models": "AnObject,ASubObject",
     "configFile": "config.hbm.xml",
     "auto": "create",
@@ -27,4 +29,4 @@
     "description": "Basic H2 Test ",
     "naturalId": "h2:file:basic"
   }
-}
+]

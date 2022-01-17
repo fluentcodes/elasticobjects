@@ -1,5 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -13,14 +15,14 @@ public class ModelFactoryAll extends ModelFactory {
     }
 
     @Override
-    public Map<String, ModelBean> createBeanMap() {
-        Map<String, ModelBean> beanMap = new TreeMap<>();
-        new ModelFactoryBasic(getConfigMaps()).addModelBeans(beanMap);
+    public List<ModelBean> createBeanList() {
+        List<ModelBean> beanList = new ArrayList<>();
+        new ModelFactoryBasic(getConfigMaps()).addModelBeans(beanList);
         new ModelFactoryFromConfigurations(getConfigMaps())
-                .addModelBeans(beanMap);
+                .addModelBeans(beanList);
         new ModelFactoryFromModels(getConfigMaps())
-                .addModelBeans(beanMap);
-        return beanMap;
+                .addModelBeans(beanList);
+        return beanList;
     }
 
 }

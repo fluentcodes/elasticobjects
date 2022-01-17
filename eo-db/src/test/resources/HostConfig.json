@@ -1,6 +1,7 @@
-{
-  "localMySql:core": {
+[
+  {
     "configModelKey": "DbConfig",
+    "naturalId": "localMySql:core",
     "properties": {
       "dialect": "org.hibernate.dialect.MySQLInnoDBDialect",
       "driver": "com.mysql.jdbc.Driver",
@@ -10,8 +11,9 @@
     "moduleScope": "main",
     "description": "Core Schema"
   },
-  "localMySql:test": {
+  {
     "configModelKey": "DbConfig",
+    "naturalId": "localMySql:test",
     "properties": {
       "dialect": "org.hibernate.dialect.MySQLInnoDBDialect",
       "driver": "com.mysql.jdbc.Driver",
@@ -21,8 +23,9 @@
     "moduleScope": "main",
     "description": "Test Schema"
   },
-  "localOracle:XE": {
+  {
     "configModelKey": "DbConfig",
+    "naturalId": "localOracle:XE",
     "properties": {
       "schema": "XE",
       "dialect": "com.mysema.query.jpa.support.ExtendedOracleDialect",
@@ -32,8 +35,9 @@
     "moduleScope": "main",
     "description": "Oracle Schem"
   },
-  "hsql:mem": {
+  {
     "configModelKey": "DbConfig",
+    "naturalId": "hsql:mem",
     "properties": {
       "schema": "mem",
       "dialect": "com.mysema.query.jpa.support.ExtendedHSQLDialect",
@@ -43,8 +47,9 @@
     "moduleScope": "main",
     "description": "local HSQL which exists just in memory"
   },
-  "hsql:fileTest": {
+  {
     "configModelKey": "DbConfig",
+    "naturalId": "hsql:fileTest",
     "properties": {
       "schema": "file:$[TMP]/test.hsql",
       "dialect": "com.mysema.query.jpa.support.ExtendedHSQLDialect",
@@ -54,9 +59,9 @@
     "moduleScope": "main",
     "description": "local HSQL with a temp @see http://hsqldb.org/doc/guide/dbproperties-chapt.html"
   },
-  "h2:mem": {
+  {
     "configModelKey": "DbConfig",
-
+    "naturalId": "h2:mem",
     "properties": {
       "protocol": "jdbc:h2",
       "user": "sa",
@@ -69,9 +74,10 @@
     "moduleScope": "main",
     "description": "local H2 which exists just in memory"
   },
-  "h2:file": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
+    "naturalId": "h2:file",
     "configModelKey": "DbConfig",
     "properties": {
       "protocol": "jdbc:h2",
@@ -82,4 +88,4 @@
     },
     "description": "local H2 with a temp file"
   }
-}
+]

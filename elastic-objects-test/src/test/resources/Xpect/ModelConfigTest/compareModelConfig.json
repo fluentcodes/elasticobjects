@@ -253,13 +253,13 @@
       "naturalId": "naturalId",
       "properties": {
         "default": false,
-        "final": true,
+        "final": false,
         "generated": false,
         "jsonIgnore": false,
         "max": 80,
         "min": -1,
         "notNull": true,
-        "override": false,
+        "override": true,
         "property": false,
         "staticName": false,
         "super": true,
@@ -368,7 +368,6 @@
   "modelKey": "ModelConfig",
   "module": "elastic-objects",
   "moduleScope": "main",
-  "naturalId": "ModelConfig",
   "packagePath": "org.fluentcodes.projects.elasticobjects.models",
   "properties": {
     "create": false,

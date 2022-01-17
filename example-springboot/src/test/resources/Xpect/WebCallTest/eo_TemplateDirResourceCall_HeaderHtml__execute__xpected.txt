@@ -76,7 +76,7 @@ var sc_https=1;
                     <div class="site-branding-text">
                         <p class="site-title"><a href="/Home.html"
                                                  rel="home">EO - Elastic Objects</a></p>
-                        <p class="site-description">Typed JSON for Microservices</p>
+                        <p class="site-description">Typed JSON</p>
                     </div><!-- .site-branding-text -->
                 </div><!-- .wrap -->
             </div><!-- .site-branding -->
@@ -113,10 +113,10 @@ var sc_https=1;
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
                                 <a href="/faq/What_is_Elastic_Objects_.html">&ocir; FAQ</a>
                             </li>
-                            <li id="menu-item-5"
+                            <!--li id="menu-item-5"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
                                 <a href="/blog/Blog.html">&ocir; Blog</a>
-                            </li>
+                            </li-->
                             <li id="menu-item-6"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62">
                                 <a href="https://github.com/fluentcodes/elasticobjects"><img src="/pics/github.png" height="12" width="12" style="margin:0px 4px 0px 6px;"/>Github</a>

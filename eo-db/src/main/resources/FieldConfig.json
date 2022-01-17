@@ -1,18 +1,20 @@
-{
-  "dbConfig": {
+[
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "modelKeys": "DbConfig",
     "description": "The cache embeded int @HibernateCache.",
     "expose": "NONE",
+    "naturalId": "dbConfig",
     "fieldKey": "dbConfig"
   },
-  "dbKey": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The key finding a cache @DbCache entry.",
     "expose": "NONE",
+    "naturalId": "dbKey",
     "fieldKey": "dbKey",
     "max": 80,
     "properties": {
@@ -20,58 +22,63 @@
       "notNull": true
     }
   },
-  "configKey": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The key finding a cache @DbConfig entry.",
     "expose": "NONE",
+    "naturalId": "configKey",
     "fieldKey": "configKey",
     "properties": {
       "notNull": true,
       "max": 80
     }
   },
-  "dbConfigKey": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The key finding a cache @DbConfig entry.",
     "expose": "NONE",
+    "naturalId": "dbConfigKey",
     "fieldKey": "dbConfigKey",
     "properties": {
       "notNull": true,
       "max": 80
     }
   },
-  "modelConfigKey": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The model name for the cache object @ModelConfig.",
     "expose": "NONE",
+    "naturalId": "modelConfigKey",
     "fieldKey": "modelConfigKey",
     "properties": {
       "max": 80
     }
   },
-  "sqlKey": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The key to select a configuration from DbSqlConfig within DbSqlCall.",
     "expose": "NONE",
+    "naturalId": "sqlKey",
     "fieldKey": "sqlKey",
     "properties": {
       "max": 128
     }
   },
-  "sqlList": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "modelKeys": "List,String",
     "description": "A list of sql strings to be executed in @DbSqlConfig",
     "expose": "NONE",
+    "naturalId": "sqlList",
     "fieldKey": "sqlList"
   }
-}
+]

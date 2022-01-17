@@ -1,89 +1,98 @@
-{
-  "ContentExample": {
+[
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/content-example",
+    "naturalId": "ContentExample",
     "fileName": "ContentExample.json",
     "description": "Calls templates.",
     "expose": "NONE",
     "cached": "true"
   },
-  "ContentExampleData": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/content-example",
+    "naturalId": "ContentExampleData",
     "fileName": "ContentExampleData.json",
     "description": "Simple data for the content templates.",
     "expose": "NONE",
     "cached": "true"
   },
-  "ContentExampleDynamic": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/content-example",
+    "naturalId": "ContentExampleDynamic",
     "fileName": "ContentExampleDynamic.tpl",
     "description": "A template or ContentExample using the template field for rendering with a template",
     "expose": "NONE",
     "cached": "true"
   },
-  "ContentExampleElement1": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/content-example",
+    "naturalId": "ContentExampleElement1",
     "fileName": "ContentExampleElement1.tpl",
     "description": "A template for an entry fo ContentExample",
     "expose": "NONE",
     "cached": "true"
   },
-  "ContentExampleElement2": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/content-example",
+    "naturalId": "ContentExampleElement2",
     "fileName": "ContentExampleElement2.tpl",
     "description": "A template for an entry fo ContentExample",
     "expose": "NONE",
     "cached": "true"
   },
-  "ContentExampleStatic": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/content-example",
+    "naturalId": "ContentExampleStatic",
     "fileName": "ContentExampleStatic.tpl",
     "description": "A template  ContentExample with condition",
     "expose": "NONE",
     "cached": "true"
   },
-  "ContentExampleStaticCondition": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/content-example",
+    "naturalId": "ContentExampleStaticCondition",
     "fileName": "ContentExampleStaticCondition.tpl",
     "description": "A template  ContentExample with condition",
     "expose": "NONE",
     "cached": "true"
   },
-  "ContentExampleStaticKeep": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/content-example",
+    "naturalId": "ContentExampleStaticKeep",
     "fileName": "ContentExampleStaticKeep.tpl",
     "description": "A template  ContentExample with condition",
     "expose": "NONE",
     "cached": "true"
   },
-  "FileTest.txt": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/file-simple",
+    "naturalId": "FileTest.txt",
     "fileName": "FileTest.txt",
     "description": "Local 'source.txt' definition.",
     "expose": "NONE",
@@ -92,24 +101,28 @@
       "readRoles": [
         "guest"
       ],
-      "writeRoles": ["admin"]
+      "writeRoles": [
+        "admin"
+      ]
     }
   },
-  "FileTestCached.txt": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/file-simple",
+    "naturalId": "FileTestCached.txt",
     "fileName": "FileTest.txt",
     "description": "Local file with cache set true.",
     "expose": "NONE",
     "cached": "true"
   },
-  "ListSimple.json": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/list-simple",
+    "naturalId": "ListSimple.json",
     "fileName": "ListSimple.json",
     "description": "A sample json file with 2*2 values and a head as a source.",
     "expose": "NONE",
@@ -118,14 +131,17 @@
       "readRoles": [
         "guest"
       ],
-      "writeRoles": ["admin"]
+      "writeRoles": [
+        "admin"
+      ]
     }
   },
-  "target.csv": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": " §[TMP].",
+    "naturalId": "target.csv",
     "fileName": "target.csv",
     "description": "A sample target csv file with tmp placeholder.",
     "expose": "NONE",
@@ -134,38 +150,43 @@
       "readRoles": [
         "guest"
       ],
-      "writeRoles": ["admin"]
+      "writeRoles": [
+        "admin"
+      ]
     },
     "properties": {
       "rowHead": 0
     }
   },
-  "target.json": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": " §[TMP].",
+    "naturalId": "target.json",
     "fileName": "target.json",
     "description": "A sample target json file with tmp placeholder.",
     "expose": "NONE",
     "cached": "false"
   },
-  "target.txt": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "§[TMP].",
+    "naturalId": "target.txt",
     "fileName": "target.txt",
     "description": "Target file definition",
     "expose": "NONE",
     "cached": "false"
   },
-  "XPECT_TEST": {
+  {
     "configModelKey": "DirectoryConfig",
     "module": "eo-calls",
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "Xpect/CallTest",
+    "naturalId": "XPECT_TEST",
     "fileName": ".*.json",
     "description": "Test directory for DirectoryListReadCall",
     "expose": "NONE",
@@ -176,11 +197,12 @@
       ]
     }
   },
-  "AnObject.csv": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
     "filePath": "input/assets/bt",
+    "naturalId": "AnObject.csv",
     "fileName": "AnObject.csv",
     "description": "A sample character separated file with 3x3 entries and a header which could be mapped to AnObject.",
     "expose": "WEB",
@@ -196,11 +218,12 @@
       "rowEnd": 4
     }
   },
-  "AnObject.json": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
     "filePath": "input/assets/bt",
+    "naturalId": "AnObject.json",
     "fileName": "AnObject.json",
     "description": "Simple data for the AnObject.",
     "expose": "WEB",
@@ -211,11 +234,12 @@
       ]
     }
   },
-  "ListSimple.csv": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
     "filePath": "input/calls/list-simple",
+    "naturalId": "ListSimple.csv",
     "fileName": "ListSimple.csv",
     "description": "A sample csv file with 2*2 values and a head as a source.",
     "expose": "NONE",
@@ -224,7 +248,9 @@
       "readRoles": [
         "guest"
       ],
-      "writeRoles": ["admin"]
+      "writeRoles": [
+        "admin"
+      ]
     },
     "properties": {
       "rowHead": 0,
@@ -232,4 +258,4 @@
       "rowEnd": 3
     }
   }
-}
+]

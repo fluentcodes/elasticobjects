@@ -1,9 +1,10 @@
-{
-  "elasticobjects": {
+[
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "description": "A connection to elastic objects",
     "expose": "NONE",
+  "naturalId": "elasticobjects",
     "hostName": "elasticobjects",
     "properties": {
       "classPath": "src.main.resources",
@@ -11,11 +12,12 @@
       "protocol": "http"
     }
   },
-  "dummyftp": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "description": "A connection to elastic objects",
     "expose": "NONE",
+  "naturalId": "dummyftp",
     "hostName": "dummyftp",
     "properties": {
       "classPath": "src.main.resources",
@@ -25,11 +27,12 @@
       "protocol": "ftp"
     }
   },
-  "dummyftpurl": {
+  {
     "module": "eo-calls",
     "moduleScope": "test",
     "description": "A connection to elastic objects",
     "expose": "NONE",
+  "naturalId": "dummyftpurl",
     "hostName": "dummyftpurl",
     "properties": {
       "classPath": "src.main.resources",
@@ -38,4 +41,4 @@
       "url": "ftp://dummyftp:21"
     }
   }
-}
+]

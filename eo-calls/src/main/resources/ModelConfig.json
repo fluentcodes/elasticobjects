@@ -1,10 +1,11 @@
-{
-  "And": {
+[
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "A list of @Condition.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
+    "naturalId": "And",
     "modelKey": "And",
     "properties": {
       "create": false
@@ -12,7 +13,7 @@
     "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
-  "CallContent": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -21,6 +22,7 @@
     "expose": "NONE",
     "description": "Interface for call implementing content attribute. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "CallContent",
     "modelKey": "CallContent",
     "properties": {
       "create": false
@@ -29,7 +31,7 @@
     "author": "Werner Diwischek",
     "creationDate": 1604876400000
   },
-  "CallImpl": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -71,6 +73,7 @@
     "expose": "NONE",
     "description": "Basic bean implementation for calls. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "CallImpl",
     "modelKey": "CallImpl",
     "properties": {
       "create": false,
@@ -78,12 +81,13 @@
     },
     "author": "Werner Diwischek"
   },
-  "Condition": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Interface for conditions, mainly a key value pair with some methods serving as filter expressions. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
+    "naturalId": "Condition",
     "modelKey": "Condition",
     "properties": {
       "create": false
@@ -91,7 +95,7 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "ConfigAsFlatListCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -103,13 +107,14 @@
     "expose": "WEB",
     "description": "Creates a flat list from all loaded configurations for a specific configType.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.configs",
+    "naturalId": "ConfigAsFlatListCall",
     "modelKey": "ConfigAsFlatListCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "ConfigCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -120,19 +125,21 @@
     "expose": "WEB",
     "description": "For getting a map of configurations for a specific configuration type.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.configs",
+    "naturalId": "ConfigCall",
     "modelKey": "ConfigCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "ConfigDirectoryReadCommand": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "Call",
     "expose": "NONE",
     "description": "Offer the setByParameter default method with  fileConfigKey, fileName, targetPath, condition and keepCall values. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
+    "naturalId": "ConfigDirectoryReadCommand",
     "modelKey": "ConfigDirectoryReadCommand",
     "properties": {
       "create": false
@@ -140,7 +147,7 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "ConfigKeysCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -154,13 +161,14 @@
     "expose": "WEB",
     "description": "For getting a list of keys for a specific configuration type, config filter and expose type.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.configs",
+    "naturalId": "ConfigKeysCall",
     "modelKey": "ConfigKeysCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "ConfigOpenApiCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -174,19 +182,21 @@
     "expose": "WEB",
     "description": "Creates an open api schema from model configuration.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.configs",
+    "naturalId": "ConfigOpenApiCall",
     "modelKey": "ConfigOpenApiCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "ConfigReadCommand": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "Call",
     "expose": "NONE",
     "description": "Offer the setByParameter default method with  fileConfigKey, targetPath, condition and keepCall values. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
+    "naturalId": "ConfigReadCommand",
     "modelKey": "ConfigReadCommand",
     "properties": {
       "create": false
@@ -194,13 +204,14 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "ConfigReadWriteCommand": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "Call",
     "expose": "NONE",
     "description": "Offer the setByParameter default method with  sourceFileConfigKey, targetFileConfigKey, condition and keepCall values. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
+    "naturalId": "ConfigReadWriteCommand",
     "modelKey": "ConfigReadWriteCommand",
     "properties": {
       "create": false
@@ -208,13 +219,14 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "ConfigsCommand": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "Call",
     "expose": "NONE",
     "description": "Offer the setByParameter default method with  configType, configFilter and sortOrder.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
+    "naturalId": "ConfigsCommand",
     "modelKey": "ConfigsCommand",
     "properties": {
       "create": false
@@ -222,7 +234,7 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "ConfigTypesCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -230,19 +242,21 @@
     "expose": "WEB",
     "description": "For getting a list of keys of all loaded configuration types from the cache like ConfigModel.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.configs",
+    "naturalId": "ConfigTypesCall",
     "modelKey": "ConfigTypesCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "ConfigWriteCommand": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "Call",
     "expose": "NONE",
     "description": "Offer the setByParameter default method with  fileConfigKey, sourcePath, condition and keepCall values. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
+    "naturalId": "ConfigWriteCommand",
     "modelKey": "ConfigWriteCommand",
     "properties": {
       "create": false
@@ -250,7 +264,7 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "CsvSimpleReadCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -263,13 +277,14 @@
     "expose": "WEB",
     "description": "Defines a primitive csv file read operation. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
+    "naturalId": "CsvSimpleReadCall",
     "modelKey": "CsvSimpleReadCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "CsvSimpleWriteCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "ListParamsBeanInterface",
@@ -277,19 +292,21 @@
     "expose": "WEB",
     "description": "Defines a primitive csv file write operation. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
+    "naturalId": "CsvSimpleWriteCall",
     "modelKey": "CsvSimpleWriteCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DirectoryConfig": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "FileConfig",
     "expose": "NONE",
     "description": "Immutable EO directory configuration will use the fileName as a match pattern for a call. Implement read and write operation with cache option.  ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "DirectoryConfig",
     "modelKey": "DirectoryConfig",
     "properties": {
       "create": false,
@@ -297,7 +314,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "DirectoryListReadCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -307,13 +324,14 @@
     "expose": "WEB",
     "description": "Read a list from a directory. If it's called from an EO context the fileName of the associated FileConfig will  be used to filter the result, e.g. *.html. \nOffers also general access methods like read(String filePath, String fileName) for java access. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "DirectoryListReadCall",
     "modelKey": "DirectoryListReadCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DirectoryMapReadCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -325,13 +343,14 @@
     "expose": "WEB",
     "description": "Read a list from a directory. The file names will replace <em>toReplace (default \"_\")</em> by <em>replaceBy (default \"\")</em> and <em>fileEnding(default \".html\")</em> will be removed. \n",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "DirectoryMapReadCall",
     "modelKey": "DirectoryMapReadCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DirectoryReadCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -342,13 +361,14 @@
     "expose": "WEB",
     "description": "Defines a file read operation for a directory configuration @DirectoryConfig \nspecified by fileConfigKey defined in @FileReadCall. \nThe fileName instance field will be validated against the fileName in the FileConfig as pattern.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "DirectoryReadCall",
     "modelKey": "DirectoryReadCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DirectoryWriteCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -358,19 +378,21 @@
     "expose": "WEB",
     "description": "Defines a file write operation for a directory configuration @DirectoryConfig specified by fileConfigKey. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "DirectoryWriteCall",
     "modelKey": "DirectoryWriteCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "Eq": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "Condition",
     "expose": "NONE",
     "description": "Equality check for objects.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
+    "naturalId": "Eq",
     "modelKey": "Eq",
     "properties": {
       "create": false
@@ -378,7 +400,7 @@
     "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
-  "FileBean": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": "cached, fileName, filePath, hostConfigKey, FileBean.properties",
@@ -387,6 +409,7 @@
     "expose": "NONE",
     "description": "The bean counterpart for @FileConfig.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FileBean",
     "modelKey": "FileBean",
     "properties": {
       "create": true,
@@ -399,7 +422,7 @@
       "create": true
     }
   },
-  "FileBeanProperties": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -416,6 +439,7 @@
     "expose": "NONE",
     "description": "Configuration parameters for different purposes. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FileBeanProperties",
     "modelKey": "FileBeanProperties",
     "author": "Werner Diwischek",
     "creationDate": 1539727200000,
@@ -423,7 +447,7 @@
       "create": true
     }
   },
-  "FileCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -433,6 +457,7 @@
     "expose": "NONE",
     "description": "Super class for file calls with one configuration key. Extends @HostCall. Provide an init method to resolve @FileConfig and @HostConfig",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FileCall",
     "modelKey": "FileCall",
     "properties": {
       "create": false,
@@ -440,7 +465,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "FileConfig": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -465,6 +490,7 @@
     "expose": "NONE",
     "description": "Immutable EO file configuration allow read or write access to a specific file. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FileConfig",
     "modelKey": "FileConfig",
     "properties": {
       "create": false
@@ -472,7 +498,7 @@
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
   },
-  "FileConfigProperties": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -505,6 +531,7 @@
     "expose": "NONE",
     "description": "Immutable configuration parameters for different purposes. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FileConfigProperties",
     "modelKey": "FileConfigProperties",
     "properties": {
       "create": false
@@ -512,13 +539,14 @@
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
   },
-  "FileInterface": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": "cached, fileName, filePath, hostConfigKey",
     "expose": "NONE",
     "description": "Access methods for field properties map. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FileInterface",
     "modelKey": "FileInterface",
     "properties": {
       "create": false
@@ -527,18 +555,19 @@
     "author": "Werner Diwischek",
     "creationDate": 1599602400000
   },
-  "FilePropertiesInterface": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "expose": "WEB",
     "shapeType": "INTERFACE",
     "description": "A common interface for {@link FileBeanProperties} and  {@link FileConfigProperties}",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FilePropertiesInterface",
     "modelKey": "FilePropertiesInterface",
     "author": "Werner Diwischek",
     "creationDate": 1608073200000
   },
-  "FileReadCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "ConfigReadCommand",
@@ -546,13 +575,14 @@
     "expose": "WEB",
     "description": "Read content of a file. Store content to targetPath when targetPath not equals \"_asString\".",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FileReadCall",
     "modelKey": "FileReadCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "FileReadWriteCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -565,13 +595,14 @@
     "expose": "WEB",
     "description": "Read content of a file specified by sourceFileConfigKey referencing a FileConfig with this key. Afterwards it will store it to the file configuration with key targetFileConfigKey. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FileReadWriteCall",
     "modelKey": "FileReadWriteCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "FileWriteCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -587,13 +618,14 @@
     "expose": "WEB",
     "description": "Write content or serialized eo to a file. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "FileWriteCall",
     "modelKey": "FileWriteCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "HostBean": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": "hostName, HostBean.properties",
@@ -602,6 +634,7 @@
     "expose": "WEB",
     "description": "A bean container class for Host values from HostConfig.json",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "HostBean",
     "modelKey": "HostBean",
     "author": "Werner Diwischek",
     "creationDate": 1608073200000,
@@ -609,7 +642,7 @@
       "create": true
     }
   },
-  "HostBeanProperties": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": "classPath, dialect, driver, extension, jndi, port, protocol, password, schema, user, url",
@@ -617,6 +650,7 @@
     "expose": "WEB",
     "description": "A bean container class for Host values",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "HostBeanProperties",
     "modelKey": "HostBeanProperties",
     "author": "Werner Diwischek",
     "creationDate": 1608073200000,
@@ -624,7 +658,7 @@
       "create": true
     }
   },
-  "HostCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -635,6 +669,7 @@
     "expose": "NONE",
     "description": "Super class for file calls with a configuration key to resolve @HostConfig with init method. Extends @CallImpl. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "HostCall",
     "modelKey": "HostCall",
     "properties": {
       "create": false,
@@ -642,45 +677,74 @@
     },
     "author": "Werner Diwischek"
   },
-  "HostConfig": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
-      "hostName": {"final": true},
-      "HostConfig.properties": {"final": true}
+      "hostName": {
+        "final": true
+      },
+      "HostConfig.properties": {
+        "final": true
+      }
     },
     "interfaces": "HostInterface",
     "superKey": "PermissionConfig",
     "expose": "NONE",
     "description": "Basic host definition for file or db cache. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "HostConfig",
     "modelKey": "HostConfig",
     "properties": {
       "create": true,
       "defaultImplementation": "TreeMap",
-      "final": true},
+      "final": true
+    },
     "creationDate": 1539727200000
   },
-  "HostConfigProperties": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
-      "classPath": {"final": true},
-      "dialect": {"final": true},
-      "driver": {"final": true},
-      "extension": {"final": true},
-      "jndi": {"final": true},
-      "port": {"final": true},
-      "protocol": {"final": true},
-      "password": {"final": true},
-      "schema": {"final": true},
-      "user": {"final": true},
-      "url": {"final": true}
+      "classPath": {
+        "final": true
+      },
+      "dialect": {
+        "final": true
+      },
+      "driver": {
+        "final": true
+      },
+      "extension": {
+        "final": true
+      },
+      "jndi": {
+        "final": true
+      },
+      "port": {
+        "final": true
+      },
+      "protocol": {
+        "final": true
+      },
+      "password": {
+        "final": true
+      },
+      "schema": {
+        "final": true
+      },
+      "user": {
+        "final": true
+      },
+      "url": {
+        "final": true
+      }
     },
     "interfaces": "HostPropertiesInterface",
     "expose": "NONE",
     "description": "Basic host definition for file or db cache. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "HostConfigProperties",
     "modelKey": "HostConfigProperties",
     "properties": {
       "create": true,
@@ -688,12 +752,13 @@
     },
     "creationDate": 1539727200000
   },
-  "HostInterface": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Methods to get the properties schema from properties map.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "HostInterface",
     "modelKey": "HostInterface",
     "properties": {
       "create": false
@@ -702,18 +767,19 @@
     "author": "Werner Diwischek",
     "creationDate": 1600466400000
   },
-  "HostPropertiesInterface": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "expose": "WEB",
     "description": "A common interface for {@link HostBeanProperties} and  {@link HostConfigProperties}",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "HostPropertiesInterface",
     "modelKey": "HostPropertiesInterface",
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek",
     "creationDate": 1608073200000
   },
-  "JsonWriteCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -724,19 +790,21 @@
     "expose": "WEB",
     "description": "Serialize the value of the sourcePath as JSON and write it to a file",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.files",
+    "naturalId": "JsonWriteCall",
     "modelKey": "JsonWriteCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "Like": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "Condition",
     "expose": "NONE",
     "description": "Like check for strings.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
+    "naturalId": "Like",
     "modelKey": "Like",
     "properties": {
       "create": false
@@ -744,12 +812,13 @@
     "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
-  "ListParamsBeanInterface": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Defines default access values for ListParams",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
+    "naturalId": "ListParamsBeanInterface",
     "modelKey": "ListParamsBeanInterface",
     "properties": {
       "create": false
@@ -757,7 +826,7 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "ListParamsBean": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -783,18 +852,20 @@
     "expose": "NONE",
     "description": "Defines the parameter like rowStart, rowEnd and length.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.lists",
+    "naturalId": "ListParamsBean",
     "modelKey": "ListParamsBean",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "Or": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "A list of @And.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.condition",
+    "naturalId": "Or",
     "modelKey": "Or",
     "properties": {
       "create": false
@@ -802,7 +873,7 @@
     "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
-  "PermissionBean": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": "PermissionBean.permissions",
@@ -810,6 +881,7 @@
     "expose": "NONE",
     "description": "Container Bean for setting permission config.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "PermissionBean",
     "modelKey": "PermissionBean",
     "properties": {
       "create": true
@@ -817,14 +889,19 @@
     "shapeType": "BEAN",
     "creationDate": 1608073200000
   },
-  "PermissionConfig": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
-    "fields": {"PermissionConfig.permissions": {"final": true}},
+    "fields": {
+      "PermissionConfig.permissions": {
+        "final": true
+      }
+    },
     "superKey": "Config",
     "expose": "NONE",
     "description": "Implementation for resources with permission method ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "PermissionConfig",
     "modelKey": "PermissionConfig",
     "properties": {
       "create": true,
@@ -833,20 +910,33 @@
     "shapeType": "CONFIG",
     "creationDate": 1608073200000
   },
-  "PermissionsForConfig": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
-      "createRoles": {"final": true},
-      "deleteRoles": {"final": true},
-      "executeRoles": {"final": true},
-      "nothingRoles": {"final": true},
-      "readRoles": {"final": true},
-      "writeRoles": {"final": true}
+      "createRoles": {
+        "final": true
+      },
+      "deleteRoles": {
+        "final": true
+      },
+      "executeRoles": {
+        "final": true
+      },
+      "nothingRoles": {
+        "final": true
+      },
+      "readRoles": {
+        "final": true
+      },
+      "writeRoles": {
+        "final": true
+      }
     },
     "expose": "NONE",
     "description": "Config wrapper for permission role lists.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "PermissionsForConfig",
     "modelKey": "PermissionsForConfig",
     "properties": {
       "create": true,
@@ -855,7 +945,7 @@
     "shapeType": "CONFIG",
     "creationDate": 1608073200000
   },
-  "PermissionsForBean": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -869,6 +959,7 @@
     "expose": "NONE",
     "description": "Bean wrapper for permission role lists.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "PermissionsForBean",
     "modelKey": "PermissionsForBean",
     "shapeType": "BEAN",
     "properties": {
@@ -876,13 +967,14 @@
     },
     "creationDate": 1608073200000
   },
-  "SimpleCommand": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "Call",
     "expose": "NONE",
     "description": "Offer the setByParameter default method with  sourcePath, targetPath and condition values.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.commands",
+    "naturalId": "SimpleCommand",
     "modelKey": "SimpleCommand",
     "properties": {
       "create": false
@@ -890,7 +982,7 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "SinusValueCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -898,19 +990,21 @@
     "expose": "WEB",
     "description": "For setting sinus value to EO.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "SinusValueCall",
     "modelKey": "SinusValueCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "SortOrder": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "eo-calls",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Enum for sorting order used for example in @ConfigKeysCall.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.configs",
+    "naturalId": "SortOrder",
     "modelKey": "SortOrder",
     "properties": {
       "create": false
@@ -918,7 +1012,7 @@
     "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
-  "StringLowerCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -926,13 +1020,14 @@
     "expose": "WEB",
     "description": "For setting lower value to EO.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "StringLowerCall",
     "modelKey": "StringLowerCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "StringLowerFirstCharCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -940,13 +1035,14 @@
     "expose": "WEB",
     "description": "For setting lower value to EO.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "StringLowerFirstCharCall",
     "modelKey": "StringLowerFirstCharCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "StringPluralCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -954,13 +1050,14 @@
     "expose": "WEB",
     "description": "For setting lower value to EO.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "StringPluralCall",
     "modelKey": "StringPluralCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "StringReplaceCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": [
@@ -973,13 +1070,14 @@
     "expose": "WEB",
     "description": "For replacing field 'toReplace' by 'replaceBy'.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "StringReplaceCall",
     "modelKey": "StringReplaceCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "StringReplaceWhiteSpaceCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -987,13 +1085,14 @@
     "expose": "WEB",
     "description": "Replaces white space with underscore.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "StringReplaceWhiteSpaceCall",
     "modelKey": "StringReplaceWhiteSpaceCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "StringReplaceWithHtmlCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -1001,13 +1100,14 @@
     "expose": "WEB",
     "description": "Replaces white space with underscore.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "StringReplaceWithHtmlCall",
     "modelKey": "StringReplaceWithHtmlCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "StringUpperCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -1015,13 +1115,14 @@
     "expose": "WEB",
     "description": "For setting upper value to EO.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "StringUpperCall",
     "modelKey": "StringUpperCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "StringUpperFirstCharCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -1029,13 +1130,14 @@
     "expose": "WEB",
     "description": "For setting upper value to EO.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "StringUpperFirstCharCall",
     "modelKey": "StringUpperFirstCharCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "TemplateCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -1048,52 +1150,56 @@
     "expose": "WEB",
     "description": "Executes a template content. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.templates",
+    "naturalId": "TemplateCall",
     "modelKey": "TemplateCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "TemplateDirResourceCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "DirectoryReadCall",
     "expose": "WEB",
     "description": "Parses the content loaded by @DirectoryReadCall.\nThis will use a FileConfig entry using @DirectoryConfig instance. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.templates",
+    "naturalId": "TemplateDirResourceCall",
     "modelKey": "TemplateDirResourceCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "TemplateResourceCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "FileReadCall",
     "expose": "WEB",
     "description": "Parses the content of a FileConfig configuration. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.templates",
+    "naturalId": "TemplateResourceCall",
     "modelKey": "TemplateResourceCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "TemplateResourceStoreCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "superKey": "FileReadWriteCall",
     "expose": "WEB",
     "description": "Executes a TemplateRecourceCall and then a FileWriteCall wth the targetConfigKey.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.templates",
+    "naturalId": "TemplateResourceStoreCall",
     "modelKey": "TemplateResourceStoreCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "ValueCall": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "fields": {
@@ -1106,10 +1212,11 @@
     "expose": "WEB",
     "description": "For setting values to EO.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "ValueCall",
     "modelKey": "ValueCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   }
-}
+]

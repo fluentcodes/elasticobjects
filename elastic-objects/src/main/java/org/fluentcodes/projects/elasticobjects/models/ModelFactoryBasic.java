@@ -24,38 +24,38 @@ public class ModelFactoryBasic extends ModelFactory {
     }
 
     @Override
-    public Map<String, ModelBean> createBeanMap() {
-        Map<String, ModelBean> modelMap = new TreeMap<>();
+    public List<ModelBean> createBeanList() {
+        List<ModelBean> modelMap = new ArrayList<>();
         return addModelBeans(modelMap);
     }
 
-    public Map<String, ModelBean> addModelBeans(Map<String, ModelBean> modelMap) {
-        modelMap.put(LinkedHashMap.class.getSimpleName(), new ModelBean(LinkedHashMap.class, ShapeTypes.MAP)
+    public List<ModelBean> addModelBeans(List<ModelBean> modelMap) {
+        modelMap.add(new ModelBean(LinkedHashMap.class, ShapeTypes.MAP)
                 .setCreate(true)
         );
-        modelMap.put(Map.class.getSimpleName(), new ModelBean(Map.class, ShapeTypes.MAP)
+        modelMap.add(new ModelBean(Map.class, ShapeTypes.MAP)
                 .setCreate(true)
         );
-        modelMap.put(UnmodifiableMap.class.getSimpleName(), new ModelBean(UnmodifiableMap.class, ShapeTypes.MAP));
+        modelMap.add(new ModelBean(UnmodifiableMap.class, ShapeTypes.MAP));
 
-        modelMap.put(UnmodifiableCollection.class.getSimpleName(), new ModelBean(UnmodifiableCollection.class, ShapeTypes.LIST));
-        modelMap.put(UnmodifiableList.class.getSimpleName(), new ModelBean(UnmodifiableList.class, ShapeTypes.LIST));
-        modelMap.put(List.class.getSimpleName(), new ModelBean(List.class, ShapeTypes.LIST)
+        modelMap.add(new ModelBean(UnmodifiableCollection.class, ShapeTypes.LIST));
+        modelMap.add(new ModelBean(UnmodifiableList.class, ShapeTypes.LIST));
+        modelMap.add(new ModelBean(List.class, ShapeTypes.LIST)
                 .setCreate(true)
         );
-        modelMap.put(ArrayList.class.getSimpleName(), new ModelBean(ArrayList.class, ShapeTypes.LIST)
+        modelMap.add(new ModelBean(ArrayList.class, ShapeTypes.LIST)
                 .setCreate(true)
         );
 
-        modelMap.put(Integer.class.getSimpleName(), new ModelBean(Integer.class, ShapeTypes.INTEGER));
-        modelMap.put(Long.class.getSimpleName(), new ModelBean(Long.class, ShapeTypes.LONG));
-        modelMap.put(String.class.getSimpleName(), new ModelBean(String.class, ShapeTypes.STRING));
-        modelMap.put(Float.class.getSimpleName(), new ModelBean(Float.class, ShapeTypes.FLOAT));
-        modelMap.put(Double.class.getSimpleName(), new ModelBean(Double.class, ShapeTypes.DOUBLE));
-        modelMap.put(Boolean.class.getSimpleName(), new ModelBean(Boolean.class, ShapeTypes.BOOLEAN));
-        modelMap.put(Date.class.getSimpleName(), new ModelBean(Date.class, ShapeTypes.DATE));
-        modelMap.put(LogLevel.class.getSimpleName(), new ModelBean(LogLevel.class, ShapeTypes.ENUM));
-        modelMap.put(JSONSerializationType.class.getSimpleName(), new ModelBean(JSONSerializationType.class, ShapeTypes.ENUM));
+        modelMap.add(new ModelBean(Integer.class, ShapeTypes.INTEGER));
+        modelMap.add(new ModelBean(Long.class, ShapeTypes.LONG));
+        modelMap.add(new ModelBean(String.class, ShapeTypes.STRING));
+        modelMap.add(new ModelBean(Float.class, ShapeTypes.FLOAT));
+        modelMap.add(new ModelBean(Double.class, ShapeTypes.DOUBLE));
+        modelMap.add(new ModelBean(Boolean.class, ShapeTypes.BOOLEAN));
+        modelMap.add(new ModelBean(Date.class, ShapeTypes.DATE));
+        modelMap.add(new ModelBean(LogLevel.class, ShapeTypes.ENUM));
+        modelMap.add(new ModelBean(JSONSerializationType.class, ShapeTypes.ENUM));
         return modelMap;
     }
 }

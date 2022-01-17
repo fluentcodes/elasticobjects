@@ -1,20 +1,22 @@
-{
-  "h2:mem:AnObject":{
+[
+  {
     "modelKey": "AnObject",
     "dbConfigKey": "h2:mem:basic",
+    "naturalId": "h2:mem:AnObject",
     "permissions": {
       "readRoles": [
         "guest"
       ]
     }
   },
-  "h2:mem:ASubObject":{
+  {
     "modelKey": "ASubObject",
     "dbConfigKey": "h2:mem:basic",
+    "naturalId": "h2:mem:ASubObject",
     "permissions": {
       "readRoles": [
         "guest"
       ]
     }
   }
-}
+]

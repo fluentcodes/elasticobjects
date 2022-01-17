@@ -3,10 +3,11 @@ package org.fluentcodes.projects.elasticobjects.models;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.io.IOClasspathEOFlatList;
 import org.fluentcodes.projects.elasticobjects.utils.UnmodifiableMap;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
-import org.fluentcodes.projects.elasticobjects.io.IOClasspathEOFlatMap;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
@@ -42,27 +43,23 @@ public abstract class ConfigFactory<T extends ConfigBean, U extends Config> {
      *
      * @return the expanded final configurations.
      */
-    public Map<String, T> createBeanMap() {
-        Map<String, T> beanMap = new IOClasspathEOFlatMap<T>
+    public List<T> createBeanList() {
+        List<T> beanMap = new IOClasspathEOFlatList<T>
                 (configMaps, configClass.getSimpleName() + ".json", beanClass)
                 .read();
-        for (Map.Entry<String, T> entry : beanMap.entrySet()) {
-            entry.getValue().setNaturalId(entry.getKey());
-        }
         return beanMap;
     }
 
     public Map<String, U> createConfigMap() {
-        Map<String, T> beanMap = createBeanMap();
+        List<T> beanMap = createBeanList();
         Map<String, U> configMap = new TreeMap<>();
         try {
-            for (Map.Entry<String, T> entry : beanMap.entrySet()) {
-                Optional<String> filterScope = getScope().filter(entry.getKey());
-                if (!filterScope.isPresent()) {
+            for (T entry : beanMap) {
+                if (!getScope().filter(entry)) {
                     continue;
                 }
-                U config = (U) entry.getValue().createConfig(configMaps);
-                configMap.put(entry.getKey(), config);
+                U config = (U) entry.createConfig(configMaps);
+                configMap.put(entry.getNaturalId(), config);
             }
         }
         catch (EoInternalException| EoException e) {
@@ -76,5 +73,17 @@ public abstract class ConfigFactory<T extends ConfigBean, U extends Config> {
 
     public Scope getScope() {
         return scope;
+    }
+
+    public Map<String, T> transformToBeanMap(List<? extends T> beanList) {
+        Map<String, T> beanMap = new TreeMap<>();
+        for (T bean: beanList) {
+            beanMap.put(bean.getNaturalId(), bean);
+        }
+        return beanMap;
+    }
+
+    public Map<String, T> createBeanMap() {
+        return transformToBeanMap(createBeanList());
     }
 }

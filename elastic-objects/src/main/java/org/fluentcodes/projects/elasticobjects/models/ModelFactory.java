@@ -3,6 +3,7 @@ package org.fluentcodes.projects.elasticobjects.models;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
@@ -25,19 +26,17 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelConfig>
     @Override
     public Map<String, ModelConfig> createConfigMap() {
         Map<String, ModelConfig> configMap = new TreeMap<>();
-        Map<String, ModelBean> beanMap = createBeanMap();
-        for (Map.Entry<String, ModelBean> entry : beanMap.entrySet()) {
+        List<ModelBean> beanList = createBeanList();
+        Map<String, ModelBean> beanMap = transformToBeanMap(beanList);
+        for (ModelBean bean : beanList) {
             try {
-                Optional<String> filterScope = getScope().filter(entry.getKey());
-                if (!filterScope.isPresent()) {
+                if (!getScope().filter(bean)) {
                     continue;
                 }
-                final String key = filterScope.get();
-                ModelBean bean = entry.getValue();
                 bean.resolveSuper(beanMap, true);
                 ShapeTypes shapeType = bean.getShapeType();
                 if (bean.hasConfigModelKey()) {
-                    configMap.put(key,
+                    configMap.put(bean.getNaturalId(),
                             (ModelConfig)bean.createConfig(bean.deriveConfigClass(),
                                     getConfigMaps()));
                     continue;
@@ -60,7 +59,7 @@ public abstract class ModelFactory extends ConfigFactory<ModelBean, ModelConfig>
                                     bean.deriveConfigClass(ModelConfigObject.class.getSimpleName()),
                                     getConfigMaps());
                 }
-                configMap.put(key, modelConfig);
+                configMap.put(bean.getNaturalId(), modelConfig);
 
             } catch (EoException| EoInternalException e) {
                 throw e;

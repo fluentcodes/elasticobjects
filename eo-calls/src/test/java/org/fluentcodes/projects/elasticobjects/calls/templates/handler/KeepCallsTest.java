@@ -12,9 +12,6 @@ import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigNoCr
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
 import org.junit.Test;
 
-/**
- * Created 6.8.2020
- */
 public class KeepCallsTest implements IModelConfigNoCreateTests {
 
     @Override
@@ -51,10 +48,10 @@ public class KeepCallsTest implements IModelConfigNoCreateTests {
 
     @Test
     public void DEV_fieldBeanMap__find_keepCall__notNull() {
-        FieldBean bean = new FieldFactory(ObjectProvider.CONFIG_MAPS).createBeanMap()
-                .get("keepCall");
+        FieldBean bean = new FieldFactory(ObjectProvider.CONFIG_MAPS).createBeanList()
+                .get(1);
         Assertions.assertThat(bean).isNotNull();
-        Assertions.assertThat(bean.getModelKeys()).isEqualTo(KeepCalls.class.getSimpleName());
+        Assertions.assertThat(bean.getModelKeys()).isEqualTo(Boolean.class.getSimpleName());
     }
 
     @Test

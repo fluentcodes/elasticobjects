@@ -40,14 +40,14 @@ public class ModelConfigDevTest {
     public void readModelBean() {
         ModelBean bean = ObjectProviderDev.readModelBean(ModelConfig.class.getSimpleName());
         assertEquals("Config", bean.getSuperKey());
-        assertEquals(6, bean.getFieldKeys().size());
+        assertEquals(7, bean.getFieldKeys().size());
     }
 
     @Test
     public void readModelConfig() {
         ModelConfig config = ObjectProviderDev.readModelConfig(ModelConfig.class.getSimpleName());
         assertEquals(false, config.getProperties().getCreate());
-        assertEquals(6, config.getFields().size());
+        assertEquals(7, config.getFields().size());
     }
 
     @Test

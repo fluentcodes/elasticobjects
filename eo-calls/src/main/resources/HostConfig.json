@@ -1,9 +1,10 @@
-{
-  "local": {
+[
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "description": "local host with key 'local'",
     "expose": "WEB",
+    "naturalId": "local",
     "hostName": "localhost",
     "permissions": {
       "readRoles": [
@@ -11,11 +12,12 @@
       ]
     }
   },
-  "localhost": {
+  {
     "module": "eo-calls",
     "moduleScope": "main",
     "description": "local host with key 'localhost'",
     "expose": "WEB",
+    "naturalId": "localhost",
     "hostName": "localhost",
     "permissions": {
       "readRoles": [
@@ -23,4 +25,4 @@
       ]
     }
   }
-}
+]

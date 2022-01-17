@@ -8,8 +8,8 @@ public class FileFactoryTest {
 
     @Test
     public void fileBeanMap__find_AnObjectCsv__notNull() {
-        FileBean bean = new FileFactory(ObjectProvider.CONFIG_MAPS).createBeanMap()
-            .get("AnObject.csv");
+        FileBean bean = new FileFactory(ObjectProvider.CONFIG_MAPS).createBeanList()
+            .get(1);
         Assertions.assertThat(bean).isNotNull();
     }
 

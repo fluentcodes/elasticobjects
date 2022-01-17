@@ -1,115 +1,129 @@
-{
-  "myAnObject": {
+[
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "AnObject",
     "description": "A AnObject field.",
     "expose": "WEB",
+    "naturalId":"myAnObject",
     "fieldKey": "myAnObject"
   },
-  "myASubObject": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "ASubObject",
     "description": "myASubObject",
     "expose": "WEB",
-    "fieldKey": "myASubObject"
+    "naturalId":"myASubObject",
+    "fieldKey": ""
   },
-  "myASubObjectList": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "List,ASubObject",
     "description": "A generic parametrized example List with @ASubObject",
     "expose": "WEB",
+    "naturalId":"myASubObjectList",
     "fieldKey": "myASubObjectList"
   },
-  "myASubObjectMap": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "Map,ASubObject",
     "description": "A generic parametrized example Map with @ASubObject",
     "expose": "WEB",
+    "naturalId":"myASubObjectMap",
     "fieldKey": "myASubObjectMap"
   },
-  "myBoolean": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "myBoolean",
     "expose": "WEB",
+    "naturalId":"myBoolean",
     "fieldKey": "myBoolean"
   },
-  "myDate": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "Date",
     "description": "myDate",
     "expose": "WEB",
+    "naturalId":"myDate",
     "fieldKey": "myDate"
   },
-  "myDouble": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "Double",
     "description": "myDouble",
     "expose": "WEB",
+    "naturalId":"myDouble",
     "fieldKey": "myDouble"
   },
-  "myFloat": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "Float",
     "description": "myFloat",
     "expose": "WEB",
+    "naturalId":"myFloat",
     "fieldKey": "myFloat"
   },
-  "myInt": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "Integer",
     "description": "myInt",
     "expose": "WEB",
+    "naturalId":"myInt",
     "fieldKey": "myInt"
   },
-  "myList": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "List",
     "description": "myList",
     "expose": "WEB",
+    "naturalId":"myList",
     "fieldKey": "myList"
   },
-  "myLong": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "Long",
     "description": "myLong",
     "expose": "WEB",
+    "naturalId":"myLong",
     "fieldKey": "myLong"
   },
-  "myMap": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "Map",
     "description": "myMap",
     "expose": "WEB",
+    "naturalId":"myMap",
     "fieldKey": "myMap"
   },
-  "myObject": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "Object",
     "description": "A test object thing. ",
     "expose": "WEB",
+    "naturalId":"myObject",
     "fieldKey": "myObject"
   },
-  "myString": {
+  {
     "module": "elastic-objects-test",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "Just a small test string used in test models. ",
     "expose": "WEB",
+    "naturalId":"myString",
     "fieldKey": "myString",
     "max": 20
   }
-}
+]

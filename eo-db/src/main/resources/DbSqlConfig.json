@@ -1,5 +1,5 @@
-{
-  "h2:mem:basic:AnObject": {
+[
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "description": "Query for AnObject",
@@ -7,6 +7,7 @@
     "classPath": "src/main/resources",
     "dbConfigKey": "h2:mem:basic",
     "modelKey": "AnObject",
+    "naturalId": "h2:mem:basic:AnObject",
     "sqlList": [
       "Select * from AnObject"
     ],
@@ -16,13 +17,14 @@
       ]
     }
   },
-  "h2:mem:basic:Create": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "description": "Basic H2 creating tables",
     "expose": "WEB",
     "classPath": "src/main/resources",
     "dbConfigKey": "h2:mem:basic",
+    "naturalId": "h2:mem:basic:Create",
     "sqlList": [
       "drop table AnObject if exists",
       "drop table ASubObject if exists",
@@ -44,13 +46,14 @@
       ]
     }
   },
-  "h2:mem:basic:ASubObject": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "description": "Query for ASubObject",
     "expose": "WEB",
     "classPath": "src/main/resources",
     "dbConfigKey": "h2:mem:basic",
+    "naturalId": "h2:mem:basic:ASubObject",
     "modelKey": "ASubObject",
     "sqlList": [
       "Select * from ASubObject"
@@ -61,4 +64,4 @@
       ]
     }
   }
-}
+]

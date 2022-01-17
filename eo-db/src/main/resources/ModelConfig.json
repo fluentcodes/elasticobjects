@@ -1,11 +1,12 @@
-{
-  "DbConfig": {
+[
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "superKey": "HostConfig",
     "expose": "NONE",
     "description": "Mainly the schema information as base for  @DbQueryConfig",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+    "naturalId": "DbConfig",
     "modelKey": "DbConfig",
     "properties": {
       "create": false,
@@ -13,24 +14,26 @@
     },
     "author": "Werner Diwischek"
   },
-  "DbModelBean": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "fields": [
-      "modelKey", "dbConfigKey"
+      "modelKey",
+      "dbConfigKey"
     ],
     "interfaces": "DbModelInterface",
     "superKey": "PermissionBean",
     "expose": "WEB",
     "description": "Bean class for database operations using a model to create {@link DbModelConfig}.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelBean",
     "modelKey": "DbModelBean",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DbModelCall": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "fields": [
@@ -40,28 +43,34 @@
     "expose": "WEB",
     "description": "Abstract call class for model based {@link DbModelConfig} database operations. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelCall",
     "modelKey": "DbModelCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DbModelConfig": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "fields": {
-      "modelKey": {"final": true},
-      "dbConfigKey": {"final": true}
+      "modelKey": {
+        "final": true
+      },
+      "dbConfigKey": {
+        "final": true
+      }
     },
     "interfaces": "DbModelInterface",
     "superKey": "PermissionConfig",
     "expose": "WEB",
     "description": "Config class for database operations using a model created by {@link DbModelBean}.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelConfig",
     "modelKey": "DbModelConfig",
     "author": "Werner Diwischek"
   },
-  "DbModelDeleteCall": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "interfaces": "ConfigWriteCommand",
@@ -69,22 +78,24 @@
     "expose": "WEB",
     "description": "Remove an entry from database by creating a delete sql from entry in sourcePath. \nThe object in sourcePath must be an instance of @ModelConfigDbObject.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelDeleteCall",
     "modelKey": "DbModelDeleteCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DbModelInterface": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "expose": "WEB",
     "description": "Interface class for database operations as pattern for  {@link DbModelBean} and {@link DbModelConfig}.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelInterface",
     "modelKey": "DbModelInterface",
     "author": "Werner Diwischek"
   },
-  "DbModelReadCall": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "interfaces": "ListParamsBeanInterface,ConfigReadCommand",
@@ -92,13 +103,14 @@
     "expose": "WEB",
     "description": "Read an entry in database by creating a select sql from entry in sourcePath. \nThe object in sourcePath must be an instance of @ModelConfigDbObject.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelReadCall",
     "modelKey": "DbModelReadCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DbModelWriteCall": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "interfaces": "ConfigWriteCommand",
@@ -106,13 +118,14 @@
     "expose": "WEB",
     "description": "Write an entry in database by creating a insert or update sql from entry in sourcePath.\nThe object must be an instance of @ModelConfigDbObject.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelWriteCall",
     "modelKey": "DbModelWriteCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DbSqlBean": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "fields": {
@@ -126,13 +139,14 @@
     "expose": "NONE",
     "description": "Execute sql statements via jdbc connection. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbSqlBean",
     "modelKey": "DbSqlBean",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DbSqlCall": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "fields": [
@@ -142,19 +156,26 @@
     "expose": "WEB",
     "description": "Abstract class providing an sql config before executing.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbSqlCall",
     "modelKey": "DbSqlCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DbSqlConfig": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "fields": {
-      "dbConfigKey": {"final": true},
-      "modelKey": {"final": true},
-      "classPath": {"final": true},
+      "dbConfigKey": {
+        "final": true
+      },
+      "modelKey": {
+        "final": true
+      },
+      "classPath": {
+        "final": true
+      },
       "sqlList": {
         "final": true
       }
@@ -164,6 +185,7 @@
     "expose": "NONE",
     "description": "Configuration for sql statements. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbSqlConfig",
     "modelKey": "DbSqlConfig",
     "properties": {
       "create": false,
@@ -171,7 +193,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "DbSqlInterface": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "fields": {
@@ -183,6 +205,7 @@
     "expose": "NONE",
     "description": "SQL list get.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbSqlInterface",
     "modelKey": "DbSqlInterface",
     "properties": {
       "create": true,
@@ -190,7 +213,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "DbSqlExecuteCall": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "interfaces": "ConfigWriteCommand",
@@ -198,13 +221,14 @@
     "expose": "WEB",
     "description": "Executes a list of sql statements within DbSqlConfig.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbSqlExecuteCall",
     "modelKey": "DbSqlExecuteCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "DbSqlReadCall": {
+  {
     "module": "eo-db",
     "moduleScope": "main",
     "interfaces": "ListParamsBeanInterface,ConfigReadCommand",
@@ -213,10 +237,11 @@
     "expose": "WEB",
     "description": "Map results of a sql select to the targetPath.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbSqlReadCall",
     "modelKey": "DbSqlReadCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   }
-}
+]

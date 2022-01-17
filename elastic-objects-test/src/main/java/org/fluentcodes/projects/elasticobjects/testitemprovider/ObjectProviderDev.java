@@ -4,6 +4,7 @@ import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.io.IOClasspathEOFlatList;
 import org.fluentcodes.projects.elasticobjects.io.IOClasspathEOFlatMap;
 import org.fluentcodes.projects.elasticobjects.models.Config;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
@@ -21,8 +22,10 @@ import org.fluentcodes.projects.elasticobjects.models.Scope;
 import org.junit.Assert;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_PROPERTIES;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_FIELDS;
 import static org.junit.Assert.assertEquals;
@@ -50,7 +53,16 @@ public class ObjectProviderDev {
     }
 
     public static final Map<String, Map<String, Object>> readConfigMap(Class<? extends Config> configClass) {
-        return new IOClasspathEOFlatMap<Map<String,Object>>
+        Map<String, Map<String, Object>> map = new HashMap<>();
+        List<Map<String, Object>> list = readConfigList(configClass);
+        for (Map<String, Object> mapEntry: list) {
+            map.put((String)mapEntry.get(F_NATURAL_ID), mapEntry);
+        }
+        return map;
+    }
+
+    public static final List<Map<String, Object>> readConfigList(Class<? extends Config> configClass) {
+        return new IOClasspathEOFlatList<Map<String,Object>>
                 (CONFIG_MAPS_DEV, configClass.getSimpleName() + ".json", Map.class)
                 .read();
     }

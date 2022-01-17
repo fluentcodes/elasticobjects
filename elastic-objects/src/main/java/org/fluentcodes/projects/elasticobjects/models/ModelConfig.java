@@ -32,22 +32,24 @@ public abstract class ModelConfig extends Config implements ModelInterface {
     private final Map<String, ModelConfig> interfacesMap;
 
     protected ModelConfig(final ModelBean bean, final ConfigMaps configMaps) {
+
         super(bean, configMaps);
         try {
             this.shapeType = bean.getShapeType() == null ? ShapeTypes.BEAN : bean.getShapeType();
-        } catch (Exception e) {
-            throw new EoException(e);
+            this.modelKey = bean.getModelKey();
+            this.packagePath = bean.getPackagePath();
+            this.superKey = bean.getSuperKey();
+            this.interfaces = bean.getInterfaces();
+            this.properties = new ModelConfigProperties(bean.getProperties());
+
+            this.fields = new TreeMap<>();
+
+            this.interfacesMap = new LinkedHashMap<>();
+            setModelClass();
         }
-        this.modelKey = bean.getModelKey();
-        this.packagePath = bean.getPackagePath();
-        this.superKey = bean.getSuperKey();
-        this.interfaces = bean.getInterfaces();
-        this.properties = new ModelConfigProperties(bean.getProperties());
-
-        this.fields = new TreeMap<>();
-
-        this.interfacesMap = new LinkedHashMap<>();
-        setModelClass();
+        catch (Exception e) {
+            throw e;
+        }
     }
 
     void addField(final String fieldKey, FieldConfig fieldConfig) {

@@ -1,11 +1,11 @@
-{
-  "h2:file:basic": {
+[
+  {
     "configModelKey": "DbConfig",
     "module": "eo-db",
     "moduleScope": "main",
     "description": "Local H2 in file persisted for the test resources.",
     "expose": "WEB",
-    "hostName": "h2",
+    "naturalId":"h2:file:basic", "hostName": "h2",
     "properties": {
       "schema": "file:basic",
       "extension": "DATABASE_TO_UPPER=false;",
@@ -18,13 +18,13 @@
       ]
     }
   },
-  "h2:mem:basic": {
+  {
     "configModelKey": "DbConfig",
     "module": "eo-db",
     "moduleScope": "main",
     "description": "Local H2 in memory for the test resources.",
     "expose": "WEB",
-    "hostName": "h2",
+    "naturalId":"h2:mem:basic", "hostName": "h2",
     "properties": {
       "schema": "mem:basic",
       "extension": "DATABASE_TO_UPPER=false;",
@@ -37,4 +37,4 @@
       ]
     }
   }
-}
+]

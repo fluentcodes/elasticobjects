@@ -28,13 +28,13 @@ public class HealthCheck {
             }
         }
         int counter = 0;
-        Map<String, FieldBean> fieldBeanMap = new FieldFactory(configMaps).createBeanMap();
+        List<FieldBean> fieldBeanList = new FieldFactory(configMaps).createBeanList();
         final List<String> unusedFields = new ArrayList<>();
-        for (String fieldKey : fieldBeanMap.keySet()) {
-            if (!fieldKeys.contains(fieldKey)) {
+        for (FieldBean fieldBean : fieldBeanList) {
+            if (!fieldKeys.contains(fieldBean.getNaturalId())) {
                 counter++;
-                System.out.println(counter + ". Does not contain " + fieldKey);
-                unusedFields.add(fieldKey);
+                System.out.println(counter + ". Does not contain " + fieldBean.getNaturalId());
+                unusedFields.add(fieldBean.getNaturalId());
             }
         }
         return unusedFields;

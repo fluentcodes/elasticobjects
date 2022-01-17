@@ -5,7 +5,6 @@
   "modelKey": "KeepCalls",
   "module": "elastic-objects",
   "moduleScope": "main",
-  "naturalId": "KeepCalls",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls.templates",
   "properties": {
     "abstract": false,

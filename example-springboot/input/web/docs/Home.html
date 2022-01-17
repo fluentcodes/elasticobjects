@@ -6,25 +6,29 @@
 <h3>EO - Elastic Objects</h3>
 
 <p>
-    Elastic Objects give JSON messages a type to instantiate typed Objects
-    on the server side in
+    Elastic Objects give JSON a type to instantiate typed Objects in
     any place of an arbitrary object tree.
 </p>
 <p>
     A special object type - the \
-    #{GithubLinkCall->ModelConfig, Call}. - with a generic execute method offers functionality.
+    #{GithubLinkCall->ModelConfig, Call}. - offers any functionality
+    with one generic execute method.
 </p>
 
 <p>
-    With a typed JSON it's possible to build web services with one generic endpoint similar to
-    GraphQL.
-    New calls in java just need an entry in the <a href="configs/ModelConfig.html">model configurations</a>.
+    With a typed JSON it's possible to build web services with one generic endpoint.
+    The underlying MVC framework provides no logic, so it could be tested without the
+    framework hassle.
+</p>
+<p>
+    New calls just need an entry in the <a href="configs/ModelConfig.html">model configurations</a>.
+</p>
+<p>
     And for the configured calls a new resource just needs an entry in
     <a href="configs/FileConfig.html">file configurations</a> or
     <a href="configs/DbSqlConfig.html">sql configurations</a>.
 </p>
 <p>
-    A client could send (typed) data and calls in any combination.
     The following working examples using html forms should show what's possible.
 </p>
 
@@ -133,8 +137,8 @@ similar framework specific code for configuration and/or classes .
 <h5>Conclusion</h5>
 
 <p>
-    As a microservice architecture EO with version 0.8 is a nice "Proof of Concept" in Java:
-    With a simple tiny type JSON extension
+    As a microservice architecture EO with version 0.9.3 is a "Proof of Concept" in Java:
+    With a simple tiny type extension in JSON
     one could build services with a more object oriented approach.
 </p>
 <p>

@@ -5,7 +5,6 @@
   "modelKey": "ExecutorCall",
   "module": "elastic-objects",
   "moduleScope": "main",
-  "naturalId": "ExecutorCall",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
   "properties": {
     "abstract": false,

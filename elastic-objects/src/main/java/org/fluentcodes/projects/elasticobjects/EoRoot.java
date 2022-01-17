@@ -56,6 +56,15 @@ public class EoRoot extends EoChild {
         return new EoRoot(value, new Models(cache, rootClasses));
     }
 
+    public static EoRoot ofClassName(final ConfigMaps cache, String... rootClasses)  {
+        Models models = new Models(cache, rootClasses);
+        if (!models.isCreate()) {
+            throw new EoException("Could not create value from " + models.toString());
+        }
+        Object value = models.create();
+        return new EoRoot(value, new Models(cache, rootClasses));
+    }
+
     public static EoRoot ofClass(final ConfigMaps cache, final Object rootValue, Class... rootClasses)  {
         Models rootModels  = new Models(cache, rootClasses);
         if (rootModels.isScalar()) {

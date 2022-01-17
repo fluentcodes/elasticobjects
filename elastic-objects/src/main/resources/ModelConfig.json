@@ -1,9 +1,10 @@
-{
-  "Arrays": {
+[
+  {
     "configModelKey": "ModelConfigList",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
+    "naturalId": "Arrays",
     "packagePath": "java.util",
     "modelKey": "Arrays",
     "properties": {
@@ -12,7 +13,7 @@
     "shapeType": "LIST",
     "author": "java"
   },
-  "Call": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": [
@@ -30,6 +31,7 @@
     ],
     "expose": "NONE",
     "description": "Basic interface for calls ",
+    "naturalId": "Call",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "Call",
     "properties": {
@@ -39,11 +41,12 @@
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
   },
-  "Class": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
+    "naturalId": "Class",
     "packagePath": "java.lang",
     "modelKey": "Class",
     "properties": {
@@ -52,12 +55,13 @@
     "shapeType": "SCALAR",
     "author": "java"
   },
-  "ConfigBean": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": "id, description, naturalId, creationDate, author, expose, module, moduleScope, scope, configModelKey",
     "expose": "NONE",
     "description": "The basic bean class for the configuration classes. Defines properies map for individual extensions.  ",
+    "naturalId": "ConfigBean",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ConfigBean",
     "properties": {
@@ -67,7 +71,7 @@
     "author": "Werner Diwischek",
     "creationDate": 1608073200000
   },
-  "Config": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": {
@@ -101,6 +105,7 @@
     },
     "expose": "NONE",
     "description": "Basic cache as super object for other cached items. ",
+    "naturalId": "Config",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "Config",
     "properties": {
@@ -111,11 +116,12 @@
     "author": "Werner Diwischek",
     "creationDate": 1608073200000
   },
-  "ExecutorCall": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Facade execution ",
+    "naturalId": "ExecutorCall",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "ExecutorCall",
     "properties": {
@@ -124,12 +130,13 @@
     "shapeType": "OBJECT",
     "author": "Werner Diwischek"
   },
-  "Expose": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Enum with different exposing types for filter delivery types.",
+    "naturalId": "Expose",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "Expose",
     "properties": {
@@ -138,7 +145,7 @@
     "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
-  "FieldBean": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": "fieldKey, modelKeys, FieldBean.properties",
@@ -146,6 +153,7 @@
     "superKey": "ConfigBean",
     "expose": "NONE",
     "description": "The basic bean container class for the configuration class@FieldConfig. Also used as a base for building source code. ",
+    "naturalId": "FieldBean",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldBean",
     "properties": {
@@ -155,13 +163,14 @@
     "author": "Werner Diwischek",
     "creationDate": 1607468400000
   },
-  "FieldBeanProperties": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": "default, final, fieldName, jsonIgnore, generated, notNull, override, property, super, javascriptType, min, max, staticName, transient, unique",
     "interfaces": "FieldPropertiesInterface",
     "expose": "NONE",
     "description": "The basic bean container class for the configuration class@FieldConfig. Also used as a base for building source code. ",
+    "naturalId": "FieldBeanProperties",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldBeanProperties",
     "properties": {
@@ -171,7 +180,7 @@
     "author": "Werner Diwischek",
     "creationDate": 1607468400000
   },
-  "FieldConfig": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": {
@@ -189,6 +198,7 @@
     "superKey": "Config",
     "expose": "NONE",
     "description": "Immutabel EO field configuration will be initalized by @FieldBean object.",
+    "naturalId": "FieldConfig",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldConfig",
     "properties": {
@@ -200,12 +210,13 @@
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
   },
-  "FieldConfigObject": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "superKey": "FieldConfig",
     "expose": "NONE",
     "description": "Immutable EO field configuration for object access with setter and getter will be initalized by @FieldBean object.",
+    "naturalId": "FieldConfigObject",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldConfigObject",
     "properties": {
@@ -217,12 +228,13 @@
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
   },
-  "FieldConfigMap": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "superKey": "FieldConfig",
     "expose": "NONE",
     "description": "Immutable EO field configuration for map access methods will be initalized by @FieldBean object.",
+    "naturalId": "FieldConfigMap",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldConfigMap",
     "properties": {
@@ -234,7 +246,7 @@
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
   },
-  "FieldConfigProperties": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": {
@@ -294,7 +306,7 @@
         "final": true,
         "property": false
       },
-      "unique":{
+      "unique": {
         "final": true,
         "property": false
       }
@@ -302,6 +314,7 @@
     "interfaces": "FieldPropertiesInterface",
     "expose": "NONE",
     "description": "Immutabel EO field configuration will be initalized by @FieldBean object.",
+    "naturalId": "FieldConfigProperties",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldConfigProperties",
     "properties": {
@@ -311,12 +324,13 @@
     "author": "Werner Diwischek",
     "creationDate": 1539727200000
   },
-  "FieldInterface": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": "fieldKey, modelKeys",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
+    "naturalId": "FieldInterface",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldInterface",
     "properties": {
@@ -327,12 +341,13 @@
     "author": "Werner Diwischek",
     "creationDate": 1600466400000
   },
-  "FieldPropertiesInterface": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": "notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
+    "naturalId": "FieldPropertiesInterface",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "FieldPropertiesInterface",
     "properties": {
@@ -343,11 +358,12 @@
     "author": "Werner Diwischek",
     "creationDate": 1600466400000
   },
-  "HashMap": {
+  {
     "configModelKey": "ModelConfigMap",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
+    "naturalId": "HashMap",
     "packagePath": "java.util",
     "modelKey": "HashMap",
     "properties": {
@@ -356,10 +372,11 @@
     "shapeType": "MAP",
     "author": "java"
   },
-  "KeepCalls": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "elastic-objects",
     "moduleScope": "main",
+    "naturalId": "KeepCalls",
     "expose": "NONE",
     "description": "Enum for templates to keep the template directives in the template result as a comment. ",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.templates",
@@ -370,7 +387,7 @@
     "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
-  "ModelBean": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": {
@@ -399,6 +416,7 @@
     "superKey": "ConfigBean",
     "expose": "WEB",
     "description": "A bean container class for Model values",
+    "naturalId": "ModelBean",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelBean",
     "properties": {
@@ -406,7 +424,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "ModelBeanProperties": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": {
@@ -430,6 +448,7 @@
     "interfaces": "ModelPropertiesInterface",
     "expose": "WEB",
     "description": "A bean container class for Model values",
+    "naturalId": "ModelBeanProperties",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelBeanProperties",
     "properties": {
@@ -437,7 +456,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "ModelConfig": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": {
@@ -456,6 +475,7 @@
       "ModelConfig.properties": {
         "final": true
       },
+      "naturalId": {},
       "packagePath": {
         "override": true,
         "final": true
@@ -469,6 +489,7 @@
     "superKey": "Config",
     "expose": "NONE",
     "description": "Model config object.",
+    "naturalId": "ModelConfig",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfig",
     "properties": {
@@ -477,7 +498,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "ModelConfigProperties": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": {
@@ -509,6 +530,7 @@
     "interfaces": "ModelPropertiesInterface",
     "expose": "NONE",
     "description": "Table definitions with pojo.",
+    "naturalId": "ModelConfigProperties",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfigProperties",
     "properties": {
@@ -518,11 +540,12 @@
     },
     "author": "Werner Diwischek"
   },
-  "ModelInterface": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Elementary model properties.",
+    "naturalId": "ModelInterface",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelInterface",
     "properties": {
@@ -531,11 +554,12 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "ModelPropertiesInterface": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Elementary model properties.",
+    "naturalId": "ModelPropertiesInterface",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelPropertiesInterface",
     "properties": {
@@ -544,12 +568,13 @@
     "shapeType": "INTERFACE",
     "author": "Werner Diwischek"
   },
-  "ModelConfigList": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "superKey": "ModelConfig",
     "expose": "NONE",
     "description": "List class wrapper for create, get and set.",
+    "naturalId": "ModelConfigList",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfigList",
     "properties": {
@@ -558,12 +583,13 @@
     },
     "author": "Werner Diwischek"
   },
-  "ModelConfigMap": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "superKey": "ModelConfig",
     "expose": "NONE",
     "description": "Map class wrapper for for create, get and set.",
+    "naturalId": "ModelConfigMap",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfigMap",
     "properties": {
@@ -572,12 +598,13 @@
     },
     "author": "Werner Diwischek"
   },
-  "ModelConfigObject": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "superKey": "ModelConfig",
     "expose": "NONE",
     "description": "Class definitions for an object with getters and setters.",
+    "naturalId": "ModelConfigObject",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfigObject",
     "properties": {
@@ -587,12 +614,13 @@
     },
     "author": "Werner Diwischek"
   },
-  "ModelConfigScalar": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "superKey": "ModelConfig",
     "expose": "NONE",
     "description": "Class definitions for a scalar.",
+    "naturalId": "ModelConfigScalar",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ModelConfigScalar",
     "properties": {
@@ -601,11 +629,12 @@
     },
     "author": "Werner Diwischek"
   },
-  "Models": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "A list of models to specify model configs for a path.",
+    "naturalId": "Models",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "Models",
     "properties": {
@@ -614,11 +643,12 @@
     },
     "author": "Werner Diwischek"
   },
-  "Object": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
+    "naturalId": "Object",
     "packagePath": "java.lang",
     "modelKey": "Object",
     "properties": {
@@ -627,11 +657,12 @@
     "shapeType": "NONE",
     "author": "java"
   },
-  "Path": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "A path with useful methonds. ",
+    "naturalId": "Path",
     "packagePath": "org.fluentcodes.projects.elasticobjects",
     "modelKey": "Path",
     "properties": {
@@ -640,7 +671,7 @@
     "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
-  "PathPattern": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": [
@@ -648,6 +679,7 @@
     ],
     "expose": "NONE",
     "description": "A list of paths to filter object hierarchy.",
+    "naturalId": "PathPattern",
     "packagePath": "org.fluentcodes.projects.elasticobjects",
     "modelKey": "PathPattern",
     "properties": {
@@ -656,11 +688,12 @@
     "shapeType": "SCALAR_SERIALIZED",
     "author": "Werner Diwischek"
   },
-  "PermissionInterface": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Interface with permissions methods ",
+    "naturalId": "PermissionInterface",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
     "modelKey": "PermissionInterface",
     "shapeType": "INTERFACE",
@@ -670,12 +703,13 @@
     },
     "creationDate": 1608073200000
   },
-  "Scope": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Enum with different Scopes to environment specific caches.",
+    "naturalId": "Scope",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "Scope",
     "properties": {
@@ -684,12 +718,13 @@
     "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
-  "ShapeTypes": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
     "description": "Enum with different shapetypes like SCALAR or BEAN. ",
+    "naturalId": "ShapeTypes",
     "packagePath": "org.fluentcodes.projects.elasticobjects.models",
     "modelKey": "ShapeTypes",
     "properties": {
@@ -698,11 +733,13 @@
     "shapeType": "ENUM",
     "author": "Werner Diwischek"
   },
-  "Short": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
+    "naturalId": "",
+    "naturalId": "Short",
     "packagePath": "java.lang",
     "modelKey": "Short",
     "properties": {
@@ -711,24 +748,28 @@
     "shapeType": "SCALAR",
     "author": "java"
   },
-  "StringBuffer": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
+    "naturalId": "StringBuffer",
     "packagePath": "java.lang",
     "modelKey": "StringBuffer",
+    "naturalId": "",
     "properties": {
       "create": false
     },
     "shapeType": "SCALAR",
     "author": "java"
   },
-  "StringBuilder": {
+  {
     "configModelKey": "ModelConfigScalar",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
+    "naturalId": "StringBuilder",
+    "naturalId": "",
     "packagePath": "java.lang",
     "modelKey": "StringBuilder",
     "properties": {
@@ -737,11 +778,13 @@
     "shapeType": "SCALAR",
     "author": "java"
   },
-  "TreeMap": {
+  {
     "configModelKey": "ModelConfigMap",
     "module": "elastic-objects",
     "moduleScope": "main",
     "expose": "NONE",
+    "naturalId": "TreeMap",
+    "naturalId": "",
     "packagePath": "java.util",
     "modelKey": "TreeMap",
     "properties": {
@@ -750,4 +793,4 @@
     "shapeType": "MAP",
     "author": "java"
   }
-}
+]

@@ -320,7 +320,6 @@
   "modelKey": "XlsxReadCall",
   "module": "eo-xlsx",
   "moduleScope": "main",
-  "naturalId": "XlsxReadCall",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls.xlsx",
   "properties": {
     "abstract": false,

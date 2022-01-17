@@ -1,5 +1,5 @@
-{
-  "AnObject": {
+[
+  {
     "configModelKey": "ModelConfigObject",
     "module": "elastic-objects-test",
     "moduleScope": "main",
@@ -23,6 +23,7 @@
     ],
     "expose": "WEB",
     "description": "Model class with different types of fields including generic collections, maps and @ASubObject objects.",
+    "naturalId": "AnObject",
     "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
     "modelKey": "AnObject",
     "properties": {
@@ -30,7 +31,7 @@
     },
     "author": "Werner Diwischek"
   },
-  "ASubObject": {
+  {
     "configModelKey": "ModelConfigObject",
     "module": "elastic-objects-test",
     "moduleScope": "main",
@@ -54,6 +55,7 @@
     },
     "expose": "WEB",
     "description": "A sub object as an example.",
+    "naturalId": "ASubObject",
     "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
     "modelKey": "ASubObject",
     "properties": {
@@ -61,5 +63,28 @@
     },
     "author": "Werner Diwischek",
     "creationDate": 1605826800000
+  },
+  {
+    "configModelKey": "ModelConfigMap",
+    "module": "elastic-objects-test",
+    "moduleScope": "main",
+    "fields": {
+      "id": {
+        "final": false,
+        "staticName": false
+      },
+      "myString": {
+        "final": false
+      }
+    },
+    "expose": "WEB",
+    "description": "A map with fields as a test example.",
+    "modelKey": "AnObjectMap",
+    "naturalId": "AnObjectMap",
+    "properties": {
+      "create": true
+    },
+    "author": "Werner Diwischek",
+    "creationDate": 1605826800000
   }
-}
+]

@@ -1,5 +1,5 @@
-{
-  "XlsxReadCall": {
+[
+  {
     "module": "eo-xlsx",
     "moduleScope": "main",
     "superKey": "FileReadCall",
@@ -7,10 +7,11 @@
     "expose": "WEB",
     "description": "Read an Excel sheet specified by fileConfigKey referencing to a @XlsxConfig configuration.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.xlsx",
+    "naturalId": "XlsxReadCall",
     "modelKey": "XlsxReadCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   }
-}
+]

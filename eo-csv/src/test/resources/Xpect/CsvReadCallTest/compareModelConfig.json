@@ -343,7 +343,6 @@
   "modelKey": "CsvReadCall",
   "module": "eo-csv",
   "moduleScope": "main",
-  "naturalId": "CsvReadCall",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls.csv",
   "properties": {
     "abstract": false,

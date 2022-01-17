@@ -6,7 +6,7 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>eo-xlsx</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.3</version>
+    <version>0.9.4</version>
     <name>EO - Elastic objects Xlsx calls</name>
     <description>Xlsx calls for Elastic Objects</description>
 
@@ -21,12 +21,12 @@
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>eo-calls</artifactId>
-            <version>0.9.3</version>
+            <version>0.9.4</version>
         </dependency>
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>elastic-objects-test</artifactId>
-            <version>0.9.3</version>
+            <version>0.9.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>

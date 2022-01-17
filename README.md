@@ -20,7 +20,7 @@ The [core](elastic-objects) has actually no dependencies beside Log4j and is rat
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>elastic-objects</artifactId>
-        <version>0.9.3</version>
+        <version>0.9.4</version>
     </dependency>
 
 <div align="right" id="mvn">
@@ -86,7 +86,7 @@ One can remove a branch from the object tree in a path way.
 The myString field has a max size of 20. It will be checked when set a value:
 
     EoRoot root = EoRoot.ofClass(CONFIG_MAPS, AnObject.class);
-    assertEquals(AnObject.class, root.getModelClass());g
+    assertEquals(AnObject.class, root.getModelClass());
     Assertions.assertThatThrownBy(
             ()->{root.set("test01234567890123456789", "myString");})
             .isInstanceOf(EoException.class)
@@ -127,47 +127,31 @@ This example has also an interactive example at https://www.elasticobjects.org/e
 
 The default json representation contains keys of the model configurations:
 
-    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-    EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
-    assertEquals("{\n" +
-            "  \"_rootmodel\": \"AnObject\",\n" +
-            "  \"(AnObject)myAnObject\": {\n" +
-            "    \"myString\": \"test\"\n" +
-            "  }\n" +
-            "}", root.toJson());
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+        EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
+        assertEquals("{\n" +
+                "  \"_rootmodel\": \"AnObject\",\n" +
+                "  \"(AnObject)myAnObject\": {\n" +
+                "    \"myString\": \"test\"\n" +
+                "  }\n" +
+                "}", root.toJson());
 
 #### From JSON
 
 This typed json will mapped to the appropriate object class when deserialized:
 
-    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
-    root.set("test", "myAnObject", "myString");
-    String json = root.toJson();      
-     
-    EoRoot rootFromJson = EoRoot.ofValue(CONFIG_MAPS, json);       
-    assertEquals(AnObject.class, rootFromJson.get().getClass());
-    
-    AnObject myAnObject = (AnObject)rootFromJson.get();
-    assertEquals("test", myAnObject.getMyAnObject().getMyString());
-
-#### Compare
-The comparision of two objects with same key/values also of different types are rather simple to implement.
-
-Here a map will be compared with AnObject.
-
-    final Map map = new HashMap();
-    map.put("myString", "value1");
-
-    final AnObject anObject = new AnObject();
-    anObject.setMyString("value2");
-
-    final EoRoot rootMap = EoRoot.ofValue(CONFIG_MAPS, map);
-    final EoRoot rootAnObject = EoRoot.ofValue(CONFIG_MAPS, anObject);
-
-    assertEquals("/myString: value1 <> value2", rootMap.compare(rootAnObject));
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
+        root.set("test", "myAnObject", "myString");
+        String json = root.toJson();      
+         
+        EoRoot rootFromJson = EoRoot.ofValue(CONFIG_MAPS, json);       
+        assertEquals(AnObject.class, rootFromJson.get().getClass());
+        
+        AnObject myAnObject = (AnObject)rootFromJson.get();
+        assertEquals("test", myAnObject.getMyAnObject().getMyString());
 
 ## Calls (eo-calls)
-### eo-calls Module
+### Module
 The [calls](elastic-objects) module with a jar size of about 150 KB offers some basic calls for files and directories, simple csv or templates with a role permission concept.
 
     <dependency>
@@ -209,30 +193,28 @@ The generic execute method has EO as input. Here we set the field key "source" t
  />&nbsp;SinusValueCall</a></nobreak>.
 </p>
 
-    final Call call = new SinusValueCall();
-    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new HashMap());
-    EOInterfaceScalar child = root.set(2.1, "source");
-    assertEquals(2.1, child.get());
+        final Call call = new SinusValueCall();
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new HashMap());
+        EOInterfaceScalar child = root.set(2.1, "source");
+        assertEquals(2.1, child.get());
 
-    assertEquals(Double.valueOf(0.8632093666488737), call.execute(child));
+        assertEquals(Double.valueOf(0.8632093666488737), call.execute(child));
 
 #### JSON Example
 
 This call could be also embedded in some arbitrary json using the "sourcePath" as input. The value target will be used implicitly as "targetPath" value.
 
-    EoRoot root = EoRoot.ofValue(CONFIG_MAPS, "{\n" +
-            "  \"(Double)source\":1,\n" +
-            "  \"(SinusValueCall)/target\": {\n" +
-            "    \"sourcePath\": \"/source\"\n" +
-            "  }\n" +
-            "}");
-    root.execute();
-    assertEquals("{\n" +
-            "  \"source\": 1.0,\n" +
-            "  \"target\": 0.8414709848078965\n" +
-            "}", root.toJson(JSONSerializationType.STANDARD));
-
-This example has also an interactive example at https://www.elasticobjects.org/examples/SinusValueCall.html.
+        EoRoot root = EoRoot.ofValue(CONFIG_MAPS, "{\n" +
+                "  \"(Double)source\":1,\n" +
+                "  \"(SinusValueCall)/target\": {\n" +
+                "    \"sourcePath\": \"/source\"\n" +
+                "  }\n" +
+                "}");
+        root.execute();
+        assertEquals("{\n" +
+                "  \"source\": 1.0,\n" +
+                "  \"target\": 0.8414709848078965\n" +
+                "}", root.toJson(JSONSerializationType.STANDARD));
 
 #### Template Example
 
@@ -248,22 +230,18 @@ This json will be interpreted in an arbitrary text file via template call with t
         Call call = new TemplateCall(template);
         assertEquals("START -0.8414709848078965 - END", call.execute(root));
 
-This example has also an interactive example at https://www.elasticobjects.org/examples/SinusValueCallTemplate.html.
-
 ## Csv (eo-csv)
 [eo-csv](eo-csv) offers calls and configurations for reading and writing csv files  using [OpenCsv](https://mvnrepository.com/artifact/com.opencsv/opencsv).
 
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>eo-csv</artifactId>
-        <version>0.9.3</version>
+        <version>0.9.4</version>
     </dependency>
 
 <div align="right" style="font-size:9px">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-csv">mvn repository</a>
 </div>
-
-Interactive examples you can find  at https://www.elasticobjects.org/examples/ListCall.html.
 
 ## Database (eo-db)
 [eo-db](eo-db)
@@ -272,11 +250,13 @@ is experimental providing the execution of sql configurations as list or as quer
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>eo-db</artifactId>
-        <version>0.9.3</version>
+        <version>0.9.4</version>
     </dependency>
 
 <div align="right">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-db" style="font-size:9px;">mvn repository</font></a></div>
+
+Interactive examples you can find  at https://www.elasticobjects.org/examples/DbCall.html.
 
 ## Excel (eo-xlsx)
 [eo-xlsx](eo-xlsx) offers calls and configurations for reading and writing xlsx files using [Apache POI](https://mvnrepository.com/artifact/org.apache.poi/poi).
@@ -284,12 +264,9 @@ is experimental providing the execution of sql configurations as list or as quer
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>eo-xlsx</artifactId>
-        <version>0.9.3</version>
+        <version>0.9.4</version>
     </dependency>
 
-<a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-xlsx" style="font-size:9px;">mvn repository</font></a></div>
-
-Interactive examples you can find  at https://www.elasticobjects.org/examples/ExcelCall.html.
 
 ## Other Modules
 ### elastic-objects-test
@@ -542,7 +519,7 @@ is equivalent to
 ## Conclusion
 
 <p>
-The project has now version 0.9.3 and it's good enough for a proof of concept. For
+The project has now version 0.9.4 and it's good enough for a proof of concept. For
 the microservice architectures it offer an incredible flexibility compared with
 RPC API solutions.
 </p>

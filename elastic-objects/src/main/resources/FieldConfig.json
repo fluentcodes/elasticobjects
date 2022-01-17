@@ -1,211 +1,235 @@
-{
-  "abstract": {
+[
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "If true the generated model will be initially set as abstract class.",
     "expose": "NONE",
+    "naturalId":"abstract",
     "fieldKey": "abstract"
   },
-  "author": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The author of the class.",
     "expose": "WEB",
+    "naturalId":"author",
     "fieldKey": "author",
     "max": 256
   },
-  "condition": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A condition for calls. ",
     "expose": "WEB",
+    "naturalId":"condition",
     "fieldKey": "condition",
     "max": 1000
   },
-  "configModelKey": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The model of the configuration to determine type.",
     "expose": "NONE",
+    "naturalId":"configModelKey",
     "fieldKey": "configModelKey",
     "max": 80
   },
-  "create": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "If the model could be . ",
     "expose": "NONE",
+    "naturalId":"create",
     "fieldKey": "create"
   },
-  "creationDate": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Date",
     "description": "Used to define the creation of an item.",
     "expose": "WEB",
+    "naturalId":"creationDate",
     "fieldKey": "creationDate"
   },
-  "dbAnnotated": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "If true a db annotation will be generated for java instance vars. ",
     "expose": "NONE",
+    "naturalId":"dbAnnotated",
     "fieldKey": "dbAnnotated"
   },
-  "default": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "Set when an default implementation is defined within an interface. ",
     "expose": "NONE",
+    "naturalId":"default",
     "fieldKey": "default"
   },
-  "defaultImplementation": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "Set when an default implementation is defined within an interface.",
     "expose": "WEB",
     "max": 80,
+    "naturalId":"defaultImplementation",
     "fieldKey": "defaultImplementation"
   },
-  "description": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A description of the model used by every model extending BaseClassImpl. ",
     "expose": "WEB",
+    "naturalId":"description",
     "fieldKey": "description",
     "max": 512
   },
-  "duration": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Long",
     "description": "The duration of a call.",
     "expose": "WEB",
+    "naturalId":"duration",
     "fieldKey": "duration"
   },
-  "expose": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Expose",
     "description": "expose",
     "expose": "WEB",
+    "naturalId":"expose",
     "fieldKey": "expose"
   },
-  "ModelBean.fields": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Map,FieldBean",
     "description": "A fieldBean map",
     "expose": "NONE",
+    "naturalId":"ModelBean.fields",
     "fieldKey": "fieldBeans"
   },
-  "ModelConfig.fields": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Map,FieldConfig",
     "description": "A fieldConfig map for with @FieldConfig",
     "expose": "NONE",
+    "naturalId":"ModelConfig.fields",
     "fieldKey": "fieldBeans"
   },
-  "fieldKey": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "fieldKey",
     "expose": "NONE",
+    "naturalId":"fieldKey",
     "fieldKey": "fieldKey",
     "max": 80
   },
-  "fieldName": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A name for different purposes depending on the model.",
     "expose": "NONE",
+    "naturalId":"fieldName",
     "fieldKey": "fieldName",
     "properties": {
       "max": 80
     }
   },
-  "FieldBean.properties": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "FieldBeanProperties",
     "description": "Mutable field values to create FieldConfig.properties.",
     "expose": "NONE",
+    "naturalId":"FieldBean.properties",
     "fieldKey": "properties"
   },
-  "FieldConfig.properties": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "FieldConfigProperties",
     "description": "Immutable field values.",
     "expose": "NONE",
+    "naturalId":"FieldConfig.properties",
     "fieldKey": "properties"
   },
-  "final": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "If true only a setter for the private variable is generated. When setting a value in an EO context an exception is thrown. ",
     "expose": "NONE",
+    "naturalId":"final",
     "fieldKey": "final",
     "properties": {
     }
   },
-  "generated": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "Indicates a generated value?! A generated flag for @FieldBean",
     "expose": "NONE",
+    "naturalId":"generated",
     "fieldKey": "generated"
   },
-  "id": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Long",
     "description": "The numeric id of an instance of a class.",
     "expose": "WEB",
+    "naturalId":"id",
     "fieldKey": "id",
     "properties": {
       "unique": true,
       "notNull": true
     }
   },
-  "idKey": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "Set the name for an id independent of the id.",
     "expose": "WEB",
     "max": 80,
+    "naturalId":"idKey",
     "fieldKey": "idKey"
   },
-  "interfaces": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A comma separeted list of interface keys. ",
     "expose": "NONE",
+    "naturalId":"interfaces",
     "fieldKey": "interfaces",
     "max": 256
   },
-  "javascriptType": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The type of javascript is derived from the java type.",
     "expose": "NONE",
+    "naturalId":"javascriptType",
     "fieldKey": "javascriptType",
 
     "properties": {
@@ -214,130 +238,136 @@
       "final": true
     }
   },
-  "jsonIgnore": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "jsonIgnore",
     "expose": "NONE",
+    "naturalId":"jsonIgnore",
     "fieldKey": "jsonIgnore"
   },
-  "keepCall": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "KeepCalls",
     "description": "Will use an existing  result file beforehand as template. ",
     "expose": "WEB",
+    "naturalId":"keepCall",
     "fieldKey": "keepCall"
   },
-  "max": {
-    "module": "elastic-objects",
-    "moduleScope": "main",
-    "modelKeys": "Integer",
-    "description": "Length of a field.",
-    "expose": "WEB",
-    "fieldKey": "length"
-  },
-  "logLevel": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "LogLevel",
     "description": "logLevel",
     "expose": "WEB",
+    "naturalId":"logLevel",
     "fieldKey": "logLevel"
   },
-  "max": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Integer",
     "description": "A maximal length for field string types",
     "expose": "NONE",
+    "naturalId":"max",
     "fieldKey": "max"
   },
-  "min": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Integer",
     "description": "A minimal length for field string types",
     "expose": "NONE",
+    "naturalId":"min",
     "fieldKey": "min"
   },
-  "ModelBean.properties": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "ModelBeanProperties",
     "description": "Mutable model values to create ModelConfig.properties.",
     "expose": "NONE",
+    "naturalId":"ModelBean.properties",
     "fieldKey": "properties"
   },
-  "ModelConfig.properties": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "ModelConfigProperties",
     "description": "Immutable model values.",
     "expose": "NONE",
+    "naturalId":"ModelConfig.properties",
     "fieldKey": "properties"
   },
-  "modelKey": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The model name for the bean/action object @ModelConfig.",
     "expose": "NONE",
+    "naturalId":"modelKey",
     "fieldKey": "modelKey",
     "max": 80
   },
-  "modelKeys": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A string representation for a list of modelsConfig.",
     "expose": "NONE",
+    "naturalId":"modelKeys",
     "fieldKey": "modelKeys",
     "max": 256
   },
-  "models": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A string representation for a list of model keys.",
     "expose": "WEB",
+    "naturalId":"models",
     "fieldKey": "models",
     "max": 512
   },
-  "module": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "Defines a target module where generating occurs. ",
     "expose": "WEB",
+    "naturalId":"module",
     "fieldKey": "module",
     "max": 80
   },
-  "moduleScope": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
     "expose": "WEB",
+    "naturalId":"moduleScope",
     "fieldKey": "moduleScope",
     "max": 32
   },
-  "name": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The name field of a class. ",
     "expose": "WEB",
+    "naturalId":"name",
     "fieldKey": "name",
     "max": 80
   },
-  "naturalId": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The natural key in @Base",
     "expose": "NONE",
+    "naturalId":"naturalId",
     "fieldKey": "naturalId",
     "properties": {
       "max": 80,
@@ -345,174 +375,194 @@
       "notNull": true
     }
   },
-  "naturalKeys": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A comma separated list of fields used for natural id.",
     "expose": "WEB",
     "max": 240,
+    "naturalId":"naturalKeys",
     "fieldKey": "naturalKeys"
   },
-  "notNull": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "notNull",
     "expose": "NONE",
+    "naturalId":"notNull",
     "fieldKey": "notNull"
   },
-  "override": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "Indicates that a super or interface defines the method already but is overwritten. When java is generated an override annotation is set. ",
     "expose": "NONE",
+    "naturalId":"override",
     "fieldKey": "override"
   },
-  "overwrite": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "A overwrite field flag for @Call.",
     "expose": "WEB",
+    "naturalId":"overwrite",
     "fieldKey": "overwrite"
   },
-  "packagePath": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "packagePath",
     "expose": "NONE",
+    "naturalId":"packagePath",
     "fieldKey": "packagePath",
     "max": 124
   },
-  "postpend": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "postpend String when executed by ExecutorCallImpl",
     "expose": "NONE",
+    "naturalId":"postpend",
     "fieldKey": "postpend",
     "max": 256
   },
-  "prepend": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "prepend String when executed by ExecutorCallImpl",
     "expose": "NONE",
+    "naturalId":"prepend",
     "fieldKey": "prepend",
     "max": 256
   },
-  "property": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "Indicates that a field is a config property map value which can be implemented as a default interface method. ",
     "expose": "NONE",
+    "naturalId":"property",
     "fieldKey": "property"
   },
-  "scope": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "List,Scope",
     "description": "A scope for the cache value.",
     "expose": "WEB",
+    "naturalId":"scope",
     "fieldKey": "scope"
   },
-  "serialized": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The serialized field for @{link pathPattern}.",
     "expose": "NONE",
+    "naturalId":"serialized",
     "fieldKey": "serialized",
     "max": 2056
   },
-  "shapeType": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "ShapeTypes",
     "description": "shapeType",
     "expose": "NONE",
+    "naturalId":"shapeType",
     "fieldKey": "shapeType"
   },
-  "sourcePath": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A sourcePath where EO offers it's input value when the execution starts.",
     "expose": "WEB",
+    "naturalId":"sourcePath",
     "fieldKey": "sourcePath",
     "max": 80
   },
-  "startCondition": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A condition for calls. ",
     "expose": "WEB",
+    "naturalId":"startCondition",
     "fieldKey": "startCondition",
     "max": 1000
   },
-  "staticName": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "staticName",
     "expose": "NONE",
+    "naturalId":"staticName",
     "fieldKey": "staticName"
   },
-  "super": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "Marker to show, that the field is implemented in a super class. ",
     "expose": "NONE",
+    "naturalId":"super",
     "fieldKey": "super"
   },
-  "superKey": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A key for the super class of a class.",
     "expose": "NONE",
+    "naturalId":"superKey",
     "fieldKey": "superKey",
     "max": 256
   },
-  "table": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A persistence name.",
     "expose": "WEB",
     "max": 240,
+    "naturalId":"table",
     "fieldKey": "table"
   },
-  "targetPath": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "A targetPath where the result of the execution will be mapped. If value is \"_asString\" no mapping occured but a seralized version is returned as value to embed it in the resulting file. Path parameters could be set dynamically with =&gt;[path]. in any combination.",
     "expose": "WEB",
+    "naturalId":"targetPath",
     "fieldKey": "targetPath",
     "max": 80
   },
-  "transient": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "Will ignore field when a persistiong occure. Create a transient annotation when java is generated. ",
     "expose": "NONE",
+    "naturalId":"transient",
     "fieldKey": "transient"
   },
-  "unique": {
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "unique",
     "expose": "NONE",
+    "naturalId":"unique",
     "fieldKey": "unique"
   }
-}
+]

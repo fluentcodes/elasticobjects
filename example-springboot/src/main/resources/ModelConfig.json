@@ -1,5 +1,5 @@
-{
-  "ConfigLinkCall": {
+[
+  {
     "module": "example-springboot",
     "moduleScope": "main",
     "interfaces": "SimpleCommand",
@@ -7,13 +7,14 @@
     "expose": "WEB",
     "description": "Create a link to a config page and if its FileConfig or ModelConfig to the github source.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "ConfigLinkCall",
     "modelKey": "ConfigLinkCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "GithubLinkCall": {
+  {
     "module": "example-springboot",
     "moduleScope": "main",
     "fields": [
@@ -24,13 +25,14 @@
     "expose": "WEB",
     "description": "Create a link, if its FileConfig or ModelConfig, to the github source.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "GithubLinkCall",
     "modelKey": "GithubLinkCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   },
-  "TheGreetingCall": {
+  {
     "module": "example-springboot",
     "moduleScope": "main",
     "fields": [
@@ -41,10 +43,11 @@
     "expose": "WEB",
     "description": "An example for a simple call with a field.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "TheGreetingCall",
     "modelKey": "TheGreetingCall",
     "properties": {
       "create": true
     },
     "author": "Werner Diwischek"
   }
-}
+]

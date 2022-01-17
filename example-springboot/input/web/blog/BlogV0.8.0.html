@@ -1,0 +1,49 @@
+<h5>The log for V0.8.0.</h5>
+<p>
+    <strong>Target of this version to complete the java generation of the classes, so focus will on the builder module.</strong>
+</p>
+<p align="right"><em>3.11.2020</em></p>
+<p>
+    Finished a first refactoring of the Templates to generate base classes out of the
+    #{GithubLinkCall->NONE, BR||eo.xlsx}.
+</p>
+<p>The following classes are generated now in parts.
+<ul>
+    <li>#{GithubLinkCall->ModelConfig, Call}. as Interface</li>
+    <li>#{GithubLinkCall->ModelConfig, ConfigImpl}. as configuration with final parts</li>
+    <li>#{GithubLinkCall->ModelConfig, AnObject}. as example bean</li>
+</ul>
+The call directives are embedded in the target file as comments. This allows to use it instead of a template
+and edit individual content outside the generated parts.
+</p>
+<p>
+The following start templates were used to generate the java classes
+<ul>
+<li>#{GithubLinkCall->NONE, BR|templates.java.interface|INTERFACECreate.tpl}. for interfaces</li>
+<li>#{GithubLinkCall->NONE, BR|templates.java.config|CONFIGCreate.tpl}. for configurations</li>
+<li>#{GithubLinkCall->NONE, BR|templates.java.bean|BEANCreate.tpl}. for beans</li>
+</ul>
+</p>
+<p>The basic call class
+    #{GithubLinkCall->NONE, B|calls.generate.java|GenerateJavaCall.java}. will need some time to a final version.
+    But the main problem to get and merge field information are working.
+</p>
+<p>
+    To map elementary field values like "final" with a boolean value to a special final string value in the target
+    java world there are calls like
+    #{GithubLinkCall->NONE, B|calls.generate.java|JavaFieldFinalCall.java}.
+</p>
+<p>
+    Think these call approach allows some readable template without too much logic to make them unreadable.
+    The same if one want to set macic  values by the call
+    #{GithubLinkCall->NONE, B|calls.generate.java|GenerateJavaCall.java}.. Think that the
+    template parts like
+    #{GithubLinkCall->NONE, BR|templates.java|ALLInstanceVars.tpl}. are fairly readable.
+
+</p>
+
+<p align="right"><em>2.11.2020</em></p>
+
+<p>
+    Started 0.9.4.
+</p>

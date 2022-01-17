@@ -1,28 +1,31 @@
-{
-  "configKey": {
+[
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "Key for configuration @Config",
     "expose": "WEB",
+    "naturalId": "configKey",
     "fieldKey": "configKey",
     "max": 64
   },
-  "greeting": {
+  {
     "module": "example-springboot",
     "moduleScope": "main",
     "modelKeys": "String",
     "description": "The field value for @TheGreetingCall example. ",
     "expose": "NONE",
+    "naturalId": "greeting",
     "fieldKey": "greeting",
     "max": 15
   },
-  "noGithub": {
+  {
     "module": "example-springboot",
     "moduleScope": "main",
     "modelKeys": "Boolean",
     "description": "noGithub",
     "expose": "NONE",
+    "naturalId": "noGithub",
     "fieldKey": "noGithub"
   }
-}
+]

@@ -10,6 +10,9 @@ import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.fluentcodes.projects.elasticobjects.calls.Call.F_TARGET_PATH;
+import static org.fluentcodes.projects.elasticobjects.calls.Call.TARGET_AS_STRING;
+
 public class AttributeHandler extends HandlerAbstract {
     static final Indicators indicator = Indicators.ATTRIBUTES;
     static final Pattern ATTRIBUTE_PATTERN = Pattern.compile("([^=^ ]*)=\"([^\"]*)\"");
@@ -39,6 +42,9 @@ public class AttributeHandler extends HandlerAbstract {
             String key = matcher.group(1);
             String value = matcher.group(2);
             callModel.set(key, call, value);
+        }
+        if (!call.hasTargetPath()) {
+            callModel.set(F_TARGET_PATH, call, TARGET_AS_STRING);
         }
         if (hasContent()) {
             if (call instanceof CallContent) {

@@ -26,5 +26,8 @@ public interface SimpleCommand extends Call {
         if (array.length > 2) {
             setCondition(array[2]);
         }
+        if (!hasTargetPath()) {
+            setTargetPath(TARGET_AS_STRING);
+        }
     }
 }

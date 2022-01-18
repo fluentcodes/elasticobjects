@@ -1,0 +1,18 @@
+<h5><a href="/config/ModelConfig/AnObjectMap">AnObjectMap</a> - Field not Exists</h5>
+<form action="/eo-form" method="post" target="example">
+    <textarea name="eo" style="height:70px">{
+  "_rootmodel": "AnObjectMap",
+  "unknownField": "test"
+}</textarea>
+    <input type="submit" value="post"/>
+</form>
+
+<p>
+    The <a href="/config/ModelConfig/AnObjectMap">AnObjectMap</a> configuration
+    with #{GithubLinkCall->ModelConfig, ModelConfigMap}.
+    the underlying java object is a Map with field definitions.
+</p>
+<p>
+    The field is not defined in the configuration, so
+    an EoException is thrown.
+</p>

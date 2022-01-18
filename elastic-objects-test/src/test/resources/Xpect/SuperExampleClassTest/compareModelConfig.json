@@ -1,4 +1,5 @@
 {
+  "configModelKey": "ModelConfigObject",
   "fields": {
     "id": {
       "fieldKey": "id",

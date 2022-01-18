@@ -20,7 +20,7 @@ The [core](elastic-objects) has actually no dependencies beside Log4j and is rat
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>elastic-objects</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.5-SNAPSHOT</version>
     </dependency>
 
 <div align="right" id="mvn">
@@ -236,7 +236,7 @@ This json will be interpreted in an arbitrary text file via template call with t
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>eo-csv</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.5-SNAPSHOT</version>
     </dependency>
 
 <div align="right" style="font-size:9px">
@@ -250,7 +250,7 @@ is experimental providing the execution of sql configurations as list or as quer
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>eo-db</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.5-SNAPSHOT</version>
     </dependency>
 
 <div align="right">
@@ -264,7 +264,7 @@ Interactive examples you can find  at https://www.elasticobjects.org/examples/Db
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
         <artifactId>eo-xlsx</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.5-SNAPSHOT</version>
     </dependency>
 
 
@@ -519,7 +519,7 @@ is equivalent to
 ## Conclusion
 
 <p>
-The project has now version 0.9.4 and it's good enough for a proof of concept. For
+The project has now version 0.9.5-SNAPSHOT and it's good enough for a proof of concept. For
 the microservice architectures it offer an incredible flexibility compared with
 RPC API solutions.
 </p>

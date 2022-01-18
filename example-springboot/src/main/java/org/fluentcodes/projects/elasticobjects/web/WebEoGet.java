@@ -8,9 +8,8 @@ import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateResourceC
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,73 +17,131 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 
 /**
- * Created by werner.diwischek on 11.12.17.
+ * Get endpoint for example web site.
+ * Will create a TemplateResourceCall json object loading the template ContentPage.
  */
 
 @RestController
 public class WebEoGet {
-    private final static Logger LOG = LogManager.getLogger(WebEoGet.class);
-    //http://www.baeldung.com/spring-value-defaults
+    private static final Logger LOG = LogManager.getLogger(WebEoGet.class);
+    private static final String SELECTED_ITEM = "selectedItem";
+    private static final String CONTENT_DIRECTORY = "contentDirectory";
+
     @Value("${elasticobjects.scope:QS}")
     String scope;
 
     ConfigMaps cache;
+
     @Autowired
     public WebEoGet(ConfigMaps cache) {
         this.cache = cache;
     }
 
-    @RequestMapping(value = "/{selectedItem:.+}.html", method = RequestMethod.GET)
+    /**
+     * A root page with content loaded from input/web/docs
+     *
+     * @param contentName the page name loaded from source path file
+     * @return a processed template page
+     */
+    @GetMapping(value = "/{contentName:.+}.html")
     @ResponseBody
-    public String createRootPage(@PathVariable String selectedItem) {
-        return createPage("docs", selectedItem + ".html");
+    public String createRootPage(@PathVariable String contentName) {
+        return createPage("docs", contentName + ".html");
     }
 
-    @RequestMapping(value = "/eo/{selectedItem:.+}", method = RequestMethod.GET)
+    /**
+     * A blog page with content loaded from input/web/blog.
+     * Some thoughts about elastic objects project.
+     * originally used for version description and not shown actually.
+     *
+     * @param contentName the pagename loaded from source path file
+     * @return a processed template page
+     */
+
+    @GetMapping(value = "/blog/{contentName:.+}")
     @ResponseBody
-    public String createEoPage(@PathVariable String selectedItem) {
-        return createPage("eo", selectedItem);
+    public String createBlogPage(@PathVariable String contentName) {
+        return createPage("blog", contentName);
     }
 
-
-    @RequestMapping(value = "/examples/{directory}/{selectedItem:.+}", method = RequestMethod.GET)
+    /**
+     * An eo page with content loaded from input/web/eo.
+     * These pages primarily describe the usage within an java application.
+     *
+     * @param contentName the pagename loaded from source path file
+     * @return a processed template page
+     */
+    @GetMapping(value = "/eo/{contentName:.+}")
     @ResponseBody
-    public String createExamplesPageWithDirectory(@PathVariable String directory, @PathVariable String selectedItem) {
-        return createPage("examples", directory + "/" + selectedItem);
+    public String createEoPage(@PathVariable String contentName) {
+        return createPage("eo", contentName);
     }
 
-    @RequestMapping(value = "/examples/{selectedItem:.+}", method = RequestMethod.GET)
+    /**
+     * An example page with content loaded from input/web/examples/directory.
+     * These pages primarily describe the usage within an java application.
+     *
+     * @param contentName the page name loaded from source path file
+     * @param directory   the sub directory
+     * @return a processed template page
+     */
+
+    @GetMapping(value = "/examples/{directory}/{contentName:.+}")
     @ResponseBody
-    public String createExamplesPage(@PathVariable String selectedItem) {
-        return createPage("examples", selectedItem);
+    public String createExamplesPageWithDirectory(@PathVariable String directory, @PathVariable String contentName) {
+        return createPage("examples", directory + "/" + contentName);
     }
 
-
-
-    @RequestMapping(value = "/blog/{selectedItem:.+}", method = RequestMethod.GET)
+    /**
+     * An example page with content loaded from input/web/examples.
+     * These pages primarily describe the usage within an java application.
+     *
+     * @param contentName the page name loaded from source path file
+     * @return a processed template page
+     */
+    @GetMapping(value = "/examples/{contentName:.+}")
     @ResponseBody
-    public String createBlogPage(@PathVariable String selectedItem) {
-        return createPage("blog", selectedItem);
+    public String createExamplesPage(@PathVariable String contentName) {
+        return createPage("examples", contentName);
     }
 
-    @RequestMapping(value = "/faq/{selectedItem:.+}", method = RequestMethod.GET)
+    /**
+     * A faq page with content loaded from input/web/faq.
+     * These pages primarily describe question and answers pattern.
+     *
+     * @param contentName the page name loaded from source path file
+     * @return a processed template page
+     */
+    @GetMapping(value = "/faq/{contentName:.+}")
     @ResponseBody
-    public String createFaqPage(@PathVariable String selectedItem) {
-        return createPage("faq", selectedItem);
+    public String createFaqPage(@PathVariable String contentName) {
+        return createPage("faq", contentName);
+    }
+
+    /**
+     * An faq page with content loaded from input/web/faq.
+     * These pages primarily describe question and answers pattern.
+     *
+     * @param contentName the page name loaded from source path file
+     * @return a processed template page
+     */
+    @GetMapping(value = "/howto/{contentName:.+}")
+    @ResponseBody
+    public String createHowToPage(@PathVariable String contentName) {
+        return createPage("howto", contentName);
     }
 
     private String createPage(final String contentDirectory, final String selectedItem) {
         EoRoot eo = EoRoot.of(cache);
         eo.setRoles(Arrays.asList(WebEo.getRoles()));
-        eo.set(selectedItem, "selectedItem");
-        eo.set(contentDirectory, "contentDirectory");
+        eo.set(selectedItem, SELECTED_ITEM);
+        eo.set(contentDirectory, CONTENT_DIRECTORY);
         eo.addCall(new TemplateResourceCall("ContentPage.html"));
-        System.out.println("Request for " + contentDirectory + "/" + selectedItem);
-        LOG.info("Request for " + contentDirectory + "/" + selectedItem);
+
+        LOG.info("Request for {}/{}", contentDirectory, selectedItem);
         try {
             eo.execute();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             LOG.error(e);
             return e.getMessage();
         }
@@ -95,18 +152,17 @@ public class WebEoGet {
         return (String) eo.get(PathElement.TEMPLATE);
     }
 
-
-    //https://stackoverflow.com/questions/16332092/spring-mvc-pathvariable-with-dot-is-getting-truncated
-    @RequestMapping(value = "/config/{configType}/{configSelected:.+}", method = RequestMethod.GET)
+    @GetMapping(value = "/config/{configType}/{configSelected:.+}")
     @ResponseBody
     public String createConfigPage(@PathVariable String configType, @PathVariable String configSelected, @RequestParam(required = false, defaultValue = ".*") String configFilter) {
         EoRoot eo = EoRoot.of(cache);
-        eo.set(configType + " - " + configSelected, "selectedItem");
+
+        eo.set(configType + " - " + configSelected, SELECTED_ITEM);
         eo.set(configFilter, "configFilter");
         eo.set(configType, "configType");
         eo.set(configSelected, "configSelected");
-        System.out.println("Request for " + configType + "/" + configSelected);
-        LOG.info("Request for " + configType + "/" + configSelected);
+
+        LOG.info("Request for {}/{}", configType, configSelected);
         eo.addCall(new TemplateResourceCall("ConfigsPage.html"));
         eo.setRoles(Arrays.asList(WebEo.getRoles()));
 
@@ -116,24 +172,23 @@ public class WebEoGet {
                 LOG.error(eo.getLog());
                 return "Errors occured: " + eo.getLog();
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             LOG.error(e);
             return "Exception thrown: " + e.getMessage();
         }
         return (String) eo.get(PathElement.TEMPLATE);
     }
 
-    @RequestMapping(value = "/configs/{selectedItem:.+}.html", method = RequestMethod.GET)
+    @GetMapping(value = "/configs/{selectedItem:.+}.html")
     @ResponseBody
     public String createConfigStartPage(@PathVariable String selectedItem) {
         EoRoot eo = EoRoot.of(cache);
         eo.setRoles(Arrays.asList(WebEo.getRoles()));
-        eo.set(selectedItem + ".html", "selectedItem");
+        eo.set(selectedItem + ".html", SELECTED_ITEM);
         eo.set(".*", "configFilter");
         eo.set(selectedItem, "configType");
-        System.out.println("Request for config " + selectedItem);
-        LOG.info("Request for config " + selectedItem);
+
+        LOG.info("Request for config {}.", selectedItem);
         eo.addCall(new TemplateResourceCall("ConfigsStartPage.html"));
         try {
             eo.execute();
@@ -141,8 +196,7 @@ public class WebEoGet {
                 LOG.error(eo.getLog());
                 return "Errors occured: " + eo.getLog();
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             LOG.error(e);
             return "Exception thrown: " + e.getMessage();
         }

@@ -1,10 +1,12 @@
 {
   "author": "Werner Diwischek",
+  "configModelKey": "ModelConfigObject",
   "creationDate": 1605826772992,
   "description": "A sub object as an example.",
   "expose": "WEB",
   "fields": {
     "id": {
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "expose": "WEB",
       "fieldKey": "id",
@@ -29,6 +31,7 @@
       }
     },
     "myASubObject": {
+      "configModelKey": "FieldConfigObject",
       "description": "myASubObject",
       "expose": "WEB",
       "fieldKey": "myASubObject",
@@ -53,6 +56,7 @@
       }
     },
     "myString": {
+      "configModelKey": "FieldConfigObject",
       "description": "Just a small test string used in test models. ",
       "expose": "WEB",
       "fieldKey": "myString",
@@ -77,6 +81,7 @@
       }
     },
     "name": {
+      "configModelKey": "FieldConfigObject",
       "description": "The name field of a class. ",
       "expose": "WEB",
       "fieldKey": "name",
@@ -101,6 +106,7 @@
       }
     },
     "naturalId": {
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "expose": "NONE",
       "fieldKey": "naturalId",

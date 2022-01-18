@@ -70,7 +70,6 @@ public class WebEo {
             return "'value' is empty!";
         }
 
-        System.out.println("Post request  " + eoAsString);
         LOG.info("Post request " + eoAsString);
 
         final String[] roles = getRoles();

@@ -6,25 +6,11 @@ import org.fluentcodes.projects.elasticobjects.calls.files.DirectoryConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.DirectoryReadCall;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.tools.io.IORuntimeException;
-
-/*.{javaHeader}|*/
-
 /**
  * Parses the content loaded by {@link DirectoryReadCall}.
  * This will use a FileConfig entry using {@link DirectoryConfig} instance.
- *
- * @author Werner Diwischek
- * @creationDate
- * @modificationDate Tue Dec 08 11:35:19 CET 2020
  */
 public class TemplateDirResourceCall extends DirectoryReadCall {
-    /*.{}.*/
-
-    /*.{javaStaticNames}|*/
-    /*.{}.*/
-
-    /*.{javaInstanceVars}|*/
-    /*.{}.*/
 
     public TemplateDirResourceCall() {
         super();
@@ -66,8 +52,8 @@ public class TemplateDirResourceCall extends DirectoryReadCall {
 
     @Override
     public String execute(EOInterfaceScalar eo) {
-        String content = super.read(eo);
         try {
+            String content = super.read(eo);
             String result = new TemplateCall(content)
                     .execute(eo);
             return result;

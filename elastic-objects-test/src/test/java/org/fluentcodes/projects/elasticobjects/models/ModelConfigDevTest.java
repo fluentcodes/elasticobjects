@@ -40,14 +40,14 @@ public class ModelConfigDevTest {
     public void readModelBean() {
         ModelBean bean = ObjectProviderDev.readModelBean(ModelConfig.class.getSimpleName());
         assertEquals("Config", bean.getSuperKey());
-        assertEquals(7, bean.getFieldKeys().size());
+        assertEquals(6, bean.getFieldKeys().size());
     }
 
     @Test
     public void readModelConfig() {
         ModelConfig config = ObjectProviderDev.readModelConfig(ModelConfig.class.getSimpleName());
         assertEquals(false, config.getProperties().getCreate());
-        assertEquals(7, config.getFields().size());
+        assertEquals(6, config.getFields().size());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class ModelConfigDevTest {
         ModelConfig config = createModelConfigWithProperty( F_ABSTRACT, true);
         assertNotNull(config.getProperties());
         assertTrue(config.getProperties().getAbstract());
-        assertEquals("{\"properties\": {\"abstract\": true}}",
+        assertEquals("{\"configModelKey\": \"ModelConfigObject\",\"properties\": {\"abstract\": true}}",
                 toStringWithMap(config));
     }
 
@@ -75,7 +75,7 @@ public class ModelConfigDevTest {
         assertNotNull(config.getFields());
         assertNotNull(config.getField(F_MODEL_KEY));
         assertTrue(config.getField(F_MODEL_KEY).getProperties().getFinal());
-        assertEquals("{\"fields\": {\"modelKey\": {\"fieldKey\": \"modelKey\",\"naturalId\": \"modelKey\",\"properties\": {\"final\": true}}}}",
+        assertEquals("{\"configModelKey\": \"ModelConfigObject\",\"fields\": {\"modelKey\": {\"fieldKey\": \"modelKey\",\"naturalId\": \"modelKey\",\"properties\": {\"final\": true}}}}",
                 toStringWithMap(config));
     }
 
@@ -85,7 +85,7 @@ public class ModelConfigDevTest {
         assertNotNull(config.getFields());
         assertNotNull(config.getField(F_MODEL_KEY));
         assertEquals("Map,String", config.getField(F_MODEL_KEY).getModelKeys());
-        assertEquals("{\"fields\": {\"modelKey\": {\"fieldKey\": \"modelKey\",\"modelKeys\": \"Map,String\",\"naturalId\": \"modelKey\"}}}",
+        assertEquals("{\"configModelKey\": \"ModelConfigObject\",\"fields\": {\"modelKey\": {\"fieldKey\": \"modelKey\",\"modelKeys\": \"Map,String\",\"naturalId\": \"modelKey\"}}}",
                 toStringWithMap(config));
     }
 
@@ -93,7 +93,7 @@ public class ModelConfigDevTest {
     public void createModelConfig_interfaces() {
         ModelConfig  config = createModelConfig(F_INTERFACES, "FieldBeanInterfaces");
         assertEquals("FieldBeanInterfaces",  config.getInterfaces());
-        assertEquals("{\"interfaces\": \"FieldBeanInterfaces\"}",
+        assertEquals("{\"configModelKey\": \"ModelConfigObject\",\"interfaces\": \"FieldBeanInterfaces\"}",
                 toStringWithMap(config));
     }
 

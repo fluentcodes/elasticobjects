@@ -94,7 +94,7 @@ public class ConfigBean {
     }
 
     public ConfigBean(final Config config) {
-        setConfigModelKey(config.getClass().getSimpleName());
+        setConfigModelKey(config.getConfigModelKey());
         setExpose(config.getExpose());
         setModule(config.getModule());
         setModuleScope(config.getModuleScope());

@@ -281,8 +281,8 @@ public class EoChild extends EoChildScalar implements EO {
                         this.getPath().toString() + "'");
             }
         }
-        Set<String> fieldNameSet = valueModel.keys(value);
-        for (String fieldKey : fieldNameSet) {
+        Set<String> fieldKeySet = valueModel.keys(value);
+        for (String fieldKey : fieldKeySet) {
             PathElement pathElement =null;
             if (valueModel.isObject()) {
                 FieldInterface fieldBean = valueModel.getField(fieldKey);

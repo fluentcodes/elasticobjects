@@ -1,4 +1,5 @@
 {
+  "configModelKey": "ModelConfigObject",
   "creationDate": 1608073216000,
   "description": "Interface with permissions methods ",
   "expose": "NONE",

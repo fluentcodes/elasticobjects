@@ -269,6 +269,23 @@
     }
   },
   {
+    "configModelKey": "DirectoryConfig",
+    "module": "example-springboot",
+    "moduleScope": "main",
+    "hostConfigKey": "localhost",
+    "filePath": "web/howto",
+    "naturalId": "howto",
+    "fileName": ".*.html",
+    "description": "Directory access for web/howto for fileNames matching *.html",
+    "expose": "WEB",
+    "cached": "false",
+    "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
+  },
+  {
     "module": "example-springboot",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
@@ -276,6 +293,22 @@
     "naturalId": "faq_Nav.html",
     "fileName": "_Nav.html",
     "description": "From the \"faq\" directory file content generated navigation file for the left hand link list. ",
+    "expose": "WEB",
+    "cached": "false",
+    "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
+  },
+  {
+    "module": "example-springboot",
+    "moduleScope": "main",
+    "hostConfigKey": "localhost",
+    "filePath": "web/howto",
+    "naturalId": "howto_Nav.html",
+    "fileName": "_Nav.html",
+    "description": "From the \"howto\" directory file content generated navigation file for the left hand link list. ",
     "expose": "WEB",
     "cached": "false",
     "permissions": {

@@ -1,0 +1,15 @@
+<h5>SinusValueCall - Attribute form in Template</h5>
+
+ <form action="/eo-template" method="post" target="example" >
+     <textarea name="template" style="height:120px">arbitrary text start ...
+&#064;{"(Double)squareDegree":1}.
+sinus(squareDegree)=&amp;{SinusValueCall sourcePath="/squareDegree" targetPath="_asString"}.
+.. arbitrary text end</textarea>
+     <input type="submit" value="post"/>
+ </form>
+
+<p>
+    #{GithubLinkCall->ModelConfig, SinusValueCall}. compute the sinus from the
+    #{ConfigLinkCall->FieldConfig, sourcePath}. "squareDegree".
+    The result will set in the response with "_asString" as #{ConfigLinkCall->FieldConfig, targetPath}. .
+</p>

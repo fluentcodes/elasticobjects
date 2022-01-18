@@ -28,9 +28,10 @@ public interface IModelConfigTests {
     }
 
     default void assertModelConfigEqualsPersisted() {
+        ModelConfig config = getModelConfig();
         EoRoot cloneMap = EoRoot.ofClass(CONFIG_MAPS, Map.class);
         cloneMap.setSerializationType(JSONSerializationType.STANDARD);
-        cloneMap.map(getModelConfig());
+        cloneMap.map(config);
         XpectEoJunit4.assertStatic(cloneMap);
     }
 

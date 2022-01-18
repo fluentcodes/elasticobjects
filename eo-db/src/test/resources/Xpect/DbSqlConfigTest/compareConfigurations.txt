@@ -1,6 +1,7 @@
 {
   "h2:mem:basic:ASubObject": {
     "classPath": "src/main/resources",
+    "configModelKey": "DbSqlConfig",
     "dbConfigKey": "h2:mem:basic",
     "description": "Query for ASubObject",
     "expose": "WEB",
@@ -19,6 +20,7 @@
   },
   "h2:mem:basic:AnObject": {
     "classPath": "src/main/resources",
+    "configModelKey": "DbSqlConfig",
     "dbConfigKey": "h2:mem:basic",
     "description": "Query for AnObject",
     "expose": "WEB",
@@ -37,6 +39,7 @@
   },
   "h2:mem:basic:AnObjectDrop": {
     "classPath": "src/main/resources",
+    "configModelKey": "DbSqlConfig",
     "dbConfigKey": "h2:mem:basic",
     "description": "Basic H2 dropping AnObject table",
     "expose": "WEB",
@@ -55,6 +58,7 @@
   },
   "h2:mem:basic:Create": {
     "classPath": "src/main/resources",
+    "configModelKey": "DbSqlConfig",
     "dbConfigKey": "h2:mem:basic",
     "description": "Basic H2 creating tables",
     "expose": "WEB",

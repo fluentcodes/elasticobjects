@@ -42,7 +42,7 @@ public class FieldConfigObject extends FieldConfig {
         try {
             this.setter = ((ModelConfig)getParentModel()).getModelClass().getMethod("set" + ModelConfigObject.upper(getFieldKey()), getModels().getModelClass());
         } catch (NoSuchMethodException e) {
-            throw new EoException("\nCould not find getter method for '" + getFieldKey() + AND_MODEL + getParentModel().getModelKey() + "' with input type '" + getModels().getModelClass().getSimpleName() + "': " + e.getMessage());
+            throw new EoException("\nCould not find setter method for '" + getFieldKey() + AND_MODEL + getParentModel().getModelKey() + "' with input type '" + getModels().getModelClass().getSimpleName() + "': " + e.getMessage());
         }
     }
 

@@ -11,16 +11,10 @@ import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
 import org.fluentcodes.projects.elasticobjects.calls.templates.handler.TemplateMarker;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
-/*.{javaHeader}|*/
-
 /**
  * Basic bean implementation for calls.
- *
- * @author Werner Diwischek
- * @creationDate null
- * @modificationDate Thu Jan 07 11:38:14 CET 2021
  */
-public abstract class CallImpl implements Call {/*.{}.*/
+public abstract class CallImpl implements Call {
     /* A condition for calls.  */
     private String condition;
     /* The duration of a call. */
@@ -43,7 +37,6 @@ public abstract class CallImpl implements Call {/*.{}.*/
     private String startCondition;
     /* A targetPath where the result of the execution will be mapped. If value is "_asString" no mapping occured but a seralized version is returned as value to embed it in the resulting file. Path parameters could be set dynamically with =&gt;[path]. in any combination. */
     private String targetPath;
-    /*.{}.*/
 
     protected CallImpl() {
         prepend = "";
@@ -134,7 +127,6 @@ public abstract class CallImpl implements Call {/*.{}.*/
         return overwrite;
     }
 
-    /*.{javaAccessors}|*/
     @Override
     public String getCondition() {
         return this.condition;
@@ -256,5 +248,4 @@ public abstract class CallImpl implements Call {/*.{}.*/
         return this;
     }
 
-    /*.{}.*/
 }

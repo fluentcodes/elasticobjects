@@ -17,6 +17,21 @@
   {
     "module": "example-springboot",
     "moduleScope": "main",
+    "interfaces": "SimpleCommand",
+    "superKey": "CallImpl",
+    "expose": "WEB",
+    "description": "Compute the cosinus.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "CosinusValueCall",
+    "modelKey": "CosinusValueCall",
+    "properties": {
+      "create": true
+    },
+    "author": "Werner Diwischek"
+  },
+  {
+    "module": "example-springboot",
+    "moduleScope": "main",
     "fields": [
       "configKey",
       "configType"
@@ -29,6 +44,24 @@
     "modelKey": "GithubLinkCall",
     "properties": {
       "create": true
+    },
+    "author": "Werner Diwischek"
+  },
+  {
+    "module": "example-springboot",
+    "moduleScope": "main",
+    "interfaces": "SimpleCommand",
+    "superKey": "CallImpl",
+    "expose": "WEB",
+    "description": "Different square Math functions. Default is toDegrees.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+    "naturalId": "SquareValueCall",
+    "modelKey": "SquareValueCall",
+    "properties": {
+      "create": true
+    },
+    "fields": {
+      "function": {}
     },
     "author": "Werner Diwischek"
   },

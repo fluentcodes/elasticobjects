@@ -1,5 +1,6 @@
 {
   "dummyftp": {
+    "configModelKey": "HostConfig",
     "description": "A connection to elastic objects",
     "expose": "NONE",
     "hostName": "dummyftp",
@@ -17,6 +18,7 @@
     }
   },
   "dummyftpurl": {
+    "configModelKey": "HostConfig",
     "description": "A connection to elastic objects",
     "expose": "NONE",
     "hostName": "dummyftpurl",
@@ -33,6 +35,7 @@
     }
   },
   "elasticobjects": {
+    "configModelKey": "HostConfig",
     "description": "A connection to elastic objects",
     "expose": "NONE",
     "hostName": "elasticobjects",
@@ -48,6 +51,7 @@
     }
   },
   "local": {
+    "configModelKey": "HostConfig",
     "description": "local host with key 'local'",
     "expose": "WEB",
     "hostName": "localhost",
@@ -61,6 +65,7 @@
     }
   },
   "localhost": {
+    "configModelKey": "HostConfig",
     "description": "local host with key 'localhost'",
     "expose": "WEB",
     "hostName": "localhost",

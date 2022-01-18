@@ -40,7 +40,39 @@ public class TemplateCallTest implements IModelConfigCreateTests {
     }
 
     @Test
-    public void call_level0_test_StringUpperCall_StringUpperFirstCall__execute__TEST_Test() {
+    public void StringUpperCall_targetPathAsString() {
+        EoRoot eo = ObjectProvider.createEo();
+        final String template = "START - \n" +
+                "@{\"level0\":\"test.\"," +
+                "\n\"(StringUpperCall)\":{" +
+                "\"sourcePath\":\"level0\", " +
+                "\"targetPath\":\"" + Call.TARGET_AS_STRING + "\"}" +
+                "}." +
+                " - END";
+        final TemplateCall call = new TemplateCall(template);
+        String result = call.execute(eo);
+        Assertions.assertThat(eo.getLog()).isEmpty();
+        Assertions.assertThat(result).isEqualTo("START - TEST_ - END");
+    }
+
+    @Test
+    public void StringUpperCall_noTargetPath() {
+        EoRoot eo = ObjectProvider.createEo();
+        final String template = "START - \n" +
+                "@{\"level0\":\"test.\"," +
+                "\n\"(StringUpperCall)\":{" +
+                "\"sourcePath\":\"level0\"}" +
+                "}." +
+                " - END";
+        final TemplateCall call = new TemplateCall(template);
+        String result = call.execute(eo);
+        Assertions.assertThat(eo.getLog()).isEmpty();
+        Assertions.assertThat(result).isEqualTo("START - TEST_ - END");
+    }
+
+
+    @Test
+    public void StringUpperCalls_targetPathAsString() {
         EoRoot eo = ObjectProvider.createEo();
         final String template = "START - \n" +
                 "@{\"level0\":\"test.\"," +

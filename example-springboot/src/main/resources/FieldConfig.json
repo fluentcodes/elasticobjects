@@ -7,7 +7,21 @@
     "expose": "WEB",
     "naturalId": "configKey",
     "fieldKey": "configKey",
-    "max": 64
+    "properties": {
+      "max": 64
+    }
+  },
+  {
+    "module": "example-springboot",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A field to select a function e.g. used in {@link SquareValueCall} ",
+    "expose": "NONE",
+    "naturalId": "function",
+    "fieldKey": "function",
+    "properties": {
+      "max": 25
+    }
   },
   {
     "module": "example-springboot",
@@ -17,7 +31,9 @@
     "expose": "NONE",
     "naturalId": "greeting",
     "fieldKey": "greeting",
-    "max": 15
+    "properties": {
+      "max": 15
+    }
   },
   {
     "module": "example-springboot",

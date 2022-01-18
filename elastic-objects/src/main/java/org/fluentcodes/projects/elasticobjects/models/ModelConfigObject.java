@@ -46,7 +46,10 @@ public class ModelConfigObject extends ModelConfig {
         try {
             return get(fieldName, parent) != null;
         } catch (EoException e) {
-            return false;
+            throw e;
+        }
+        catch (Exception e) {
+            throw new EoException("Problem checking exists for '" + fieldName + "'");
         }
     }
 

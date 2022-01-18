@@ -5,23 +5,17 @@ import org.fluentcodes.projects.elasticobjects.LogLevel;
 import org.fluentcodes.projects.elasticobjects.Path;
 import org.fluentcodes.projects.elasticobjects.calls.templates.KeepCalls;
 
-/*.{javaHeader}|*/
-
 /**
  * Basic interface for calls
- *
- * @author Werner Diwischek
- * @creationDate
- * @modificationDate Tue Dec 08 16:27:20 CET 2020
  */
 public interface Call {
-    /*.{}.*/
-    String TARGET_AS_STRING = "_asString";
 
-    /*.{javaStaticNames}|*/
-    String F_DURATION = "duration";
-    String F_KEEP_CALL = "keepCall";
-    /*.{}.*/
+    static final String TARGET_AS_STRING = "_asString";
+    static final String F_TARGET_PATH = "targetPath";
+
+    static final String F_DURATION = "duration";
+    static final String F_KEEP_CALL = "keepCall";
+
 
     default void initTargetPath(final Path targetPathFromCallPath) {
         if (!hasTargetPath()) {
@@ -50,8 +44,6 @@ public interface Call {
         }
         return getKeepCall().getStartComment();
     }
-
-    /*.{javaAccessors}|*/
 
     /**
      * A condition for calls.
@@ -175,5 +167,4 @@ public interface Call {
     default boolean hasTargetPath() {
         return getTargetPath() != null && !getTargetPath().isEmpty();
     }
-    /*.{}.*/
 }

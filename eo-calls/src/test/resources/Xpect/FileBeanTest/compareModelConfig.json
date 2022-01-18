@@ -1,10 +1,12 @@
 {
   "author": "Werner Diwischek",
+  "configModelKey": "ModelConfigObject",
   "creationDate": 1608073216000,
   "description": "The bean counterpart for @FileConfig.",
   "expose": "NONE",
   "fields": {
     "author": {
+      "configModelKey": "FieldConfigObject",
       "description": "The author of the class.",
       "expose": "WEB",
       "fieldKey": "author",
@@ -29,6 +31,7 @@
       }
     },
     "cached": {
+      "configModelKey": "FieldConfigObject",
       "description": "If true will cache the readed file within the cache object. ",
       "expose": "NONE",
       "fieldKey": "cached",
@@ -53,6 +56,7 @@
       }
     },
     "configModelKey": {
+      "configModelKey": "FieldConfigObject",
       "description": "The model of the configuration to determine type.",
       "expose": "NONE",
       "fieldKey": "configModelKey",
@@ -77,6 +81,7 @@
       }
     },
     "creationDate": {
+      "configModelKey": "FieldConfigObject",
       "description": "Used to define the creation of an item.",
       "expose": "WEB",
       "fieldKey": "creationDate",
@@ -101,6 +106,7 @@
       }
     },
     "description": {
+      "configModelKey": "FieldConfigObject",
       "description": "A description of the model used by every model extending BaseClassImpl. ",
       "expose": "WEB",
       "fieldKey": "description",
@@ -125,6 +131,7 @@
       }
     },
     "expose": {
+      "configModelKey": "FieldConfigObject",
       "description": "expose",
       "expose": "WEB",
       "fieldKey": "expose",
@@ -149,6 +156,7 @@
       }
     },
     "fileName": {
+      "configModelKey": "FieldConfigObject",
       "description": "A fileName used in different calls and configs like @FileConfig or @DirectoryConfig. ",
       "expose": "NONE",
       "fieldKey": "fileName",
@@ -173,6 +181,7 @@
       }
     },
     "filePath": {
+      "configModelKey": "FieldConfigObject",
       "description": "A filePath used in different calls and configs like @FileConfig or @DirectoryConfig. ",
       "expose": "NONE",
       "fieldKey": "filePath",
@@ -197,6 +206,7 @@
       }
     },
     "hostConfigKey": {
+      "configModelKey": "FieldConfigObject",
       "description": "A key for host objects.",
       "expose": "NONE",
       "fieldKey": "hostConfigKey",
@@ -221,6 +231,7 @@
       }
     },
     "id": {
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "expose": "WEB",
       "fieldKey": "id",
@@ -245,6 +256,7 @@
       }
     },
     "module": {
+      "configModelKey": "FieldConfigObject",
       "description": "Defines a target module where generating occurs. ",
       "expose": "WEB",
       "fieldKey": "module",
@@ -269,6 +281,7 @@
       }
     },
     "moduleScope": {
+      "configModelKey": "FieldConfigObject",
       "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
       "expose": "WEB",
       "fieldKey": "moduleScope",
@@ -293,6 +306,7 @@
       }
     },
     "naturalId": {
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "expose": "NONE",
       "fieldKey": "naturalId",
@@ -317,6 +331,7 @@
       }
     },
     "permissions": {
+      "configModelKey": "FieldConfigObject",
       "description": "Role permission wrapper bean.",
       "expose": "WEB",
       "fieldKey": "permissions",
@@ -341,6 +356,7 @@
       }
     },
     "properties": {
+      "configModelKey": "FieldConfigObject",
       "description": "Properties for file bean",
       "expose": "NONE",
       "fieldKey": "properties",
@@ -365,6 +381,7 @@
       }
     },
     "scope": {
+      "configModelKey": "FieldConfigObject",
       "description": "A scope for the cache value.",
       "expose": "WEB",
       "fieldKey": "scope",

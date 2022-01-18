@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class Config implements ConfigInterface {
     private final ConfigMaps configMaps;
+
+    private final String configModelKey;
     /* expose */
     private final Expose expose;
     /* Defines a target module where generating occurs.  */
@@ -29,6 +31,7 @@ public class Config implements ConfigInterface {
     private final String naturalId;
 
     public Config(ConfigBean bean, final ConfigMaps configMaps) {
+        this.configModelKey = bean.getConfigModelKey();
         this.module = bean.getModule();
         this.moduleScope = bean.getModuleScope();
         this.scope = bean.getScope();
@@ -39,6 +42,10 @@ public class Config implements ConfigInterface {
         this.description = bean.getDescription();
         this.id = bean.getId();
         this.naturalId = bean.getNaturalId();
+    }
+
+    public String getConfigModelKey() {
+        return configModelKey;
     }
 
     public ConfigMaps getConfigMaps() {

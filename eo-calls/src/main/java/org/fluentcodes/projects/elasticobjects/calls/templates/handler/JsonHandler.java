@@ -42,6 +42,9 @@ public class JsonHandler extends HandlerAbstract {
         String postPend = "";
         for (int i = 0; i < callSet.size(); i++) {
             Call loopCall = (Call) eoCall.getCallEo(Integer.toString(i)).get();
+            if (!loopCall.hasTargetPath()) {
+                loopCall.setTargetPath(Call.TARGET_AS_STRING);
+            }
             if (i == callSet.size() - 1) {
                 postPend = addKeepOrContentToLast(returnResult, loopCall);
             }

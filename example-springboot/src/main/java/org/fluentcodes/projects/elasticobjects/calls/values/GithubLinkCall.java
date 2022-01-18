@@ -117,8 +117,12 @@ public class GithubLinkCall extends CallImpl  {
             return builder.toString();
         }
         this.config = (Config) eo.getConfigMaps().find(configClass, configKey);
+
         builder.append(config.getModule());
         if (configClass.equals(ModelConfig.class)) {
+            if (!((ModelConfig) config).hasPackagePath()) {
+                return "";
+            }
             builder.append("/src/");
             builder.append(config.getModuleScope());
             builder.append("/java/");

@@ -1,6 +1,8 @@
 {
+  "configModelKey": "ModelConfigObject",
   "fields": {
     "id": {
+      "configModelKey": "FieldConfigObject",
       "fieldKey": "id",
       "modelKeys": "Long",
       "naturalId": "SuperExampleClass.id",
@@ -26,6 +28,7 @@
       "naturalId": "SubExampleClass.name"
     },
     "subClass": {
+      "configModelKey": "FieldConfigObject",
       "fieldKey": "subClass",
       "modelKeys": "FieldExampleClass",
       "naturalId": "SuperExampleClass.subClass",

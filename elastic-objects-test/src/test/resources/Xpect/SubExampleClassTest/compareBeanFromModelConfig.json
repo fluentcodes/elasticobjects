@@ -24,7 +24,6 @@
       }
     },
     "(FieldBean)name": {
-      "configModelKey": "FieldConfigObject",
       "fieldKey": "name",
       "modelKeys": "String",
       "naturalId": "SubExampleClass.name"

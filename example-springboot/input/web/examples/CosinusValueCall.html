@@ -1,0 +1,19 @@
+<h5>CosinusValueCall</h5>
+
+ <form action="/eo-form" method="post" target="example" >
+     <textarea name="eo" style="height:120px">{
+  "(Double)squareDegree":1,
+
+  "(CosinusValueCall)/cosinusValue": {
+    "sourcePath": "/squareDegree"
+  },
+  "_serializationType":"STANDARD"
+}</textarea>
+     <input type="submit" value="post"/>
+ </form>
+
+<p>
+    #{GithubLinkCall->ModelConfig, CosinusValueCall}. compute the cosinus from the
+    #{ConfigLinkCall->FieldConfig, sourcePath}. "squareDegree".
+    The result will set in the #{ConfigLinkCall->FieldConfig, targetPath}. "cosinsValue".
+</p>

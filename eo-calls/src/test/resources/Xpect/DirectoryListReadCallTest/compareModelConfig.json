@@ -1,9 +1,11 @@
 {
   "author": "Werner Diwischek",
+  "configModelKey": "ModelConfigObject",
   "description": "Model class with different types of fields including generic collections, maps and @ASubObject objects.",
   "expose": "WEB",
   "fields": {
     "id": {
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "expose": "WEB",
       "fieldKey": "id",
@@ -28,6 +30,7 @@
       }
     },
     "myASubObject": {
+      "configModelKey": "FieldConfigObject",
       "description": "myASubObject",
       "expose": "WEB",
       "fieldKey": "myASubObject",
@@ -52,6 +55,7 @@
       }
     },
     "myASubObjectList": {
+      "configModelKey": "FieldConfigObject",
       "description": "A generic parametrized example List with @ASubObject",
       "expose": "WEB",
       "fieldKey": "myASubObjectList",
@@ -76,6 +80,7 @@
       }
     },
     "myASubObjectMap": {
+      "configModelKey": "FieldConfigObject",
       "description": "A generic parametrized example Map with @ASubObject",
       "expose": "WEB",
       "fieldKey": "myASubObjectMap",
@@ -100,6 +105,7 @@
       }
     },
     "myAnObject": {
+      "configModelKey": "FieldConfigObject",
       "description": "A AnObject field.",
       "expose": "WEB",
       "fieldKey": "myAnObject",
@@ -124,6 +130,7 @@
       }
     },
     "myBoolean": {
+      "configModelKey": "FieldConfigObject",
       "description": "myBoolean",
       "expose": "WEB",
       "fieldKey": "myBoolean",
@@ -148,6 +155,7 @@
       }
     },
     "myDate": {
+      "configModelKey": "FieldConfigObject",
       "description": "myDate",
       "expose": "WEB",
       "fieldKey": "myDate",
@@ -172,6 +180,7 @@
       }
     },
     "myDouble": {
+      "configModelKey": "FieldConfigObject",
       "description": "myDouble",
       "expose": "WEB",
       "fieldKey": "myDouble",
@@ -196,6 +205,7 @@
       }
     },
     "myFloat": {
+      "configModelKey": "FieldConfigObject",
       "description": "myFloat",
       "expose": "WEB",
       "fieldKey": "myFloat",
@@ -220,6 +230,7 @@
       }
     },
     "myInt": {
+      "configModelKey": "FieldConfigObject",
       "description": "myInt",
       "expose": "WEB",
       "fieldKey": "myInt",
@@ -244,6 +255,7 @@
       }
     },
     "myList": {
+      "configModelKey": "FieldConfigObject",
       "description": "myList",
       "expose": "WEB",
       "fieldKey": "myList",
@@ -268,6 +280,7 @@
       }
     },
     "myLong": {
+      "configModelKey": "FieldConfigObject",
       "description": "myLong",
       "expose": "WEB",
       "fieldKey": "myLong",
@@ -292,6 +305,7 @@
       }
     },
     "myMap": {
+      "configModelKey": "FieldConfigObject",
       "description": "myMap",
       "expose": "WEB",
       "fieldKey": "myMap",
@@ -316,6 +330,7 @@
       }
     },
     "myObject": {
+      "configModelKey": "FieldConfigObject",
       "description": "A test object thing. ",
       "expose": "WEB",
       "fieldKey": "myObject",
@@ -340,6 +355,7 @@
       }
     },
     "myString": {
+      "configModelKey": "FieldConfigObject",
       "description": "Just a small test string used in test models. ",
       "expose": "WEB",
       "fieldKey": "myString",
@@ -364,6 +380,7 @@
       }
     },
     "naturalId": {
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "expose": "NONE",
       "fieldKey": "naturalId",

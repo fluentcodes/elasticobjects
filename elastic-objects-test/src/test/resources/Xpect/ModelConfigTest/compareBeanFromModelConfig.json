@@ -30,6 +30,31 @@
         "unique": false
       }
     },
+    "(FieldBean)configModelKey": {
+      "configModelKey": "FieldConfigObject",
+      "description": "The model of the configuration to determine type.",
+      "(Expose)expose": "NONE",
+      "fieldKey": "configModelKey",
+      "modelKeys": "String",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "configModelKey",
+      "(FieldBeanProperties)properties": {
+        "default": false,
+        "final": true,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": 80,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
     "(FieldBean)creationDate": {
       "configModelKey": "FieldConfigObject",
       "description": "Used to define the creation of an item.",
@@ -266,13 +291,13 @@
       "naturalId": "naturalId",
       "(FieldBeanProperties)properties": {
         "default": false,
-        "final": false,
+        "final": true,
         "generated": false,
         "jsonIgnore": false,
         "max": 80,
         "min": -1,
         "notNull": true,
-        "override": true,
+        "override": false,
         "property": false,
         "staticName": false,
         "super": true,

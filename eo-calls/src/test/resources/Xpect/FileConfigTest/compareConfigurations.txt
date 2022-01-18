@@ -1,6 +1,7 @@
 {
   "AnObject.csv": {
     "cached": false,
+    "configModelKey": "FileConfig",
     "description": "A sample character separated file with 3x3 entries and a header which could be mapped to AnObject.",
     "expose": "WEB",
     "fileName": "AnObject.csv",
@@ -24,6 +25,7 @@
   },
   "AnObject.json": {
     "cached": false,
+    "configModelKey": "FileConfig",
     "description": "Simple data for the AnObject.",
     "expose": "WEB",
     "fileName": "AnObject.json",
@@ -44,6 +46,7 @@
   },
   "ContentExample": {
     "cached": true,
+    "configModelKey": "FileConfig",
     "description": "Calls templates.",
     "expose": "NONE",
     "fileName": "ContentExample.json",
@@ -61,6 +64,7 @@
   },
   "ContentExampleData": {
     "cached": true,
+    "configModelKey": "FileConfig",
     "description": "Simple data for the content templates.",
     "expose": "NONE",
     "fileName": "ContentExampleData.json",
@@ -78,6 +82,7 @@
   },
   "ContentExampleDynamic": {
     "cached": true,
+    "configModelKey": "FileConfig",
     "description": "A template or ContentExample using the template field for rendering with a template",
     "expose": "NONE",
     "fileName": "ContentExampleDynamic.tpl",
@@ -95,6 +100,7 @@
   },
   "ContentExampleElement1": {
     "cached": true,
+    "configModelKey": "FileConfig",
     "description": "A template for an entry fo ContentExample",
     "expose": "NONE",
     "fileName": "ContentExampleElement1.tpl",
@@ -112,6 +118,7 @@
   },
   "ContentExampleElement2": {
     "cached": true,
+    "configModelKey": "FileConfig",
     "description": "A template for an entry fo ContentExample",
     "expose": "NONE",
     "fileName": "ContentExampleElement2.tpl",
@@ -129,6 +136,7 @@
   },
   "ContentExampleStatic": {
     "cached": true,
+    "configModelKey": "FileConfig",
     "description": "A template  ContentExample with condition",
     "expose": "NONE",
     "fileName": "ContentExampleStatic.tpl",
@@ -146,6 +154,7 @@
   },
   "ContentExampleStaticCondition": {
     "cached": true,
+    "configModelKey": "FileConfig",
     "description": "A template  ContentExample with condition",
     "expose": "NONE",
     "fileName": "ContentExampleStaticCondition.tpl",
@@ -163,6 +172,7 @@
   },
   "ContentExampleStaticKeep": {
     "cached": true,
+    "configModelKey": "FileConfig",
     "description": "A template  ContentExample with condition",
     "expose": "NONE",
     "fileName": "ContentExampleStaticKeep.tpl",
@@ -180,6 +190,7 @@
   },
   "FileTest.txt": {
     "cached": false,
+    "configModelKey": "FileConfig",
     "description": "Local 'source.txt' definition.",
     "expose": "NONE",
     "fileName": "FileTest.txt",
@@ -203,6 +214,7 @@
   },
   "FileTestCached.txt": {
     "cached": true,
+    "configModelKey": "FileConfig",
     "description": "Local file with cache set true.",
     "expose": "NONE",
     "fileName": "FileTest.txt",
@@ -220,6 +232,7 @@
   },
   "ListSimple.csv": {
     "cached": false,
+    "configModelKey": "FileConfig",
     "description": "A sample csv file with 2*2 values and a head as a source.",
     "expose": "NONE",
     "fileName": "ListSimple.csv",
@@ -246,6 +259,7 @@
   },
   "ListSimple.json": {
     "cached": false,
+    "configModelKey": "FileConfig",
     "description": "A sample json file with 2*2 values and a head as a source.",
     "expose": "NONE",
     "fileName": "ListSimple.json",
@@ -269,6 +283,7 @@
   },
   "XPECT_TEST": {
     "cached": false,
+    "configModelKey": "DirectoryConfig",
     "description": "Test directory for DirectoryListReadCall",
     "expose": "NONE",
     "fileName": ".*.json",
@@ -289,6 +304,7 @@
   },
   "target.csv": {
     "cached": false,
+    "configModelKey": "FileConfig",
     "description": "A sample target csv file with tmp placeholder.",
     "expose": "NONE",
     "fileName": "target.csv",
@@ -313,6 +329,7 @@
   },
   "target.json": {
     "cached": false,
+    "configModelKey": "FileConfig",
     "description": "A sample target json file with tmp placeholder.",
     "expose": "NONE",
     "fileName": "target.json",
@@ -330,6 +347,7 @@
   },
   "target.txt": {
     "cached": false,
+    "configModelKey": "FileConfig",
     "description": "Target file definition",
     "expose": "NONE",
     "fileName": "target.txt",

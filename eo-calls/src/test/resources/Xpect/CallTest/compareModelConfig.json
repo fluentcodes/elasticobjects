@@ -1,10 +1,12 @@
 {
   "author": "Werner Diwischek",
+  "configModelKey": "ModelConfigObject",
   "creationDate": 1539727163392,
   "description": "Basic interface for calls ",
   "expose": "NONE",
   "fields": {
     "condition": {
+      "configModelKey": "FieldConfigObject",
       "description": "A condition for calls. ",
       "expose": "WEB",
       "fieldKey": "condition",
@@ -29,6 +31,7 @@
       }
     },
     "duration": {
+      "configModelKey": "FieldConfigObject",
       "description": "The duration of a call.",
       "expose": "WEB",
       "fieldKey": "duration",
@@ -53,6 +56,7 @@
       }
     },
     "keepCall": {
+      "configModelKey": "FieldConfigObject",
       "description": "Will use an existing  result file beforehand as template. ",
       "expose": "WEB",
       "fieldKey": "keepCall",
@@ -77,6 +81,7 @@
       }
     },
     "logLevel": {
+      "configModelKey": "FieldConfigObject",
       "description": "logLevel",
       "expose": "WEB",
       "fieldKey": "logLevel",
@@ -101,6 +106,7 @@
       }
     },
     "models": {
+      "configModelKey": "FieldConfigObject",
       "description": "A string representation for a list of model keys.",
       "expose": "WEB",
       "fieldKey": "models",
@@ -125,6 +131,7 @@
       }
     },
     "overwrite": {
+      "configModelKey": "FieldConfigObject",
       "description": "A overwrite field flag for @Call.",
       "expose": "WEB",
       "fieldKey": "overwrite",
@@ -149,6 +156,7 @@
       }
     },
     "postpend": {
+      "configModelKey": "FieldConfigObject",
       "description": "postpend String when executed by ExecutorCallImpl",
       "expose": "NONE",
       "fieldKey": "postpend",
@@ -173,6 +181,7 @@
       }
     },
     "prepend": {
+      "configModelKey": "FieldConfigObject",
       "description": "prepend String when executed by ExecutorCallImpl",
       "expose": "NONE",
       "fieldKey": "prepend",
@@ -197,6 +206,7 @@
       }
     },
     "sourcePath": {
+      "configModelKey": "FieldConfigObject",
       "description": "A sourcePath where EO offers it's input value when the execution starts.",
       "expose": "WEB",
       "fieldKey": "sourcePath",
@@ -221,6 +231,7 @@
       }
     },
     "startCondition": {
+      "configModelKey": "FieldConfigObject",
       "description": "A condition for calls. ",
       "expose": "WEB",
       "fieldKey": "startCondition",
@@ -245,6 +256,7 @@
       }
     },
     "targetPath": {
+      "configModelKey": "FieldConfigObject",
       "description": "A targetPath where the result of the execution will be mapped. If value is \"_asString\" no mapping occured but a seralized version is returned as value to embed it in the resulting file. Path parameters could be set dynamically with =&gt;[path]. in any combination.",
       "expose": "WEB",
       "fieldKey": "targetPath",

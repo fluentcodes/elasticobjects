@@ -1,9 +1,11 @@
 {
   "author": "Werner Diwischek",
+  "configModelKey": "ModelConfigObject",
   "description": "Defines the parameter like rowStart, rowEnd and length.",
   "expose": "NONE",
   "fields": {
     "colKeys": {
+      "configModelKey": "FieldConfigObject",
       "description": "The key list for mapping values in a value list. ",
       "expose": "NONE",
       "fieldKey": "colKeys",
@@ -28,6 +30,7 @@
       }
     },
     "filter": {
+      "configModelKey": "FieldConfigObject",
       "description": "Filter for List entries.",
       "expose": "WEB",
       "fieldKey": "filter",
@@ -52,6 +55,7 @@
       }
     },
     "length": {
+      "configModelKey": "FieldConfigObject",
       "description": "length for {@link ListParams}",
       "expose": "WEB",
       "fieldKey": "length",
@@ -76,6 +80,7 @@
       }
     },
     "rowEnd": {
+      "configModelKey": "FieldConfigObject",
       "description": "rowEnd",
       "expose": "WEB",
       "fieldKey": "rowEnd",
@@ -100,6 +105,7 @@
       }
     },
     "rowHead": {
+      "configModelKey": "FieldConfigObject",
       "description": "rowHead",
       "expose": "WEB",
       "fieldKey": "rowHead",
@@ -124,6 +130,7 @@
       }
     },
     "rowStart": {
+      "configModelKey": "FieldConfigObject",
       "description": "rowStart",
       "expose": "WEB",
       "fieldKey": "rowStart",

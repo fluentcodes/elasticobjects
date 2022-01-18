@@ -75,6 +75,9 @@
     "module": "elastic-objects",
     "moduleScope": "main",
     "fields": {
+      "configModelKey": {
+        "final": true
+      },
       "id": {
         "final": true
       },
@@ -475,7 +478,6 @@
       "ModelConfig.properties": {
         "final": true
       },
-      "naturalId": {},
       "packagePath": {
         "override": true,
         "final": true

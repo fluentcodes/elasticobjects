@@ -6,19 +6,26 @@
 <h3>EO - Elastic Objects</h3>
 
 <p>
-    Elastic Objects give JSON a type to instantiate typed Objects in
-    any place of an arbitrary object tree.
+    Elastic Objects give JSON a type to instantiate strong typed java objects in
+    any place of an arbitrary object tree via configurations. It offers a path access methods
+    to the underlying java objects.
 </p>
 <p>
-    A special object type - the \
-    #{GithubLinkCall->ModelConfig, Call}. - offers any functionality
-    with one generic execute method.
+    Any object implementing \
+    #{GithubLinkCall->ModelConfig, Call}. offers functionality
+    with a generic execute method.
 </p>
 
 <p>
-    With a typed JSON it's possible to build web services with one generic endpoint.
-    The underlying MVC framework provides no logic, so it could be tested without the
+    When implementing web services there is no need to define different endpoints
+    for object mapping or functionality. And one can combine any typed object and functionality in
+    an arbitrary object tree.
+    Since the underlying MVC framework provides no logic, it could be tested without the
     framework hassle.
+</p>
+<p>
+    There is also template call to parse for embedded typed json in an arbitrary text file.
+    This is used for this web site.
 </p>
 <p>
     New calls just need an entry in the <a href="configs/ModelConfig.html">model configurations</a>.

@@ -1,9 +1,11 @@
 {
   "author": "Werner Diwischek",
+  "configModelKey": "ModelConfigObject",
   "description": "Mainly the schema information as base for  @DbQueryConfig",
   "expose": "NONE",
   "fields": {
     "author": {
+      "configModelKey": "FieldConfigObject",
       "description": "The author of the class.",
       "expose": "WEB",
       "fieldKey": "author",
@@ -27,7 +29,33 @@
         "unique": false
       }
     },
+    "configModelKey": {
+      "configModelKey": "FieldConfigObject",
+      "description": "The model of the configuration to determine type.",
+      "expose": "NONE",
+      "fieldKey": "configModelKey",
+      "modelKeys": "String",
+      "module": "elastic-objects",
+      "moduleScope": "main",
+      "naturalId": "configModelKey",
+      "properties": {
+        "default": false,
+        "final": true,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": 80,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
     "creationDate": {
+      "configModelKey": "FieldConfigObject",
       "description": "Used to define the creation of an item.",
       "expose": "WEB",
       "fieldKey": "creationDate",
@@ -52,6 +80,7 @@
       }
     },
     "description": {
+      "configModelKey": "FieldConfigObject",
       "description": "A description of the model used by every model extending BaseClassImpl. ",
       "expose": "WEB",
       "fieldKey": "description",
@@ -76,6 +105,7 @@
       }
     },
     "expose": {
+      "configModelKey": "FieldConfigObject",
       "description": "expose",
       "expose": "WEB",
       "fieldKey": "expose",
@@ -100,6 +130,7 @@
       }
     },
     "hostName": {
+      "configModelKey": "FieldConfigObject",
       "description": "A name for host objects.",
       "expose": "NONE",
       "fieldKey": "hostName",
@@ -124,6 +155,7 @@
       }
     },
     "id": {
+      "configModelKey": "FieldConfigObject",
       "description": "The numeric id of an instance of a class.",
       "expose": "WEB",
       "fieldKey": "id",
@@ -148,6 +180,7 @@
       }
     },
     "module": {
+      "configModelKey": "FieldConfigObject",
       "description": "Defines a target module where generating occurs. ",
       "expose": "WEB",
       "fieldKey": "module",
@@ -172,6 +205,7 @@
       }
     },
     "moduleScope": {
+      "configModelKey": "FieldConfigObject",
       "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
       "expose": "WEB",
       "fieldKey": "moduleScope",
@@ -196,6 +230,7 @@
       }
     },
     "naturalId": {
+      "configModelKey": "FieldConfigObject",
       "description": "The natural key in @Base",
       "expose": "NONE",
       "fieldKey": "naturalId",
@@ -220,6 +255,7 @@
       }
     },
     "permissions": {
+      "configModelKey": "FieldConfigObject",
       "description": "Role permission wrapper config.",
       "expose": "WEB",
       "fieldKey": "permissions",
@@ -244,6 +280,7 @@
       }
     },
     "properties": {
+      "configModelKey": "FieldConfigObject",
       "description": "Immutable properties for host config",
       "expose": "NONE",
       "fieldKey": "properties",
@@ -268,6 +305,7 @@
       }
     },
     "scope": {
+      "configModelKey": "FieldConfigObject",
       "description": "A scope for the cache value.",
       "expose": "WEB",
       "fieldKey": "scope",
@@ -295,6 +333,7 @@
   "modelKey": "DbConfig",
   "module": "eo-db",
   "moduleScope": "main",
+  "naturalId": "DbConfig",
   "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
   "properties": {
     "create": false,

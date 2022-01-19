@@ -1,8 +1,6 @@
 [![Open Source Helpers](https://www.codetriage.com/fluentcodes/elasticobjects/badges/users.svg)](https://www.codetriage.com/fluentcodes/elasticobjects)
 
-> A detailed documentation with interactive examples you find at [elasticobjects.org](https://www.elasticobjects.org/examples/ExamplesStart.html).  
-> The web site itself is build by one generic spring boot endpoint and  
-> EO template calls.
+> At [elasticobjects.org](https://www.elasticobjects.org/examples/ExamplesStart.html) there is a detailed documentation with interactive examples [build by EO template calls](example-springboot).
 
 # (EO) Elastic Objects
 
@@ -26,7 +24,7 @@ The [core](elastic-objects) has actually no dependencies beside Log4j and is rat
 <div align="right" id="mvn">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/elastic-objects">mvn repository</a></div>
 
-### Examples
+### Examples core
 <p>
 The following examples you find in
 <nobreak><a href="elastic-objects-test/src/test/java/org/fluentcodes/projects/elasticobjects/documentation/EOReadmeTest.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;EOReadmeTest</a></nobreak>.
@@ -39,7 +37,7 @@ and
 .
 </p>
 
-#### Get and Set
+#### Get and Set (core)
 
 Some get and set operations.
 
@@ -49,8 +47,13 @@ Some get and set operations.
     assertEquals("test", root.get("myAnObject", "myString"));
     assertEquals("test", child.get());
 
-#### Underlying object
-The set changes the objects value by the model configuration:
+#### Underlying object (core)
+<p>
+The set method changes the value of  
+<nobreak><a href="elastic-objects-test/src/main/java/org/fluentcodes/projects/elasticobjects/domain/test/AnObject.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;AnObject</a></nobreak>
+via its
+<a href="https://elasticobjects.org/config/ModelConfig/AnObject">≡AnObject</a> configuration :
+</p>
 
     EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
     root.set("test", "myAnObject", "myString");
@@ -60,7 +63,9 @@ The set changes the objects value by the model configuration:
 
 #### String Path Representation
 
-One can use a path string representation similar to a unix.
+For all accessors one can use a path string with a "/" delimiter like in a file system. Again we set
+the value *test* in the fields [≡AnObject](https://elasticobjects.org/config/ModelConfig/AnObject) and [≡myString](https://elasticobjects.org/config/FieldConfig/myString).
+
 
     EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
     EOInterfaceScalar child = root.set("test", "myAnObject/myString");
@@ -83,7 +88,7 @@ One can remove a branch from the object tree in a path way.
 
 #### Field Length Restrictions
 
-The myString field has a max size of 20. It will be checked when set a value:
+The field configuration [≡myString](https://elasticobjects.org/config/FieldConfig/myString) has a max size of 20. It will be checked when setting a value. In this example the value *test01234567890123456789* has the length 24 and produce an exception.
 
     EoRoot root = EoRoot.ofClass(CONFIG_MAPS, AnObject.class);
     assertEquals(AnObject.class, root.getModelClass());
@@ -92,15 +97,21 @@ The myString field has a max size of 20. It will be checked when set a value:
             .isInstanceOf(EoException.class)
             .hasMessageContaining("Problem creating child at '/' with key 'myString' with value 'test01234567890123456789' with message String value for field 'test01234567890123456789' has size 24 bigger than max length 20.");
 
-This example has also an interactive example at https://www.elasticobjects.org/examples/AnObjectTooLong.html.
+Interactive example: https://www.elasticobjects.org/examples/AnObjectTooLong.html.
 
 #### Restrictions to a Map
 <p>
-It's possible to add field configurations to a map. In
-<nobreak><a href="elastic-objects-test/src/test/resources/ModelConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;ModelConfig.json</a></nobreak>
-the map configuration "AnObjectMap" is defined.
-</p>
-Here the previous example with a length example but the underlying object is a map:
+It's possible to add field configurations with a Map as underlying object. In
+<nobreak><a href="elastic-objects-test/src/main/resources/ModelConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;ModelConfig.json</a></nobreak>
+the configuration of
+<a href="https://elasticobjects.org/config/ModelConfig/AnObjectMap">≡AnObjectMap</a>
+has the field definition
+<a href="https://elasticobjects.org/config/FieldConfig/myString">≡myString</a>.
+This will be checked within
+<nobreak><a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/models/ModelConfigMap.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;ModelConfigMap</a></nobreak>
+</p>.
+
+Here the previous example with "AnObjectMap":
 
     EoRoot root = EoRoot.ofClassName(CONFIG_MAPS, "AnObjectMap");
     assertEquals(LinkedHashMap.class.getSimpleName(), root.get().getClass().getSimpleName());
@@ -109,7 +120,7 @@ Here the previous example with a length example but the underlying object is a m
             .isInstanceOf(EoException.class)
                 .hasMessageContaining("Problem creating child at '/' with key 'myString' with value 'test01234567890123456789' with message String value for field 'test01234567890123456789' has size 24 bigger than max length 20.");
 
-This example has also an interactive example at https://www.elasticobjects.org/examples/AnObjectMapTooLong.html.
+Interactive example: https://www.elasticobjects.org/examples/AnObjectMapTooLong.html.
 
 ##### Field does not exist
 
@@ -121,11 +132,11 @@ When field definition are set, also names will be checked:
             .isInstanceOf(EoException.class)
             .hasMessageContaining("Problem creating child at '/' with key 'notValid' with value 'test' with message No field defined for 'notValid'.");
 
-This example has also an interactive example at https://www.elasticobjects.org/examples/AnObjectMapFieldNotExists.html.
+Interactive example: https://www.elasticobjects.org/examples/AnObjectMapFieldNotExists.html.
 
 #### Typed JSON
 
-The default json representation contains keys of the model configurations:
+The default json representation contains keys of the model configuration [≡AnObject](https://elasticobjects.org/config/ModelConfig/AnObject):
 
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new AnObject());
         EOInterfaceScalar child = root.set("test", "myAnObject", "myString");
@@ -135,6 +146,7 @@ The default json representation contains keys of the model configurations:
                 "    \"myString\": \"test\"\n" +
                 "  }\n" +
                 "}", root.toJson());
+
 
 #### From JSON
 
@@ -150,9 +162,14 @@ This typed json will mapped to the appropriate object class when deserialized:
         AnObject myAnObject = (AnObject)rootFromJson.get();
         assertEquals("test", myAnObject.getMyAnObject().getMyString());
 
+Interactive example: https://www.elasticobjects.org/examples/AnObjectTyped.html.
+
 ## Calls (eo-calls)
 ### Module
-The [calls](elastic-objects) module with a jar size of about 150 KB offers some basic calls for files and directories, simple csv or templates with a role permission concept.
+The [calls](eo-calls) module with a jar size of about 150 KB offers some basic calls also using configurations with a role permission concept for
+files and directories
+simple csv
+or templates.
 
     <dependency>
         <groupId>org.fluentcodes.projects.elasticobjects</groupId>
@@ -161,16 +178,17 @@ The [calls](elastic-objects) module with a jar size of about 150 KB offers some 
     </dependency>
 
   <div align="right" style="font-size:9px">
+
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-calls">mvn repository</font></a></div>
 
 
 ### eo-calls Examples
 <p>
 The call classes implementing the
-<nobreak><a href="elastic-objects/src/test/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;Call</a></nobreak>
+<nobreak><a href="eo-calls/src/test/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;Call</a></nobreak>
 interface offer functionality. A bunch of calls including file access or
 templates you find in
-<nobreak><a href="eo-calls/src/test/java/org/fluentcodes/projects/elasticobjects/"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;eo-calls</a></nobreak>.
+<nobreak><a href="eo-calls/src/main/java/org/fluentcodes/projects/elasticobjects/calls"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;eo-calls</a></nobreak>.
 </p>
 
 <p>
@@ -186,35 +204,38 @@ are found in
 #### Java Example
 
 <p>
-The generic execute method has EO as input. Here we set the field key "source" to 2.1 and direcly call
+The generic execute method has EO as input.
+Here we set the field key "squareDegree" to 2.1 and directly call
  <nobreak><a
- href="eo-calls/src/main/java/org/fluentcodes/projects/elasticobjects/values/SinusValueCall.java"> <img
+ href="eo-calls/src/main/java/org/fluentcodes/projects/elasticobjects/calls/values/SinusValueCall.java"> <img
  src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"
  />&nbsp;SinusValueCall</a></nobreak>.
 </p>
 
         final Call call = new SinusValueCall();
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, new HashMap());
-        EOInterfaceScalar child = root.set(2.1, "source");
+        EOInterfaceScalar child = root.set(2.1, "squareDegree");
         assertEquals(2.1, child.get());
 
         assertEquals(Double.valueOf(0.8632093666488737), call.execute(child));
 
 #### JSON Example
 
-This call could be also embedded in some arbitrary json using the "sourcePath" as input. The value target will be used implicitly as "targetPath" value.
+This call could be also embedded in some arbitrary json using the [≡sourcePath](https://www.elasticobjects.org/config/FieldConfig/sourcePath) as input. The result will stored to the [≡targetPath](https://www.elasticobjects.org/config/FieldConfig/targetPath) "sinusValue".
 
         EoRoot root = EoRoot.ofValue(CONFIG_MAPS, "{\n" +
-                "  \"(Double)source\":1,\n" +
-                "  \"(SinusValueCall)/target\": {\n" +
-                "    \"sourcePath\": \"/source\"\n" +
+                "  \"(Double)squareDegree\":1,\n" +
+                "  \"(SinusValueCall)sinusValue\": {\n" +
+                "    \"sourcePath\": \"/squareDegree\"\n" +
                 "  }\n" +
                 "}");
         root.execute();
         assertEquals("{\n" +
-                "  \"source\": 1.0,\n" +
-                "  \"target\": 0.8414709848078965\n" +
+                "  \"squareDegree\": 1.0,\n" +
+                "  \"sinusValue\": 0.8414709848078965\n" +
                 "}", root.toJson(JSONSerializationType.STANDARD));
+
+Interactive example: https://www.elasticobjects.org/examples/SinusValueCall.html.
 
 #### Template Example
 
@@ -230,6 +251,20 @@ This json will be interpreted in an arbitrary text file via template call with t
         Call call = new TemplateCall(template);
         assertEquals("START -0.8414709848078965 - END", call.execute(root));
 
+Interactive example: https://www.elasticobjects.org/examples/SinusValueCallTemplate.html.
+
+##### Other Template forms
+Calls could be included in an attribute and command form. This will be demonstrated by the following examples:
+* https://www.elasticobjects.org/examples/SinusValueCallCommandTemplate.html
+* https://www.elasticobjects.org/examples/SinusValueCallAttributeTemplate.html
+
+#### Files
+http://localhost:8080/examples/FileCall.html
+http://localhost:8080/examples/JsonCall.html
+
+#### Templates
+Interactive Examples: http://localhost:8080/examples/TemplateExamples.html
+
 ## Csv (eo-csv)
 [eo-csv](eo-csv) offers calls and configurations for reading and writing csv files  using [OpenCsv](https://mvnrepository.com/artifact/com.opencsv/opencsv).
 
@@ -242,6 +277,8 @@ This json will be interpreted in an arbitrary text file via template call with t
 <div align="right" style="font-size:9px">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-csv">mvn repository</a>
 </div>
+
+Interactive examples: http://localhost:8080/examples/ListCall.html
 
 ## Database (eo-db)
 [eo-db](eo-db)
@@ -256,7 +293,7 @@ is experimental providing the execution of sql configurations as list or as quer
 <div align="right">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/eo-db" style="font-size:9px;">mvn repository</font></a></div>
 
-Interactive examples you can find  at https://www.elasticobjects.org/examples/DbCall.html.
+Interactive examples: https://www.elasticobjects.org/examples/DbCall.html.
 
 ## Excel (eo-xlsx)
 [eo-xlsx](eo-xlsx) offers calls and configurations for reading and writing xlsx files using [Apache POI](https://mvnrepository.com/artifact/org.apache.poi/poi).
@@ -267,6 +304,7 @@ Interactive examples you can find  at https://www.elasticobjects.org/examples/Db
         <version>0.9.4</version>
     </dependency>
 
+Interactive examples: http://localhost:8080/examples/ExcelCall.html
 
 ## Other Modules
 ### elastic-objects-test
@@ -306,7 +344,6 @@ The calls implemented are used in the two applications:
 </p>
 
 
-
 ### Elastic Objects
 <p>
     Elastic Objects is a generic object wrapper skin
@@ -334,28 +371,16 @@ For the access to the embedded java objects EO
 
 <ul>
     <li>
-<a href="http://elasticobjects.org/config/FieldConfig/sourcePath">&equiv;sourcePath</a>
+<a href="http://elasticobjects.org/config/FieldConfig/sourcePath">≡sourcePath</a>
  for the location of the input</li>
     <li>
-<a href="http://elasticobjects.org/config/FieldConfig/targetPath">&equiv;targetPath</a>
+<a href="http://elasticobjects.org/config/FieldConfig/targetPath">≡targetPath</a>
  for storing the output</li>
     <li>
-<a href="http://elasticobjects.org/config/FieldConfig/condition">&equiv;condition</a>
+<a href="http://elasticobjects.org/config/FieldConfig/condition">≡condition</a>
 </li>
 </ul>
 <img src="example-springboot/src/main/resources/static/pics/eoCall.svg" width="200" style="margin:20px;"/>
-
-### Pseudo JSON Example
-<p>
-    The following pseudo code would call the execute method in the <strong>ACall</strong> instance,
-    which uses the <strong>AnObject</strong> object provided in <em>input</em> path
-    and store the result in <em>target</em> path.
-
-    {
-        "(AnObject)input":{...},
-        "(ACall)target:{"sourcePath":"input"}
-    }
-</p>
 
 ###  A CSV Example
 
@@ -393,7 +418,7 @@ This example is executable on
 <nobreak><a target="github" href="example-springboot/src/main/resources/templates/table.tpl"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>table.tpl</a>
  and store it under the path "_asTemplate"</li>
 </ul>
-<a href="http://elasticobjects.org/config/ModelConfig/TemplateResourceCall">&equiv;TemplateResourceCall</a>
+<a href="http://elasticobjects.org/config/ModelConfig/TemplateResourceCall">≡TemplateResourceCall</a>
  is part of the core module.
     Templates are just files with certain placeholders .
 </p>
@@ -523,61 +548,6 @@ The project has now version 0.9.4 and it's good enough for a proof of concept. F
 the microservice architectures it offer an incredible flexibility compared with
 RPC API solutions.
 </p>
-
-<!--# Elastic Objects
-<p>
-Elastic Objects is an object wrapper around the skeleton of hierarchical Java objects.
-<a href="elasticobjects.org/config/AnObject">AnObject</a> is a real test class for this and that....
-</p>
-
-    AnObject anObject = new AnObject();
-    anObject.setMyString("value");
-    EoRoot eoRoot = EoRoot.OFanObject);
-<p>
-It offers
-<strong>path</strong>
-methods to create, set or access objects.
-</p>
-
-    eoRoot.set(anObject, "a/b/c");
-    AnObject anObject2 = eoRoot.get("a/b/c");
-    EO eoChild = eoRoot.getEo("a/b/c");
-    AnObject anObject3 = eoChild.get();
-
-<p>
-    The path could be a typed path:
-</p>
-
-    eoRoot.set("value", "a/(AnObject)b/myString");
-
-<p>
-   And JSON serialization and deserialization uses the same pattern:
-</p>
-
-    {
-        "a":{
-            "(AnObject)b":{
-                 "myString":"value"
-            }
-        }
-    }
-</p>
-<p>
-    In a service application a client is free to combine any typed data in a JSON message
-    by one generic endpoint.
-</p>
-
-    {
-        "(AnObject)input":{...},
-        "(ACall)target:{"sourcePath":"input"}
-    }
-
-<p>
-   <a href="elasticobjects.org/config/Call">Calls</a> allow to add functionality with in the same pattern,
-   since calls are just beans with a
-generic execute method with EO as input.
-</p>-->
-
 
 ## Links
 * https://tech.signavio.com/2017/json-type-information

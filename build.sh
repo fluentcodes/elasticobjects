@@ -1,1 +1,0 @@
-mvn clean install -pl example-springboot -DskipTests

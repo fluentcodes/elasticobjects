@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Created by Werner on 21.1.2021.
+ * Set elementary objects for parsing json.
  */
 
 public class ModelFactoryBasic extends ModelFactory {
@@ -54,8 +54,13 @@ public class ModelFactoryBasic extends ModelFactory {
         modelMap.add(new ModelBean(Double.class, ShapeTypes.DOUBLE));
         modelMap.add(new ModelBean(Boolean.class, ShapeTypes.BOOLEAN));
         modelMap.add(new ModelBean(Date.class, ShapeTypes.DATE));
-        modelMap.add(new ModelBean(LogLevel.class, ShapeTypes.ENUM));
-        modelMap.add(new ModelBean(JSONSerializationType.class, ShapeTypes.ENUM));
+        modelMap.add((ModelBean) new ModelBean(LogLevel.class, ShapeTypes.ENUM)
+                .setModule("elastic-objects")
+                .setModuleScope("main"));
+        modelMap.add((ModelBean)new ModelBean(JSONSerializationType.class, ShapeTypes.ENUM)
+                .setModule("elastic-objects")
+                .setModuleScope("main")
+        );
         return modelMap;
     }
 }

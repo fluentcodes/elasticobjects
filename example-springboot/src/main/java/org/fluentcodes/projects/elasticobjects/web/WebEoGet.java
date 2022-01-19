@@ -26,6 +26,9 @@ public class WebEoGet {
     private static final Logger LOG = LogManager.getLogger(WebEoGet.class);
     private static final String SELECTED_ITEM = "selectedItem";
     private static final String CONTENT_DIRECTORY = "contentDirectory";
+    public static final String CONFIG_TYPE = "configType";
+    public static final String CONFIG_FILTER = "configFilter";
+    public static final String CONFIG_SELECTED = "configSelected";
 
     @Value("${elasticobjects.scope:QS}")
     String scope;
@@ -158,9 +161,10 @@ public class WebEoGet {
         EoRoot eo = EoRoot.of(cache);
 
         eo.set(configType + " - " + configSelected, SELECTED_ITEM);
-        eo.set(configFilter, "configFilter");
-        eo.set(configType, "configType");
-        eo.set(configSelected, "configSelected");
+        eo.set(configFilter, CONFIG_FILTER);
+        eo.set(configType, CONFIG_TYPE);
+        eo.set("config", CONTENT_DIRECTORY);
+        eo.set(configSelected, CONFIG_SELECTED);
 
         LOG.info("Request for {}/{}", configType, configSelected);
         eo.addCall(new TemplateResourceCall("ConfigsPage.html"));

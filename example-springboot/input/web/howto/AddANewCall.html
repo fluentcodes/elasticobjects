@@ -1,18 +1,10 @@
-<h5><a href="/config/ModelConfig/AnObjectMap">AnObjectMap</a> - Field not Exists</h5>
-<form action="/eo-form" method="post" target="example">
-    <textarea name="eo" style="height:70px">{
-  "_rootmodel": "AnObjectMap",
-  "unknownField": "test"
-}</textarea>
-    <input type="submit" value="post"/>
-</form>
+<h3>A Cosinus Call</h3>
 
-<p>
-    The <a href="/config/ModelConfig/AnObjectMap">AnObjectMap</a> configuration
-    with #{GithubLinkCall->ModelConfig, ModelConfigMap}.
-    the underlying java object is a Map with field definitions.
+<p>To demonstrate how to create a new call, a
+    #{GithubLinkCall->ModelConfig, CosinusValueCall}.  was defined.
+    </p>
+<p>The only thing one has to
+    do is to add an #{ConfigLinkCall->ModelConfig, CosinusValueCall}. to
+    #{GithubLinkCall->NONE, SPR||ModelConfig.json}. since there are no new fields used.
 </p>
-<p>
-    The field is not defined in the configuration, so
-    an EoException is thrown.
-</p>
+#{TemplateDirResourceCall->examples, CosinusValueCall.html}.

@@ -385,6 +385,22 @@
     "module": "example-springboot",
     "moduleScope": "main",
     "hostConfigKey": "localhost",
+    "filePath": "web",
+    "naturalId": "newFile.txt",
+    "fileName": "newFile.txt",
+    "description": "How to example for a adding a file.",
+    "expose": "WEB",
+    "cached": "false",
+    "permissions": {
+      "executeRoles": [
+        "guest"
+      ]
+    }
+  },
+  {
+    "module": "example-springboot",
+    "moduleScope": "main",
+    "hostConfigKey": "localhost",
     "filePath": "templates",
     "naturalId": "Presentation.html",
     "fileName": "Presentation.html",

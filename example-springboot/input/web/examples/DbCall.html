@@ -1,7 +1,7 @@
 <h3>Db Calls</h3>
 <p>With the
     #{ConfigLinkCall->ModelConfig, DbSqlReadCall}. one run queries
-    on the serverside adding the result to EO.
+    on the server side adding the result to EO.
 </p>
 <p>In the following examples the
      #{ConfigLinkCall->DbSqlConfig, h2:mem:basic:AnObject}.
@@ -35,24 +35,7 @@ The table that you see beforehand is created by the following template sequence 
 In the <a href="#post4">last example</a> you can see the post version of these calls.
  #{ConfigLinkCall->ModelConfig, AnObject}. is a test class.
 
-<h5>Simple Call</h5>
-<p>
-    The following example will add the result to "xyz" as a list of maps.
-</p>
-<form action="/eo-form" method="post" target="example">
-    <textarea name="eo" style="height:120px">{
-   "(DbSqlReadCall)xyz":{
-        "sqlKey":"h2:mem:basic:AnObject",
-       "hostConfigKey":"h2:mem:basic"
-   },
-   "_serializationType":"STANDARD"
-}</textarea>
-    <input type="submit" value="post"/>
-</form>
-<p>
-    Since default configuration defines "rowHead" with 0, which will be filled with metadata of the resultset,
-    the value entries will be mapped as a list of map entries using the first row as a key.
-</p>
+#{TemplateDirResourceCall->examples, DbSqlReadCall.html}.
 
 <h5>Setting Parameters</h5>
 <p>

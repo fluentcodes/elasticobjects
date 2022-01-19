@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.calls.values;
 
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
-public enum Modules {
+public enum ModuleLinks {
     SP("example-springboot/src/main/java/org/fluentcodes/projects/elasticobjects/"),
     SPR("example-springboot/src/main/resources/"),
     SPT("example-springboot/src/test/java/org/fluentcodes/projects/elasticobjects/"),
@@ -45,7 +45,7 @@ public enum Modules {
    private String dir;
    private String directory;
 
-   Modules(final String directory) {
+   ModuleLinks(final String directory) {
         this.directory = directory;
     }
     public static String findDirectory(final String dir) {

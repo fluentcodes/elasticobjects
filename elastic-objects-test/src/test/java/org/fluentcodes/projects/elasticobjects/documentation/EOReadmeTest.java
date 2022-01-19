@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
+import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
@@ -150,5 +151,18 @@ public class EOReadmeTest {
         final EoRoot rootAnObject = EoRoot.ofValue(CONFIG_MAPS, anObject);
 
         assertEquals("/myString: value1 <> value2", rootMap.compare(rootAnObject));
+    }
+
+    @Test
+    public void comments() {
+        final String json = "{\"myString\":\"test\", \"_comment\":\"FieldNames with underscore will not set in parent object.\"}";
+
+        final EoRoot root = EoRoot.ofClass(CONFIG_MAPS, json, AnObject.class);
+
+        assertEquals("FieldNames with underscore will not set in parent object.", root.get("_comment"));
+        assertEquals("{\n" +
+                "  \"myString\": \"test\"\n" +
+                "}", root.toJson(JSONSerializationType.STANDARD));
+
     }
 }

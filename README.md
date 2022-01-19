@@ -199,6 +199,20 @@ creates a Map from AnObject:
 
     assertEquals(anObject.getMyString(), transformed.get("myString"));
 
+#### Non Mapped values
+Every field key starting with underscore will not be mapped to the parent object.
+
+    final String json = "{\"myString\":\"test\", \"_comment\":\"FieldNames with underscore will not set in parent object.\"}";
+
+    final EoRoot root = EoRoot.ofClass(CONFIG_MAPS, json, AnObject.class);
+
+    assertEquals("FieldNames with underscore will not set in parent object.", root.get("_comment"));
+    assertEquals("{\n" +
+            "  \"myString\": \"test\"\n" +
+            "}", root.toJson(JSONSerializationType.STANDARD));
+
+Interactive example: https://www.elasticobjects.org/examples/Comment.html.
+
 ## Calls (eo-calls)
 ### eo-calls Module
 The [calls](eo-calls) module with a jar size of about 150 KB offers some basic calls also using configurations with a role permission concept for

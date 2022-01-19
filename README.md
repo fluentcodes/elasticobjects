@@ -1,18 +1,33 @@
 [![Open Source Helpers](https://www.codetriage.com/fluentcodes/elasticobjects/badges/users.svg)](https://www.codetriage.com/fluentcodes/elasticobjects)
 
-> At [elasticobjects.org](https://www.elasticobjects.org/examples/ExamplesStart.html) there is a detailed documentation with interactive examples [build by EO template calls](example-springboot).
+> [elasticobjects.org](https://www.elasticobjects.org/examples/ExamplesStart.html) provide a detailed documentation with interactive examples build by template calls. The sources you find in  [example-springboot](example-springboot).
 
 # (EO) Elastic Objects
 
-Elastic Objects offers path access methods to java object trees. The underlying
-access to java object is passed via
-**object configurations** identified by a key.
+Elastic Objects is a tiny layer offering path access methods to any java object tree.
+<p>
+The access
+to underlying
+java objects is mediated by key and
+<strong>strict object configurations</strong> defined by
+<nobreak><a href="elastic-objects/src/main/resources/ModelConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;ModelConfig.json</a></nobreak>
+and
+<nobreak><a href="elastic-objects/src/main/resources/FieldConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;FieldConfig.json</a></nobreak>
+in the class path. The configurations become first class citizen to determine type in an object tree.
+</p>
+<p>
+Embedded
+ <nobreak><a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;Call</a></nobreak>
+objects could manipulate the object tree with a generic execute method.
+It's a "Remote Object Call" (ROC) architecture instead of RPC concepts.
+</p>
 
-The json serialization/deserialization could include the object configuration key. This allows
-typesafe communication without endpoints or web frameworks.
+With the configuration key embedded in json the serialization/deserialization allows
+typesafe communication between computers without endpoints or web frameworks.
+Embedded in arbitrary text it could initiate complex workflows or compose complex text.
 
 ## Core (elastic-objects)
-### Module
+### elastic-objects Module
 The [core](elastic-objects) has actually no dependencies beside Log4j and is rather small with a jar size of approximately 90 KB.
 
     <dependency>
@@ -24,20 +39,16 @@ The [core](elastic-objects) has actually no dependencies beside Log4j and is rat
 <div align="right" id="mvn">
 <a href="https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/elastic-objects">mvn repository</a></div>
 
-### Examples core
+### elastic-objects Examples
 <p>
 The following examples you find in
-<nobreak><a href="elastic-objects-test/src/test/java/org/fluentcodes/projects/elasticobjects/documentation/EOReadmeTest.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;EOReadmeTest</a></nobreak>.
+<nobreak><a href="elastic-objects-test/src/test/java/org/fluentcodes/projects/elasticobjects/documentation/EOReadmeTest.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;EOReadmeTest</a></nobreak>
+as runnable tests.
 The test object is
-<nobreak><a href="elastic-objects-test/src/main/java/org/fluentcodes/projects/elasticobjects/domain/test/AnObject.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;AnObject</a></nobreak>
-with the configurations
-<nobreak><a href="elastic-objects-test/src/main/resources/ModelConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;ModelConfig.json</a></nobreak>
-and
-<nobreak><a href="elastic-objects-test/src/main/resources/FieldConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;FieldConfig.json</a></nobreak>
-.
+<nobreak><a href="elastic-objects-test/src/main/java/org/fluentcodes/projects/elasticobjects/domain/test/AnObject.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;AnObject</a></nobreak>.
 </p>
 
-#### Get and Set (core)
+#### Get and Set
 
 Some get and set operations.
 
@@ -47,7 +58,7 @@ Some get and set operations.
     assertEquals("test", root.get("myAnObject", "myString"));
     assertEquals("test", child.get());
 
-#### Underlying object (core)
+#### Underlying Object
 <p>
 The set method changes the value of  
 <nobreak><a href="elastic-objects-test/src/main/java/org/fluentcodes/projects/elasticobjects/domain/test/AnObject.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;AnObject</a></nobreak>
@@ -164,8 +175,32 @@ This typed json will mapped to the appropriate object class when deserialized:
 
 Interactive example: https://www.elasticobjects.org/examples/AnObjectTyped.html.
 
+#### Clone
+When a java object is mapped to EO the underlying object is a clone with the same structure and leaf values.
+
+    final AnObject anObject = new AnObject();
+    anObject.setMyString("value1");
+
+    final EoRoot rootMap = EoRoot.ofValue(CONFIG_MAPS, anObject);
+    final AnObject cloned = (AnObject) rootMap.get();
+
+    assertNotEquals(anObject, cloned);
+    assertEquals(anObject.getMyString(), cloned.getMyString());
+
+#### Transform
+One can easily transform an object to another type, when the target object has the same fields. The following example  
+creates a Map from AnObject:
+
+    final AnObject anObject = new AnObject();
+    anObject.setMyString("value2");
+
+    final EoRoot rootMap = EoRoot.ofClass(CONFIG_MAPS, anObject, Map.class);
+    final Map transformed = (Map) rootMap.get();
+
+    assertEquals(anObject.getMyString(), transformed.get("myString"));
+
 ## Calls (eo-calls)
-### Module
+### eo-calls Module
 The [calls](eo-calls) module with a jar size of about 150 KB offers some basic calls also using configurations with a role permission concept for
 files and directories
 simple csv
@@ -308,41 +343,18 @@ Interactive examples: http://localhost:8080/examples/ExcelCall.html
 
 ## Other Modules
 ### elastic-objects-test
-The objectives [elastic-objects-test](elastic-objects-test) is providing all tests for elastic-object module together with a main package providing test helper and test objects to other modules.
+[elastic-objects-test](elastic-objects-test) provide tests for the [elastic-objects](elastic-objects) module.  The main package providing test helper and test objects to other modules.
+
+Since it has just test purposes there is actual no package on [mvn central](https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/).
 
 ### examples-springboot
 [examples-springboot](example-springboot)
 are the sources for the spring boot web example on
 [http://www.elasticobjects.org](http://www.elasticobjects.org).
 
+Since it has just demo purposes there is actual no package on [mvn central](https://mvnrepository.com/artifact/org.fluentcodes.projects.elasticobjects/).
+
 ## Background
-
-<p>Functionality is provided by special
-<nobreak><a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>call</a></nobreak>
-objects with a generic execution method using a <strong>source path</strong> as <strong>input</strong> and
-a <strong>target path</strong> for <strong>output</strong>.
-</p>
-
-Compared with todays RPC concepts its more a "Remote Object Call" (ROC) architecture. One can easily
-create new calls for almost anything. A client can create a typed JSON message addressing call objects
-in any combination.
-
-There are some predefined generic  calls e.g. for
-<a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/files/FileReadCall.java">files</a>,
-<a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/lists/CsvSimpleReadCall.java">csv</a>,
-<a href="eo-xlsx/src/main/java/org/fluentcodes/projects/elasticobjects/calls/xlsx/XlsxReadCall.java">Excel</a>,
-<a href="eo-db/src/main/java/org/fluentcodes/projects/elasticobjects/calls/db/DbSqlReadCall.java">database</a> or
-<a href="elastic-objects/src/main/java/org/fluentcodes/projects/elasticobjects/calls/templates/TemplateCall.java">templates</a>.
-The calls implemented are used in the two applications:
-<ul>
-<li>the documentation on
-<a href="http://elasticobjects.org/">http://elasticobjects.org/"</a> in module
-<a href="example-springboot">example-springboot</a></li>
-<li> the <a href="builder">builder</a> for generation java code and configurations.
-</li>
-</ul>
-</p>
-
 
 ### Elastic Objects
 <p>
@@ -382,7 +394,7 @@ For the access to the embedded java objects EO
 </ul>
 <img src="example-springboot/src/main/resources/static/pics/eoCall.svg" width="200" style="margin:20px;"/>
 
-###  A CSV Example
+<!--###  A CSV Example
 
 <p>
 This example is executable on
@@ -506,48 +518,16 @@ is equivalent to
     data with
 <nobreak><a target="github" href="example-springboot/src/main/resources/templates/table.tpl"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>table.tpl</a>
  again.
-</p>
-
-### Other Examples
-#### Service Examples
-
-<p>
-    Under <a href="http://elasticobjects.org/examples/ExamplesStart.html">http://elasticobjects.org/examples/ExamplesStart.html</a>
-    you find further working editable service examples:
-</p>
-<ul>
-<li><a href="http://elasticobjects.org/examples/TheGreetingCall.html">TheGreetingCall</a></li>
-<li><a href="http://elasticobjects.org/examples/FileCall.html">FileCall</a></li>
-<li><a href="http://elasticobjects.org/examples/JsonCall.html">JsonCall</a></li>
-<li><a href="http://elasticobjects.org/examples/ListCall.html">ListCall</a></li>
-<li><a href="http://elasticobjects.org/examples/DbCall.html">DbCall</a></li>
-<li><a href="http://elasticobjects.org/examples/TemplateCall.html">TemplateCall</a></li>
-<li><a href="http://elasticobjects.org/examples/ConfigsCall.html">ConfigsCall</a></li>
-</ul>
-
-
-
-
-### Direct Java Usage
-<p>
-    Under the
-<a href="http://elasticobjects.org/eo/EO.html">http://elasticobjects.org/eo/EO.html</a>
-    you find examples to use EO in a java code context.
-
-<ul>
-    <li><a href="http://elasticobjects.org/eo/Compare.html">compare</a></li>
-    <li><a href="http://elasticobjects.org/eo/Merge.html">merge</a></li>
-    <li><a href="http://elasticobjects.org/eo/Transform.html">transform</a></li>
-</ul>
-</p>
+</p>-->
 
 ## Conclusion
 
-<p>
-The project has now version 0.9.4 and it's good enough for a proof of concept. For
-the microservice architectures it offer an incredible flexibility compared with
-RPC API solutions.
-</p>
+The project has now version 0.9.4.
+
+As a tool for creating and manipulating java objects it offers a lot of benefits.
+
+For productive use in a flexible microservice architecture it's good enough for a proof of concept.
+
 
 ## Links
 * https://tech.signavio.com/2017/json-type-information

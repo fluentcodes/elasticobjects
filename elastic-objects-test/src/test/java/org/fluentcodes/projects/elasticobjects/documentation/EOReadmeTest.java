@@ -16,6 +16,7 @@ import java.util.Map;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 
 public class EOReadmeTest {
@@ -112,6 +113,29 @@ public class EOReadmeTest {
                 ()->{root.set("test", "notValid");})
                 .isInstanceOf(EoException.class)
                 .hasMessageContaining("Problem creating child at '/' with key 'notValid' with value 'test' with message No field defined for 'notValid'.");
+    }
+
+    @Test
+    public void testClone() {
+        final AnObject anObject = new AnObject();
+        anObject.setMyString("value2");
+
+        final EoRoot rootMap = EoRoot.ofValue(CONFIG_MAPS, anObject);
+        final AnObject cloned = (AnObject) rootMap.get();
+
+        assertNotEquals(anObject, cloned);
+        assertEquals(anObject.getMyString(), cloned.getMyString());
+    }
+
+    @Test
+    public void testTransform() {
+        final AnObject anObject = new AnObject();
+        anObject.setMyString("value2");
+
+        final EoRoot rootMap = EoRoot.ofClass(CONFIG_MAPS, anObject, Map.class);
+        final Map transformed = (Map) rootMap.get();
+
+        assertEquals(anObject.getMyString(), transformed.get("myString"));
     }
 
     @Test

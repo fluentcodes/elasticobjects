@@ -4,12 +4,25 @@
 
 # (EO) Elastic Objects
 
-Elastic Objects offers path access methods to java object trees. The underlying
-access to java object is passed via
-**object configurations** identified by a key.
+Elastic Objects is a tiny layer offering path access methods to any java object tree.
+<p>
+The access
+to underlying
+java objects is mediated via via key by
+<strong>strict object configurations</strong> defined by
+<nobreak><a href="elastic-objects/src/main/resources/ModelConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;ModelConfig.json</a></nobreak>
+and
+<nobreak><a href="elastic-objects/src/main/resources/FieldConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;FieldConfig.json</a></nobreak>
+</p>
+<p>
+Embedded
+ <nobreak><a href="elastic-objects-test/src/main/java/org/fluentcodes/projects/elasticobjects/calls/Call.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;Call</a></nobreak>.
+objects could be to manipulate the object tree.
+</p>
 
-The json serialization/deserialization could include the object configuration key. This allows
-typesafe communication without endpoints or web frameworks.
+With the configuration key in json the serialization/deserialization allows
+typesafe communication between computers without endpoints or web frameworks.
+Embedded in arbitrary text it could initiate complex workflows or
 
 ## Core (elastic-objects)
 ### Module
@@ -31,9 +44,8 @@ The following examples you find in
 The test object is
 <nobreak><a href="elastic-objects-test/src/main/java/org/fluentcodes/projects/elasticobjects/domain/test/AnObject.java"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;AnObject</a></nobreak>
 with the configurations
-<nobreak><a href="elastic-objects-test/src/main/resources/ModelConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;ModelConfig.json</a></nobreak>
-and
-<nobreak><a href="elastic-objects-test/src/main/resources/FieldConfig.json"> <img src="example-springboot/src/main/resources/static/pics/github.png" height="12" width="12" " style="margin:0px 4px 0px 6px;"/>&nbsp;FieldConfig.json</a></nobreak>
+
+
 .
 </p>
 
@@ -342,7 +354,6 @@ The calls implemented are used in the two applications:
 </li>
 </ul>
 </p>
-
 
 ### Elastic Objects
 <p>

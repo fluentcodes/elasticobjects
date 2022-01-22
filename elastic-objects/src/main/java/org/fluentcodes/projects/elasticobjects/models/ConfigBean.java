@@ -413,7 +413,7 @@ public class ConfigBean {
         return deriveConfigClass(getConfigModelKey());
     }
 
-    Config createConfig(final ConfigMaps configMaps) {
+    public Config createConfig(final ConfigMaps configMaps) {
         return createConfig(deriveConfigClass(), configMaps);
     }
 

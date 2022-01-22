@@ -1,8 +1,8 @@
 <table border="1">
    <tr>
       <th>id </th>
-      <th>myAnObject </th>
-      <th>myASubObject </th>
+      <th>myAnObject_id </th>
+      <th>myASubObject_id </th>
       <th>myInt </th>
       <th>myString </th>
       <th>naturalId </th>

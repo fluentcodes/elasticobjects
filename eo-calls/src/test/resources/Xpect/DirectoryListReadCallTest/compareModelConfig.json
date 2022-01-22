@@ -350,7 +350,7 @@
         "property": false,
         "staticName": false,
         "super": true,
-        "transient": false,
+        "transient": true,
         "unique": false
       }
     },

@@ -35,4 +35,9 @@ public class ShapeTypeSerializerInteger extends ShapeTypeSerializerNumber<Intege
         return asObject(object.toString());
     }
 
+    @Override
+    public String getSqlType(Integer max) {
+        return "integer";
+    }
+
 }

@@ -5,7 +5,7 @@ import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigNoCr
 import org.junit.Test;
 
 /**
- * Created by Werner on 12.10.2016.
+ *
  */
 public class DbConfigTest implements IModelConfigNoCreateTests {
     @Override

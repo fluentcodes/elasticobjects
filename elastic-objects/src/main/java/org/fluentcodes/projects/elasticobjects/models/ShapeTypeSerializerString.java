@@ -72,4 +72,9 @@ public class ShapeTypeSerializerString implements ShapeTypeSerializerInterface<S
         return object;
     }
 
+    @Override
+    public String getSqlType(Integer max) {
+        return "varchar(" + max + ")";
+    }
+
 }

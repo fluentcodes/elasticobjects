@@ -16,4 +16,9 @@ public class ShapeTypeSerializer implements ShapeTypeSerializerInterface<Object>
     public boolean isValid(Object value, FieldConfigProperties properties) {
         return true;
     }
+
+    @Override
+    public String getSqlType(Integer max) {
+        return "bigint";
+    }
 }

@@ -13,6 +13,7 @@ public interface ShapeTypeSerializerInterface<T> {
     }
 
     T asObject(Object value);
+    String getSqlType(Integer max);
     T asObject(String value);
     boolean isValid(Object value, FieldConfigProperties properties);
 

@@ -41,6 +41,12 @@ public interface FieldPropertiesInterface {
         return hasGenerated() && getGenerated();
     }
 
+    String getIdKey();
+
+    default boolean hasIdKey() {
+        return getIdKey() != null;
+    }
+
     String getJavascriptType();
 
     default boolean hasJavascriptType() {

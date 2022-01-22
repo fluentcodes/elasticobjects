@@ -27,4 +27,9 @@ public class ShapeTypeSerializerFloat extends ShapeTypeSerializerNumber<Float> {
         }
         return asObject(object.toString());
     }
+
+    @Override
+    public String getSqlType(Integer max) {
+        return "float";
+    }
 }

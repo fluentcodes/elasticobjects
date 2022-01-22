@@ -29,4 +29,9 @@ public class ShapeTypeSerializerLong extends ShapeTypeSerializerNumber<Long> {
         return asObject(object.toString());
     }
 
+    @Override
+    public String getSqlType(Integer max) {
+        return "bigint";
+    }
+
 }

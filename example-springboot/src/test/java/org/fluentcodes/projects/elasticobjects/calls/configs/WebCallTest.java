@@ -12,7 +12,8 @@ public class WebCallTest {
     public void eo_TemplateDirResourceCall_HeaderHtml__execute__xpected() {
         EoRoot eo = ObjectProvider.createEo();
         eo.set("test", "selectedItem");
-        eo.addCall(new TemplateDirResourceCall("WEB").setFileName("Header.html"));
+        eo.addCall(new TemplateDirResourceCall("WEB")
+                .setFileName("Header.html"));
         eo.execute();
         Assertions.assertThat(eo.getLog()).isEmpty();
         XpectStringJunit4.assertStatic((String) eo.get("_template"));

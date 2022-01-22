@@ -5,7 +5,7 @@
     "description": "A sample character separated file with 3x3 entries and a header which could be mapped to AnObject.",
     "expose": "WEB",
     "fileName": "AnObject.csv",
-    "filePath": "input/assets/bt",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "elastic-objects-test",
     "moduleScope": "main",
@@ -29,7 +29,7 @@
     "description": "Simple data for the AnObject.",
     "expose": "WEB",
     "fileName": "AnObject.json",
-    "filePath": "input/assets/bt",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "elastic-objects-test",
     "moduleScope": "main",
@@ -44,17 +44,17 @@
       "rowDelimiter": "\n"
     }
   },
-  "ContentExample": {
+  "ContentExample.json": {
     "cached": true,
     "configModelKey": "FileConfig",
     "description": "Calls templates.",
     "expose": "NONE",
     "fileName": "ContentExample.json",
-    "filePath": "input/calls/content-example",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExample",
+    "naturalId": "ContentExample.json",
     "permissions": {
     },
     "properties": {
@@ -62,17 +62,17 @@
       "rowDelimiter": "\n"
     }
   },
-  "ContentExampleData": {
+  "ContentExampleData.json": {
     "cached": true,
     "configModelKey": "FileConfig",
     "description": "Simple data for the content templates.",
     "expose": "NONE",
     "fileName": "ContentExampleData.json",
-    "filePath": "input/calls/content-example",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleData",
+    "naturalId": "ContentExampleData.json",
     "permissions": {
     },
     "properties": {
@@ -80,17 +80,17 @@
       "rowDelimiter": "\n"
     }
   },
-  "ContentExampleDynamic": {
+  "ContentExampleDynamic.tpl": {
     "cached": true,
     "configModelKey": "FileConfig",
     "description": "A template or ContentExample using the template field for rendering with a template",
     "expose": "NONE",
     "fileName": "ContentExampleDynamic.tpl",
-    "filePath": "input/calls/content-example",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleDynamic",
+    "naturalId": "ContentExampleDynamic.tpl",
     "permissions": {
     },
     "properties": {
@@ -98,17 +98,17 @@
       "rowDelimiter": "\n"
     }
   },
-  "ContentExampleElement1": {
+  "ContentExampleElement1.tpl": {
     "cached": true,
     "configModelKey": "FileConfig",
     "description": "A template for an entry fo ContentExample",
     "expose": "NONE",
     "fileName": "ContentExampleElement1.tpl",
-    "filePath": "input/calls/content-example",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleElement1",
+    "naturalId": "ContentExampleElement1.tpl",
     "permissions": {
     },
     "properties": {
@@ -116,17 +116,17 @@
       "rowDelimiter": "\n"
     }
   },
-  "ContentExampleElement2": {
+  "ContentExampleElement2.tpl": {
     "cached": true,
     "configModelKey": "FileConfig",
     "description": "A template for an entry fo ContentExample",
     "expose": "NONE",
     "fileName": "ContentExampleElement2.tpl",
-    "filePath": "input/calls/content-example",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleElement2",
+    "naturalId": "ContentExampleElement2.tpl",
     "permissions": {
     },
     "properties": {
@@ -134,17 +134,17 @@
       "rowDelimiter": "\n"
     }
   },
-  "ContentExampleStatic": {
+  "ContentExampleStatic.tpl": {
     "cached": true,
     "configModelKey": "FileConfig",
     "description": "A template  ContentExample with condition",
     "expose": "NONE",
     "fileName": "ContentExampleStatic.tpl",
-    "filePath": "input/calls/content-example",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleStatic",
+    "naturalId": "ContentExampleStatic.tpl",
     "permissions": {
     },
     "properties": {
@@ -152,17 +152,17 @@
       "rowDelimiter": "\n"
     }
   },
-  "ContentExampleStaticCondition": {
+  "ContentExampleStaticCondition.tpl": {
     "cached": true,
     "configModelKey": "FileConfig",
     "description": "A template  ContentExample with condition",
     "expose": "NONE",
     "fileName": "ContentExampleStaticCondition.tpl",
-    "filePath": "input/calls/content-example",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleStaticCondition",
+    "naturalId": "ContentExampleStaticCondition.tpl",
     "permissions": {
     },
     "properties": {
@@ -170,17 +170,17 @@
       "rowDelimiter": "\n"
     }
   },
-  "ContentExampleStaticKeep": {
+  "ContentExampleStaticKeep.tpl": {
     "cached": true,
     "configModelKey": "FileConfig",
     "description": "A template  ContentExample with condition",
     "expose": "NONE",
     "fileName": "ContentExampleStaticKeep.tpl",
-    "filePath": "input/calls/content-example",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
-    "naturalId": "ContentExampleStaticKeep",
+    "naturalId": "ContentExampleStaticKeep.tpl",
     "permissions": {
     },
     "properties": {
@@ -194,7 +194,7 @@
     "description": "Local 'source.txt' definition.",
     "expose": "NONE",
     "fileName": "FileTest.txt",
-    "filePath": "input/calls/file-simple",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
@@ -218,7 +218,7 @@
     "description": "Local file with cache set true.",
     "expose": "NONE",
     "fileName": "FileTest.txt",
-    "filePath": "input/calls/file-simple",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",
@@ -236,7 +236,7 @@
     "description": "A sample csv file with 2*2 values and a head as a source.",
     "expose": "NONE",
     "fileName": "ListSimple.csv",
-    "filePath": "input/calls/list-simple",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "elastic-objects-test",
     "moduleScope": "main",
@@ -263,7 +263,7 @@
     "description": "A sample json file with 2*2 values and a head as a source.",
     "expose": "NONE",
     "fileName": "ListSimple.json",
-    "filePath": "input/calls/list-simple",
+    "filePath": "data",
     "hostConfigKey": "localhost",
     "module": "eo-calls",
     "moduleScope": "test",

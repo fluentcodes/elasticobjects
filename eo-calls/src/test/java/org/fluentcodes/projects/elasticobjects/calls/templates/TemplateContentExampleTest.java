@@ -19,9 +19,9 @@ import java.util.List;
  * Created by Werner on 22.03.2017.
  */
 public class TemplateContentExampleTest {
-    public static final String CONTENT_EXAMPLE_DATA = "ContentExampleData";
-    public static final String STATIC_KEEP_TPL = "ContentExampleStaticKeep";
-    public static final String DYNAMIC_TPL = "ContentExampleDynamic";
+    public static final String CONTENT_EXAMPLE_DATA = "ContentExampleData.json";
+    public static final String STATIC_KEEP_TPL = "ContentExampleStaticKeep.tpl";
+    public static final String DYNAMIC_TPL = "ContentExampleDynamic.tpl";
     private static final String DATA = "[\n" +
             "    {\n" +
             "        \"header\": \"header1\",\n" +
@@ -135,7 +135,7 @@ public class TemplateContentExampleTest {
     public void call_StaticConditionTpl__execute__xpected() {
         final EoRoot eo = ObjectProvider.createEo();
 
-        final TemplateResourceCall call = new TemplateResourceCall("ContentExampleStaticCondition");
+        final TemplateResourceCall call = new TemplateResourceCall("ContentExampleStaticCondition.tpl");
         final String result = call.execute(eo);
         XpectStringJunit4.assertStatic(result);
     }

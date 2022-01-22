@@ -1,8 +1,7 @@
 [
   {
     "modelKey": "AnObject",
-    "dbConfigKey": "h2:mem:basic",
-    "naturalId": "h2:mem:AnObject",
+    "naturalId": "AnObjectDb",
     "permissions": {
       "readRoles": [
         "guest"
@@ -11,7 +10,6 @@
   },
   {
     "modelKey": "ASubObject",
-    "dbConfigKey": "h2:mem:basic",
     "naturalId": "h2:mem:ASubObject",
     "permissions": {
       "readRoles": [

@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.*;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanPropertiesDevTest.createFieldBeanProperties;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ID_KEY;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.toStringWithMap;
 import static org.junit.Assert.assertEquals;
@@ -55,6 +56,12 @@ public class FieldConfigPropertiesDevTest {
     public void createFieldConfigProperties_generated() {
         FieldConfigProperties properties = createFieldConfigProperties(F_GENERATED, true);
         assertEquals(true, properties.getGenerated());
+    }
+
+    @Test
+    public void createFieldConfigProperties_idKey() {
+        FieldConfigProperties properties = createFieldConfigProperties(F_ID_KEY, "test");
+        assertEquals("test", properties.getGenerated());
     }
 
     @Test

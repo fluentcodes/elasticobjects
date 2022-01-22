@@ -1,8 +1,10 @@
 package org.fluentcodes.projects.elasticobjects.testitemprovider;
 
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
+import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
@@ -95,5 +97,17 @@ public class ObjectProvider {
 
     public static Object createObject(final Class<?> rootClass, final Object value, final String... keys) {
         return createRoot(rootClass, value, keys).get();
+    }
+
+    public static EOInterfaceScalar createAnObjectEo(final String... childPath) {
+        EoRoot eo = createEo();
+        EOInterfaceScalar child = eo.set(new AnObject(), childPath);
+        return child;
+    }
+
+    public static EOInterfaceScalar createAnObjectEo(final String key, final Object value) {
+        EOInterfaceScalar child = createAnObjectEo("test");
+        child.set(value, key);
+        return child;
     }
 }

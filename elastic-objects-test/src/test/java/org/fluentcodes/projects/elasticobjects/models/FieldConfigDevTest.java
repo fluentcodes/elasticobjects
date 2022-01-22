@@ -22,6 +22,7 @@ import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FINAL;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_MODEL_KEYS;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ID_KEY;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.toStringWithMap;
 import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.readFieldConfig;
@@ -100,6 +101,12 @@ public class FieldConfigDevTest {
     public void createFieldConfigProperty_generated(){
         FieldConfig config = ObjectProviderDev.createFieldConfigProperty(FieldBeanProperties.F_GENERATED, true);
         assertTrue(config.getProperties().getGenerated());
+    }
+
+    @Test
+    public void createFieldConfigProperty_idKey(){
+        FieldConfig config = ObjectProviderDev.createFieldConfigProperty(F_ID_KEY, "test");
+        assertEquals("test", config.getProperties().getIdKey());
     }
 
     @Test

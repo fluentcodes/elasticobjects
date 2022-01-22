@@ -28,4 +28,9 @@ public class ShapeTypeSerializerDouble extends ShapeTypeSerializerNumber<Double>
         }
         return asObject(object.toString());
     }
+
+    @Override
+    public String getSqlType(Integer max) {
+        return "double";
+    }
 }

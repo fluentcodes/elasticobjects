@@ -1,6 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.domain.test;
 
-/*.{javaHeader}|*/
 
 import java.util.Date;
 import java.util.List;
@@ -31,12 +30,14 @@ public class AnObject {
     private Long id;
     /* myASubObject */
     private ASubObject myASubObject;
+    private Long myASubObject_id;
     /* A generic parametrized example List with @ASubObject */
     private List<ASubObject> myASubObjectList;
     /* A generic parametrized example Map with @ASubObject */
     private Map<String, ASubObject> myASubObjectMap;
     /* A AnObject field. */
     private AnObject myAnObject;
+    private Long myAnObject_id;
     /* myBoolean */
     private Boolean myBoolean;
     /* myDate */
@@ -84,6 +85,22 @@ public class AnObject {
     public AnObject setMyASubObject(final ASubObject myASubObject) {
         this.myASubObject = myASubObject;
         return this;
+    }
+
+    public Long getMyASubObject_id() {
+        return myASubObject_id;
+    }
+
+    public void setMyASubObject_id(Long myASubObject_id) {
+        this.myASubObject_id = myASubObject_id;
+    }
+
+    public Long getMyAnObject_id() {
+        return myAnObject_id;
+    }
+
+    public void setMyAnObject_id(Long myAnObject_id) {
+        this.myAnObject_id = myAnObject_id;
     }
 
     public List<ASubObject> getMyASubObjectList() {

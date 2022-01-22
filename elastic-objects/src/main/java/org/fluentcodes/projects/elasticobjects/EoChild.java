@@ -148,7 +148,7 @@ public class EoChild extends EoChildScalar implements EO {
                 parent = ((EoChild) parent).getEo(pathElement);
                 continue;
             }
-            parent = getModels().createChild((EO) parent, pathElement, null);
+            parent = parent.getModels().createChild((EO) parent, pathElement, null);
             if (!(parent instanceof EO)) {
                 throw new EoException("");
             }

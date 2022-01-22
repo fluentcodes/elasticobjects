@@ -2,6 +2,8 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import java.util.Map;
 
+import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ID_KEY;
+
 /**
  * The basic bean container class for the configuration class {@link FieldConfig}. Also used as a base for building source code.
  */
@@ -28,6 +30,7 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
     private String fieldName;
     private Boolean finalValue;
     private Boolean generated;
+    private String idKey;
     private String javascriptType;
     private Boolean jsonIgnore;
     private Boolean notNull;
@@ -52,6 +55,8 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
                 ConfigBean.toBoolean(properties.get(F_FINAL)));
         setGenerated(
                 ConfigBean.toBoolean(properties.get(F_GENERATED)));
+        setIdKey(
+                ConfigBean.toString(properties.get(F_ID_KEY)));
         setJavascriptType(
                 ConfigBean.toString(properties.get(F_JAVASCRIPT_TYPE)));
         setJsonIgnore(
@@ -81,6 +86,7 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
         setFieldName(config.getFieldName());
         setFinal(config.getFinal());
         setGenerated(config.getGenerated());
+        setIdKey(config.getIdKey());
         setJavascriptType(config.getJavascriptType());
         setJsonIgnore(config.getJsonIgnore());
         setMax(config.getMax());
@@ -99,6 +105,7 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
         mergeFieldName(bean.getFieldName());
         mergeFinal(bean.getFinal());
         mergeGenerated(bean.getGenerated());
+        mergeIdKey(bean.getIdKey());
         mergeJavascriptType(bean.getJavascriptType());
         mergeJsonIgnore(bean.getJsonIgnore());
         mergeMax(bean.getMax());
@@ -150,6 +157,15 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
     public FieldBeanProperties setGenerated(Boolean value) {
         this.generated = value;
         return this;
+    }
+
+    @Override
+    public String getIdKey() {
+        return idKey;
+    }
+
+    public void setIdKey(String idKey) {
+        this.idKey = idKey;
     }
 
     @Override
@@ -281,6 +297,11 @@ public class FieldBeanProperties implements FieldPropertiesInterface {
     private void mergeGenerated(final Object value) {
         if (hasGenerated()) return;
         setGenerated(new ShapeTypeSerializerBoolean().asObject(value, false));
+    }
+
+    private void mergeIdKey(final Object value) {
+        if (hasIdKey()) return;
+        setIdKey(new ShapeTypeSerializerString().asObject(value));
     }
 
     private void mergeJavascriptType(final Object value) {

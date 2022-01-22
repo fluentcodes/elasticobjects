@@ -7,7 +7,9 @@
       "id",
       "naturalId",
       "myAnObject",
+      "myAnObject_id",
       "myASubObject",
+      "myASubObject_id",
       "myASubObjectList",
       "myASubObjectMap",
       "myList",
@@ -37,21 +39,13 @@
     "moduleScope": "main",
     "fields": {
       "id": {
-        "final": false,
         "staticName": false
       },
-      "naturalId": {
-        "final": false
-      },
-      "myASubObject": {
-        "final": false
-      },
-      "name": {
-        "final": false
-      },
-      "myString": {
-        "final": false
-      }
+      "naturalId": {},
+      "myASubObject": {},
+      "myASubObject_id": {},
+      "name": {},
+      "myString": {}
     },
     "expose": "WEB",
     "description": "A sub object as an example.",
@@ -70,12 +64,9 @@
     "moduleScope": "main",
     "fields": {
       "id": {
-        "final": false,
         "staticName": false
       },
-      "myString": {
-        "final": false
-      }
+      "myString": {}
     },
     "expose": "WEB",
     "description": "A map with fields as a test example.",

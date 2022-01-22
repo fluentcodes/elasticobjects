@@ -77,4 +77,9 @@ public class ShapeTypeSerializerDate implements ShapeTypeSerializerInterface<Dat
     public boolean isValid(final Object object, final FieldConfigProperties properties) {
         return true;
     }
+
+    @Override
+    public String getSqlType(Integer max) {
+        return "date";
+    }
 }

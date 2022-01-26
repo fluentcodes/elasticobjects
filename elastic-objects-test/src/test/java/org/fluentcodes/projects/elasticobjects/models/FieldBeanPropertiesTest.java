@@ -19,7 +19,7 @@ public class FieldBeanPropertiesTest {
     public void findModelConfig() {
         ModelConfig config = ObjectProvider.findModel(FieldBeanProperties.class);
         assertTrue(config.getProperties().getCreate());
-        assertEquals(15, config.getFields().size());
+        assertEquals(16, config.getFields().size());
     }
 
     @Test

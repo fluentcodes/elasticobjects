@@ -22,6 +22,7 @@ public class DbSqlReadCallAnObjectTest {
         DbSqlReadCall dbQueryCall = new DbSqlReadCall(DbConfig.H2_BASIC, "h2:mem:basic:AnObject");
         Assertions.assertThat(dbQueryCall).isNotNull();
         EoRoot eo = ObjectProvider.createEo();
+        dbQueryCall.setTargetPath("/");
         dbQueryCall.execute(eo);
         Assertions.assertThat(eo.size()).isEqualTo(3);
     }

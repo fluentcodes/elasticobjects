@@ -48,7 +48,7 @@ public class AttributeHandlerTest {
     @Test
     public void callFileReadCall() {
         EoRoot eo = createEo();
-        final String directive = FileReadCall.class.getSimpleName() + " targetPath=\"test\" fileConfigKey=\"ContentExample\" ";
+        final String directive = FileReadCall.class.getSimpleName() + " targetPath=\"test\" fileConfigKey=\"ContentExample.tpl\" ";
         Object result = new AttributeHandler()
                 .setTemplateMarker(TemplateMarker.CURLY)
                 .setCallDirective(directive)

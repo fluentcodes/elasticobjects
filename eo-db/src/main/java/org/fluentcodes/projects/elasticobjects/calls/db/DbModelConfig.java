@@ -2,14 +2,17 @@ package org.fluentcodes.projects.elasticobjects.calls.db;
 
 import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionConfig;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigBean;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.projects.elasticobjects.models.FieldConfig;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -36,41 +39,39 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
 
         this.fieldKeys = new ArrayList<>();
 
-        this.dropStatement = "Drop table " + getTable() + " if exists";
-
         StringBuilder create = new StringBuilder("Create table ");
+        StringBuilder drop = new StringBuilder();
         create.append(getTable());
         create.append(" (");
         this.uniqueList = new ArrayList<>();
         this.foreignKeys = new ArrayList<>();
         for (String fieldKey : modelConfig.getFieldKeys()) {
             FieldConfig fieldConfig = modelConfig.getField(fieldKey);
+            if (fieldConfig.getProperties().hasIdKey()) {
+                foreignKeys.add(createForeignConstraint(modelKey, fieldConfig));
+            }
             if (fieldConfig.isTransient()) {
                 continue;
             }
-            if (fieldConfig.getModels().isObject()) {
-                create.append(fieldKey + "_id bigint");
-                foreignKeys.add(createForeignConstraint(modelKey, fieldConfig));
-                if (fieldConfig.getProperties().isUnique()) {
-                    uniqueList.add(createUniqueConstraint(modelKey, fieldConfig));
-                }
-            } else if (fieldConfig.getModels().isContainer()) {
-                continue;
-            } else {
-                create.append(fieldConfig.getFieldName());
+            create.append(fieldConfig.getFieldName());
+            if (fieldKey.equals(modelConfig.getIdKey())) {
+                create.append(" identity primary key");
+            }
+            else {
                 create.append(" ");
                 create.append(fieldConfig.getSqlType());
-                if (fieldConfig.getProperties().isUnique()) {
-                    uniqueList.add(createUniqueConstraint(modelKey, fieldConfig));
-                }
             }
             fieldKeys.add(fieldKey);
             if (fieldConfig.getProperties().isNotNull()) {
-                create.append(" not null ");
+                create.append(" not null");
             }
-
+            if (fieldConfig.getProperties().isUnique()) {
+                uniqueList.add(createUniqueConstraint(modelKey, fieldConfig));
+            }
             create.append(", ");
         }
+        drop.append("Drop table " + getTable() + " if exists");
+        this.dropStatement = drop.toString();
         this.createStatement = create.toString().replaceAll(", $", ")");
     }
 
@@ -130,6 +131,15 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
         return constraint.toString();
     }
 
+    static String dropForeignConstraint (final String tableName, FieldConfig fieldConfig) {
+        StringBuilder constraint = new StringBuilder("Alter table " + tableName + " drop constraint ");
+        constraint.append(tableName);
+        constraint.append("_");
+        constraint.append(fieldConfig.getFieldName());
+        constraint.append("_id_FK");
+        return constraint.toString();
+    }
+
     String getIdValue() {
         if (modelConfig.getProperties().hasIdKey()) {
             return modelConfig.getProperties().getIdKey();
@@ -174,7 +184,7 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
     }
 
     boolean hasNaturalKeys() {
-        return modelConfig.getProperties().hasNaturalKeys();
+        return modelConfig.getProperties().hasNaturalKeys() || modelConfig.hasNaturalId();
     }
 
     void addId(EoChild eo, StatementPreparedValues statement) {
@@ -189,7 +199,6 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
             statement.addValue(eo.get(naturalKey));
             builder.append(naturalKey);
             builder.append(" = ? and ");
-            statement.addValue(eo.get(naturalKey));
         }
         statement.append(builder.toString()
                 .replaceAll(" and $", ""));
@@ -221,6 +230,16 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
         return modelConfig;
     }
 
+    public Map<String, Object> find(Connection connection, EoChild eo) {
+        StatementFind statement = createFindStatement(eo);
+        return statement.readFirst(connection, eo.getConfigMaps());
+    }
+
+    public Map<String, Object> readOneOrEmpty(Connection connection, EoChild eo) {
+        StatementFind statement = createFindStatement(eo);
+        return statement.readOneOrEmpty(connection, eo.getConfigMaps());
+    }
+
     public StatementFind createFindStatement(EoChild eo) {
         StatementFind statement = new StatementFind();
         statement.append("Select * from ");
@@ -229,7 +248,12 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
         return statement;
     }
 
-    public StatementFind createQueryStatement(EoChild eo) {
+    public List<Map<String, Object>> query(final Connection connection, final EoChild eo, final ListParamsBean listParams) {
+        StatementFind statement = createQueryStatement(eo);
+        return statement.read(connection, eo.getConfigMaps(), listParams);
+    }
+
+    public StatementFind createQueryStatement(final EoChild eo) {
         StatementFind statement = new StatementFind();
         statement.append("Select * from ");
         statement.append(getTable());
@@ -244,6 +268,21 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
             statement.addValue(eo.get(key));
         }
         return statement;
+    }
+
+    public Map<String, Object> write(final Connection connection, final EoChild eo) {
+        try {
+            if (readOneOrEmpty(connection, eo) != null) {
+                StatementPreparedValues statement = createUpdateStatement(eo);
+                statement.execute(connection);
+            } else {
+                StatementPreparedValues statement = createInsertStatement(eo);
+                statement.execute(connection);
+            }
+        }   catch (EoException e) {
+              eo.error(e.getMessage());
+        }
+        return readOneOrEmpty(connection, eo);
     }
 
     public StatementPreparedValues createUpdateStatement(EoChild eo) {
@@ -307,11 +346,21 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
         return statement;
     }
 
+    public Map<String, Object> delete(Connection connection, EoChild eo) {
+        StatementFind findStatement = createFindStatement(eo);
+        Map<String, Object> toDelete = findStatement.readFirst(connection, eo.getConfigMaps());
+        if (toDelete == null) {
+            throw new EoException("Could not find entry to delete for '" + eo.getModelClass().getSimpleName() + "':" + findStatement.toString());
+        }
+        StatementPreparedValues statement = createDeleteStatement(eo);
+        statement.execute(connection);
+        return toDelete;
+    }
+
     public StatementPreparedValues createDeleteStatement(EoChild eo) {
         StatementPreparedValues statement = new StatementPreparedValues(StatementPreparedValues.SqlType.DELETE);
-        StringBuilder delete = new StringBuilder("Update ");
+        StringBuilder delete = new StringBuilder("DELETE ");
         delete.append(getTable());
-        delete.append(" where ");
         statement.append(delete.toString().replaceAll(", $", ""));
         addIdentifier(eo, statement);
         return statement;

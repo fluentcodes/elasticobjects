@@ -62,6 +62,24 @@
       "rowDelimiter": "\n"
     }
   },
+  "ContentExample.tpl": {
+    "cached": true,
+    "configModelKey": "FileConfig",
+    "description": "A simple loop template reading ContentExample.json an loop with ContentExampleElement1.tpl.",
+    "expose": "NONE",
+    "fileName": "ContentExample.tpl",
+    "filePath": "data",
+    "hostConfigKey": "localhost",
+    "module": "eo-calls",
+    "moduleScope": "test",
+    "naturalId": "ContentExample.tpl",
+    "permissions": {
+    },
+    "properties": {
+      "fieldDelimiter": ";",
+      "rowDelimiter": "\n"
+    }
+  },
   "ContentExampleData.json": {
     "cached": true,
     "configModelKey": "FileConfig",

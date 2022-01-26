@@ -166,6 +166,21 @@
     "expose": "WEB",
     "description": "Read an entry in database by creating a select sql from entry in sourcePath. \nThe object in sourcePath must be an instance of @ModelConfigDbObject.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelQueryCall",
+    "modelKey": "DbModelQueryCall",
+    "properties": {
+      "create": true
+    },
+    "author": "Werner Diwischek"
+  },
+  {
+    "module": "eo-db",
+    "moduleScope": "main",
+    "interfaces": "ConfigWriteCommand",
+    "superKey": "DbModelCall",
+    "expose": "WEB",
+    "description": "Read equivalent entry in db and map values.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
     "naturalId": "DbModelReadCall",
     "modelKey": "DbModelReadCall",
     "properties": {
@@ -179,7 +194,7 @@
     "interfaces": "ConfigWriteCommand",
     "superKey": "DbModelCall",
     "expose": "WEB",
-    "description": "Resolve dependent fields to an object.",
+    "description": "Resolve dependent fields to objects.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
     "naturalId": "DbModelResolveCall",
     "modelKey": "DbModelResolveCall",

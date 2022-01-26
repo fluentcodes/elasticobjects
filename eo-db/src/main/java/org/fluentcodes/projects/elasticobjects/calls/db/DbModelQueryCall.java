@@ -15,20 +15,20 @@ import java.util.Map;
 /**
  * Read an entries in database by creating a select sql from entry in sourcePath. The object must be an instance of {@link ModelConfigDbObject}.
  */
-public class DbModelReadCall extends DbModelCall implements ListParamsBeanInterface, ConfigReadCommand {
+public class DbModelQueryCall extends DbModelCall implements ListParamsBeanInterface, ConfigReadCommand {
     private ListParamsBean listParams;
 
-    public DbModelReadCall() {
+    public DbModelQueryCall() {
         super();
         listParams = new ListParamsBean();
     }
 
-    public DbModelReadCall(final String dbModelKey) {
+    public DbModelQueryCall(final String dbModelKey) {
         super(dbModelKey);
         listParams = new ListParamsBean();
     }
 
-    DbModelReadCall(final String hostConfigKey, final String targetPath) {
+    DbModelQueryCall(final String hostConfigKey, final String targetPath) {
         super(hostConfigKey, targetPath);
         listParams = new ListParamsBean();
     }
@@ -44,16 +44,20 @@ public class DbModelReadCall extends DbModelCall implements ListParamsBeanInterf
     public Object readRaw(final EoChild eo) {
         DbModelsConfig config = init(PermissionType.READ, eo);
         listParams.initDb();
-        StatementFind findStatement = config.getDbModelConfig(eo.getModelClass()).createQueryStatement(eo);
-        Map<String, Object> dbResult = findStatement
-                .readOneOrEmpty(
-                        config.getDbConfig().getConnection(),
-                        eo.getConfigMaps());
-        if (dbResult == null) {
-            throw new EoException("Could not find entry for " + findStatement.toString());
-        }
-        eo.map(dbResult);
-        return "";
+        DbModelConfig modelConfig = config.getDbModelConfig(eo.getModelClass());
+
+        List<Map<String, Object>> resultList = modelConfig.query(
+                config.getDbConfig().getConnection(), eo, listParams);
+        return mapEo(eo, resultList, eo.getModelClass());
+    }
+
+    /**
+     * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
+     */
+
+    public DbModelQueryCall setListParams(ListParamsBean listParams) {
+        this.listParams = listParams;
+        return this;
     }
 
     @Override

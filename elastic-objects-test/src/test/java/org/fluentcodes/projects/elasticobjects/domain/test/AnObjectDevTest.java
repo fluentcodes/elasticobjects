@@ -13,13 +13,13 @@ public class AnObjectDevTest {
     public void readBeanAnObject() {
         ModelBean bean = ObjectProviderDev.readModelBean(AnObject.class.getSimpleName());
         assertEquals(AnObject.class.getSimpleName(), bean.getModelKey());
-        assertEquals(16, bean.getFieldKeys().size());
+        assertEquals(18, bean.getFieldKeys().size());
     }
 
     @Test
     public void readConfigAnObject() {
         ModelConfig config = ObjectProviderDev.readModelConfig(AnObject.class.getSimpleName());
         assertEquals(AnObject.class.getSimpleName(), config.getModelKey());
-        assertEquals(16, config.getFieldKeys().size());
+        assertEquals(18, config.getFieldKeys().size());
     }
 }

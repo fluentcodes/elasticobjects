@@ -341,5 +341,6 @@
     "dbAnnotated": false,
     "final": true
   },
+  "(ShapeTypes)shapeType": "BEAN",
   "superKey": "HostConfig"
 }

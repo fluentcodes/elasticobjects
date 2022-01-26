@@ -2,7 +2,7 @@
   "_rootmodel": "ModelBean",
   "author": "Werner Diwischek",
   "configModelKey": "ModelConfigObject",
-  "description": "An example for a simple call with a field.",
+  "description": "Read an entry in database by creating a select sql from entry in sourcePath. \nThe object in sourcePath must be an instance of @ModelConfigDbObject.",
   "(Expose)expose": "WEB",
   "fields": {
     "(FieldBean)condition": {
@@ -30,6 +30,31 @@
         "unique": false
       }
     },
+    "(FieldBean)configKey": {
+      "configModelKey": "FieldConfigObject",
+      "description": "The key finding a cache @DbConfig entry.",
+      "(Expose)expose": "NONE",
+      "fieldKey": "configKey",
+      "modelKeys": "String",
+      "module": "eo-db",
+      "moduleScope": "main",
+      "naturalId": "configKey",
+      "(FieldBeanProperties)properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": 80,
+        "min": -1,
+        "notNull": true,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": false,
+        "unique": false
+      }
+    },
     "(FieldBean)duration": {
       "configModelKey": "FieldConfigObject",
       "description": "The duration of a call.",
@@ -48,31 +73,6 @@
         "min": -1,
         "notNull": false,
         "override": true,
-        "property": false,
-        "staticName": false,
-        "super": true,
-        "transient": false,
-        "unique": false
-      }
-    },
-    "(FieldBean)greeting": {
-      "configModelKey": "FieldConfigObject",
-      "description": "The field value for @TheGreetingCall example. ",
-      "(Expose)expose": "NONE",
-      "fieldKey": "greeting",
-      "modelKeys": "String",
-      "module": "example-springboot",
-      "moduleScope": "main",
-      "naturalId": "greeting",
-      "(FieldBeanProperties)properties": {
-        "default": false,
-        "final": false,
-        "generated": false,
-        "jsonIgnore": false,
-        "max": 15,
-        "min": -1,
-        "notNull": false,
-        "override": false,
         "property": false,
         "staticName": false,
         "super": true,
@@ -306,17 +306,18 @@
       }
     }
   },
-  "interfaces": "SimpleCommand",
-  "modelKey": "TheGreetingCall",
-  "module": "example-springboot",
+  "interfaces": "ListParamsBeanInterface,ConfigReadCommand",
+  "modelKey": "DbModelQueryCall",
+  "module": "eo-db",
   "moduleScope": "main",
-  "naturalId": "TheGreetingCall",
-  "packagePath": "org.fluentcodes.projects.elasticobjects.calls.values",
+  "naturalId": "DbModelQueryCall",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
   "(ModelBeanProperties)properties": {
     "abstract": false,
     "create": true,
     "dbAnnotated": false,
     "final": false
   },
-  "superKey": "CallImpl"
+  "(ShapeTypes)shapeType": "BEAN",
+  "superKey": "DbModelCall"
 }

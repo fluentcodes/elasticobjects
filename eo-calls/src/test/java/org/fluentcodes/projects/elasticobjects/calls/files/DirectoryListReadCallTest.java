@@ -15,7 +15,7 @@ import java.util.List;
 public class DirectoryListReadCallTest implements IModelConfigCreateTests {
     @Override
     public Class<?> getModelConfigClass() {
-        return AnObject.class;
+        return DirectoryListReadCall.class;
     }
 
     @Override

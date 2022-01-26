@@ -33,20 +33,14 @@ public class DbModelDeleteCall extends DbModelCall implements ConfigWriteCommand
         if (!(eo instanceof EoChild)) {
             throw new EoException("Could not query scalar value");
         }
-        DbModelsConfig config = init(PermissionType.WRITE, eo);
+        DbModelsConfig config = init(PermissionType.DELETE, eo);
+        DbModelConfig dbModelConfig = config.getDbModelConfig(eo.getModelClass());
 
-            StatementFind findStatement = config.getDbModelConfig(eo.getModelClass())
-                    .createFindStatement((EoChild) eo);
-            Object result = findStatement
-                    .readFirst(
-                            config.getDbConfig().getConnection(),
-                            eo.getConfigMaps());
+        Object result = dbModelConfig.delete(config.getDbConfig().getConnection(), (EoChild) eo);
+
         if (hasTargetPath()) {
             eo.set(result, getTargetPath());
         }
-        StatementPreparedValues statement = config.getDbModelConfig(eo.getModelClass())
-                .createDeleteStatement((EoChild)eo);
-        return statement
-                .execute(config.getDbConfig().getConnection());
+        return "";
     }
 }

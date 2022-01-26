@@ -1,42 +1,46 @@
 <table border="1">
    <tr>
       <th>id </th>
-      <th>myAnObject_id </th>
       <th>myASubObject_id </th>
-      <th>myInt </th>
-      <th>myString </th>
-      <th>naturalId </th>
-      <th>myLong </th>
+      <th>myAnObject_id </th>
       <th>myBoolean </th>
-      <th>myFloat </th></tr>
+      <th>myDouble </th>
+      <th>myFloat </th>
+      <th>myInt </th>
+      <th>myLong </th>
+      <th>myString </th>
+      <th>naturalId </th></tr>
    <tr>
       <td>1 </td>
       <td>0 </td>
-      <td>0 </td>
-      <td>1 </td>
-      <td>value1 </td>
-      <td>key1 </td>
       <td>0 </td>
       <td>true </td>
-      <td>0.0 </td> </tr>
+      <td>0.0 </td>
+      <td>0.0 </td>
+      <td>1 </td>
+      <td>0 </td>
+      <td>value1 </td>
+      <td>key1 </td> </tr>
    <tr>
       <td>2 </td>
       <td>0 </td>
-      <td>0 </td>
-      <td>2 </td>
-      <td>value2 </td>
-      <td>key2 </td>
       <td>0 </td>
       <td>false </td>
-      <td>0.0 </td> </tr>
+      <td>0.0 </td>
+      <td>0.0 </td>
+      <td>2 </td>
+      <td>0 </td>
+      <td>value2 </td>
+      <td>key2 </td> </tr>
    <tr>
       <td>3 </td>
       <td>0 </td>
       <td>0 </td>
-      <td>3 </td>
-      <td>value3 </td>
-      <td>key3 </td>
-      <td>0 </td>
       <td>true </td>
-      <td>0.0 </td> </tr>
+      <td>0.0 </td>
+      <td>0.0 </td>
+      <td>3 </td>
+      <td>0 </td>
+      <td>value3 </td>
+      <td>key3 </td> </tr>
 </table>

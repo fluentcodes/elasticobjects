@@ -14,5 +14,6 @@
     "create": false,
     "dbAnnotated": false,
     "final": false
-  }
+  },
+  "(ShapeTypes)shapeType": "ENUM"
 }

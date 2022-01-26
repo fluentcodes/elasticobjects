@@ -21,6 +21,7 @@
         "rowHead": 0,
         "rowStart": 1
       },
+      "(LogLevel)logLevel": "WARN",
       "postpend": "",
       "prepend": ""
     }

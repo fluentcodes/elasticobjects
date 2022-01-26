@@ -78,7 +78,10 @@ public class DbModelConfigTest implements IModelConfigNoCreateTests {
     public void anObject_createForeignConstraint_myAnObject() {
         ModelConfig anObject = ObjectProvider.findModel(AnObject.class);
         String value = DbModelConfig.createForeignConstraint(AnObject.class.getSimpleName(), anObject.getField(MY_AN_OBJECT));
-        assertEquals("Add AnObject_myAnObject_id_FK (myAnObject_id) references AnObject(id)", value);
+        assertEquals("Alter table AnObject " +
+                "add constraint AnObject_myAnObject_id_FK " +
+                "foreign key (myAnObject_id) " +
+                "references AnObject(id)", value);
     }
 
     @Test
@@ -107,10 +110,8 @@ public class DbModelConfigTest implements IModelConfigNoCreateTests {
 
         DbModelConfig config = get(AN_OBJECT);
         StatementPreparedValues statement = config.createUpdateStatement(root);
-        assertEquals(13,statement.getValues().size());
-        assertEquals("Update AnObject " +
-                "set id = ?, myASubObject_id = ?, myAnObject_id = ?, myBoolean = ?, myDate = ?, myDouble = ?, myFloat = ?, myInt = ?, myLong = ?, myObject = ?, myString = ?, naturalId = ? " +
-                "where id = ? ",statement.getStatement());
+        assertEquals(2,statement.getValues().size());
+        assertEquals("Update AnObject set id = ? where id = ? ",statement.getStatement());
     }
 
     @Test
@@ -119,10 +120,8 @@ public class DbModelConfigTest implements IModelConfigNoCreateTests {
 
         DbModelConfig config = get(AN_OBJECT);
         StatementPreparedValues statement = config.createInsertStatement(root);
-        assertEquals(12,statement.getValues().size());
-        assertEquals("Insert into AnObject " +
-                "(id, myASubObject_id, myAnObject_id, myBoolean, myDate, myDouble, myFloat, myInt, myLong, myObject, myString, naturalId) " +
-                "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", statement.getStatement());
+        assertEquals(1,statement.getValues().size());
+        assertEquals("Insert into AnObject (id) values(?)", statement.getStatement());
     }
 
     @Test
@@ -130,17 +129,16 @@ public class DbModelConfigTest implements IModelConfigNoCreateTests {
         DbModelConfig config = get(AN_OBJECT);
         String create = config.getCreateStatement();
         assertEquals("Create table AnObject " +
-                "(id bigint, myASubObject_id bigint, myAnObject_id bigint, " +
-                        "myBoolean boolean, myDate date, myDouble double, " +
-                        "myFloat float, myInt integer, myLong bigint, myObject bigint, myString varchar(20), " +
-                        "naturalId varchar(80))",
+                        "(id identity primary key not null, myASubObject_id bigint, myAnObject_id bigint, " +
+                        "myBoolean boolean, myDate date, myDouble double, myFloat float, myInt integer, myLong bigint, " +
+                        "myString varchar(20), naturalId varchar(80) not null)",
                 create);
     }
 
     @Test
     public void anObject_dropStatement() {
         DbModelConfig config = get(AN_OBJECT);
-        assertEquals("Drop AnObject if exists",
+        assertEquals("Drop table AnObject if exists",
                 config.getDropStatement());
     }
 

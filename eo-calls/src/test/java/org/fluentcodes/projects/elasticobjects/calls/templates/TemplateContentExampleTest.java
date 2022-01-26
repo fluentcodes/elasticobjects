@@ -41,7 +41,7 @@ public class TemplateContentExampleTest {
     public void DATA__() {
         EoRoot eo = ObjectProvider.createEo(DATA);
         Assert.assertEquals("header1", eo.get("0/header"));
-        TemplateResourceCall call = new TemplateResourceCall("ContentExampleElement1");
+        TemplateResourceCall call = new TemplateResourceCall("ContentExampleElement1.tpl");
         call.setTargetPath(Call.TARGET_AS_STRING);
         String value = call.execute(eo.getEo("/0"));
         Assert.assertEquals("\n" +
@@ -95,14 +95,14 @@ public class TemplateContentExampleTest {
     public void eo_StaticJson__execute_xpected() {
         EoRoot eo = ObjectProvider.createEo("{\n" +
                 "  \"(FileReadCall)data\": {\n" +
-                "    \"fileConfigKey\":\"ContentExampleData\"\n" +
+                "    \"fileConfigKey\":\"ContentExampleData.json\"\n" +
                 "  },\n" +
                 "  \"(TemplateCall)_asString\": {\n" +
                 "    \"content\":\"Start of content with a fileConfigKey: \"\n" +
                 "  },\n" +
                 "  \"(TemplateResourceCall)_asString\": {\n" +
                 "    \"sourcePath\": \"data/*\",\n" +
-                "    \"fileConfigKey\":\"ContentExampleElement1\"\n" +
+                "    \"fileConfigKey\":\"ContentExampleElement1.tpl\"\n" +
                 "  }\n" +
                 "}");
         eo.execute();
@@ -144,7 +144,7 @@ public class TemplateContentExampleTest {
     public void eo_DynamicJson__execute__xpected() {
         EoRoot eo = ObjectProvider.createEo("{\n" +
                 "  \"(FileReadCall)data\": {\n" +
-                "    \"fileConfigKey\":\"ContentExampleData\"\n" +
+                "    \"fileConfigKey\":\"ContentExampleData.json\"\n" +
                 "  },\n" +
                 "  \"(TemplateCall)_asString\": {\n" +
                 "    \"content\":\"Start of content with a fileConfigKey as variable: \"\n" +

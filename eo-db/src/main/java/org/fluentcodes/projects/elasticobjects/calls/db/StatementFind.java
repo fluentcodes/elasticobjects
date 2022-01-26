@@ -39,7 +39,7 @@ public class StatementFind extends StatementPreparedValues {
         checkHealth();
     }
 
-    public Object readOneOrEmpty(Connection connection, ConfigMaps configsCache) {
+    public Map<String, Object> readOneOrEmpty(Connection connection, ConfigMaps configsCache) {
         ListParamsBean listParams = new ListParamsBean()
                 .setRowHead(0)
                 .setRowStart(0);
@@ -53,15 +53,14 @@ public class StatementFind extends StatementPreparedValues {
         return list.get(0);
     }
 
-    public Object readFirst(Connection connection, ConfigMaps configsCache) {
+
+    public Map<String, Object> readFirst(Connection connection, ConfigMaps configsCache) {
         ListParamsBean listParams = new ListParamsBean()
                 .setRowHead(0)
                 .setRowStart(0);
         List<Map<String, Object>> list = read(connection, configsCache, listParams);
         if (list.isEmpty()) {
-            return null;
-        }
-        if (list.size()>1) {
+            throw new EoException("Empty result set for " + toString());
         }
         return list.get(0);
     }

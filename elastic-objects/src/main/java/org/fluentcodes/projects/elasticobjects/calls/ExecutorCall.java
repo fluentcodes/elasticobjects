@@ -1,5 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.calls;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
@@ -8,6 +10,7 @@ import org.fluentcodes.projects.elasticobjects.Path;
 import org.fluentcodes.projects.elasticobjects.PathElement;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
+import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -21,14 +24,11 @@ import static org.fluentcodes.projects.elasticobjects.calls.Call.TARGET_AS_STRIN
 
 /**
  * Class for call executions.
- *
- * @author Werner Diwischek
- * @version 0.01
- * @date 2.5.2018
  */
 public class ExecutorCall {
-    private ExecutorCall() {
+    private static final Logger LOG = LogManager.getLogger(ExecutorCall.class);
 
+    private ExecutorCall() {
     }
 
     public static Object execute(final EOInterfaceScalar eo, final Call call) {
@@ -94,11 +94,15 @@ public class ExecutorCall {
                 Long duration = System.currentTimeMillis() - startTime;
                 call.setDuration(duration);
                 callEo.set(duration, F_DURATION);
-            } catch (Exception e) {
-                e.printStackTrace();
-                if (!call.hasLogLevel() || !call.getLogLevel().equals(LogLevel.NONE)) {
-                    eo.error("Problem executing call '" + call.getClass().getSimpleName() + "' for " + counter + ". call(" + call.getLogLevel() + "): " + e.getMessage());
+            }
+            catch (EoException e) {
+                if (call.getLogLevel().equals(LogLevel.NONE)) {
+                    LOG.error(e.getMessage());
                 }
+                eo.error("Problem executing " + counter + ". call(" + call.getLogLevel() + "): " + e.getMessage());
+            }
+            catch (Exception e) {
+                throw new EoException("Problem executing call '" + call.getClass().getSimpleName() + "' for " + counter + ". call(" + call.getLogLevel() + "): " + e.getMessage());
             }
             counter++;
         }

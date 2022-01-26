@@ -6,10 +6,10 @@ import org.junit.Test;
 /**
  * Created by Werner on 30.10.2020.
  */
-public class DbModelReadCallTest implements IModelConfigCreateTests {
+public class DbModelQueryCallTest implements IModelConfigCreateTests {
     @Override
     public Class<?> getModelConfigClass() {
-        return DbModelReadCall.class;
+        return DbModelQueryCall.class;
     }
 
     @Override

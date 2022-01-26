@@ -166,5 +166,6 @@
     "create": true,
     "dbAnnotated": false,
     "final": false
-  }
+  },
+  "(ShapeTypes)shapeType": "BEAN"
 }

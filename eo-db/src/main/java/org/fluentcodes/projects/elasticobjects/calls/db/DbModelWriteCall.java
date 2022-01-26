@@ -8,6 +8,8 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.FieldConfig;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_ID;
+
 /**
  * Write an entry in database by creating a insert or update sql from entry in sourcePath.
  * The object must be an instance of {@link DbModelsConfig}.
@@ -27,14 +29,13 @@ public class DbModelWriteCall extends DbModelCall implements ConfigWriteCommand 
 
     @Override
     public Object execute(final EOInterfaceScalar eo) {
-        return write(eo);
-    }
-
-    public int write(final EOInterfaceScalar eo) {
         if (!(eo instanceof EoChild)) {
             throw new EoException("eo not instance of EoChild");
         }
+        return write((EoChild)eo);
+    }
 
+    public int write(final EoChild eo) {
         DbModelsConfig config = init(PermissionType.WRITE, eo);
         if (!config.hasDbModelConfig(eo.getModelClass())) {
             throw new EoException("No db equivalent found for '" + eo.getModelClass() + "'!");
@@ -43,8 +44,7 @@ public class DbModelWriteCall extends DbModelCall implements ConfigWriteCommand 
         DbModelConfig dbModelConfig = config.getDbModelConfig(eo.getModelClass());
         ModelConfig modelConfig = dbModelConfig.getModelConfig();
 
-        StatementFind findStatement = dbModelConfig.createFindStatement((EoChild) eo);
-        Object dbObject = findStatement.readOneOrEmpty(config.getDbConfig().getConnection(), config.getConfigMaps());
+        boolean parentSet = false;
 
         for (String key: modelConfig.getFieldKeys()) {
             if (!eo.hasEo(key)) {
@@ -57,22 +57,19 @@ public class DbModelWriteCall extends DbModelCall implements ConfigWriteCommand 
             if (!fieldConfig.getProperties().hasIdKey()) {
                 continue;
             }
-            new DbModelWriteCall(getConfigKey()).execute( eo.getEo(key));
-        }
+            if (!parentSet) {
+                Object dbObject = dbModelConfig.write(config.getDbConfig().getConnection(), eo);
+                eo.map(dbObject);
+                parentSet = true;
+            }
 
-        if (dbObject != null) {
-            StatementPreparedValues statement = dbModelConfig.createUpdateStatement((EoChild) eo);
-            updateCount = statement
-                    .execute(config.getDbConfig().getConnection());
-        } else {
-            StatementPreparedValues statement = dbModelConfig.createInsertStatement((EoChild) eo);
-            updateCount = statement
-                    .execute(config.getDbConfig().getConnection());
+            new DbModelWriteCall(getConfigKey()).execute(eo.getEo(key));
+
+            final String childIdKey = fieldConfig.getProperties().getIdKey();
+            Object childIdValue = eo.get(key, F_ID);
+            eo.set(childIdValue, childIdKey);
         }
-        dbObject = findStatement.readOneOrEmpty(config.getDbConfig().getConnection(), config.getConfigMaps());
-        if (dbObject == null) {
-            throw new EoException("Could not find persisted entry in db! " + findStatement);
-        }
+        Object dbObject = dbModelConfig.write(config.getDbConfig().getConnection(), eo);
         eo.map(dbObject);
         return updateCount;
     }

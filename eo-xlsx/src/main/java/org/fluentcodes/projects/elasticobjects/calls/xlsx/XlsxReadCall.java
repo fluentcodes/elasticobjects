@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Read an Excel sheet specified by fileConfigKey referencing to a {@link FileConfig} configuration.
@@ -50,7 +51,7 @@ public class XlsxReadCall extends FileReadCall implements ListParamsBeanInterfac
         return mapEo(eo, readRaw(eo));
     }
 
-    public List<Object> readRaw(final EOInterfaceScalar eo) {
+    public List<Map<String,Object>> readRaw(final EOInterfaceScalar eo) {
         FileConfig config = init(PermissionType.READ, eo);
         getListParams().merge(config);
         List result = new ArrayList<>();

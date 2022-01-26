@@ -42,6 +42,7 @@
         "default": false,
         "final": false,
         "generated": false,
+        "idKey": "myASubObject_id",
         "jsonIgnore": false,
         "max": -1,
         "min": -1,
@@ -50,7 +51,7 @@
         "property": false,
         "staticName": false,
         "super": true,
-        "transient": false,
+        "transient": true,
         "unique": false
       }
     },
@@ -75,7 +76,7 @@
         "property": false,
         "staticName": false,
         "super": true,
-        "transient": false,
+        "transient": true,
         "unique": false
       }
     },
@@ -88,6 +89,31 @@
       "module": "elastic-objects-test",
       "moduleScope": "main",
       "naturalId": "myASubObjectMap",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "jsonIgnore": false,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": true,
+        "unique": false
+      }
+    },
+    "myASubObject_id": {
+      "configModelKey": "FieldConfigObject",
+      "description": "myASubObject id",
+      "expose": "WEB",
+      "fieldKey": "myASubObject_id",
+      "modelKeys": "Long",
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
+      "naturalId": "myASubObject_id",
       "properties": {
         "default": false,
         "final": false,
@@ -113,6 +139,32 @@
       "module": "elastic-objects-test",
       "moduleScope": "main",
       "naturalId": "myAnObject",
+      "properties": {
+        "default": false,
+        "final": false,
+        "generated": false,
+        "idKey": "myAnObject_id",
+        "jsonIgnore": false,
+        "max": -1,
+        "min": -1,
+        "notNull": false,
+        "override": false,
+        "property": false,
+        "staticName": false,
+        "super": true,
+        "transient": true,
+        "unique": false
+      }
+    },
+    "myAnObject_id": {
+      "configModelKey": "FieldConfigObject",
+      "description": "A AnObject field id.",
+      "expose": "WEB",
+      "fieldKey": "myAnObject_id",
+      "modelKeys": "Long",
+      "module": "elastic-objects-test",
+      "moduleScope": "main",
+      "naturalId": "myAnObject_id",
       "properties": {
         "default": false,
         "final": false,
@@ -275,7 +327,7 @@
         "property": false,
         "staticName": false,
         "super": true,
-        "transient": false,
+        "transient": true,
         "unique": false
       }
     },
@@ -325,7 +377,7 @@
         "property": false,
         "staticName": false,
         "super": true,
-        "transient": false,
+        "transient": true,
         "unique": false
       }
     },

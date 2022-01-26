@@ -26,6 +26,17 @@
     "moduleScope": "test",
     "hostConfigKey": "localhost",
     "filePath": "data",
+    "naturalId": "ContentExample.tpl",
+    "fileName": "ContentExample.tpl",
+    "description": "A simple loop template reading ContentExample.json an loop with ContentExampleElement1.tpl.",
+    "expose": "NONE",
+    "cached": "true"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "test",
+    "hostConfigKey": "localhost",
+    "filePath": "data",
     "naturalId": "ContentExampleDynamic.tpl",
     "fileName": "ContentExampleDynamic.tpl",
     "description": "A template or ContentExample using the template field for rendering with a template",

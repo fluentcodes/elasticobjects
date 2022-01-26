@@ -128,7 +128,7 @@ public class StatementPreparedValues {
 
     @Override
     public String toString() {
-        return "(" + sqlType.name() + ")" + statement;
+        return "(" + sqlType.name() + ")" + statement + " -> " + values;
     }
 
 }

@@ -343,5 +343,6 @@
     "dbAnnotated": false,
     "final": false
   },
+  "(ShapeTypes)shapeType": "BEAN",
   "superKey": "FileCall"
 }

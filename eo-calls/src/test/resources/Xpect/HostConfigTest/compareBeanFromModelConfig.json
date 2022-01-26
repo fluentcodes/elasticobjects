@@ -343,5 +343,6 @@
     "defaultImplementation": "TreeMap",
     "final": true
   },
+  "(ShapeTypes)shapeType": "BEAN",
   "superKey": "PermissionConfig"
 }

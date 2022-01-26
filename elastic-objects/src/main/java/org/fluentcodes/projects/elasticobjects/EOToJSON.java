@@ -104,7 +104,7 @@ public class EOToJSON {
             if (PathElement.isParentNotSet(fieldName) && serializationType == JSONSerializationType.STANDARD) {
                 continue;
             }
-            if (eoParent.isTransient(fieldName)) {
+            if (eoParent.isJsonIgnore(fieldName)) {
                 continue;
             }
             EoChildScalar eoChild = (EoChildScalar) eoParent.getEo(fieldName);

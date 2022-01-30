@@ -11,9 +11,11 @@ import java.util.Map;
 public class AnObject {
     public static final String F_ID = "id";
     public static final String MY_ASUB_OBJECT = "myASubObject";
+    public static final String F_MY_ASUB_OBJECT_ID = "myASubObject_id";
     public static final String MY_ASUB_OBJECT_LIST = "myASubObjectList";
     public static final String MY_ASUB_OBJECT_MAP = "myASubObjectMap";
     public static final String MY_AN_OBJECT = "myAnObject";
+    public static final String F_MY_AN_OBJECT_ID = "myAnObject_id";
     public static final String MY_BOOLEAN = "myBoolean";
     public static final String MY_DATE = "myDate";
     public static final String MY_DOUBLE = "myDouble";
@@ -24,7 +26,7 @@ public class AnObject {
     public static final String MY_MAP = "myMap";
     public static final String MY_OBJECT = "myObject";
     public static final String F_MY_STRING = "myString";
-    public static final String NATURAL_ID = "naturalId";
+    public static final String F_NATURAL_ID = "naturalId";
 
     /* The numeric id of an instance of a class. */
     private Long id;

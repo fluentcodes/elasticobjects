@@ -9,8 +9,8 @@ import org.fluentcodes.projects.elasticobjects.models.ModelBean;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfigProperties;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypes;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.IModelConfigCreateTests;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.F_MY_
 import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.F_MY_STRING;
 import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.MY_AN_OBJECT;
 import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.MY_ASUB_OBJECT;
-import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.NATURAL_ID;
+import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.F_NATURAL_ID;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -109,9 +109,9 @@ public class AnObjectTest implements IModelConfigCreateTests {
                 .findModel(AnObject.class);
         Object object = config.create();
         Assertions.assertThat(object).isNotNull();
-        config.set(NATURAL_ID, object, "test");
+        config.set(F_NATURAL_ID, object, "test");
         Assertions.assertThat(((AnObject) object).getNaturalId()).isEqualTo("test");
-        Assertions.assertThat(config.get(NATURAL_ID, object)).isEqualTo("test");
+        Assertions.assertThat(config.get(F_NATURAL_ID, object)).isEqualTo("test");
     }
 
     @Test

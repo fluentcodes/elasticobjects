@@ -9,7 +9,7 @@ import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL0;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL1;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL2;
 import static org.fluentcodes.projects.elasticobjects.Path.DELIMITER;
-import static org.fluentcodes.projects.elasticobjects.PathElement.SAME;
+import static org.fluentcodes.projects.elasticobjects.PathElement.V_SAME;
 
 public class PathCreateChildPathTest {
 
@@ -25,7 +25,7 @@ public class PathCreateChildPathTest {
     public void given1Element_then0Elements() {
         Path path = new Path(S_LEVEL0);
         Path childPath = path.createChildPath();
-        Assertions.assertThat(childPath.directory()).isEqualTo(SAME);;
+        Assertions.assertThat(childPath.directory()).isEqualTo(V_SAME);;
     }
 
     @Test

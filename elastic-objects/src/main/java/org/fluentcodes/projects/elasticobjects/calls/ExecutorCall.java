@@ -10,7 +10,6 @@ import org.fluentcodes.projects.elasticobjects.Path;
 import org.fluentcodes.projects.elasticobjects.PathElement;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
-import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -50,7 +49,7 @@ public class ExecutorCall {
         StringBuilder templateResult = new StringBuilder();
         templateResult.append(call.getPrepend());
 
-        if (PathElement.SAME.equals(call.getTargetPath())) {
+        if (PathElement.V_SAME.equals(call.getTargetPath())) {
             call.setTargetPath(TARGET_AS_STRING);
         }
         for (Map.Entry<EOInterfaceScalar, String> source : sourceList.entrySet()) {

@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -24,11 +24,11 @@ import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_INTERFA
 import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_MODEL_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_SUPER_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_PACKAGE_PATH;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.toStringWithMap;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelConfig;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelConfigWithFieldKey;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelConfigWithFieldProperty;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelConfigWithProperty;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.toStringWithMap;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.createModelConfig;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.createModelConfigWithFieldKey;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.createModelConfigWithFieldProperty;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.createModelConfigWithProperty;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

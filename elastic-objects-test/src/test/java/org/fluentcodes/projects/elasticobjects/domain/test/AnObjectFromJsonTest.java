@@ -2,14 +2,17 @@ package org.fluentcodes.projects.elasticobjects.domain.test;
 
 
 import org.assertj.core.api.Assertions;
+import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_DOUBLE;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_INTEGER;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.createEo;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Werner Diwischek
@@ -109,7 +112,7 @@ public class AnObjectFromJsonTest {
             "}";
 
     public static final EoRoot createAnObjectEo()  {
-        return ObjectProvider.createEo(new AnObject());
+        return createEo(new AnObject());
     }
     public static final EoRoot createAnObjectEo(final String json)  {
         EoRoot root = createAnObjectEo();
@@ -119,13 +122,13 @@ public class AnObjectFromJsonTest {
 
     @Test
     public void id_1____id_1() {
-        EoRoot eo = ObjectProvider.createEo("{\n" +
+        EoRoot eo = createEo("{\n" +
                 "   \"(AnObject)abc\":{\n" +
                 "        \"id\":1\n" +
                 "   }" +
                 "}");
-        Assert.assertEquals(AnObject.class, eo.get("abc").getClass());
-        Assert.assertEquals(1L, eo.get("abc/id"));
+        assertEquals(AnObject.class, eo.get("abc").getClass());
+        assertEquals(1L, eo.get("abc/id"));
 
     }
 
@@ -139,14 +142,14 @@ public class AnObjectFromJsonTest {
 
     @Test
     public void givenJsonUntypedDouble_thenDouble()  {
-        EoRoot root = ObjectProvider.createEo(new AnObject());
+        EoRoot root = createEo(new AnObject());
         root.set("{\"myDouble\": 2.2}");
         AnObject bt = (AnObject) root.get();
         Assertions.assertThat(bt.getMyDouble()).isEqualTo((SAMPLE_DOUBLE));
     }
 
     @Test
-    public void scopeTest__small__xpected()  {
+    public void small__xpected()  {
         EoRoot eo = createAnObjectEo("{\"myString\": \"test\", \"myInt\": 1}");
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getModelClass()).isEqualTo(AnObject.class);
@@ -155,7 +158,7 @@ public class AnObjectFromJsonTest {
     }
 
     @Test
-    public void scopeTest__all__expected()  {
+    public void all__expected()  {
         EoRoot eo = createAnObjectEo(ALL);
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getModelClass()).isEqualTo(AnObject.class);
@@ -164,10 +167,21 @@ public class AnObjectFromJsonTest {
     }
 
     @Test
-    public void scopeDev__SubObjectJson__thenNoLog()  {
+    public void SubObjectJson__thenNoLog()  {
         EoRoot eo = createAnObjectEo("{\"(ASubObject)myASubObject\": {\"name\": \"testOther\",\"myString\": \"test\"}}");
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getModelClass()).isEqualTo(AnObject.class);
         Assertions.assertThat(eo.get(AnObject.MY_ASUB_OBJECT, AnObject.F_MY_STRING)).isEqualTo((S_STRING));
     }
+
+    @Test
+    public void AnObject_rootModel()  {
+        EoRoot root = createEo();
+        EoChild child = (EoChild) root.set("{\n" +
+                "  \"_rootmodel\": \"AnObject\"" +
+                "}", "data");
+        assertEquals(AnObject.class, child.getModelClass());
+    }
+
+
 }

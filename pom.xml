@@ -12,10 +12,19 @@
     <modules>
         <module>elastic-objects</module>
         <module>elastic-objects-test</module>
+        
         <module>eo-calls</module>
+        <module>eo-calls-test</module>
+        
         <module>eo-csv</module>
+        <module>eo-csv-test</module>
+        
         <module>eo-xlsx</module>
+        <module>eo-xlsx-test</module>
+        
         <module>eo-db</module>
+        <module>eo-db-test</module>
+        
         <!--module>eo-db-hibernate</module-->
         <module>example-springboot</module>
         <!--module>builder</module-->

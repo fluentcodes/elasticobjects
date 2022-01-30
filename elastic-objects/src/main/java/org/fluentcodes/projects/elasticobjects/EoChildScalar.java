@@ -3,8 +3,11 @@ package org.fluentcodes.projects.elasticobjects;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.models.Models;
+import org.omg.CORBA.VM_NONE;
 
 import java.io.StringWriter;
+
+import static org.fluentcodes.projects.elasticobjects.PathElement.V_MODEL;
 
 public class EoChildScalar implements EOInterfaceScalar {
     private final EO parentEo;
@@ -38,6 +41,13 @@ public class EoChildScalar implements EOInterfaceScalar {
 
     void setModels(Models models) {
         this.fieldModels = models;
+    }
+
+    void setModels(String modelString) {
+        if (!isEmpty()) {
+            throw new EoException("Could not change model to " + modelString + " on non empty parent " + getPathAsString() + "");
+        }
+        this.fieldModels = new Models(getConfigMaps(), modelString);
     }
 
     @Override

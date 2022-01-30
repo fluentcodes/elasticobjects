@@ -7,17 +7,16 @@ import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.domain.test.ASubObject;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.IConfigurationTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.IConfigurationTests;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Map;
 
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_KEY_UNKNOW;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.CONFIG_MAPS;
 import static org.junit.Assert.assertNotNull;
 
 public class ModelConfigTest implements IConfigurationTests {

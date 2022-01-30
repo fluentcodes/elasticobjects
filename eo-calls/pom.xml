@@ -6,8 +6,8 @@
     <artifactId>eo-calls</artifactId>
     <packaging>jar</packaging>
     <version>0.9.5-SNAPSHOT</version>
-    <name>EO Calls</name>
-    <description>Some basic calls for file resources and templates.</description>
+    <name>EO Basic Calls</name>
+    <description>Some basic calls for file resources or templates.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,24 +21,6 @@
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>elastic-objects</artifactId>
             <version>0.9.5-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.fluentcodes.projects.elasticobjects</groupId>
-            <artifactId>elastic-objects-test</artifactId>
-            <version>0.9.5-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.21.0</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

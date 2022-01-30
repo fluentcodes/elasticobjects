@@ -15,7 +15,7 @@ public interface SimpleCommand extends Call {
         }
         if (array.length > 0) {
             if (array[0].replaceAll("\\s", "").isEmpty()) {
-                setSourcePath(PathElement.SAME);
+                setSourcePath(PathElement.V_SAME);
             } else {
                 setSourcePath(array[0]);
             }

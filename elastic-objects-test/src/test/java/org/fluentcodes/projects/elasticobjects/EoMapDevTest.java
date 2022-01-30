@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObjectFromJsonTest;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectEoJunit4;
 import org.junit.Assert;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class EoMapDevTest {
     @Test
     public void DEV__JSON_List_Double_0_1_1_2__xpected() {
         final EoRoot eo = ObjectProviderDev.createEo();
-        eo.map("{\"" + PathElement.ROOT_MODEL + "\":\"List,Double\", \"0\":1,\"1\":2}");
+        eo.map("{\"" + PathElement.V_MODEL + "\":\"List,Double\", \"0\":1,\"1\":2}");
         Assertions.assertThat(eo.getModelClass()).isEqualTo(List.class);
         Assertions.assertThat(eo.getEo("0").getModelClass()).isEqualTo(Double.class);
         XpectEoJunit4.assertStaticEO(eo);

@@ -1,7 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.EOToJSON;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ABSTRACT;
@@ -12,7 +11,6 @@ import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_NATURAL_KEYS;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_TABLE;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBeanPropertiesDevTest.createModelBeanProperties;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.CONFIG_MAPS_DEV;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;

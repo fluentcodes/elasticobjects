@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public class EoMergeTest {
         final EoRoot eo = ObjectProvider.createEo(anObject);
 
         final Map map = new HashMap();
-        map.put(AnObject.NATURAL_ID, "id");
+        map.put(AnObject.F_NATURAL_ID, "id");
         eo.map(map);
         Assertions.assertThat(eo.get("naturalId")).isEqualTo("id");
     }

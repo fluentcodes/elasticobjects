@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.IModelConfigCreateTests;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE_SCOPE;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
 import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.createObject;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.createObject;
 import static org.junit.Assert.assertEquals;
 
 /**

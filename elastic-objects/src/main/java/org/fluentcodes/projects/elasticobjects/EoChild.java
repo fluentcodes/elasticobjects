@@ -257,8 +257,7 @@ public class EoChild extends EoChildScalar implements EO {
         if (valueModel.isScalar()) {
             if (value instanceof String) {
                 if (JSONToEO.JSON_PATTERN.matcher((String) value).find()) {
-                    new JSONToEO((String) value).createChild(this);
-                    return this;
+                    return (EO)new JSONToEO((String) value).createChild(this);
                 }
                 Object base = createBaseObject(value);
                 if (base == null) {

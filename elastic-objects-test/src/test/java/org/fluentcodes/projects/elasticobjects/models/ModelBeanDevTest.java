@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -28,10 +28,10 @@ import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_MODEL_K
 import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_SUPER_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.ModelBean.F_PACKAGE_PATH;
 import static org.fluentcodes.projects.elasticobjects.models.ModelInterface.F_SHAPE_TYPE;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelBean;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelBeanWithFieldKey;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelBeanWithFieldProperty;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createModelBeanWithProperty;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.createModelBean;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.createModelBeanWithFieldKey;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.createModelBeanWithFieldProperty;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.createModelBeanWithProperty;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;

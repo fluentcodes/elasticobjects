@@ -2,8 +2,8 @@ package org.fluentcodes.projects.elasticobjects.domain.test;
 
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.IModelConfigCreateTests;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Assert;
 import org.junit.Test;
 

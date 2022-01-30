@@ -15,7 +15,7 @@ public class EoChildScalarSpecial extends EoChildScalar {
      */
     @Override
     public void set(final Object value) {
-        if (getFieldKey().equals(PathElement.ROOT_MODEL)) {
+        if (getFieldKey().equals(PathElement.V_MODEL)) {
             if (!getParent().isEmpty()) {
                 throw new EoException("Could not change model when values are already set");
             }

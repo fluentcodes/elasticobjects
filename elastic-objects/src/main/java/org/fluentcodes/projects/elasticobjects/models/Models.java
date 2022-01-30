@@ -129,7 +129,7 @@ public class Models {
                 ((Call)value).setTargetPath(TARGET_AS_STRING);
             }
             else if (!((Call)value).hasTargetPath() && (!key.isEmpty())) {
-                if (key.equals(PathElement.SAME)) {
+                if (key.equals(PathElement.V_SAME)) {
                     ((Call) value).setTargetPath(parent.getPathAsString());
                 } else {
                     ((Call) value).setTargetPath(parent.getPathAsString() + Path.DELIMITER + key);

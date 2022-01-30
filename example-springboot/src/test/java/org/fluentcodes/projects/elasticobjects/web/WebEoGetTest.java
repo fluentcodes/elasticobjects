@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.web;
 
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Test;
 
 public class WebEoGetTest {

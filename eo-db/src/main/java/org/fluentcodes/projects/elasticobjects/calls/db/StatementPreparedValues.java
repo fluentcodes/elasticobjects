@@ -1,5 +1,6 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.fluentcodes.projects.elasticobjects.calls.DbConfig;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class StatementPreparedValues {
@@ -42,6 +44,14 @@ public class StatementPreparedValues {
                     preparedStatement.setInt(counter, (Integer) value);
                 } else if (value instanceof Long) {
                     preparedStatement.setLong(counter, (Long) value);
+                } else if (value instanceof Double) {
+                    preparedStatement.setDouble(counter, (Double) value);
+                } else if (value instanceof Float) {
+                    preparedStatement.setFloat(counter, (Float) value);
+                } else if (value instanceof Boolean) {
+                    preparedStatement.setBoolean(counter, (Boolean) value);
+                } else if (value instanceof Date) {
+                    preparedStatement.setDate(counter, new java.sql.Date(((Date) value).getTime()));
                 } else {
                     throw new EoInternalException("No validated " + counter + " - " + value);
                 }

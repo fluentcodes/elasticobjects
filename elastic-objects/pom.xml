@@ -6,7 +6,7 @@
     <artifactId>elastic-objects</artifactId>
     <packaging>jar</packaging>
     <version>0.9.5-SNAPSHOT</version>
-    <name>EO - Elastic Objects Core</name>
+    <name>EO - Elastic Objects</name>
     <description>An object wrapper for access, navigate, modify, serialize and deserialize complex java object via path in a typesafe and ordered way with JSON.</description>
 
     <properties>

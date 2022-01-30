@@ -1,8 +1,8 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigNoCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.IModelConfigNoCreateTests;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
 import org.junit.Test;
 

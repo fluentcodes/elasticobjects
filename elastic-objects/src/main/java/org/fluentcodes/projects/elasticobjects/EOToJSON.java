@@ -10,7 +10,7 @@ import java.util.Set;
 
 
 /**
- * Created by werner.diwischek on 13.01.18.
+ * Transforms EO to json representation depending on {@link JSONSerializationType}
  */
 public class EOToJSON {
     public static final String REPEATED = ".repeated";

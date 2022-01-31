@@ -9,11 +9,11 @@ The input files are not part of the fat jar to avoid the annoying build process 
 #### Start
 Instead with linux you have to start with
 
-   java -cp example-springboot/target/example-springboot-0.9.5-SNAPSHOT.jar:example-springboot/input/ org.springframework.boot.loader.PropertiesLauncher
+   java -cp example-springboot/target/example-springboot-0.9.5.jar:example-springboot/input/ org.springframework.boot.loader.PropertiesLauncher
 
 Or with windows use ";" instead of ":" as separator
 
-   java -cp example-springboot/target/example-springboot-0.9.5-SNAPSHOT.jar;example-springboot/input/ org.springframework.boot.loader.PropertiesLauncher
+   java -cp example-springboot/target/example-springboot-0.9.5.jar;example-springboot/input/ org.springframework.boot.loader.PropertiesLauncher
 
 #### Useed Modules
 It uses configurations from the modules

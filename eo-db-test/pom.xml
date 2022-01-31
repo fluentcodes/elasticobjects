@@ -6,7 +6,7 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>eo-db-test</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.5-SNAPSHOT</version>
+    <version>0.9.5</version>
     <name>EO DB Tests</name>
     <description>Tests for DB calls for Elastic Objects</description>
 
@@ -21,12 +21,12 @@
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>eo-db</artifactId>
-            <version>0.9.5-SNAPSHOT</version>
+            <version>0.9.5</version>
         </dependency>
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>eo-calls-test</artifactId>
-            <version>0.9.5-SNAPSHOT</version>
+            <version>0.9.5</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>

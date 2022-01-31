@@ -6,7 +6,7 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>eo-db</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.5-SNAPSHOT</version>
+    <version>0.9.5</version>
     <name>EO DB Calls</name>
     <description>DB calls for Elastic Objects</description>
 
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>eo-calls</artifactId>
-            <version>0.9.5-SNAPSHOT</version>
+            <version>0.9.5</version>
         </dependency>
     </dependencies>
 

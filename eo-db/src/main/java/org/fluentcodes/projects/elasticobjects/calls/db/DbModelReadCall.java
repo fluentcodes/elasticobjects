@@ -1,23 +1,19 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
 import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
+import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigReadCommand;
-import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBeanInterface;
 import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBean;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListParamsBeanInterface;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.List;
-
-/*.{javaHeader}|*/
+import java.util.Map;
 
 /**
- * Read an entry in database by creating a select sql from entry in sourcePath. The object must be an instance of {@link ModelConfigDbObject}.
- *
- * @author Werner Diwischek
- * @creationDate
- * @modificationDate Wed Nov 11 06:39:50 CET 2020
+ * Read an entries in database by creating a select sql from entry in sourcePath. The object must be an instance of {@link ModelConfigDbObject}.
  */
 public class DbModelReadCall extends DbModelCall implements ListParamsBeanInterface, ConfigReadCommand {
     private ListParamsBean listParams;
@@ -32,29 +28,32 @@ public class DbModelReadCall extends DbModelCall implements ListParamsBeanInterf
         listParams = new ListParamsBean();
     }
 
+    DbModelReadCall(final String hostConfigKey, final String targetPath) {
+        super(hostConfigKey, targetPath);
+        listParams = new ListParamsBean();
+    }
 
     @Override
     public Object execute(final EOInterfaceScalar eo) {
-        return mapEo(eo, readRaw(eo));
+        if (!(eo instanceof EoChild)) {
+            throw new EoException("Could not query scalar value");
+        }
+        return readRaw((EoChild)eo);
     }
 
-    public List readRaw(final EOInterfaceScalar eo) {
-        DbModelConfig dbModelConfig = init(PermissionType.READ, eo);
+    public Object readRaw(final EoChild eo) {
+        DbModelsConfig config = init(PermissionType.READ, eo);
         listParams.initDb();
-        return FindStatement.of(eo)
-                .read(
-                        dbModelConfig.getDbConfig().getConnection(),
-                        eo.getConfigMaps(),
-                        getListParams());
-    }
-
-    /**
-     * Parameters of type {@link ListParamsBean} for list type read call operations like {@link CsvSimpleReadCall}.
-     */
-
-    public DbModelReadCall setListParams(ListParamsBean listParams) {
-        this.listParams = listParams;
-        return this;
+        StatementFind findStatement = config.getDbModelConfig(eo.getModelClass()).createQueryStatement(eo);
+        Map<String, Object> dbResult = findStatement
+                .readOneOrEmpty(
+                        config.getDbConfig().getConnection(),
+                        eo.getConfigMaps());
+        if (dbResult == null) {
+            throw new EoException("Could not find entry for " + findStatement.toString());
+        }
+        eo.map(dbResult);
+        return "";
     }
 
     @Override

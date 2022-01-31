@@ -1,13 +1,13 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.CONFIG_MAPS_DEV;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.CONFIG_MAPS_DEV;
 import static org.junit.Assert.assertEquals;
 
 public class ModelConfigListDevTest {

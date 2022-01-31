@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,7 +26,7 @@ public class EoSetDevTest {
     public void mapSmall__set_model_List__exception() {
         final EoRoot root = ObjectProviderDev
                 .createEo("{\"key0\": \"test\", \"key1\": 1}");
-        root.set(List.class.getSimpleName(), PathElement.ROOT_MODEL);
+        root.set(List.class.getSimpleName(), PathElement.V_MODEL);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class EoSetDevTest {
     public void key_value__set_model_List__exception() {
         final EoRoot eo = ObjectProviderDev.createEo();
         eo.set("value", "key");
-        eo.set(List.class.getSimpleName(), PathElement.ROOT_MODEL);
+        eo.set(List.class.getSimpleName(), PathElement.V_MODEL);
     }
 
     @Test

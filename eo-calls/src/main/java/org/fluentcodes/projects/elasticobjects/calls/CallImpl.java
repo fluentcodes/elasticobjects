@@ -22,7 +22,7 @@ public abstract class CallImpl implements Call {
     /* Will use an existing  result file beforehand as template.  */
     private KeepCalls keepCall;
     /* logLevel */
-    private LogLevel logLevel;
+    private LogLevel logLevel = LogLevel.WARN;
     /* A string representation for a list of model keys. */
     private String models;
     /* A overwrite field flag for {@link Call}. */

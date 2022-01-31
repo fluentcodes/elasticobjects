@@ -10,7 +10,7 @@ import java.util.Set;
 
 
 /**
- * Created by werner.diwischek on 13.01.18.
+ * Transforms EO to json representation depending on {@link JSONSerializationType}
  */
 public class EOToJSON {
     public static final String REPEATED = ".repeated";
@@ -104,7 +104,7 @@ public class EOToJSON {
             if (PathElement.isParentNotSet(fieldName) && serializationType == JSONSerializationType.STANDARD) {
                 continue;
             }
-            if (eoParent.isTransient(fieldName)) {
+            if (eoParent.isJsonIgnore(fieldName)) {
                 continue;
             }
             EoChildScalar eoChild = (EoChildScalar) eoParent.getEo(fieldName);

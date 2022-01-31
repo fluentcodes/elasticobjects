@@ -11,6 +11,7 @@ public class FieldConfigProperties implements FieldPropertiesInterface {
     private final Boolean generated;
     private final String javascriptType;
     private final Boolean jsonIgnore;
+    private final String idKey;
     private final Integer max;
     private final Integer min;
     private final Boolean notNull;
@@ -26,6 +27,7 @@ public class FieldConfigProperties implements FieldPropertiesInterface {
         this.fieldName = bean.getFieldName();
         this.finalValue = bean.getFinal();
         this.generated = bean.getGenerated();
+        this.idKey = bean.getIdKey();
         this.javascriptType = bean.getJavascriptType();
         this.jsonIgnore = bean.getJsonIgnore();
         this.max = bean.getMax();
@@ -57,6 +59,11 @@ public class FieldConfigProperties implements FieldPropertiesInterface {
     @Override
     public Boolean getGenerated() {
         return generated;
+    }
+
+    @Override
+    public String getIdKey() {
+        return idKey;
     }
 
     @Override

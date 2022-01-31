@@ -56,5 +56,6 @@
   "(ModelBeanProperties)properties": {
     "create": true
   },
+  "(ShapeTypes)shapeType": "OBJECT",
   "superKey": "SuperExampleClass"
 }

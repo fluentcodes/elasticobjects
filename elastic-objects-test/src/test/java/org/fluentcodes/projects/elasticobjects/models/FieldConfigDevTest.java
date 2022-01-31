@@ -1,30 +1,16 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_AUTHOR;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_CREATION_DATE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_EXPOSE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_ID;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_MODULE_SCOPE;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
-import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_DEFAULT;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FIELD_NAME;
-import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_FINAL;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_MODEL_KEYS;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.toStringWithMap;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.readFieldConfig;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ID_KEY;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.toStringWithMap;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.readFieldConfig;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -100,6 +86,12 @@ public class FieldConfigDevTest {
     public void createFieldConfigProperty_generated(){
         FieldConfig config = ObjectProviderDev.createFieldConfigProperty(FieldBeanProperties.F_GENERATED, true);
         assertTrue(config.getProperties().getGenerated());
+    }
+
+    @Test
+    public void createFieldConfigProperty_idKey(){
+        FieldConfig config = ObjectProviderDev.createFieldConfigProperty(F_ID_KEY, "test");
+        assertEquals("test", config.getProperties().getIdKey());
     }
 
     @Test

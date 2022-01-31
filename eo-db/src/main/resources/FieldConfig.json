@@ -49,6 +49,17 @@
     }
   },
   {
+    "module": "eo-db",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "A list of associated db model configurations.",
+    "expose": "NONE",
+    "naturalId": "dbModelKeys",
+    "fieldKey": "dbModelKeys",
+    "properties": {
+    }
+  },
+  {
     "module": "elastic-objects",
     "moduleScope": "main",
     "modelKeys": "String",

@@ -5,12 +5,11 @@ package org.fluentcodes.projects.elasticobjects.domain.test;
  * A sub object as an example.
  */
 public class ASubObject  {
-   public static final String MY_STRING = "myString";
-   public static final String F_NAME = "name";
     @SuppressWarnings({"java:S1845", "may be later"})
    private Long id;
    /* myASubObject */
    private ASubObject myASubObject;
+   private Long myASubObject_id;
    /* Just a small test string used in test models.  */
    private String myString;
    /* The name field of a class.  */
@@ -38,6 +37,14 @@ public class ASubObject  {
       this.myASubObject = myASubObject;
       return this;
     }
+
+   public Long getMyASubObject_id() {
+      return myASubObject_id;
+   }
+
+   public void setMyASubObject_id(Long myASubObject_id) {
+      this.myASubObject_id = myASubObject_id;
+   }
 
    public boolean hasMyASubObject() {
       return this.myASubObject != null;

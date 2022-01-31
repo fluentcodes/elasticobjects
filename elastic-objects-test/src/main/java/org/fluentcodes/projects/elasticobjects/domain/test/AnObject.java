@@ -1,6 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.domain.test;
 
-/*.{javaHeader}|*/
 
 import java.util.Date;
 import java.util.List;
@@ -12,9 +11,11 @@ import java.util.Map;
 public class AnObject {
     public static final String F_ID = "id";
     public static final String MY_ASUB_OBJECT = "myASubObject";
+    public static final String F_MY_ASUB_OBJECT_ID = "myASubObject_id";
     public static final String MY_ASUB_OBJECT_LIST = "myASubObjectList";
     public static final String MY_ASUB_OBJECT_MAP = "myASubObjectMap";
     public static final String MY_AN_OBJECT = "myAnObject";
+    public static final String F_MY_AN_OBJECT_ID = "myAnObject_id";
     public static final String MY_BOOLEAN = "myBoolean";
     public static final String MY_DATE = "myDate";
     public static final String MY_DOUBLE = "myDouble";
@@ -25,18 +26,20 @@ public class AnObject {
     public static final String MY_MAP = "myMap";
     public static final String MY_OBJECT = "myObject";
     public static final String F_MY_STRING = "myString";
-    public static final String NATURAL_ID = "naturalId";
+    public static final String F_NATURAL_ID = "naturalId";
 
     /* The numeric id of an instance of a class. */
     private Long id;
     /* myASubObject */
     private ASubObject myASubObject;
+    private Long myASubObject_id;
     /* A generic parametrized example List with @ASubObject */
     private List<ASubObject> myASubObjectList;
     /* A generic parametrized example Map with @ASubObject */
     private Map<String, ASubObject> myASubObjectMap;
     /* A AnObject field. */
     private AnObject myAnObject;
+    private Long myAnObject_id;
     /* myBoolean */
     private Boolean myBoolean;
     /* myDate */
@@ -84,6 +87,22 @@ public class AnObject {
     public AnObject setMyASubObject(final ASubObject myASubObject) {
         this.myASubObject = myASubObject;
         return this;
+    }
+
+    public Long getMyASubObject_id() {
+        return myASubObject_id;
+    }
+
+    public void setMyASubObject_id(Long myASubObject_id) {
+        this.myASubObject_id = myASubObject_id;
+    }
+
+    public Long getMyAnObject_id() {
+        return myAnObject_id;
+    }
+
+    public void setMyAnObject_id(Long myAnObject_id) {
+        this.myAnObject_id = myAnObject_id;
     }
 
     public List<ASubObject> getMyASubObjectList() {

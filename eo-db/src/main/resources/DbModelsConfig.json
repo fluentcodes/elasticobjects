@@ -1,0 +1,11 @@
+[
+  {
+    "dbConfigKey": "h2:mem:basic",
+    "naturalId": "h2:mem",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  }
+]

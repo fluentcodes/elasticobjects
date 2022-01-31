@@ -5,11 +5,7 @@ import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 
 /**
- * Abstract call class for model based {@link DbModelConfig} database operations.
- *
- * @author Werner Diwischek
- * @creationDate
- * @modificationDate Wed Nov 11 06:19:26 CET 2020
+ * Abstract call class for model based {@link DbModelsConfig} database operations.
  */
 public abstract class DbModelCall extends CallImpl {
     private String configKey;
@@ -21,9 +17,13 @@ public abstract class DbModelCall extends CallImpl {
     protected DbModelCall(final String configKey) {
         this.configKey = configKey;
     }
+    protected DbModelCall(final String configKey, final String targetPath) {
+        this.configKey = configKey;
+        setTargetPath(targetPath);
+    }
 
-    protected DbModelConfig init(final PermissionType permissionType, final EOInterfaceScalar eo) {
-        DbModelConfig config = (DbModelConfig) eo.getConfigMaps().find(DbModelConfig.class, configKey);
+    protected DbModelsConfig init(final PermissionType permissionType, final EOInterfaceScalar eo) {
+        DbModelsConfig config = (DbModelsConfig) eo.getConfigMaps().find(DbModelsConfig.class, configKey);
         config.hasPermissions(permissionType, eo.getRoles());
         config.getDbConfig().hasPermissions(permissionType, eo.getRoles());
         return config;

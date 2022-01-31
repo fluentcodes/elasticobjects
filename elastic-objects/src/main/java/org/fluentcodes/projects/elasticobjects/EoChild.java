@@ -148,7 +148,7 @@ public class EoChild extends EoChildScalar implements EO {
                 parent = ((EoChild) parent).getEo(pathElement);
                 continue;
             }
-            parent = getModels().createChild((EO) parent, pathElement, null);
+            parent = parent.getModels().createChild((EO) parent, pathElement, null);
             if (!(parent instanceof EO)) {
                 throw new EoException("");
             }
@@ -257,8 +257,7 @@ public class EoChild extends EoChildScalar implements EO {
         if (valueModel.isScalar()) {
             if (value instanceof String) {
                 if (JSONToEO.JSON_PATTERN.matcher((String) value).find()) {
-                    new JSONToEO((String) value).createChild(this);
-                    return this;
+                    return (EO)new JSONToEO((String) value).createChild(this);
                 }
                 Object base = createBaseObject(value);
                 if (base == null) {

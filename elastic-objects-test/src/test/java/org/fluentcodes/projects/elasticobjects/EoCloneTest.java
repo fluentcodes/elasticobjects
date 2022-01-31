@@ -2,10 +2,10 @@ package org.fluentcodes.projects.elasticobjects;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Test;
 
-import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.NATURAL_ID;
+import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.F_NATURAL_ID;
 
 public class EoCloneTest {
 
@@ -14,7 +14,7 @@ public class EoCloneTest {
         final AnObject anObject1 = new AnObject().setMyString( "value");
         final EoRoot eo1 = ObjectProvider.createEo(anObject1);
         final EoRoot eo2 = ObjectProvider.createEo(eo1.get());
-        eo1.set("id", NATURAL_ID);
+        eo1.set("id", F_NATURAL_ID);
         Assertions.assertThat(anObject1).isNotEqualTo(eo2.get());
     }
 
@@ -22,8 +22,8 @@ public class EoCloneTest {
     public void AnObject_myString_value__setNaturalId_id__is_same_in_AnObject()  {
         final AnObject anObject1 = new AnObject().setMyString( "value");
         final EoRoot eo1 = ObjectProvider.createEo(anObject1);
-        eo1.set("id", NATURAL_ID);
-        Assertions.assertThat(eo1.get(NATURAL_ID)).isEqualTo("id");
+        eo1.set("id", F_NATURAL_ID);
+        Assertions.assertThat(eo1.get(F_NATURAL_ID)).isEqualTo("id");
         Assertions.assertThat(anObject1.getNaturalId()).isNull();
     }
 

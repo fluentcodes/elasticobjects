@@ -1,12 +1,13 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.*;
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanPropertiesDevTest.createFieldBeanProperties;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.toStringWithMap;
+import static org.fluentcodes.projects.elasticobjects.models.ModelBeanProperties.F_ID_KEY;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.CONFIG_MAPS;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.toStringWithMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -22,14 +23,14 @@ public class FieldConfigPropertiesDevTest {
     public void readModelBean() {
         ModelBean bean = ObjectProviderDev.readModelBean(FieldConfigProperties.class.getSimpleName());
         assertNull(bean.getSuperKey());
-        assertEquals(15, bean.getFieldKeys().size());
+        assertEquals(16, bean.getFieldKeys().size());
     }
 
     @Test
     public void readModelConfig() {
         ModelConfig config = ObjectProviderDev.readModelConfig(FieldConfigProperties.class.getSimpleName());
         assertTrue(config.getProperties().getCreate());
-        assertEquals(15, config.getFields().size());
+        assertEquals(16, config.getFields().size());
     }
 
     @Test
@@ -55,6 +56,12 @@ public class FieldConfigPropertiesDevTest {
     public void createFieldConfigProperties_generated() {
         FieldConfigProperties properties = createFieldConfigProperties(F_GENERATED, true);
         assertEquals(true, properties.getGenerated());
+    }
+
+    @Test
+    public void createFieldConfigProperties_idKey() {
+        FieldConfigProperties properties = createFieldConfigProperties(F_ID_KEY, "test");
+        assertEquals("test", properties.getIdKey());
     }
 
     @Test

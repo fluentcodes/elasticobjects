@@ -6,7 +6,22 @@
     "description": "A AnObject field.",
     "expose": "WEB",
     "naturalId":"myAnObject",
-    "fieldKey": "myAnObject"
+    "fieldKey": "myAnObject",
+    "properties": {
+      "transient": true,
+      "idKey": "myAnObject_id"
+    }
+  },
+  {
+    "module": "elastic-objects-test",
+    "moduleScope": "main",
+    "modelKeys": "Long",
+    "description": "A AnObject field id.",
+    "expose": "WEB",
+    "naturalId":"myAnObject_id",
+    "fieldKey": "myAnObject_id",
+    "properties": {
+    }
   },
   {
     "module": "elastic-objects-test",
@@ -15,7 +30,22 @@
     "description": "myASubObject",
     "expose": "WEB",
     "naturalId":"myASubObject",
-    "fieldKey": ""
+    "fieldKey": "myASubObject",
+    "properties": {
+      "transient": true,
+      "idKey": "myASubObject_id"
+    }
+  },
+  {
+    "module": "elastic-objects-test",
+    "moduleScope": "main",
+    "modelKeys": "Long",
+    "description": "myASubObject id",
+    "expose": "WEB",
+    "naturalId":"myASubObject_id",
+    "fieldKey": "myASubObject_id",
+    "properties": {
+    }
   },
   {
     "module": "elastic-objects-test",
@@ -24,7 +54,10 @@
     "description": "A generic parametrized example List with @ASubObject",
     "expose": "WEB",
     "naturalId":"myASubObjectList",
-    "fieldKey": "myASubObjectList"
+    "fieldKey": "myASubObjectList",
+    "properties": {
+      "transient": true
+    }
   },
   {
     "module": "elastic-objects-test",
@@ -33,7 +66,10 @@
     "description": "A generic parametrized example Map with @ASubObject",
     "expose": "WEB",
     "naturalId":"myASubObjectMap",
-    "fieldKey": "myASubObjectMap"
+    "fieldKey": "myASubObjectMap",
+    "properties": {
+      "transient": true
+    }
   },
   {
     "module": "elastic-objects-test",
@@ -87,7 +123,10 @@
     "description": "myList",
     "expose": "WEB",
     "naturalId":"myList",
-    "fieldKey": "myList"
+    "fieldKey": "myList",
+    "properties": {
+      "transient": true
+    }
   },
   {
     "module": "elastic-objects-test",
@@ -105,7 +144,10 @@
     "description": "myMap",
     "expose": "WEB",
     "naturalId":"myMap",
-    "fieldKey": "myMap"
+    "fieldKey": "myMap",
+    "properties": {
+      "transient": true
+    }
   },
   {
     "module": "elastic-objects-test",
@@ -114,7 +156,10 @@
     "description": "A test object thing. ",
     "expose": "WEB",
     "naturalId":"myObject",
-    "fieldKey": "myObject"
+    "fieldKey": "myObject",
+    "properties": {
+      "transient": true
+    }
   },
   {
     "module": "elastic-objects-test",

@@ -18,8 +18,7 @@
     "module": "eo-db",
     "moduleScope": "main",
     "fields": [
-      "modelKey",
-      "dbConfigKey"
+      "modelKey"
     ],
     "interfaces": "DbModelInterface",
     "superKey": "PermissionBean",
@@ -28,6 +27,25 @@
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
     "naturalId": "DbModelBean",
     "modelKey": "DbModelBean",
+    "properties": {
+      "create": true
+    },
+    "author": "Werner Diwischek"
+  },
+  {
+    "module": "eo-db",
+    "moduleScope": "main",
+    "fields": [
+      "dbModelKeys",
+      "dbConfigKey"
+    ],
+    "interfaces": "DbModelsInterface",
+    "superKey": "PermissionBean",
+    "expose": "WEB",
+    "description": "Bean class for database operations using a model to create {@link DbModelsConfig}.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelsBean",
+    "modelKey": "DbModelsBean",
     "properties": {
       "create": true
     },
@@ -73,6 +91,26 @@
   {
     "module": "eo-db",
     "moduleScope": "main",
+    "fields": {
+      "dbModelKeys": {
+        "final": true
+      },
+      "dbConfigKey": {
+        "final": true
+      }
+    },
+    "interfaces": "DbModelsInterface",
+    "superKey": "PermissionConfig",
+    "expose": "WEB",
+    "description": "Config class for database operations using a model created by {@link DbModelsBean}.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelsConfig",
+    "modelKey": "DbModelsConfig",
+    "author": "Werner Diwischek"
+  },
+  {
+    "module": "eo-db",
+    "moduleScope": "main",
     "interfaces": "ConfigWriteCommand",
     "superKey": "DbModelCall",
     "expose": "WEB",
@@ -98,13 +136,68 @@
   {
     "module": "eo-db",
     "moduleScope": "main",
+    "expose": "WEB",
+    "description": "Interface class for database operations as pattern for  {@link DbModelsBean} and {@link DbModelsConfig}.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelsInterface",
+    "modelKey": "DbModelsInterface",
+    "author": "Werner Diwischek"
+  },
+  {
+    "module": "eo-db",
+    "moduleScope": "main",
+    "interfaces": "ConfigWriteCommand",
+    "superKey": "DbModelCall",
+    "expose": "WEB",
+    "description": "Write an entry in database by creating a insert or update sql from entry in sourcePath.\nThe object must be an instance of @ModelConfigDbObject.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelsCreateCall",
+    "modelKey": "DbModelsCreateCall",
+    "properties": {
+      "create": true
+    },
+    "author": "Werner Diwischek"
+  },
+  {
+    "module": "eo-db",
+    "moduleScope": "main",
     "interfaces": "ListParamsBeanInterface,ConfigReadCommand",
     "superKey": "DbModelCall",
     "expose": "WEB",
     "description": "Read an entry in database by creating a select sql from entry in sourcePath. \nThe object in sourcePath must be an instance of @ModelConfigDbObject.",
     "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelQueryCall",
+    "modelKey": "DbModelQueryCall",
+    "properties": {
+      "create": true
+    },
+    "author": "Werner Diwischek"
+  },
+  {
+    "module": "eo-db",
+    "moduleScope": "main",
+    "interfaces": "ConfigWriteCommand",
+    "superKey": "DbModelCall",
+    "expose": "WEB",
+    "description": "Read equivalent entry in db and map values.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
     "naturalId": "DbModelReadCall",
     "modelKey": "DbModelReadCall",
+    "properties": {
+      "create": true
+    },
+    "author": "Werner Diwischek"
+  },
+  {
+    "module": "eo-db",
+    "moduleScope": "main",
+    "interfaces": "ConfigWriteCommand",
+    "superKey": "DbModelCall",
+    "expose": "WEB",
+    "description": "Resolve dependent fields to objects.",
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.db",
+    "naturalId": "DbModelResolveCall",
+    "modelKey": "DbModelResolveCall",
     "properties": {
       "create": true
     },

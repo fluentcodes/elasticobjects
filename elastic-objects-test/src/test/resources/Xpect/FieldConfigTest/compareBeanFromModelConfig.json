@@ -344,5 +344,6 @@
     "defaultImplementation": "TreeMap",
     "final": true
   },
+  "(ShapeTypes)shapeType": "BEAN",
   "superKey": "Config"
 }

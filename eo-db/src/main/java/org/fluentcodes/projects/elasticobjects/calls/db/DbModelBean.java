@@ -8,14 +8,12 @@ import org.fluentcodes.projects.elasticobjects.calls.PermissionBean;
  */
 public class DbModelBean extends PermissionBean implements DbModelInterface {
     private String modelKey;
-    private String dbConfigKey;
 
     public DbModelBean() {}
 
     public DbModelBean(final DbModelConfig config) {
         super(config);
         this.modelKey = config.getModelKey();
-        this.dbConfigKey = config.getDbConfigKey();
     }
     @Override
     public String getConfigModelKey() {
@@ -29,16 +27,7 @@ public class DbModelBean extends PermissionBean implements DbModelInterface {
         return modelKey;
     }
 
-    @Override
-    public String getDbConfigKey() {
-        return dbConfigKey;
-    }
-
     public void setModelKey(String modelKey) {
         this.modelKey = modelKey;
-    }
-
-    public void setDbConfigKey(String dbConfigKey) {
-        this.dbConfigKey = dbConfigKey;
     }
 }

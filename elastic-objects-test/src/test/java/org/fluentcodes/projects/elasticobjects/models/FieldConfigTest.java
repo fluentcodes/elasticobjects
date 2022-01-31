@@ -1,15 +1,15 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev;
+import org.fluentcodes.projects.elasticobjects.testitems.IModelConfigCreateTests;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_FIELD_KEY;
 import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.F_MODEL_KEYS;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.toStringWithMap;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.createFieldBean;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.CONFIG_MAPS;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.toStringWithMap;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.createFieldBean;
 import static org.junit.Assert.assertEquals;
 
 /**

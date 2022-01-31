@@ -1,21 +1,15 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
 import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
+import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigWriteCommand;
-import org.fluentcodes.projects.elasticobjects.calls.db.statements.DeleteStatement;
-import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
 import java.util.List;
 
-/*.{javaHeader}|*/
-
 /**
  * Remove an entry from database by creating a delete sql from entry in sourcePath.
- *
- * @author Werner Diwischek
- * @creationDate
- * @modificationDate Wed Nov 11 06:24:57 CET 2020
  */
 public class DbModelDeleteCall extends DbModelCall implements ConfigWriteCommand {
 
@@ -27,22 +21,26 @@ public class DbModelDeleteCall extends DbModelCall implements ConfigWriteCommand
         super(hostConfigKey);
     }
 
+    public DbModelDeleteCall(final String hostConfigKey, final String targetPath) {
+        super(hostConfigKey, targetPath);
+    }
     @Override
     public Object execute(final EOInterfaceScalar eo) {
         return remove(eo);
     }
 
     public Object remove(final EOInterfaceScalar eo) {
-        DbModelConfig modelConfig = init(PermissionType.WRITE, eo);
+        if (!(eo instanceof EoChild)) {
+            throw new EoException("Could not query scalar value");
+        }
+        DbModelsConfig config = init(PermissionType.DELETE, eo);
+        DbModelConfig dbModelConfig = config.getDbModelConfig(eo.getModelClass());
+
+        Object result = dbModelConfig.delete(config.getDbConfig().getConnection(), (EoChild) eo);
+
         if (hasTargetPath()) {
-            List<String> result = FindStatement.of(eo)
-                    .readFirst(
-                            modelConfig.getDbConfig().getConnection(),
-                            eo.getConfigMaps());
             eo.set(result, getTargetPath());
         }
-
-        return DeleteStatement.of(eo)
-                .execute(modelConfig.getDbConfig().getConnection());
+        return "";
     }
 }

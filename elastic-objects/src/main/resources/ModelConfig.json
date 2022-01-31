@@ -254,64 +254,52 @@
     "moduleScope": "main",
     "fields": {
       "default": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "fieldName": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "final": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "generated": {
-        "final": true,
-        "property": false
+        "final": true
+      },
+      "idKey": {
+        "final": true
       },
       "javascriptType": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "jsonIgnore": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "notNull": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "max": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "min": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "override": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "property": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "staticName": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "super": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "transient": {
-        "final": true,
-        "property": false
+        "final": true
       },
       "unique": {
-        "final": true,
-        "property": false
+        "final": true
       }
     },
     "interfaces": "FieldPropertiesInterface",
@@ -347,7 +335,7 @@
   {
     "module": "elastic-objects",
     "moduleScope": "main",
-    "fields": "notNull, override, final, generated, super, javascriptType, transient, min, max, unique, fieldName, jsonIgnore, staticName, default, property",
+    "fields": "default, fieldName, final, generated, idKey, javascriptType, jsonIgnore, min, max, notNull, override, property, staticName, super, transient, unique",
     "expose": "NONE",
     "description": "Access methods for field properties map and get method definitions for final fields. ",
     "naturalId": "FieldPropertiesInterface",

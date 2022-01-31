@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
+import org.fluentcodes.projects.elasticobjects.models.Models;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +13,8 @@ import java.io.StringReader;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import static org.fluentcodes.projects.elasticobjects.PathElement.V_MODEL;
 
 /**
  * A JSONToEO  extracts characters and tokens from a JSON serialized String.
@@ -290,7 +293,6 @@ public class JSONToEO {
             } else if (startFlag) {
                 back();
                 final String key = this.nextKey();
-
                 if (this.nextClean() != ':') {
                     new EoException("Expected ':' in the map after the key '" + key + "' but see '" + c + "'': " + this.debug());
                 }
@@ -331,7 +333,7 @@ public class JSONToEO {
     public EOInterfaceScalar createChild(EO parentAdapter)  {
         EOInterfaceScalar eo = createChild(parentAdapter, null);
         if (isEof()) {
-            return parentAdapter;
+            return eo;
         }
         if (parseCalls && eo instanceof EoRoot) {
             return eo;
@@ -372,6 +374,11 @@ public class JSONToEO {
                     throw new EoException(this.getClass().getSimpleName() + " createChildForMap: Value with no name" + debug());
                 }
                 String value = this.nextString(c, rawFieldName);
+                if (rawFieldName.equals(V_MODEL)) {
+                    ((EoChild)eoParent).setModels(value);
+                    ((EoChild)eoParent).createChild(new PathElement(rawFieldName), value);
+                    return eoParent;
+                }
                 ((EoChild)eoParent).createChild(new PathElement(rawFieldName), value);
                 return eoParent;
 
@@ -382,7 +389,7 @@ public class JSONToEO {
                     return eoParent;
                 }
                 else {
-                    mapObject(eoParent); // start parsing
+                    eoParent = mapObject(eoParent); // start parsing
                     return eoParent;
                 }
             case '[':

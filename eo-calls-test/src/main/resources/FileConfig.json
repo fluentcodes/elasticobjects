@@ -1,0 +1,80 @@
+[
+  {
+    "module": "elastic-objects-test",
+    "moduleScope": "main",
+    "hostConfigKey": "localhost",
+    "filePath": "data",
+    "naturalId": "AnObject.csv",
+    "fileName": "AnObject.csv",
+    "description": "A sample character separated file with 3x3 entries and a header which could be mapped to AnObject.",
+    "expose": "WEB",
+    "cached": "false",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    },
+    "properties": {
+      "rowHead": 0,
+      "rowStart": 1,
+      "rowEnd": 4
+    }
+  },
+  {
+    "module": "elastic-objects-test",
+    "moduleScope": "main",
+    "hostConfigKey": "localhost",
+    "filePath": "data",
+    "naturalId": "AnObject.json",
+    "fileName": "AnObject.json",
+    "description": "Simple data for the AnObject.",
+    "expose": "WEB",
+    "cached": "false",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  },
+  {
+    "module": "elastic-objects-test",
+    "moduleScope": "main",
+    "hostConfigKey": "localhost",
+    "configModelKey": "DirectoryConfig",
+    "filePath": "data",
+    "naturalId": "testData",
+    "fileName": ".*",
+    "description": "The test data directory.",
+    "expose": "WEB",
+    "cached": "false",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  },
+  {
+    "module": "elastic-objects-test",
+    "moduleScope": "main",
+    "hostConfigKey": "localhost",
+    "filePath": "data",
+    "naturalId": "ListSimple.csv",
+    "fileName": "ListSimple.csv",
+    "description": "A sample csv file with 2*2 values and a head as a source.",
+    "expose": "NONE",
+    "cached": "false",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ],
+      "writeRoles": [
+        "admin"
+      ]
+    },
+    "properties": {
+      "rowHead": 0,
+      "rowStart": 1,
+      "rowEnd": 3
+    }
+  }
+  ]

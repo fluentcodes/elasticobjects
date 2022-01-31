@@ -139,6 +139,13 @@ public abstract class ModelConfig extends Config implements ModelInterface {
         return getProperties().hasDefaultImplementation();
     }
 
+    public String getIdKey() {
+        if (getProperties().hasIdKey()) {
+            return getProperties().getIdKey();
+        }
+        return "id";
+    }
+
     private final void setDefaultImplementationModel(Map<String, ModelConfig> modelConfigMap) {
         if (!hasDefaultImplementation()) {
             return;

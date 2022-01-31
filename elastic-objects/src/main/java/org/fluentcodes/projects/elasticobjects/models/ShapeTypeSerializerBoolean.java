@@ -61,4 +61,9 @@ public class ShapeTypeSerializerBoolean implements ShapeTypeSerializerInterface<
     public boolean isValid( final Object object, final FieldConfigProperties properties) {
         return true;
     }
+
+    @Override
+    public String getSqlType(Integer max) {
+        return "boolean";
+    }
 }

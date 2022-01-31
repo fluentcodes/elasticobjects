@@ -5,7 +5,7 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.fluentcodes.projects.elasticobjects.PathElement.SAME;
+import static org.fluentcodes.projects.elasticobjects.PathElement.V_SAME;
 
 /**
  * Path creates from a string a special of elements splitted by te delimiter
@@ -31,7 +31,7 @@ public class Path {
             return;
         }
         if (pathEntries.length == 1) {
-            if (pathEntries[0] == null || pathEntries[0].equals(SAME)) {
+            if (pathEntries[0] == null || pathEntries[0].equals(V_SAME)) {
                 this.entries = new PathElement[0];
                 this.absolute = false;
                 return;
@@ -53,7 +53,7 @@ public class Path {
                 .map(x -> x.replaceAll("\\s", ""))
                 .filter(x -> !x.equals("null"))
                 .filter(x -> !x.equals(""))
-                .filter(x -> !x.equals(SAME))
+                .filter(x -> !x.equals(V_SAME))
                 .map(PathElement::new)
                 .toArray(PathElement[]::new);
     }
@@ -169,7 +169,7 @@ public class Path {
 
     public String directory(boolean includeModels) {
         if (isEmpty()) {
-            return isAbsolute() ? DELIMITER : SAME;
+            return isAbsolute() ? DELIMITER : V_SAME;
         }
         StringBuilder result = isAbsolute() ? new StringBuilder(DELIMITER) : new StringBuilder();
         for (PathElement element : entries) {

@@ -3,7 +3,6 @@ package org.fluentcodes.projects.elasticobjects.paths;
 
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.Path;
-import org.fluentcodes.projects.elasticobjects.PathElement;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,14 +11,14 @@ import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL0;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL1;
 import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL2;
 import static org.fluentcodes.projects.elasticobjects.Path.DELIMITER;
-import static org.fluentcodes.projects.elasticobjects.PathElement.SAME;
+import static org.fluentcodes.projects.elasticobjects.PathElement.V_SAME;
 
 public class PathTest {
 
     @Test
     public void constructorStringEmpty() {
-        Assert.assertEquals(SAME, new Path(S_EMPTY).directory());
-        Assert.assertEquals(SAME, new Path(null).directory());
+        Assert.assertEquals(V_SAME, new Path(S_EMPTY).directory());
+        Assert.assertEquals(V_SAME, new Path(null).directory());
         Assert.assertEquals(DELIMITER, new Path("///").directory());
         Assert.assertEquals(DELIMITER, new Path("/././").directory());
         Assert.assertEquals(DELIMITER, new Path("/ /./\t/").directory());
@@ -27,7 +26,7 @@ public class PathTest {
 
     @Test
     public void withNull_directoryEqualsSame() {
-        Assert.assertEquals(SAME, new Path(null).directory());
+        Assert.assertEquals(V_SAME, new Path(null).directory());
     }
 
     @Test
@@ -42,7 +41,7 @@ public class PathTest {
 
     @Test
     public void withSameAtBeginning_removed() {
-        Path other = new Path(SAME, S_LEVEL0);
+        Path other = new Path(V_SAME, S_LEVEL0);
         Assertions.assertThat(other.directory())
                 .isEqualTo(String.join(DELIMITER, new String[]{S_LEVEL0}));
     }
@@ -96,7 +95,7 @@ public class PathTest {
 
     @Test
     public void given3EntriesAnd1Same_thenSizeIs2() {
-        Path path = new Path(S_LEVEL0, SAME, S_LEVEL2);
+        Path path = new Path(S_LEVEL0, V_SAME, S_LEVEL2);
         Assertions.assertThat(path.isAbsolute()).isFalse();
         Assertions.assertThat(path.size()).isEqualTo(2);
         Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + DELIMITER + S_LEVEL2);

@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 public class PathElement {
     public static final Pattern modelPattern = Pattern.compile("^\\(([^\\)]*)\\)(.*)");
     public static final String BACK = "..";
-    public static final String SAME = ".";
+    public static final String V_SAME = ".";
     public static final String MATCHER = "*";
     public static final String MATCHER_ALL = "+";
-    public static final String ROOT_MODEL = "_rootmodel";
+    public static final String V_MODEL = "_rootmodel";
     public static final String LOGS = "_logs";
     public static final String ERROR_LEVEL = "_errorLevel";
     public static final String SERIALIZATION_TYPE = "_serializationType";
@@ -29,7 +29,7 @@ public class PathElement {
     public static final String TEMPLATE = "_template";
     protected static final Map<String, String[]> keyClassMap = initKeyClassMap();
 
-    public static final PathElement OF_ROOT_MODEL = new PathElement(ROOT_MODEL);
+    public static final PathElement OF_ROOT_MODEL = new PathElement(V_MODEL);
     public static final PathElement OF_ERROR_LEVEL = new PathElement(ERROR_LEVEL);
     public static final PathElement OF_LOG_LEVEL = new PathElement(LOG_LEVEL);
     public static final PathElement OF_LOGS = new PathElement(LOGS, List.class);
@@ -44,7 +44,7 @@ public class PathElement {
     }
 
     public PathElement(final String compositionKey, Class<?>... modelClasses) {
-        if (PathElement.ROOT_MODEL.equals(compositionKey)) {
+        if (PathElement.V_MODEL.equals(compositionKey)) {
             this.key = compositionKey;
             this.modelsArray = keyClassMap.get(key);
             return;
@@ -84,7 +84,7 @@ public class PathElement {
         keyEnumMap.put(CALLS, new String[]{List.class.getSimpleName()});
         keyEnumMap.put(SERIALIZATION_TYPE, new String[]{JSONSerializationType.class.getSimpleName()});
         keyEnumMap.put(ERROR_LEVEL, new String[]{LogLevel.class.getSimpleName()});
-        keyEnumMap.put(ROOT_MODEL, new String[]{String.class.getSimpleName()});
+        keyEnumMap.put(V_MODEL, new String[]{String.class.getSimpleName()});
         return keyEnumMap;
     }
 
@@ -127,7 +127,7 @@ public class PathElement {
     }
 
     public boolean isSame() {
-        return SAME.equals(key);
+        return V_SAME.equals(key);
     }
 
     public boolean isFilter() {
@@ -158,7 +158,7 @@ public class PathElement {
     }
 
     public boolean isRootModel() {
-        return ROOT_MODEL.equals(getKey());
+        return V_MODEL.equals(getKey());
     }
 
     @Override

@@ -40,4 +40,8 @@ public class ShapeTypeSerializerBytes implements ShapeTypeSerializerInterface<by
         return true;
     }
 
+    @Override
+    public String getSqlType(Integer max) {
+        return "binary";
+    }
 }

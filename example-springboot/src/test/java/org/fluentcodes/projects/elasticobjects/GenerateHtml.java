@@ -2,7 +2,7 @@ package org.fluentcodes.projects.elasticobjects;
 
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateResourceStoreCall;
 import org.fluentcodes.projects.elasticobjects.calls.xlsx.XlsxReadCall;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Test;
 
 public class GenerateHtml {

@@ -443,5 +443,6 @@
     "dbAnnotated": false,
     "final": false
   },
+  "(ShapeTypes)shapeType": "BEAN",
   "superKey": "ConfigBean"
 }

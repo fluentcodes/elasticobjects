@@ -18,5 +18,6 @@
   "packagePath": "org.fluentcodes.projects.elasticobjects.domain.test",
   "(ModelBeanProperties)properties": {
     "create": true
-  }
+  },
+  "(ShapeTypes)shapeType": "OBJECT"
 }

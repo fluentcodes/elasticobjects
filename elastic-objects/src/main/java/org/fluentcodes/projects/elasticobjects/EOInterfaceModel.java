@@ -24,6 +24,10 @@ public interface EOInterfaceModel {
         return getModel().hasField(fieldName) && getModel().getField(fieldName).isTransient();
     }
 
+    default boolean isJsonIgnore(final String fieldName) {
+        return getModel().hasField(fieldName) && getModel().getField(fieldName).getProperties().isJsonIgnore();
+    }
+
     default boolean isContainer() {
         return !isScalar();
     }

@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProviderDev.CONFIG_MAPS_DEV;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev.CONFIG_MAPS_DEV;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

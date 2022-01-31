@@ -1,11 +1,11 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Test;
 
 import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.*;
-import static org.fluentcodes.projects.elasticobjects.testitemprovider.ObjectProvider.CONFIG_MAPS;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.CONFIG_MAPS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -19,7 +19,7 @@ public class FieldBeanPropertiesTest {
     public void findModelConfig() {
         ModelConfig config = ObjectProvider.findModel(FieldBeanProperties.class);
         assertTrue(config.getProperties().getCreate());
-        assertEquals(15, config.getFields().size());
+        assertEquals(16, config.getFields().size());
     }
 
     @Test

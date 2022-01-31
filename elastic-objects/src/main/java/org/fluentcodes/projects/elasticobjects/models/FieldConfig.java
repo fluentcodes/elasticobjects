@@ -90,6 +90,17 @@ public abstract class FieldConfig extends Config implements FieldInterface {
         return this.fieldKey;
     }
 
+    public String getSqlType() {
+        return getShapeTypeSerializer().getSqlType(getProperties().getMax());
+    }
+
+    public String getFieldName() {
+        if (getProperties().hasFieldName()) {
+            return getProperties().getFieldName();
+        }
+        return fieldKey;
+    }
+
     @Override
     public String getModelKeys() {
         return this.modelKeys;
@@ -103,7 +114,7 @@ public abstract class FieldConfig extends Config implements FieldInterface {
     }
 
     public Class<?> getModelClass() {
-        return models.getModelClass();
+        return getModels().getModelClass();
     }
 
     public String getModel() {

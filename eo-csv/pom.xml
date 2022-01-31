@@ -6,7 +6,7 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>eo-csv</artifactId>
     <packaging>jar</packaging>
-    <version>0.9.5</version>
+    <version>0.9.6-SNAPSHOT</version>
     <name>EO CSV Calls</name>
     <description>CSV calls for Elastic Objects</description>
 
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>eo-calls</artifactId>
-            <version>0.9.5</version>
+            <version>0.9.6-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>net.sf.opencsv</groupId>

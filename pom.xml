@@ -6,7 +6,7 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>eo-root</artifactId>
     <packaging>pom</packaging>
-    <version>0.9.5</version>
+    <version>0.9.6-SNAPSHOT</version>
     <name>EO - Elastic Objects Root</name>
 
     <modules>

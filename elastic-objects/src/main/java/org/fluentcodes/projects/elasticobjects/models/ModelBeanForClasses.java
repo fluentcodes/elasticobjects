@@ -1,7 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -11,7 +9,7 @@ public class ModelBeanForClasses extends ModelBean {
     private Class superClass;
     private List<Type> interfaces;
 
-    protected ModelBeanForClasses(final Class modelClass, final Map<String, ModelBean> modelMap) {
+    protected ModelBeanForClasses(final Class modelClass, final List<ModelBean> modelList) {
         super();
         setNaturalId(modelClass.getSimpleName());
         setModelKey(modelClass.getSimpleName());
@@ -34,8 +32,8 @@ public class ModelBeanForClasses extends ModelBean {
         setCreate(true);
         final Field[] fields = modelClass.getDeclaredFields();
         for (Field field : fields) {
-            FieldBean fieldBean = new FieldBeanForClasses(field, this, modelMap);
-            getFieldBeans().put(fieldBean.getFieldKey(), fieldBean);
+            FieldBean fieldBean = new FieldBeanForClasses(field, this, modelList);
+            getFields().put(fieldBean.getFieldKey(), fieldBean);
         }
     }
 

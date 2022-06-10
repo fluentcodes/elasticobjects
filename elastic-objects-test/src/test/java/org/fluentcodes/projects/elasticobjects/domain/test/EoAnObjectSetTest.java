@@ -1,13 +1,13 @@
 package org.fluentcodes.projects.elasticobjects.domain.test;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EoRoot;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.models.FieldConfig;
 import org.fluentcodes.projects.elasticobjects.models.FieldInterface;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
-import org.fluentcodes.projects.elasticobjects.models.ModelConfigMethods;
 import org.fluentcodes.projects.elasticobjects.models.ShapeTypes;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +16,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.fluentcodes.projects.elasticobjects.TEO_STATIC.*;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_DATE;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_DOUBLE;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_FLOAT;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_LONG;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_BOOLEAN;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_INTEGER;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING_OTHER;
 import static org.fluentcodes.projects.elasticobjects.domain.test.AnObject.MY_OBJECT;
 
 /**
@@ -26,40 +33,38 @@ public class EoAnObjectSetTest {
 
     @Test
     public void fromEoConfigsCache()  {
-        ModelConfigMethods cache = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class);
-        Assert.assertNotNull(cache.getField(AnObject.MY_STRING));
-        Assert.assertEquals(AnObject.MY_STRING, cache.getField(AnObject.MY_STRING).getFieldKey());
-        ModelConfig aSubObject = cache.getFieldModel(AnObject.MY_ASUB_OBJECT);
+        ModelConfig config = ObjectProvider.CONFIG_MAPS.findModel(AnObject.class);
+        Assert.assertNotNull(config.getField(AnObject.F_MY_STRING));
+        Assert.assertEquals(AnObject.F_MY_STRING, config.getField(AnObject.F_MY_STRING).getFieldKey());
+        ModelConfig aSubObject = config.getFieldModelConfig(AnObject.MY_ASUB_OBJECT);
         Assert.assertEquals(ASubObject.class.getSimpleName(), aSubObject.getModelKey());
-        Assert.assertEquals(AnObject.MY_STRING, aSubObject.getField(AnObject.MY_STRING).getFieldKey());
+        Assert.assertEquals(AnObject.F_MY_STRING, aSubObject.getField(AnObject.F_MY_STRING).getFieldKey());
     }
 
     @Test
     public void TEST__find_AnObject_get_myString__$()  {
-        FieldInterface fieldConfig = ProviderConfigMaps.CONFIG_MAPS
+        FieldConfig fieldConfig = ObjectProvider.CONFIG_MAPS
                 .findModel(AnObject.class)
-                .getField(AnObject.MY_STRING);
+                .getField(AnObject.F_MY_STRING);
         Assert.assertNotNull(fieldConfig);
-        Assertions.assertThat(fieldConfig.hasUnique()).isFalse();
-        Assertions.assertThat(fieldConfig.hasNotNull()).isFalse();
-        //Assert.assertTrue(fieldDefinitions.isElementary());
-        //Assert.assertTrue(fieldDefinitions.isScalar());
-        Assert.assertEquals(new Integer(20), fieldConfig.getLength());
+        Assertions.assertThat(fieldConfig.getProperties().isUnique()).isFalse();
+        Assertions.assertThat(fieldConfig.getProperties().isNotNull()).isFalse();
+        Assert.assertEquals(new Integer(20), fieldConfig.getProperties().getMax());
     }
 
     @Test
     public void testMap_forWiki()  {
-        final EO eo = ProviderConfigMaps.createEo();
+        final EoRoot eo = ObjectProvider.createEo();
 
         final Map map = new HashMap();
-        map.put(AnObject.MY_STRING, "value");
+        map.put(AnObject.F_MY_STRING, "value");
         map.put(AnObject.MY_FLOAT, 1.1D);
 
-        final EO child = eo.set( map, "(" + AnObject.class.getSimpleName() + ")level0");
+        final EOInterfaceScalar child = eo.set( map, "(" + AnObject.class.getSimpleName() + ")level0");
         Assert.assertEquals(AnObject.class, child.getModelClass());
-        assertEquals("value", child.get(AnObject.MY_STRING));
+        assertEquals("value", child.get(AnObject.F_MY_STRING));
         assertEquals(1.1F, child.get(AnObject.MY_FLOAT));
-        assertEquals("value", eo.get("level0", AnObject.MY_STRING));
+        assertEquals("value", eo.get("level0", AnObject.F_MY_STRING));
 
         assertEquals(Map.class, eo.getModelClass());
         assertEquals(LinkedHashMap.class, eo.get().getClass());
@@ -79,25 +84,23 @@ public class EoAnObjectSetTest {
 
     @Test
     public void givenModelFromString_notNull()  {
-        ModelConfigMethods model = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class.getSimpleName());
+        ModelConfig model = ObjectProvider.findModel(AnObject.class);
         Assertions.assertThat(model).isNotNull();
     }
 
     @Test
     public void givenModelFromClass_createAndSetModelFieldsWith_noError()  {
-        ModelConfig model = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class);
+        ModelConfig model = ObjectProvider.findModel(AnObject.class);
         Assert.assertEquals(ShapeTypes.BEAN, model.getShapeType());
-        Assert.assertTrue(model.hasModel());
         Assert.assertFalse(model.isMap());
-        Assert.assertFalse(model.isSet());
         Assert.assertFalse(model.isList());
         Assert.assertFalse(model.isScalar());
         Assert.assertTrue(model.isObject());
 
         AnObject object = (AnObject) model.create();
         Assertions.assertThat(model).isNotNull();
-        model.set(AnObject.MY_STRING, object, S_STRING);
-        Assert.assertEquals(S_STRING, model.get(AnObject.MY_STRING, object));
+        model.set(AnObject.F_MY_STRING, object, S_STRING);
+        Assert.assertEquals(S_STRING, model.get(AnObject.F_MY_STRING, object));
         Assert.assertEquals(S_STRING, object.getMyString());
 
         model.set(AnObject.MY_DATE, object, SAMPLE_DATE);
@@ -112,16 +115,10 @@ public class EoAnObjectSetTest {
     }
 
     @Test
-    public void testAnObjectSmall()  {
-        AnObject bt = TestProviderAnObjectJson.SMALL.createBt();
-        Assertions.assertThat(bt.getMyString()).isEqualTo(S_STRING);
-    }
-
-    @Test
     public void assertAnObjectFieldTest()  {
-        ModelConfigMethods model = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class);
+        ModelConfig model = ObjectProvider.findModel(AnObject.class);
 
-        FieldInterface field = model.getField(AnObject.MY_STRING);
+        FieldInterface field = model.getField(AnObject.F_MY_STRING);
         Assert.assertEquals(String.class, ((FieldConfig)field).getModelClass());
 
         field = model.getField(MY_OBJECT);
@@ -131,13 +128,13 @@ public class EoAnObjectSetTest {
 
     @Test
     public void getFields()  {
-        ModelConfig cache = ProviderConfigMaps.findModel(AnObject.class);
+        ModelConfig cache = ObjectProvider.findModel(AnObject.class);
         Assert.assertEquals(AnObject.class.getSimpleName(), cache.getModelKey());
         AnObject anObject = (AnObject) cache.create();
-        cache.set(AnObject.MY_STRING, anObject, S_STRING);
-        Assert.assertEquals(S_STRING, cache.get(AnObject.MY_STRING, anObject));
-        cache.set(AnObject.MY_INT, anObject, S_INTEGER);
-        Assert.assertEquals(S_INTEGER, cache.get(AnObject.MY_INT, anObject));
+        cache.set(AnObject.F_MY_STRING, anObject, S_STRING);
+        Assert.assertEquals(S_STRING, cache.get(AnObject.F_MY_STRING, anObject));
+        cache.set(AnObject.F_MY_INT, anObject, S_INTEGER);
+        Assert.assertEquals(S_INTEGER, cache.get(AnObject.F_MY_INT, anObject));
         cache.set(AnObject.MY_LONG, anObject, SAMPLE_LONG);
         Assert.assertEquals(SAMPLE_LONG, cache.get(AnObject.MY_LONG, anObject));
         cache.set(AnObject.MY_FLOAT, anObject, SAMPLE_FLOAT);
@@ -152,36 +149,36 @@ public class EoAnObjectSetTest {
 
     @Test
     public void testAnObject_ok()  {
-        final EO root = ProviderConfigMaps.createEo();
+        final EoRoot root = ObjectProvider.createEo();
         AnObject anObject = new AnObject();
         anObject.setMyString("testObject");
         root.set( anObject, "test","test2");
-        Assert.assertEquals("testObject", root.get("test","test2", AnObject.MY_STRING));
+        Assert.assertEquals("testObject", root.get("test","test2", AnObject.F_MY_STRING));
         Assert.assertEquals(AnObject.class, root.getEo("test","test2").getModelClass());
     }
 
     @Test
     public void givenEo_setAnObjectPathTestAndTestString_thenValueAndModelIsSet()  {
-        final EO root = ProviderConfigMaps.createEo();
-        root.set("testObject", "(" + AnObject.class.getSimpleName() + ")test", AnObject.MY_STRING);
-        Assert.assertEquals("testObject", root.get("test", AnObject.MY_STRING));
+        final EoRoot root = ObjectProvider.createEo();
+        root.set("testObject", "(" + AnObject.class.getSimpleName() + ")test", AnObject.F_MY_STRING);
+        Assert.assertEquals("testObject", root.get("test", AnObject.F_MY_STRING));
         Assert.assertEquals(AnObject.class, root.getEo("test").getModelClass());
     }
 
     @Test
     public void TEST_path_model_AnObject__set_myInt__class_is_AnObject()  {
-        final EO root = ProviderConfigMaps.createEo();
-        root.set("testObject", "(" + AnObject.class.getSimpleName() + ")test", AnObject.MY_STRING);
-        root.set(1, "test", AnObject.MY_INT);
-        Assert.assertEquals(1, root.get("test", AnObject.MY_INT));
+        final EoRoot root = ObjectProvider.createEo();
+        root.set("testObject", "(" + AnObject.class.getSimpleName() + ")test", AnObject.F_MY_STRING);
+        root.set(1, "test", AnObject.F_MY_INT);
+        Assert.assertEquals(1, root.get("test", AnObject.F_MY_INT));
         Assertions.assertThat(root.getLog()).isEmpty();
         Assert.assertEquals(AnObject.class, root.getEo("test").getModelClass());
     }
     
     @Test
     public void givenBt_whenSetStringField_ok()  {
-        final EO eo = ProviderConfigMaps.createEo(new AnObject());
-        eo.set(S_STRING_OTHER, AnObject.MY_STRING);
+        final EoRoot eo = ObjectProvider.createEo(new AnObject());
+        eo.set(S_STRING_OTHER, AnObject.F_MY_STRING);
         Assertions.assertThat(eo.getModelClass()).isEqualTo(AnObject.class);
         Assertions.assertThat(eo.getLog()).isEmpty();
     }
@@ -190,8 +187,8 @@ public class EoAnObjectSetTest {
 
     @Test
     public void TEST__setEmpty_key0_key1_key2_AnObject_key__getModelClass_key0_key1_key2_key3_AnObject()  {
-        final EO eo = ProviderConfigMaps.createEo();
-        eo.setEmpty("key0", "key1", "key2", "(" + AnObject.class.getSimpleName() + ")" + "key3");
+        final EoRoot eo = ObjectProvider.createEo();
+        eo.createChild("key0", "key1", "key2", "(" + AnObject.class.getSimpleName() + ")" + "key3");
         Assertions.assertThat(eo.getLog()).isEmpty();
         Assertions.assertThat(eo.getEo("key0", "key1", "key2", "key3").getModelClass()).isEqualTo(AnObject.class);
     }

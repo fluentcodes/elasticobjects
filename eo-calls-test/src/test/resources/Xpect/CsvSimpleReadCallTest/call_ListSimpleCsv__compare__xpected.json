@@ -1,0 +1,29 @@
+{
+  "0": {
+    "key1": "value11",
+    "key2": "value12"
+  },
+  "1": {
+    "key1": "value21",
+    "key2": "value22"
+  },
+  "(List)_calls": {
+    "(CsvSimpleReadCall)0": {
+      "fileConfigKey": "ListSimple.csv",
+      "hostConfigKey": "localhost",
+      "(ListParamsBean)listParams": {
+        "(List,String)colKeys": {
+          "0": "key1",
+          "1": "key2"
+        },
+        "length": -1,
+        "rowEnd": 3,
+        "rowHead": 0,
+        "rowStart": 1
+      },
+      "(LogLevel)logLevel": "WARN",
+      "postpend": "",
+      "prepend": ""
+    }
+  }
+}

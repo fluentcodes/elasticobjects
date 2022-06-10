@@ -5,8 +5,8 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>elastic-objects</artifactId>
     <packaging>jar</packaging>
-    <version>0.8.1</version>
-    <name>EO - Elastic Objects Core</name>
+    <version>0.9.5</version>
+    <name>EO - Elastic Objects</name>
     <description>An object wrapper for access, navigate, modify, serialize and deserialize complex java object via path in a typesafe and ordered way with JSON.</description>
 
     <properties>
@@ -20,7 +20,17 @@
         <dependency>
             <groupId>org.fluentcodes.tools</groupId>
             <artifactId>io</artifactId>
-            <version>0.7.2</version>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.17.1</version>
         </dependency>
     </dependencies>
 

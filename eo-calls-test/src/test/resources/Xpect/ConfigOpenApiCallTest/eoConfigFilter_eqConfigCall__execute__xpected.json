@@ -1,0 +1,107 @@
+{
+  "components": {
+    "schemas": {
+      "ConfigCall": {
+        "type": "object",
+        "description": "For getting a map of configurations for a specific configuration type.",
+        "properties": {
+          "condition": {
+            "description": "A condition for calls. ",
+            "type": "string"
+          },
+          "configFilter": {
+            "description": "Key for filter configuration",
+            "type": "string"
+          },
+          "configType": {
+            "description": "Key for configuration type like ModelConfig, FileConfig, FieldConfig, HostConfig, DbSqlConfig.",
+            "type": "string"
+          },
+          "duration": {
+            "description": "The duration of a call.",
+            "type": "integer",
+            "format": "int62"
+          },
+          "expose": {
+            "description": "expose",
+            "type": "string",
+            "enum": [
+              "WEB",
+              "INFO",
+              "CREATE",
+              "NONE"
+            ]
+          },
+          "keepCall": {
+            "description": "Will use an existing  result file beforehand as template. ",
+            "type": "string",
+            "enum": [
+              "HTML",
+              "JAVA",
+              "NONE"
+            ]
+          },
+          "logLevel": {
+            "description": "logLevel",
+            "type": "string",
+            "enum": [
+              "NONE",
+              "DEBUG",
+              "INFO_TEST",
+              "INFO_QSU",
+              "INFO_PROD",
+              "INFO",
+              "WARN",
+              "ERROR"
+            ]
+          },
+          "models": {
+            "description": "A string representation for a list of model keys.",
+            "type": "string"
+          },
+          "module": {
+            "description": "Defines a target module where generating occurs. ",
+            "type": "string"
+          },
+          "moduleScope": {
+            "description": "Defines scope of the configuration within module, eg 'test' or 'main' .",
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "A overwrite field flag for @Call.",
+            "type": "boolean"
+          },
+          "postpend": {
+            "description": "postpend String when executed by ExecutorCallImpl",
+            "type": "string"
+          },
+          "prepend": {
+            "description": "prepend String when executed by ExecutorCallImpl",
+            "type": "string"
+          },
+          "sortOrder": {
+            "description": "A field with a SortOrder enum",
+            "type": "string",
+            "enum": [
+              "NONE",
+              "ASC",
+              "DESC"
+            ]
+          },
+          "sourcePath": {
+            "description": "A sourcePath where EO offers it's input value when the execution starts.",
+            "type": "string"
+          },
+          "startCondition": {
+            "description": "A condition for calls. ",
+            "type": "string"
+          },
+          "targetPath": {
+            "description": "A targetPath where the result of the execution will be mapped. If value is \"_asString\" no mapping occured but a seralized version is returned as value to embed it in the resulting file. Path parameters could be set dynamically with =&gt;[path]. in any combination.",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

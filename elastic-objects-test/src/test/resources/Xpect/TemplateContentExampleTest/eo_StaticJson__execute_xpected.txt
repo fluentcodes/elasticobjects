@@ -1,7 +1,0 @@
-Start of content with a fileConfigKey: 
-<h1>header1</h1>
-<b>summary1</b>
-<p>content1</p>
-<h1>header2</h1>
-<b>summary2</b>
-<p>content2</p>

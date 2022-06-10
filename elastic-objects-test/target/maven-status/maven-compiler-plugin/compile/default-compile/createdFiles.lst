@@ -1,0 +1,13 @@
+org/fluentcodes/projects/elasticobjects/health/HealthCheck.class
+org/fluentcodes/projects/elasticobjects/testitems/IModelConfigNoCreateTests.class
+org/fluentcodes/projects/elasticobjects/testitems/IModelConfigTests.class
+org/fluentcodes/projects/elasticobjects/testitems/ObjectProvider.class
+org/fluentcodes/projects/elasticobjects/EoTestStatic.class
+org/fluentcodes/projects/elasticobjects/domain/test/AnObject.class
+org/fluentcodes/projects/elasticobjects/testitems/IModelConfigCreateTests.class
+org/fluentcodes/projects/elasticobjects/xpect/XpectEo.class
+org/fluentcodes/projects/elasticobjects/domain/test/ASubObject.class
+org/fluentcodes/projects/elasticobjects/testitems/ObjectProviderDev.class
+org/fluentcodes/projects/elasticobjects/xpect/XpectStringJunit4.class
+org/fluentcodes/projects/elasticobjects/testitems/IConfigurationTests.class
+org/fluentcodes/projects/elasticobjects/xpect/XpectEoJunit4.class

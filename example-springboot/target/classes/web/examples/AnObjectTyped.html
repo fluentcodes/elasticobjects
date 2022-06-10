@@ -1,0 +1,25 @@
+<h5><a href="/config/ModelConfig/AnObject">AnObject</a> - type safe deseralizing/serializing</h5>
+<p>
+With _rootModel we assign the configuration of the class
+#{GithubLinkCall->ModelConfig, AnObject}. to the object.
+</p>
+<p>
+    When sending to the eo-form endpoint, the json will be deserialized, executed and
+    sent back serialized to the requesting system.
+</p>
+<p>
+    Here we have no calls embedded, so we just get back the typed json of the this deserialized object.
+</p>
+<form action="/eo-form" method="post" target="example">
+    <textarea name="eo" style="height:70px">{
+  "_rootmodel": "AnObject",
+  "(AnObject)myAnObject": {
+     "myString": "test"
+  }
+}</textarea>
+    <input type="submit" value="post"/>
+</form>
+
+<p>
+
+</p>

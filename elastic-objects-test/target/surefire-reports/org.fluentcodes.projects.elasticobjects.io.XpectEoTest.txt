@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.fluentcodes.projects.elasticobjects.io.XpectEoTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.002 sec

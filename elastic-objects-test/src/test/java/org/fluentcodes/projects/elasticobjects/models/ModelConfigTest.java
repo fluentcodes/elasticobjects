@@ -2,20 +2,23 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.assertj.core.api.Assertions;
+import org.fluentcodes.projects.elasticobjects.EoRoot;
+import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.domain.test.ASubObject;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.IConfigurationTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitems.IConfigurationTests;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.fluentcodes.projects.elasticobjects.TEO_STATIC.SAMPLE_KEY_UNKNOW;
+import java.util.Map;
 
-/**
- * Created by Werner on 04.11.2016.
- */
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.SAMPLE_KEY_UNKNOW;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_NATURAL_ID;
+import static org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider.CONFIG_MAPS;
+import static org.junit.Assert.assertNotNull;
+
 public class ModelConfigTest implements IConfigurationTests {
     private static final Logger LOG = LogManager.getLogger(ModelConfigTest.class);
 
@@ -26,7 +29,7 @@ public class ModelConfigTest implements IConfigurationTests {
 
     @Override
     @Test
-    public void create_throwsEoException() {
+    public void createThrowsEoException() {
         assertCreateThrowingException();
     }
 
@@ -42,27 +45,27 @@ public class ModelConfigTest implements IConfigurationTests {
         assertBeanFromModelConfigEqualsPersisted();
     }
 
-    @Override
-    @Test
-    public void compareConfigurations() {
-        assertLoadedConfigurationsEqualsPersisted();
-    }
-
-
-    @Test
-    public void scopeTest__findModel_Unknown__exception() {
-        Assertions.assertThatThrownBy(() -> {
-            ProviderConfigMaps.CONFIG_MAPS.findModel(SAMPLE_KEY_UNKNOW);
-        })
-                .isInstanceOf(EoException.class);
+    @Test(expected = EoException.class)
+    public void findModel_Unknown__exception() {
+        CONFIG_MAPS.findModel(SAMPLE_KEY_UNKNOW);
     }
 
     @Test
     public void checkDependentModels() {
         // Check if basic Models are available
-        ModelConfig model = ProviderConfigMaps.CONFIG_MAPS.findModel(AnObject.class.getSimpleName());
+        ModelConfig model = CONFIG_MAPS.findModel(AnObject.class.getSimpleName());
         Assert.assertEquals(AnObject.class.getSimpleName(), model.getModelKey());
-        model = ProviderConfigMaps.CONFIG_MAPS.findModel(ASubObject.class);
+        model = CONFIG_MAPS.findModel(ASubObject.class);
         Assert.assertEquals(ASubObject.class.getSimpleName(), model.getModelKey());
+    }
+
+    @Test
+    public void createConfigBean_naturalId() {
+        ModelBean bean = ObjectProvider.createModelBean(F_NATURAL_ID, "test");
+        assertNotNull(bean.getNaturalId());
+        ModelConfig config = new ModelConfigObject(bean, ObjectProvider.CONFIG_MAPS);
+        EoRoot cloneMap = EoRoot.ofClass(CONFIG_MAPS, Map.class);
+        cloneMap.setSerializationType(JSONSerializationType.STANDARD);
+        cloneMap.map(config);
     }
 }

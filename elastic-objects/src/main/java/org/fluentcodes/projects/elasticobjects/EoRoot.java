@@ -1,35 +1,40 @@
 package org.fluentcodes.projects.elasticobjects;
 
+import org.fluentcodes.projects.elasticobjects.calls.Call;
 import org.fluentcodes.projects.elasticobjects.calls.ExecutorCall;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 import org.fluentcodes.projects.elasticobjects.models.Models;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import static org.fluentcodes.projects.elasticobjects.PathElement.CALLS;
+import static org.fluentcodes.projects.elasticobjects.PathElement.ERROR_LEVEL;
+import static org.fluentcodes.projects.elasticobjects.PathElement.LOGS;
+import static org.fluentcodes.projects.elasticobjects.PathElement.LOG_LEVEL;
+import static org.fluentcodes.projects.elasticobjects.PathElement.SERIALIZATION_TYPE;
 
 /**
  * Offers serialized setter and getter for java models
  */
 
 public class EoRoot extends EoChild {
-    private final ConfigMaps eoConfigCache;
     private List<String> roles;
-
     private boolean checkObjectReplication = false;
 
-    protected EoRoot(ConfigMaps cache, Object rootValue, Models rootModels) {
-        super(null, null, rootValue, rootModels);
+    protected EoRoot(Object rootValue, Models rootModels) {
+        super(rootValue, rootModels);
         if (rootModels.isScalar()) {
             throw new EoException("Root could not be a scalar type but starting value is '" + rootModels.toString() + "'!");
         }
-        this.eoConfigCache = cache;
         if (rootModels.getModelClass() != Map.class) {
-            new EoChild(this, PathElement.ROOT_MODEL, rootModels.toString(), new Models(cache, String.class));
+            createChild(PathElement.OF_ROOT_MODEL, rootModels.toString());
         }
-        if (rootValue != null) {
-            mapObject(rootValue);
-        }
+        set(rootValue);
     }
 
     public static EoRoot of(final ConfigMaps cache)  {
@@ -39,19 +44,25 @@ public class EoRoot extends EoChild {
     public static EoRoot ofValue(final ConfigMaps cache, Object rootValue)  {
         if (rootValue == null) return ofClass(cache, Map.class);
         if (rootValue instanceof Class)  return ofClass(cache, (Class) rootValue);
-        if (rootValue instanceof String) {
-            if (JSONToEO.jsonMapPattern.matcher((String)rootValue).find()) {
-                return new EoRoot(cache, rootValue, Models.ofValue(cache, Map.class));
-            }
-            if (JSONToEO.jsonListPattern.matcher((String)rootValue).find()) {
-                return new EoRoot(cache, rootValue, Models.ofValue(cache, List.class));
-            }
-        }
-        return new EoRoot(cache, rootValue, Models.ofValue(cache, rootValue));
+        return new EoRoot(rootValue, Models.ofValue(cache, rootValue));
     }
 
     public static EoRoot ofClass(final ConfigMaps cache, Class... rootClasses)  {
-        return new EoRoot(cache, null, new Models(cache, rootClasses));
+        Models models = new Models(cache, rootClasses);
+        if (!models.isCreate()) {
+            throw new EoException("Model " + models.toString() + " is not configured to create empty object!");
+        }
+        Object value = models.create();
+        return new EoRoot(value, new Models(cache, rootClasses));
+    }
+
+    public static EoRoot ofClassName(final ConfigMaps cache, String... rootClasses)  {
+        Models models = new Models(cache, rootClasses);
+        if (!models.isCreate()) {
+            throw new EoException("Could not create value from " + models.toString());
+        }
+        Object value = models.create();
+        return new EoRoot(value, new Models(cache, rootClasses));
     }
 
     public static EoRoot ofClass(final ConfigMaps cache, final Object rootValue, Class... rootClasses)  {
@@ -59,29 +70,22 @@ public class EoRoot extends EoChild {
         if (rootModels.isScalar()) {
             throw new EoException("Could not create root with an scalar entry: '" + rootClasses[0].getSimpleName() + "'");
         }
-        return new EoRoot(cache, rootValue, rootModels);
-    }
-
-    public static Class getClass(Object value) {
-        if (value == null) {
-            return Map.class;
-        }
-        return value.getClass();
+        return new EoRoot(rootValue, rootModels);
     }
 
     @Override
-    public ConfigMaps getConfigsCache() {
-        return eoConfigCache;
+    public String getPathAsString() {
+        return Path.DELIMITER;
     }
 
     @Override
-    public boolean isCheckObjectReplication() {
-        return this.checkObjectReplication;
+    void getPathAsString(final StringBuilder builder) {
+        builder.append("");
     }
 
     @Override
-    public void setCheckObjectReplication(boolean checkObjectReplication) {
-        this.checkObjectReplication = checkObjectReplication;
+    public EoRoot getRoot() {
+        return this;
     }
 
     @Override
@@ -95,13 +99,113 @@ public class EoRoot extends EoChild {
     }
 
     @Override
-    public EoRoot getRoot() {
-        return this;
+    public boolean execute() {
+        ExecutorCall.executeEo(this) ;
+        return true;
     }
 
     @Override
-    public boolean execute() {
-        String result = ExecutorCall.executeEo(this) ;
-        return true;
+    public Set<String> getCallKeys() {
+        return getCallsEo().keys();
     }
+
+    @Override
+    public EO addCall(Call call) {
+        if (call == null) {
+            throw new EoException("Null call?!");
+        }
+        if (!call.hasTargetPath() && !isRoot()) {
+            call.setTargetPath(this.getPathAsString());
+        }
+        EoChild callsEo = getCallsEo();
+        return (EO) callsEo.createChild(new PathElement(""), call);
+    }
+
+    @Override
+    public EoChild getCallsEo() {
+        if (!hasEo(CALLS)) {
+            return (EoChild)createChild(new PathElement(CALLS), new ArrayList<>());
+        }
+        return (EoChild) getEo(CALLS);
+    }
+
+    @Override
+    public EoChild getCallEo(final String key) {
+        return (EoChild) getCallsEo().getEo(key);
+    }
+
+    @Override
+    public boolean hasCalls() {
+        return getCallsEo().size()>0;
+    }
+
+    @Override
+    public LogLevel getLogLevel() {
+        if (hasLogLevel()) {
+            return (LogLevel) get(LOG_LEVEL);
+        }
+        return LogLevel.WARN;
+    }
+
+    private EoChild getLogEo() {
+        if (!hasEo(LOGS)) {
+            return (EoChild)createChild(PathElement.OF_LOGS);
+        }
+        return (EoChild)getEo(LOGS);
+    }
+
+    @Override
+    public void log(String message, LogLevel logLevel) {
+        if (message == null) {
+            return;
+        }
+        setErrorLevel(logLevel);
+        EoChild logEo = getLogEo();
+        PathElement logElement = new PathElement(Integer.toString(logEo.size()));
+        logEo.createChild(logElement, logLevel.name() + " - " + LocalDateTime.now().toString() + " - " + message);
+    }
+
+    @Override
+    public List<String> getLogList() {
+        return (List<String>) getLogEo().get();
+    }
+
+    private void setErrorLevel(LogLevel messageLogLevel) {
+        if (getErrorLevel().ordinal() <= messageLogLevel.ordinal()) {
+            set(messageLogLevel, ERROR_LEVEL);
+        }
+    }
+
+    @Override
+    public LogLevel getErrorLevel() {
+        if (!hasEo(ERROR_LEVEL)) {
+            return LogLevel.DEBUG;
+        }
+        return (LogLevel) get(ERROR_LEVEL);
+    }
+
+    @Override
+    public JSONSerializationType getSerializationType() {
+        if (!hasEo(SERIALIZATION_TYPE)) {
+            return JSONSerializationType.EO;
+        }
+        return (JSONSerializationType) get(SERIALIZATION_TYPE);
+    }
+
+    @Override
+    public void setSerializationType(JSONSerializationType serializationType) {
+        createChild(PathElement.OF_SERIALIZATION_TYPE, serializationType);
+    }
+
+    @Override
+    public void setCheckObjectReplication(boolean checkObjectReplication) {
+        this.checkObjectReplication = checkObjectReplication;
+    }
+
+    @Override
+    public boolean isCheckObjectReplication() {
+        return this.checkObjectReplication;
+    }
+
+
 }

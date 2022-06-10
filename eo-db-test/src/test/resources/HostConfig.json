@@ -1,0 +1,91 @@
+[
+  {
+    "configModelKey": "DbConfig",
+    "naturalId": "localMySql:core",
+    "properties": {
+      "dialect": "org.hibernate.dialect.MySQLInnoDBDialect",
+      "driver": "com.mysql.jdbc.Driver",
+      "schema": "core"
+    },
+    "module": "eo-db",
+    "moduleScope": "main",
+    "description": "Core Schema"
+  },
+  {
+    "configModelKey": "DbConfig",
+    "naturalId": "localMySql:test",
+    "properties": {
+      "dialect": "org.hibernate.dialect.MySQLInnoDBDialect",
+      "driver": "com.mysql.jdbc.Driver",
+      "schema": "test"
+    },
+    "module": "eo-db",
+    "moduleScope": "main",
+    "description": "Test Schema"
+  },
+  {
+    "configModelKey": "DbConfig",
+    "naturalId": "localOracle:XE",
+    "properties": {
+      "schema": "XE",
+      "dialect": "com.mysema.query.jpa.support.ExtendedOracleDialect",
+      "driver": "oracle.jdbc.driver.OracleDriver"
+    },
+    "module": "eo-db",
+    "moduleScope": "main",
+    "description": "Oracle Schem"
+  },
+  {
+    "configModelKey": "DbConfig",
+    "naturalId": "hsql:mem",
+    "properties": {
+      "schema": "mem",
+      "dialect": "com.mysema.query.jpa.support.ExtendedHSQLDialect",
+      "driver": "org.hsqldb.jdbcDriver"
+    },
+    "module": "eo-db",
+    "moduleScope": "main",
+    "description": "local HSQL which exists just in memory"
+  },
+  {
+    "configModelKey": "DbConfig",
+    "naturalId": "hsql:fileTest",
+    "properties": {
+      "schema": "file:$[TMP]/test.hsql",
+      "dialect": "com.mysema.query.jpa.support.ExtendedHSQLDialect",
+      "driver": "org.hsqldb.jdbcDriver"
+    },
+    "module": "eo-db",
+    "moduleScope": "main",
+    "description": "local HSQL with a temp @see http://hsqldb.org/doc/guide/dbproperties-chapt.html"
+  },
+  {
+    "configModelKey": "DbConfig",
+    "naturalId": "h2:mem",
+    "properties": {
+      "protocol": "jdbc:h2",
+      "user": "sa",
+      "schema": "mem:test",
+      "driver": "org.h2.Driver",
+      "dialect": "org.hibernate.dialect.H2Dialect",
+      "extension": "DATABASE_TO_UPPER=false;"
+    },
+    "module": "eo-db",
+    "moduleScope": "main",
+    "description": "local H2 which exists just in memory"
+  },
+  {
+    "module": "eo-db",
+    "moduleScope": "main",
+    "naturalId": "h2:file",
+    "configModelKey": "DbConfig",
+    "properties": {
+      "protocol": "jdbc:h2",
+      "user": "sa",
+      "schema": ".{TMP}./test",
+      "driver": "org.h2.Driver",
+      "extension": "DATABASE_TO_UPPER=false;"
+    },
+    "description": "local H2 with a temp file"
+  }
+]

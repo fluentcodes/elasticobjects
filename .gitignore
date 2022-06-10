@@ -2,6 +2,7 @@
 .idea/
 .gradle/
 build/
+*.sh
 *.iml
 *.log
 */build/
@@ -14,4 +15,6 @@ builder/
 builder-eo/
 builder-sandboxes/
 builder-projects/
+stadtbook/
+eo.pfx
 .DS_Store

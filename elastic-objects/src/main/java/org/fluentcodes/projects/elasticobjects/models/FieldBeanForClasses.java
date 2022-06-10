@@ -2,15 +2,15 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Map;
 
 public class FieldBeanForClasses extends FieldBean {
     private Type typeClass;
 
-    public FieldBeanForClasses(final Field field, final ModelBean modelBean, Map<String, ModelBean> modelBeanMap) {
+    public FieldBeanForClasses(final Field field, final ModelBean modelBean, List<ModelBean> modelBeanMap) {
         setParentModel(modelBean);
         setFieldKey(field.getName());
-        setFieldName(field.getName());
         setNaturalId(modelBean.getModelKey() + "." + getFieldKey());
         this.typeClass = field.getType();
         setModelKeys(getTypeKey());

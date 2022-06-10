@@ -1,0 +1,27 @@
+{
+  "rolePermissions": {
+    "read": "read"
+  },
+  "description": "This test just sets all possible values with serialization and deserialization.",
+  "naturalId": "naturalId",
+  "origin": "origin",
+  "scope": [
+    "TEST"
+  ],
+  "expanded": true,
+  "xlsxKey": "xlsxKey",
+  "sheetName": "sheetName",
+  "rowHead": 1,
+  "colKeys": [],
+  "modelKey": "modelKey",
+  "fileKey": "fileKey",
+  "fileName": "fileName",
+  "path": "path",
+  "modelKey": "Map",
+  "hostKey": "hostKey",
+  "hostName": "hostName",
+  "password": "password",
+  "port": 11,
+  "protocol": "protocol",
+  "user": "user"
+}

@@ -1,0 +1,15 @@
+<h5><a href="/config/ModelConfig/AnObject">AnObject</a> - max size exceeded</h5>
+<form action="/eo-form" method="post" target="example">
+    <textarea name="eo" style="height:70px">{
+  "_rootmodel": "AnObject",
+  "myString": "test01234567890123456789"
+}</textarea>
+    <input type="submit" value="post"/>
+</form>
+
+<p>
+    In #{GithubLinkCall->ModelConfig, AnObject}. the field
+    <a href="/config/FieldConfig/myString">myString</a> has a max size of 20.
+    In this example
+    the myString field exceed this size and an EoException is thrown.
+</p>

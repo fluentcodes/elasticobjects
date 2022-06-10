@@ -8,9 +8,13 @@ import java.util.List;
 
 
 /**
- * Created by Werner on 09.10.2016.
+ * Created by Werner on 05.04.2022.
  */
 public class DbSqlConfig extends PermissionConfig implements DbSqlInterface {
+    private final String modelKey;
+    private Class<?> modelClass;
+    private final String dbConfigKey;
+    private final String classPath;
     private final List<String> sqlList;
 
     public DbSqlConfig(final ConfigBean configBean, final ConfigMaps configMaps) {
@@ -19,9 +23,33 @@ public class DbSqlConfig extends PermissionConfig implements DbSqlInterface {
 
     public DbSqlConfig(final DbSqlBean bean, final ConfigMaps configMaps) {
         super(bean, configMaps);
+        this.dbConfigKey = bean.getDbConfigKey();
+        this.modelKey = bean.getModelKey()!=null?bean.getModelKey():"Map";
+        modelClass = getConfigMaps().findModel(modelKey).getModelClass();
+        this.classPath = bean.getClassPath();
         sqlList = bean.getSqlList();
     }
 
+    @Override
+    public String getModelKey() {
+        return modelKey;
+    }
+
+    public Class<?> getModelClass() {
+        return modelClass;
+    }
+
+    @Override
+    public String getDbConfigKey() {
+        return dbConfigKey;
+    }
+
+    @Override
+    public String getClassPath() {
+        return classPath;
+    }
+
+    @Override
     public List<String> getSqlList() {
         return sqlList;
     }

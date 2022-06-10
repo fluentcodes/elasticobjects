@@ -1,0 +1,20 @@
+[
+  {
+    "modelKey": "AnObject",
+    "naturalId": "AnObjectDb",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  },
+  {
+    "modelKey": "ASubObject",
+    "naturalId": "h2:mem:ASubObject",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  }
+]

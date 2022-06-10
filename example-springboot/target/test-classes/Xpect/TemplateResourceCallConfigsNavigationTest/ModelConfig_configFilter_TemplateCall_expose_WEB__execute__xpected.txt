@@ -1,0 +1,9 @@
+
+
+<input type="text" value="TemplateCall" onchange="
+            var newLocation = window.location + 'x';
+            document.location.href = newLocation.replace(/=.*/, '=' + this.value);
+            "/>
+<ul>
+    <li><a href="/config/ModelConfig/TemplateCall?configFilterTemplateCall">&equiv;TemplateCall</a></li>
+</ul>

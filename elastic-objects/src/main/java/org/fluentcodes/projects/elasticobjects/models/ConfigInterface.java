@@ -1,10 +1,9 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.domain.BaseInterface;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
-/*=>{javaHeader}|*/
+/*.{javaHeader}|*/
 
 /**
  * Basic config interface as super interface for other cached items.
@@ -13,46 +12,21 @@ import java.util.Map;
  * @creationDate
  * @modificationDate Tue Dec 08 17:46:47 CET 2020
  */
-public interface ConfigInterface extends BaseInterface {
-  /*=>{}.*/
-
-  /*=>{javaStaticNames}|*/
-  String EXPOSE = "expose";
-  String MODULE = "module";
-  String MODULE_SCOPE = "moduleScope";
-  String SCOPE = "scope";
-  String PROPERTIES = "properties";
-  /*=>{}.*/
+public interface ConfigInterface {
 
   default boolean hasScope(final Scope scope) {
-    if (scope == Scope.ALL) {
-      return true;
-    }
-    if (getScope() == null || getScope().isEmpty()) {
-      return true;
-    }
-    if (getScope().contains(scope)) {
-      return true;
-    }
-    return false;
+    return scope == Scope.ALL ||
+            getScope() == null ||
+            getScope().isEmpty() ||
+            getScope().contains(scope);
   }
-
-  /*=>{javaAccessors}|*/
-  default boolean hasProperties() {
-    return getProperties() != null && !getProperties().isEmpty();
-  }
-
-  /**
-   * Properties for configurations.
-   */
-  Map<String, Object> getProperties();
 
   /**
    * expose
    */
   Expose getExpose();
 
-  default Boolean hasExpose() {
+  default boolean hasExpose() {
     return getExpose() != null;
   }
 
@@ -61,7 +35,7 @@ public interface ConfigInterface extends BaseInterface {
    */
   String getModule();
 
-  default Boolean hasModule() {
+  default boolean hasModule() {
     return getModule() != null && !getModule().isEmpty();
   }
 
@@ -70,7 +44,7 @@ public interface ConfigInterface extends BaseInterface {
    */
   String getModuleScope();
 
-  default Boolean hasModuleScope() {
+  default boolean hasModuleScope() {
     return getModuleScope() != null && !getModuleScope().isEmpty();
   }
 
@@ -79,8 +53,44 @@ public interface ConfigInterface extends BaseInterface {
    */
   List<Scope> getScope();
 
-  default Boolean hasScope() {
+  default boolean hasScope() {
     return getScope() != null && !getScope().isEmpty();
   }
-  /*=>{}.*/
+
+  public String getAuthor();
+
+  default boolean hasAuthor() {
+    return getAuthor() != null && !getAuthor().isEmpty();
+  }
+
+  public Date getCreationDate();
+
+  default boolean hasCreationDate() {
+    return getCreationDate() != null;
+  }
+
+  public String getDescription();
+
+  default boolean hasDescription() {
+    return getDescription() != null && !getDescription().isEmpty();
+  }
+
+  public Long getId();
+
+  default boolean hasId() {
+    return getId() != null;
+  }
+
+  public String getNaturalId();
+
+  default boolean hasNaturalId() {
+    return getNaturalId() != null && !getNaturalId().isEmpty();
+  }
+
+  /*.{}.*/
+
+  default Date getModificationDate() {
+    return new Date();
+  }
+
 }

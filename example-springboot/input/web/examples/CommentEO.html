@@ -1,0 +1,18 @@
+<h5>Comments with JSONSerializationType EO</h5>
+<p>
+    Every field key starting with an underscore will be ignored setting parents value. Here we
+    have #{GithubLinkCall->ModelConfig, AnObject}..
+    The "_serializationType"  with value EO (#{GithubLinkCall->ModelConfig, JSONSerializationType}.)
+    creates a typed json including underscore key values.
+</p>
+ <form action="/eo-form" method="post" target="example" >
+     <textarea name="eo" style="height:120px">{
+  "_rootModel": "AnObject",
+  "myString":"test",
+  "_comment": "A comment",
+  "_anything": "Arbitrary key",
+  "_serializationType":"EO"
+}</textarea>
+     <input type="submit" value="post"/>
+ </form>
+

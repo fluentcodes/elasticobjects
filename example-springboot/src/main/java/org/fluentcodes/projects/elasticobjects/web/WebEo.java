@@ -2,7 +2,6 @@ package org.fluentcodes.projects.elasticobjects.web;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.fluentcodes.projects.elasticobjects.EO;
 import org.fluentcodes.projects.elasticobjects.EOToJSON;
 import org.fluentcodes.projects.elasticobjects.EoChild;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
@@ -71,16 +70,15 @@ public class WebEo {
             return "'value' is empty!";
         }
 
-        System.out.println("Post request  " + eoAsString);
         LOG.info("Post request " + eoAsString);
 
         final String[] roles = getRoles();
         final LogLevel logLevel = getLevel(logLevelAsString);
 
         try {
-            final EO eo = EoRoot.of(this.configsCache)
-                    .setLogLevel(logLevel)
-                    .mapObject(eoAsString);
+            final EoRoot eo = EoRoot.of(this.configsCache);
+            eo.setLogLevel(logLevel);
+            eo.map(eoAsString);
 
             eo.setRoles(Arrays.asList(roles));
             try {
@@ -99,7 +97,7 @@ public class WebEo {
                 return (String)eo.get(PathElement.TEMPLATE);
             }
             final String result = new EOToJSON()
-                    .setIndent(1)
+                    .setSpacer("  ")
                     .toJson(eo);
             return result;
         } catch (Exception e) {
@@ -123,8 +121,8 @@ public class WebEo {
         final LogLevel logLevel = getLevel(logLevelAsString);
 
         try {
-            final EO eo = EoRoot.of(this.configsCache)
-                    .setLogLevel(logLevel);
+            final EoRoot eo = EoRoot.of(this.configsCache);
+            eo.setLogLevel(logLevel);
 
             eo.setRoles(Arrays.asList(roles));
             try {

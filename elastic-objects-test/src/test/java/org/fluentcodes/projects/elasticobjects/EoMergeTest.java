@@ -3,7 +3,7 @@ package org.fluentcodes.projects.elasticobjects;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -20,23 +20,23 @@ public class EoMergeTest {
     @Test
     public void AnObject_myString_value_Map_myNaturalId_id__merge__extended() {
         AnObject anObject = new AnObject().setMyString("value");
-        final EO eo = ProviderConfigMaps.createEo(anObject);
+        final EoRoot eo = ObjectProvider.createEo(anObject);
 
         final Map map = new HashMap();
-        map.put(AnObject.NATURAL_ID, "id");
-        eo.mapObject(map);
-        Assertions.assertThat(anObject.getNaturalId()).isEqualTo("id");
+        map.put(AnObject.F_NATURAL_ID, "id");
+        eo.map(map);
+        Assertions.assertThat(eo.get("naturalId")).isEqualTo("id");
     }
 
     @Test
     public void AnObject_myString_value_Map_unknown_id__merge__exception() {
         AnObject anObject = new AnObject().setMyString("value");
-        final EO eo = ProviderConfigMaps.createEo(anObject);
+        final EoRoot eo = ObjectProvider.createEo(anObject);
 
         final Map map = new HashMap();
         map.put("unknown", "id");
         Assertions.assertThatThrownBy(() -> {
-            eo.mapObject(map);
+            eo.map(map);
         })
                 .isInstanceOf(EoException.class);
     }
@@ -46,8 +46,8 @@ public class EoMergeTest {
 
         final AnObject anObject1 = new AnObject().setMyString("value");
         final AnObject anObject2 = new AnObject().setMyFloat(1.1F);
-        final EO eo = ProviderConfigMaps.createEo(anObject1);
-        eo.mapObject(anObject2);
-        assertEquals(1.1F, anObject1.getMyFloat());
+        final EoRoot eo = ObjectProvider.createEo(anObject1);
+        eo.map(anObject2);
+        assertEquals(1.1F, eo.get("myFloat"));
     }
 }

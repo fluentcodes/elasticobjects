@@ -6,18 +6,28 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>eo-root</artifactId>
     <packaging>pom</packaging>
-    <version>0.8.1</version>
+    <version>0.9.5</version>
     <name>EO - Elastic Objects Root</name>
 
     <modules>
         <module>elastic-objects</module>
         <module>elastic-objects-test</module>
+        
+        <module>eo-calls</module>
+        <module>eo-calls-test</module>
+        
         <module>eo-csv</module>
+        <module>eo-csv-test</module>
+        
         <module>eo-xlsx</module>
+        <module>eo-xlsx-test</module>
+        
         <module>eo-db</module>
+        <module>eo-db-test</module>
+        
         <!--module>eo-db-hibernate</module-->
-        <module>xpect-eo</module>
         <module>example-springboot</module>
+        <module>eventsytes</module>
         <!--module>builder</module-->
         <!--module>builder-eo</module-->
         <!--module>builder-projects</module-->

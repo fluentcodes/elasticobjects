@@ -1,112 +1,54 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.EO;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.EoRoot;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.fluentcodes.projects.elasticobjects.models.ConfigInterface.SCOPE;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.GENERATED;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.NOT_NULL;
-import static org.fluentcodes.projects.elasticobjects.models.FieldInterface.OVERRIDE;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_PROPERTIES;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_SCOPE;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_GENERATED;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_NOT_NULL;
+import static org.fluentcodes.projects.elasticobjects.models.FieldBeanProperties.F_OVERRIDE;
 
 public class FieldBeanTest {
     @Test
-    public void empty__toString__empty() {
-        FieldBean fieldBean = new FieldBean();
-        Assertions.assertThat(fieldBean.toString()).isEqualTo("");
-    }
-
-    @Test
-    public void naturalId_test__toString__test() {
-        FieldBean fieldBean = new FieldBean("test");
-        Assertions.assertThat(fieldBean.toString()).isEqualTo("test");
-    }
-
-    @Test
-    public void naturalId_field_modelKeys_String__toString__String_field() {
-        FieldBean fieldBean = new FieldBean("field");
-        fieldBean.setModelKeys("String");
-        Assertions.assertThat(fieldBean.toString()).isEqualTo("(String)field");
-    }
-
-    @Test
-    public void naturalId_field_modelKeys_String_modelBean_Model__toString__String_Model_field() {
-        FieldBean fieldBean = new FieldBean("field");
-        fieldBean.setParentModel(new ModelBean("Model"));
-        fieldBean.setModelKeys("String");
-        Assertions.assertThat(fieldBean.toString()).isEqualTo("(String)Model.field");
-    }
-
-    @Test
-    public void naturalId_field_modelBean_Model__toString__Model_field() {
-        FieldBean fieldBean = new FieldBean("field");
-        fieldBean.setParentModel(new ModelBean("Model"));
-        Assertions.assertThat(fieldBean.toString()).isEqualTo("Model.field");
-    }
-
-    @Test
-    public void fieldKey_field_modelBean_Model__toString__Model_field() {
-        FieldBean fieldBean = new FieldBean();
-        fieldBean.setFieldKey("field");
-        Assertions.assertThat(fieldBean.toString()).isEqualTo("field");
-    }
-
-
-    @Test
     public void set_notNull_true__get__true() {
-        EO eo = ProviderConfigMaps.createEo();
         FieldBean fieldBean = new FieldBean();
-        fieldBean.setNotNull(true);
-        Assertions.assertThat(fieldBean.getNotNull()).isTrue();
-        Assertions.assertThat((Boolean)fieldBean.getProperties().get(NOT_NULL)).isTrue();
-        eo = ProviderConfigMaps.createEo(fieldBean);
-        Assertions.assertThat((Boolean)eo.get(NOT_NULL)).isTrue();
+        fieldBean.getProperties().setNotNull(true);
+        Assertions.assertThat(fieldBean.getProperties().getNotNull()).isTrue();
+        EoRoot eo = ObjectProvider.createEo(fieldBean);
+        Assertions.assertThat((Boolean) eo.get(F_PROPERTIES, F_NOT_NULL)).isTrue();
     }
 
     @Test
     public void set_override_true__get__true() {
         FieldBean fieldBean = new FieldBean();
-        fieldBean.setOverride(true);
-        Assertions.assertThat(fieldBean.getOverride()).isTrue();
-        Assertions.assertThat((Boolean)fieldBean.getProperties().get(OVERRIDE)).isTrue();
-        EO eo = ProviderConfigMaps.createEo(fieldBean);
-        Assertions.assertThat((Boolean)eo.get(OVERRIDE)).isTrue();
+        fieldBean.getProperties().setOverride(true);
+        Assertions.assertThat(fieldBean.getProperties().getOverride()).isTrue();
+        EoRoot eo = ObjectProvider.createEo(fieldBean);
+        Assertions.assertThat((Boolean) eo.get(F_PROPERTIES, F_OVERRIDE)).isTrue();
     }
 
     @Test
     public void set_generated_true__get__true() {
         FieldBean fieldBean = new FieldBean();
-        fieldBean.setGenerated(true);
-        Assertions.assertThat(fieldBean.getGenerated()).isTrue();
-        Assertions.assertThat((Boolean)fieldBean.getProperties().get(GENERATED)).isTrue();
-        EO eo = ProviderConfigMaps.createEo(fieldBean);
-        Assertions.assertThat((Boolean)eo.get(GENERATED)).isTrue();
+        fieldBean.getProperties().setGenerated(true);
+        Assertions.assertThat(fieldBean.getProperties().getGenerated()).isTrue();
+        EoRoot eo = ObjectProvider.createEo(fieldBean);
+        Assertions.assertThat((Boolean) eo.get(F_PROPERTIES, F_GENERATED)).isTrue();
     }
 
-    @Test
-    public void set_generated_true__merge__true() {
-        FieldBean fieldBeanOverwritten = new FieldBean();
-        FieldBean fieldBean = new FieldBean();
-        fieldBean.setGenerated(true);
-        fieldBeanOverwritten.merge(fieldBean);
-        Assertions.assertThat(fieldBean.getGenerated()).isTrue();
-        Assertions.assertThat((Boolean)fieldBean.getProperties().get(GENERATED)).isTrue();
-        Assertions.assertThat(fieldBeanOverwritten.getGenerated()).isTrue();
-        Assertions.assertThat((Boolean)fieldBeanOverwritten.getProperties().get(GENERATED)).isTrue();
-        EO eo = ProviderConfigMaps.createEo(fieldBean);
-        Assertions.assertThat((Boolean)eo.get(GENERATED)).isTrue();
-    }
 
     @Test
     public void set_scope_DEV__get__true() {
         FieldBean fieldBean = new FieldBean();
         fieldBean.setScope(Arrays.asList(new Scope[]{Scope.DEV}));
         Assertions.assertThat(fieldBean.getScope()).isNotEmpty();
-        EO eo = ProviderConfigMaps.createEo(fieldBean);
-        Assertions.assertThat((List)eo.get(SCOPE)).isNotEmpty();
+        EoRoot eo = ObjectProvider.createEo(fieldBean);
+        Assertions.assertThat((List) eo.get(F_SCOPE)).isNotEmpty();
     }
 }

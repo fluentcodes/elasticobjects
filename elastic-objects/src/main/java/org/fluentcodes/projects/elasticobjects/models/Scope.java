@@ -29,14 +29,15 @@ public enum Scope {
         return scope.contains(this);
     }
 
-    public Optional<String> filter(String naturalId) {
-        if (!naturalId.startsWith("(")) {
-            return Optional.of(naturalId);
+    public boolean filter(ConfigBean bean) {
+        if (!bean.hasScope()) {
+            return true;
         }
-        if (!naturalId.startsWith("(" + name() + ")")) {
-            return Optional.empty();
+        List<Scope> scopeList = bean.getScope();
+        if (scopeList.contains(Scope.ALL)) {
+            return true;
         }
-        return Optional.of(naturalId.replace("(" + name() + ")", ""));
+        return scopeList.contains(this);
     }
 
 }

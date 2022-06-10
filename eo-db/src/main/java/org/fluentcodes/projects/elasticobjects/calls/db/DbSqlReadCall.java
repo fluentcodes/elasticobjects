@@ -1,107 +1,145 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
-import org.fluentcodes.projects.elasticobjects.EO;
+import java.util.List;
+import java.util.Map;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
+import org.fluentcodes.projects.elasticobjects.EoChild;
+import org.fluentcodes.projects.elasticobjects.calls.DbConfig;
+import org.fluentcodes.projects.elasticobjects.calls.HostConfig;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigReadCommand;
-import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement;
-import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListInterface;
-import org.fluentcodes.projects.elasticobjects.calls.lists.ListParams;
+import org.fluentcodes.projects.elasticobjects.calls.condition.Or;
+import org.fluentcodes.projects.elasticobjects.calls.lists.ListCall;
 import org.fluentcodes.projects.elasticobjects.calls.templates.KeepCalls;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
-import java.util.List;
-
-/*=>{javaHeader}|*/
 /**
  * Map results of a sql select to the targetPath.
- *
- * @author Werner Diwischek
- * @creationDate 
- * @modificationDate Wed Nov 11 07:20:13 CET 2020
  */
-public class DbSqlReadCall extends DbSqlCall implements ListInterface,  ConfigReadCommand {
-/*=>{}.*/
+public class DbSqlReadCall extends ListCall implements ConfigReadCommand {
+    public static final String CONDITIONS = "conditions";
+    public static final String CONDITION_LIST = "conditionList";
+    String dbConfigKey;
+    DbConfig dbConfig;
+    String dbSqlConfigKey;
+    DbSqlConfig dbSqlConfig;
 
-/*=>{javaStaticNames}|*/
-   public static String LIST_PARAMS = "listParams";
-/*=>{}.*/
-
-/*=>{javaInstanceVars}|*/
-   private ListParams listParams;
-/*=>{}.*/
-
-    public DbSqlReadCall()  {
+    public DbSqlReadCall() {
         super();
-        listParams = new ListParams();
     }
-    public DbSqlReadCall(final String hostConfigKey)  {
-        super(hostConfigKey);
-        listParams = new ListParams();
+
+    public DbSqlReadCall(final String dbConfigKey) {
+        this();
+        this.dbConfigKey = dbConfigKey;
     }
-    public DbSqlReadCall(final String hostConfigKey, final String sqlConfigKey)  {
-        super(hostConfigKey, sqlConfigKey);
-        listParams = new ListParams();
+
+    public DbSqlReadCall(final String hostConfigKey, final String sqlConfigKey) {
+        this(hostConfigKey);
+        dbSqlConfigKey = sqlConfigKey;
     }
 
     @Override
-    public Object execute(EO eo) {
-        return mapEo(eo, readRaw(eo));
+    public Object execute(final EOInterfaceScalar eo) {
+        if(!hasDbSqlConfigKey()) {
+            throw new EoException("No dbSqlConfigKey defined");
+        }
+        if(!hasDbConfigKey()) {
+            throw new EoException("No dbConfigKey defined");
+        }
+
+        dbConfig = (DbConfig) eo.getConfigMaps().find(HostConfig.class, dbConfigKey);
+        dbConfig.hasPermissions(PermissionType.READ, eo.getRoles());
+
+        dbSqlConfig = (DbSqlConfig) eo.getConfigMaps().find(DbSqlConfig.class, dbSqlConfigKey);
+        dbSqlConfig.hasPermissions(PermissionType.READ, eo.getRoles());
+        if (!getListParams().hasRowStart()) {
+            getListParams().setRowStart(0);
+        }
+        if (!getListParams().hasRowEnd()) {
+            getListParams().setRowEnd(100);
+        }
+        if (!getListParams().hasRowHead()) {
+            getListParams().setRowHead(0);
+        }
+        //getListParams().initDb();
+        List<Map<String, Object>> rawResult = readRaw(eo);
+        mapToTarget(eo, rawResult);
+        return "";
+    }
+
+    private List<Map<String, Object>> readRaw(final EOInterfaceScalar eo) {
+        //getListParams().initDb();
+        StatementFind statementFind = null;
+        if (eo.hasEo(CONDITIONS)) {
+            statementFind = new StatementFind(dbSqlConfig.getSql() + " where ", new Or((String) eo.get(CONDITIONS)));
+        } else if (eo.hasEo(CONDITION_LIST)) {
+            statementFind = new StatementFind(dbSqlConfig.getSql(), (List) eo.get(CONDITION_LIST));
+        } else {
+            statementFind = new StatementFind(dbSqlConfig.getSql(), eo);
+        }
+        return statementFind.read(
+            dbConfig.getConnection(),
+            eo.getConfigMaps(),
+            getListParams());
+    }
+
+    @Override
+    public void setConfigKey(String configKey) {
+        this.dbSqlConfigKey = configKey;
     }
 
     @Override
     public void setByParameter(final String values) {
-        if (values == null||values.isEmpty()) {
+        if (values == null || values.isEmpty()) {
             throw new EoException("Set by empty input values");
         }
         String[] array = values.split(", ");
-        if (array.length>5) {
-            throw new EoException("Short form should have form '<configKey>[,<targetPath>][,<condition>][,<keepCall>]' with max length 3 but has size " + array.length + ": '" + values + "'." );
+        if (array.length > 5) {
+            throw new EoException(
+                "Short form should have form '<configKey>[,<targetPath>][,<condition>][,<keepCall>]' with max length 3 but has size " +
+                    array.length + ": '" + values + "'.");
         }
-        if (array.length>0) {
+        if (array.length > 0) {
             setHostConfigKey(array[0]);
         }
-        if (array.length>1) {
-            setSqlKey(array[1]);
+        if (array.length > 1) {
+            setDbSqlConfigKey(array[1]);
         }
-        if (array.length>2) {
-            setTargetPath( array[2]);
+        if (array.length > 2) {
+            setTargetPath(array[2]);
         }
-        if (array.length>3) {
-            setCondition( array[3]);
+        if (array.length > 3) {
+            setCondition(array[3]);
         }
-        if (array.length>4) {
+        if (array.length > 4) {
             setKeepCall(KeepCalls.valueOf(array[4]));
         }
     }
 
-    public List readRaw(final EO eo) {
-        DbSqlConfig config = init(PermissionType.READ, eo);
-        listParams.initDb();
-        return new FindStatement(config.getSql(), eo)
-                .read(
-                getConnection(),
-                eo.getConfigsCache(),
-                listParams);
+
+    public String getDbSqlConfigKey() {
+        return dbSqlConfigKey;
     }
 
-/*=>{javaAccessors}|*/
-    /**
-    Parameters of type {@link ListParams} for list type read call operations like {@link CsvSimpleReadCall}.
-    */
-    @Override
-    public DbSqlReadCall setListParams(ListParams listParams) {
-        this.listParams = listParams;
+    public DbSqlReadCall setDbSqlConfigKey(String dbSqlConfigKey) {
+        this.dbSqlConfigKey = dbSqlConfigKey;
         return this;
     }
-    @Override
-    public ListParams getListParams () {
-       return this.listParams;
-    }
-    @Override
-    public boolean hasListParams () {
-        return listParams!= null;
-    }
-/*=>{}.*/
 
+    public boolean hasDbSqlConfigKey() {
+        return dbSqlConfigKey != null && !dbSqlConfigKey.isEmpty();
+    }
+
+    public String getDbConfigKey() {
+        return dbConfigKey;
+    }
+
+    public DbSqlReadCall setDbConfigKey(String dbConfigKey) {
+        this.dbConfigKey = dbConfigKey;
+        return this;
+    }
+
+    public boolean hasDbConfigKey() {
+        return dbConfigKey != null && !dbConfigKey.isEmpty();
+    }
 }

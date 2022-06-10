@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.elasticobjects;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Test;
 
 /**
@@ -11,8 +11,8 @@ public class EoCallsTest {
 
     @Test
     public void givenTest_thenCallsAreEmpty()  {
-        EO eo = ProviderConfigMaps.createEo();
-        Assertions.assertThat(((EoChild)eo).hasCalls()).isEqualTo(false);
+        EoRoot eo = ObjectProvider.createEo();
+        Assertions.assertThat(eo.hasCalls()).isEqualTo(false);
         Assertions.assertThat(eo.size()).isEqualTo(0);
     }
 }

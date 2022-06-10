@@ -1,0 +1,44 @@
+{
+  "myString": "test",
+  "myInt": 1,
+  "myLong": 2,
+  "myFloat": 1.1,
+  "myDouble": 2.2,
+  "myDate": 1465280215000,
+  "myBoolean": true,
+  "myASubObject": {
+    "name": "testOther",
+    "myString": "test"
+  },
+  "myAnObject": {
+    "myInt": 1,
+    "myString": "test",
+    "myLong": 2,
+    "myDate": 1465280215000,
+    "myBoolean": true,
+    "myFloat": 1.1,
+    "myDouble": 2.2
+  },
+  "myList": [
+    "test",
+    1
+  ],
+  "myMap": {
+    "myString": "test",
+    "myInt": 1
+  },
+  "myASubObjectMap": {
+    "key0": {
+      "name": "testOther",
+      "myString": "test"
+    },
+    "key1": {
+      "name": "testOther",
+      "myString": "test"
+    },
+    "key2": {
+      "name": "testOther",
+      "myString": "test"
+    }
+  }
+}

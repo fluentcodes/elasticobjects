@@ -1,0 +1,81 @@
+{
+  "dummyftp": {
+    "configModelKey": "HostConfig",
+    "description": "A connection to elastic objects",
+    "expose": "NONE",
+    "hostName": "dummyftp",
+    "module": "eo-calls",
+    "moduleScope": "test",
+    "naturalId": "dummyftp",
+    "permissions": {
+    },
+    "properties": {
+      "classPath": "src.main.resources",
+      "password": "test1234",
+      "port": 21,
+      "protocol": "ftp",
+      "user": "dummy"
+    }
+  },
+  "dummyftpurl": {
+    "configModelKey": "HostConfig",
+    "description": "A connection to elastic objects",
+    "expose": "NONE",
+    "hostName": "dummyftpurl",
+    "module": "eo-calls",
+    "moduleScope": "test",
+    "naturalId": "dummyftpurl",
+    "permissions": {
+    },
+    "properties": {
+      "classPath": "src.main.resources",
+      "password": "test1234",
+      "url": "ftp://dummyftp:21",
+      "user": "dummy"
+    }
+  },
+  "elasticobjects": {
+    "configModelKey": "HostConfig",
+    "description": "A connection to elastic objects",
+    "expose": "NONE",
+    "hostName": "elasticobjects",
+    "module": "eo-calls",
+    "moduleScope": "test",
+    "naturalId": "elasticobjects",
+    "permissions": {
+    },
+    "properties": {
+      "classPath": "src.main.resources",
+      "port": 80,
+      "protocol": "http"
+    }
+  },
+  "local": {
+    "configModelKey": "HostConfig",
+    "description": "local host with key 'local'",
+    "expose": "WEB",
+    "hostName": "localhost",
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "naturalId": "local",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  },
+  "localhost": {
+    "configModelKey": "HostConfig",
+    "description": "local host with key 'localhost'",
+    "expose": "WEB",
+    "hostName": "localhost",
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "naturalId": "localhost",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  }
+}

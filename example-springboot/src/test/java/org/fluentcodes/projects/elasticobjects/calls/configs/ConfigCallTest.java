@@ -1,10 +1,10 @@
 package org.fluentcodes.projects.elasticobjects.calls.configs;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.calls.templates.TemplateResourceCall;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.fluentcodes.tools.xpect.XpectString;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ public class ConfigCallTest {
     @Ignore
     @Test
     public void testConfigCallForm__configTypeFieldConfig__fieldConfigsUsedForLinkList() {
-        EO eo = ProviderConfigMaps.createEo();
+        EoRoot eo = ObjectProvider.createEo();
         eo.set("Scope", "configSelected");
         eo.set("ModelConfig", "configType");
         eo.set("Scope", "configFilter");
@@ -21,7 +21,7 @@ public class ConfigCallTest {
         eo.addCall(new TemplateResourceCall("ConfigsPage.html"));
         eo.execute();
         Assertions.assertThat(eo.getLog()).isEmpty();
-        new XpectString().compareAsString((String)eo.get("_template"));
+        XpectStringJunit4.assertStatic((String) eo.get("_template"));
     }
 
 }

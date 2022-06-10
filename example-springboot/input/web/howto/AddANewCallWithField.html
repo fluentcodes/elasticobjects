@@ -1,0 +1,24 @@
+<h3>An Arc Call</h3>
+
+<p>It's a bit boring defining a new call wrapper foreach Math arc method like
+    in #{ConfigLinkCall->ModelConfig, CosinusValueCall}.
+</p>
+<p>
+    A more generic approach is implemented in #{GithubLinkCall->ModelConfig, SquareValueCall}.
+    using the field #{ConfigLinkCall->FieldConfig, function}. to
+    choose the Math method.
+</p>
+<p>Beside to add an #{ConfigLinkCall->ModelConfig, SquareValueCall}. entry to
+    #{GithubLinkCall->NONE, SPR||ModelConfig.json}. one has
+    also add the field #{ConfigLinkCall->FieldConfig, function}.
+    to #{GithubLinkCall->NONE, SPR||FieldConfig.json}.
+</p>
+<h5>Possible function values</h5>
+<ul>
+    <li>sin</li>
+    <li>cos</li>
+    <li>tan</li>
+    <li>toDegree (default)</li>
+</ul>
+
+#{TemplateDirResourceCall->examples, SquareValueCall.html}.

@@ -1,0 +1,18 @@
+START<table border="1">
+   <tr>
+      <th>testString </th>
+      <th>testInt </th>
+      <th>testBoolean </th></tr>
+   <tr>
+      <td>value1 </td>
+      <td>1.0 </td>
+      <td>true </td> </tr>
+   <tr>
+      <td>value2 </td>
+      <td>2.0 </td>
+      <td>false </td> </tr>
+   <tr>
+      <td>value3 </td>
+      <td>3.0 </td>
+      <td>false </td> </tr>
+</table>END

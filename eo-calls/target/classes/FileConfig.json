@@ -1,0 +1,13 @@
+[
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "hostConfigKey": "EO",
+    "filePath": "data",
+    "naturalId": "TREE",
+    "fileName": "TREE",
+    "description": "Store result to EO.",
+    "expose": "NONE",
+    "cached": "true"
+  }
+]

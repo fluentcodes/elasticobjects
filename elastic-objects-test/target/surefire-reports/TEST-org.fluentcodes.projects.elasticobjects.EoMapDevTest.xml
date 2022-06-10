@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="30" failures="0" name="org.fluentcodes.projects.elasticobjects.EoMapDevTest" time="0.007" errors="0" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="java.vm.version" value="11.0.13+8-LTS"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/lib"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="jdk.vendor.version" value="Zulu11.52+13-CA"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/werner/dev/elasticobjects"/>
+    <property name="java.vm.vendor" value="Azul Systems, Inc."/>
+    <property name="java.vendor.url" value="http://www.azul.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="user.country" value="DE"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/werner/dev/elasticobjects"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.runtime.version" value="11.0.13+8-LTS"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.io.tmpdir" value="/var/folders/bp/cx2myt155lg4l1_qv2nnq6sr0000gn/T/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Users/werner/dev/maven/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/werner/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="maven.conf" value="/Users/werner/dev/maven/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="55.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="11.5.2"/>
+    <property name="library.jansi.path" value="/Users/werner/dev/maven/lib/jansi-native"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/werner"/>
+    <property name="user.timezone" value="Europe/Berlin"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="user.name" value="werner"/>
+    <property name="java.class.path" value="/Users/werner/dev/maven/boot/plexus-classworlds-2.6.0.jar"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"/>
+    <property name="user.language" value="de"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="11.0.13"/>
+    <property name="java.vendor" value="Azul Systems, Inc."/>
+    <property name="maven.home" value="/Users/werner/dev/maven"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.version.date" value="2021-10-19"/>
+    <property name="java.vendor.url.bug" value="http://www.azul.com/support/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="java.vendor.version" value="Zulu11.52+13-CA"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_key_true__get_key_true" time="0.001"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List__JSONList_0_1__get_0_1" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List__JSONList_0_0_value__get_0_0_value" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__null__size_0" time="0.001"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List__JSONList_0_value_1_2__get_0_value_get_1_2" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_List_Double_key_0_1_1_2__get_key_1_2" time="0.001"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List__JSON_0_true__get_0_true" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_rootmodel_List_0_value_1_1__get_0_value_1_1" time="0.001"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_2_key_value__expected" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List__JSONList_empty__size_0" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__Boolean__exception" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_key_1__get_key_1" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_all__expected" time="0.001"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_key1_key2_value__expected" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="TEST__JSON_all_typed__expected" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSONList_1__get_0_1" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_rootmodle_List_Float_0_1_1__get_0_1_1" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List_String__JSON_key_true__get_0_String_true" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_key1_1_key2_2_key3_3__get_key1_1" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__Scalar_value__exception" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_rootmodel_List_key_1__get_0_1" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List__String_value__exception" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List__JSONList_0_value__get_0_value" time="0.001"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_List_value_1__get_List_0__1" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_empty__eo_isEmpty" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List__true__exception" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_small__expected" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_key_value__get_key_value" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV_List__JSON_key_true__get_0_true" time="0.001"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.EoMapDevTest" name="DEV__JSON_List_Double_0_1_1_2__xpected" time="0"/>
+</testsuite>

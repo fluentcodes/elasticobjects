@@ -1,0 +1,16 @@
+{
+  "_rootmodel": "List",
+  "0": {
+    "header": "header1",
+    "summary": "summary1",
+    "content": "content1",
+    "template": "ContentExampleElement1"
+  },
+  "1": {
+    "header": "header2",
+    "summary": "summary2",
+    "content": "content2",
+    "template": "ContentExampleElement2"
+  },
+  "(JSONSerializationType)_serializationType": "STANDARD"
+}

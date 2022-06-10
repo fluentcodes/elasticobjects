@@ -1,8 +1,0 @@
-{
-  "_rootmodel": "GenerateEoConfigJsonCall",
-  "sourceFileConfigKey": "eo.xlsx",
-  "configType": "ModelConfig",
-  "module": "builder-eo",
-  "moduleScope": "main",
-  "projectDirectory": "."
-}

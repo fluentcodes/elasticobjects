@@ -1,0 +1,12 @@
+{
+    "path":"value0",
+    "level0":{
+        "path":"value1",
+            "level1":{
+                "path":"value2",
+                    "level2":{
+                        "path":"value3"
+                    }
+            }
+    }
+}

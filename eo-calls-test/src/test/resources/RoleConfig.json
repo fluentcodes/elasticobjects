@@ -1,0 +1,37 @@
+{
+  "testRoleRead": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testRoleRead",
+    "roleKey": "testRoleRead",
+    "name": "Test Role Read"
+  },
+  "testRoleWrite": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testRoleWrite",
+    "roleKey": "testRoleWrite",
+    "name": "Test Role Write"
+  },
+  "testRoleExecute": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testRoleExecute",
+    "roleKey": "testRoleExecute",
+    "name": "Test Role Execute"
+  },
+  "testRoleDelete": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testRoleDelete",
+    "roleKey": "testRoleDelete",
+    "name": "Test Role Delete"
+  },
+  "testRoleCreate": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testRoleCreate",
+    "roleKey": "testRoleCreate",
+    "name": "Test Role Create"
+  }
+}

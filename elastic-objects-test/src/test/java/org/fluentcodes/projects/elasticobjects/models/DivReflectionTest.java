@@ -7,7 +7,8 @@ import org.junit.Test;
 
 import java.lang.reflect.Method;
 
-import static org.fluentcodes.projects.elasticobjects.TEO_STATIC.*;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S1;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING;
 
 /**
  * Created by Werner on 14.04.2017.

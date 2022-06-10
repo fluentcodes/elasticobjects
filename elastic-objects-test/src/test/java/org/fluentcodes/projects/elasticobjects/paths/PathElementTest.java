@@ -3,7 +3,6 @@ package org.fluentcodes.projects.elasticobjects.paths;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.PathElement;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,14 +29,7 @@ public class PathElementTest {
         PathElement pathElement = new PathElement(PathElement.LOG_LEVEL);
         Assert.assertEquals(PathElement.LOG_LEVEL, pathElement.getKey());
         Assertions.assertThat(Arrays.stream(pathElement.getModelsArray()).collect(Collectors.joining(",")))
-            .isEqualTo("LogLevel");
-    }
-
-    @Test
-    public void __new_String_logLevel__Exception() {
-        Assertions.assertThatThrownBy(()->{new PathElement("(String)" + PathElement.LOG_LEVEL);})
-                .isInstanceOf(EoException.class)
-                .hasMessageContaining("Mismatch");
+                .isEqualTo("LogLevel");
     }
 
     @Test

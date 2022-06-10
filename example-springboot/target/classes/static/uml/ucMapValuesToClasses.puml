@@ -1,0 +1,8 @@
+@startuml
+actor user
+usecase object
+usecase EO
+user --|> (object)
+(object) --|> (EO): map
+(Adapter) --|> user
+@enduml

@@ -1,0 +1,21 @@
+{
+  "(LogLevel)_logLevel": "WARN",
+  "(AnObject)test": {
+    "id": 3
+  },
+  "result": {
+    "(ArrayList)values": {
+      "0": {
+        "(Long)id": 3,
+        "(Long)myAnObject": 0,
+        "(Long)myASubObject": 0,
+        "myInt": 3,
+        "myString": "value3",
+        "naturalId": "key3",
+        "(Long)myLong": 0,
+        "myBoolean": true,
+        "(Double)myFloat": 0
+      }
+    }
+  }
+}

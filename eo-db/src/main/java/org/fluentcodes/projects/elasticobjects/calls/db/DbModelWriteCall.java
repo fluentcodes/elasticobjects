@@ -1,72 +1,95 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
-import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
+import org.fluentcodes.projects.elasticobjects.EoChild;
+import org.fluentcodes.projects.elasticobjects.EoChildValue;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
 import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigWriteCommand;
-import org.fluentcodes.projects.elasticobjects.calls.db.statements.FindStatement;
-import org.fluentcodes.projects.elasticobjects.calls.db.statements.InsertStatement;
-import org.fluentcodes.projects.elasticobjects.calls.db.statements.UpdateStatement;
+import org.fluentcodes.projects.elasticobjects.calls.condition.Or;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.models.ModelConfigDbObject;
+import org.fluentcodes.projects.elasticobjects.models.FieldConfig;
+import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
-import java.util.List;
+import static org.fluentcodes.projects.elasticobjects.models.ConfigBean.F_ID;
 
-/*=>{javaHeader}|*/
 /**
  * Write an entry in database by creating a insert or update sql from entry in sourcePath.
- * The object must be an instance of {@link ModelConfigDbObject}.
- *
- * @author Werner Diwischek
- * @creationDate 
- * @modificationDate Wed Nov 11 06:45:11 CET 2020
+ * The object must be an instance of {@link DbModelsConfig}.
  */
 public class DbModelWriteCall extends DbModelCall implements ConfigWriteCommand {
-/*=>{}.*/
-
-/*=>{javaStaticNames}|*/
-/*=>{}.*/
-
-/*=>{javaInstanceVars}|*/
-/*=>{}.*/
-    public DbModelWriteCall()  {
+    public DbModelWriteCall() {
         super();
     }
 
-    public DbModelWriteCall(final String hostConfigKey)  {
+    public DbModelWriteCall(final String hostConfigKey) {
         super(hostConfigKey);
     }
 
     @Override
-    public Object execute(EO eo) {
-        return save (eo);
-    }
-    
-    public int save(final EO eo) {
-        ModelConfigDbObject modelConfig = init(PermissionType.WRITE, eo);
-        if (!modelConfig.isObject()) {
-            throw new EoException("No model is provided in path '" + eo.getPathAsString() + "");
+    public Object execute(final EOInterfaceScalar eo) {
+        if (!(eo instanceof EoChild)) {
+            throw new EoException("eo not instance of EoChild");
         }
-        int updateCount = 0;
-        if (FindStatement.ofId(eo).execute(getDbConfig().getConnection()) == 1) {
-            updateCount =  UpdateStatement
-                    .of(eo)
-                    .execute(getDbConfig().getConnection());
+        if (eo.isList()||eo.isMap()) {
+            return writeList((EoChild) eo);
         }
         else {
-            updateCount =  InsertStatement
-                    .of(eo)
-                    .execute(getDbConfig().getConnection());
+            return write((EoChild) eo);
         }
-        if (hasTargetPath()) {
-            List result = FindStatement.of(eo)
-                    .readFirst(
-                    getDbConfig().getConnection(),
-                    eo.getConfigsCache());
-            eo.set(result, getTargetPath());
-        }
-        return updateCount;
     }
 
-/*=>{javaAccessors}|*/
-/*=>{}.*/
+    public int writeList(final EoChild eo) {
+        int counter = 0;
+        for (String key: eo.keys()) {
+             counter += write((EoChild) eo.getEo(key));
+        }
+        return counter;
+    }
+
+    public int write(final EoChild eo) {
+        DbModelsConfig config = init(PermissionType.WRITE, eo);
+        if (!config.hasDbModelConfig(eo.getModelClass())) {
+            throw new EoException("No db equivalent found for '" + eo.getModelClass() + "'!");
+        }
+        if (hasCondition()) {
+            Or or = new Or(getCondition());
+            if (!or.filter(eo)) {
+                return 0;
+            }
+        }
+        int updateCount = 0;
+        DbModelConfig dbModelConfig = config.getDbModelConfig(eo.getModelClass());
+        ModelConfig modelConfig = dbModelConfig.getModelConfig();
+
+        boolean parentSet = false;
+        // Check for sub objects to be persisted recursively
+        for (String key: modelConfig.getFieldKeys()) {
+            if (!eo.hasEo(key)) {
+                continue;
+            }
+            if (eo.isScalar()) {
+                continue;
+            }
+            FieldConfig fieldConfig = eo.getModel().getField(key);
+            if (!fieldConfig.getProperties().hasIdKey()) {
+                continue;
+            }
+            if (!parentSet) {
+                Object dbObject = dbModelConfig.write(config.getDbConfig().getConnection(), eo);
+                eo.map(dbObject);
+                parentSet = true;
+            }
+
+            EOInterfaceScalar eoEntry = eo.getEo(key);
+
+            new DbModelWriteCall(getConfigKey()).execute(eoEntry);
+
+            final String childIdKey = fieldConfig.getProperties().getIdKey();
+            Object childIdValue = eo.get(key, F_ID);
+            eo.set(childIdValue, childIdKey);
+        }
+        Object dbObject = dbModelConfig.write(config.getDbConfig().getConnection(), eo);
+        eo.map(dbObject);
+        return updateCount;
+    }
 }

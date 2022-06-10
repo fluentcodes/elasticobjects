@@ -1,0 +1,511 @@
+[
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "Boolean",
+    "description": "x",
+    "expose": "NONE",
+    "naturalId":"absolute",
+    "fieldKey": "absolute",
+    "properties": {
+      "property": true
+    }
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "Boolean",
+    "description": "If true will cache the readed file within the cache object. ",
+    "expose": "NONE",
+   "naturalId":"cached",
+    "fieldKey": "cached"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The classpath",
+    "expose": "WEB",
+    "naturalId":"classPath",
+    "fieldKey": "classPath",
+    "max": 128
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "The key list for mapping values in a value list. ",
+    "expose": "NONE",
+    "naturalId":"colKeys",
+    "fieldKey": "colKeys"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "Boolean",
+    "description": "Indicates a comparision before writing in @FileWriteCall",
+    "expose": "NONE",
+    "naturalId":"compare",
+    "fieldKey": "compare"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "Key for filter configuration",
+    "expose": "WEB",
+    "naturalId":"configFilter",
+    "fieldKey": "configFilter",
+    "max": 64
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "Key for configuration type like ModelConfig, FileConfig, FieldConfig, HostConfig, DbSqlConfig.",
+    "expose": "WEB",
+    "naturalId":"configType",
+    "fieldKey": "configType",
+    "max": 64
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A content for different calls. In a template context the content of the markup. ",
+    "expose": "WEB",
+    "naturalId":"content",
+    "fieldKey": "content",
+    "max": 10000
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to create.",
+    "expose": "WEB",
+    "naturalId":"createRoles",
+    "fieldKey": "createRoles"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to delete.",
+    "expose": "WEB",
+    "naturalId":"deleteRoles",
+    "fieldKey": "deleteRoles"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A database sql dialect.",
+    "expose": "NONE",
+    "naturalId":"dialect",
+    "fieldKey": "dialect",
+    "max": 80
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to execute.",
+    "expose": "WEB",
+    "naturalId":"executeRoles",
+    "fieldKey": "executeRoles"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A delimiter for fields used for csv files. ",
+    "expose": "NONE",
+    "naturalId":"fieldDelimiter",
+    "fieldKey": "fieldDelimiter",
+    "max": 4
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "A list of field keys for the model configuration. ",
+    "expose": "NONE",
+    "naturalId":"fieldKeys",
+    "fieldKey": "fieldKeys"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "Defines the key for a file configuration @FileConfig where to read or write a file.",
+    "expose": "NONE",
+    "naturalId":"fileConfigKey",
+    "fieldKey": "fileConfigKey",
+    "max": 80
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "It's used to specify the file ending in different context. ",
+    "expose": "NONE",
+    "naturalId":"fileEnding",
+    "fieldKey": "fileEnding",
+    "max": 16
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A fileName used in different calls and configs like @FileConfig or @DirectoryConfig. ",
+    "expose": "NONE",
+    "naturalId":"fileName",
+    "fieldKey": "fileName",
+    "max": 80
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A filePath used in different calls and configs like @FileConfig or @DirectoryConfig. ",
+    "expose": "NONE",
+    "naturalId":"filePath",
+    "fieldKey": "filePath",
+    "max": 512
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "Filter for List entries.",
+    "expose": "WEB",
+    "naturalId":"filter",
+    "fieldKey": "filter",
+    "max": 512
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A key for host objects.",
+    "expose": "NONE",
+    "naturalId":"hostConfigKey",
+    "fieldKey": "hostConfigKey",
+    "max": 80
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A name for host objects.",
+    "expose": "NONE",
+    "naturalId":"hostName",
+    "fieldKey": "hostName",
+    "max": 80
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "Integer",
+    "description": "length for {@link ListParams}",
+    "expose": "WEB",
+    "naturalId":"length",
+    "fieldKey": "length"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "ListParamsBean",
+    "description": "Parameters of type @ListParamsBean for list type read call operations like @CsvSimpleReadCall.",
+    "expose": "NONE",
+    "naturalId":"listParams",
+    "fieldKey": "listParams",
+    "max": 80
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to nothing.",
+    "expose": "WEB",
+    "naturalId":"nothingRoles",
+    "fieldKey": "nothingRoles"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The password instance var.",
+    "expose": "NONE",
+    "naturalId":"password",
+    "fieldKey": "password",
+    "max": 15
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "PermissionsForConfig",
+    "description": "Role permission wrapper config.",
+    "expose": "WEB",
+    "naturalId":"PermissionConfig.permissions",
+    "fieldKey": "permissions"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "PermissionsForBean",
+    "description": "Role permission wrapper bean.",
+    "expose": "WEB",
+    "naturalId":"PermissionBean.permissions",
+    "fieldKey": "permissions"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "Integer",
+    "description": "port",
+    "expose": "NONE",
+    "naturalId":"port",
+    "fieldKey": "port"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "FileBeanProperties",
+    "description": "Properties for file bean",
+    "expose": "NONE",
+    "naturalId":"FileBean.properties",
+    "fieldKey": "properties"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "FileConfigProperties",
+    "description": "Immutable properties for file config",
+    "expose": "NONE",
+    "naturalId":"FileConfig.properties",
+    "fieldKey": "properties"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "HostBeanProperties",
+    "description": "Properties for host bean",
+    "expose": "NONE",
+    "naturalId":"HostBean.properties",
+    "fieldKey": "properties"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "HostConfigProperties",
+    "description": "Immutable properties for host config",
+    "expose": "NONE",
+    "naturalId":"HostConfig.properties",
+    "fieldKey": "properties"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "protocol",
+    "expose": "NONE",
+    "naturalId":"protocol",
+    "fieldKey": "protocol",
+    "max": 8
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to read.",
+    "expose": "WEB",
+    "naturalId":"readRoles",
+    "fieldKey": "readRoles"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "replaceBy",
+    "expose": "WEB",
+    "naturalId":"replaceBy",
+    "fieldKey": "replaceBy",
+    "max": 5
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A delimiter for rows used for csv files.",
+    "expose": "NONE",
+    "naturalId":"rowDelimiter",
+    "fieldKey": "rowDelimiter",
+    "max": 4
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "Integer",
+    "description": "rowEnd",
+    "expose": "WEB",
+    "naturalId":"rowEnd",
+    "fieldKey": "rowEnd"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "Integer",
+    "description": "rowHead",
+    "expose": "WEB",
+    "naturalId":"rowHead",
+    "fieldKey": "rowHead"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "Integer",
+    "description": "rowStart",
+    "expose": "WEB",
+    "naturalId":"rowStart",
+    "fieldKey": "rowStart"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "JSONSerializationType",
+    "description": "The types of Serialization. ",
+    "expose": "WEB",
+    "naturalId":"serializationType",
+    "fieldKey": "serializationType"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A name for the sheet selected.",
+    "expose": "NONE",
+    "naturalId":"sheetName",
+    "fieldKey": "sheetName",
+    "max": 64
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "SortOrder",
+    "description": "A field with a SortOrder enum",
+    "expose": "NONE",
+    "naturalId":"sortOrder",
+    "fieldKey": "sortOrder"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "Defines the key for a file configuration @FileConfig where to read a file.",
+    "expose": "NONE",
+    "naturalId":"sourceFileConfigKey",
+    "fieldKey": "sourceFileConfigKey",
+    "max": 80
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A spacer for json serialization",
+    "expose": "NONE",
+    "naturalId":"spacer",
+    "fieldKey": "spacer",
+    "max": 10
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "A target for persisting template results in TemplateResourceStoreCall. ",
+    "expose": "WEB",
+    "naturalId":"targetFileConfigKey",
+    "fieldKey": "targetFileConfigKey",
+    "max": 256
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "toReplace",
+    "expose": "WEB",
+    "naturalId":"toReplace",
+    "fieldKey": "toReplace",
+    "max": 5
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "url",
+    "expose": "NONE",
+    "naturalId":"url",
+    "fieldKey": "url",
+    "max": 512
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "user",
+    "expose": "NONE",
+    "naturalId":"user",
+    "fieldKey": "user",
+    "max": 50
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "List,String",
+    "description": "Roles which are allowed to write.",
+    "expose": "WEB",
+    "naturalId":"writeRoles",
+    "fieldKey": "writeRoles"
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "driver",
+    "expose": "NONE",
+    "naturalId":"driver",
+    "fieldKey": "driver",
+    "max": 80
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "An extension for database initialization. ",
+    "expose": "NONE",
+    "naturalId":"extension",
+    "fieldKey": "extension",
+    "max": 1024
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The jndi lookup for a hibernate session factory. ",
+    "expose": "NONE",
+    "naturalId":"jndi",
+    "fieldKey": "jndi",
+    "max": 80
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The database schema used for persisting as a property of @HostConfig",
+    "expose": "NONE",
+    "naturalId":"schema",
+    "fieldKey": "schema",
+    "max": 80
+  }
+]

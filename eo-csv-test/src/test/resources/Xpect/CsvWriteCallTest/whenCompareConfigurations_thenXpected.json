@@ -1,0 +1,51 @@
+{
+  "_rootmodel": "ArrayList",
+  "0": {
+    "packagePath": "org.fluentcodes.projects.elasticobjects.calls.csv",
+    "modelKey": "CsvWriteCall",
+    "superKey": "ListCall",
+    "(ArrayList)fieldKeys": {
+      "0": "rowHead",
+      "1": "rowStart",
+      "2": "rowEnd",
+      "3": "length",
+      "4": "filter",
+      "5": "configKey",
+      "6": "sourcePath",
+      "7": "targetPath",
+      "8": "locationPath",
+      "9": "models",
+      "10": "filterPath",
+      "11": "condition",
+      "12": "overwrite",
+      "13": "logLevel",
+      "14": "duration",
+      "15": "inTemplate"
+    },
+    "eoParams": {
+      "(ArrayList)scope": {
+        "(Scope)0": "ALL"
+      },
+      "(ShapeTypes)shapeType": "CALL_BEAN",
+      "create": true,
+      "(ArrayList)methods": {
+      },
+      "(ArrayList)attributeList": {
+      },
+      "modelConfigKey": "CsvConfig"
+    },
+    "dbParams": {
+    },
+    "viewParams": {
+    },
+    "packageGroup": "csv",
+    "module": "actions-csv",
+    "subModule": "main",
+    "(ArrayList)scope": {
+    },
+    "key": "CsvWriteCall",
+    "description": "Defines read call for a csv action depending on one {@link CsvConfig}. Offers several attributes to be set by external caller ",
+    "naturalId": "CsvWriteCall",
+    "author": "Werner Diwischek"
+  }
+}

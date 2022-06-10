@@ -1,7 +1,10 @@
 package org.fluentcodes.projects.elasticobjects.domain.test;
 
-import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
+import org.fluentcodes.projects.elasticobjects.testitems.IModelConfigCreateTests;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ASubObjectTest implements IModelConfigCreateTests {
 
@@ -27,4 +30,5 @@ public class ASubObjectTest implements IModelConfigCreateTests {
     public void compareBeanFromModelConfig() {
         assertBeanFromModelConfigEqualsPersisted();
     }
+
 }

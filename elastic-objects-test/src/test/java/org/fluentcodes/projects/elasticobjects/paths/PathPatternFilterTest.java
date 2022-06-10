@@ -1,7 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.paths;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.PathPattern;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.fluentcodes.projects.elasticobjects.TEO_STATIC.*;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_EMPTY;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING_OTHER;
 
 public class PathPatternFilterTest {
     private static final String TEST3 = "test3";
@@ -18,7 +18,7 @@ public class PathPatternFilterTest {
 
     @Test
     public void filterListTest() {
-        
+
 
         List<String> filter = Arrays.asList(S_STRING, S_STRING_OTHER);
         PathPattern pathList = new PathPattern(filter);

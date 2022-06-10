@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="11" failures="0" name="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" time="0" errors="0" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="java.vm.version" value="11.0.13+8-LTS"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home/lib"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="jdk.vendor.version" value="Zulu11.52+13-CA"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/werner/dev/elasticobjects"/>
+    <property name="java.vm.vendor" value="Azul Systems, Inc."/>
+    <property name="java.vendor.url" value="http://www.azul.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="user.country" value="DE"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="user.dir" value="/Users/werner/dev/elasticobjects"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.runtime.version" value="11.0.13+8-LTS"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.io.tmpdir" value="/var/folders/bp/cx2myt155lg4l1_qv2nnq6sr0000gn/T/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Users/werner/dev/maven/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/werner/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="maven.conf" value="/Users/werner/dev/maven/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="55.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="11.5.2"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="library.jansi.path" value="/Users/werner/dev/maven/lib/jansi-native"/>
+    <property name="user.home" value="/Users/werner"/>
+    <property name="user.timezone" value="Europe/Berlin"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="java.class.path" value="/Users/werner/dev/maven/boot/plexus-classworlds-2.6.0.jar"/>
+    <property name="user.name" value="werner"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"/>
+    <property name="user.language" value="de"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="11.0.13"/>
+    <property name="java.vendor" value="Azul Systems, Inc."/>
+    <property name="maven.home" value="/Users/werner/dev/maven"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.version.date" value="2021-10-19"/>
+    <property name="java.vendor.url.bug" value="http://www.azul.com/support/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="java.vendor.version" value="Zulu11.52+13-CA"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="string_like_0_testFalse_and_like_4_1__filter_List__false" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="string_like_0_test_and_like_4_1__filter_List__true" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="eq_key0_test_and_eq_key1_testOther__createQuery__expected" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="eq_testString_test__filter_eoString__false" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="like_0_test__filterList__true" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="like_0_testFalse_and_like_3_1__filter_List__false" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="like_2_test__filterList__false" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="like_0_test_and_like_4_1__filter_List__true" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="eq_testString_string__createQuery__expected" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="like_4_1__filterList__true" time="0"/>
+  <testcase classname="org.fluentcodes.projects.elasticobjects.calls.condition.AndTest" name="eq_testString_test__filter_eoString__true" time="0"/>
+</testsuite>

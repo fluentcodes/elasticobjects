@@ -1,26 +1,37 @@
 package org.fluentcodes.projects.elasticobjects.paths;
 
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.Path;
-import org.fluentcodes.projects.elasticobjects.PathElement;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.fluentcodes.projects.elasticobjects.TEO_STATIC.*;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_EMPTY;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL0;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL1;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_LEVEL2;
+import static org.fluentcodes.projects.elasticobjects.Path.DELIMITER;
+import static org.fluentcodes.projects.elasticobjects.PathElement.V_SAME;
 
 public class PathTest {
 
     @Test
     public void constructorStringEmpty() {
-        Assert.assertEquals("", new Path(S_EMPTY).directory());
-        Assert.assertEquals("", new Path(PathElement.SAME).directory());
-        Assert.assertEquals(Path.DELIMITER, new Path(Path.DELIMITER).directory());
-        Assert.assertEquals(Path.DELIMITER, new Path("///").directory());
-        Assert.assertEquals(Path.DELIMITER, new Path("/././").directory());
-        Assert.assertEquals(Path.DELIMITER, new Path("/ /./\t/").directory());
+        Assert.assertEquals(V_SAME, new Path(S_EMPTY).directory());
+        Assert.assertEquals(V_SAME, new Path(null).directory());
+        Assert.assertEquals(DELIMITER, new Path("///").directory());
+        Assert.assertEquals(DELIMITER, new Path("/././").directory());
+        Assert.assertEquals(DELIMITER, new Path("/ /./\t/").directory());
+    }
+
+    @Test
+    public void withNull_directoryEqualsSame() {
+        Assert.assertEquals(V_SAME, new Path(null).directory());
+    }
+
+    @Test
+    public void withDelimiter_directoryEqualsDelimiter() {
+        Assert.assertEquals(DELIMITER, new Path(DELIMITER).directory());
     }
 
     @Test
@@ -29,64 +40,41 @@ public class PathTest {
     }
 
     @Test
-    public void givenBackAtTheMiddle_thenRemains() {
-        String other = Path.ofs(PathElement.SAME, PathElement.BACK, S_LEVEL0, S_LEVEL1, S_LEVEL2);
-        Assertions.assertThat(new Path(other).directory()).isEqualTo(Path.ofs(PathElement.BACK, S_LEVEL0, S_LEVEL1, S_LEVEL2));
+    public void withSameAtBeginning_removed() {
+        Path other = new Path(V_SAME, S_LEVEL0);
+        Assertions.assertThat(other.directory())
+                .isEqualTo(String.join(DELIMITER, new String[]{S_LEVEL0}));
     }
 
     @Test
-    public void givenBackInTheBeginning_thenRemains() {
-        String toCompare = Path.ofs(PathElement.BACK, S_LEVEL0, S_LEVEL1, S_LEVEL2);
-        Assertions.assertThat(new Path(toCompare).directory()).isEqualTo(toCompare);
-    }
-
-    @Test
-    public void constructorString_SeveralBacksAtTheBeginning() {
-        
-        String toCompare = Path.ofs(PathElement.BACK, PathElement.BACK, PathElement.BACK, S_LEVEL0);
-        Assert.assertEquals(toCompare, new Path(toCompare).directory(false));
-    }
-
-    @Test
-    public void givenBackInTheMiddle_thenPrecedingElementIsCut() {
-        String toCompare = Path.ofs(S_LEVEL0, S_LEVEL2);
-        Assertions.assertThat(new Path(S_LEVEL0, S_LEVEL1, PathElement.BACK, S_LEVEL2).directory()).isEqualTo(toCompare);
-    }
-
-    @Test
-    public void givenBackAtTheEnd_thenPrecedingElementIsCut() {
-        String toCompare = Path.ofs(S_LEVEL0, S_LEVEL1);
-        Assertions.assertThat(new Path(S_LEVEL0, S_LEVEL1, S_LEVEL2, PathElement.BACK).directory()).isEqualTo(toCompare);
-    }
-
-
-    @Test
-    public void given3Entries_thenSizeIs3() {
+    public void with3Entries_sizeIs3() {
         Path path = new Path(S_LEVEL0, S_LEVEL1, S_LEVEL2);
         Assertions.assertThat(path.size()).isEqualTo(3);
-        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + Path.DELIMITER + S_LEVEL1 + Path.DELIMITER + S_LEVEL2);
+        Assertions.assertThat(path.directory()).isEqualTo(
+                String.join(DELIMITER, new String[]{S_LEVEL0, S_LEVEL1, S_LEVEL2}));
     }
 
     @Test
-    public void given3EntriesAsString_thenSizeIs3() {
-        Path path = new Path(S_LEVEL0 + Path.DELIMITER + S_LEVEL1 + Path.DELIMITER + S_LEVEL2);
-        Assertions.assertThat(path.size()).isEqualTo(3);
-        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + Path.DELIMITER + S_LEVEL1 + Path.DELIMITER + S_LEVEL2);
+    public void doubleDelimiter_filtered() {
+        Path path = new Path(S_LEVEL0 + DELIMITER + DELIMITER +S_LEVEL1);
+        Assertions.assertThat(path.size()).isEqualTo(2);
+        Assertions.assertThat(path.directory())
+                .isEqualTo(S_LEVEL0 + DELIMITER + S_LEVEL1);
     }
 
     @Test
     public void given3EntriesAsStringWithOneEmpty_thenSizeIs2() {
-        Path path = new Path(S_LEVEL0 + Path.DELIMITER  + Path.DELIMITER + S_LEVEL2);
+        Path path = new Path(S_LEVEL0 + DELIMITER + DELIMITER + S_LEVEL2);
         Assertions.assertThat(path.size()).isEqualTo(2);
-        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + Path.DELIMITER + S_LEVEL2);
+        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + DELIMITER + S_LEVEL2);
     }
 
     @Test
     public void givenFirstPathDelimiter_whenIsAbsolute_thenTrue() {
-        Path path = new Path(Path.DELIMITER, S_LEVEL0);
+        Path path = new Path(DELIMITER, S_LEVEL0);
         Assertions.assertThat(path.isAbsolute()).isTrue();
         Assertions.assertThat(path.size()).isEqualTo(1);
-        Assertions.assertThat(path.directory()).isEqualTo(Path.DELIMITER + S_LEVEL0);
+        Assertions.assertThat(path.directory()).isEqualTo(DELIMITER + S_LEVEL0);
     }
 
     @Test
@@ -94,7 +82,7 @@ public class PathTest {
         Path path = new Path(S_LEVEL0, "", S_LEVEL2);
         Assertions.assertThat(path.isAbsolute()).isFalse();
         Assertions.assertThat(path.size()).isEqualTo(2);
-        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + Path.DELIMITER + S_LEVEL2);
+        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + DELIMITER + S_LEVEL2);
     }
 
     @Test
@@ -102,43 +90,21 @@ public class PathTest {
         Path path = new Path(S_LEVEL0, null, S_LEVEL2);
         Assertions.assertThat(path.isAbsolute()).isFalse();
         Assertions.assertThat(path.size()).isEqualTo(2);
-        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + Path.DELIMITER + S_LEVEL2);
+        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + DELIMITER + S_LEVEL2);
     }
 
     @Test
     public void given3EntriesAnd1Same_thenSizeIs2() {
-        Path path = new Path(S_LEVEL0, PathElement.SAME, S_LEVEL2);
+        Path path = new Path(S_LEVEL0, V_SAME, S_LEVEL2);
         Assertions.assertThat(path.isAbsolute()).isFalse();
         Assertions.assertThat(path.size()).isEqualTo(2);
-        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + Path.DELIMITER + S_LEVEL2);
-    }
-
-
-    @Test
-    public void hasMatcher() {
-        
-        Path path = new Path(Path.ofs(S_LEVEL0, PathElement.MATCHER, S_LEVEL1));
-        Assert.assertTrue(path.hasMatcher());
-        path = new Path(Path.ofs(S_LEVEL0, S_LEVEL1));
-        Assert.assertFalse(path.hasMatcher());
-        path = new Path(S_EMPTY);
-        Assert.assertFalse(path.hasMatcher());
+        Assertions.assertThat(path.directory()).isEqualTo(S_LEVEL0 + DELIMITER + S_LEVEL2);
     }
 
     @Test
-    public void hasPlaceHolder() {
-        Path path = new Path(Path.ofs(S_LEVEL0, "[test]"));
-        Assert.assertTrue(path.hasPlaceHolder());
-        path = new Path(Path.ofs(S_LEVEL0));
-        Assert.assertFalse(path.hasPlaceHolder());
-        path = new Path(S_EMPTY);
-        Assert.assertFalse(path.hasPlaceHolder());
-    }
-
-    @Test
-    public void level0Level1_andAbsoluteLevel2__new__absoluteLevel2() {
+    public void level0Level1_andAbsoluteLevel2__absolute_ignored() {
         Path path = new Path("level0/level1", "/level2");
-        Assertions.assertThat(path.toString()).isEqualTo("/level2");
+        Assertions.assertThat(path.toString()).hasToString("level0/level1/level2");
     }
 
 }

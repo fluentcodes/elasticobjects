@@ -1,0 +1,50 @@
+Create 10000 times
+
+** Map **
+--> toJson
+EO dir. : 761 ms
+Jackson: 104 ms
+Gson   : 191 ms
+<-- from JSON
+EO     : 2655 ms
+Jackson: 106 ms
+Gson   : 98 ms
+
+** List **
+--> toJson
+EO dir. : 472 ms
+Jackson: 31 ms
+Gson   : 55 ms
+<-- from JSON
+EO     : 779 ms
+Jackson: 35 ms
+Gson   : 37 ms
+
+** Empty **
+--> toJson
+EO dir. : 43 ms
+Jackson: 70 ms
+Gson   : 55 ms
+<-- from JSON
+EO     : 8 ms
+Jackson: 35 ms
+Gson   : 9 ms
+
+** Small **
+--> toJson
+EO dir. : 52 ms
+Jackson: 24 ms
+Gson   : 43 ms
+<-- from JSON
+EO     : 106 ms
+Jackson: 21 ms
+Gson   : 15 ms
+
+** All **
+--> toJson
+EO dir. : 489 ms
+Jackson: 95 ms
+Gson   : 146 ms
+<-- from JSON
+EO     : 1536 ms
+Jackson: 110 ms

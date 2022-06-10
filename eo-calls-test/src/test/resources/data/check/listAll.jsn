@@ -1,0 +1,32 @@
+{
+  "(List)_data": {
+    "0": "test",
+    "(Integer)1": 1,
+    "2": 2,
+    "(Float)3": 1.1,
+    "(Double)4": 2.2,
+    "(Date)5": 1465280215000,
+    "(Boolean)6": true,
+    "(ArrayList)7": {
+      "0": "test",
+      "(Integer)1": 1
+    },
+    "8": {
+      "testString": "test",
+      "(Integer)testInt": 1
+    },
+    "(BasicTest)9": {
+      "testInt": 1,
+      "testString": "test",
+      "testLong": 2,
+      "testDate": 1465280215000,
+      "testBoolean": true,
+      "testFloat": 1.1,
+      "testDouble": 2.2
+    },
+    "(ASubObject)10": {
+      "name": "testOther",
+      "testString": "test"
+    }
+  }
+}

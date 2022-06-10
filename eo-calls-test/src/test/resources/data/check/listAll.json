@@ -1,0 +1,30 @@
+[
+  "test",
+  1,
+  2,
+  1.1,
+  2.2,
+  1465280215000,
+  true,
+  [
+    "test",
+    1
+  ],
+  {
+    "testString": "test",
+    "testInt": 1
+  },
+  {
+    "testInt": 1,
+    "testString": "test",
+    "testLong": 2,
+    "testDate": 1465280215000,
+    "testBoolean": true,
+    "testFloat": 1.1,
+    "testDouble": 2.2
+  },
+  {
+    "name": "testOther",
+    "testString": "test"
+  }
+]

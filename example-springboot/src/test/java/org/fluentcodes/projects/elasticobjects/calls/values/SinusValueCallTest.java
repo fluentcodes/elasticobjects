@@ -1,9 +1,9 @@
 package org.fluentcodes.projects.elasticobjects.calls.values;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.EO;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.IModelConfigCreateTests;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.EoRoot;
+import org.fluentcodes.projects.elasticobjects.testitems.IModelConfigCreateTests;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Test;
 
 /**
@@ -35,8 +35,8 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
     }
 
     @Test
-    public void eoStringTemplate__execute__xpected()  {
-        EO eo = ProviderConfigMaps.createEo("{\n" +
+    public void eoStringTemplate__execute__xpected() {
+        EoRoot eo = ObjectProvider.createEo("{\n" +
                 "   \"(List,Double)source\": {\n" +
                 "     \"0\": 1,\n" +
                 "     \"1\": 2,\n" +
@@ -48,7 +48,7 @@ public class SinusValueCallTest implements IModelConfigCreateTests {
                 "   },\n" +
                 "   \"(TemplateCall)1\": {\n" +
                 "     \"sourcePath\": \"/source/*\",\n" +
-                "     \"content\": \"sin(=>{_value}.) = =>{/target/_parent}.\\n\"\n" +
+                "     \"content\": \"sin(.{_value}.) = .{/target/_parent}.\\n\"\n" +
                 "   }\n" +
                 " }");
         eo.execute();

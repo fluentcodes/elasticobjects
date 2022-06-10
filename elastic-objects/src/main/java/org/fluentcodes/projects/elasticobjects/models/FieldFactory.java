@@ -1,39 +1,42 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
-import org.fluentcodes.projects.elasticobjects.EO;
-import org.fluentcodes.projects.elasticobjects.EoRoot;
+import org.fluentcodes.projects.elasticobjects.io.IOClasspathEOFlatList;
+import org.fluentcodes.projects.elasticobjects.io.IOClasspathEOFlatMap;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import static org.fluentcodes.projects.elasticobjects.domain.BaseInterface.NATURAL_ID;
 
 /**
  * Created by Werner on 21.10.2021.
  */
 
-public class FieldFactory extends ConfigFactory<FieldBean, FieldConfig> {
+public class FieldFactory extends ConfigFactory<FieldBean, FieldConfigObject> {
     public FieldFactory(final ConfigMaps configMaps) {
-        super(configMaps, FieldBean.class, FieldConfig.class);
+        super(configMaps, FieldBean.class, FieldConfigObject.class);
     }
 
     @Override
-    public Map<String, FieldBean> createBeanMap() {
-        EO eoRoot = EoRoot.ofClass(getConfigMaps(), readConfigFiles(), Map.class);
-        Map<String, Map<String, Object>> mapValues = (Map<String, Map<String, Object>>)eoRoot.get();
-        Map<String, FieldBean> fieldBeanMap = new TreeMap<>();
-        for (Map.Entry<String, Map<String, Object>> entry: mapValues.entrySet()) {
-            Map<String, Object> mapValue = entry.getValue();
+    public List<FieldBean> createBeanList() {
+        List<Map<String, Object>> mapList = new IOClasspathEOFlatList<Map<String,Object>>
+                (getConfigMaps(), "FieldConfig.json", Map.class)
+                .read();
+        List<FieldBean> fieldBeanList = new ArrayList<>();
+        for (Map<String, Object> mapValue: mapList) {
             FieldBean fieldBean = new FieldBean(mapValue);
-            if (!fieldBean.hasFieldKey()) {
-                LOG.warn("No modelKey defined for {}.", entry.getKey());
-                continue;
-            }
-            if (!fieldBean.hasNaturalId()) {
-                fieldBean.setNaturalId( entry.getKey());
-            }
-            fieldBeanMap.put(entry.getKey(), fieldBean);
+            fieldBean.setDefault();
+            fieldBeanList.add(fieldBean);
         }
-        return fieldBeanMap;
+        return fieldBeanList;
     }
+
+    static Map<String, FieldBean> createBeanMap(final List<FieldBean> beanList) {
+        Map<String, FieldBean> beanMap = new TreeMap<>();
+        for (FieldBean bean: beanList) {
+            beanMap.put(bean.getNaturalId(), bean);
+        }
+        return beanMap;
+    }
+
 }

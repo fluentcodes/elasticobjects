@@ -6,9 +6,9 @@
     <groupId>org.fluentcodes.projects.elasticobjects</groupId>
     <artifactId>elastic-objects-test</artifactId>
     <packaging>jar</packaging>
-    <version>0.8.1</version>
-    <name>EO - Elastic Objects Tests and Test Resource</name>
-    <description>Package for testing Elastic Objects</description>
+    <version>0.9.5</version>
+    <name>EO - Elastic Objects Tests</name>
+    <description>Package for testing Elastic Objects with test helpers and resources.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,80 +21,50 @@
         <dependency>
             <groupId>org.fluentcodes.projects.elasticobjects</groupId>
             <artifactId>elastic-objects</artifactId>
-            <version>0.8.1</version>
+            <version>0.9.5</version>
         </dependency>
         <dependency>
             <groupId>org.fluentcodes.tools</groupId>
-            <artifactId>xpect-eo</artifactId>
-            <version>0.7.9-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.fluentcodes.tools</groupId>
-            <artifactId>xpect-jackson</artifactId>
-            <version>0.7.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.fluentcodes.tools</groupId>
-            <artifactId>xpect-gson</artifactId>
-            <version>0.7.2</version>
-            <scope>test</scope>
+            <artifactId>xpect</artifactId>
+            <version>0.9.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
-            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.13.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.9</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.16.1</version>
-            <scope>provided</scope>
+            <version>3.21.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <url>http://www.elasticobjects.com</url>
-
-    <licenses>
-        <license>
-            <name>Apache License Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>wdi</id>
-            <name>Werner Diwischek</name>
-            <email>fluentcodes@gmail.com</email>
-        </developer>
-    </developers>
 
     <scm>
         <connection>:git:git://github.com/fluentcodes/elasticobjects.git</connection>
         <developerConnection>scm:git:ssh://github.com/fluentcodes/elasticobjects.git</developerConnection>
         <url>https://github.com/fluentcodes/elasticobjects/</url>
     </scm>
-
-    <issueManagement>
-        <system>Gitlab issues.</system>
-        <url>https://gitlab.com/dashboard/issues?assignee_username=fluentcodes</url>
-    </issueManagement>
-
-    <!--https://smartregister.atlassian.net/wiki/spaces/Documentation/pages/564428801/How+to+upload+and+use+maven+jar+artifacts-->
-    <!-- https://www.tfzx.net/article/667541.html -->
-    <!--https://central.sonatype.org/pages/apache-maven.html-->
-    <distributionManagement>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <build>
         <plugins>
@@ -123,80 +93,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <!--https://stackoverflow.com/questions/37833877/intellij-spring-boot-propertieslauncher-->
-            <id>intellij-properties-launcher</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-loader</artifactId>
-                    <version>2.0.6.RELEASE</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>deploy</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.1.1</version>
-                        <configuration>
-                            <doclint>none</doclint>  <!-- Turnoff all checks -->
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.8</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

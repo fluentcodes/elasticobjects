@@ -1,0 +1,17 @@
+<h3>Why field configurations have separate files?</h3>
+<p>The fields are independent of the model.
+        In scheme definitions this is also possible.
+</p>
+<p>
+        One can reuse <a href="/configs/FieldConfig.html">field configuration</a>
+        in  <a href="/configs/ModelConfig.html">model configuration</a>  only by its field name.
+        So one field name has exactly one definition.
+        One avoid different field definitions for the same field name in different models.
+</p>
+<p>The EOConfigCache initially load every file named FieldConfig.json from the class path and
+        then resolve the field names in the model configurations by the field configurations.
+</p>
+<p>
+        When the class names within Models.json are resolved,
+        the field entries will be created via reflection using the combination &lt;ClassName> .&lt;FieldName> as naturalId.
+</p>

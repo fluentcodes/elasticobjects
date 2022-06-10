@@ -1,0 +1,19 @@
+{
+  "_rootmodel": "ModelBean",
+  "author": "Werner Diwischek",
+  "configModelKey": "ModelConfigObject",
+  "description": "Facade execution ",
+  "(Expose)expose": "NONE",
+  "modelKey": "ExecutorCall",
+  "module": "elastic-objects",
+  "moduleScope": "main",
+  "naturalId": "ExecutorCall",
+  "packagePath": "org.fluentcodes.projects.elasticobjects.calls",
+  "(ModelBeanProperties)properties": {
+    "abstract": false,
+    "create": false,
+    "dbAnnotated": false,
+    "final": false
+  },
+  "(ShapeTypes)shapeType": "OBJECT"
+}

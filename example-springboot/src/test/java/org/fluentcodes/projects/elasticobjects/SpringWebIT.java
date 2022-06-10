@@ -1,9 +1,9 @@
 package org.fluentcodes.projects.elasticobjects;
 
 import org.assertj.core.api.Assertions;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderJsonCalls;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
-import org.fluentcodes.tools.xpect.XpectString;
+import org.fluentcodes.projects.elasticobjects.calls.configs.ConfigKeysCallTest;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.xpect.XpectStringJunit4;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,12 +33,25 @@ public class SpringWebIT {
         String url = "http://localhost:" + port + "/eo";
         ResponseEntity<String> result = restTemplate.postForEntity(url, json, String.class);
         String body = result.getBody();
-        new XpectString().compareAsString(body);
+        XpectStringJunit4.assertStatic(body);
     }
 
     @Test
     public void testSinusValueCall() {
-        String json = ProviderJsonCalls.CALL_SINUS_ARRAY.content();
+        String json = "{\n" +
+                "  \"(List,Double)source\": {\n" +
+                "    \"0\": 1,\n" +
+                "    \"1\": 2,\n" +
+                "    \"2\": 3\n" +
+                "  },\n" +
+                "  \"(LogLevel)_logLevel\": \"WARN\",\n" +
+                "  \"(List)_calls\": {\n" +
+                "    \"(SinusValueCall)0\": {\n" +
+                "      \"sourcePath\": \"/source/*\",\n" +
+                "      \"targetPath\": \"/target\"\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
         Assertions.assertThat(json).isNotEmpty();
         String url = "http://localhost:" + port + "/eo";
         ResponseEntity<String> result = restTemplate.postForEntity(url, json, String.class);
@@ -57,7 +70,7 @@ public class SpringWebIT {
         ResponseEntity<String> result = restTemplate.postForEntity(url, json, String.class);
         String body = result.getBody();
         Assertions.assertThat(body).isNotEmpty();
-        EO eo = ProviderConfigMaps.createEo(body);
+        EoRoot eo = ObjectProvider.createEo(body);
         Assertions.assertThat(eo.getLog()).isEmpty();
     }
 
@@ -71,19 +84,21 @@ public class SpringWebIT {
         String url = "http://localhost:" + port + "/eo";
         ResponseEntity<String> result = restTemplate.postForEntity(url, json, String.class);
         String body = result.getBody();
-        Assertions.assertThat(body).isNotEmpty();
-        Assertions.assertThat(body).contains("ERROR -");
+        Assertions.assertThat(body)
+                .isNotEmpty()
+                .contains("ERROR -");
     }
 
     @Test
     public void eo_ConfigKeysCall_configKey_ModelConfig__post__keysNotEmpty() {
-        String json = ProviderJsonCalls.CONFIG_KEYS_CALL_MODEL_CONFIG.content();;
+        ;
+        ;
         String url = "http://localhost:" + port + "/eo";
-        ResponseEntity<String> result = restTemplate.postForEntity(url, json, String.class);
+        ResponseEntity<String> result = restTemplate.postForEntity(url, ConfigKeysCallTest.DATA, String.class);
         String body = result.getBody();
         Assertions.assertThat(body).isNotEmpty();
-        EO eo = ProviderConfigMaps.createEo(body);
-        Assertions.assertThat((List)eo.get("keys")).isNotEmpty();
+        EoRoot eo = ObjectProvider.createEo(body);
+        Assertions.assertThat((List) eo.get("keys")).isNotEmpty();
     }
 
     @Test
@@ -110,34 +125,33 @@ public class SpringWebIT {
         Assertions.assertThat(body).isNotEmpty();
     }
 
-    // TODO so why in mvn does not work
     @Test
     public void givenGetContent_whenImpressumHtml_thenContentBodyIsLoaded() {
         String url = "http://localhost:" + port + "/Impressum.html";
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         String parsedContent = response.getBody();
         Assertions.assertThat(parsedContent).isNotEmpty();
-        new XpectString().compareAsString(parsedContent);
+        XpectStringJunit4.assertStatic(parsedContent);
     }
-    // TODO so why in mvn does not work
-    @Ignore
+
+    @Ignore("mvn does not work")
     @Test
     public void givenGetContent_whenHomeHtml_thenContentBodyIsLoaded() {
         String url = "http://localhost:" + port + "/Home.html";
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         String parsedContent = response.getBody();
         Assertions.assertThat(parsedContent).isNotEmpty();
-        new XpectString().compareAsString(parsedContent);
+        XpectStringJunit4.assertStatic(parsedContent);
     }
-    // TODO so why in mvn does not work
-    @Ignore
+
+    @Ignore("mvn does not work")
     @Test
     public void givenGetExamplesStart_whenEo_thenContentBodyIsLoaded() {
         String url = "http://localhost:" + port + "/examples/ExamplesStart.html";
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         String parsedContent = response.getBody();
         Assertions.assertThat(parsedContent).isNotEmpty();
-        new XpectString().compareAsString(parsedContent);
+        XpectStringJunit4.assertStatic(parsedContent);
     }
 
 

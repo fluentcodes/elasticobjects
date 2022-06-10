@@ -1,0 +1,20 @@
+[
+  {
+    "module": "eo-db",
+    "moduleScope": "test",
+    "description": "Basic H2 dropping AnObject table",
+    "expose": "WEB",
+    "classPath": "src/main/resources",
+    "dbConfigKey": "h2:mem:basic",
+  "naturalId": "h2:mem:basic:AnObjectDrop",
+    "modelKey": "AnObject",
+    "sqlList": [
+      "drop table AnObject if exists"
+    ],
+    "permissions": {
+      "executeRoles": [
+        "admin"
+      ]
+    }
+  }
+]

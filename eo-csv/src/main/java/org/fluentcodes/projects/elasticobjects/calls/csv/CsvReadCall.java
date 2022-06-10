@@ -1,9 +1,9 @@
 package org.fluentcodes.projects.elasticobjects.calls.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
-import org.fluentcodes.projects.elasticobjects.EO;
+import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.PermissionType;
-import org.fluentcodes.projects.elasticobjects.calls.files.CsvConfig;
+import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.lists.CsvSimpleReadCall;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 
@@ -14,39 +14,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/*=>{javaHeader}|*/
 /**
- * Defines read call for a csv action depending on one link CsvConfig. 
+ * Defines read call for a csv action depending on one link CsvConfig.
  *
  * @author Werner Diwischek
- * @creationDate 
+ * @creationDate
  * @modificationDate Wed Nov 11 06:03:07 CET 2020
  */
-public class CsvReadCall extends CsvSimpleReadCall  {
-/*=>{}.*/
-
-    /*=>{javaStaticNames}|*/
-/*=>{}.*/
-
-    /*=>{javaInstanceVars}|*/
-/*=>{}.*/
-    public CsvReadCall()  {
+public class CsvReadCall extends CsvSimpleReadCall {
+    public CsvReadCall() {
         super();
     }
 
-    public CsvReadCall(final String configKey)  {
+    public CsvReadCall(final String configKey) {
         super(configKey);
     }
 
     @Override
-    public List readRaw(final EO eo) {
-        CsvConfig csvFileConfig = (CsvConfig) init(PermissionType.READ, eo);
-        getListParams().merge(csvFileConfig.getProperties());
-        URL url = csvFileConfig.findUrl(eo, getHostConfigKey());
-        //System.out.println("CSV " + url.toString());
+    public List readRaw(final EOInterfaceScalar eo) {
+        FileConfig config = init(PermissionType.READ, eo);
+        getListParams().merge(config);
+        URL url = config.findUrl(eo, getHostConfigKey());
+        final char fieldDelimiter = config.getProperties().getFieldDelimiter().charAt(0);
         CSVReader reader = null;
         try {
-            reader = new CSVReader(new InputStreamReader(url.openStream()), csvFileConfig.getFieldDelimiter().charAt(0));
+            reader = new CSVReader(new InputStreamReader(url.openStream()), fieldDelimiter);
         } catch (IOException e) {
             throw new EoException(e);
         }
@@ -55,7 +47,7 @@ public class CsvReadCall extends CsvSimpleReadCall  {
         try {
             String[] row = null;
             int i = 0;
-            while ((row = reader.readNext()) !=null) {
+            while ((row = reader.readNext()) != null) {
                 i++;
                 if (row == null || row.length == 0) {
                     continue;
@@ -73,10 +65,9 @@ public class CsvReadCall extends CsvSimpleReadCall  {
                     return result;
                 }
                 List rowEntry = Arrays.asList(row);
-                getListParams().addRowEntry(eo.getConfigsCache(), result, rowEntry);
+                getListParams().addRowEntry(eo.getConfigMaps(), result, rowEntry);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new EoException(e);
         }
         if (reader != null) {
@@ -88,6 +79,4 @@ public class CsvReadCall extends CsvSimpleReadCall  {
         }
         return result;
     }
-    /*=>{javaAccessors}|*/
-/*=>{}.*/
 }

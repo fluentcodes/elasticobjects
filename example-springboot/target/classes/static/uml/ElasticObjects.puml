@@ -1,0 +1,5 @@
+@startuml
+database test
+database test2
+test -> test2
+@enduml

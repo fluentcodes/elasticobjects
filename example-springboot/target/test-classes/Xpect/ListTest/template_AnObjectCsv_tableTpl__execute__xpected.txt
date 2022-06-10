@@ -1,0 +1,18 @@
+START<table border="1">
+   <tr>
+      <th>myString </th>
+      <th>myInt </th>
+      <th>myBoolean </th></tr>
+   <tr>
+      <td>value1 </td>
+      <td>1 </td>
+      <td>true </td> </tr>
+   <tr>
+      <td>value2 </td>
+      <td>2 </td>
+      <td>false </td> </tr>
+   <tr>
+      <td>value3 </td>
+      <td>3 </td>
+      <td>false </td> </tr>
+</table>END

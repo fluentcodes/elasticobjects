@@ -1,2 +1,0 @@
-. transfer.sh
-. transferContent.sh .*

@@ -1,0 +1,10 @@
+org/fluentcodes/projects/elasticobjects/Start.class
+org/fluentcodes/projects/elasticobjects/calls/values/ModuleLinks.class
+org/fluentcodes/projects/elasticobjects/calls/values/ConfigLinkCall.class
+org/fluentcodes/projects/elasticobjects/calls/values/GithubLinkCall.class
+org/fluentcodes/projects/elasticobjects/calls/values/CosinusValueCall.class
+org/fluentcodes/projects/elasticobjects/calls/values/SquareValueCall.class
+org/fluentcodes/projects/elasticobjects/web/WebEo.class
+org/fluentcodes/projects/elasticobjects/web/EOConfigCached.class
+org/fluentcodes/projects/elasticobjects/calls/values/TheGreetingCall.class
+org/fluentcodes/projects/elasticobjects/web/WebEoGet.class

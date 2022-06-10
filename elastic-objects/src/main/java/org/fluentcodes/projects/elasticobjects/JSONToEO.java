@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
-import org.fluentcodes.projects.elasticobjects.utils.ScalarConverter;
+import org.fluentcodes.projects.elasticobjects.models.Models;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +13,8 @@ import java.io.StringReader;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import static org.fluentcodes.projects.elasticobjects.PathElement.V_MODEL;
 
 /**
  * A JSONToEO  extracts characters and tokens from a JSON serialized String.
@@ -23,10 +25,11 @@ import java.util.regex.Pattern;
  */
 public class JSONToEO {
     //http://stackoverflow.com/questions/3651725/match-multiline-text-using-regular-expression
-    public static final Pattern jsonPattern = Pattern.compile("^[\\{\\[]");
-    public static final Pattern jsonMapPattern = Pattern.compile("^\\{");
-    public static final Pattern jsonListPattern = Pattern.compile("^\\[");
+    public static final Pattern JSON_PATTERN = Pattern.compile("^[\\{\\[]");
+    public static final Pattern JSON_MAP_PATTERN = Pattern.compile("^\\{");
+    public static final Pattern JSON_LIST_PATTERN = Pattern.compile("^\\[");
     private static final Logger LOG = LogManager.getLogger(JSONToEO.class);
+    public static final String COMMENT = "_comment";
     private ConfigMaps provider;
     private long character;
     private long index;
@@ -327,10 +330,10 @@ public class JSONToEO {
         }
     }
 
-    public EO createChild(EO parentAdapter)  {
-        EO eo = createChild(parentAdapter, null);
+    public EOInterfaceScalar createChild(EO parentAdapter)  {
+        EOInterfaceScalar eo = createChild(parentAdapter, null);
         if (isEof()) {
-            return parentAdapter;
+            return eo;
         }
         if (parseCalls && eo instanceof EoRoot) {
             return eo;
@@ -356,7 +359,7 @@ public class JSONToEO {
      * @return
      * @
      */
-    private EO createChild(EO eoParent, final String rawFieldName)  {
+    private EOInterfaceScalar createChild(EO eoParent, final String rawFieldName)  {
 
         if (eoParent == null) {
             throw new EoException("parent eo is null ...!");
@@ -371,24 +374,29 @@ public class JSONToEO {
                     throw new EoException(this.getClass().getSimpleName() + " createChildForMap: Value with no name" + debug());
                 }
                 String value = this.nextString(c, rawFieldName);
-                eoParent.createChild(new PathElement(rawFieldName), value);
+                if (rawFieldName.equals(V_MODEL)) {
+                    ((EoChild)eoParent).setModels(value);
+                    ((EoChild)eoParent).createChild(new PathElement(rawFieldName), value);
+                    return eoParent;
+                }
+                ((EoChild)eoParent).createChild(new PathElement(rawFieldName), value);
                 return eoParent;
 
             case '{':  //
                 if (rawFieldName!=null) {// Object value
-                    EO child = eoParent.createChild(new PathElement(rawFieldName, Map.class), null);
+                    EO child = (EO)((EoChild)eoParent).createChild(new PathElement(rawFieldName, Map.class), null);
                     mapObject(child);
                     return eoParent;
                 }
                 else {
-                    mapObject(eoParent); // start parsing
+                    eoParent = mapObject(eoParent); // start parsing
                     return eoParent;
                 }
             case '[':
                 if (rawFieldName != null) {// List value
                     PathElement pathFromKey = new PathElement(rawFieldName, List.class);
-                    EO child = eoParent.createChild(pathFromKey);
-                    mapList(child);
+                    EOInterfaceScalar child = ((EoChild)eoParent).createChild(pathFromKey);
+                    mapList((EO) child);
                     return child;
                 }
                 else {
@@ -421,14 +429,35 @@ public class JSONToEO {
         }
         if (rawFieldName.matches("\\(.*\\).*")) {
             pathElement = new PathElement(rawFieldName);
-            return eoParent.createChild(pathElement, value);
+            return ((EoChild)eoParent).createChild(pathElement, value);
         }
         else {
-            Object valueObject = ScalarConverter.fromJson(value);
+            Object valueObject = fromJson(value);
             pathElement = new PathElement(rawFieldName);
-            return eoParent.createChild(pathElement, valueObject);
+            return ((EoChild)eoParent).createChild(pathElement, valueObject);
         }
     }
+
+    private static Object fromJson(final String value) {
+        if ("true".equals(value)) {
+            return true;
+        }
+        if ("false".equals(value)) {
+            return false;
+        }
+        try {
+            return Integer.parseInt(value);
+        }
+        catch (Exception e) {
+            try{
+                return Float.parseFloat(value);
+            }
+            catch (Exception e1) {
+                throw new EoException("Could not transform non quoted value '" + value + "'.");
+            }
+        }
+    }
+
 
     /**
      * Get the next fileName. The fileName can be a Boolean, Double, Integer,

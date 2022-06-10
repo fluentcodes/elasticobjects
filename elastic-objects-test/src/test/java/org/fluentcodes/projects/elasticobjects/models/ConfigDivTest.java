@@ -2,17 +2,16 @@ package org.fluentcodes.projects.elasticobjects.models;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.fluentcodes.projects.elasticobjects.TEO_STATIC.S_STRING;
-import static org.fluentcodes.projects.elasticobjects.TEO_STATIC.S_TEST_STRING;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_STRING;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S_TEST_STRING;
 
 /**
  * Created by Werner on 04.11.2016.
@@ -25,7 +24,7 @@ public class ConfigDivTest {
     @Test
     public void testMap()  {
         
-        ModelConfig mapModel = ProviderConfigMaps.CONFIG_MAPS.findModel(Map.class.getSimpleName());
+        ModelConfig mapModel = ObjectProvider.CONFIG_MAPS.findModel(Map.class.getSimpleName());
         Assert.assertEquals(Map.class.getSimpleName(), mapModel.getModelKey());
         Map map = (Map) mapModel.create();
         Assert.assertEquals(LinkedHashMap.class, map.getClass());
@@ -36,18 +35,13 @@ public class ConfigDivTest {
         Assert.assertTrue(mapModel.isMap());
     }
 
-    @Test
-    public void scalarModel__setKeyValue__exception()  {
-        ModelConfig scalarModel = ProviderConfigMaps.CONFIG_MAPS.findModel(String.class.getSimpleName());
+    @Test(expected = EoException.class)
+    public void scalarModel__setKeyValue__EoException()  {
+        ModelConfig scalarModel = ObjectProvider.CONFIG_MAPS.findModel(String.class.getSimpleName());
         Assert.assertEquals(String.class.getSimpleName(), scalarModel.getModelKey());
         Assert.assertTrue(scalarModel.isScalar());
 
-        String scalar = (String) scalarModel.create();
-        Assert.assertNull(scalar);
-        Assertions.assertThatThrownBy(()->{scalarModel.set(S_TEST_STRING, scalar, S_STRING);})
-                .isInstanceOf(EoException.class);
-        Assertions.assertThatThrownBy(()->{scalarModel.get(S_TEST_STRING, scalar);})
-                .isInstanceOf(EoException.class);
+        scalarModel.create();
     }
 
 }

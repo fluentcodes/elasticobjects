@@ -1,0 +1,30 @@
+{
+  "adminRole": {
+    "module": "elastic-objects",
+    "subModule": "main",
+    "naturalId": "adminRole",
+    "roleKey": "adminRole",
+    "name": "Admin Role"
+  },
+  "superadminRole": {
+    "module": "elastic-objects",
+    "subModule": "main",
+    "naturalId": "superadminRole",
+    "roleKey": "superadminRole",
+    "name": "Super Admin Role"
+  },
+  "guestRole": {
+    "module": "elastic-objects",
+    "subModule": "main",
+    "naturalId": "guestRole",
+    "roleKey": "guestRole",
+    "name": "Guest Role"
+  },
+  "anonymRole": {
+    "module": "elastic-objects",
+    "subModule": "main",
+    "naturalId": "anonymRole",
+    "roleKey": "anonymRole",
+    "name": "Anonym Role"
+  }
+}

@@ -1,5 +1,0 @@
-"naturalId";"configModelKey";"module";"subModule";"protocol";"hostName";"description";"user";"password";"scope";"expose";"rolePermissions";"schema";"driver";"dbType";"extension";"author";
-"h2:file:basic";"DbConfig";"eo-db";"";"jdbc";"h2";"Local H2 in file persisted for the test resources.";"";"";"";"WEB";"";"file:basic";"org.h2.Driver";"H2";"DATABASE_TO_UPPER=false;";"";
-"h2:mem:basic";"DbConfig";"eo-db";"";"jdbc";"h2";"Local H2 in memory for the test resources.";"";"";"";"WEB";"";"mem:basic";"org.h2.Driver";"H2";"DATABASE_TO_UPPER=false;";"";
-"local";"";"elastic-objects";"";"";"localhost";"local host with key 'local'";"";"";"";"WEB";"";"";"";"";"";"";
-"localhost";"";"elastic-objects";"";"";"localhost";"local host with key 'localhost'";"";"";"";"WEB";"";"";"";"";"";"";

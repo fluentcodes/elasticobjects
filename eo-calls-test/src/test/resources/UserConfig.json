@@ -1,0 +1,52 @@
+{
+  "testUserRead": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testUserRead",
+    "userKey": "testUserRead",
+    "userName": "Test User Read",
+    "roles": [
+      "testRoleRead"
+    ]
+  },
+  "testUserWrite": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testUserWrite",
+    "userKey": "testUserWrite",
+    "userName": "Test User Write",
+    "roles": [
+      "testRoleWrite"
+    ]
+  },
+  "testUserDelete": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testUserDelete",
+    "userKey": "testUserDelete",
+    "userName": "Test User Delete",
+    "roles": [
+      "testRoleDelete"
+    ]
+  },
+  "testUserCreate": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testUserCreate",
+    "userKey": "testUserCreate",
+    "userName": "Test User Create",
+    "roles": [
+      "testRoleCreate"
+    ]
+  },
+  "testUserExecute": {
+    "module": "elastic-objects",
+    "subModule": "test",
+    "naturalId": "testUserExecute",
+    "userKey": "testUserExecute",
+    "userName": "Test User Execute",
+    "roles": [
+      "testRoleExecute"
+    ]
+  }
+}

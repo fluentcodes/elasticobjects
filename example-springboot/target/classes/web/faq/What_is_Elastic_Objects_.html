@@ -1,0 +1,23 @@
+
+        <h3>What is Elastic Objects?</h3>
+<p>In its core Elastic Objects is a generic wrapper for java objects
+        which knows the parent and the child EO wrappers.
+</p>
+<p><img src="../pics/eobase.png" width="300" /></p>
+<p>
+EO encapsulate the differences in structured objects via path methods.
+</p>
+
+<textarea style="height:100px;">EO eoRoot = EoRoot.OFconfigCache, anObject);
+eoRoot.set(otherObject, "a/b/c");
+AnObject anObject2 = eoRoot.get("a/b/c");
+EO eoChild = eoRoot.getEo("a/b/c");
+AnObject anObject3 = eoChild.get();
+</textarea>
+
+<p>
+When a value is set, EO takes care, that the parent value will be set.
+If the field starts with "_", this check will be skipped.
+</p>
+
+

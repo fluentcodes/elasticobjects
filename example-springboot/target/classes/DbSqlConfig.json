@@ -1,0 +1,20 @@
+[
+  {
+    "module": "example-springboot",
+    "moduleScope": "main",
+    "description": "Query for AnObject where naturalId='key1'",
+    "expose": "WEB",
+    "classPath": "src/main/resources",
+    "dbConfigKey": "h2:mem:basic",
+    "modelKey": "AnObject",
+    "naturalId": "AnObjectWithKey1",
+    "sqlList": [
+      "Select * from AnObject where naturalId='key1'"
+    ],
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  }
+]

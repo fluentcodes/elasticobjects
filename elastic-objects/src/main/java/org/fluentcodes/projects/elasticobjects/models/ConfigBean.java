@@ -1,280 +1,296 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
+import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
+import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
+
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
-/*=>{javaHeader}|*/
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.fluentcodes.projects.elasticobjects.domain.BaseBean;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
-import org.fluentcodes.projects.elasticobjects.utils.ScalarConverter;
+/*.{javaHeader}|*/
 
 /**
- * 
- * The basic bean class for the configuration classes. 
+ * The basic bean class for the configuration classes.
+ *
  * @author Werner Diwischek
  * @creationDate null
  * @modificationDate Sun Jan 10 10:57:55 CET 2021
  */
-public class ConfigBean extends BaseBean implements ConfigInterface {
-/*=>{}.*/
-    private static final Logger LOG = LogManager.getLogger(ConfigBean.class);
+public class ConfigBean {
+    public static final String F_PROPERTIES = "properties";
+    public static final String F_MODULE = "module";
+    public static final String F_CONFIG_MODEL_KEY = "configModelKey";
+    public static final String F_EXPOSE = "expose";
+    public static final String F_MODULE_SCOPE = "moduleScope";
+    public static final String F_SCOPE = "scope";
+    public static final String F_CREATION_DATE = "creationDate";
+    public static final String F_AUTHOR = "author";
+    public static final String F_DESCRIPTION = "description";
+    public static final String F_ID = "id";
+    public static final String F_NATURAL_ID = "naturalId";
     private static final String CONFIG_MODEL_KEY = "configModelKey";
-/*=>{javaInstanceVars}|*/
-   /* The model of the configuration to determine type. */
-   private String configModelKey;
-   /* expose */
-   private Expose expose;
-   /* Defines a target module where generating occurs.  */
-   private String module;
-   /* Defines scope of the configuration within module, eg 'test' or 'main' . */
-   private String moduleScope;
-   /* A scope for the cache value. */
-   private List<Scope> scope;
-
-   private Class<? extends ConfigInterface> configModelClass;
-/*=>{}.*/
-    private Map properties;
+    public static final String SCOPE_FROM_STRING_EXCEPTION = "Could not set scope from string with value '";
+    /*.{javaInstanceVars}|*/
+    /* The model of the configuration to determine type. */
+    private String configModelKey;
+    /* expose */
+    private Expose expose;
+    /* Defines a target module where generating occurs.  */
+    private String module;
+    /* Defines scope of the configuration within module, eg 'test' or 'main' . */
+    private String moduleScope;
+    /* A scope for the cache value. */
+    private List<Scope> scope;
+    /* The author of the class. */
+    private String author;
+    /* Used to define the creation of an item. */
+    private Date creationDate;
+    /* A description of the model used by every model extending BaseClassImpl.  */
+    private String description;
+    /* The numeric id of an instance of a class. */
+    private Long id;
+    /* The natural key in @Base */
+    private String naturalId;
+    /*.{}.*/
+    private Map<String, Object> properties;
 
     public ConfigBean() {
         super();
-        properties = new HashMap<>();
+        properties = new TreeMap<>();
     }
+
     public ConfigBean(final String key) {
-        super(key);
-        properties = new HashMap<>();
+        properties = new TreeMap<>();
+        this.naturalId = key;
     }
 
-    public ConfigBean(final Map values) {
-        super();
-        if (values == null) {
-            throw new EoInternalException("Null value for initial map. Could not create configuration bean");
-        }
-        properties = new HashMap();
-        merge(values);
+    public ConfigBean(final Map<String, Object> configMap) {
+        this.properties = new TreeMap<>();
+        setConfigModelKey(
+                toString(configMap.get(CONFIG_MODEL_KEY)));
+        setModule(
+                toString(configMap.get(F_MODULE)));
+        setModuleScope(
+                toString(configMap.get(F_MODULE_SCOPE)));
+        setExpose(
+                new ShapeTypeSerializerEnum<Expose>().asObject(Expose.class, configMap.get(F_EXPOSE)));
+        setScope(
+                toScopes(configMap.get(F_SCOPE)));
+        setId(
+                toLong(configMap.get(F_ID)));
+        setNaturalId(
+                toString(configMap.get(F_NATURAL_ID)));
+        setDescription(
+                toString(configMap.get(F_DESCRIPTION)));
+        setCreationDate(
+                toDate(configMap.get(F_CREATION_DATE)));
+        setAuthor(
+                toString(configMap.get(F_AUTHOR)));
     }
 
-    public ConfigBean(final String naturalId, final Map values) {
-        super();
-        properties = new HashMap();
-        merge(values);
-        if (!hasNaturalId()) setNaturalId(naturalId);
-    }
-
-    public ConfigBean(final ConfigConfig config) {
-        super(config);
+    public ConfigBean(final Config config) {
+        setConfigModelKey(config.getConfigModelKey());
+        setExpose(config.getExpose());
         setModule(config.getModule());
         setModuleScope(config.getModuleScope());
         setExpose(config.getExpose());
-        properties = new HashMap();
-        for (Object key : config.getProperties().keySet()) {
-            properties.put(key, config.getProperties().get(key));
+        setNaturalId(config.getNaturalId());
+        this.author = config.getAuthor();
+        this.creationDate = config.getCreationDate();
+        this.description = config.getDescription();
+        this.id = config.getId();
+        properties = new HashMap<>();
+    }
+
+    private static List<Scope> toScopes(final Object scopes) {
+        List<Scope> scopeList = new ArrayList<>();
+        if (scopes == null) {
+            return scopeList;
         }
-    }
-
-    public void merge(ConfigBean configBean) {
-        super.merge(configBean);
-    }
-
-    public void merge(final Map configMap) {
-        super.merge(configMap);
-        if (configMap == null || configMap.isEmpty()) {
-            return;
+        if (scopes instanceof List) {
+            return (List<Scope>) scopes;
         }
-        mergeConfigModelKey(configMap.get(CONFIG_MODEL_KEY));
-        mergeModule(configMap.get(MODULE));
-        mergeModuleScope(configMap.get(MODULE_SCOPE));
-        mergeExpose(configMap.get(EXPOSE));
-        mergeScope(configMap.get(SCOPE));
-        this.properties = new HashMap<>();
-        if (configMap.containsKey(PROPERTIES)) {
-            Object props = configMap.get(PROPERTIES);
-            if (props instanceof Map) {
-                this.properties.putAll((Map) props);
-            }
-
+        String[] scopeArray = ((String)scopes).split(",");
+        for (String scope: scopeArray) {
+            scopeList.add(new ShapeTypeSerializerEnum<Scope>().asObject(Scope.class, scope));
         }
+        return scopeList;
     }
 
-    public Map<String, Object> getProperties() {
-        return properties;
-    }
-    public void setProperties(Map properties) {
-        this.properties = properties;
+
+
+    public static Boolean toBoolean(final Object value) {
+        return new ShapeTypeSerializerBoolean().asObject(value);
     }
 
-    /*=>{javaAccessors}|*/
-   public String getConfigModelKey() {
-       return this.configModelKey;
-   }
+    public static Integer toInteger(final Object value) {
+        return new ShapeTypeSerializerInteger().asObject(value);
+    }
+
+    public static String toString(final Object value) {
+        return new ShapeTypeSerializerString().asObject(value);
+    }
+
+    public static Long toLong(final Object value) {
+        return new ShapeTypeSerializerLong().asObject(value);
+    }
+
+    public static Date toDate(final Object value) {
+        return new ShapeTypeSerializerDate().asObject(value);
+    }
+
+    /*.{javaAccessors}|*/
+    public String getAuthor() {
+        return this.author;
+    }
+
+    public ConfigBean setAuthor(final String author) {
+        this.author = author;
+        return this;
+    }
+
+    public boolean hasAuthor() {
+        return getAuthor() != null && !getAuthor().isEmpty();
+    }
+
+    private void mergeAuthor(final Object value) {
+        if (value == null) return;
+        if (hasAuthor()) return;
+        setAuthor(new ShapeTypeSerializerString().asObject(value));
+    }
+
+    public Date getCreationDate() {
+        return this.creationDate;
+    }
+
+    public ConfigBean setCreationDate(final Date creationDate) {
+        this.creationDate = creationDate;
+        return this;
+    }
+
+    public boolean hasCreationDate() {
+        return getCreationDate() != null;
+    }
+
+    private void mergeCreationDate(final Object value) {
+        if (value == null) return;
+        if (hasCreationDate()) return;
+        setCreationDate(new ShapeTypeSerializerDate().asObject(value));
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public ConfigBean setDescription(final String description) {
+        this.description = description;
+        return this;
+    }
+
+    public boolean hasDescription() {
+        return getDescription() != null && !getDescription().isEmpty();
+    }
+
+    private void mergeDescription(final Object value) {
+        if (value == null) return;
+        if (hasDescription()) return;
+        setDescription(new ShapeTypeSerializerString().asObject(value));
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public ConfigBean setId(final Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public boolean hasId() {
+        return getId() != null;
+    }
+
+    private void mergeId(final Object value) {
+        if (value == null) return;
+        if (hasId()) return;
+        setId(new ShapeTypeSerializerLong().asObject(value));
+    }
+
+    public String getNaturalId() {
+        return this.naturalId;
+    }
+
+    public ConfigBean setNaturalId(final String naturalId) {
+        this.naturalId = naturalId;
+        return this;
+    }
+
+
+    public boolean hasNaturalId() {
+        return getNaturalId() != null && !getNaturalId().isEmpty();
+    }
+
+    private void mergeNaturalId(final Object value) {
+        if (value == null) return;
+        if (hasNaturalId()) return;
+        setNaturalId(new ShapeTypeSerializerString().asObject(value));
+    }
+
+    /*.{javaAccessors}|*/
+    public String getConfigModelKey() {
+        return this.configModelKey;
+    }
 
     public boolean hasConfigModelKey() {
         return configModelKey != null && !configModelKey.isEmpty();
     }
 
-   public ConfigBean setConfigModelKey(final String configModelKey) {
-       this.configModelKey = configModelKey;
-       return this;
-    }
-
-   public Expose getExpose() {
-      return this.expose;
-   }
-
-   public ConfigBean setExpose(final Expose expose) {
-      this.expose = expose;
-      return this;
-    }
-
-   public String getModule() {
-      return this.module;
-   }
-
-   public ConfigBean setModule(final String module) {
-      this.module = module;
-      return this;
-    }
-
-   public String getModuleScope() {
-      return this.moduleScope;
-   }
-
-   public ConfigBean setModuleScope(final String moduleScope) {
-      this.moduleScope = moduleScope;
-      return this;
-    }
-
-   public List<Scope> getScope() {
-      return this.scope;
-   }
-
-   public ConfigBean setScope(final List<Scope> scope) {
-      this.scope = scope;
-      return this;
+    public ConfigBean setConfigModelKey(final String configModelKey) {
+        this.configModelKey = configModelKey;
+        return this;
     }
 
     /**
      * Defines scope of the configuration within module, eg 'test' or 'main' .
      */
 
-    void mergeConfigModelKey(Object value) {
+    private void mergeConfigModelKey(Object value) {
         if (value == null) {
             return;
         }
         if (hasConfigModelKey()) {
             return;
         }
-        setConfigModelKey(ScalarConverter.toString(value));
+        setConfigModelKey(new ShapeTypeSerializerString().asObject(value));
     }
 
-    Class deriveConfigClass(final String configModelKey) {
-        try {
-            return Class.forName(
-                    this.getClass().getPackage().toString().replace("package ", "")
-                            + "." + configModelKey);
-        } catch (Exception e) {
-            throw new EoException(e.getMessage());
-        }
+    public Expose getExpose() {
+        return this.expose;
     }
 
-    Class deriveConfigClass() {
-        return deriveConfigClass(getConfigModelKey());
+    public ConfigBean setExpose(final Expose expose) {
+        this.expose = expose;
+        return this;
     }
 
-    ConfigInterface createConfig(final  ConfigMaps configMaps) {
-        return createConfig(deriveConfigClass(), configMaps);
-    }
-
-    ConfigInterface createConfig(final Class<? extends ConfigConfig> configClass, final ConfigMaps configMaps) {
-        try {
-            Constructor configurationConstructor = configClass.getConstructor(ConfigBean.class, ConfigMaps.class);
-            try {
-                return (ConfigInterface)configurationConstructor.newInstance(this, configMaps);
-            } catch (Exception e) {
-                throw new EoInternalException("Problem with create new instance for config constructor with bean class for '" + getNaturalId() + "'/'" + configClass.getSimpleName() + "' in ModelConfig", e);
-            }
-        }
-        catch (NoSuchMethodException e) {
-            throw new EoInternalException("Problem find constructor for '" + getNaturalId() + "'  '" + configClass.getSimpleName() + "' with ConfigBean", e);
-        }
-    }
-
-    private List<Scope> createScopeList(List values) {
-        List<Scope> scopeList = new ArrayList<>();
-        for (Object value:values) {
-            if (value instanceof String) {
-                try {
-                    scopeList.add(Scope.valueOf((String) value));
-                }
-                catch (Exception e) {
-                    throw new EoException("Could not set scope from string with value '" + value + "'");
-                }
-            }
-            else if (value instanceof Scope) {
-                scopeList.add((Scope)value);
-            }
-            else {
-                throw new EoException("Could not set scope from class '" + value.getClass() + "' and value '" + value + "'");
-            }
-        }
-        return scopeList;
-    }
-    private void mergeScope(Object value) {
-        if (value==null) {
-            return;
-        }
-        if (hasScope()) {
-            return;
-        }
-        if (value instanceof String) {
-            if (!((String)value).isEmpty()) {
-                String[] values = ((String)value).split(",");
-                setScope(createScopeList(Arrays.asList(values)));
-                return;
-            }
-        }
-        else if (value instanceof List) {
-            setScope(createScopeList((List) value));
-            return;
-        }
-        throw new EoException("Could not set moduleScope from class '" + value.getClass() + "' and value '" + value + "'");
-    }
-
-    private void mergeModuleScope(Object value) {
-        if (value == null) {
-            return;
-        }
-        if (hasModuleScope()) {
-            return;
-        }
-        setModuleScope(ScalarConverter.toString(value));
-    }
-
-    private void mergeModule(Object value) {
-        if (value == null) {
-            return;
-        }
-        if (hasModule()) {
-            return;
-        }
-        setModule(ScalarConverter.toString(value));
+    public boolean hasExpose() {
+        return expose != null;
     }
 
     private void mergeExpose(Object value) {
-        if (value==null) {
+        if (value == null) {
             return;
         }
         if (hasExpose()) {
             return;
         }
         if (value instanceof Expose) {
-            setExpose((Expose)value);
+            setExpose((Expose) value);
             return;
         }
         if (value instanceof String) {
@@ -284,6 +300,156 @@ public class ConfigBean extends BaseBean implements ConfigInterface {
         throw new EoException("Could not set expose from class '" + value.getClass() + "' and value '" + value + "'");
     }
 
-/*=>{}.*/
+    public String getModule() {
+        return this.module;
+    }
+
+    public ConfigBean setModule(final String module) {
+        this.module = module;
+        return this;
+    }
+
+    public boolean hasModule() {
+        return module != null && !module.isEmpty();
+    }
+
+    private void mergeModule(Object value) {
+        if (value == null) {
+            return;
+        }
+        if (hasModule()) {
+            return;
+        }
+        setModule(new ShapeTypeSerializerString().asObject(value));
+    }
+
+
+    public String getModuleScope() {
+        return this.moduleScope;
+    }
+
+    public ConfigBean setModuleScope(final String moduleScope) {
+        this.moduleScope = moduleScope;
+        return this;
+    }
+
+    public boolean hasModuleScope() {
+        return moduleScope != null && !moduleScope.isEmpty();
+    }
+
+    private void mergeModuleScope(Object value) {
+        if (value == null) {
+            return;
+        }
+        if (hasModuleScope()) {
+            return;
+        }
+        setModuleScope(new ShapeTypeSerializerString().asObject(value));
+    }
+
+    public List<Scope> getScope() {
+        return this.scope;
+    }
+
+    public ConfigBean setScope(final List<Scope> scope) {
+        this.scope = scope;
+        return this;
+    }
+
+    public boolean hasScope() {
+        return scope != null && !scope.isEmpty();
+    }
+
+
+    private void mergeScope(Object value) {
+        if (value == null) {
+            return;
+        }
+        if (hasScope()) {
+            return;
+        }
+        if (value instanceof String) {
+            if (!((String) value).isEmpty()) {
+                String[] values = ((String) value).split(",");
+                setScope(createScopeList(Arrays.asList(values)));
+                return;
+            }
+        } else if (value instanceof List) {
+            setScope(createScopeList((List) value));
+            return;
+        }
+        throw new EoException("Could not set moduleScope from class '" + value.getClass() + " and " + value + "'");
+    }
+
+    private List<Scope> createScopeList(List<Object> values) {
+        List<Scope> scopeList = new ArrayList<>();
+        for (Object value : values) {
+            if (value instanceof String) {
+                try {
+                    scopeList.add(Scope.valueOf((String) value));
+                } catch (Exception e) {
+                    throw new EoException(SCOPE_FROM_STRING_EXCEPTION + value + "'");
+                }
+            } else if (value instanceof Scope) {
+                scopeList.add((Scope) value);
+            } else {
+                throw new EoException("SCOPE_FROM_STRING_EXCEPTION '" + value.getClass() + "' and value '" + value + "'");
+            }
+        }
+        return scopeList;
+    }
+
+    Class<?> deriveConfigClass(final String configModelKey) {
+        try {
+            return Class.forName(
+                    this.getClass().getPackage().toString().replace("package ", "")
+                            + "." + configModelKey);
+        } catch (Exception e) {
+            throw new EoException("Could not find configuration class with a Class.forName: " + e.getMessage());
+        }
+    }
+
+    Class<?> deriveConfigClass() {
+        return deriveConfigClass(getConfigModelKey());
+    }
+
+    public Config createConfig(final ConfigMaps configMaps) {
+        return createConfig(deriveConfigClass(), configMaps);
+    }
+
+    Config createConfig(final Class<?> configClass, final ConfigMaps configMaps) {
+        try {
+            Constructor configurationConstructor = configClass.getConstructor(ConfigBean.class, ConfigMaps.class);
+            try {
+                return (Config) configurationConstructor.newInstance(this, configMaps);
+            }
+            catch (EoException|EoInternalException e) {
+                throw e;
+            }
+            catch (Exception e) {
+                throw new EoInternalException(e.getClass().getSimpleName() + ": Problem creating '" + configClass.getSimpleName() + "' configuration with bean '" + getNaturalId() + "'", e);
+            }
+        } catch (NoSuchMethodException e) {
+            throw new EoInternalException("No constructor found for  '" + configClass.getSimpleName() + "' creating configuration with bean for '" + getNaturalId() + "'", e);
+        }
+    }
+
+    public void merge(ConfigBean bean) {
+        this.mergeAuthor(bean.getAuthor());
+        this.mergeConfigModelKey(bean.getConfigModelKey());
+        this.mergeCreationDate(bean.getCreationDate());
+        this.mergeDescription(bean.getDescription());
+        this.mergeExpose(bean.getExpose());
+        this.mergeId(bean.getId());
+        this.mergeModule(bean.getModule());
+        this.mergeModuleScope(bean.getModuleScope());
+        this.mergeNaturalId(bean.getNaturalId());
+        this.mergeScope(bean.getScope());
+    }
+
+    @Override
+    public String toString() {
+        return hasNaturalId() ? getNaturalId() : "";
+    }
 
 }

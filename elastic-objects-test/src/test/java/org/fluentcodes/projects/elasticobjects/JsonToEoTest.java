@@ -5,11 +5,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.elasticobjects.testitemprovider.ProviderConfigMaps;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProvider;
+import org.fluentcodes.projects.elasticobjects.testitems.ObjectProviderDev;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.fluentcodes.projects.elasticobjects.TEO_STATIC.*;
+import static org.fluentcodes.projects.elasticobjects.EoTestStatic.S0;
 
 /**
  * @author Werner Diwischek
@@ -18,141 +19,167 @@ import static org.fluentcodes.projects.elasticobjects.TEO_STATIC.*;
 
 public class JsonToEoTest {
     private static final Logger LOG = LogManager.getLogger(JsonToEoTest.class);
+
     @Test
     public void dot__patternMatcher() {
-        Assertions.assertThat(JSONToEO.jsonPattern.matcher(".").find()).isFalse();
+        Assertions.assertThat(JSONToEO.JSON_PATTERN.matcher(".").find()).isFalse();
+    }
+
+    @Test
+    public void JSON_LIST_PATTERN__arrayString_matches() {
+        Assertions.assertThat(JSONToEO.JSON_LIST_PATTERN.matcher("[1,2]")
+                .find())
+                .isTrue();
+    }
+
+    @Test
+    public void JSON_LIST_PATTERN__mapString__notMatches() {
+        Assertions.assertThat(JSONToEO.JSON_LIST_PATTERN.matcher("{\"1\",\"2\"}")
+                .find())
+                .isFalse();
+    }
+
+    @Test
+    public void JSON_MAP_PATTERN__mapString__matches() {
+        Assertions.assertThat(JSONToEO.JSON_MAP_PATTERN.matcher("{\"1\",\"2\"}")
+                .find())
+                .isTrue();
+    }
+
+    @Test
+    public void JSON_MAP_PATTERN__arrayString__notMatches() {
+        Assertions.assertThat(JSONToEO.JSON_MAP_PATTERN.matcher("[1,2]")
+                .find())
+                .isFalse();
     }
 
 
     @Test
-    public void key_valuenewLine____get_valueNewLine()  {
-        EO eoWithNewLine = ProviderConfigMaps.createEoDev("{\"key\":\"value\\n\"}");
+    public void key_valuenewLine____get_valueNewLine() {
+        EoRoot eoWithNewLine = ObjectProviderDev.createEo("{\"key\":\"value\\n\"}");
         Assert.assertEquals("value\n", eoWithNewLine.get("key"));
     }
 
     @Test
-    public void testArray()  {
-        String test = "[\"a\"]";
-        JSONToEO tokener = new JSONToEO(test, ProviderConfigMaps.CONFIG_MAPS);
-        EO adapter = tokener.createChild(ProviderConfigMaps.createEo());
-        Assert.assertEquals("a", adapter.get(S0));
-    }
-
-
-    @Test
-    public void testNewLineEscapedArray()  {
-        String test = "[\"\\n\"]";
-        JSONToEO tokener = new JSONToEO(test, ProviderConfigMaps.CONFIG_MAPS);
-        EO adapter = tokener.createChild(ProviderConfigMaps.createEo());
-        Assert.assertEquals("\n", adapter.get(S0));
-    }
-
-    @Test
     public void list2EscapedArray____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("[\"\\\n\"]");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("[\"\\\n\"]");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
-    public void testCombinationsOfEscapes()  {
-        EO adapter = ProviderConfigMaps.createEo("[\"\\t\\r\"]");
-        Assert.assertEquals("\t\r", adapter.get(S0));
+    public void testCombinationsOfEscapes() {
+        EoRoot root = ObjectProvider.createEo("[\"\\t\\r\"]");
+        Assert.assertEquals("\t\r", root.get(S0));
     }
 
     @Test
     public void value_NoEndQuote____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("{\"k\":\"v}");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("{\"k\":\"v}");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
     public void value_NoStartQuote____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("{\"k\":v\"}");})
-        .isInstanceOf(EoException.class);
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("{\"k\":v\"}");
+        })
+                .isInstanceOf(EoException.class);
     }
 
     @Test
     public void value_NoColon____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("{\"k:\"v\"}");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("{\"k:\"v\"}");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
     public void key_NoEndQuote____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("{\"k:\"v\"}");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("{\"k:\"v\"}");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
     public void key_NoStartQuote____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("{k\":\"v\"}");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("{k\":\"v\"}");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
-    public void givenStringNotQuoted_exception()  {
+    public void givenStringNotQuoted_exception() {
         Assertions
-                .assertThatThrownBy(()->{
-                    ProviderConfigMaps.createEo("{\"string\":test}");})
+                .assertThatThrownBy(() -> {
+                    ObjectProvider.createEo("{\"string\":test}");
+                })
                 .isInstanceOf(EoException.class)
                 .hasMessage("Could not transform non quoted value 'test'.");
     }
 
     @Test
     public void list_NoEndQuote____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("[\"v]");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("[\"v]");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
     public void list_NoStartQuote____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("[v\"]");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("[v\"]");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
     public void list_NoQuote____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("[test]");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("[test]");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
     public void list_NoClosingBracket____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("[\"v\"");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("[\"v\"");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
     public void list_colon____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("[\"v\":2]");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("[\"v\":2]");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
     public void list_furtherValues____exception() {
-        Assertions.assertThatThrownBy(()->{
-            ProviderConfigMaps.createEo("[\"v\"],\"k\"");})
+        Assertions.assertThatThrownBy(() -> {
+            ObjectProvider.createEo("[\"v\"],\"k\"");
+        })
                 .isInstanceOf(EoException.class);
     }
 
     @Test
     public void DEV__NoObjectCharacter__exception() {
         Assertions
-                .assertThatThrownBy(()->{
-                    ProviderConfigMaps.createEoDev("\"k\",[\"v\":2]");})
+                .assertThatThrownBy(() -> {
+                    ObjectProviderDev.createEo("\"k\",[\"v\":2]");
+                })
                 .isInstanceOf(EoException.class)
-                .hasMessageContaining("Null scalar value not supported for root");
+                .hasMessageContaining("Root could not be a scalar type but starting value is 'String'!");
     }
 
 }

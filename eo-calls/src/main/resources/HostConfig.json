@@ -1,0 +1,38 @@
+[
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "description": "local host with key 'local'",
+    "expose": "WEB",
+    "naturalId": "local",
+    "hostName": "localhost",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "description": "local host with key 'localhost'",
+    "expose": "WEB",
+    "naturalId": "localhost",
+    "hostName": "localhost",
+    "permissions": {
+      "readRoles": [
+        "guest"
+      ]
+    }
+  },
+  {
+    "module": "eo-calls",
+    "moduleScope": "main",
+    "description": "Read/Write to EO",
+    "expose": "WEB",
+    "naturalId": "EO",
+    "hostName": "EO",
+    "permissions": {
+    }
+  }
+]

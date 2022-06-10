@@ -1,0 +1,25 @@
+<h5>SquareValueCall</h5>
+
+
+ <form action="/eo-form" method="post" target="example" >
+     <textarea name="eo" style="height:120px">{
+  "(Double)squareDegree":1,
+
+  "(SquareValueCall)/value": {
+    "sourcePath": "/squareDegree",
+    "function":"tan"
+  },
+  "_serializationType":"STANDARD"
+}</textarea>
+     <input type="submit" value="post"/>
+ </form>
+
+<p>
+    #{GithubLinkCall->ModelConfig, SquareValueCall}. compute cos, sin, tan and toDegree Math functions
+    depending on #{ConfigLinkCall->FieldConfig, function}. value. Default is "toDegree".
+    </p>
+<p>
+    In the example toDegree will calculated from
+    #{ConfigLinkCall->FieldConfig, sourcePath}. "squareDegree".
+    The result will set in the #{ConfigLinkCall->FieldConfig, targetPath}. "value".
+</p>

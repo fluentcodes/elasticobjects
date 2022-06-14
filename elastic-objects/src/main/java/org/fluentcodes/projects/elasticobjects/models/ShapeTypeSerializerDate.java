@@ -1,5 +1,7 @@
 package org.fluentcodes.projects.elasticobjects.models;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 
@@ -46,6 +48,9 @@ public class ShapeTypeSerializerDate implements ShapeTypeSerializerInterface<Dat
         if (object instanceof Number) {
             Long longValue = ((Number)object).longValue();
             return new Date(longValue);
+        }
+        if (object instanceof LocalDateTime) {
+            return Timestamp.valueOf((LocalDateTime) object);
         }
         if (object instanceof String) {
             try{

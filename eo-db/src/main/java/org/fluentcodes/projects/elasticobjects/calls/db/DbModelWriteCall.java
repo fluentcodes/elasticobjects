@@ -89,7 +89,6 @@ public class DbModelWriteCall extends DbModelCall implements ConfigWriteCommand 
             eo.set(childIdValue, childIdKey);
         }
         Object dbObject = dbModelConfig.write(config.getDbConfig().getConnection(), eo);
-        eo.map(dbObject);
         return updateCount;
     }
 }

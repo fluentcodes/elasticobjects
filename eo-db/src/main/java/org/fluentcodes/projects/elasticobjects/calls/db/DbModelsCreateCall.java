@@ -69,11 +69,17 @@ public class DbModelsCreateCall extends DbModelCall implements ConfigWriteComman
                         StatementPreparedValues.SqlType.CREATE,
                         unique
                 );
-                int uniqueResponse = uniqueStatement.execute(config.getDbConfig().getConnection());
-                feedback.append(unique);
-                feedback.append(": ");
-                feedback.append(uniqueResponse);
-                feedback.append("\n");
+                if (execute) {
+                    int uniqueResponse = uniqueStatement.execute(config.getDbConfig().getConnection());
+
+                    feedback.append(unique);
+                    feedback.append(": ");
+                    feedback.append(uniqueResponse);
+                    feedback.append("\n");
+                }
+                else {
+                    feedback.append(unique + "\n");
+                }
             }
         }
         for (Class<?> modelClass: config.getDbModelClassSet()) {
@@ -83,17 +89,23 @@ public class DbModelsCreateCall extends DbModelCall implements ConfigWriteComman
                         StatementPreparedValues.SqlType.CREATE,
                         constraint
                 );
-                int executeResponse = statement.execute(config.getDbConfig().getConnection());
-                feedback.append("Constraint ");
-                feedback.append(constraint);
-                feedback.append(": ");
-                feedback.append(executeResponse);
-                feedback.append("\n");
+                if (execute) {
+                    int executeResponse = statement.execute(config.getDbConfig().getConnection());
+                    feedback.append("Constraint ");
+                    feedback.append(constraint);
+                    feedback.append(": ");
+                    feedback.append(executeResponse);
+                    feedback.append("\n");
+                }
+                else {
+                    feedback.append("Constraint ");
+                    feedback.append(constraint + "\n");
+                }
             }
         }
         if (hasTargetPath()) {
             eo.set(feedback.toString(), getTargetPath());
         }
-        return feedback;
+        return feedback.toString();
     }
 }

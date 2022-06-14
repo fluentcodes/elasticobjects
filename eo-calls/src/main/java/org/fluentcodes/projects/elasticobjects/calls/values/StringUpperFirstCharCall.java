@@ -59,7 +59,12 @@ public class StringUpperFirstCharCall extends CallImpl implements SimpleCommand 
         if (item.isEmpty()) {
             return "";
         }
-        return item.substring(0, 1).toUpperCase() + item.substring(1).toLowerCase();
+        String[] words = item.split("\\s+");
+        StringBuilder concat = new StringBuilder();
+        for (String word: words) {
+            concat.append(word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase() + " ");
+        }
+        return concat.toString().replaceAll(" $", "");
     }
 
     static Pattern WORD_PATTERN = Pattern.compile("([^ -]+)([ -]*)");

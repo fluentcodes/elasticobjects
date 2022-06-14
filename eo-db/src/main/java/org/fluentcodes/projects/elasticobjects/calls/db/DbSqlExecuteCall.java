@@ -48,6 +48,10 @@ public class DbSqlExecuteCall extends CallImpl implements ConfigWriteCommand {
         this.execute = execute;
     }
 
+    public void setExecuteTrue() {
+        this.execute = true;
+    }
+
     @Override
     public String execute(final EOInterfaceScalar eo) {
         if (eo == null) {

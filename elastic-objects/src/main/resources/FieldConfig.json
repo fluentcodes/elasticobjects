@@ -359,7 +359,17 @@
     "expose": "WEB",
     "naturalId":"name",
     "fieldKey": "name",
-    "max": 80
+    "max": 256
+  },
+  {
+    "module": "elastic-objects",
+    "moduleScope": "main",
+    "modelKeys": "String",
+    "description": "The default name field. ",
+    "expose": "WEB",
+    "naturalId":"defaultName",
+    "fieldKey": "defaultName",
+    "max": 256
   },
   {
     "module": "elastic-objects",

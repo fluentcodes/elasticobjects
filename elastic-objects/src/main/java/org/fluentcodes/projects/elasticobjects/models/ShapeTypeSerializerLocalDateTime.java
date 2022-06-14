@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.util.Date;
 import java.util.TimeZone;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
@@ -57,6 +58,15 @@ public class ShapeTypeSerializerLocalDateTime implements ShapeTypeSerializerInte
             Long longValue = ((Number) object).longValue();
             return LocalDateTime.ofInstant(Instant.ofEpochMilli(longValue), TimeZone.getDefault().toZoneId());
         }
+        else if (object instanceof Date) {
+            return ((Date)object)
+                .toInstant()
+                .atZone(TimeZone.getDefault().toZoneId())
+                .toLocalDateTime();
+            }
+        else if (object instanceof LocalDate) {
+            return ((LocalDate)object).atStartOfDay();
+        }
         else if (object instanceof String) {
             try {
                 return LocalDateTime.parse((String) object);
@@ -64,7 +74,7 @@ public class ShapeTypeSerializerLocalDateTime implements ShapeTypeSerializerInte
 
             }
         }
-        throw new EoInternalException("Not a parsable input object for " + object.getClass());
+        throw new EoInternalException(object.getClass() + " is not a parsable input object for LocalDateTime.");
     }
 
     @Override

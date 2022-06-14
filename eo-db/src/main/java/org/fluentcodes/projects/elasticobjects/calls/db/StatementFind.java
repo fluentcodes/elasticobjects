@@ -11,6 +11,7 @@ import static java.sql.Types.LONGVARBINARY;
 import static java.sql.Types.LONGVARCHAR;
 import static java.sql.Types.REAL;
 import static java.sql.Types.TIMESTAMP;
+import static java.sql.Types.TINYINT;
 import static java.sql.Types.VARCHAR;
 
 import java.sql.Connection;
@@ -60,8 +61,17 @@ public class StatementFind extends StatementPreparedValues {
 
     public void addFilterMap(Map<String, Object> conditionList) {
         for (Map.Entry<String, Object> entry: conditionList.entrySet()) {
-            getStatementAsIs().append(" and " + entry.getKey() + " = ?");
-            addValue(entry.getValue());
+            if (entry.getKey().matches(".* (is) .*")) {
+                getStatementAsIs().append(" and " + entry.getKey() + " ");
+            }
+            else if (entry.getKey().matches(".* (=|like|>|<) .*")) {
+                getStatementAsIs().append(" and " + entry.getKey() + " ?");
+                addValue(entry.getValue());
+            }
+            else {
+                getStatementAsIs().append(" and " + entry.getKey() + " = ?");
+                addValue(entry.getValue());
+            }
         }
     }
 
@@ -107,7 +117,16 @@ public class StatementFind extends StatementPreparedValues {
         for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
             int type = resultSet.getMetaData().getColumnType(i);
             int columnType = resultSet.getMetaData().getColumnType(i);
+            //System.out.println(i + " " + type + " " + columnType + " " + resultSet.getMetaData().getColumnTypeName(i) + " " + resultSet.getMetaData().getColumnName(i));
             switch (columnType) {
+                case -7:
+                    int value = resultSet.getInt(i);
+                    row.add(value==1);
+                    break;
+                case -6:
+                    int value2 = resultSet.getInt(i);
+                    row.add(value2==1);
+                    break;
                 case VARCHAR:
                     row.add(resultSet.getString(i));
                     break;
@@ -132,7 +151,11 @@ public class StatementFind extends StatementPreparedValues {
                     row.add(resultSet.getBoolean(i));
                     break;
                 case DATE:
-                    row.add(resultSet.getDate(i));
+                    if (resultSet.getTimestamp(i) != null) {
+                        row.add(resultSet.getDate(i).toLocalDate());
+                    } else {
+                        row.add(null);
+                    }
                     break;
                 case TIMESTAMP:
                     //https://stackoverflow.com/questions/8992282/convert-localdate-to-localdatetime-or-java-sql-timestamp
@@ -165,10 +188,10 @@ public class StatementFind extends StatementPreparedValues {
         if (list.isEmpty()) {
             return null;
         }
-        if (list.size() > 1) {
+        /*if (list.size() > 1) {
             throw new EoException(
                 "Found " + list.size() + " entries where one is allowed for '" + getStatement() + "'");
-        }
+        }*/
         return list.get(0);
     }
 

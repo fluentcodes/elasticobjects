@@ -125,7 +125,7 @@ public class Parser {
             handle(eo, callSequence, indicator, finish, result);
         }
         result.append(parseString.substring(end, parseString.length()));
-        return result.toString();
+        return Parser.replacePathValues(result.toString(), eo);
     }
 
     void handle(EOInterfaceScalar eo, String callSequence, Indicators callIndicator, String finish, StringBuilder result) {

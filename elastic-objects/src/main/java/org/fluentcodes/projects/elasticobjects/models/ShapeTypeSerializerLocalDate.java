@@ -54,7 +54,7 @@ public class ShapeTypeSerializerLocalDate implements ShapeTypeSerializerInterfac
                 .plusDays(days);
             return converted;
         }
-        throw new EoInternalException("Not a parsable input object for " + object.getClass());
+        throw new EoInternalException(object.getClass() + " is not a parsable input object for LocalDate.");
     }
 
     @Override

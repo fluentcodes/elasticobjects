@@ -1,7 +1,9 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.fluentcodes.projects.elasticobjects.EoChild;
@@ -324,7 +326,11 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
             } else {
                 update.append(fieldConfig.getFieldName());
             }
-            statement.addValue(eo.get(fieldKey));
+            Object object = eo.get(fieldKey);
+            if (object instanceof Date) {
+                object = new Timestamp(((Date)object).getTime());
+            }
+            statement.addValue(object);
             update.append(" = ?, ");
         }
         statement.append(update.toString().replaceAll(", $", ""));
@@ -365,7 +371,11 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
             }
             insert.append(", ");
             insertValues.append("?, ");
-            statement.addValue(eo.get(fieldKey));
+            Object object = eo.get(fieldKey);
+            if (object instanceof Date) {
+                object = new Timestamp(((Date)object).getTime());
+            }
+            statement.addValue(object);
         }
         statement.append(insert.toString().replaceAll(", $", ")") +
             insertValues.toString().replaceAll(", $", ")"));

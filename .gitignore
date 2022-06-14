@@ -16,5 +16,8 @@ builder-eo/
 builder-sandboxes/
 builder-projects/
 stadtbook/*
+stadtbook-de/*
+stadtbook-input
+stadtbook-wp/*
 eo.pfx
 .DS_Store

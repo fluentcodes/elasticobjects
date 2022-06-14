@@ -52,16 +52,18 @@ public class DbSqlReadCall extends ListCall implements ConfigReadCommand {
         return queryFilterList !=null && !queryFilterList.isEmpty();
     }
 
-    public void addQueryFilterList(Object filter) {
+    public DbSqlReadCall addQueryFilterList(Object filter) {
         if (this.queryFilterList == null) {
             this.queryFilterList = new ArrayList<>();
         }
         this.queryFilterList.add(filter);
+        return this;
     }
 
     public void setQueryFilterList(List<Object> queryFilterList) {
         this.queryFilterList = queryFilterList;
     }
+
     public void addQueryFilter(Object filter) {
         if (queryFilterList == null) {
             queryFilterList = new ArrayList<>();
@@ -78,11 +80,12 @@ public class DbSqlReadCall extends ListCall implements ConfigReadCommand {
         return this;
     }
 
-    public void addQueryFilterMap(String key, Object filter) {
+    public DbSqlReadCall addQueryFilterMap(String key, Object filter) {
         if (queryFilterMap == null) {
             queryFilterMap = new LinkedHashMap<>();
         }
         this.queryFilterMap.put(key, filter);
+        return this;
     }
 
     public boolean hasQueryFilterMap() {
@@ -106,8 +109,9 @@ public class DbSqlReadCall extends ListCall implements ConfigReadCommand {
         return order;
     }
 
-    public void setOrder(String order) {
+    public DbSqlReadCall setOrder(String order) {
         this.order = order;
+        return this;
     }
 
     @Override

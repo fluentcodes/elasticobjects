@@ -18,14 +18,20 @@ public class OrTest {
 
     //static final Pattern ifPattern = Pattern.compile("(key).*");
     @Test
-    public void eq_testString_test__filter_eoString__true() {
+    public void filter_testString_eq_test() {
         Or or = new Or(AnObject.F_MY_STRING + " eq test");
         Assert.assertEquals(AnObject.F_MY_STRING, or.getAnd(0).getCondition(0).getKey());
         Assert.assertEquals("test", or.getAnd(0).getCondition(0).getValue());
-        Assert.assertEquals(AnObject.F_MY_STRING + "=:" + AnObject.F_MY_STRING + "_0 ", or.getAnd(0).getCondition(0).createQuery(new HashMap<>()));
-        Assert.assertEquals("(" + AnObject.F_MY_STRING + "=:" + AnObject.F_MY_STRING + "_0 )", or.createQuery());
         EoRoot eo = AndTest.TEST_STRING_DEV;
         Assertions.assertThat(or.filter(eo)).isTrue();
+    }
+
+    @Test
+    public void addSql_testString_eq_test() {
+        Or or = new Or(AnObject.F_MY_STRING + " eq test");
+        StringBuilder sql = new StringBuilder("select * from " + AnObject.class.getSimpleName() + " where 1=1");
+        or.addSql(sql);
+        Assert.assertEquals("select * from AnObject where 1=1 and  ( myString = ?  ) ", sql.toString());
     }
 
     @Test

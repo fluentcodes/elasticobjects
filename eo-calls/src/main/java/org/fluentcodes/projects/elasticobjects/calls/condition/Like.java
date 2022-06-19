@@ -24,21 +24,6 @@ public class Like extends ConditionImpl {
     }
 
     @Override
-    public void createQuery(StringBuilder sql, List<Object> values) {
-        sql.append( getKey() + " like ?");
-        values.add(getObject());
-    }
-
-    @Override
-    public String createQuery(Map<String, Object> keyValues) {
-        StringBuilder builder = new StringBuilder();
-        String idKey = getKey() + "_" + keyValues.size();
-        keyValues.put(idKey, getValue());
-        builder.append("" + getKey() + "like :" + idKey + " ");
-        return builder.toString();
-    }
-
-    @Override
     public Object addSql(StringBuilder statement) {
         statement.append("" + getKey() + " like ? ");
         return getValue();

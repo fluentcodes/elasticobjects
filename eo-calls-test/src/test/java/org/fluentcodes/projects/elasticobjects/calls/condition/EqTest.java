@@ -1,5 +1,8 @@
 package org.fluentcodes.projects.elasticobjects.calls.condition;
 
+import static org.fluentcodes.projects.elasticobjects.calls.condition.AndTest.ANOBJECT_BASE_SQL;
+import static org.fluentcodes.projects.elasticobjects.calls.condition.AndTest.ANOBJECT_RESULT_SQL;
+
 import org.assertj.core.api.Assertions;
 import org.fluentcodes.projects.elasticobjects.EoRoot;
 import org.fluentcodes.projects.elasticobjects.domain.test.AnObject;
@@ -48,11 +51,11 @@ public class EqTest {
     }
 
     @Test
-    public void testString_test__createQuery__expected() {
+    public void createQuery_testString_test() {
         Eq eq = new Eq(AnObject.F_MY_STRING, "test");
-        Assert.assertEquals(AnObject.F_MY_STRING, eq.getKey());
-        Assert.assertEquals("test", eq.getValue());
-        Assert.assertEquals(AnObject.F_MY_STRING + "=:" + AnObject.F_MY_STRING + "_0 ", eq.createQuery(new HashMap<>()));
+        StringBuilder sql = new StringBuilder(ANOBJECT_BASE_SQL);
+        eq.addSql(sql);
+        Assert.assertEquals(ANOBJECT_RESULT_SQL, sql.toString());
     }
 
 }

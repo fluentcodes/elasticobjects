@@ -21,36 +21,24 @@ public class AndTest {
             .get();
     public static final String TEST_STRING = "{\"myString\": \"test\"}";
     public static final EoRoot TEST_STRING_DEV = ObjectProviderDev.createEo(TEST_STRING);
-
+    public static final String ANOBJECT_BASE_SQL = "select * from " + AnObject.class.getSimpleName() + " where 1=1 and ";
+    public static final String ANOBJECT_RESULT_SQL = "select * from AnObject where 1=1 and myString = ? ";
     @Test
-    public void eq_testString_string__createQuery__expected() {
+    public void createQuery_testString_eq_test() {
+        StringBuilder sql = new StringBuilder(ANOBJECT_BASE_SQL);
         And and = new And(new Eq(AnObject.F_MY_STRING, "test"));
-        Assertions
-                .assertThat(and.getCondition(0).getKey())
-                .isEqualTo(AnObject.F_MY_STRING);
-        Assertions
-                .assertThat(and.getCondition(0).getValue())
-                .isEqualTo("test");
-        Assertions
-                .assertThat(and.getCondition(0).createQuery(new HashMap<>()))
-                .isEqualTo("" + AnObject.F_MY_STRING + "=:" + AnObject.F_MY_STRING + "_0 ");
-        Assert.assertEquals(S_STRING, and.getCondition(0).getValue());
+        and.addSql(sql);
+        Assert.assertEquals(ANOBJECT_RESULT_SQL, sql.toString());
     }
 
     @Test
-    public void eq_key0_test_and_eq_key1_testOther__createQuery__expected() {
+    public void createQuery_2Eq() {
+        StringBuilder sql = new StringBuilder(ANOBJECT_BASE_SQL);
         And and = new And(
                 new Eq("key0", "test"),
                 new Eq("key1", "stringOther"));
-        Assertions
-                .assertThat(and.getCondition(0).getValue())
-                .isEqualTo("test");
-        Assertions
-                .assertThat(and.getCondition(1).getKey())
-                .isEqualTo("key1");
-        Assertions
-                .assertThat(and.getCondition(1).createQuery(new HashMap<>()))
-                .isEqualTo("key1=:key1_0 ");
+        and.addSql(sql);
+        Assert.assertEquals("select * from AnObject where 1=1 and key0 = ?  and key1 = ? ", sql.toString());
     }
 
     @Test

@@ -24,8 +24,6 @@ public interface Condition {
 
     String getOperator();
 
-    String createQuery(final Map<String, Object> keyValues);
-
     Object addSql(StringBuilder statement);
 
     String getKey();
@@ -35,6 +33,4 @@ public interface Condition {
     boolean filter(final List row);
 
     boolean filter(final EOInterfaceScalar eo);
-
-    void createQuery(StringBuilder sql, List<Object> values) ;
 }

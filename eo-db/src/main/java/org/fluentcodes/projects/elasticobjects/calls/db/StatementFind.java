@@ -35,15 +35,6 @@ public class StatementFind extends StatementPreparedValues {
         super(SqlType.FIND);
     }
 
-    public StatementFind(final String statement, Or or) {
-        super(SqlType.FIND);
-        StringBuilder sqlStatement = new StringBuilder(statement);
-        List<Object> values = new ArrayList<>();
-        or.createQuery(sqlStatement, values);
-        append(sqlStatement.toString());
-        addValues(values);
-    }
-
     public StatementFind(final String statement, List<Object> conditionList) {
         super(SqlType.FIND);
         append(statement);

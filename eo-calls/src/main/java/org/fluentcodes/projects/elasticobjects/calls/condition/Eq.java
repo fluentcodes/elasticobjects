@@ -27,24 +27,9 @@ public class Eq extends ConditionImpl {
     }
 
     @Override
-    public String createQuery(Map<String, Object> keyValues) {
-        StringBuilder builder = new StringBuilder();
-        String idKey = getKey() + "_" + keyValues.size();
-        keyValues.put(idKey, getValue());
-        builder.append("" + getKey() + "=:" + idKey + " ");
-        return builder.toString();
-    }
-
-    @Override
     public Object addSql(StringBuilder statement) {
         statement.append("" + getKey() + " = ? ");
         return getValue();
-    }
-
-    @Override
-    public void createQuery(StringBuilder sql, List<Object> values) {
-        sql.append(getKey() + " = ?");
-        values.add(getObject());
     }
 
     public String createCondition() {

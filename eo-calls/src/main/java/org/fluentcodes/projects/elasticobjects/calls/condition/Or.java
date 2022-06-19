@@ -75,35 +75,6 @@ public class Or {
         return this.keyValues;
     }
 
-    public void createQuery(final StringBuilder sql, final List<Object> values) {
-        this.keyValues = new HashMap<>();
-        int counter = 0;
-
-        for (And and : andList) {
-            sql.append(" (");
-            and.createQuery(sql, values);
-            counter++;
-            sql.append(") ");
-            if (counter != andList.size()) {
-                sql.append(" or ");
-            }
-        }
-    }
-
-    public String createQuery() {
-        StringBuilder sql = new StringBuilder();
-        this.keyValues = new HashMap<>();
-        int counter = 0;
-        for (And and : andList) {
-            sql.append(and.createQuery(keyValues));
-            counter++;
-            if (counter != andList.size()) {
-                sql.append(" or ");
-            }
-        }
-        return sql.toString();
-    }
-
     public boolean filter(List row) {
         if (row == null) {
             LOG.warn("Null row should not occure!");

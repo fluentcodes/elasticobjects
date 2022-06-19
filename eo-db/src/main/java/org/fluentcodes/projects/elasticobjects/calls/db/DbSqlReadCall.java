@@ -123,36 +123,28 @@ public class DbSqlReadCall extends ListCall implements ConfigReadCommand {
     }
 
     private List<Map<String, Object>> readRaw(final EOInterfaceScalar eo) {
-        //getListParams().initDb();
         StatementFind statementFind = null;
-        if (eo.hasEo(CONDITIONS)) {
-            statementFind = new StatementFind(dbSqlConfig.getSql() + " where ", new Or((String) eo.get(CONDITIONS)));
-        } else if (eo.hasEo(CONDITION_LIST)) {
-            statementFind = new StatementFind(dbSqlConfig.getSql(), (List) eo.get(CONDITION_LIST));
+        if (hasQueryFilter()) {
+            statementFind = new StatementFind(dbSqlConfig.getSql(), queryFilterList);
         }
-        else {
-            if (hasQueryFilter()) {
-                statementFind = new StatementFind(dbSqlConfig.getSql(), queryFilterList);
+        if (hasQueryFilterMap()) {
+            if (statementFind!=null) {
+                statementFind.addFilterMap(queryFilterMap);
             }
-            if (hasQueryFilterMap()) {
-                if (statementFind!=null) {
-                    statementFind.addFilterMap(queryFilterMap);
-                }
-                else {
-                    statementFind = new StatementFind(dbSqlConfig.getSql(), queryFilterMap);
-                }
+            else {
+                statementFind = new StatementFind(dbSqlConfig.getSql(), queryFilterMap);
             }
-            if (hasFilterString()) {
-                if (statementFind!=null) {
-                    statementFind.addFilterString(filterString);
-                }
-                else {
-                    statementFind = new StatementFind(dbSqlConfig.getSql(), filterString);
-                }
+        }
+        if (hasFilterString()) {
+            if (statementFind!=null) {
+                statementFind.addFilterString(filterString);
             }
-            if (statementFind == null) {
-                statementFind = new StatementFind(dbSqlConfig.getSql(), eo);
+            else {
+                statementFind = new StatementFind(dbSqlConfig.getSql(), filterString);
             }
+        }
+        if (statementFind == null) {
+            statementFind = new StatementFind(dbSqlConfig.getSql(), eo);
         }
         return statementFind.read(
             dbConfig.getConnection(),

@@ -22,17 +22,6 @@ public class NotExists extends ConditionImpl {
     }
 
     @Override
-    public void createQuery(StringBuilder sql, List<Object> values) {
-        sql.append( getKey() + " is null ");
-    }
-
-    @Override
-    public String createQuery(Map<String, Object> keyValues) {
-        //TODO
-        return "";
-    }
-
-    @Override
     public Object addSql(StringBuilder statement) {
         statement.append(getKey() + " is null");
         return null;

@@ -109,31 +109,6 @@ public class And {
         this.conditions.addAll(conditions.getConditions());
     }
 
-    public void createQuery(StringBuilder sql, List<Object> values) {
-        int counter = 0;
-        for (Condition condition : conditions) {
-            condition.createQuery(sql, values);
-            counter++;
-            if (counter != conditions.size()) {
-                sql.append(" and ");
-            }
-        }
-    }
-
-    public String createQuery(Map<String, Object> keyValues) {
-        StringBuilder sql = new StringBuilder("(");
-        int fieldCounter = 0;
-        for (Condition condition : conditions) {
-            sql.append(condition.createQuery(keyValues));
-            fieldCounter++;
-            if (fieldCounter != conditions.size()) {
-                sql.append(" and ");
-            }
-        }
-        sql.append(")");
-        return sql.toString();
-    }
-
     public List<Object> addSql(StringBuilder statement) {
         List<Object> values = new ArrayList<>();
         int fieldCounter = 0;

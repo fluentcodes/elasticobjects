@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.stadtbook.calls.postaladdress;
 
-import static org.fluentcodes.projects.stadtbook.calls.EventCall.deriveDateName;
+import static org.fluentcodes.projects.stadtbook.domain.DateHelper.deriveDateName;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,7 +10,6 @@ import java.util.Set;
 import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.fluentcodes.projects.stadtbook.domain.Event;
 import org.fluentcodes.projects.stadtbook.domain.PostalAddress;
 
 public abstract class PostalAddressCall extends CallImpl {

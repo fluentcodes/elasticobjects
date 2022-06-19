@@ -1,8 +1,9 @@
 package org.fluentcodes.projects.stadtbook.calls.postaladdress;
 
-import static org.fluentcodes.projects.stadtbook.calls.CreateHtmlPageDayCall.DB_H2_FILE;
+import static org.fluentcodes.projects.stadtbook.calls.CreateDayCall.DB_H2_FILE;
 import static org.fluentcodes.projects.stadtbook.calls.EventCall.INPUT_DIR;
 
+import io.netty.channel.local.LocalAddress;
 import java.util.List;
 import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.EoChild;
@@ -21,6 +22,8 @@ public class PostalAddressReadAndPersistCall extends PostalAddressCall {
   public static final String EVENTS = "events";
   public static final String LIST_POSTAL_ADDRESS = "/(List,PostalAddress)address";
   public static final String PATH = "/(List,PostalAddress)postalAddress";
+  public static final String POSTAL_ADDRESS_XLSX = "PostalAddress.xlsx";
+  public static final String LOCATIONS = "locations";
   private ParserPostalAddressCall parserCall;
   private Boolean persistXlsx = false;
   private Boolean persistDb = false;
@@ -44,6 +47,7 @@ public class PostalAddressReadAndPersistCall extends PostalAddressCall {
     parserCall.setStopDate(getStopDate());
     parserCall.setTest(isTest());
     parserCall.setTargetPath(LIST_POSTAL_ADDRESS);
+
     String fileName = parserCall.getFileName() + ".xlsx";
 
     XlsxReadCall readCall = new XlsxReadCall(INPUT_DIR, fileName);
@@ -72,7 +76,13 @@ public class PostalAddressReadAndPersistCall extends PostalAddressCall {
     this.parserCall = parserCall;
     return this;
   }
-
+  public static final void readXlsx(EOInterfaceScalar eo) {
+    XlsxReadCall readCall = new XlsxReadCall(INPUT_DIR, POSTAL_ADDRESS_XLSX);
+    readCall.setTargetPath("(List,PostalAddress)" + LOCATIONS);
+    readCall.getListParams().setRowHead(0);
+    readCall.execute(eo);
+    LOGGER.info("Readed " + ((EoChild) eo.getEo(LOCATIONS)).size() + " from " + POSTAL_ADDRESS_XLSX + " mapped to " + LOCATIONS);
+  }
   public Boolean getPersistXlsx() {
     return persistXlsx;
   }

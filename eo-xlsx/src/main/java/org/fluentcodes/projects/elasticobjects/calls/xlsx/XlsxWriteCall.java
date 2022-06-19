@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -17,14 +19,12 @@ import org.fluentcodes.projects.elasticobjects.JSONSerializationType;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileWriteCall;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Write an Excel sheet specified by fileConfigKey referencing to a {@link FileConfig} configuration.
  */
 public class XlsxWriteCall extends XlsxCall {
-    Logger LOG = LoggerFactory.getLogger(XlsxWriteCall.class);
+    Logger LOG = LogManager.getLogger(XlsxWriteCall.class);
     private FileWriteCall fileWriteCall;
 
 

@@ -1,6 +1,8 @@
 package org.fluentcodes.projects.elasticobjects.calls.db;
 
 import java.sql.Connection;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.DbConfig;
@@ -12,14 +14,13 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 /**
  * Executes a list of sql statements within DbSqlConfig.
  */
 public class DbSqlExecuteCall extends CallImpl implements ConfigWriteCommand {
-    public static final Logger LOGGER = LoggerFactory.getLogger(DbSqlExecuteCall.class);
+    public static final Logger LOGGER = LogManager.getLogger(DbSqlExecuteCall.class);
     String dbConfigKey;
     DbConfig dbConfig;
     String dbSqlConfigKey;

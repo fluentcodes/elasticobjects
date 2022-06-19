@@ -16,7 +16,7 @@ import java.util.Map;
 public class Or {
     public static final String DELIMITER = "||";
     private static final Logger LOG = LogManager.getLogger(Or.class);
-    private static final String SPLITTER = "\\|\\|";
+    private static final String OR_SPLITTER = "\\|\\|";
     List<And> andList;
     Map<String, Object> keyValues;
 
@@ -48,7 +48,7 @@ public class Or {
         if (orAsString == null || orAsString.isEmpty()) {
             return;
         }
-        String[] andArray = orAsString.split(SPLITTER);
+        String[] andArray = orAsString.split(OR_SPLITTER);
         for (String andAsString : andArray) {
             andList.add(new And(andAsString));
         }
@@ -168,5 +168,25 @@ public class Or {
             }
         }
         return builder.toString();
+    }
+
+    public List<Object> addSql(StringBuilder statement) {
+        List<Object> values = new ArrayList<>();
+        int orCounter = 0;
+        if (andList.isEmpty()) {
+            return values;
+        }
+        statement.append(" and ");
+        for (And and: andList) {
+            if (orCounter>0) {
+                statement.append(" or ");
+            }
+            statement.append(" ( ");
+            List<Object> andValues = and.addSql(statement);
+            values.addAll(andValues);
+            statement.append(" ) ");
+            orCounter++;
+        }
+        return values;
     }
 }

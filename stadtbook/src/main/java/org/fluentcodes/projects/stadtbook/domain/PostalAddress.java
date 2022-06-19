@@ -12,6 +12,7 @@ public class PostalAddress extends ContactPoint{
   private String streetAddress;
   private String postalCode;
   private String naturalId;
+  private String type;
 
   public PostalAddress() {
 
@@ -26,6 +27,31 @@ public class PostalAddress extends ContactPoint{
     this.naturalId =
         getName().replaceAll("[^\\w]", "")
             .toUpperCase(Locale.ROOT);
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public boolean hasType() {
+    return this.type !=null && !this.type.isEmpty();
+  }
+
+  public boolean filterType(String filter) {
+    if (filter==null || filter.isEmpty()) {
+      return false;
+    }
+    if (!hasType()) {
+      return false;
+    }
+    if (this.type.matches(filter)) {
+      return true;
+    }
+    return false;
   }
 
   public String getStreetAddress() {

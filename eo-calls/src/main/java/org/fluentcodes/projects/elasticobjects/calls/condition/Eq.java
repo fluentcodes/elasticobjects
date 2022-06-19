@@ -14,59 +14,37 @@ import java.util.Map;
 /**
  * Created by werner.diwischek on 08.01.18.
  */
-public class Eq implements Condition {
+public class Eq extends ConditionImpl {
     private static final Logger LOG = LogManager.getLogger(Eq.class);
-    private Object object;
-    private String key;
-
-    public Eq() {
-    }
 
     public Eq(String key, Object object) {
-        this.key = key;
-        this.object = object;
-    }
-
-    public void setObject(Object object) {
-        this.object = object;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
+        super(key, object);
     }
 
     @Override
-    public String getKey() {
-        return key;
-    }
-
-    @Override
-    public Object getValue() {
-        return object;
-    }
-
-    @Override
-    public boolean compare(Object object) {
-        if (object == null) {
-            return this.object == null;
-        }
-        //TODO
-        return true;
+    public String getOperator() {
+        return Condition.EQ;
     }
 
     @Override
     public String createQuery(Map<String, Object> keyValues) {
         StringBuilder builder = new StringBuilder();
-        String idKey = key + "_" + keyValues.size();
+        String idKey = getKey() + "_" + keyValues.size();
         keyValues.put(idKey, getValue());
-        builder.append("" + key + "=:" + idKey + " ");
+        builder.append("" + getKey() + "=:" + idKey + " ");
         return builder.toString();
     }
 
     @Override
+    public Object addSql(StringBuilder statement) {
+        statement.append("" + getKey() + " = ? ");
+        return getValue();
+    }
+
+    @Override
     public void createQuery(StringBuilder sql, List<Object> values) {
-        sql.append( key + " = ?");
-        values.add(object);
+        sql.append(getKey() + " = ?");
+        values.add(getObject());
     }
 
     public String createCondition() {
@@ -80,10 +58,10 @@ public class Eq implements Condition {
             return true;
         }
         try {
-            Integer i = Integer.parseInt(key);
+            Integer i = Integer.parseInt(getKey());
             if (i < row.size()) {
                 Object value = row.get(i);
-                return new ShapeTypeSerializerString().compare(value, this.object);
+                return new ShapeTypeSerializerString().compare(value, getObject());
             } else {
                 return false;
             }
@@ -99,18 +77,9 @@ public class Eq implements Condition {
             return true;
         }
         try {
-            return new ShapeTypeSerializerString().compare(eo.get(key), new Parser(TemplateMarker.SQUARE, (String) this.object).parse(eo));
+            return new ShapeTypeSerializerString().compare(eo.get(getKey()), new Parser(TemplateMarker.SQUARE, (String) getObject()).parse(eo));
         } catch (EoException e) {
             return false;
         }
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(this.key);
-        builder.append(" eq ");
-        builder.append(this.object.toString());
-        return builder.toString();
     }
 }

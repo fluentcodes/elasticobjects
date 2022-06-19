@@ -72,6 +72,10 @@ public class StatementPreparedValues {
         return statement.toString();
     }
 
+     StringBuilder getStatementAsIs() {
+        return statement;
+    }
+
     public void append(String add) {
         statement.append(add);
     }
@@ -91,6 +95,12 @@ public class StatementPreparedValues {
     }
 
     public void addValue(final Object value) {
+        if (value instanceof LocalDateTime) {
+            LocalDateTime localDateTime = (LocalDateTime) value;
+            Timestamp converted = Timestamp.valueOf(localDateTime);
+            values.add(converted);
+            return;
+        }
         values.add(value);
     }
 

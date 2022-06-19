@@ -10,39 +10,32 @@ import java.util.Map;
 /**
  * Created by werner.diwischek on 08.01.18.
  */
-public class NotExists implements Condition {
+public class NotExists extends ConditionImpl {
     private static final Logger LOG = LogManager.getLogger(NotExists.class);
-    private final String key;
 
     public NotExists(String key) {
-        this.key = key;
+        super(key, null);
     }
 
-    @Override
-    public String getKey() {
-        return key;
-    }
-
-    @Override
-    public Object getValue() {
-        return null;
-    }
-
-    @Override
-    public boolean compare(Object object) {
-        //TODO
-        return true;
+    public String getOperator() {
+        return Condition.NEX;
     }
 
     @Override
     public void createQuery(StringBuilder sql, List<Object> values) {
-        sql.append( key + " is null ");
+        sql.append( getKey() + " is null ");
     }
 
     @Override
     public String createQuery(Map<String, Object> keyValues) {
         //TODO
         return "";
+    }
+
+    @Override
+    public Object addSql(StringBuilder statement) {
+        statement.append(getKey() + " is null");
+        return null;
     }
 
     public String createCondition() {
@@ -57,7 +50,7 @@ public class NotExists implements Condition {
             return true;
         }
         try {
-            Integer i = Integer.parseInt(key);
+            Integer i = Integer.parseInt(getKey());
             if (i < row.size()) {
                 return row.get(i) == null;
             } else {
@@ -76,17 +69,10 @@ public class NotExists implements Condition {
             return true;
         }
         try {
-            return eo.get(key) == null;
+            return eo.get(getKey()) == null;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(this.key);
-        return builder.toString();
     }
 }

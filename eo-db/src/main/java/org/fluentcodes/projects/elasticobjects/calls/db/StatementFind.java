@@ -48,17 +48,33 @@ public class StatementFind extends StatementPreparedValues {
         super(SqlType.FIND);
         append(statement);
         for (Object value : conditionList) {
-            /**if (value instanceof LocalDateTime) {
-             addValue();
-             continue;
-             }*/
-            if (value instanceof LocalDateTime) {
-                LocalDateTime localDateTime = (LocalDateTime) value;
-                //Timestamp converted = Timestamp.valueOf(localDateTime);
-                Timestamp converted = Timestamp.valueOf(localDateTime);
-                addValue(converted);
-                continue;
-            }
+            addValue(value);
+        }
+    }
+
+    public StatementFind(final String statement, Map<String, Object> filterMap) {
+        super(SqlType.FIND);
+        append(statement);
+        addFilterMap(filterMap);
+    }
+
+    public StatementFind(final String statement, String filterString) {
+        super(SqlType.FIND);
+        append(statement);
+        addFilterString(filterString);
+    }
+
+    public void addFilterMap(Map<String, Object> conditionList) {
+        for (Map.Entry<String, Object> entry: conditionList.entrySet()) {
+            getStatementAsIs().append(" and " + entry.getKey() + " = ?");
+            addValue(entry.getValue());
+        }
+    }
+
+    public void addFilterString(String filterString) {
+        Or or = new Or(filterString);
+        List<Object> values = or.addSql(getStatementAsIs());
+        for (Object value:values) {
             addValue(value);
         }
     }

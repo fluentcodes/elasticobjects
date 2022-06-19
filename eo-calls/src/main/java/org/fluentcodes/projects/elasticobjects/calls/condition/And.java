@@ -1,6 +1,5 @@
 package org.fluentcodes.projects.elasticobjects.calls.condition;
 
-import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fluentcodes.projects.elasticobjects.EO;
@@ -19,7 +18,7 @@ import java.util.regex.Matcher;
 public class And {
     public static final String DELIMITER = "&&";
     private static final Logger LOG = LogManager.getLogger(And.class);
-    private static final String SPLITTER = "\\&\\&";
+    private static final String AND_SPLITTER = "\\&\\&";
     List<Condition> conditions;
 
     public And() {
@@ -45,7 +44,7 @@ public class And {
         if (andAsString == null || andAsString.isEmpty()) {
             return;
         }
-        String[] andArray = andAsString.split(SPLITTER);
+        String[] andArray = andAsString.split(AND_SPLITTER);
         for (String and : andArray) {
             Matcher matcher = Condition.ifPattern.matcher(and);
             if (!matcher.find()) {
@@ -133,6 +132,22 @@ public class And {
         }
         sql.append(")");
         return sql.toString();
+    }
+
+    public List<Object> addSql(StringBuilder statement) {
+        List<Object> values = new ArrayList<>();
+        int fieldCounter = 0;
+        for (Condition condition : conditions) {
+            Object value = condition.addSql(statement);
+            if (value!=null) {
+                values.add(value);
+            }
+            fieldCounter++;
+            if (fieldCounter != conditions.size()) {
+                statement.append(" and ");
+            }
+        }
+        return values;
     }
 
     public boolean filter(List<Object> row) {

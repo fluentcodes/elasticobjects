@@ -10,48 +10,36 @@ import org.fluentcodes.projects.elasticobjects.models.ShapeTypeSerializerString;
 /**
  * Created by werner.diwischek on 08.01.18.
  */
-public class Match implements Condition {
+public class Match extends ConditionImpl {
     private static final Logger LOG = LogManager.getLogger(Match.class);
-    private final Object object;
-    private final String key;
 
     public Match(String key, Object object) {
-        this.key = key;
-        this.object = object;
+        super(key, object);
     }
 
-    @Override
-    public String getKey() {
-        return key;
-    }
-
-    @Override
-    public Object getValue() {
-        return object;
-    }
-
-    @Override
-    public boolean compare(Object object) {
-        if (object == null) {
-            return this.object == null;
-        }
-        //TODO
-        return true;
+    public String getOperator() {
+        return Condition.MATCH;
     }
 
     @Override
     public void createQuery(StringBuilder sql, List<Object> values) {
-        sql.append( key + " like ?");
-        values.add(object);
+        sql.append( getKey() + " like ?");
+        values.add(getValue());
     }
 
     @Override
     public String createQuery(Map<String, Object> keyValues) {
         StringBuilder builder = new StringBuilder();
-        String idKey = key + "_" + keyValues.size();
+        String idKey = getKey() + "_" + keyValues.size();
         keyValues.put(idKey, getValue());
-        builder.append("" + key + "like :" + idKey + " ");
+        builder.append("" + getKey() + "like :" + idKey + " ");
         return builder.toString();
+    }
+
+    @Override
+    public Object addSql(StringBuilder statement) {
+        statement.append("" + getKey() + " like ? ");
+        return getValue();
     }
 
     @Override
@@ -61,7 +49,7 @@ public class Match implements Condition {
             return true;
         }
         try {
-            Integer i = Integer.parseInt(key);
+            Integer i = Integer.parseInt(getKey());
             if (i < row.size()) {
                 String value = row.get(i).toString();
                 String objectString = getValue().toString();
@@ -82,7 +70,7 @@ public class Match implements Condition {
             return true;
         }
         try {
-            Object value = eo.get(key);
+            Object value = eo.get(getKey());
             String valueString = new ShapeTypeSerializerString().asObject(value);
             String objectString = getValue().toString();
             if (valueString == null) {
@@ -97,15 +85,4 @@ public class Match implements Condition {
         }
         return false;
     }
-
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(this.key);
-        builder.append(" like ");
-        builder.append(this.object.toString());
-        return builder.toString();
-    }
-
-
 }

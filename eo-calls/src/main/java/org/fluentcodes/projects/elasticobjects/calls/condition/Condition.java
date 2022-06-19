@@ -17,11 +17,16 @@ public interface Condition {
     String NEX = "nex";
     String LIKE = "like";
     String NE = "ne";
+    String CONTAINS = "in";
     static Pattern ifPattern = Pattern.compile("[\\s]*([^\\s]*?)[\\s]+(eq\\s+|ne\\s+|equals\\s+|ex|nex|le\\s+|ge\\s+|notEquals\\s+|like\\s+|notLike\\s+|match\\s+|contains\\s+|in\\s+)(.*)");
 
     boolean compare(Object object);
 
+    String getOperator();
+
     String createQuery(final Map<String, Object> keyValues);
+
+    Object addSql(StringBuilder statement);
 
     String getKey();
 

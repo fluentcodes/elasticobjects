@@ -44,6 +44,7 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
         create.append(" (");
         this.uniqueList = new ArrayList<>();
         this.foreignKeys = new ArrayList<>();
+        String mariadbId = "";
         for (String fieldKey : modelConfig.getFieldKeys()) {
             FieldConfig fieldConfig = modelConfig.getField(fieldKey);
             if (fieldConfig.getProperties().hasIdKey()) {
@@ -54,7 +55,8 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
             }
             create.append(fieldConfig.getFieldName());
             if (fieldKey.equals(modelConfig.getIdKey())) {
-                create.append(" identity primary key");
+                create.append(" MEDIUMINT NOT NULL AUTO_INCREMENT ");
+                mariadbId = " primary key (id) ";
             } else {
                 create.append(" ");
                 create.append(fieldConfig.getSqlType());
@@ -68,9 +70,15 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
             }
             create.append(", ");
         }
-        drop.append("Drop table " + getTable() + " if exists");
+        drop.append("Drop table  if exists " + getTable());
         this.dropStatement = drop.toString();
-        this.createStatement = create.toString().replaceAll(", $", ")");
+        if (!mariadbId.isEmpty()) {
+            String replace = ", " + mariadbId + ")";
+            this.createStatement = create.toString().replaceAll(", $", replace);
+        }
+        else {
+            this.createStatement = create.toString().replaceAll(", $", ")");
+        }
     }
 
     public boolean hasForeignKeys() {
@@ -379,7 +387,7 @@ public class DbModelConfig extends PermissionConfig implements DbModelInterface 
 
     public StatementPreparedValues createDeleteStatement(EoChild eo) {
         StatementPreparedValues statement = new StatementPreparedValues(StatementPreparedValues.SqlType.DELETE);
-        StringBuilder delete = new StringBuilder("DELETE ");
+        StringBuilder delete = new StringBuilder("DELETE from ");
         delete.append(getTable());
         statement.append(delete.toString().replaceAll(", $", ""));
         addIdentifier(eo, statement);

@@ -9,6 +9,7 @@ import static java.sql.Types.INTEGER;
 import static java.sql.Types.LONGNVARCHAR;
 import static java.sql.Types.LONGVARBINARY;
 import static java.sql.Types.LONGVARCHAR;
+import static java.sql.Types.REAL;
 import static java.sql.Types.TIMESTAMP;
 import static java.sql.Types.VARCHAR;
 
@@ -91,7 +92,8 @@ public class StatementFind extends StatementPreparedValues {
         List row = new ArrayList();
         for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
             int type = resultSet.getMetaData().getColumnType(i);
-            switch (resultSet.getMetaData().getColumnType(i)) {
+            int columnType = resultSet.getMetaData().getColumnType(i);
+            switch (columnType) {
                 case VARCHAR:
                     row.add(resultSet.getString(i));
                     break;
@@ -107,6 +109,9 @@ public class StatementFind extends StatementPreparedValues {
                     row.add(resultSet.getDouble(i));
                     break;
                 case FLOAT:
+                    row.add(resultSet.getFloat(i));
+                    break;
+                case REAL:
                     row.add(resultSet.getFloat(i));
                     break;
                 case BOOLEAN:

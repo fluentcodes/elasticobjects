@@ -3,7 +3,6 @@ package org.fluentcodes.projects.stadtbook.calls.postaladdress;
 import static org.fluentcodes.projects.stadtbook.calls.CreateDayCall.DB_H2_FILE;
 import static org.fluentcodes.projects.stadtbook.calls.EventCall.INPUT_DIR;
 
-import io.netty.channel.local.LocalAddress;
 import java.util.List;
 import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
 import org.fluentcodes.projects.elasticobjects.EoChild;

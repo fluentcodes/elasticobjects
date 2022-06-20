@@ -4,7 +4,7 @@
     "naturalId": "localMySql:core",
     "properties": {
       "dialect": "org.hibernate.dialect.MySQLInnoDBDialect",
-      "driver": "com.mysql.jdbc.Driver",
+      "driver": "com.mariadb.jdbc.Driver",
       "schema": "core"
     },
     "module": "eo-db",
@@ -16,7 +16,7 @@
     "naturalId": "localMySql:test",
     "properties": {
       "dialect": "org.hibernate.dialect.MySQLInnoDBDialect",
-      "driver": "com.mysql.jdbc.Driver",
+      "driver": "org.mariadb.jdbc.Driver",
       "schema": "test"
     },
     "module": "eo-db",

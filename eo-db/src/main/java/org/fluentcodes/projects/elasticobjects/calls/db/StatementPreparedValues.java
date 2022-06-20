@@ -51,7 +51,10 @@ public class StatementPreparedValues {
                     preparedStatement.setFloat(counter, (Float) value);
                 } else if (value instanceof Boolean) {
                     preparedStatement.setBoolean(counter, (Boolean) value);
-                } else if (value instanceof Date) {
+                } else if (value instanceof Timestamp) {
+                    preparedStatement.setTimestamp(counter, (Timestamp) value);
+                }
+                else if (value instanceof Date) {
                     preparedStatement.setDate(counter, new java.sql.Date(((Date) value).getTime()));
                 } else if (value instanceof LocalDateTime) {
                     preparedStatement.setTimestamp(counter, Timestamp.valueOf((LocalDateTime) value));
@@ -98,6 +101,7 @@ public class StatementPreparedValues {
         if (value instanceof LocalDateTime) {
             LocalDateTime localDateTime = (LocalDateTime) value;
             Timestamp converted = Timestamp.valueOf(localDateTime);
+            //converted = new Timestamp(1000000);
             values.add(converted);
             return;
         }

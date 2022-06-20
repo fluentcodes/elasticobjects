@@ -68,7 +68,7 @@ public class DbConfig extends HostConfig {
         }
         try {
             Class.forName(getProperties().getDriver());
-            String url = getUrlPath();
+            String url = getProperties().getUrl();
             connection = DriverManager.getConnection(url, getProperties().getUser(), getProperties().getPassword());
             return connection;
         } catch (ClassNotFoundException | SQLException e) {

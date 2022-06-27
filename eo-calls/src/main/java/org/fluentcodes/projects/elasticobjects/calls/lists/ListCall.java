@@ -12,6 +12,8 @@ import org.fluentcodes.projects.elasticobjects.calls.CallImpl;
 import org.fluentcodes.projects.elasticobjects.calls.HostConfig;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileCall;
 import org.fluentcodes.projects.elasticobjects.calls.files.FileConfig;
+import org.fluentcodes.projects.elasticobjects.calls.templates.handler.Parser;
+import org.fluentcodes.projects.elasticobjects.calls.templates.handler.TemplateMarker;
 import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 import org.fluentcodes.projects.elasticobjects.models.ModelConfig;
 
@@ -29,6 +31,9 @@ public abstract class ListCall extends CallImpl implements ListParamsBeanInterfa
     private String hostConfigKey;
     private String fileConfigKey;
     private String fileName;
+    private String mapPath;
+    private Class mapClass;
+    private Class collectClass;
     private List<String> colKeys;
     private FileCall fileCall;
 
@@ -90,6 +95,53 @@ public abstract class ListCall extends CallImpl implements ListParamsBeanInterfa
     public ListCall setListParams(ListParamsBean listParams) {
         this.listParams = listParams;
         return this;
+    }
+
+    public String getMapPath() {
+        return mapPath;
+    }
+
+    public void setMapPath(String mapPath) {
+        this.mapPath = mapPath;
+    }
+
+    public Class getMapClass() {
+        return mapClass;
+    }
+
+    public Class<?> deriveMapClass() {
+        return hasMapClass()? mapClass: Map.class;
+    }
+
+    public boolean hasMapPath() {
+        return mapPath != null && !mapPath.isEmpty();
+    }
+
+    public boolean hasPlaceHolderMapPath() {
+        if (!hasMapPath()) {
+            return false;
+        }
+        return TemplateMarker.SQUARE.hasStartSequence(mapPath);
+    }
+
+    public boolean hasMapClass() {
+        return mapClass != null;
+    }
+
+    public void setMapClass(Class mapClass) {
+        this.mapClass = mapClass;
+    }
+
+    public Class getCollectClass() {
+        return collectClass;
+    }
+
+    public void setCollectClass(Class<?> collectClass) {
+        this.collectClass = collectClass;
+    }
+
+    public boolean hasCollectClass() {
+        return collectClass != null;
     }
 
     @Override
@@ -189,16 +241,45 @@ public abstract class ListCall extends CallImpl implements ListParamsBeanInterfa
 
     public void mapToTarget(EOInterfaceScalar eo, List<Map<String, Object>> result) {
         EOInterfaceScalar targetEo = eo;
+        EOInterfaceScalar mapEo = eo;
         if (hasTargetPath()) {
             targetEo = ((EoChild)eo).createChild(getTargetPath(), null);
+            if (hasPlaceHolderMapPath()) {
+                mapEo = EoRoot.ofClass(targetEo.getConfigMaps(), List.class, mapClass);
+            }
+            else {
+                mapEo = targetEo;
+            }
+
         }
         if (result == null || result.isEmpty()) {
             return;
         }
+
         for (int i = 0; i < result.size(); i++) {
             Map<String, Object> entry = result.get(i);
             String key = Integer.valueOf(i).toString();
-            targetEo.set(entry, key);
+            mapEo.set(entry, key);
+        }
+
+        if (!hasPlaceHolderMapPath()) {
+            return;
+        }
+
+        for (String key: ((EoChild)mapEo).keys()) {
+            EOInterfaceScalar entry = mapEo.getEo(key);
+            String target = Parser.replacePathValues(mapPath, entry);
+            if (!hasCollectClass()) {
+                targetEo.set(entry.get(), target);
+            }
+            else {
+                if (!targetEo.hasEo(target)) {
+                    targetEo.set(new ArrayList<>(), target);
+                }
+                EoChild listEo = (EoChild) targetEo.getEo(target);
+                String entryKey = Integer.valueOf(listEo.size()).toString();
+                listEo.set(entry.get(), entryKey);
+            }
         }
     }
 }

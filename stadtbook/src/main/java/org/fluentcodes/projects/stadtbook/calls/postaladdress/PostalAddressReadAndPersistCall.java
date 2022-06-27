@@ -1,7 +1,7 @@
 package org.fluentcodes.projects.stadtbook.calls.postaladdress;
 
-import static org.fluentcodes.projects.stadtbook.calls.CreateDayCall.DB_H2_FILE;
-import static org.fluentcodes.projects.stadtbook.calls.EventCall.INPUT_DIR;
+import static org.fluentcodes.projects.stadtbook.calls.pages.EventCall.INPUT_DIR;
+import static org.fluentcodes.projects.stadtbook.calls.parser.EventParseAndPersistCall.DB_KEY;
 
 import java.util.List;
 import org.fluentcodes.projects.elasticobjects.EOInterfaceScalar;
@@ -36,7 +36,7 @@ public class PostalAddressReadAndPersistCall extends PostalAddressCall {
       throw new EoException("No parser defined");
     }
     check();
-    DbSqlReadCall call = new DbSqlReadCall(DB_H2_FILE, "AllPostalAddress");
+    DbSqlReadCall call = new DbSqlReadCall(DB_KEY, "AllPostalAddress");
     call.getListParams().setRowEnd(100000);
     call.setTargetPath(PATH);
     call.execute(eo);

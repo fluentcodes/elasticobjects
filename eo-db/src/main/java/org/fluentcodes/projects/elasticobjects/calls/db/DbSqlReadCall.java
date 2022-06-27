@@ -50,6 +50,13 @@ public class DbSqlReadCall extends ListCall implements ConfigReadCommand {
         return queryFilterList !=null && !queryFilterList.isEmpty();
     }
 
+    public void addQueryFilterList(Object filter) {
+        if (this.queryFilterList == null) {
+            this.queryFilterList = new ArrayList<>();
+        }
+        this.queryFilterList.add(filter);
+    }
+
     public void setQueryFilterList(List<Object> queryFilterList) {
         this.queryFilterList = queryFilterList;
     }

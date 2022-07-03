@@ -32,9 +32,11 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoInternalException;
 import org.fluentcodes.projects.elasticobjects.models.ConfigMaps;
 
 public class StatementFind extends StatementPreparedValues {
+    private String order;
     public StatementFind() {
         super(SqlType.FIND);
     }
+
 
     public StatementFind(final String statement, List<Object> conditionList) {
         super(SqlType.FIND);
@@ -86,6 +88,18 @@ public class StatementFind extends StatementPreparedValues {
             }
         }
         checkHealth();
+    }
+
+    public boolean hasOrder() {
+        return order!=null && !order.isEmpty();
+    }
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
     }
 
     protected static List createRowList(final ResultSet resultSet) throws SQLException {
@@ -175,7 +189,11 @@ public class StatementFind extends StatementPreparedValues {
         }
         checkHealth();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(getStatement());
+            String usedStatement = getStatement();
+            if (hasOrder())  {
+                usedStatement = usedStatement + " order by " + order;
+            }
+            PreparedStatement preparedStatement = connection.prepareStatement(usedStatement);
             resolve(preparedStatement);
             ResultSet resultSet = null;
             try {

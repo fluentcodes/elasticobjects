@@ -1,6 +1,6 @@
 package org.fluentcodes.projects.stadtbook.calls.postaladdress;
 
-import static org.fluentcodes.projects.stadtbook.domain.DateHelper.deriveDateName;
+import static org.fluentcodes.projects.stadtbook.domain.DateHelper.deriveDateEnglish;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public abstract class PostalAddressCall extends CallImpl {
   }
 
   String getFileName() {
-    return fetchParseType() + ":" + deriveDateName(startDate) + "-" + deriveDateName(stopDate);
+    return fetchParseType() + ":" + deriveDateEnglish(startDate) + "-" + deriveDateEnglish(stopDate);
   }
 
 

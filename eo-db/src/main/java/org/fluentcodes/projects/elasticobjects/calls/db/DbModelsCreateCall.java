@@ -8,13 +8,21 @@ import org.fluentcodes.projects.elasticobjects.calls.commands.ConfigWriteCommand
  * Remove an entry from database by creating a delete sql from entry in sourcePath.
  */
 public class DbModelsCreateCall extends DbModelCall implements ConfigWriteCommand {
-
+    private Boolean execute = false;
     public DbModelsCreateCall() {
         super();
     }
 
     public DbModelsCreateCall(final String hostConfigKey) {
         super(hostConfigKey);
+    }
+
+    public Boolean getExecute() {
+        return execute;
+    }
+
+    public void setExecute(Boolean execute) {
+        this.execute = execute;
     }
 
     @Override
@@ -32,10 +40,13 @@ public class DbModelsCreateCall extends DbModelCall implements ConfigWriteComman
                 StatementPreparedValues.SqlType.CREATE,
                     dbModelConfig.getDropStatement()
             );
-            int executeResponse = statement.execute(config.getDbConfig().getConnection());
+            if (execute) {
+                int executeResponse = statement.execute(config.getDbConfig().getConnection());
+                feedback.append(executeResponse);
+            }
             feedback.append(dbModelConfig.getDropStatement());
             feedback.append(": ");
-            feedback.append(executeResponse);
+
             feedback.append("\n");
 
         }
@@ -46,10 +57,12 @@ public class DbModelsCreateCall extends DbModelCall implements ConfigWriteComman
                     StatementPreparedValues.SqlType.CREATE,
                     dbModelConfig.getCreateStatement()
             );
-            int executeResponse = statement.execute(config.getDbConfig().getConnection());
             feedback.append(dbModelConfig.getCreateStatement());
             feedback.append(": ");
-            feedback.append(executeResponse);
+            if (execute) {
+                int executeResponse = statement.execute(config.getDbConfig().getConnection());
+                feedback.append(executeResponse);
+            }
             feedback.append("\n");
             for (String unique: dbModelConfig.getUniqueList()) {
                 StatementPreparedValues uniqueStatement = new StatementPreparedValues(

@@ -20,13 +20,15 @@ import org.fluentcodes.projects.elasticobjects.exceptions.EoException;
 public class DbSqlReadCall extends ListCall implements ConfigReadCommand {
     public static final String CONDITIONS = "conditions";
     public static final String CONDITION_LIST = "conditionList";
-    String dbConfigKey;
-    DbConfig dbConfig;
-    String dbSqlConfigKey;
-    DbSqlConfig dbSqlConfig;
-    List<Object> queryFilterList;
-    Map<String, Object> queryFilterMap;
-    String filterString;
+    private String dbConfigKey;
+    private DbConfig dbConfig;
+    private String dbSqlConfigKey;
+    private DbSqlConfig dbSqlConfig;
+    private List<Object> queryFilterList;
+    private Map<String, Object> queryFilterMap;
+    private String filterString;
+    private String order;
+
 
     public DbSqlReadCall() {
         super();
@@ -100,6 +102,14 @@ public class DbSqlReadCall extends ListCall implements ConfigReadCommand {
         return this.filterString != null && !this.filterString.isEmpty();
     }
 
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
     @Override
     public Object execute(final EOInterfaceScalar eo) {
         if(!hasDbSqlConfigKey()) {
@@ -153,6 +163,7 @@ public class DbSqlReadCall extends ListCall implements ConfigReadCommand {
         if (statementFind == null) {
             statementFind = new StatementFind(dbSqlConfig.getSql(), eo);
         }
+        statementFind.setOrder(order);
         return statementFind.read(
             dbConfig.getConnection(),
             eo.getConfigMaps(),

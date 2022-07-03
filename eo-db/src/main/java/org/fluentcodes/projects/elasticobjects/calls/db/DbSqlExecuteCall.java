@@ -21,11 +21,11 @@ import java.util.List;
  */
 public class DbSqlExecuteCall extends CallImpl implements ConfigWriteCommand {
     public static final Logger LOGGER = LogManager.getLogger(DbSqlExecuteCall.class);
-    String dbConfigKey;
-    DbConfig dbConfig;
-    String dbSqlConfigKey;
-    DbSqlConfig dbSqlConfig;
-
+    private String dbConfigKey;
+    private DbConfig dbConfig;
+    private String dbSqlConfigKey;
+    private DbSqlConfig dbSqlConfig;
+    private Boolean execute = false;
     public DbSqlExecuteCall() {
         super();
     }
@@ -38,6 +38,14 @@ public class DbSqlExecuteCall extends CallImpl implements ConfigWriteCommand {
     public DbSqlExecuteCall(final String dbConfigKey, final String dbSqlConfigKey) {
         this(dbConfigKey);
         this.dbSqlConfigKey = dbSqlConfigKey;
+    }
+
+    public Boolean getExecute() {
+        return execute;
+    }
+
+    public void setExecute(Boolean execute) {
+        this.execute = execute;
     }
 
     @Override
@@ -66,10 +74,16 @@ public class DbSqlExecuteCall extends CallImpl implements ConfigWriteCommand {
             LOGGER.info("Execute: " + sql);
             Statement statement = null;
             try {
-                eo.info("Executed " + sql);
+
                 Connection connection = dbConfig.getConnection();
                 statement = connection.createStatement();
-                executed = statement.execute(sql) && executed;
+                if (execute) {
+                    executed = statement.execute(sql) && executed;
+                    eo.info("Executed " + sql);
+                }
+                else {
+                    LOGGER.info("Not executed " + sql);
+                }
 
             } catch (SQLException e) {
                 //PreparedStatementValues.closeStatement(statement);
